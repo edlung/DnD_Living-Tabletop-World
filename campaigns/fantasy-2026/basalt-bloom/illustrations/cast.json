@@ -1,0 +1,359 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-db4543e4-13ea-4bde-be27-4f9588c5b113.png",
+      "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Чёрная складка. Characters, in strict cell order:\n1. Тая Рябина — Короткая коса, охряной платок, на сапогах нашиты разноцветные лоскуты для различения следов. Age 17.\n2. Нер Узель — Потёртый зелёный жилет, деревянные пуговицы разных размеров, за ухом всегда короткий карандаш. Age 44.\n3. Вела Огонёк — Синяя накидка с карманами для листов, медная заколка в форме запятой, пальцы в графитовых пятнах. Age 23.\n4. Рун Тёплая Чаша — Серебристая борода, короткий дорожный плащ, деревянная чашка с вырезанными волнами. Age 55.\n5. Эйра Лист — Пышные тёмные волосы под красной лентой, планшет с обрезанными углами, мешочек мягкого угля. Age 16.\n6. Домар Плечо — Широкие рукавицы, латаный походный мешок, тщательно вымытый котелок на ремне. Age 37.\n7. Шель Мера — Белые волосы, застёгнутые костяной шпилькой, очки на шнурке, тетрадь с широкими полями. Age 61.\n8. Зин Отзвук — Жёлтая безрукавка, маленький колокольчик без языка, узкие ленты с записанными чужими именами. Age 29.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-ac28b5d8-291f-449b-be04-70439025040d.png",
+      "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Чёрная складка. Characters, in strict cell order:\n1. Сава Линов — Невысокий человек в тёмном переднике; на его чашке нарисован дом с очень кривой крышей. Age 62.\n2. Лария Векова — Седая прядь над ухом, большие карманы, короткие угольные карандаши в жестяной коробке. Age 46.\n3. Марев Тир — Аккуратный медный зажим на воротнике, жёлтые перчатки и деревянный футляр с мерными планками. Age 39.\n4. Тима Веден — Закатанные рукава, деревянные кораблики на поясе, рыжие веснушки и серьёзная складка между бровями. Age 16.\n5. Олин Шелест — Длинный полосатый шарф, несколько тонких катушек, дощечка для коротких записок на ремне. Age 31.\n6. Берта Ровная — Широкополая соломенная шляпа поверх шерстяного капюшона, кожаная сумка и плоские глиняные таблички. Age 54.\n7. Юст Бакл — Круглое лицо, холщовая куртка с нашитым квадратом и мягкие ремни для переноски ящиков. Age 28.\n8. Дана Край — Синий вязаный берет, широкая бумажная лента на планшете, карманные песочные часы с треснутым чехлом. Age 19.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "taya-step",
+      "file": "cards/taya-step.webp",
+      "title": "Тая Рябина",
+      "subjects": [
+        "taya-step"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6202aca6cf1490db27330902568ede2a1ca66e5aa4817099819342d0694bb015"
+    },
+    {
+      "id": "ner-knot",
+      "file": "cards/ner-knot.webp",
+      "title": "Нер Узель",
+      "subjects": [
+        "ner-knot"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "90ee02dc83e4836fed66c9e5b6bcbbaa4192a1934c24e4b2fa61057099ee556d"
+    },
+    {
+      "id": "vela-lamp",
+      "file": "cards/vela-lamp.webp",
+      "title": "Вела Огонёк",
+      "subjects": [
+        "vela-lamp"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0f44d14061b375b4786b04cd3b48da019b2285ceb18d889a76caece5b85b4e67"
+    },
+    {
+      "id": "run-cup",
+      "file": "cards/run-cup.webp",
+      "title": "Рун Тёплая Чаша",
+      "subjects": [
+        "run-cup"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a487e962889788cbd31338e11f10354d9b42fd4fd8d5f6ecc51d34748ea221a8"
+    },
+    {
+      "id": "eyra-paper",
+      "file": "cards/eyra-paper.webp",
+      "title": "Эйра Лист",
+      "subjects": [
+        "eyra-paper"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "58e23b6f1a7313d12f9b6b079f87c7a74506d8009a9e2b57b08526abfbdba7b7"
+    },
+    {
+      "id": "domar-pack",
+      "file": "cards/domar-pack.webp",
+      "title": "Домар Плечо",
+      "subjects": [
+        "domar-pack"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d076a872e7b6d7b499617464dfe7360fb52f384a90f41af5b4739fbb1eb7f693"
+    },
+    {
+      "id": "shel-scale",
+      "file": "cards/shel-scale.webp",
+      "title": "Шель Мера",
+      "subjects": [
+        "shel-scale"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1cc1843a10897765cb216cdc1ec90b9ec528be6f4c81dce510129baf6bb68490"
+    },
+    {
+      "id": "zin-echo",
+      "file": "cards/zin-echo.webp",
+      "title": "Зин Отзвук",
+      "subjects": [
+        "zin-echo"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "242cd5c9aa7793abf8234e4fe97ea28a360c8d0b7c425de728637d9ab93741af"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "domar-pack-travel-kit",
+        "eyra-paper-travel-kit",
+        "ner-knot-travel-kit",
+        "run-cup-travel-kit",
+        "shel-scale-travel-kit",
+        "taya-step-travel-kit",
+        "vela-lamp-travel-kit",
+        "zin-echo-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9cb7fedbeb9b91cbd056937067b179d0de66fd80bdd836108e19f51894775ec7"
+    },
+    {
+      "id": "sava-house",
+      "file": "cards/sava-house.webp",
+      "title": "Сава Линов",
+      "subjects": [
+        "sava-house"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b6c2a121cfa8799192508f206c83e54e498c457a81562301ef34337cbf5e2a29"
+    },
+    {
+      "id": "laria-sketch",
+      "file": "cards/laria-sketch.webp",
+      "title": "Лария Векова",
+      "subjects": [
+        "laria-sketch"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "03b456a8dbbd489ce94bb5143843abb48a7747ee325fc1835dbc2b0e4f7b5c19"
+    },
+    {
+      "id": "marev-gauge",
+      "file": "cards/marev-gauge.webp",
+      "title": "Марев Тир",
+      "subjects": [
+        "marev-gauge"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d525891531453964e0b7a46e9e819ba8cdb7a506cfaed4ac3355482b6643b779"
+    },
+    {
+      "id": "tima-float",
+      "file": "cards/tima-float.webp",
+      "title": "Тима Веден",
+      "subjects": [
+        "tima-float"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5dcb0e086de1fefd05e32bd2abe16376bc3d3d241a26bb607d91116f45616822"
+    },
+    {
+      "id": "olin-thread",
+      "file": "cards/olin-thread.webp",
+      "title": "Олин Шелест",
+      "subjects": [
+        "olin-thread"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a08a539df52742d9c0c7ce63cafd1bd128020d054c91e6abede5b0fdb075f1e5"
+    },
+    {
+      "id": "berta-clay",
+      "file": "cards/berta-clay.webp",
+      "title": "Берта Ровная",
+      "subjects": [
+        "berta-clay"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d5dff00fe15bb1a12f81a43c8ada811b35060b7ab2de073479e4ee55833d95f5"
+    },
+    {
+      "id": "yust-porter",
+      "file": "cards/yust-porter.webp",
+      "title": "Юст Бакл",
+      "subjects": [
+        "yust-porter"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "957281fa4405360b2955b433051ec2f3be77c28833a66d152e6be1c8a1c8ac4e"
+    },
+    {
+      "id": "dana-witness",
+      "file": "cards/dana-witness.webp",
+      "title": "Дана Край",
+      "subjects": [
+        "dana-witness"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "945eeb9e8b98d9425209bff791874b7924aa94d18d41cb68cec98a37eb37a0ed"
+    }
+  ]
+}

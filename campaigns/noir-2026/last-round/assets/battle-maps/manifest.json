@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "repair-bench.webp",
+      "sha256": "cfdad96042654387cef17cfa6cc91f80eac5a89d256de101edd6c19a71c0d012",
+      "originalSha256": "b4540cc6391fa0eb0ebfbc580806f76ad3052c6f39741efd91f2fabae3d854ac",
+      "originalFile": "exec-2967c3cd-6600-4eb3-9090-d944274c15a3.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мастерская Бека. Visible scenery: Ремни, кофры, вешалки с чинеными пальто. Рабочий стол стоит у окна, выходящего в тесный общий двор.. World style: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "repair-bench",
+      "encounter": "repair-dispute",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "gym-yard.webp",
+      "sha256": "8bb3cf9cb1fb204e12eec0978487c1fe890d129995f6f659501c36b75b27eb51",
+      "originalSha256": "3b53df824696df8d8584235d4abe1d4768709a800289546e43aebe11dc1ebbba",
+      "originalFile": "exec-832e2b35-f1c8-440a-85f7-11405fc92c1f.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Канатный двор. Visible scenery: Несколько небольших залов выходят в общий двор. На стене висят объявления о подработке, а у ворот сушатся полотенца.. World style: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "gym-yard",
+      "encounter": "yard-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "river-pavilion.webp",
+      "sha256": "3f349519a2b94849f3d434f920f154a9513f0668b0e901a24c9a972afd7b7ebf",
+      "originalSha256": "3bb44af357d525e524a2459f63c121e2c220eb17e5b85e73c8a0c4b2ac1a54d5",
+      "originalFile": "exec-7008e015-dca7-4026-a7fb-e07c18b46b37.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Крытый речной павильон. Visible scenery: Навес с двумя открытыми выходами, скамьями и видом на трамвайную остановку. Днём здесь ждут лодку, вечером укрываются от дождя.. World style: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "river-pavilion",
+      "encounter": "pavilion-push",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -96,7 +96,6 @@
   text-transform: uppercase;
 }
 .perspective-control select {
-  min-height: 38px;
   max-width: 15rem;
   padding-block: 0.3rem;
 }

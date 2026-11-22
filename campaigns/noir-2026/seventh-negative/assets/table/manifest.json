@@ -1,0 +1,734 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "seventh-negative-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c8cd5c66-7bdc-41b2-a4ce-a27a187067ba.png",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Cell 1. Ника Орл. Пальто с заменённой подкладкой, небольшой блокнот и привычка садиться так, чтобы видеть собеседника, а не выход.\nCell 2. Тимур Клен. Короткая рабочая куртка, очки в жестяном футляре, карандаш за правым ухом.\nCell 3. Софья Лан. Тёмный жилет, мягкая папка с двумя отделениями и тщательно подрезанный простой карандаш.\nCell 4. Яна Брук. Светлый шарф, застёгнутый дорожный саквояж и спокойный голос без привычки командовать.\nCell 5. Аркадий Рёс. Вытертый галстук, аккуратно причёсанные седые волосы и карманное зеркало с треснувшей крышкой.\nCell 6. Мила Арж. Рукава, стянутые лентой, мягкая щётка в футляре и очки, которые она снимает во время разговора.\nCell 7. Денис Вель. Тёплая кепка, сумка с чистыми бланками и записная книжка, в которой адреса закрыты отдельным клапаном.\nCell 8. Эстер Фон. Плотные перчатки на ремне, высокая шнуровка ботинок и мел на наружном кармане.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/nika-orl.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/timur-klen.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/sofya-lan.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/yana-bruk.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/arkady-res.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/mila-arzh.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/denis-vel.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/ester-fon.webp"
+      ]
+    },
+    {
+      "id": "seventh-negative-places-0",
+      "originalFile": "exec-f3a02bbf-6490-4494-b53a-e7c55eab1564.png",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Cell 1. Комната артели. Две сдвинутые парты, печь и доска с именами дежурных. Здесь можно спокойно сравнить записи и согласовать помощь.\nCell 2. Проходная «Кромки». Окошко сторожа смотрит на турникет и мокрый двор. Пропуска лежат в деревянной кассе с пронумерованными ячейками.\nCell 3. Седьмой павильон. Картонные фасады окружают невысокую учебную башню. Над полом висят рабочие лампы, а у стены стоит доска номеров дублей.\nCell 4. Коридор макетов. Узкий проход между павильоном и складской стеной. Свет попадает сюда через незакрытое окно декорации; у двери лежат сменные пороги.\nCell 5. Монтажная с матовым окном. Столы с ручными просмотровыми устройствами, шкафы банок и коврики, удерживающие шум моторов. У окна сушатся бумажные ярлыки.\nCell 6. Двор реквизита. Под навесом стоят тележки, строительные детали и учебные манекены. Каждый предмет получает бирку прежде, чем отправиться в павильон.\nCell 7. Студийный коммутатор. Телефонные гнёзда, часы и копировальная лента занимают почти всю комнату. За стеклом видна очередь работников с заявками.\nCell 8. Договорная контора. Высокие конторки стоят вдоль стен, а посетителям оставлены низкие стулья. В металлическом шкафу хранятся подшитые экземпляры соглашений.\nCell 9. Осмотровая при артели. Тихая комната с ширмой, столом для записей и умывальником. Медицинские документы выдают с соблюдением согласованных полномочий, без показа тела.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "seventh-negative-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-cfb1ce22-b0ba-40e6-840f-61d6a109c43a.png",
+      "originalSha256": "b85428d4b0315f434b9f9691bca93e22264aa77619ea046bb0584d51b5dadac5",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Cell 1. Наёмный сопровождающий реквизита. Совершеннолетний работник 21+ в рабочей куртке, выполняющий спорное распоряжение. Не чудовище и не тайный убийца; условная ближняя атака обозначает нелетальную потасовку.\nCell 2. Дежурный студийной охраны. Взрослый сотрудник 21+ в мокрой форменной куртке. Боится потерять смену; считает, что удерживает порядок, и готов принять ясное письменное решение.\nCell 3. Сопровождающий закрытого показа. Наёмный взрослый 21+ с повязкой дежурного, которому выдали противоречивое распоряжение. Не обладает сверхъестественными силами; близкая потасовка описывается как условное нелетальное препятствие.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "seventh-negative-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-11025c9e-f551-4ace-90d9-aade6e352bc3.png",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Седьмой негатив. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Вера Корс. Строгий костюм, узкая брошь и металлическая ручная пломба на короткой цепочке у жилета.\nCell 2. Антон Лис. Вязаный шарф поверх пиджака, папка с мизансценами и усталые глаза.\nCell 3. Дина Рез. Клетчатая рубашка, два карандаша разной длины и белые полоски бумаги на рукаве.\nCell 4. Илья Яр. Круглые очки, серый халат и перчатки для работы с плёнкой.\nCell 5. Раиса Вет. Брезентовый фартук, связка карточек на кольце и маленькая кружка, висящая на крючке.\nCell 6. Павел Устен. Наушники на шее, короткие волосы и бумажные метки на ремне сумки.",
+      "references": [
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/vera-kors.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/anton-lis.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/dina-rez.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/ilya-yar.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/raisa-vet.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/pavel-usten.webp"
+      ]
+    },
+    {
+      "id": "seventh-negative-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5787aa0f-1586-40cb-8b46-c2c339269038.png",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Седьмой негатив. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Елена Бор. Тёмное платье, простая брошь и очки на шнурке.\nCell 2. Лидия Крут. Тёплая кофта поверх блузки и серебряная заколка без украшений.\nCell 3. Марина Дол. Потёртая шерстяная юбка, крупные пуговицы и пачка чистой бумаги под рукой.\nCell 4. Григорий Таль. Форменная куртка без погон, слуховая трубка телефона и аккуратная седая щетина.\nCell 5. Лев Ратин. На разрешённой семьёй фотографии — человек в простой рабочей куртке с широким горизонтальным швом на спине.\nCell 6. Олег Линн. Простой костюм, папка городского бюро и сухие чернила на среднем пальце.",
+      "references": [
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/elena-bor.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/lidia-krut.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/marina-dol.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/grigory-tal.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/lev-ratin.webp",
+        "campaigns/noir-2026/seventh-negative/illustrations/cards/oleg-linn.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "nika-orl",
+      "title": "Ника Орл",
+      "kind": "hero",
+      "subjects": [
+        "nika-orl"
+      ],
+      "file": "heroes-nika-orl.webp",
+      "sha256": "5d0434014b2de2026a5b0ec08538df5aaf035f9a893899acfd9033571daa3115",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 127,
+        "top": 11,
+        "width": 189,
+        "height": 414
+      }
+    },
+    {
+      "key": "timur-klen",
+      "title": "Тимур Клен",
+      "kind": "hero",
+      "subjects": [
+        "timur-klen"
+      ],
+      "file": "heroes-timur-klen.webp",
+      "sha256": "e2515e5bcea699471c07691a8ed1bf3f43251facf406023a74769bfae6dd3148",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 571,
+        "top": 12,
+        "width": 189,
+        "height": 413
+      }
+    },
+    {
+      "key": "sofya-lan",
+      "title": "Софья Лан",
+      "kind": "hero",
+      "subjects": [
+        "sofya-lan"
+      ],
+      "file": "heroes-sofya-lan.webp",
+      "sha256": "d2d682a8cd0d0ff43c88939358451126f6d68ab71b9f27b38316176c8d52dcbc",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1016,
+        "top": 12,
+        "width": 187,
+        "height": 413
+      }
+    },
+    {
+      "key": "yana-bruk",
+      "title": "Яна Брук",
+      "kind": "hero",
+      "subjects": [
+        "yana-bruk"
+      ],
+      "file": "heroes-yana-bruk.webp",
+      "sha256": "bc4ced0888cbcdbf6eac705f17d256855b21d6604fbff954082b578f38873182",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1449,
+        "top": 12,
+        "width": 196,
+        "height": 413
+      }
+    },
+    {
+      "key": "arkady-res",
+      "title": "Аркадий Рёс",
+      "kind": "hero",
+      "subjects": [
+        "arkady-res"
+      ],
+      "file": "heroes-arkady-res.webp",
+      "sha256": "3b3278fcd804e03752f4afd347fcdda143c98e8d2ad0fa936d4257a233ee9de3",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 128,
+        "top": 450,
+        "width": 188,
+        "height": 420
+      }
+    },
+    {
+      "key": "mila-arzh",
+      "title": "Мила Арж",
+      "kind": "hero",
+      "subjects": [
+        "mila-arzh"
+      ],
+      "file": "heroes-mila-arzh.webp",
+      "sha256": "3abae1b7dcb058c27a8006a85c21d22b272bbc61302a8c0990cd84ad28c5c981",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 572,
+        "top": 455,
+        "width": 187,
+        "height": 415
+      }
+    },
+    {
+      "key": "denis-vel",
+      "title": "Денис Вель",
+      "kind": "hero",
+      "subjects": [
+        "denis-vel"
+      ],
+      "file": "heroes-denis-vel.webp",
+      "sha256": "1ad22d22cd199b152b7c6a6788210765921456c85ae588e0935a9ac22dde0702",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1010,
+        "top": 448,
+        "width": 193,
+        "height": 422
+      }
+    },
+    {
+      "key": "ester-fon",
+      "title": "Эстер Фон",
+      "kind": "hero",
+      "subjects": [
+        "ester-fon"
+      ],
+      "file": "heroes-ester-fon.webp",
+      "sha256": "4de8527d8642b8a134098064d69fb6e99694b9603a2c9c123b16434485f323fb",
+      "originalSha256": "a329ca4c48294bb5826efcfc40db13f0e6de293ba9d1d13e08fefe94a9b3a3d1",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1459,
+        "top": 454,
+        "width": 186,
+        "height": 416
+      }
+    },
+    {
+      "key": "guild-room",
+      "title": "Комната артели",
+      "kind": "place",
+      "subjects": [
+        "guild-room"
+      ],
+      "file": "places-guild-room.webp",
+      "sha256": "57b55d3fb4d75bf9a8d81a4d033984b69518e8a2c7ed1a185baba93b2bb4a8e3",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "studio-gate",
+      "title": "Проходная «Кромки»",
+      "kind": "place",
+      "subjects": [
+        "studio-gate"
+      ],
+      "file": "places-studio-gate.webp",
+      "sha256": "bd297b22a410912ca692d126191988499364b1969a2b94c67fe87c96b06943bd",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "stage-seven",
+      "title": "Седьмой павильон",
+      "kind": "place",
+      "subjects": [
+        "stage-seven"
+      ],
+      "file": "places-stage-seven.webp",
+      "sha256": "90c27f9b9bbc4f75a8676054aa91f150d242aac234f246d98fcd93f31b732c59",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "model-passage",
+      "title": "Коридор макетов",
+      "kind": "place",
+      "subjects": [
+        "model-passage"
+      ],
+      "file": "places-model-passage.webp",
+      "sha256": "b118ae0c2bb8967b72566c08df77c8af740988324c80b92f734a8ff744d4e5c3",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "editing-room",
+      "title": "Монтажная с матовым окном",
+      "kind": "place",
+      "subjects": [
+        "editing-room"
+      ],
+      "file": "places-editing-room.webp",
+      "sha256": "3a401226f6085378b6e0c327bfe94e63933a94249f5fbaeec08a5a839dabb1ca",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "props-yard",
+      "title": "Двор реквизита",
+      "kind": "place",
+      "subjects": [
+        "props-yard"
+      ],
+      "file": "places-props-yard.webp",
+      "sha256": "e865b226c47061249d805160e50849eeb88b28c076a7c53c9f01dc0a373713e8",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "exchange-room",
+      "title": "Студийный коммутатор",
+      "kind": "place",
+      "subjects": [
+        "exchange-room"
+      ],
+      "file": "places-exchange-room.webp",
+      "sha256": "f56dfd34cbad3bad06ee9ef85a1d17531f555c9ff060a4a1d6707ecbfb1335ee",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "contracts-room",
+      "title": "Договорная контора",
+      "kind": "place",
+      "subjects": [
+        "contracts-room"
+      ],
+      "file": "places-contracts-room.webp",
+      "sha256": "5e6530a3acf34e094ab73a64a7951e2452009d57b3d83dba918643693d99a6e6",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "medical-room",
+      "title": "Осмотровая при артели",
+      "kind": "place",
+      "subjects": [
+        "medical-room"
+      ],
+      "file": "places-medical-room.webp",
+      "sha256": "17f60e4a12c34a7caf7e78edc0f926e653f9f7c7d736c0172c9ae35cbab2becd",
+      "originalSha256": "2e7fecc194ab91bfc5dec0bcdf3d85d26418b3a23d20eef5c7e2654068835c3f",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 1025,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-ef6ddad726",
+      "title": "Наёмный сопровождающий реквизита",
+      "kind": "foe",
+      "subjects": [
+        "yard-cart-foe-1",
+        "yard-cart-foe-2",
+        "yard-cart-foe-3",
+        "yard-cart-foe-4",
+        "yard-cart-foe-5",
+        "yard-cart-foe-6"
+      ],
+      "file": "foes-foe-ef6ddad726.webp",
+      "sha256": "4e7ba43dc0499a3d597319b8dd98e21539c917d9385f61b7227001a7e7286998",
+      "originalSha256": "b85428d4b0315f434b9f9691bca93e22264aa77619ea046bb0584d51b5dadac5",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 86,
+        "top": 19,
+        "width": 511,
+        "height": 691
+      }
+    },
+    {
+      "key": "foe-b264f1dbb2",
+      "title": "Дежурный студийной охраны",
+      "kind": "foe",
+      "subjects": [
+        "gate-pressure-foe-1",
+        "gate-pressure-foe-2",
+        "gate-pressure-foe-3",
+        "gate-pressure-foe-4",
+        "gate-pressure-foe-5",
+        "gate-pressure-foe-6"
+      ],
+      "file": "foes-foe-b264f1dbb2.webp",
+      "sha256": "c2815996306d94c16818432767614a61439d5507e09122c2ac64032954f30c5c",
+      "originalSha256": "b85428d4b0315f434b9f9691bca93e22264aa77619ea046bb0584d51b5dadac5",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 841,
+        "top": 10,
+        "width": 477,
+        "height": 700
+      }
+    },
+    {
+      "key": "foe-c9422b0678",
+      "title": "Сопровождающий закрытого показа",
+      "kind": "foe",
+      "subjects": [
+        "closed-set-pressure-foe-1",
+        "closed-set-pressure-foe-2",
+        "closed-set-pressure-foe-3",
+        "closed-set-pressure-foe-4",
+        "closed-set-pressure-foe-5",
+        "closed-set-pressure-foe-6"
+      ],
+      "file": "foes-foe-c9422b0678.webp",
+      "sha256": "3dc686a9fd99b7408b5a995da27ca20dc0c117d14a305736eed3fbedba8d70fb",
+      "originalSha256": "b85428d4b0315f434b9f9691bca93e22264aa77619ea046bb0584d51b5dadac5",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1545,
+        "top": 14,
+        "width": 568,
+        "height": 698
+      }
+    },
+    {
+      "key": "vera-kors",
+      "title": "Вера Корс",
+      "kind": "npc",
+      "subjects": [
+        "vera-kors"
+      ],
+      "file": "npcs-vera-kors.webp",
+      "sha256": "a5d8f43622e9560a37d255b2575db8d52895f5ca73c7a3937e4abb7c489c45b2",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 161,
+        "top": 22,
+        "width": 231,
+        "height": 479
+      }
+    },
+    {
+      "key": "anton-lis",
+      "title": "Антон Лис",
+      "kind": "npc",
+      "subjects": [
+        "anton-lis"
+      ],
+      "file": "npcs-anton-lis.webp",
+      "sha256": "efe0cb0b1f36d8f4ccd2b2fcc11d8fd124909f31e0d6052f0eb2217f280694b3",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 655,
+        "top": 22,
+        "width": 226,
+        "height": 480
+      }
+    },
+    {
+      "key": "dina-rez",
+      "title": "Дина Рез",
+      "kind": "npc",
+      "subjects": [
+        "dina-rez"
+      ],
+      "file": "npcs-dina-rez.webp",
+      "sha256": "c4b04779763a0e631c99ac52923573d03d386801da0a84e4e8a9b01280605c1e",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1150,
+        "top": 22,
+        "width": 225,
+        "height": 480
+      }
+    },
+    {
+      "key": "ilya-yar",
+      "title": "Илья Яр",
+      "kind": "npc",
+      "subjects": [
+        "ilya-yar"
+      ],
+      "file": "npcs-ilya-yar.webp",
+      "sha256": "14e979e8290c485bdd2525da1a674189492a3fbba30e8ad553ed769437fb0f96",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 147,
+        "top": 525,
+        "width": 245,
+        "height": 486
+      }
+    },
+    {
+      "key": "raisa-vet",
+      "title": "Раиса Вет",
+      "kind": "npc",
+      "subjects": [
+        "raisa-vet"
+      ],
+      "file": "npcs-raisa-vet.webp",
+      "sha256": "aced18a27fa072378773a7583318c0557135342bf45d20a82418076e3485dd90",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 647,
+        "top": 524,
+        "width": 241,
+        "height": 488
+      }
+    },
+    {
+      "key": "pavel-usten",
+      "title": "Павел Устен",
+      "kind": "npc",
+      "subjects": [
+        "pavel-usten"
+      ],
+      "file": "npcs-pavel-usten.webp",
+      "sha256": "77532a188d2a3ba4282518ef1e80e5799ce5f1464ad8afb487290193739d0228",
+      "originalSha256": "87c44cd798d3748cfd0c0ab249fa24a7ec191b30b6c680d63fa9179d8141aa55",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 1154,
+        "top": 521,
+        "width": 236,
+        "height": 489
+      }
+    },
+    {
+      "key": "elena-bor",
+      "title": "Елена Бор",
+      "kind": "npc",
+      "subjects": [
+        "elena-bor"
+      ],
+      "file": "npcs-elena-bor.webp",
+      "sha256": "98295f68a75b3b3fc732dd0ac5a7497cc6a57fb71738b5cfae479722222a0eb1",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 177,
+        "top": 22,
+        "width": 232,
+        "height": 480
+      }
+    },
+    {
+      "key": "lidia-krut",
+      "title": "Лидия Крут",
+      "kind": "npc",
+      "subjects": [
+        "lidia-krut"
+      ],
+      "file": "npcs-lidia-krut.webp",
+      "sha256": "a9b68274bd8273fb2a273daf72bb0f75297a817330f37d14ca714bdb67a82268",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 657,
+        "top": 20,
+        "width": 224,
+        "height": 482
+      }
+    },
+    {
+      "key": "marina-dol",
+      "title": "Марина Дол",
+      "kind": "npc",
+      "subjects": [
+        "marina-dol"
+      ],
+      "file": "npcs-marina-dol.webp",
+      "sha256": "5ed0db43261394fc686ba8711a7a95101d525525d51ab398448ed2371f148359",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1126,
+        "top": 21,
+        "width": 225,
+        "height": 481
+      }
+    },
+    {
+      "key": "grigory-tal",
+      "title": "Григорий Таль",
+      "kind": "npc",
+      "subjects": [
+        "grigory-tal"
+      ],
+      "file": "npcs-grigory-tal.webp",
+      "sha256": "081577c62d727c6fbfe3a54b81c5a4bd6413dd9d9e4526039c694104a5b52f19",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 172,
+        "top": 520,
+        "width": 228,
+        "height": 486
+      }
+    },
+    {
+      "key": "lev-ratin",
+      "title": "Лев Ратин",
+      "kind": "npc",
+      "subjects": [
+        "lev-ratin"
+      ],
+      "file": "npcs-lev-ratin.webp",
+      "sha256": "509dfd21c914c5747b6d78a291b8d511b66d23ce0756336860eb0fd81dce44f4",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 641,
+        "top": 522,
+        "width": 238,
+        "height": 484
+      }
+    },
+    {
+      "key": "oleg-linn",
+      "title": "Олег Линн",
+      "kind": "npc",
+      "subjects": [
+        "oleg-linn"
+      ],
+      "file": "npcs-oleg-linn.webp",
+      "sha256": "c5cfa4d96e8c9d358dfa1ead55d4cc6ebbe9c32bc926727f97b0aaebb39facb8",
+      "originalSha256": "bd3548504a297e7576839c76c49030dfb17c2f10f66001b5027da13af28eaf5d",
+      "generated": "2026-11-22",
+      "sheet": "seventh-negative-npcs-1",
+      "cell": 6,
+      "crop": {
+        "left": 1123,
+        "top": 522,
+        "width": 231,
+        "height": 484
+      }
+    }
+  ]
+}

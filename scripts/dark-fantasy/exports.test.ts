@@ -19,6 +19,12 @@ describe.each(SLUGS)('%s local reader exports', (slug) => {
       }
       for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
         if (!match[1] || match[1].startsWith('#')) continue;
+        if (file === 'players.html' && match[0].startsWith('src="data:image/webp;base64,')) {
+          const data = Buffer.from(match[1].slice('data:image/webp;base64,'.length), 'base64');
+          expect(data.toString('ascii', 0, 4)).toBe('RIFF');
+          expect(data.toString('ascii', 8, 12)).toBe('WEBP');
+          continue;
+        }
         const target = new URL(match[1], url);
         expect(
           target.href.startsWith(COLLECTION_ROOT.href),

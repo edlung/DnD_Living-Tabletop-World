@@ -1,0 +1,636 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "cedar-tournament-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-13b2be6a-992e-4c70-abbc-4308a012cd20.png",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Cell 1. Тао Лист. Короткий зелёный жилет, лента с собственноручно вышитым неровным листом, серьёзная улыбка перед стартом.\nCell 2. Мира Нить. Синий шарф, цветные пуговицы на рукавах и маленький альбом неожиданных узоров.\nCell 3. Орен Берег. Светлая куртка с широкими карманами, деревянный значок чаши, мягкие дорожные туфли.\nCell 4. Сэя Пятно. Фиолетовые манжеты в чернильных точках, складная дощечка для рисунков, волосы под широким ободком.\nCell 5. Рю Тёплый Ветер. Тёмный пояс с давно выцветшим узором, аккуратно подшитые рукава, смешной круглый дорожный мешок.\nCell 6. Нала Тихий Колокольчик. Жёлтый воротник, тетрадь с широкими полями, крошечный колокольчик без язычка на шнурке.\nCell 7. Эйдо Медный Лист. Песочная жилетка, новые ещё жёсткие шнурки и значок с честной надписью «учусь».. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/tao.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/mira.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/oren.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/seya.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/ryu.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/nala.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/eido.webp"
+      ]
+    },
+    {
+      "id": "cedar-tournament-places-0",
+      "originalFile": "exec-b02cef0a-99c1-448c-8646-d92b439dd238.png",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Cell 1. Мостовой Двор. Домашняя площадка сборной: деревянный настил, чайник, длинная скамья и доска, на которой хватает места каждому имени.\nCell 2. Ворота Четырёх Лент. Четыре одинаковых шеста у входа на турнир; рядом открытый стол заявок и доска расписания.\nCell 3. Лунный Круг. Общая арена с меловыми рисунками, мягкими перегородками и широкими проходами к зрительским скамьям.\nCell 4. Двор Тихого Камня. Светлый двор с ровными рядами подушек. На стене висят разные варианты одного общего упражнения.\nCell 5. Галерея Летящей Ленты. Открытая галерея, где тканевые дорожки меняют цвет на ветру, а скамейки можно переставлять для зрителей.\nCell 6. Двор Пустой Чаши. Круглая площадка с расписанными чашами у края. У каждого места есть карточка для письменного ответа.\nCell 7. Чайная Под Корнями. Чайная у живого кедра. На стенах — командные фотографии, рисунки и подписанные старые турнирные листы.\nCell 8. Ступени Тренировки. Низкие широкие ступени с боковым ровным проходом; одинаковое упражнение удобно показывать с разной высоты или сидя.\nCell 9. Комната Фонарей. Тихая комната для составления программ: четыре стола, цветная бумага, песочные часы и расписание перерывов.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "cedar-tournament-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-604efef4-2614-443a-beac-e499622e7ef9.png",
+      "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Cell 1. Ученик Камня с мягким знаком. Спортсмен в зелёной учебной ленте с условным мягким инвентарём. Хиты описывают усталость, без кровавых травм. КД 12; одна обычная ближняя атака +3, урон 1d4+1.\nCell 2. Ученик Ленты с мягкой кистью. Спортсмен с оранжевой учебной лентой и условной мягкой кистью. КД 12; одна обычная ближняя атака +3 на 1d4+1. Повествование остаётся образным, без реальных инструкций боя.\nCell 3. Ученик Чаши с мягкой лентой. Спортсмен с бирюзовой лентой и условным мягким снарядом. КД 12, одна обычная ближняя атака +3, урон 1d4+1. Потеря хитов означает усталость в учебной сцене.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "cedar-tournament-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-8c99508f-ff40-4627-be14-e86273c7fea9.png",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Турнир под Кедровой Луной. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Ива Утренний Шаг. Короткий серый плащ, медная чашка на поясе и привычка освобождать соседнее место на скамье.\nCell 2. Руэ Ровная Черта. Белая накидка с четырьмя одинаковыми узлами, толстый мел и дощечка для крупного счёта.\nCell 3. Сэн Квадратный Лист. Тёмно-зелёная лента, прямоугольная записная книжка и очень аккуратно сложенные запасные полотенца.\nCell 4. Даро Летящая Скоба. Оранжевая лента, разномастные мягкие туфли и карточки с короткими названиями упражнений.\nCell 5. Ами Белый Край. Светлая широкая рубаха, бирюзовая лента и чашка с нарисованным открытым окном.\nCell 6. Фэн Короткая Черта. Зелёные манжеты, короткий карандаш за ухом и веер из нескольких простых карточек.\nCell 7. Нэо Медный Узел. Песочный плащ с большими застёжками, ровная стопка одинаковых листов договора и сумка дорожных билетов.\nCell 8. Уна Чайный Круг. Тёмная косынка в белых точках, длинная ложечка и очки на пёстром шнуре.\nCell 9. Пао Чистое Поле. Светло-коричневая жилетка, два мела за ухом и складная дощечка с крупными цифрами.",
+      "references": [
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/iva.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/judge-rue.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/sen.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/daro.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/ami.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/fen.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/neo.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/una.webp",
+        "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/pao.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "tao",
+      "title": "Тао Лист",
+      "kind": "hero",
+      "subjects": [
+        "tao"
+      ],
+      "file": "heroes-tao.webp",
+      "sha256": "136c38c7863caadd15653fbe127af087fc90138658a5f2f3586d35e7e8d3117a",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 114,
+        "top": 11,
+        "width": 223,
+        "height": 416
+      }
+    },
+    {
+      "key": "mira",
+      "title": "Мира Нить",
+      "kind": "hero",
+      "subjects": [
+        "mira"
+      ],
+      "file": "heroes-mira.webp",
+      "sha256": "d560fb8e8a6a00fe986354133067c5d1789b47123da9ae37f7c2ee6a77120062",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 553,
+        "top": 13,
+        "width": 223,
+        "height": 414
+      }
+    },
+    {
+      "key": "oren",
+      "title": "Орен Берег",
+      "kind": "hero",
+      "subjects": [
+        "oren"
+      ],
+      "file": "heroes-oren.webp",
+      "sha256": "2d25f80ba4d4eb75e172ab784f9194ccbf806c4415896b0e9d9dd8490974a3a8",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 992,
+        "top": 13,
+        "width": 230,
+        "height": 414
+      }
+    },
+    {
+      "key": "seya",
+      "title": "Сэя Пятно",
+      "kind": "hero",
+      "subjects": [
+        "seya"
+      ],
+      "file": "heroes-seya.webp",
+      "sha256": "98a8b67f2932d8e652a7ba4cc40b82744596208723162b98eb90de7c06f409a2",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1442,
+        "top": 15,
+        "width": 221,
+        "height": 412
+      }
+    },
+    {
+      "key": "ryu",
+      "title": "Рю Тёплый Ветер",
+      "kind": "hero",
+      "subjects": [
+        "ryu"
+      ],
+      "file": "heroes-ryu.webp",
+      "sha256": "6a8e761dad41cada0ab1f5928ef77fc072e2f12a6e96039010e35dca077cdccb",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 96,
+        "top": 447,
+        "width": 241,
+        "height": 425
+      }
+    },
+    {
+      "key": "nala",
+      "title": "Нала Тихий Колокольчик",
+      "kind": "hero",
+      "subjects": [
+        "nala"
+      ],
+      "file": "heroes-nala.webp",
+      "sha256": "28713ee39b37054b7bd9ac589f58c4d357679a11147fb21121e7e766d6d2ef9d",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 554,
+        "top": 450,
+        "width": 223,
+        "height": 422
+      }
+    },
+    {
+      "key": "eido",
+      "title": "Эйдо Медный Лист",
+      "kind": "hero",
+      "subjects": [
+        "eido"
+      ],
+      "file": "heroes-eido.webp",
+      "sha256": "aa79dfadc830cc6457013e9f9ee437b79517fc083770ace11f2400062f320147",
+      "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 998,
+        "top": 446,
+        "width": 224,
+        "height": 425
+      }
+    },
+    {
+      "key": "bridge-yard",
+      "title": "Мостовой Двор",
+      "kind": "place",
+      "subjects": [
+        "bridge-yard"
+      ],
+      "file": "places-bridge-yard.webp",
+      "sha256": "fff6b08893ccd706dc4928831f2ce27c2688207b1152c92c8d8832b6ba702f78",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "ribbon-gate",
+      "title": "Ворота Четырёх Лент",
+      "kind": "place",
+      "subjects": [
+        "ribbon-gate"
+      ],
+      "file": "places-ribbon-gate.webp",
+      "sha256": "484d514dc952c035abf5c99d3285dbaf1278f67e838d1e772ba47342d0d23795",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "moon-ring",
+      "title": "Лунный Круг",
+      "kind": "place",
+      "subjects": [
+        "moon-ring"
+      ],
+      "file": "places-moon-ring.webp",
+      "sha256": "24a647b3d5de37a774220a12815fb1e3b9d7d6feb9f7cba7c85eef3b57d64d0f",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "stone-yard",
+      "title": "Двор Тихого Камня",
+      "kind": "place",
+      "subjects": [
+        "stone-yard"
+      ],
+      "file": "places-stone-yard.webp",
+      "sha256": "b28ca205d808db5e15ca8e54a80e0f7f385f8209bacb38dd6a05005a9e66fc18",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "wind-gallery",
+      "title": "Галерея Летящей Ленты",
+      "kind": "place",
+      "subjects": [
+        "wind-gallery"
+      ],
+      "file": "places-wind-gallery.webp",
+      "sha256": "fbe8a45635b10a8bb2a5620840a35cd3975922ef556f115fbafc1d948eab1bd8",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "bowl-court",
+      "title": "Двор Пустой Чаши",
+      "kind": "place",
+      "subjects": [
+        "bowl-court"
+      ],
+      "file": "places-bowl-court.webp",
+      "sha256": "a506f5399f36442aab51b5861cb3aa12fd6beabdb4fd17b61f88441beb93c850",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "cedar-tea",
+      "title": "Чайная Под Корнями",
+      "kind": "place",
+      "subjects": [
+        "cedar-tea"
+      ],
+      "file": "places-cedar-tea.webp",
+      "sha256": "19c95d8339a91b970a25cb77750f435b6336ed7ee4c774dc864ea2d1a0deba14",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "practice-steps",
+      "title": "Ступени Тренировки",
+      "kind": "place",
+      "subjects": [
+        "practice-steps"
+      ],
+      "file": "places-practice-steps.webp",
+      "sha256": "008ce3d9d08cc3a86946ee756c752e0169cd2259295e4f638d79a082ecc6fff8",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "lantern-room",
+      "title": "Комната Фонарей",
+      "kind": "place",
+      "subjects": [
+        "lantern-room"
+      ],
+      "file": "places-lantern-room.webp",
+      "sha256": "093963aa6bead5020a2b1fd0d5c63a263571bcb6194a67485c7719cbb9db0c1c",
+      "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-c96a39b454",
+      "title": "Ученик Камня с мягким знаком",
+      "kind": "foe",
+      "subjects": [
+        "stone-circle-foe-1",
+        "stone-circle-foe-2",
+        "stone-circle-foe-3",
+        "stone-circle-foe-4",
+        "stone-circle-foe-5"
+      ],
+      "file": "foes-foe-c96a39b454.webp",
+      "sha256": "327803726d5b38cc04b9bdd8118682b8d82f8025d43142c993916fdb94a5c44e",
+      "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 97,
+        "top": 27,
+        "width": 520,
+        "height": 671
+      }
+    },
+    {
+      "key": "foe-a4b4befcc8",
+      "title": "Ученик Ленты с мягкой кистью",
+      "kind": "foe",
+      "subjects": [
+        "ribbon-arc-foe-1",
+        "ribbon-arc-foe-2",
+        "ribbon-arc-foe-3",
+        "ribbon-arc-foe-4",
+        "ribbon-arc-foe-5"
+      ],
+      "file": "foes-foe-a4b4befcc8.webp",
+      "sha256": "069b2b9f6e44026b92821fb6751fc142ade187d0954b78ec1584acefa2a4e4a5",
+      "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 787,
+        "top": 17,
+        "width": 584,
+        "height": 681
+      }
+    },
+    {
+      "key": "foe-9e6764de02",
+      "title": "Ученик Чаши с мягкой лентой",
+      "kind": "foe",
+      "subjects": [
+        "bowl-cross-foe-1",
+        "bowl-cross-foe-2",
+        "bowl-cross-foe-3",
+        "bowl-cross-foe-4",
+        "bowl-cross-foe-5"
+      ],
+      "file": "foes-foe-9e6764de02.webp",
+      "sha256": "da481a0366bbcb1d1c565594d08cd7120731b7d1d5f78884ecc73b38f482cf7f",
+      "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1479,
+        "top": 18,
+        "width": 606,
+        "height": 680
+      }
+    },
+    {
+      "key": "iva",
+      "title": "Ива Утренний Шаг",
+      "kind": "npc",
+      "subjects": [
+        "iva"
+      ],
+      "file": "npcs-iva.webp",
+      "sha256": "eb22fe3f829deea729b42699c89e82d6539581535fa6f10a0f6a06304dd4da0c",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 98,
+        "top": 10,
+        "width": 259,
+        "height": 376
+      }
+    },
+    {
+      "key": "judge-rue",
+      "title": "Руэ Ровная Черта",
+      "kind": "npc",
+      "subjects": [
+        "judge-rue"
+      ],
+      "file": "npcs-judge-rue.webp",
+      "sha256": "cac4215ba8fd2989403397501a0e98d67faf53af7db91c9e98f01281f2f16165",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 523,
+        "top": 11,
+        "width": 247,
+        "height": 375
+      }
+    },
+    {
+      "key": "sen",
+      "title": "Сэн Квадратный Лист",
+      "kind": "npc",
+      "subjects": [
+        "sen"
+      ],
+      "file": "npcs-sen.webp",
+      "sha256": "2ae12608d27b79179358d0e9d45abb21c3c9a4bb9e57a9608f7a6b1193cc6cfc",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 958,
+        "top": 15,
+        "width": 241,
+        "height": 371
+      }
+    },
+    {
+      "key": "daro",
+      "title": "Даро Летящая Скоба",
+      "kind": "npc",
+      "subjects": [
+        "daro"
+      ],
+      "file": "npcs-daro.webp",
+      "sha256": "a63c7d58fe6a997d943d456247e7cf481394f00c7857b17dace46cde5ae7bbdf",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 94,
+        "top": 410,
+        "width": 253,
+        "height": 370
+      }
+    },
+    {
+      "key": "ami",
+      "title": "Ами Белый Край",
+      "kind": "npc",
+      "subjects": [
+        "ami"
+      ],
+      "file": "npcs-ami.webp",
+      "sha256": "223a4f723c0f9488bd71fe0742e11686f47cdd40427fa4e6a8f30e4af37af2f7",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 529,
+        "top": 411,
+        "width": 238,
+        "height": 371
+      }
+    },
+    {
+      "key": "fen",
+      "title": "Фэн Короткая Черта",
+      "kind": "npc",
+      "subjects": [
+        "fen"
+      ],
+      "file": "npcs-fen.webp",
+      "sha256": "a036729afd4fb358d9dd9fdd003372590207d42b6037ccd1a7d2ca0566e6a213",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 955,
+        "top": 412,
+        "width": 256,
+        "height": 368
+      }
+    },
+    {
+      "key": "neo",
+      "title": "Нэо Медный Узел",
+      "kind": "npc",
+      "subjects": [
+        "neo"
+      ],
+      "file": "npcs-neo.webp",
+      "sha256": "125837cbd3ff729ef3330c9d17d28dc74cd76d200b3f6532327dfdc5f47f1381",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 89,
+        "top": 800,
+        "width": 250,
+        "height": 385
+      }
+    },
+    {
+      "key": "una",
+      "title": "Уна Чайный Круг",
+      "kind": "npc",
+      "subjects": [
+        "una"
+      ],
+      "file": "npcs-una.webp",
+      "sha256": "6bf3c104df3a6087cc856d62dc44aa190d51548c511f56ac54377899ee1aff88",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 522,
+        "top": 800,
+        "width": 252,
+        "height": 386
+      }
+    },
+    {
+      "key": "pao",
+      "title": "Пао Чистое Поле",
+      "kind": "npc",
+      "subjects": [
+        "pao"
+      ],
+      "file": "npcs-pao.webp",
+      "sha256": "df607b8585c5e84904a602108a535143ff1c194329f9a21a67fff947faf3be97",
+      "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+      "generated": "2026-11-22",
+      "sheet": "cedar-tournament-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 954,
+        "top": 800,
+        "width": 246,
+        "height": 385
+      }
+    }
+  ]
+}

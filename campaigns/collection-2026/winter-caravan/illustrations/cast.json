@@ -1,0 +1,35 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-cc56f3e7-be53-41c4-a878-a53229c2f881.png",
+      "originalSha256": "49f5266df0b1b3afc773777b053c31850e775ea9a4f5f65c9d6f3a725a4d40ef",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Караван Белой Ночи. Art direction: match the following very specific material as a very subtle detail on the case: Reindeer-brown felt with pale frost tracks and woven sledge-runner chevrons. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "eyra-beam-travel-kit",
+        "keya-larch-travel-kit",
+        "levrin-slope-travel-kit",
+        "olma-pack-travel-kit",
+        "radan-seam-travel-kit",
+        "sevar-pole-travel-kit",
+        "tirna-hearth-travel-kit",
+        "yust-edge-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "9816371dde1812d29fa4a561e7144adcb86f9db57d099ca9d3edf8b5ee11c2b9"
+    }
+  ]
+}

@@ -1,0 +1,1723 @@
+{
+ "id": "winter-orchard",
+ "title": "Сад украденной зимы",
+ "genre": "Тёмное фэнтези: странная эпидемия, полевые исследования и выбор лечения",
+ "audience": "14+",
+ "pitch": "После урожая зимних груш у взрослых жителей появляются нежные листья в волосах, стеклянные ногти и странный голод по свету или звуку дождя. Они остаются собой, но привычная жизнь меняется. Вы отправитесь за несколькими способами лечения и вернётесь с вопросом труднее любого заклятия: кто вправе выбирать, какой ценой человек выздоровеет?",
+ "tone": "Тревожная красота и несходство собственного тела с привычным образом; достоинство пациентов, сухой юмор исследователей и заслуженная надежда. Хоррор строится на шелесте там, где человек ожидал услышать себя.",
+ "duration": "8 сессий; 150 минут: 15 минут согласования и воспоминаний, три сцены по 35 минут, 15 минут перерыва после второй сцены, 15 минут завершения.",
+ "cover": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "e4ac5a6ad643312a7f3d51b5f3766d851d9c59a4e5896c5867a6b959e5544569"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "3dd3f7cbe18f49aa60c1d4d240824b93ee0202d9933e46a66e97528e50df25e7"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "26d6ecba271ce31c3acb890f87aad97b91fe025ac01b3ab227b828dab0cc2570"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "bdf5d4cd5414810479721162c1eb5e0d0c6022dcfb50c917acec40356ac836f9"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "20effb3807ebb36f94d2925508349994baf682b285611cafedacfd4798037371"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/mira-bowl.webp",
+   "sha256": "b5240239055baccaf868f22f71e2a0c04eaf004b571c30efc8196df0266e239e",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Тёплая Чаша",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-bowl"
+    ],
+    "4-players": [
+     "mira-bowl"
+    ],
+    "5-players": [
+     "mira-bowl"
+    ],
+    "6-players": [
+     "mira-bowl"
+    ],
+    "7-players": [
+     "mira-bowl"
+    ]
+   },
+   "file": "mira-bowl.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/lev-measure.webp",
+   "sha256": "0d5e1d0a35c07ed20e8ff6be881be375d1ac93e086a7b1beee0045ae62acdb45",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Косая Мера",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev-measure"
+    ],
+    "4-players": [
+     "lev-measure"
+    ],
+    "5-players": [
+     "lev-measure"
+    ],
+    "6-players": [
+     "lev-measure"
+    ],
+    "7-players": [
+     "lev-measure"
+    ]
+   },
+   "file": "lev-measure.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/taren-rope.webp",
+   "sha256": "e24073820cf18355b878cf5b8269d51cbf8a1a08f4ccf83fbc0395270272aecf",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тарен Узельщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taren-rope"
+    ],
+    "4-players": [
+     "taren-rope"
+    ],
+    "5-players": [
+     "taren-rope"
+    ],
+    "6-players": [
+     "taren-rope"
+    ],
+    "7-players": [
+     "taren-rope"
+    ]
+   },
+   "file": "taren-rope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/hava-shade.webp",
+   "sha256": "f054afd38c1fb67fc583f3fdcb78b8c0eff7ca935a686181592a3b082cde3996",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Хава Полутень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "hava-shade"
+    ],
+    "5-players": [
+     "hava-shade"
+    ],
+    "6-players": [
+     "hava-shade"
+    ],
+    "7-players": [
+     "hava-shade"
+    ]
+   },
+   "file": "hava-shade.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/demar-cart.webp",
+   "sha256": "cde23dac87bd5107ad6618f1bd88a471b4f09b5d296dffd8c4b26e20a47391d6",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демар Семь Колёс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "demar-cart"
+    ],
+    "6-players": [
+     "demar-cart"
+    ],
+    "7-players": [
+     "demar-cart"
+    ]
+   },
+   "file": "demar-cart.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/seya-thread.webp",
+   "sha256": "947ef128e3d9b938a0b69db61f7c7e7c747468d4f49572111102b7ed4d9b4b76",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сея Тихая Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "seya-thread"
+    ],
+    "7-players": [
+     "seya-thread"
+    ]
+   },
+   "file": "seya-thread.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/var-snow.webp",
+   "sha256": "b06470cc50737484d5f54692f25db49046f3f08fece9ed827a2ece227f9038c9",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вар Снежная Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "var-snow"
+    ]
+   },
+   "file": "var-snow.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/travel-kit.webp",
+   "sha256": "d1f329e09efb967e1f8fce7e21e5e8121422299744762d639654285eda920c95",
+   "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev-measure-travel-kit",
+     "mira-bowl-travel-kit",
+     "taren-rope-travel-kit"
+    ],
+    "4-players": [
+     "hava-shade-travel-kit",
+     "lev-measure-travel-kit",
+     "mira-bowl-travel-kit",
+     "taren-rope-travel-kit"
+    ],
+    "5-players": [
+     "demar-cart-travel-kit",
+     "hava-shade-travel-kit",
+     "lev-measure-travel-kit",
+     "mira-bowl-travel-kit",
+     "taren-rope-travel-kit"
+    ],
+    "6-players": [
+     "demar-cart-travel-kit",
+     "hava-shade-travel-kit",
+     "lev-measure-travel-kit",
+     "mira-bowl-travel-kit",
+     "seya-thread-travel-kit",
+     "taren-rope-travel-kit"
+    ],
+    "7-players": [
+     "demar-cart-travel-kit",
+     "hava-shade-travel-kit",
+     "lev-measure-travel-kit",
+     "mira-bowl-travel-kit",
+     "seya-thread-travel-kit",
+     "taren-rope-travel-kit",
+     "var-snow-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/dara-keeper.webp",
+   "sha256": "8048aa320bc19298da5a47cd04fc8f43e810e6fe4f2e711640fdeb739f21f1fa",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Медный Ключ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dara-keeper"
+    ],
+    "4-players": [
+     "dara-keeper"
+    ],
+    "5-players": [
+     "dara-keeper"
+    ],
+    "6-players": [
+     "dara-keeper"
+    ],
+    "7-players": [
+     "dara-keeper"
+    ]
+   },
+   "file": "dara-keeper.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/ivar-grafter.webp",
+   "sha256": "8031580d1f4733ee1f39caf9cc925b9aa8c5afbefd8a3a96e5d342c8b424d782",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивар Веточник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ivar-grafter"
+    ],
+    "4-players": [
+     "ivar-grafter"
+    ],
+    "5-players": [
+     "ivar-grafter"
+    ],
+    "6-players": [
+     "ivar-grafter"
+    ],
+    "7-players": [
+     "ivar-grafter"
+    ]
+   },
+   "file": "ivar-grafter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/nema-baker.webp",
+   "sha256": "481efbd5262ab7930a1801cdc467d55c6de237e5e13e31b0aaf3bcaa55d14558",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нема Круглый Хлеб",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nema-baker"
+    ],
+    "4-players": [
+     "nema-baker"
+    ],
+    "5-players": [
+     "nema-baker"
+    ],
+    "6-players": [
+     "nema-baker"
+    ],
+    "7-players": [
+     "nema-baker"
+    ]
+   },
+   "file": "nema-baker.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/orel-purveyor.webp",
+   "sha256": "d41ddf907bcc2b09be3bf1562d5c8b5ccacd28a8f909cd979f721ecc821c0651",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орел Ровный Поднос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orel-purveyor"
+    ],
+    "4-players": [
+     "orel-purveyor"
+    ],
+    "5-players": [
+     "orel-purveyor"
+    ],
+    "6-players": [
+     "orel-purveyor"
+    ],
+    "7-players": [
+     "orel-purveyor"
+    ]
+   },
+   "file": "orel-purveyor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/veska-reflector.webp",
+   "sha256": "c4547f61ffd681cd1be67fc38ee368cd91b175ccbfbb595989157773ac964225",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веска Без Рамы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veska-reflector"
+    ],
+    "4-players": [
+     "veska-reflector"
+    ],
+    "5-players": [
+     "veska-reflector"
+    ],
+    "6-players": [
+     "veska-reflector"
+    ],
+    "7-players": [
+     "veska-reflector"
+    ]
+   },
+   "file": "veska-reflector.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/bohan-lamplighter.webp",
+   "sha256": "5b39f4492bed65bf2a6a31a01d304f4595b376090ff30f27ed1edf6b2546b1a4",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бохан Моховой Свет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bohan-lamplighter"
+    ],
+    "4-players": [
+     "bohan-lamplighter"
+    ],
+    "5-players": [
+     "bohan-lamplighter"
+    ],
+    "6-players": [
+     "bohan-lamplighter"
+    ],
+    "7-players": [
+     "bohan-lamplighter"
+    ]
+   },
+   "file": "bohan-lamplighter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/suta-weaver.webp",
+   "sha256": "fb752052e72d9e8f9d4179459a56c440c4d09216a1382583014941ede7a9acf5",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сута Белый Уток",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "suta-weaver"
+    ],
+    "4-players": [
+     "suta-weaver"
+    ],
+    "5-players": [
+     "suta-weaver"
+    ],
+    "6-players": [
+     "suta-weaver"
+    ],
+    "7-players": [
+     "suta-weaver"
+    ]
+   },
+   "file": "suta-weaver.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/ella-surveyor.webp",
+   "sha256": "e9461df6a7b9ca9279d1662375b9d34da06cf254eb20291f541e9830880d5cce",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элла Дождевой Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ella-surveyor"
+    ],
+    "4-players": [
+     "ella-surveyor"
+    ],
+    "5-players": [
+     "ella-surveyor"
+    ],
+    "6-players": [
+     "ella-surveyor"
+    ],
+    "7-players": [
+     "ella-surveyor"
+    ]
+   },
+   "file": "ella-surveyor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/fer-porter.webp",
+   "sha256": "25a7899b78a2c8d5a6692e7d259c31f767152b2a379e931a1535eb6d789a3ff9",
+   "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фер Дальний Порог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fer-porter"
+    ],
+    "4-players": [
+     "fer-porter"
+    ],
+    "5-players": [
+     "fer-porter"
+    ],
+    "6-players": [
+     "fer-porter"
+    ],
+    "7-players": [
+     "fer-porter"
+    ]
+   },
+   "file": "fer-porter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-lantern-house.webp",
+   "sha256": "887ac8a0cf1b5e888dadda1182052a8f2fcd2dbee736b3cf2b31f9b082ef3c80",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом Фонарей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lantern-house"
+    ],
+    "4-players": [
+     "lantern-house"
+    ],
+    "5-players": [
+     "lantern-house"
+    ],
+    "6-players": [
+     "lantern-house"
+    ],
+    "7-players": [
+     "lantern-house"
+    ]
+   },
+   "file": "lantern-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-brindle-market.webp",
+   "sha256": "9b6ab45c50d5f2dc0663cffad0a4244d0ebee4e94b6127fd6d5491c97e76d172",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крапивный Рынок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brindle-market"
+    ],
+    "4-players": [
+     "brindle-market"
+    ],
+    "5-players": [
+     "brindle-market"
+    ],
+    "6-players": [
+     "brindle-market"
+    ],
+    "7-players": [
+     "brindle-market"
+    ]
+   },
+   "file": "brindle-market.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-winter-garden.webp",
+   "sha256": "1c7aa4da66abd92235e90ada05fdbc472fd8320e85c35d96fd918650274ab19d",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зимний сад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "winter-garden"
+    ],
+    "4-players": [
+     "winter-garden"
+    ],
+    "5-players": [
+     "winter-garden"
+    ],
+    "6-players": [
+     "winter-garden"
+    ],
+    "7-players": [
+     "winter-garden"
+    ]
+   },
+   "file": "winter-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-graft-shed.webp",
+   "sha256": "4d9df182479651387ef70242dc3c774b94fb4275f0173d2c40a09ab4a18f0e55",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Домик прививок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "graft-shed"
+    ],
+    "4-players": [
+     "graft-shed"
+    ],
+    "5-players": [
+     "graft-shed"
+    ],
+    "6-players": [
+     "graft-shed"
+    ],
+    "7-players": [
+     "graft-shed"
+    ]
+   },
+   "file": "graft-shed.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-mirror-cut.webp",
+   "sha256": "f807de2ec74f9620734684ebb7849da50c9cae8be7fd9c625cdceab765ce7bed",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зеркальный разрез",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirror-cut"
+    ],
+    "4-players": [
+     "mirror-cut"
+    ],
+    "5-players": [
+     "mirror-cut"
+    ],
+    "6-players": [
+     "mirror-cut"
+    ],
+    "7-players": [
+     "mirror-cut"
+    ]
+   },
+   "file": "mirror-cut.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-moss-well.webp",
+   "sha256": "f0f74e643bce9a6ef0f3d0e06d970a6d0f68ccaeae4d28305b5b261511c3d194",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Моховой колодец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "moss-well"
+    ],
+    "4-players": [
+     "moss-well"
+    ],
+    "5-players": [
+     "moss-well"
+    ],
+    "6-players": [
+     "moss-well"
+    ],
+    "7-players": [
+     "moss-well"
+    ]
+   },
+   "file": "moss-well.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-silk-attic.webp",
+   "sha256": "296dddd48cd9303cf743a96640f726922a695d00f0e3a53d34cc1e3e6ac43a5d",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шёлковый чердак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "silk-attic"
+    ],
+    "4-players": [
+     "silk-attic"
+    ],
+    "5-players": [
+     "silk-attic"
+    ],
+    "6-players": [
+     "silk-attic"
+    ],
+    "7-players": [
+     "silk-attic"
+    ]
+   },
+   "file": "silk-attic.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-empty-mill.webp",
+   "sha256": "c00e4a5833cc53364530fc43e70b5150a7474e35144ac64501b457041ba7ab15",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустая мельница",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "empty-mill"
+    ],
+    "4-players": [
+     "empty-mill"
+    ],
+    "5-players": [
+     "empty-mill"
+    ],
+    "6-players": [
+     "empty-mill"
+    ],
+    "7-players": [
+     "empty-mill"
+    ]
+   },
+   "file": "empty-mill.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-sheltered-steps.webp",
+   "sha256": "049ae8ab13f90023543cc59fbc835e785236a69851b15d4e163323e001029b7e",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихие ступени",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sheltered-steps"
+    ],
+    "4-players": [
+     "sheltered-steps"
+    ],
+    "5-players": [
+     "sheltered-steps"
+    ],
+    "6-players": [
+     "sheltered-steps"
+    ],
+    "7-players": [
+     "sheltered-steps"
+    ]
+   },
+   "file": "sheltered-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/places-white-ward.webp",
+   "sha256": "38d8600ed95e2390ab99d31f7e701645114bec40d810f7e80a9d4c23f7554e38",
+   "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Белая палата",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-ward"
+    ],
+    "4-players": [
+     "white-ward"
+    ],
+    "5-players": [
+     "white-ward"
+    ],
+    "6-players": [
+     "white-ward"
+    ],
+    "7-players": [
+     "white-ward"
+    ]
+   },
+   "file": "white-ward.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-mira-bowl.webp",
+   "sha256": "e809f2b8425537acc80a1c9d5b1c870ea3e4ecdcdbabd3146ef68724ab38aee0",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Тёплая Чаша",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-bowl"
+    ],
+    "4-players": [
+     "mira-bowl"
+    ],
+    "5-players": [
+     "mira-bowl"
+    ],
+    "6-players": [
+     "mira-bowl"
+    ],
+    "7-players": [
+     "mira-bowl"
+    ]
+   },
+   "file": "mira-bowl--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-bowl.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-lev-measure.webp",
+   "sha256": "77463e96a6647ec8eb7ef0afe5b74a52ae2fd52ac8cbf796f3f3ad5b28afe65f",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Косая Мера",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev-measure"
+    ],
+    "4-players": [
+     "lev-measure"
+    ],
+    "5-players": [
+     "lev-measure"
+    ],
+    "6-players": [
+     "lev-measure"
+    ],
+    "7-players": [
+     "lev-measure"
+    ]
+   },
+   "file": "lev-measure--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lev-measure.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-taren-rope.webp",
+   "sha256": "c14f356e47dfe9d4a1bbbd295dfcd9e47282babad473a97036da7227d2d0982d",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тарен Узельщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taren-rope"
+    ],
+    "4-players": [
+     "taren-rope"
+    ],
+    "5-players": [
+     "taren-rope"
+    ],
+    "6-players": [
+     "taren-rope"
+    ],
+    "7-players": [
+     "taren-rope"
+    ]
+   },
+   "file": "taren-rope--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taren-rope.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-hava-shade.webp",
+   "sha256": "868ce6c2358d35a3dda9868536549b6865d666800ec00dda156ebc93bbf56e36",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Хава Полутень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "hava-shade"
+    ],
+    "5-players": [
+     "hava-shade"
+    ],
+    "6-players": [
+     "hava-shade"
+    ],
+    "7-players": [
+     "hava-shade"
+    ]
+   },
+   "file": "hava-shade--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hava-shade.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-demar-cart.webp",
+   "sha256": "d26bcc2b5c30ea6c2179bda105888a6c46fc7376fd40a1946215ab6696e57225",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демар Семь Колёс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "demar-cart"
+    ],
+    "6-players": [
+     "demar-cart"
+    ],
+    "7-players": [
+     "demar-cart"
+    ]
+   },
+   "file": "demar-cart--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "demar-cart.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-seya-thread.webp",
+   "sha256": "5c97e320ae6ab3b401af8effa7d7037c7d49e9ba7dab530c952990b483905ca9",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сея Тихая Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "seya-thread"
+    ],
+    "7-players": [
+     "seya-thread"
+    ]
+   },
+   "file": "seya-thread--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "seya-thread.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/heroes-var-snow.webp",
+   "sha256": "3c82b4e74cd6fff9d0c521994c38f9b0ba9d35a729826b00a55be32eb3dc41bf",
+   "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вар Снежная Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "var-snow"
+    ]
+   },
+   "file": "var-snow--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "var-snow.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/foes-foe-8ed209b87f.webp",
+   "sha256": "728bcdafc09c281fffc96ac7d06bce455fac32264bfdfc5be67c6600959b8eb8",
+   "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Холодный отблеск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2"
+    ],
+    "4-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3"
+    ],
+    "5-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3"
+    ],
+    "6-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3",
+     "mirror-echoes-foe-4"
+    ],
+    "7-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3",
+     "mirror-echoes-foe-4",
+     "mirror-echoes-foe-5"
+    ]
+   },
+   "file": "foe-8ed209b87f.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/foes-foe-8ed209b87f.webp",
+   "sha256": "728bcdafc09c281fffc96ac7d06bce455fac32264bfdfc5be67c6600959b8eb8",
+   "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Холодный отблеск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2"
+    ],
+    "4-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3"
+    ],
+    "5-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3"
+    ],
+    "6-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3",
+     "mirror-echoes-foe-4"
+    ],
+    "7-players": [
+     "mirror-echoes-foe-1",
+     "mirror-echoes-foe-2",
+     "mirror-echoes-foe-3",
+     "mirror-echoes-foe-4",
+     "mirror-echoes-foe-5"
+    ]
+   },
+   "file": "foe-8ed209b87f--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-8ed209b87f.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/foes-foe-a8d0908a8a.webp",
+   "sha256": "a5d172c4d57dc4ebcd8928d523a5078b15d67c68884d263bcdaeb372083a66b4",
+   "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плетёный сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2"
+    ],
+    "4-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3"
+    ],
+    "5-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3"
+    ],
+    "6-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3",
+     "lamp-wickers-foe-4"
+    ],
+    "7-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3",
+     "lamp-wickers-foe-4",
+     "lamp-wickers-foe-5"
+    ]
+   },
+   "file": "foe-a8d0908a8a.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/foes-foe-a8d0908a8a.webp",
+   "sha256": "a5d172c4d57dc4ebcd8928d523a5078b15d67c68884d263bcdaeb372083a66b4",
+   "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плетёный сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2"
+    ],
+    "4-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3"
+    ],
+    "5-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3"
+    ],
+    "6-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3",
+     "lamp-wickers-foe-4"
+    ],
+    "7-players": [
+     "lamp-wickers-foe-1",
+     "lamp-wickers-foe-2",
+     "lamp-wickers-foe-3",
+     "lamp-wickers-foe-4",
+     "lamp-wickers-foe-5"
+    ]
+   },
+   "file": "foe-a8d0908a8a--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-a8d0908a8a.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/foes-foe-9caccf6d2b.webp",
+   "sha256": "290854126db5dac99ab407f7fb4cacf9ba8eb8cc5ff15c101d8e356cca09734e",
+   "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустой распорядитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2"
+    ],
+    "4-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3"
+    ],
+    "5-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3"
+    ],
+    "6-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3",
+     "white-ushers-foe-4"
+    ],
+    "7-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3",
+     "white-ushers-foe-4",
+     "white-ushers-foe-5"
+    ]
+   },
+   "file": "foe-9caccf6d2b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/foes-foe-9caccf6d2b.webp",
+   "sha256": "290854126db5dac99ab407f7fb4cacf9ba8eb8cc5ff15c101d8e356cca09734e",
+   "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустой распорядитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2"
+    ],
+    "4-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3"
+    ],
+    "5-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3"
+    ],
+    "6-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3",
+     "white-ushers-foe-4"
+    ],
+    "7-players": [
+     "white-ushers-foe-1",
+     "white-ushers-foe-2",
+     "white-ushers-foe-3",
+     "white-ushers-foe-4",
+     "white-ushers-foe-5"
+    ]
+   },
+   "file": "foe-9caccf6d2b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9caccf6d2b.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-dara-keeper.webp",
+   "sha256": "ddb513730861e6bfe9b2e66610b9fd2adb91bcfa9aee2f57b0680efa4a05b71c",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Медный Ключ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dara-keeper"
+    ],
+    "4-players": [
+     "dara-keeper"
+    ],
+    "5-players": [
+     "dara-keeper"
+    ],
+    "6-players": [
+     "dara-keeper"
+    ],
+    "7-players": [
+     "dara-keeper"
+    ]
+   },
+   "file": "dara-keeper--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dara-keeper.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-ivar-grafter.webp",
+   "sha256": "d232dc67729d7b887af742c36fd43ccbf821c0033bd7b31552a6730a449e91c6",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивар Веточник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ivar-grafter"
+    ],
+    "4-players": [
+     "ivar-grafter"
+    ],
+    "5-players": [
+     "ivar-grafter"
+    ],
+    "6-players": [
+     "ivar-grafter"
+    ],
+    "7-players": [
+     "ivar-grafter"
+    ]
+   },
+   "file": "ivar-grafter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ivar-grafter.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-nema-baker.webp",
+   "sha256": "b0e413a607f47880120d42493a97d6a5ba4639d2ea2da324f58b6e6a0abdd19c",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нема Круглый Хлеб",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nema-baker"
+    ],
+    "4-players": [
+     "nema-baker"
+    ],
+    "5-players": [
+     "nema-baker"
+    ],
+    "6-players": [
+     "nema-baker"
+    ],
+    "7-players": [
+     "nema-baker"
+    ]
+   },
+   "file": "nema-baker--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nema-baker.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-orel-purveyor.webp",
+   "sha256": "e108ce010e93b7b99a32cbb59b213166a2b9016432f1cb63452e83705945c1b4",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орел Ровный Поднос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orel-purveyor"
+    ],
+    "4-players": [
+     "orel-purveyor"
+    ],
+    "5-players": [
+     "orel-purveyor"
+    ],
+    "6-players": [
+     "orel-purveyor"
+    ],
+    "7-players": [
+     "orel-purveyor"
+    ]
+   },
+   "file": "orel-purveyor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orel-purveyor.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-veska-reflector.webp",
+   "sha256": "7d664eaa3941c54909769e71f254e681a27e925b5931690db3ae830ca354acef",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веска Без Рамы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veska-reflector"
+    ],
+    "4-players": [
+     "veska-reflector"
+    ],
+    "5-players": [
+     "veska-reflector"
+    ],
+    "6-players": [
+     "veska-reflector"
+    ],
+    "7-players": [
+     "veska-reflector"
+    ]
+   },
+   "file": "veska-reflector--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "veska-reflector.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-bohan-lamplighter.webp",
+   "sha256": "a944dc0567cd7ca8eef5ac50cab0215eb4a97ecb0933932fa707277bab535ac9",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бохан Моховой Свет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bohan-lamplighter"
+    ],
+    "4-players": [
+     "bohan-lamplighter"
+    ],
+    "5-players": [
+     "bohan-lamplighter"
+    ],
+    "6-players": [
+     "bohan-lamplighter"
+    ],
+    "7-players": [
+     "bohan-lamplighter"
+    ]
+   },
+   "file": "bohan-lamplighter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bohan-lamplighter.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-suta-weaver.webp",
+   "sha256": "dbf5729e594629594fa82daa3b10420a6e6ec14198b6abbba48694c7ae90488d",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сута Белый Уток",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "suta-weaver"
+    ],
+    "4-players": [
+     "suta-weaver"
+    ],
+    "5-players": [
+     "suta-weaver"
+    ],
+    "6-players": [
+     "suta-weaver"
+    ],
+    "7-players": [
+     "suta-weaver"
+    ]
+   },
+   "file": "suta-weaver--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "suta-weaver.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-ella-surveyor.webp",
+   "sha256": "54f1e53f384ae106fbfd4aa672d517921b428532df73da46afb3673539cb2898",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элла Дождевой Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ella-surveyor"
+    ],
+    "4-players": [
+     "ella-surveyor"
+    ],
+    "5-players": [
+     "ella-surveyor"
+    ],
+    "6-players": [
+     "ella-surveyor"
+    ],
+    "7-players": [
+     "ella-surveyor"
+    ]
+   },
+   "file": "ella-surveyor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ella-surveyor.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/table/npcs-fer-porter.webp",
+   "sha256": "deffc5742d3a69b7b78406b2da011fd2d2e18e0b51985e8c125111b99e5cf1c3",
+   "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фер Дальний Порог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fer-porter"
+    ],
+    "4-players": [
+     "fer-porter"
+    ],
+    "5-players": [
+     "fer-porter"
+    ],
+    "6-players": [
+     "fer-porter"
+    ],
+    "7-players": [
+     "fer-porter"
+    ]
+   },
+   "file": "fer-porter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fer-porter.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/illustrations/opening.webp",
+   "sha256": "17805cebddf170b700ca3d851be738a457f76437aaadff79f71348146c61932f",
+   "originalSha256": "9fb50b7fe3bd5d19824bc37e680626d74947f26f01c30652dba49721d1947123",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом Фонарей — Сад украденной зимы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-basin"
+    ],
+    "4-players": [
+     "quiet-basin"
+    ],
+    "5-players": [
+     "quiet-basin"
+    ],
+    "6-players": [
+     "quiet-basin"
+    ],
+    "7-players": [
+     "quiet-basin"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "mirror-cut--map.webp",
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/battle-maps/mirror-cut.webp",
+   "sha256": "5382c0a47cc190e865a69aa0d1ae429ade5d6cebccb54ae7a24abb89906280f2",
+   "originalSha256": "a3b021d5cb3dabba413b4818ab1e97345c551346f5b93ca63d9293247ac42eb6",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зеркальный разрез. Visible scenery: Овраг, где плоские камни отражают свет без солнца, а отражения иногда запаздывают на один жест.. World style: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "mirror-cut.webp",
+   "subjects": {
+    "3-players": [
+     "mirror-cut"
+    ],
+    "4-players": [
+     "mirror-cut"
+    ],
+    "5-players": [
+     "mirror-cut"
+    ],
+    "6-players": [
+     "mirror-cut"
+    ],
+    "7-players": [
+     "mirror-cut"
+    ]
+   }
+  },
+  {
+   "file": "moss-well--map.webp",
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/battle-maps/moss-well.webp",
+   "sha256": "0d8d2b7a92b795132000fcb987389397c6f868b0551d29351bc9d11f7299242f",
+   "originalSha256": "791b229614a54e4815a282896b37eb59a7319614abf13fad530cbbc1ce536eba",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Моховой колодец. Visible scenery: Широкая сухая цистерна с лестницей, светящимся мхом и подвешенными фонарями.. World style: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "moss-well.webp",
+   "subjects": {
+    "3-players": [
+     "moss-well"
+    ],
+    "4-players": [
+     "moss-well"
+    ],
+    "5-players": [
+     "moss-well"
+    ],
+    "6-players": [
+     "moss-well"
+    ],
+    "7-players": [
+     "moss-well"
+    ]
+   }
+  },
+  {
+   "file": "white-ward--map.webp",
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/battle-maps/white-ward.webp",
+   "sha256": "5d22e9f92b1f23232b0423839f2ff197efd7f8481017d4637e13217fb734d08b",
+   "originalSha256": "14c5b11f99c3b35e0c6dbfa603c8d5dd1651069127738929e71d418c4a9907cc",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Белая палата. Visible scenery: Гостевой дом с просторной общей комнатой и личными занавесями; каждая дверь открывается изнутри.. World style: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "white-ward.webp",
+   "subjects": {
+    "3-players": [
+     "white-ward"
+    ],
+    "4-players": [
+     "white-ward"
+    ],
+    "5-players": [
+     "white-ward"
+    ],
+    "6-players": [
+     "white-ward"
+    ],
+    "7-players": [
+     "white-ward"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/winter-orchard/assets/world-map/world-map.webp",
+   "sha256": "4ecc5d8231a1eb48eeb2a02bf8b441330fb6b77b2c848815d885855f834c14e6",
+   "originalSha256": "9c6f2a50764728fc93e10e49837aa7677dc2c3e2ecb11b07165899323ae48034",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Тихая Чаша. Style Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом Фонарей; 0.367,0.177 Крапивный Рынок; 0.623,0.15 Зимний сад; 0.88,0.177 Домик прививок; 0.905,0.517 Зеркальный разрез; 0.648,0.49 Моховой колодец; 0.392,0.517 Шёлковый чердак; 0.135,0.49 Пустая мельница; 0.11,0.83 Тихие ступени; 0.367,0.857 Белая палата. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

@@ -127,11 +127,10 @@ export default defineConfig(
     },
   },
   {
-    // Local mode's trust page (docs/adr/0061-local-mode.md §3): a classic script the laptop's proxy
-    // serves as it is, over plain HTTP; not part of the TypeScript program.
+    // Standalone browser pages run classic scripts directly, outside the TypeScript program.
     ...tseslint.configs.disableTypeChecked,
-    name: 'ltw/trust-page',
-    files: ['deploy/proxy/trust/**/*.js'],
+    name: 'ltw/standalone-browser-pages',
+    files: ['deploy/proxy/trust/**/*.js', 'docs/design/dm-book/*.js'],
     languageOptions: {
       ...tseslint.configs.disableTypeChecked.languageOptions,
       sourceType: 'script',
@@ -141,8 +140,15 @@ export default defineConfig(
   {
     // Local mode's terminal helpers (deploy/local/): plain Node modules the launcher runs.
     ...tseslint.configs.disableTypeChecked,
-    name: 'ltw/local-mode-tools',
-    files: ['deploy/local/**/*.mjs'],
+    name: 'ltw/standalone-node-tools',
+    files: [
+      'deploy/local/**/*.mjs',
+      'scripts/campaign-library/*.mjs',
+      'scripts/campaign-rehearsal/*.mjs',
+      'scripts/campaign-balance/*.mjs',
+      'scripts/campaign-endurance/*.mjs',
+      'scripts/campaign-defeats/*.mjs',
+    ],
   },
   {
     name: 'ltw/cli-entry-points',

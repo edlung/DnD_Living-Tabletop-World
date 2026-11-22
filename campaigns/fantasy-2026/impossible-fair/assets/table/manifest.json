@@ -1,0 +1,680 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "impossible-fair-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-619a9b7a-1531-4562-acb0-5f6b33a3cecd.png",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Cell 1. Веста Клёпка. Короткая коса, фартук с нашитыми образцами ткани и деревянный валик с расписной ручкой.\nCell 2. Мирт Примерка. Жилет с петлями вместо карманов, шарф с мерными узлами и веснушки, похожие на запятые.\nCell 3. Руна Тёплый Мел. Синий плащ, меловая дощечка на ремне и знак маленького очага на застёжке.\nCell 4. Элли Складка. Полосатые рукава, сумка с подписанными образцами охры и ткани, круглая линза на шнурке.\nCell 5. Бора Широкий Стежок. Высокий воротник, напёрсток на шнурке и пояс с образцами тканей.\nCell 6. Тави Ровный Шаг. Бумажные ярлыки на рукавах, зелёная шапка и деревянные счётные палочки в плоской коробке.\nCell 7. Сенна Латка. Пёстрый платок, аккуратные заплатки на локтях и медная коробочка с пуговицами.\nCell 8. Яро Короткая Надпись. Кисточка за ухом, широкий пояс с мелками и плащ, расчерченный маленькими квадратами.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/vesta-rivet.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/myrt-fitting.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/runa-warmchalk.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/elli-fold.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/bora-grip.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/tavi-countstep.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/senna-repair.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/yaro-caption.webp"
+      ]
+    },
+    {
+      "id": "impossible-fair-places-0",
+      "originalFile": "exec-2744504b-a209-46f3-ac4c-4277591552bf.png",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Cell 1. Прилавок с пустой вывеской. Низкий прилавок, общий печатный стол и восемь разных табуретов. На шнурах сохнут пробные оттиски; на задней полке лежат чистые полотна.\nCell 2. Лавка внутренних сторон. Здесь продают куртки с несколькими подкладками и шарфы, которые носят разными концами вперёд. На стене висит простая деревянная рама для примерок.\nCell 3. Переулок примерок. Покупатели проверяют шляпы для рогов, очки для одного большого глаза и фартуки с карманами на обеих сторонах. На полу отмечены места, откуда удобно разглядывать товар.\nCell 4. Мастерская Севры Четверть. По белым шарфам бегут нарисованные рыбы, звери и буквы. Над прилавком висит честная надпись: «Сегодня танцует, завтра чисто». Рядом можно испытать пробный узор.\nCell 5. Открытый верстак. Общий печатный стол с деревянными валиками, бумагой и зеркальцем. По двум сторонам стоят табуреты с рисунками солнца и месяца; мелом можно записывать результаты опытов.\nCell 6. Двор обрезков. Корзины разноцветных тканей и пустых деревянных рам стоят под сетчатым навесом. На каждой корзине крупно нарисовано назначение материала.\nCell 7. Лавка выворачиваемых сумок. Сумки выворачиваются и меняют число наружных карманов. На длинном столе разложены бумажные выкройки, тупые мерки и образцы швов.\nCell 8. Мастерская двух узоров. Два мастера работают с противоположных концов стола. На полках лежат половинки перламутровых застёжек с прямым и зеркальным орнаментом.\nCell 9. Терраса косых порывов. На открытом помосте висят широкие полоски ткани. Двери в волшебные земли иногда выпускают короткий ветер; за защитными ширмами можно сушить отпечатки.\nCell 10. Стол первой работы. Простой рабочий стол у выхода с ярмарки, где заказчик пробует вещь перед тем, как её унести. С двух сторон достаточно места для работы; сбоку стоит табурет для помощника.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "impossible-fair-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-8ccdcf2a-ca3e-480e-ba7c-9ec0b632462d.png",
+      "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Cell 1. Ожившая учебная кисть. Короткая деревянная кисть подпрыгивает на упругой щетине и норовит оставить смешные усы на пустом ярлыке. Её обычный удар описывается как тычок ручкой, без натуралистических травм.\nCell 2. Бумажный щёголь. Плоская фигурка в нелепо огромной шляпе складывается и расправляется, стараясь попасть в любой красивый край. Обычная атака выглядит как хлопок бумажным веером.\nCell 3. Оживший бумажный завиток. Широкая лента бумаги сворачивается в смешную пружину и подпрыгивает низко над помостом. Её обычный удар описывается как хлопок скрученным краем.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "impossible-fair-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b40560fc-70b9-45c6-8c4a-c5518e2c3e37.png",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Ярмарка невозможных ремёсел. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Товин Подкладка. Портной в куртке с тремя подкладками; из кармана торчит полосатый пробный шарф.\nCell 2. Севра Четверть. Гномка с прямой чёлкой и бело-зелёным фартуком; нарисованная рыба проплывает по его нижнему краю.\nCell 3. Листва Внутренний Карман. Мастерица с листьями вместо волос и сумкой, у которой карманы находятся сразу на двух сторонах.\nCell 4. Орса Угольная Черта. Саламандра с матовой оранжевой кожей и кисточками в широком тканевом поясе.\nCell 5. Иней Ракушечный. Мастер из снежного предела с прозрачными ногтями и белой кистью за ухом.\nCell 6. Пух Запасной Кусочек. Невысокий моховой человек с круглыми очками и тремя матерчатыми карманами на животе.\nCell 7. Дара Меловая Черта. Человек с короткими серебристыми волосами; рукава покрыты белыми следами мела.\nCell 8. Брыль Семь Карманов. Купец с пушистым плоским хвостом, семью карманами на жилете и квадратной шляпой.\nCell 9. Круг Флюгеров. Крепкий мастер в жилете с тканевыми лентами; на широком ремешке его шляпы нарисован флюгер.",
+      "references": [
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/tovin-tailor.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/sevra-quarter.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/listva-bagmaker.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/orsa-ember.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/iney-shell.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/pukh-offcut.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/dara-bench.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/bryl-pocket.webp",
+        "campaigns/fantasy-2026/impossible-fair/illustrations/cards/krug-weathervane.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "vesta-rivet",
+      "title": "Веста Клёпка",
+      "kind": "hero",
+      "subjects": [
+        "vesta-rivet"
+      ],
+      "file": "heroes-vesta-rivet.webp",
+      "sha256": "e9c13c70e2e9b910b5d0f8aaf85e4d4a139197a2982e2bdb6674277124fe6876",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 106,
+        "top": 11,
+        "width": 230,
+        "height": 421
+      }
+    },
+    {
+      "key": "myrt-fitting",
+      "title": "Мирт Примерка",
+      "kind": "hero",
+      "subjects": [
+        "myrt-fitting"
+      ],
+      "file": "heroes-myrt-fitting.webp",
+      "sha256": "ee5b3bdcc00d0d944f09bddfd24b08af767b4efbeb436cd77b20b5ba0d204186",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 547,
+        "top": 10,
+        "width": 224,
+        "height": 422
+      }
+    },
+    {
+      "key": "runa-warmchalk",
+      "title": "Руна Тёплый Мел",
+      "kind": "hero",
+      "subjects": [
+        "runa-warmchalk"
+      ],
+      "file": "heroes-runa-warmchalk.webp",
+      "sha256": "0245fe98b670a9c25005d1219dd06fbadbb1859d7816a2d283e0c9093e5d3ce2",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 980,
+        "top": 11,
+        "width": 255,
+        "height": 422
+      }
+    },
+    {
+      "key": "elli-fold",
+      "title": "Элли Складка",
+      "kind": "hero",
+      "subjects": [
+        "elli-fold"
+      ],
+      "file": "heroes-elli-fold.webp",
+      "sha256": "697c2e279caad34d249242f3373b7543fc843afe5dbdc76998d8fbda91a705c6",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1444,
+        "top": 13,
+        "width": 222,
+        "height": 419
+      }
+    },
+    {
+      "key": "bora-grip",
+      "title": "Бора Широкий Стежок",
+      "kind": "hero",
+      "subjects": [
+        "bora-grip"
+      ],
+      "file": "heroes-bora-grip.webp",
+      "sha256": "da45a2295239c10e996874fb2dd25da489d8b3df1713709fa869434b11f3d60b",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 113,
+        "top": 448,
+        "width": 219,
+        "height": 428
+      }
+    },
+    {
+      "key": "tavi-countstep",
+      "title": "Тави Ровный Шаг",
+      "kind": "hero",
+      "subjects": [
+        "tavi-countstep"
+      ],
+      "file": "heroes-tavi-countstep.webp",
+      "sha256": "8043b904d00ac6e96bea28ddf15b84ceb4e7aa0e25680d90c7706e85cd234687",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 546,
+        "top": 451,
+        "width": 232,
+        "height": 426
+      }
+    },
+    {
+      "key": "senna-repair",
+      "title": "Сенна Латка",
+      "kind": "hero",
+      "subjects": [
+        "senna-repair"
+      ],
+      "file": "heroes-senna-repair.webp",
+      "sha256": "a416fe68647d3c1548d5e95a2dfaacb1f0cd0ec030fa6a01c9929224aa6086ac",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 990,
+        "top": 453,
+        "width": 228,
+        "height": 421
+      }
+    },
+    {
+      "key": "yaro-caption",
+      "title": "Яро Короткая Надпись",
+      "kind": "hero",
+      "subjects": [
+        "yaro-caption"
+      ],
+      "file": "heroes-yaro-caption.webp",
+      "sha256": "40a0ed99bc2c609e3b3bcb01bfd5791b31d4efeda55128dc1249c71346f6cf69",
+      "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1422,
+        "top": 452,
+        "width": 246,
+        "height": 423
+      }
+    },
+    {
+      "key": "bare-stall",
+      "title": "Прилавок с пустой вывеской",
+      "kind": "place",
+      "subjects": [
+        "bare-stall"
+      ],
+      "file": "places-bare-stall.webp",
+      "sha256": "7dbe634a4ac2071bd06805f43c3ebce5187f56d0befc501f3c8fd74021bfbaeb",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "turning-tailor",
+      "title": "Лавка внутренних сторон",
+      "kind": "place",
+      "subjects": [
+        "turning-tailor"
+      ],
+      "file": "places-turning-tailor.webp",
+      "sha256": "7b510d59bb49539305143f20fc76ee4c04c9dc2d160ea22e73b228049b36958c",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "fitting-lane",
+      "title": "Переулок примерок",
+      "kind": "place",
+      "subjects": [
+        "fitting-lane"
+      ],
+      "file": "places-fitting-lane.webp",
+      "sha256": "e7b5ef99814cdb64c639c219b9d6f9899173310d83aeaa248509dd10df3b2f48",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "quarter-shop",
+      "title": "Мастерская Севры Четверть",
+      "kind": "place",
+      "subjects": [
+        "quarter-shop"
+      ],
+      "file": "places-quarter-shop.webp",
+      "sha256": "12b782e44805fcf6c0cb24e5925fc0b49cd4b8c6ea584da77fdddb3d9be2212f",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "open-bench",
+      "title": "Открытый верстак",
+      "kind": "place",
+      "subjects": [
+        "open-bench"
+      ],
+      "file": "places-open-bench.webp",
+      "sha256": "c9909f9ae52494fb47782589ba6a0c285c7e27f7fa8a713b25ab9729187aa908",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "ribbon-yard",
+      "title": "Двор обрезков",
+      "kind": "place",
+      "subjects": [
+        "ribbon-yard"
+      ],
+      "file": "places-ribbon-yard.webp",
+      "sha256": "15dbf8abce2c70c3c3fb4e893fddef931e0b8f6375f1ab6916b6a850646bcf51",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "folding-bags",
+      "title": "Лавка выворачиваемых сумок",
+      "kind": "place",
+      "subjects": [
+        "folding-bags"
+      ],
+      "file": "places-folding-bags.webp",
+      "sha256": "65f3d654f67dd8f8ab8d80ed517d8bfb75eedc957087f48b405c6c61d8113cd7",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "double-pattern",
+      "title": "Мастерская двух узоров",
+      "kind": "place",
+      "subjects": [
+        "double-pattern"
+      ],
+      "file": "places-double-pattern.webp",
+      "sha256": "9516458ace38fca36c9f7df3db0af6ecf1423a2ef5602d9cd3b6adae8fc3c8d3",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "gust-terrace",
+      "title": "Терраса косых порывов",
+      "kind": "place",
+      "subjects": [
+        "gust-terrace"
+      ],
+      "file": "places-gust-terrace.webp",
+      "sha256": "dbd2c7016ffb86f3e563dedb8fd4f086397fdfcc3b3a8b09d2f03c702a9c64a6",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "delivery-bench",
+      "title": "Стол первой работы",
+      "kind": "place",
+      "subjects": [
+        "delivery-bench"
+      ],
+      "file": "places-delivery-bench.webp",
+      "sha256": "a6b8d7485c73b1dfd4dca5563c6c6c7b8aded6a819c47eca5ccf0a9ef84e1b1a",
+      "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-1fe3438d9b",
+      "title": "Ожившая учебная кисть",
+      "kind": "foe",
+      "subjects": [
+        "unasked-brushes-foe-1",
+        "unasked-brushes-foe-2",
+        "unasked-brushes-foe-3",
+        "unasked-brushes-foe-4",
+        "unasked-brushes-foe-5",
+        "unasked-brushes-foe-6"
+      ],
+      "file": "foes-foe-1fe3438d9b.webp",
+      "sha256": "20da1acadf9b9b6b721fddfb4a6bd39dbe8bf294443bc62044c3edc5feaaa7c7",
+      "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 37,
+        "top": 19,
+        "width": 651,
+        "height": 689
+      }
+    },
+    {
+      "key": "foe-050a3d7d9b",
+      "title": "Бумажный щёголь",
+      "kind": "foe",
+      "subjects": [
+        "paper-dandies-foe-1",
+        "paper-dandies-foe-2",
+        "paper-dandies-foe-3",
+        "paper-dandies-foe-4",
+        "paper-dandies-foe-5",
+        "paper-dandies-foe-6"
+      ],
+      "file": "foes-foe-050a3d7d9b.webp",
+      "sha256": "4244b60f2e594abe05cd7efc0c25cae9acb5a5894c82aea589050d691248f3a0",
+      "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 772,
+        "top": 9,
+        "width": 662,
+        "height": 696
+      }
+    },
+    {
+      "key": "foe-682b78505e",
+      "title": "Оживший бумажный завиток",
+      "kind": "foe",
+      "subjects": [
+        "crosswind-curls-foe-1",
+        "crosswind-curls-foe-2",
+        "crosswind-curls-foe-3",
+        "crosswind-curls-foe-4",
+        "crosswind-curls-foe-5",
+        "crosswind-curls-foe-6"
+      ],
+      "file": "foes-foe-682b78505e.webp",
+      "sha256": "fde61a46de259e81e0260474d3b530db6074c74ac098698dd5a83ae072a979a5",
+      "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1498,
+        "top": 86,
+        "width": 635,
+        "height": 616
+      }
+    },
+    {
+      "key": "tovin-tailor",
+      "title": "Товин Подкладка",
+      "kind": "npc",
+      "subjects": [
+        "tovin-tailor"
+      ],
+      "file": "npcs-tovin-tailor.webp",
+      "sha256": "56751789a2855231d072dbf539d1911cf148c03176923b0a6c5839d6787886e9",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 78,
+        "top": 18,
+        "width": 280,
+        "height": 395
+      }
+    },
+    {
+      "key": "sevra-quarter",
+      "title": "Севра Четверть",
+      "kind": "npc",
+      "subjects": [
+        "sevra-quarter"
+      ],
+      "file": "npcs-sevra-quarter.webp",
+      "sha256": "ba40bf97bb4d7aecca5fc69b2e5eca60be58a435531a9fac3733a7a67647e918",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 466,
+        "top": 38,
+        "width": 258,
+        "height": 375
+      }
+    },
+    {
+      "key": "listva-bagmaker",
+      "title": "Листва Внутренний Карман",
+      "kind": "npc",
+      "subjects": [
+        "listva-bagmaker"
+      ],
+      "file": "npcs-listva-bagmaker.webp",
+      "sha256": "3de447650e1f3395f62315cba09fb72e12f7c7d9721965875cf22d1e4f1fcd74",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 861,
+        "top": 13,
+        "width": 260,
+        "height": 400
+      }
+    },
+    {
+      "key": "orsa-ember",
+      "title": "Орса Угольная Черта",
+      "kind": "npc",
+      "subjects": [
+        "orsa-ember"
+      ],
+      "file": "npcs-orsa-ember.webp",
+      "sha256": "6effdcf1cfd7707d1f9fef3d611644bbbee4bb2a12e4f4df8fbd4a11acc2bb9e",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 69,
+        "top": 447,
+        "width": 272,
+        "height": 377
+      }
+    },
+    {
+      "key": "iney-shell",
+      "title": "Иней Ракушечный",
+      "kind": "npc",
+      "subjects": [
+        "iney-shell"
+      ],
+      "file": "npcs-iney-shell.webp",
+      "sha256": "ac36183bd5fbc78682721c01af9ffe6092c3ec938507e0117d2cbc2151cf7b6e",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 451,
+        "top": 440,
+        "width": 278,
+        "height": 385
+      }
+    },
+    {
+      "key": "pukh-offcut",
+      "title": "Пух Запасной Кусочек",
+      "kind": "npc",
+      "subjects": [
+        "pukh-offcut"
+      ],
+      "file": "npcs-pukh-offcut.webp",
+      "sha256": "626254092126a8cb5e9390d50ee9fb9612cff11e994904e37e42c4b45120c653",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 854,
+        "top": 442,
+        "width": 307,
+        "height": 382
+      }
+    },
+    {
+      "key": "dara-bench",
+      "title": "Дара Меловая Черта",
+      "kind": "npc",
+      "subjects": [
+        "dara-bench"
+      ],
+      "file": "npcs-dara-bench.webp",
+      "sha256": "9f8ec9ba48e12690abde6fa34ed9c445f6a70b06e58ef54d53719975c50a3842",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 70,
+        "top": 856,
+        "width": 256,
+        "height": 430
+      }
+    },
+    {
+      "key": "bryl-pocket",
+      "title": "Брыль Семь Карманов",
+      "kind": "npc",
+      "subjects": [
+        "bryl-pocket"
+      ],
+      "file": "npcs-bryl-pocket.webp",
+      "sha256": "c8042c755e6ca1b992bacde57875e90084ec90ab556ec22b5b2a7ee3ebcfee6f",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 442,
+        "top": 851,
+        "width": 273,
+        "height": 435
+      }
+    },
+    {
+      "key": "krug-weathervane",
+      "title": "Круг Флюгеров",
+      "kind": "npc",
+      "subjects": [
+        "krug-weathervane"
+      ],
+      "file": "npcs-krug-weathervane.webp",
+      "sha256": "7a14b89fdc03c544fa12c196c4293482c6e72f201daacbafed77a5eb33137fa7",
+      "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+      "generated": "2026-11-22",
+      "sheet": "impossible-fair-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 861,
+        "top": 854,
+        "width": 304,
+        "height": 432
+      }
+    }
+  ]
+}

@@ -1,0 +1,1663 @@
+{
+ "id": "last-ferryman",
+ "title": "Последний перевозчик",
+ "genre": "Дарк-фэнтези: нисхождение в мир мёртвых",
+ "audience": "18+",
+ "pitch": "Вы погибли при крушении парома и очнулись на берегу настоящего подземного мира. Последний перевозчик ещё знает дорогу обратно. Чтобы добраться до неё, придётся спуститься ниже рек, по которым уходят умершие, пройти сквозь сдвигающиеся пласты захоронений и решить, ради чего стоит снова увидеть солнце. У возвращения есть точная граница; узнать её необходимо прежде, чем соглашаться.",
+ "tone": "Холодная вода, тяжёлый труд, страшная глубина и бережная прямота. Жестокость рождается из попытки решить за другого, какую потерю тот выдержит.",
+ "duration": "8 сессий; 180 минут: 10 минут вступления и повторения, три сцены по 45 минут, перерыв 15 минут, заключение 20 минут.",
+ "cover": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "e847ac64d887308fce327ea7be82f6f7cbb0e82406271d7a6cefbeb924b06b03"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "1d1e64e4196df43e2c09f15d45f0341f23cd25875773dff202760732fe00c79c"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "e019c4c18eb4d1fbc2c06faecbcd9f27a50a707802c64f4bec58dc21dad57d11"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "38b65903bcaa04450fd0609e734d4d1d2aef42e03c5d0cca773ea5febb2a5fa1"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "424b7b0b8810f84a8955be3b11a3bdd4d9f18eaebef0fe16f8f238cd0f8a6ee0"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/aren-tal.webp",
+   "sha256": "68fcf98db633c79caa149a657c6c7e1e84c7a238723f0e80eeac7f72cb64acf8",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арен Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "aren-tal"
+    ],
+    "4-players": [
+     "aren-tal"
+    ],
+    "5-players": [
+     "aren-tal"
+    ],
+    "6-players": [
+     "aren-tal"
+    ],
+    "7-players": [
+     "aren-tal"
+    ]
+   },
+   "file": "aren-tal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/mara-sel.webp",
+   "sha256": "05e89d7299b36d37693cf49be7f5581c9f0ccab580e8f8f421529697bb686921",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Сель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-sel"
+    ],
+    "4-players": [
+     "mara-sel"
+    ],
+    "5-players": [
+     "mara-sel"
+    ],
+    "6-players": [
+     "mara-sel"
+    ],
+    "7-players": [
+     "mara-sel"
+    ]
+   },
+   "file": "mara-sel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/savra-ein.webp",
+   "sha256": "f1022a5a5d3a6ff50a60b81b73760bd09c53656b10a75592946ad73741411f2e",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Савра Эйн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "savra-ein"
+    ],
+    "4-players": [
+     "savra-ein"
+    ],
+    "5-players": [
+     "savra-ein"
+    ],
+    "6-players": [
+     "savra-ein"
+    ],
+    "7-players": [
+     "savra-ein"
+    ]
+   },
+   "file": "savra-ein.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/elden-roi.webp",
+   "sha256": "0fdad949defb49268acf30c4838a71241d2c84c923101706afe2602b28579fe9",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элден Рой",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "elden-roi"
+    ],
+    "5-players": [
+     "elden-roi"
+    ],
+    "6-players": [
+     "elden-roi"
+    ],
+    "7-players": [
+     "elden-roi"
+    ]
+   },
+   "file": "elden-roi.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/rada-vek.webp",
+   "sha256": "2e45108b2eed934e0d195f83db765bfb8e411332aab4dc08e964a316f1b8207d",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Век",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "rada-vek"
+    ],
+    "6-players": [
+     "rada-vek"
+    ],
+    "7-players": [
+     "rada-vek"
+    ]
+   },
+   "file": "rada-vek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/nim-veres.webp",
+   "sha256": "6ad1c6e9aa0b681d96cc0893f6f15997b30cd189e62d2ac1dec7972b593e6a7a",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ним Верес",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "nim-veres"
+    ],
+    "7-players": [
+     "nim-veres"
+    ]
+   },
+   "file": "nim-veres.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/leya-rush.webp",
+   "sha256": "794ffa49fc540f232935fd52ec0d8cd27af6b45292d8038a5b65be1e2ef3f7f2",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Руш",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "leya-rush"
+    ]
+   },
+   "file": "leya-rush.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/travel-kit.webp",
+   "sha256": "78ec798bcfb8572fded89c448b22ac8d390b022f36a517218a20d848b7a4ba5f",
+   "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "aren-tal-travel-kit",
+     "mara-sel-travel-kit",
+     "savra-ein-travel-kit"
+    ],
+    "4-players": [
+     "aren-tal-travel-kit",
+     "elden-roi-travel-kit",
+     "mara-sel-travel-kit",
+     "savra-ein-travel-kit"
+    ],
+    "5-players": [
+     "aren-tal-travel-kit",
+     "elden-roi-travel-kit",
+     "mara-sel-travel-kit",
+     "rada-vek-travel-kit",
+     "savra-ein-travel-kit"
+    ],
+    "6-players": [
+     "aren-tal-travel-kit",
+     "elden-roi-travel-kit",
+     "mara-sel-travel-kit",
+     "nim-veres-travel-kit",
+     "rada-vek-travel-kit",
+     "savra-ein-travel-kit"
+    ],
+    "7-players": [
+     "aren-tal-travel-kit",
+     "elden-roi-travel-kit",
+     "leya-rush-travel-kit",
+     "mara-sel-travel-kit",
+     "nim-veres-travel-kit",
+     "rada-vek-travel-kit",
+     "savra-ein-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/osten.webp",
+   "sha256": "74b4895c3c838f79cb910a219192ea731731b691c3d3508d797a4679d727c94b",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Остен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "osten"
+    ],
+    "4-players": [
+     "osten"
+    ],
+    "5-players": [
+     "osten"
+    ],
+    "6-players": [
+     "osten"
+    ],
+    "7-players": [
+     "osten"
+    ]
+   },
+   "file": "osten.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/ilma.webp",
+   "sha256": "49c177ddbf651bf4f0d074fa22f44d6f64cb4c40e6f3b13ae4829395a355b60b",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильма",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilma"
+    ],
+    "4-players": [
+     "ilma"
+    ],
+    "5-players": [
+     "ilma"
+    ],
+    "6-players": [
+     "ilma"
+    ],
+    "7-players": [
+     "ilma"
+    ]
+   },
+   "file": "ilma.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/urs.webp",
+   "sha256": "6d783be943e7542ec7ce684b7807afcb27ca384541dbbdfe242af38cf7e1f914",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Урс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "urs"
+    ],
+    "4-players": [
+     "urs"
+    ],
+    "5-players": [
+     "urs"
+    ],
+    "6-players": [
+     "urs"
+    ],
+    "7-players": [
+     "urs"
+    ]
+   },
+   "file": "urs.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/nela.webp",
+   "sha256": "05489d1d3e0e32632c6185318bcefbe93aace440df8b2776ad84c95a4b587db2",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нела",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nela"
+    ],
+    "4-players": [
+     "nela"
+    ],
+    "5-players": [
+     "nela"
+    ],
+    "6-players": [
+     "nela"
+    ],
+    "7-players": [
+     "nela"
+    ]
+   },
+   "file": "nela.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/borr.webp",
+   "sha256": "bd29072e5e3298dbe20b56c54e244d5dc6c74069763ab7a70aae46fb301c5b55",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borr"
+    ],
+    "4-players": [
+     "borr"
+    ],
+    "5-players": [
+     "borr"
+    ],
+    "6-players": [
+     "borr"
+    ],
+    "7-players": [
+     "borr"
+    ]
+   },
+   "file": "borr.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/setra.webp",
+   "sha256": "e768977f8ed3ecf5c118d40863eac44078a3a13422e98ef2c96299d16a0f1baf",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сетра",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "setra"
+    ],
+    "4-players": [
+     "setra"
+    ],
+    "5-players": [
+     "setra"
+    ],
+    "6-players": [
+     "setra"
+    ],
+    "7-players": [
+     "setra"
+    ]
+   },
+   "file": "setra.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/geven.webp",
+   "sha256": "bc270b4192b0c76c539f2b546981ba1e6622ce1209060a604d2dcbd3dd38b8ce",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гевен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "geven"
+    ],
+    "4-players": [
+     "geven"
+    ],
+    "5-players": [
+     "geven"
+    ],
+    "6-players": [
+     "geven"
+    ],
+    "7-players": [
+     "geven"
+    ]
+   },
+   "file": "geven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/emma-shav.webp",
+   "sha256": "670832d8fbcb47670e8410938c3043fdebeab4bb4a89dc0896072c7723fbb552",
+   "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эмма Шав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "emma-shav"
+    ],
+    "4-players": [
+     "emma-shav"
+    ],
+    "5-players": [
+     "emma-shav"
+    ],
+    "6-players": [
+     "emma-shav"
+    ],
+    "7-players": [
+     "emma-shav"
+    ]
+   },
+   "file": "emma-shav.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-wreck-shore.webp",
+   "sha256": "d545f815edf0ef32d01e23509381f87bdc86d5428385af12fdb2b834f2a4f842",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берег крушения",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wreck-shore"
+    ],
+    "4-players": [
+     "wreck-shore"
+    ],
+    "5-players": [
+     "wreck-shore"
+    ],
+    "6-players": [
+     "wreck-shore"
+    ],
+    "7-players": [
+     "wreck-shore"
+    ]
+   },
+   "file": "wreck-shore.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-trial-ledge.webp",
+   "sha256": "b0a587ce7777800eb774064541b34cdba802e9245855882886ef865a10b60204",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пробный уступ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "trial-ledge"
+    ],
+    "4-players": [
+     "trial-ledge"
+    ],
+    "5-players": [
+     "trial-ledge"
+    ],
+    "6-players": [
+     "trial-ledge"
+    ],
+    "7-players": [
+     "trial-ledge"
+    ]
+   },
+   "file": "trial-ledge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-second-end-camp.webp",
+   "sha256": "afb970f4e0840e5da30e53f97e962fd24a6508f04bbbeafe74b7a079d6547020",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лагерь второго конца",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "second-end-camp"
+    ],
+    "4-players": [
+     "second-end-camp"
+    ],
+    "5-players": [
+     "second-end-camp"
+    ],
+    "6-players": [
+     "second-end-camp"
+    ],
+    "7-players": [
+     "second-end-camp"
+    ]
+   },
+   "file": "second-end-camp.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-grave-slope.webp",
+   "sha256": "d0ff42d01484208de1a025f6442460aaf1395f55f354e2c627330fbd88bea2d6",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сползающие могилы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grave-slope"
+    ],
+    "4-players": [
+     "grave-slope"
+    ],
+    "5-players": [
+     "grave-slope"
+    ],
+    "6-players": [
+     "grave-slope"
+    ],
+    "7-players": [
+     "grave-slope"
+    ]
+   },
+   "file": "grave-slope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-underbed-way.webp",
+   "sha256": "1ad4cc103faf97273966882821da54eec740fb99fe2e5331d16488c6a9067c87",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Подрусловой ход",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "underbed-way"
+    ],
+    "4-players": [
+     "underbed-way"
+    ],
+    "5-players": [
+     "underbed-way"
+    ],
+    "6-players": [
+     "underbed-way"
+    ],
+    "7-players": [
+     "underbed-way"
+    ]
+   },
+   "file": "underbed-way.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-seized-boathouse.webp",
+   "sha256": "236aa53927f810734b5c1c33a3f62724d35089446e85285d65ff7f63db5c5426",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эллинг без огня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seized-boathouse"
+    ],
+    "4-players": [
+     "seized-boathouse"
+    ],
+    "5-players": [
+     "seized-boathouse"
+    ],
+    "6-players": [
+     "seized-boathouse"
+    ],
+    "7-players": [
+     "seized-boathouse"
+    ]
+   },
+   "file": "seized-boathouse.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-silent-shelf.webp",
+   "sha256": "08cd62021cf2771d14aa67d0f1b01beacff377173f719d3bbf56b56cf9a7a2a0",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Безмолвная полка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "silent-shelf"
+    ],
+    "4-players": [
+     "silent-shelf"
+    ],
+    "5-players": [
+     "silent-shelf"
+    ],
+    "6-players": [
+     "silent-shelf"
+    ],
+    "7-players": [
+     "silent-shelf"
+    ]
+   },
+   "file": "silent-shelf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-rootless-river.webp",
+   "sha256": "489cc7310be7f0c5b2b403c2125a8bdd36c13e4fbf104d2892b91f1f9a1cf53f",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Река без береговых корней",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rootless-river"
+    ],
+    "4-players": [
+     "rootless-river"
+    ],
+    "5-players": [
+     "rootless-river"
+    ],
+    "6-players": [
+     "rootless-river"
+    ],
+    "7-players": [
+     "rootless-river"
+    ]
+   },
+   "file": "rootless-river.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-last-landing.webp",
+   "sha256": "2b6e888830f47eb282b52e019ba6e4b884bc600acf405e37d4b9b9a8d1821d47",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Последняя высадка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "last-landing"
+    ],
+    "4-players": [
+     "last-landing"
+    ],
+    "5-players": [
+     "last-landing"
+    ],
+    "6-players": [
+     "last-landing"
+    ],
+    "7-players": [
+     "last-landing"
+    ]
+   },
+   "file": "last-landing.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/places-upward-mouth.webp",
+   "sha256": "3518a74beaebbfe33d8a695fb4c25f5818fc0beca2876bed7e056594456de579",
+   "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Устье Вверх",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "upward-mouth"
+    ],
+    "4-players": [
+     "upward-mouth"
+    ],
+    "5-players": [
+     "upward-mouth"
+    ],
+    "6-players": [
+     "upward-mouth"
+    ],
+    "7-players": [
+     "upward-mouth"
+    ]
+   },
+   "file": "upward-mouth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-aren-tal.webp",
+   "sha256": "ffe1660d8510b37a612db5f7153dc8d81965bd55cc5da180137cf2fb6fa0b9e7",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арен Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "aren-tal"
+    ],
+    "4-players": [
+     "aren-tal"
+    ],
+    "5-players": [
+     "aren-tal"
+    ],
+    "6-players": [
+     "aren-tal"
+    ],
+    "7-players": [
+     "aren-tal"
+    ]
+   },
+   "file": "aren-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "aren-tal.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-mara-sel.webp",
+   "sha256": "c1c5c09b3e9e76fd0487b1025ec6b18ae33481be6217bf6816e0d499d99bb4b8",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Сель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-sel"
+    ],
+    "4-players": [
+     "mara-sel"
+    ],
+    "5-players": [
+     "mara-sel"
+    ],
+    "6-players": [
+     "mara-sel"
+    ],
+    "7-players": [
+     "mara-sel"
+    ]
+   },
+   "file": "mara-sel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mara-sel.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-savra-ein.webp",
+   "sha256": "b2bce464af31c8bee5da0a2cf08cb676454e760add86d7c24d42c043b183957e",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Савра Эйн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "savra-ein"
+    ],
+    "4-players": [
+     "savra-ein"
+    ],
+    "5-players": [
+     "savra-ein"
+    ],
+    "6-players": [
+     "savra-ein"
+    ],
+    "7-players": [
+     "savra-ein"
+    ]
+   },
+   "file": "savra-ein--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "savra-ein.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-elden-roi.webp",
+   "sha256": "118501eb80f380846f4c642e31cc1e2865bdfdb83cafe94353a20b02fa1dfaeb",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элден Рой",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "elden-roi"
+    ],
+    "5-players": [
+     "elden-roi"
+    ],
+    "6-players": [
+     "elden-roi"
+    ],
+    "7-players": [
+     "elden-roi"
+    ]
+   },
+   "file": "elden-roi--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elden-roi.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-rada-vek.webp",
+   "sha256": "81fba1b93670b3c637ecb287196674a9caa083217d9534a86554c06105b9b9a3",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Век",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "rada-vek"
+    ],
+    "6-players": [
+     "rada-vek"
+    ],
+    "7-players": [
+     "rada-vek"
+    ]
+   },
+   "file": "rada-vek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-vek.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-nim-veres.webp",
+   "sha256": "d7798b762f0644fbc63a3d1b6ed584706137e34d079d8493e304375bfe57ff4b",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ним Верес",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "nim-veres"
+    ],
+    "7-players": [
+     "nim-veres"
+    ]
+   },
+   "file": "nim-veres--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nim-veres.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/heroes-leya-rush.webp",
+   "sha256": "9be4ab0df0f243f8e849166b72734a789bcec603fc78c9bbbce2d8d345478583",
+   "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Руш",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "leya-rush"
+    ]
+   },
+   "file": "leya-rush--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leya-rush.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/foes-foe-5ec068f890.webp",
+   "sha256": "43beacfa7ab1679f39a0470e6c5c20f2f04402ebf5365645ea49cb3025b725ea",
+   "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дежурный Ильмы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2"
+    ],
+    "4-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3"
+    ],
+    "5-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3"
+    ],
+    "6-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3",
+     "held-slip-foe-4"
+    ],
+    "7-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3",
+     "held-slip-foe-4",
+     "held-slip-foe-5"
+    ]
+   },
+   "file": "foe-5ec068f890.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/foes-foe-5ec068f890.webp",
+   "sha256": "43beacfa7ab1679f39a0470e6c5c20f2f04402ebf5365645ea49cb3025b725ea",
+   "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дежурный Ильмы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2"
+    ],
+    "4-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3"
+    ],
+    "5-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3"
+    ],
+    "6-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3",
+     "held-slip-foe-4"
+    ],
+    "7-players": [
+     "held-slip-foe-1",
+     "held-slip-foe-2",
+     "held-slip-foe-3",
+     "held-slip-foe-4",
+     "held-slip-foe-5"
+    ]
+   },
+   "file": "foe-5ec068f890--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-5ec068f890.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/foes-foe-9542c29215.webp",
+   "sha256": "c0c147eaf0bd459ac1968dbfd7ee8ab0dd56d45749a44dcd62fc59c8a644f27e",
+   "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Перехватчик на карнизе",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2"
+    ],
+    "4-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3"
+    ],
+    "5-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3"
+    ],
+    "6-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3",
+     "river-interception-foe-4"
+    ],
+    "7-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3",
+     "river-interception-foe-4",
+     "river-interception-foe-5"
+    ]
+   },
+   "file": "foe-9542c29215.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/foes-foe-9542c29215.webp",
+   "sha256": "c0c147eaf0bd459ac1968dbfd7ee8ab0dd56d45749a44dcd62fc59c8a644f27e",
+   "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Перехватчик на карнизе",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2"
+    ],
+    "4-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3"
+    ],
+    "5-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3"
+    ],
+    "6-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3",
+     "river-interception-foe-4"
+    ],
+    "7-players": [
+     "river-interception-foe-1",
+     "river-interception-foe-2",
+     "river-interception-foe-3",
+     "river-interception-foe-4",
+     "river-interception-foe-5"
+    ]
+   },
+   "file": "foe-9542c29215--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9542c29215.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/foes-foe-3b26f89c3c.webp",
+   "sha256": "4d5abaeee01216137b2893f96927cab696f17bb8a84bd9c34f6b1857a3096fbb",
+   "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Удерживающий высадку",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2"
+    ],
+    "4-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3"
+    ],
+    "5-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3"
+    ],
+    "6-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3",
+     "landing-cordon-foe-4"
+    ],
+    "7-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3",
+     "landing-cordon-foe-4",
+     "landing-cordon-foe-5"
+    ]
+   },
+   "file": "foe-3b26f89c3c.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/foes-foe-3b26f89c3c.webp",
+   "sha256": "4d5abaeee01216137b2893f96927cab696f17bb8a84bd9c34f6b1857a3096fbb",
+   "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Удерживающий высадку",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2"
+    ],
+    "4-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3"
+    ],
+    "5-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3"
+    ],
+    "6-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3",
+     "landing-cordon-foe-4"
+    ],
+    "7-players": [
+     "landing-cordon-foe-1",
+     "landing-cordon-foe-2",
+     "landing-cordon-foe-3",
+     "landing-cordon-foe-4",
+     "landing-cordon-foe-5"
+    ]
+   },
+   "file": "foe-3b26f89c3c--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-3b26f89c3c.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-osten.webp",
+   "sha256": "7703809672d73625e8246e9a4aae2c6599d01d5c82c9c07597f417b725b926a7",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Остен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "osten"
+    ],
+    "4-players": [
+     "osten"
+    ],
+    "5-players": [
+     "osten"
+    ],
+    "6-players": [
+     "osten"
+    ],
+    "7-players": [
+     "osten"
+    ]
+   },
+   "file": "osten--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "osten.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-ilma.webp",
+   "sha256": "970cdadcfcae717e70a5cbaa7a1311692bc787a6833933fcfb543b820fc60f5b",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильма",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilma"
+    ],
+    "4-players": [
+     "ilma"
+    ],
+    "5-players": [
+     "ilma"
+    ],
+    "6-players": [
+     "ilma"
+    ],
+    "7-players": [
+     "ilma"
+    ]
+   },
+   "file": "ilma--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilma.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-urs.webp",
+   "sha256": "dcdc03f59bb7af3c53db86473c3e95a28aae286048f6cc03015b1b3419171cc8",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Урс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "urs"
+    ],
+    "4-players": [
+     "urs"
+    ],
+    "5-players": [
+     "urs"
+    ],
+    "6-players": [
+     "urs"
+    ],
+    "7-players": [
+     "urs"
+    ]
+   },
+   "file": "urs--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "urs.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-nela.webp",
+   "sha256": "b849055f1cf4ecea708912f781d402239e8aeda2e9c567968a707b70215f4f8c",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нела",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nela"
+    ],
+    "4-players": [
+     "nela"
+    ],
+    "5-players": [
+     "nela"
+    ],
+    "6-players": [
+     "nela"
+    ],
+    "7-players": [
+     "nela"
+    ]
+   },
+   "file": "nela--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nela.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-borr.webp",
+   "sha256": "a7a20185b01ef99b4433c68f00c239e985d75b86f68666b3c4b85fce47d00ce4",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borr"
+    ],
+    "4-players": [
+     "borr"
+    ],
+    "5-players": [
+     "borr"
+    ],
+    "6-players": [
+     "borr"
+    ],
+    "7-players": [
+     "borr"
+    ]
+   },
+   "file": "borr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "borr.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-setra.webp",
+   "sha256": "08014c0da76da255dfd2dfc99f77570707585a55a3dcabb570e9c0ba1083a48e",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сетра",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "setra"
+    ],
+    "4-players": [
+     "setra"
+    ],
+    "5-players": [
+     "setra"
+    ],
+    "6-players": [
+     "setra"
+    ],
+    "7-players": [
+     "setra"
+    ]
+   },
+   "file": "setra--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "setra.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-geven.webp",
+   "sha256": "3740f581505e832b6386d6e15095ca0ab3db97eccb52891b7b7c25b86cb49270",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гевен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "geven"
+    ],
+    "4-players": [
+     "geven"
+    ],
+    "5-players": [
+     "geven"
+    ],
+    "6-players": [
+     "geven"
+    ],
+    "7-players": [
+     "geven"
+    ]
+   },
+   "file": "geven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "geven.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/table/npcs-emma-shav.webp",
+   "sha256": "df7e7012312170052a7dfd874987fe09ced384f9aec93ddfab3c9df59813d9be",
+   "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эмма Шав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "emma-shav"
+    ],
+    "4-players": [
+     "emma-shav"
+    ],
+    "5-players": [
+     "emma-shav"
+    ],
+    "6-players": [
+     "emma-shav"
+    ],
+    "7-players": [
+     "emma-shav"
+    ]
+   },
+   "file": "emma-shav--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "emma-shav.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/illustrations/opening.webp",
+   "sha256": "a9975eceb8144c6149b5f110d4abca8cf1ac244a4667a88082b217d92d7cc4d0",
+   "originalSha256": "ab863c4d929fab5c7f5fcc3d24518bfeb7d03fe0f632e16c264b5958f0865e6d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берег крушения — Последний перевозчик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nether-reaches"
+    ],
+    "4-players": [
+     "nether-reaches"
+    ],
+    "5-players": [
+     "nether-reaches"
+    ],
+    "6-players": [
+     "nether-reaches"
+    ],
+    "7-players": [
+     "nether-reaches"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "seized-boathouse--map.webp",
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/battle-maps/seized-boathouse.webp",
+   "sha256": "7ce2e5a48a7954598cec5bbd2c6cd34e5eb8dd2f8fdd2cb2b1baeeb3d1e739f1",
+   "originalSha256": "a3a1bc76fb8690dac88e2a83533182aabff9bc165dd0db352d5cd1aed21665e8",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Эллинг без огня. Visible scenery: Крытый спуск к воде, козлы для вёсел и обыкновенная широкая лодка. С внешней стороны строения виден обход к пешему карнизу.. World style: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "seized-boathouse.webp",
+   "subjects": {
+    "3-players": [
+     "seized-boathouse"
+    ],
+    "4-players": [
+     "seized-boathouse"
+    ],
+    "5-players": [
+     "seized-boathouse"
+    ],
+    "6-players": [
+     "seized-boathouse"
+    ],
+    "7-players": [
+     "seized-boathouse"
+    ]
+   }
+  },
+  {
+   "file": "rootless-river--map.webp",
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/battle-maps/rootless-river.webp",
+   "sha256": "c0112abe24e0a7d4c9b031c966f6d7702e9dc8cfe5773930a546c7cc420939c8",
+   "originalSha256": "5dc179226a69b924edd876e62bbc5174a20ac416955bb9ef1943d99e5618a9f5",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Река без береговых корней. Visible scenery: Вода течёт вниз почти отвесно. Рядом извивается непрерывный каменный карниз, местами широкий, местами требующий движения по одному.. World style: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "rootless-river.webp",
+   "subjects": {
+    "3-players": [
+     "rootless-river"
+    ],
+    "4-players": [
+     "rootless-river"
+    ],
+    "5-players": [
+     "rootless-river"
+    ],
+    "6-players": [
+     "rootless-river"
+    ],
+    "7-players": [
+     "rootless-river"
+    ]
+   }
+  },
+  {
+   "file": "last-landing--map.webp",
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/battle-maps/last-landing.webp",
+   "sha256": "a4b17abbc8c6b72b8c83e3a04548fe5b9c6624cd57f2fa4901a9796aa36c82b2",
+   "originalSha256": "96cbc22e1d7a22b069c1b38e0ba28557095b9a09f4f416e94b0e1bf43d0d8474",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Последняя высадка. Visible scenery: Лодочный причал и пешая тропа сходятся на одной просторной площадке. Отсюда видна светлая линия глубоко под ногами.. World style: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "last-landing.webp",
+   "subjects": {
+    "3-players": [
+     "last-landing"
+    ],
+    "4-players": [
+     "last-landing"
+    ],
+    "5-players": [
+     "last-landing"
+    ],
+    "6-players": [
+     "last-landing"
+    ],
+    "7-players": [
+     "last-landing"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/last-ferryman/assets/world-map/world-map.webp",
+   "sha256": "891485544bb0ce38e9166442156f2fd5133017c091948baeb491755f775aeb43",
+   "originalSha256": "24e97e95d1a3e159a10fc5e9829d040f8a17e1f3191be910b2d85d8c6a26ddf7",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Низовье. Style Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Берег крушения; 0.367,0.177 Пробный уступ; 0.623,0.15 Лагерь второго конца; 0.88,0.177 Сползающие могилы; 0.905,0.517 Подрусловой ход; 0.648,0.49 Эллинг без огня; 0.392,0.517 Безмолвная полка; 0.135,0.49 Река без береговых корней; 0.11,0.83 Последняя высадка; 0.367,0.857 Устье Вверх. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

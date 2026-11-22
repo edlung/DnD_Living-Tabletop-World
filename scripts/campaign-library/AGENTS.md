@@ -1,11 +1,11 @@
 # Campaign library tools
 
-Scope: `work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`; product notes in
+Scope: `work-orders/CAMPAIGN_EDITORIAL_2026-11-22.md` and the original library release; product notes in
 `docs/adr/0058-campaign-content.md` (2026-11-14).
 
-- `catalog.ts` lists the library (only campaigns reworked to the owner's standard) and builds each
+- `catalog.ts` keeps the original shelf order and adds the other authored books through `other-books.ts`. It builds each
   one's packages and picture bindings from `campaigns/`, through the series registry
-  (`scripts/campaign-shared/series.ts`) or Moon Pearl's own variants.
+  (`scripts/campaign-shared/series.ts`) or the three family books’ variants.
 - `build.ts` writes `fixtures/campaign-library/` (`library.json`, `packages/`); the server reads the
   pictures from the campaigns' own `assets/` and checks their SHA-256. Rebuild after any change to a
   library campaign; `library.test.ts` fails when the fixture is stale.
@@ -17,3 +17,7 @@ Scope: `work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`; product notes in
   the map place, its pins and routes to every library variant (ADR 0058 notes of 2026-11-17).
 - `library.test.ts` activates every library campaign in memory and checks its pictures, figures,
   battle maps and world map (pins and routes) arrive once, and that an edited package gets none.
+
+- `table-pictures.ts` binds the individual portraits, props, location paintings and transparent figures to entities in each edition. `prepare-table-art.mjs` processes the original art sheets and records the source hashes.
+- The library build also writes each playable edition under the book's `assets/table-editions/`.
+  The interface build adds a portable GM gallery there. All its links stay inside the book.

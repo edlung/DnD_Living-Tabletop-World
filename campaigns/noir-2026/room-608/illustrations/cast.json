@@ -1,0 +1,397 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-35b9970f-defb-47e1-9b92-7bb8a2621878.png",
+      "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Нареченск: отель «Контур». Characters, in strict cell order:\n1. Кирилл Савин — Потёртый блокнот, мягкие туфли, складная линейка в чехле. Age 38.\n2. Галина Труш — Тёмное пальто, простая записная книжка, спокойный низкий голос. Age 44.\n3. Матвей Осокин — Чистый рабочий пиджак, карандаш за ухом, ладони в старых мозолях. Age 51.\n4. Рая Белик — Крепкий плащ, короткая стрижка, обычная дорожная трость. Age 35.\n5. Никита Орелин — Тубус с пустой бумагой, чернильное пятно на манжете. Age 29.\n6. Дина Шестак — Две ручки разного цвета, плоская папка, внимательный взгляд. Age 41.\n7. Арсен Холм — Старомодный жилет и конверты с пустыми бланками обращений. Age 57.\n8. Полина Рудь — Тёмный костюм, карманные карточки, привычка оставлять свободный проход. Age 33.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-aa9fbef3-2359-4ab1-ad9d-cb653f8b001f.png",
+      "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Нареченск: отель «Контур». Characters, in strict cell order:\n1. Зинаида Таль — Безупречный серый костюм; пальто висит на отдельной вешалке. Говорит тихо, ожидая, что остальные тоже понизят голос. Age 46.\n2. Григорий Ракитин — На служебном портрете мужчина в светлом жилете; тело при осмотре закрыто простынёй. Age 54.\n3. Софья Дрозд — Льняной фартук поверх аккуратного платья; перед ответом складывает полотенце по шву. Age 49.\n4. Тимур Улан — Форменная куртка, поднос с одним чистым стаканом, заметная усталость. Age 26.\n5. Павел Резник — Дорогой дорожный костюм, смятый конверт, чашка остывшего чая. Age 43.\n6. Егор Яшин — Рабочий жилет, бирки на короткой связке ключей, чистый платок для очков. Age 58.\n7. Инна Рост — Простое пальто, карточки предметов в отдельной папке, осторожная речь. Age 39.\n8. Мила Судак — Синий жакет, бумажные закладки на столе, аккуратно подрезанные ногти. Age 32.\n9. Антон Ракитин — Несессер брата, закрытый конверт, усталая щетина. Age 42.\n10. Нина Лехт — Рабочая блуза, полоска измерительной ленты, уставшие плечи. Age 37.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "kirill-savin",
+      "file": "cards/kirill-savin.webp",
+      "title": "Кирилл Савин",
+      "subjects": [
+        "kirill-savin"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "691728e813ed23bc851c7086015a3dffb465bdd23eb966a1aa3632a78ada32e4"
+    },
+    {
+      "id": "galina-trush",
+      "file": "cards/galina-trush.webp",
+      "title": "Галина Труш",
+      "subjects": [
+        "galina-trush"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a590cf31fe0f33fdcde18b81b98f4a2705b3fa989bd40ce405a2ccd060e4f952"
+    },
+    {
+      "id": "matvey-osokin",
+      "file": "cards/matvey-osokin.webp",
+      "title": "Матвей Осокин",
+      "subjects": [
+        "matvey-osokin"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "184b209fa7ce30542a5e44c02d31b21bcb5c827fc6f6a0347b5a8f49514b588d"
+    },
+    {
+      "id": "raya-belik",
+      "file": "cards/raya-belik.webp",
+      "title": "Рая Белик",
+      "subjects": [
+        "raya-belik"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "031302fe787b1a36883b8f75e181033cd8c39958254e272fe92457191c00321a"
+    },
+    {
+      "id": "nikita-orelin",
+      "file": "cards/nikita-orelin.webp",
+      "title": "Никита Орелин",
+      "subjects": [
+        "nikita-orelin"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d2781fec5f15839f4955a0dece58357f6f142e2b8ef2451da7b8fe0e81088566"
+    },
+    {
+      "id": "dina-shestak",
+      "file": "cards/dina-shestak.webp",
+      "title": "Дина Шестак",
+      "subjects": [
+        "dina-shestak"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "31499444bb572ecf9312cd1c02fd9eb5ac9cec2c8e74b78c20b2ca10fb3f3b1d"
+    },
+    {
+      "id": "arsen-kholm",
+      "file": "cards/arsen-kholm.webp",
+      "title": "Арсен Холм",
+      "subjects": [
+        "arsen-kholm"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3194d2c5f660528af78b4c9fa2a601efd627bdd53eae342e846115bd07cee06c"
+    },
+    {
+      "id": "polina-rud",
+      "file": "cards/polina-rud.webp",
+      "title": "Полина Рудь",
+      "subjects": [
+        "polina-rud"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d92f0e49f65df5277ad3c76420de2856d5cbf29f51e601826e975791e07ba24b"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "arsen-kholm-travel-kit",
+        "dina-shestak-travel-kit",
+        "galina-trush-travel-kit",
+        "kirill-savin-travel-kit",
+        "matvey-osokin-travel-kit",
+        "nikita-orelin-travel-kit",
+        "polina-rud-travel-kit",
+        "raya-belik-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1798c2937d692095b39ccd5d2fcf18905b77630baf3837c2ec70819c458780c3"
+    },
+    {
+      "id": "zinaida-tal",
+      "file": "cards/zinaida-tal.webp",
+      "title": "Зинаида Таль",
+      "subjects": [
+        "zinaida-tal"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a32a0ea705b781b5d0f3ccc27632991ba9fba30a1a4737931a4140fb9e0b4af2"
+    },
+    {
+      "id": "grigory-rakitin",
+      "file": "cards/grigory-rakitin.webp",
+      "title": "Григорий Ракитин",
+      "subjects": [
+        "grigory-rakitin"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dc00624422c652eb3d66c7997707a24aab13ae0e96869dcad149697e09300660"
+    },
+    {
+      "id": "sofia-drozd",
+      "file": "cards/sofia-drozd.webp",
+      "title": "Софья Дрозд",
+      "subjects": [
+        "sofia-drozd"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "652343259c0c846c0a6a770d355a782754a3cfb4d5b986c40b137b951c21f0a0"
+    },
+    {
+      "id": "timur-ulan",
+      "file": "cards/timur-ulan.webp",
+      "title": "Тимур Улан",
+      "subjects": [
+        "timur-ulan"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "be1f4ad9ca2b1cb4e404771c59848f87919cb1b6f7ffb3f6d39b64cef71c6565"
+    },
+    {
+      "id": "pavel-reznik",
+      "file": "cards/pavel-reznik.webp",
+      "title": "Павел Резник",
+      "subjects": [
+        "pavel-reznik"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "31347b795ac30d4a55d5b0d233cb37a6c3906ab3ec6956b30e70dc02d895f6a1"
+    },
+    {
+      "id": "egor-yashin",
+      "file": "cards/egor-yashin.webp",
+      "title": "Егор Яшин",
+      "subjects": [
+        "egor-yashin"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1c1a42a33860da87d6aa7f5cd1178d1525ab3dc15f0a3aa8e5f5c2893fb9f4d5"
+    },
+    {
+      "id": "inna-rost",
+      "file": "cards/inna-rost.webp",
+      "title": "Инна Рост",
+      "subjects": [
+        "inna-rost"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "21ac075dde9dc2e8a155b26797ad78a8d1a536f6b8e2d1f517d930feecb2cf15"
+    },
+    {
+      "id": "mila-sudak",
+      "file": "cards/mila-sudak.webp",
+      "title": "Мила Судак",
+      "subjects": [
+        "mila-sudak"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cf03bb997997002a84463679701ae6fcd3685f84812e22d37a18d83609f99022"
+    },
+    {
+      "id": "anton-rakitin",
+      "file": "cards/anton-rakitin.webp",
+      "title": "Антон Ракитин",
+      "subjects": [
+        "anton-rakitin"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d570b6053c38b369c494926c6ed2ab1787ac001d85515f380da62e61db01e78d"
+    },
+    {
+      "id": "nina-leht",
+      "file": "cards/nina-leht.webp",
+      "title": "Нина Лехт",
+      "subjects": [
+        "nina-leht"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7cf714049ce7f8eaea19e1d483a3f4406b7dd89b5d48004b2ddb783e219c323c"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "fe025b8c395c5d32878e01bff2a5e6a3fd0a952ce8e95a24d71223767415a983",
+    "originalSha256": "8c9c68ca8c7c313924200706c1cbae776920f255afe5156a4f6b006fcafefef4",
+    "originalFile": "exec-71ab1b46-e9cd-4ba5-8ca5-d6c3a7ad0b6d.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Гранов и студия «Кромка». Style Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Комната артели; 0.367,0.177 Проходная «Кромки»; 0.623,0.15 Седьмой павильон; 0.88,0.177 Коридор макетов; 0.905,0.517 Монтажная с матовым окном; 0.648,0.49 Двор реквизита; 0.392,0.517 Студийный коммутатор; 0.135,0.49 Договорная контора; 0.11,0.83 Осмотровая при артели. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

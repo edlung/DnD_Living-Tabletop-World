@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "broken-gallery.webp",
+      "sha256": "93de6ac5005eabe604d52d0835fc267e6c9e48f12aca5278bb90d23f87c278ee",
+      "originalSha256": "01306b5f09ea1415a74c5207f9d82917bae0cda9fa672bb2ac876f5f3872ac6f",
+      "originalFile": "exec-634b82fa-3466-40ee-97bf-acc7fa12d029.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея Уходящего Кита. Visible scenery: Над карьером висит остаток рабочего настила. В скале зияет огромная выемка, вокруг лежат свежие белые обломки и верёвочные лестницы.. World style: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "broken-gallery",
+      "encounter": "ledge-swallows",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "empty-quarry.webp",
+      "sha256": "dc94ab2b04b8e92a610edd9e3f5c92829319377f1bf9d62da38243cb1dc58713",
+      "originalSha256": "4afa6603b738f6daecfdc4f64450f2d73e9e9ea4974eedef1bb4edce9faaafcf",
+      "originalFile": "exec-ed9c4074-6bb8-4e62-8596-a49a6102c68a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Чаша открытого карьера. Visible scenery: Широкое дно выработки окружено уступами. Здесь лежат груды негодного камня, рамы грузовых подъёмников и свёрнутые штормовые паруса.. World style: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "empty-quarry",
+      "encounter": "quarry-watch",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "quiet-maw.webp",
+      "sha256": "ec7f28f67f5fb4eca613e77a20429de4579d2b9932e47238f1fe5e806455968d",
+      "originalSha256": "b3c6c3589a6e712c0b202a16d1a178ccd438a777cb22f0f6c8702bfbc26e4a06",
+      "originalFile": "exec-5fbdf5d2-a06f-4518-b9f7-52b5aaf9c5c2.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Тихий Зев. Visible scenery: Узкий морской залив с прочным каменным дном, старым погрузочным бассейном и низкими деревянными пристанями. Во время отлива видны гряды моллюсков.. World style: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "quiet-maw",
+      "encounter": "reef-claws",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

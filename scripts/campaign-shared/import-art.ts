@@ -6,7 +6,7 @@ import { createPool } from '../../apps/server/src/platform/db/pool.ts';
 import { createLogger } from '../../apps/server/src/platform/logging/logger.ts';
 import { createWorldEngine } from '../../apps/server/src/world-engine/runtime.ts';
 import { curatedArt } from './curated-art.ts';
-import { campaignOf } from './series.ts';
+import { artworkCampaignOf } from './series.ts';
 
 const [id, ...args] = process.argv.slice(2);
 if (
@@ -37,7 +37,7 @@ if (
       initialScenarioDigest(initial.scenario) !== snapshot.state.bootstrap.source.scenarioDigest
     )
       throw new Error('Published campaign and frozen source do not match.');
-    const { series, slug } = campaignOf(id);
+    const { series, slug } = artworkCampaignOf(id);
     const set = await curatedArt(series, slug, initial.scenario);
     if (!args.includes('--confirm'))
       process.stdout.write(
@@ -57,7 +57,7 @@ if (
               contents: new PostgresAssetContentStore(pool),
               set,
               logger,
-              reason: `${snapshot.state.campaign.name}: original codex-cli imagegen art, campaigns/${series.name}/${slug}/assets/manifest.json`,
+              reason: `${snapshot.state.campaign.name}: original campaign artwork, campaigns/${series.name}/${slug}`,
             },
             campaignId,
             { kind: 'user', actorId: snapshot.state.campaign.dmActorId },

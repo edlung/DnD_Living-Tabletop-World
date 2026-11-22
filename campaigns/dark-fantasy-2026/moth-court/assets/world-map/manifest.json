@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "2c41c51e6c234a4199fd56be58f1e4bd443f4510761bbf05f6218ddab1b6d624",
+    "originalSha256": "3c1288ea3bef771b9b2db7212eec373683accd866b965767f499712ea4896b71",
+    "originalFile": "exec-fafe6fae-0fa0-4722-bba8-0a8126ceb30d.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Сиверн под белым дождём. Style Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом поротых швов; 0.367,0.177 Кружевные ворота; 0.623,0.15 Мойка белого шёлка; 0.88,0.177 Зеркальная галерея; 0.905,0.517 Зал последнего вылета; 0.648,0.49 Колодец гирь; 0.392,0.517 Изнаночная; 0.135,0.49 Ночная оранжерея; 0.11,0.83 Каретный двор; 0.367,0.857 Тихие бани. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

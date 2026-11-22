@@ -1,0 +1,1565 @@
+{
+ "id": "acorn-express",
+ "title": "Экспресс «Тысяча Желудей»",
+ "genre": "Семейное железнодорожное приключение",
+ "audience": "8+",
+ "pitch": "Из поезда исчезло Янтарное Сердце — груз, от которого ждут света и тепла для целой железной дороги. Следы ведут не к вору, а к маленькому лесному зверьку. Трое друзей отправляются по линии, чтобы разобраться, кому принадлежит чудо, как помочь городам и куда хочет идти само Сердце.",
+ "tone": "Чудесное приключение с настоящим расследованием, смешными бытовыми деталями, погоней, добрыми странностями и тёплой развязкой. Опасность преодолима; жестокость и безысходность не нужны.",
+ "duration": "12 вечеров: обычно 150–210 минут, финал 180–240 минут с возможностью разделить его, эпилог 90–150 минут. Внутри каждого вечера три эпизода и перерывы каждые 40–50 минут. Общий темп подстраивается под младшего игрока без отнятия решений у остальных.",
+ "cover": "campaigns/acorn-express/assets/runtime/cover.webp",
+ "defaultVariant": "original-party",
+ "variants": [
+  {
+   "id": "four-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/four-players.json",
+   "digest": "455ca3d0d5f2ac845847bfe9339b82eadc9b902faee20f23ad03577bf6977502"
+  },
+  {
+   "id": "original-party",
+   "players": 3,
+   "label": "3 игрока · основной состав",
+   "file": "packages/original-party.json",
+   "digest": "4fa90ce6fb1d7000b1f410bf92fe5633b202e02a5c4db1b0bbb4ad4eab789dcc"
+  },
+  {
+   "id": "without-boris",
+   "players": 3,
+   "label": "3 игрока, без героя «Борис Камнелист»",
+   "file": "packages/without-boris.json",
+   "digest": "0558d237d63519b15de1244153e6b8c22049f33d045e237a77647ca9e830a38c"
+  },
+  {
+   "id": "without-nika",
+   "players": 3,
+   "label": "3 игрока, без героя «Ника Вереск»",
+   "file": "packages/without-nika.json",
+   "digest": "1392b476cc2816f3a0a59d9db6bb8fa8d124d7db091d25286413db43eea97e0d"
+  },
+  {
+   "id": "without-yara",
+   "players": 3,
+   "label": "3 игрока, без героя «Яра Медуница»",
+   "file": "packages/without-yara.json",
+   "digest": "5ca04fcc835ddcbb8de541db383e611740cb807506b7858470eb9018904a363c"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/acorn-express/assets/runtime/cover.webp",
+   "sha256": "252bead2342c2a58865883f50486a5f82f045b52e32682e0148fac764bc49f80",
+   "originalSha256": "7793e3bebd146553eb276a848433e2147d2644c42645d503fcd544f82e2ece5e",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2 cover illustration. A magnificent chestnut-red steam train with jade roofs and warmly lit wooden carriages winds along a root-built viaduct through an immense amber forest at sunset. Trees rise like cathedrals; far below a river mirrors firefly lights and tiny village windows. A distant gentle walking hill shaped like an ancient deer carries living trees on its back, almost blending into the landscape. The train is small enough to show the breathtaking scale but beautifully legible. Open sky upper left for an external book title, but draw NO text. Grand promise of a railway journey, intimate warm windows, original world.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "forest"
+    ],
+    "original-party": [
+     "forest"
+    ],
+    "without-boris": [
+     "forest"
+    ],
+    "without-nika": [
+     "forest"
+    ],
+    "without-yara": [
+     "forest"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/station.webp",
+   "sha256": "533b5232bab5fd47f97bbe06ae2130bdd3e80cbe21cc8b930c2d09834d90ad6e",
+   "originalSha256": "29c96ee1d4da015e333202f68ae54f06cb56458827a21d0b383ec5212d1ea056",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. Heather Station at morning: an exuberant woodland railway terminal inside a vast hollow living oak, chestnut-red locomotive with jade roof at the platform, cream glass canopy, luggage carts, hanging ferns, bunting made from leaves, pastry stall and absurdly neat umbrella rack. A waist-high open wooden cargo cradle with curved interior padding sits near the foreground, its door unharmed, no animal inside. Welcoming busy atmosphere, tiny anonymous adult travellers, clear accessible platform, exquisite architecture. No signs with letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "station"
+    ],
+    "original-party": [
+     "station"
+    ],
+    "without-boris": [
+     "station"
+    ],
+    "without-nika": [
+     "station"
+    ],
+    "without-yara": [
+     "station"
+    ]
+   },
+   "file": "station.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/train.webp",
+   "sha256": "e190f488eb86e46c4133a81ec0c5488f4d906eaae91ad0f0c98c04926d8cb96e",
+   "originalSha256": "578c630f610c42d7b922253873d9262837667cf68b4049798b0b025181aa500b",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. The comfortable observation carriage of the same woodland train: polished chestnut timber, jade velvet curved benches, cream wool blankets, brass railings, a small dining table, shelves with botanical cups and a route board made of blank wooden shapes. Broad glass windows frame golden forest rushing past, late-afternoon light. Three empty passenger seats invite the viewer into the journey. A safe connecting door at the far end. Cozy but spacious, no people, no readable writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "train"
+    ],
+    "original-party": [
+     "train"
+    ],
+    "without-boris": [
+     "train"
+    ],
+    "without-nika": [
+     "train"
+    ],
+    "without-yara": [
+     "train"
+    ]
+   },
+   "file": "train.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/bridge.webp",
+   "sha256": "c10ce01feab682f23e45e08fadce95741df72ae6059ec8b9277d991d25d0e399",
+   "originalSha256": "6c2205d2a2de09acc0bd9e7aeabf24e25920932233e4a316f0b1e2c82d9014ee",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. A woodland rail bridge grown between enormous roots above a shallow bright stream. The track crosses a graceful arc; a walking maintenance path with ropes runs alongside. Bird nests hang safely away from the rails, giant blue bellflowers bend in the breeze, exposed joints show where a small repair is needed. Morning mist and golden sunbeams, inviting exploration, no collapse, no characters. View from the safe near bank showing the whole navigable bridge.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "bridge"
+    ],
+    "original-party": [
+     "bridge"
+    ],
+    "without-boris": [
+     "bridge"
+    ],
+    "without-nika": [
+     "bridge"
+    ],
+    "without-yara": [
+     "bridge"
+    ]
+   },
+   "file": "bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/raincity.webp",
+   "sha256": "25c9198b053aeab63697ee0da2f1936e72d984a330ca6b1f78011f5b3f52d669",
+   "originalSha256": "c4cebe0d9905194ab9f8018c6eb11056daeb68e25331beef9bc29752b72ab188",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. A river town called Umbrella City, built on timber piers beneath enormous overlapping leaf-shaped umbrellas. Jade canals, red ochre houses, a broad wooden waterwheel, covered market with fruit and ceramic stalls, bobbing otter-shaped little boats. Gentle sparkling rain, reflections of cream lanterns, elegant whimsical engineering. Several tiny adult townsfolk in raincoats; no focal hero, no text. Warm and wondrous, fresh spring colors.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "raincity"
+    ],
+    "original-party": [
+     "raincity"
+    ],
+    "without-boris": [
+     "raincity"
+    ],
+    "without-nika": [
+     "raincity"
+    ],
+    "without-yara": [
+     "raincity"
+    ]
+   },
+   "file": "raincity.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/honey.webp",
+   "sha256": "5ab103e1bc62c6b6702b0bf45404eaf318c97d6d23f9fc416020a389066fc1b6",
+   "originalSha256": "5601c64a73ef12b0db59c441bb11c20d346241de63f978869f057c82fc68cac5",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. An underground honey station in a luminous limestone cavern: translucent amber honeycomb vaults, moss paths, soft glowing mushrooms, a wooden rail platform, clay jars on curved shelves, a round table for tea. Friendly large fuzzy bees fly high and peacefully near flowers; no threatening swarm. A mole-sized low doorway and a small mechanical lift reveal habitation. Honey light contrasts with cool turquoise cave water; opulent tactile detail, no people, no writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "honey"
+    ],
+    "original-party": [
+     "honey"
+    ],
+    "without-boris": [
+     "honey"
+    ],
+    "without-nika": [
+     "honey"
+    ],
+    "without-yara": [
+     "honey"
+    ]
+   },
+   "file": "honey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/theatre.webp",
+   "sha256": "660d444671d31019690d940ddb4389e2f2c74f7c61a54bf3e2a0655ac5546b17",
+   "originalSha256": "16efff4fa631b2ed81a7bdaaeb57f580695461a665f2fb1e01d4f49bc1b9dd1a",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. The Theatre of a Thousand Wings, an open-air woodland stage beneath luminous silk sails and huge branching trees. Hundreds of tiny glowing moths form a loose constellation over the stage, unoccupied instruments made from seed pods and polished wood, curved benches upholstered with moss, ribbons and soft lanterns. Twilight lilac, honey gold and jade. A practical backstage walkway is visible. Exuberant festival magic without depicting any giant humanoid performers or text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "theatre"
+    ],
+    "original-party": [
+     "theatre"
+    ],
+    "without-boris": [
+     "theatre"
+    ],
+    "without-nika": [
+     "theatre"
+    ],
+    "without-yara": [
+     "theatre"
+    ]
+   },
+   "file": "theatre.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/glass.webp",
+   "sha256": "3b5c7fec967a4f80deace35929d55052d38ad035292d2ec5e5254d8bca37b6ff",
+   "originalSha256": "fb7bc4dbcf1aff2400f45d3f2f3373e134207702182e8fb74763b9d5cc544045",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. A beautiful but overly orderly conservatory at night, large jade iron ribs and crystal glass panes, symmetrical planters, botanical desks and copper irrigation. At the center stands an EMPTY transparent bell-shaped plant enclosure with an open door and soft soil, visibly not a torture device. A busy worktable holds botanical sketches with NO readable letters. The light is restrained cool green and warm cream, suggestive mystery rather than horror. Safe walkways, no people.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "glass"
+    ],
+    "original-party": [
+     "glass"
+    ],
+    "without-boris": [
+     "glass"
+    ],
+    "without-nika": [
+     "glass"
+    ],
+    "without-yara": [
+     "glass"
+    ]
+   },
+   "file": "glass.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/post.webp",
+   "sha256": "9287132bfd7db4c551ead97029e1d98647e9f726ee1e6d63c6272392b0995bba",
+   "originalSha256": "2b460de4db9628a616d9c792fa8da0b26ba7ce4da14b81de84ae6b5eaaa671cd",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. A midnight railway post office among giant roots: cream lanterns, deep red mail carriages, tiny acorn-shaped letterboxes, sorting racks, ribbons carrying sealed letters, an open service terrace beside the track. Warm windows in a wet dark forest, a patchwork awning catches rain. Three empty chairs around a dispatch table and a large blank route board. Tender, bustling anticipation without visible people, no readable writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "post"
+    ],
+    "original-party": [
+     "post"
+    ],
+    "without-boris": [
+     "post"
+    ],
+    "without-nika": [
+     "post"
+    ],
+    "without-yara": [
+     "post"
+    ]
+   },
+   "file": "post.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/valley.webp",
+   "sha256": "90abd3f104fb2978ad80187a5fcaa1be726f70d10344f7e73bde61a524d8478e",
+   "originalSha256": "2559a01550cf866a2d6e7688ab577dc29868fdf7e64214d5c6a023eb1aea885c",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. Dawn in the Valley That Walks. An enormous peaceful ancient forest guardian, shaped like a long-legged stag made of bark, moss and earth, rests in a meadow with a grove of mature trees on its broad back. Gentle ancient eyes and weathered wooden antlers; its size is shown by a tiny empty rail halt and red train in the distance. Waterfalls and mist behind, green ferns and amber birches. The guardian is alive, dignified, not a monster. Emotionally overwhelming discovery, no letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "valley"
+    ],
+    "original-party": [
+     "valley"
+    ],
+    "without-boris": [
+     "valley"
+    ],
+    "without-nika": [
+     "valley"
+    ],
+    "without-yara": [
+     "valley"
+    ]
+   },
+   "file": "valley.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/valley.webp",
+   "sha256": "90abd3f104fb2978ad80187a5fcaa1be726f70d10344f7e73bde61a524d8478e",
+   "originalSha256": "2559a01550cf866a2d6e7688ab577dc29868fdf7e64214d5c6a023eb1aea885c",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. Dawn in the Valley That Walks. An enormous peaceful ancient forest guardian, shaped like a long-legged stag made of bark, moss and earth, rests in a meadow with a grove of mature trees on its broad back. Gentle ancient eyes and weathered wooden antlers; its size is shown by a tiny empty rail halt and red train in the distance. Waterfalls and mist behind, green ferns and amber birches. The guardian is alive, dignified, not a monster. Emotionally overwhelming discovery, no letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "berest"
+    ],
+    "original-party": [
+     "berest"
+    ],
+    "without-boris": [
+     "berest"
+    ],
+    "without-nika": [
+     "berest"
+    ],
+    "without-yara": [
+     "berest"
+    ]
+   },
+   "file": "berest--portrait.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/storm.webp",
+   "sha256": "6f2097646ceb8e8a883b15778af7026902db42ad041924e1beb827193aa228b1",
+   "originalSha256": "f30a46b8fcb0a142d1d861e4c111b8879816f886932a62f634f87c9235bfff4d",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. The chestnut-red woodland express with jade carriage roofs crosses a high curved timber trestle during a dramatic summer rainstorm. Huge wet leaves, silver rain ribbons, clouds opening with warm sunlight ahead. Service platforms and sturdy safety railings clearly visible, a separate jade private carriage on the near siding, a folded mechanical maintenance crane. No derailment or injured people. Dynamic sweeping composition promising a rescue and clever action, not catastrophe.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "storm"
+    ],
+    "original-party": [
+     "storm"
+    ],
+    "without-boris": [
+     "storm"
+    ],
+    "without-nika": [
+     "storm"
+    ],
+    "without-yara": [
+     "storm"
+    ]
+   },
+   "file": "storm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/garden.webp",
+   "sha256": "79d185a7c8ee9350bbc95d37b2e1381a8596a5d4595c71c40faac7091e9b0609",
+   "originalSha256": "91cd45c897e70e42605ec9c7ed59233f2a886afc125b494656804b13a8f24618",
+   "generated": "2026-11-08",
+   "prompt": "Wide landscape 3:2. The Clearing of First Roots, an extraordinary meadow at the meeting of three landscapes: a river town glimpsed on the left, a quiet wild valley beyond, and a small railway spur on the right. At the center fresh dark soil, shallow clean water channels, blossoming low saplings and three smooth stepping stones. Golden rain clearing at sunset. Leave the planting site EMPTY so no ending is predetermined. Hopeful spacious finale setting, no magical machinery, no words.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "garden"
+    ],
+    "original-party": [
+     "garden"
+    ],
+    "without-boris": [
+     "garden"
+    ],
+    "without-nika": [
+     "garden"
+    ],
+    "without-yara": [
+     "garden"
+    ]
+   },
+   "file": "garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/boris.webp",
+   "sha256": "f0abee951cbff413877942b490d46e85447800b4ebed7676dae8e4d9b651c37d",
+   "originalSha256": "3cfb587f44b55d2c32ff25926dca83cab283dcb6a7bd4a19967e2ce3e9fbf564",
+   "generated": "2026-11-08",
+   "prompt": "Full-body character portrait, vertical 2:3. Boris Stoneleaf, a friendly adult dwarf railway apprentice adventurer, sturdy and broad, warm brown skin, short curly dark hair and a neatly braided small beard. Russet work coat, cream shirt, jade scarf, well-worn travel boots, a wooden buckler painted with a simple leaf and a practical sheathed short sword. A small repaired toy wagon in one hand. Open, slightly shy smile; capable but gentle, no combat pose. Entire head, feet and equipment visible, soft pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "boris"
+    ],
+    "original-party": [
+     "boris"
+    ],
+    "without-boris": [],
+    "without-nika": [
+     "boris"
+    ],
+    "without-yara": [
+     "boris"
+    ]
+   },
+   "file": "boris.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/nika.webp",
+   "sha256": "02492470d531617081234dc217f202d0cd09d7faf6fd2949b3b5974bf4f61c04",
+   "originalSha256": "d5f5cdf2de5e86c5a049c491c710367b4b83b2a040a36b844ad4687de0bde37b",
+   "generated": "2026-11-08",
+   "prompt": "Full-body character portrait, vertical 2:3. Nika Heather, an adult halfling courier and clever adventurer, medium-brown skin, curly black bob, bright attentive eyes, red ochre short jacket, navy trousers, jade mail satchel, soft boots, a practical leather belt with small lock tools and a safely sheathed rapier. She studies a folded blank ticket with a mischievous thoughtful smile, not stealing. Original appealing silhouette, full body including feet, pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "nika"
+    ],
+    "original-party": [
+     "nika"
+    ],
+    "without-boris": [
+     "nika"
+    ],
+    "without-nika": [],
+    "without-yara": [
+     "nika"
+    ]
+   },
+   "file": "nika.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/yara.webp",
+   "sha256": "0762b0ce821cc30e175e16644a6103cdccfe2bda63effa8916113f9fc59f8de3",
+   "originalSha256": "99ffbb13dc759e7bd87735b523779da696d009e7f62b4fa4770938d8bffb9d5f",
+   "generated": "2026-11-08",
+   "prompt": "Full-body character portrait, vertical 2:3. Yara Lungwort, a confident adult human field healer and wandering poet, olive skin, wavy auburn hair braided over one shoulder, jade long travel coat over cream linen, berry-red sash, comfortable boots, ceramic beads and a practical herbal shoulder bag. Holds a visibly repaired ceramic cup and a smooth wooden walking staff. Kind but firm expression, contemporary emotional realism in a fantasy world, not sexualized. Full body, pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "yara"
+    ],
+    "original-party": [
+     "yara"
+    ],
+    "without-boris": [
+     "yara"
+    ],
+    "without-nika": [
+     "yara"
+    ],
+    "without-yara": []
+   },
+   "file": "yara.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/oren.webp",
+   "sha256": "8cf606d89ae857a1b4db74c40ea9e436b7c037afaf508b1ccffd7d80613d5f6a",
+   "originalSha256": "6ed67aab6ac3de3de60093bcc886bff99727bb1ee60d973a44ad3b4211052812",
+   "generated": "2026-11-08",
+   "prompt": "Full-body character portrait, vertical 2:3. Oren Spark, an adult elf weather apprentice wizard, slim, fair freckled face, unruly copper hair, pointed ears, round spectacles, indigo vest under a jade rain cape, cream shirt, red socks visible above boots. Holds a modest wooden staff with a glass raindrop charm and a closed sketchbook. Enthusiastic, slightly distracted, not a powerful elder. Full body, hands and feet clear, pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "oren"
+    ],
+    "original-party": [],
+    "without-boris": [
+     "oren"
+    ],
+    "without-nika": [
+     "oren"
+    ],
+    "without-yara": [
+     "oren"
+    ]
+   },
+   "file": "oren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/marfa.webp",
+   "sha256": "da032131c2a3964b8048d0f1c7e63f2bfc3e7e5d0acc866a365e622c8a90cfd4",
+   "originalSha256": "bbf8bf52fe98e6b819a3cb7d58fd3ef81948721185e2d106f05ca1df98cd0deb",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Marfa Shov, an older stout human railway conductor, warm brown skin, silver hair in a thick bun, plum uniform coat with cream piping, jade waistcoat, brass whistle on a ribbon, sturdy practical shoes. One hand holds a ticket punch; the other delicately carries a completely ordinary umbrella as if it were a very important passenger. Wry patient smile, authority and kindness, dignified original face. Full body, soft cream paper background, no written badges.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "marfa"
+    ],
+    "original-party": [
+     "marfa"
+    ],
+    "without-boris": [
+     "marfa"
+    ],
+    "without-nika": [
+     "marfa"
+    ],
+    "without-yara": [
+     "marfa"
+    ]
+   },
+   "file": "marfa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/ri.webp",
+   "sha256": "dce02bdd6426fa79324ef1226173f65db7182745eac9caca9c15247d9ba3566b",
+   "originalSha256": "ab6e7bd5c68516b218b35ead9bf87ac52e0fd7bec02151368a52cb63cee618f4",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Ri, an adult anthropomorphic pine-marten courier, slim upright body, rich chestnut fur, cream throat patch, lively dark eyes, red ochre scarf and jade messenger vest with a canvas satchel. Fluffy tail fully in frame; a tiny jam stain on one paw, hands openly spread in an honest explanation. Expressive but not a fox, no armour, no weapon. Appealing woodland storybook style, cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ri"
+    ],
+    "original-party": [
+     "ri"
+    ],
+    "without-boris": [
+     "ri"
+    ],
+    "without-nika": [
+     "ri"
+    ],
+    "without-yara": [
+     "ri"
+    ]
+   },
+   "file": "ri.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/iva.webp",
+   "sha256": "16868d17b7db9d84549128a07bf75b1aa76225a485f8a3e892dfea4905b15b47",
+   "originalSha256": "79b6e712929de44e668823daebcf10ef443a39a2665d3e0aeeae4a8169778964",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Doctor Iva Rowan, an older elf botanist with brown skin, long silver hair in a loose braid, slim spectacles, cream laboratory apron over a deep jade walking dress and red ochre boots. Holds a magnifying lens and a closed pressed-flower journal; a berry-red pencil behind her ear. Thoughtful face showing regret and courage, not sinister. Scientific field equipment, no magic staff. Full body, pale cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "iva"
+    ],
+    "original-party": [
+     "iva"
+    ],
+    "without-boris": [
+     "iva"
+    ],
+    "without-nika": [
+     "iva"
+    ],
+    "without-yara": [
+     "iva"
+    ]
+   },
+   "file": "iva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/velt.webp",
+   "sha256": "3d4f2bb200ebcc75f7ff985c6646a4f91dbedaf1cfde807cab5d9f7e10226e3e",
+   "originalSha256": "faa3d84fa15366ebf5710a9deea086b0e09ea60e81b9e7c8dd0ee13c012d5193",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Adrian Velt, a middle-aged human railway investor, light olive skin, groomed dark hair threaded with silver, a short neat moustache, elegant teal travelling coat, warm grey trousers, cream gloves, polished but muddy boots. Carries a closed leather accounts book and a modest wool scarf knitted by someone close. Reserved determined expression with visible fatigue, believable sympathetic antagonist, not evil-looking or extravagant. Full body, pale cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "velt"
+    ],
+    "original-party": [
+     "velt"
+    ],
+    "without-boris": [
+     "velt"
+    ],
+    "without-nika": [
+     "velt"
+    ],
+    "without-yara": [
+     "velt"
+    ]
+   },
+   "file": "velt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/moroshka.webp",
+   "sha256": "195a29b0c6608b3594689f442cf680244708a9a248188e5dba05d535336aff6e",
+   "originalSha256": "fa9bb51f59b79412a957800c265d57c4e4dfd7e5dfc87afcb1ca3fb800a835b7",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Grandmother Cloudberry, an elderly anthropomorphic mole beekeeper, soft charcoal fur, tiny gentle eyes behind round amber spectacles, rosy snout, stout round silhouette. Wears a cream apron over a mulberry-red knitted cardigan and jade skirt, carries a little clay honey pot and a twig spoon. Two friendly fluffy bees rest on her hat. Cozy grandmotherly strength, funny but dignified, full body and paws visible, cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "moroshka"
+    ],
+    "original-party": [
+     "moroshka"
+    ],
+    "without-boris": [
+     "moroshka"
+    ],
+    "without-nika": [
+     "moroshka"
+    ],
+    "without-yara": [
+     "moroshka"
+    ]
+   },
+   "file": "moroshka.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/kapel.webp",
+   "sha256": "b833a3d01d1325b07026400fc61c99bf53447d590593ff9f0d2d8ba51aca94ef",
+   "originalSha256": "e59bf0f7d11b29e67becfd3f26b126bac534c682433b0854a32e173ee5142690",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Kapel, an adult anthropomorphic river-otter boatwright, sleek dark brown fur, cream muzzle, expressive whiskers, rolled-up jade sleeves, red ochre canvas overalls and a sturdy tool belt. Holds a smooth wooden waterwheel paddle and a measuring cord, confident practical grin. Broad otter tail visible, no weapons, no glasses, full body and feet in frame, pale cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "kapel"
+    ],
+    "original-party": [
+     "kapel"
+    ],
+    "without-boris": [
+     "kapel"
+    ],
+    "without-nika": [
+     "kapel"
+    ],
+    "without-yara": [
+     "kapel"
+    ]
+   },
+   "file": "kapel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/sol.webp",
+   "sha256": "462fea394c54bebed6b897be1136de715e1ff55e7748e7d2da658f88b54f3fc0",
+   "originalSha256": "68a10342b43fdd6d7d7bc9eb8188cd8c1cb2c48f77d0421e09f106acb911f30d",
+   "generated": "2026-11-08",
+   "prompt": "Full-body NPC portrait, vertical 2:3. Sol, an elegant adult anthropomorphic green grasshopper theatre musician, slender upright figure, folded translucent wings, expressive bright eyes, deep red waistcoat and cream silk cravat. Holds a beautiful tiny violin made from a polished seed pod; one long antenna curls slightly. Joyful proud posture, anatomically coherent insect character, friendly not creepy, entire silhouette visible against cream paper.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "sol"
+    ],
+    "original-party": [
+     "sol"
+    ],
+    "without-boris": [
+     "sol"
+    ],
+    "without-nika": [
+     "sol"
+    ],
+    "without-yara": [
+     "sol"
+    ]
+   },
+   "file": "sol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/tosh.webp",
+   "sha256": "516eb9b7d29b9d079f80d8de42bcad51cbfbc3b57469ca373f4d0c7ba2cab418",
+   "originalSha256": "6c684c0977a1632a7930a13561b69a1407a4056d8d18306870f57cfc00ad557b",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 full-body cutout on a truly transparent background. Tosh, an original adorable living forest seed creature, about the size of a spaniel: a small deer-like quadruped made of soft warm chestnut bark and velvety jade moss, a softly glowing amber patch on the belly, large gentle dark eyes, two tiny branch antlers each with a few fresh green leaves, fern-shaped tail, four clearly formed little wooden hooves. Curious slight head tilt. Not a toy, not robotic, not a dangerous monster; tactile life and personality. Entire creature centered, no ground, no props, no writing, clean semitransparent fur/leaf edges.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "tosh"
+    ],
+    "original-party": [
+     "tosh"
+    ],
+    "without-boris": [
+     "tosh"
+    ],
+    "without-nika": [
+     "tosh"
+    ],
+    "without-yara": [
+     "tosh"
+    ]
+   },
+   "file": "tosh.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/gardener.webp",
+   "sha256": "fece4d4a5a60d639b275424e3aba4a608f0136ae2ef6d24cc183190f051e8c31",
+   "originalSha256": "b29cfa7f29c539454b708841979521daee9d086b5a14050f3faa979447e17d65",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 full-body cutout on a truly transparent background. A whimsical maintenance garden automaton for a woodland railway: a round beetle-shaped copper shell, jade ceramic panels, six short wooden articulated legs, two gentle amber lens eyes, small padded pincers for carrying plant pots, a tiny folded watering spout. A practical benign machine that can get confused, not a military robot. Original charming design, entire silhouette, no ground, no shadow plate, no text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "original-party": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "without-boris": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "without-nika": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "without-yara": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ]
+   },
+   "file": "gardener.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/gardener.webp",
+   "sha256": "fece4d4a5a60d639b275424e3aba4a608f0136ae2ef6d24cc183190f051e8c31",
+   "originalSha256": "b29cfa7f29c539454b708841979521daee9d086b5a14050f3faa979447e17d65",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 full-body cutout on a truly transparent background. A whimsical maintenance garden automaton for a woodland railway: a round beetle-shaped copper shell, jade ceramic panels, six short wooden articulated legs, two gentle amber lens eyes, small padded pincers for carrying plant pots, a tiny folded watering spout. A practical benign machine that can get confused, not a military robot. Original charming design, entire silhouette, no ground, no shadow plate, no text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "original-party": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "without-boris": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "without-nika": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ],
+    "without-yara": [
+     "porter-a",
+     "porter-b",
+     "gardener-a",
+     "gardener-b",
+     "gardener-c",
+     "repair-a",
+     "repair-b"
+    ]
+   },
+   "file": "gardener--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gardener.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/ticket.webp",
+   "sha256": "7b9181de25e460004d6060d483ff81a2542ff9cd0790aa304dbf8255860f6399",
+   "originalSha256": "a588cfa4ed78d75281b23fc66da8a9a1c1a23ef79270b0d7a4235affbf72a721",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 object illustration. A beautiful cream railway ticket with a completely blank date window and an embossed simple acorn symbol, jade edges, red wax seal and a little red cord. Show both the ticket and the wooden ticket punch beside it on soft cream paper. NO letters or numerals. Exquisite tactile paper fibers; story prop, not a user interface.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ticket"
+    ],
+    "original-party": [
+     "ticket"
+    ],
+    "without-boris": [
+     "ticket"
+    ],
+    "without-nika": [
+     "ticket"
+    ],
+    "without-yara": [
+     "ticket"
+    ]
+   },
+   "file": "ticket.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/lantern.webp",
+   "sha256": "a491d10cb57cdb2a5b04e1cb3f4af07f10aa3493e6a2bd85053dcbda4843b470",
+   "originalSha256": "4f66ed3c9ab2362bc59c1c916cf3fdc51419c503fc2e0aeecea5e6cf84a15f27",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 object illustration. A hand-carried woodland firefly lantern: curved dark wicker frame, softly glowing green-gold fireflies behind translucent glass, an open tiny hatch so insects can leave, jade fabric handle with a red thread mend. Warm small halo on pale cream paper, exquisitely detailed and inviting, no letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "lantern"
+    ],
+    "original-party": [
+     "lantern"
+    ],
+    "without-boris": [
+     "lantern"
+    ],
+    "without-nika": [
+     "lantern"
+    ],
+    "without-yara": [
+     "lantern"
+    ]
+   },
+   "file": "lantern.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/cloak.webp",
+   "sha256": "3bfecef7e6d7133e6b8815c38751cab9f2b2e0ddc966034f34e4e7c93b038888",
+   "originalSha256": "e4515c3f4f94779186532e8a4ae301674c730ae98e5a407123e7c72690e87847",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 object illustration. A travel cloak made of lovingly stitched patches of jade, cream, rust red and muted indigo cloth. The clasp is a smooth wooden leaf; the lining has pockets for small keepsakes, one with a tiny pressed flower. Neatly draped as a complete garment with a clear hood, no human wearing it. Warm cream background, tactile embroidered fabric, no writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "cloak"
+    ],
+    "original-party": [
+     "cloak"
+    ],
+    "without-boris": [
+     "cloak"
+    ],
+    "without-nika": [
+     "cloak"
+    ],
+    "without-yara": [
+     "cloak"
+    ]
+   },
+   "file": "cloak.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/cup.webp",
+   "sha256": "a559c30d582e54736f4ac97fb558bfaf9b5894006e93dbc66a3cfc561bc3216d",
+   "originalSha256": "dfa1338d164e07245f01c90c547dfcf3770587ed4b838f64b7bfadf1acb09a6b",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 object illustration. A small portable garden growing in a broad repaired cream ceramic teacup, its crack mended with golden resin. Soft dark earth, three distinct tiny seedlings, a jade handle and a little wooden saucer. A thoughtful handmade field experiment, not a magical cure or a potion. Soft cream background, lush miniature detail, no text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "cup"
+    ],
+    "original-party": [
+     "cup"
+    ],
+    "without-boris": [
+     "cup"
+    ],
+    "without-nika": [
+     "cup"
+    ],
+    "without-yara": [
+     "cup"
+    ]
+   },
+   "file": "cup.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/runtime/acorn.webp",
+   "sha256": "3d5e82f2bfde170a3c3e3b2c9b54ea6cf5bfe9f6e47955759dd0897ce1bd4aca",
+   "originalSha256": "9068ba075edc95220f2e109fe01b0f2073a8ed7626f57c191fffcf8e741bc266",
+   "generated": "2026-11-08",
+   "prompt": "Square 1:1 object illustration. A hollow polished wooden acorn-shaped letterbox keepsake, palm-sized, hinged copper cap open to show a folded blank cream letter tied with a jade thread. Beside it a tiny red wax seal with a leaf impression. Rich chestnut grain, tactile delicate craft, pale cream paper background, no writing or numerals.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "acorn"
+    ],
+    "original-party": [
+     "acorn"
+    ],
+    "without-boris": [
+     "acorn"
+    ],
+    "without-nika": [
+     "acorn"
+    ],
+    "without-yara": [
+     "acorn"
+    ]
+   },
+   "file": "acorn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/heroes-boris.webp",
+   "sha256": "179b0256c826f2d88498fd50be676b3e96585055744a6f00821d4e92a4d7c2ef",
+   "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Камнелист",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "boris"
+    ],
+    "original-party": [
+     "boris"
+    ],
+    "without-boris": [],
+    "without-nika": [
+     "boris"
+    ],
+    "without-yara": [
+     "boris"
+    ]
+   },
+   "file": "boris--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boris.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/heroes-nika.webp",
+   "sha256": "f87945d83a3bbf9b899c14f5f56f9c8f3cff8e61b4841159140f8468af409334",
+   "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Вереск",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "nika"
+    ],
+    "original-party": [
+     "nika"
+    ],
+    "without-boris": [
+     "nika"
+    ],
+    "without-nika": [],
+    "without-yara": [
+     "nika"
+    ]
+   },
+   "file": "nika--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nika.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/heroes-yara.webp",
+   "sha256": "6223e712b949293aca7f5129ad2bcfdea946a359d77529a6c175d918d7cd818a",
+   "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яра Медуница",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "yara"
+    ],
+    "original-party": [
+     "yara"
+    ],
+    "without-boris": [
+     "yara"
+    ],
+    "without-nika": [
+     "yara"
+    ],
+    "without-yara": []
+   },
+   "file": "yara--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yara.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/heroes-oren.webp",
+   "sha256": "9bcf90f2a6cee4f7fd710300a4157bcec2325205e3bdb2be8a3d7c0da683dbf8",
+   "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орен Искрин",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "oren"
+    ],
+    "original-party": [],
+    "without-boris": [
+     "oren"
+    ],
+    "without-nika": [
+     "oren"
+    ],
+    "without-yara": [
+     "oren"
+    ]
+   },
+   "file": "oren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oren.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-marfa.webp",
+   "sha256": "c57ac16597a5c11b11176d7e95b4ee9cd0dec3ee63742f9a020aa30e9f5871c2",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марфа Шов",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "marfa"
+    ],
+    "original-party": [
+     "marfa"
+    ],
+    "without-boris": [
+     "marfa"
+    ],
+    "without-nika": [
+     "marfa"
+    ],
+    "without-yara": [
+     "marfa"
+    ]
+   },
+   "file": "marfa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marfa.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-ri.webp",
+   "sha256": "5b96d94cde48d3a8582c29aae5828556794e31e0afcec360001fdd5c0974c5cf",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ри, курьер ночной смены",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ri"
+    ],
+    "original-party": [
+     "ri"
+    ],
+    "without-boris": [
+     "ri"
+    ],
+    "without-nika": [
+     "ri"
+    ],
+    "without-yara": [
+     "ri"
+    ]
+   },
+   "file": "ri--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ri.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-tosh.webp",
+   "sha256": "185bf58c00cd06d62f86c95f3913c7e8ce748cd78a7654b220d84eb05aca20eb",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тош",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "tosh"
+    ],
+    "original-party": [
+     "tosh"
+    ],
+    "without-boris": [
+     "tosh"
+    ],
+    "without-nika": [
+     "tosh"
+    ],
+    "without-yara": [
+     "tosh"
+    ]
+   },
+   "file": "tosh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tosh.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-iva.webp",
+   "sha256": "bb1190c3495e9ee812d045df1408a7927b0df9d88ea96f06382cd578466ef0b5",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Доктор Ива Рябина",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "iva"
+    ],
+    "original-party": [
+     "iva"
+    ],
+    "without-boris": [
+     "iva"
+    ],
+    "without-nika": [
+     "iva"
+    ],
+    "without-yara": [
+     "iva"
+    ]
+   },
+   "file": "iva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iva.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-velt.webp",
+   "sha256": "14c28944db2516caaab120e6208420f11074d7e432ae976ac753a4564de279db",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Адриан Вельт",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "velt"
+    ],
+    "original-party": [
+     "velt"
+    ],
+    "without-boris": [
+     "velt"
+    ],
+    "without-nika": [
+     "velt"
+    ],
+    "without-yara": [
+     "velt"
+    ]
+   },
+   "file": "velt--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "velt.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-moroshka.webp",
+   "sha256": "8e9cd7d41a26810c51a0ab77b0b2b8df2c70ddf40dc920ecbe81bdcfbd211514",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бабушка Морошка",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "moroshka"
+    ],
+    "original-party": [
+     "moroshka"
+    ],
+    "without-boris": [
+     "moroshka"
+    ],
+    "without-nika": [
+     "moroshka"
+    ],
+    "without-yara": [
+     "moroshka"
+    ]
+   },
+   "file": "moroshka--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "moroshka.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-kapel.webp",
+   "sha256": "e060853c80b073c124a2a2fd81189ef757f91ca44812eac3c1380c6b0cfc467f",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Капель",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "kapel"
+    ],
+    "original-party": [
+     "kapel"
+    ],
+    "without-boris": [
+     "kapel"
+    ],
+    "without-nika": [
+     "kapel"
+    ],
+    "without-yara": [
+     "kapel"
+    ]
+   },
+   "file": "kapel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kapel.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-sol.webp",
+   "sha256": "eb59f9641de57811198c40afd44969e2be016a42fcce888496bc4e9eb3bc49b4",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Соль",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "sol"
+    ],
+    "original-party": [
+     "sol"
+    ],
+    "without-boris": [
+     "sol"
+    ],
+    "without-nika": [
+     "sol"
+    ],
+    "without-yara": [
+     "sol"
+    ]
+   },
+   "file": "sol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sol.webp"
+  },
+  {
+   "source": "campaigns/acorn-express/assets/table/npcs-berest.webp",
+   "sha256": "45b0d6960c457520794d10a4ce2829282cc8978ceabbf4e98fe65196f8111df7",
+   "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берест",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "berest"
+    ],
+    "original-party": [
+     "berest"
+    ],
+    "without-boris": [
+     "berest"
+    ],
+    "without-nika": [
+     "berest"
+    ],
+    "without-yara": [
+     "berest"
+    ]
+   },
+   "file": "berest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "berest--portrait.webp"
+  },
+  {
+   "file": "station--map.webp",
+   "source": "campaigns/acorn-express/assets/battle-maps/station.webp",
+   "sha256": "da6f7cc686c1951a233bfd502d952939f68c932d17728d6818fd0ea3901e2865",
+   "originalSha256": "4bacd42e749a15b68c14440b328e70335835f1ab21a5397a70143383c9a2424d",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Вересковый Вокзал. Visible scenery: Большой вокзал внутри старого дуба. Под стеклянным навесом пахнет хлебом, стоят аккуратные зонты и готовится к пути красный экспресс.. World style: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 12:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "station.webp",
+   "subjects": {
+    "four-players": [
+     "station"
+    ],
+    "original-party": [
+     "station"
+    ],
+    "without-boris": [
+     "station"
+    ],
+    "without-nika": [
+     "station"
+    ],
+    "without-yara": [
+     "station"
+    ]
+   }
+  },
+  {
+   "file": "glass--map.webp",
+   "source": "campaigns/acorn-express/assets/battle-maps/glass.webp",
+   "sha256": "44118eec9711ac52b60a1d6eaba6c536a6eac3eea7340e64769b4f9182d8b02d",
+   "originalSha256": "d1863e22e9fe006bb0b7e3866334b556ca2a3d7a72e5a99a0fb10abcea2102f7",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Хрустальная Оранжерея. Visible scenery: Стеклянные своды, ровные ряды растений и медные поливочные трубки. В центре стоит пустой колокол с открытой дверцей и настоящей землёй.. World style: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:10; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "glass.webp",
+   "subjects": {
+    "four-players": [
+     "glass"
+    ],
+    "original-party": [
+     "glass"
+    ],
+    "without-boris": [
+     "glass"
+    ],
+    "without-nika": [
+     "glass"
+    ],
+    "without-yara": [
+     "glass"
+    ]
+   }
+  },
+  {
+   "file": "storm--map.webp",
+   "source": "campaigns/acorn-express/assets/battle-maps/storm.webp",
+   "sha256": "80227e845cbfe91bad16dce092e454933f7ee356df411b31366278c23e3f9e1b",
+   "originalSha256": "8de1e4a00dc47e752f97300229eb343bda431606c6bae2d3cb18bc49040c4910",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Высокая Эстакада. Visible scenery: Путевой узел над оврагом: основной мост, параллельный служебный настил, боковая ветка и ремонтный кран. Здесь можно остановить состав безопасным ручным тормозом.. World style: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 12:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "storm.webp",
+   "subjects": {
+    "four-players": [
+     "storm"
+    ],
+    "original-party": [
+     "storm"
+    ],
+    "without-boris": [
+     "storm"
+    ],
+    "without-nika": [
+     "storm"
+    ],
+    "without-yara": [
+     "storm"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/acorn-express/assets/world-map/world-map.webp",
+   "sha256": "ff4b0a723c4dce79697b901c67c28da1a0ebf445ed859474b0522eac3be7b077",
+   "originalSha256": "fc36078aefa8964385015780d8a9f214928e5eb91ab64e090a0561da7390a55e",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Янтарный лес. Style Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Вересковый Вокзал; 0.367,0.177 Экспресс «Тысяча Желудей»; 0.623,0.15 Мост Перелётных Гнёзд; 0.88,0.177 Город Под Зонтом; 0.905,0.517 Медовые Подземелья; 0.648,0.49 Театр Тысячи Крыльев; 0.392,0.517 Хрустальная Оранжерея; 0.135,0.49 Ночная Почта; 0.11,0.83 Долина, которая шагает; 0.367,0.857 Высокая Эстакада; 0.623,0.83 Поляна Первых Корней. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "four-players": [
+     "world-map"
+    ],
+    "original-party": [
+     "world-map"
+    ],
+    "without-boris": [
+     "world-map"
+    ],
+    "without-nika": [
+     "world-map"
+    ],
+    "without-yara": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

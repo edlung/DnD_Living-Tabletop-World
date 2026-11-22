@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "2d70524b14df406ba6c448ad8e193a81796866d2443ca8c151fc79bd263159e4",
+    "originalSha256": "794d8fc0d7fb19399a6dedba00c2bfc22d2de16287f245fc5da7024f5bc1d4bc",
+    "originalFile": "exec-6de38f76-527a-43ef-adc3-e0ac1d5293e4.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Лощина Тихой Меди. Style Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Площадь Вересова Колодца; 0.367,0.177 Дом шести ударов; 0.623,0.15 Мельница Стоячей Воды; 0.88,0.177 Сад перевязанных ветвей; 0.905,0.517 Пастуший навес; 0.648,0.49 Брод Зеркальной Гальки; 0.392,0.517 Тёплый медный выработок; 0.135,0.49 Звонница Последнего Воздуха; 0.11,0.83 Каменная Глотка. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

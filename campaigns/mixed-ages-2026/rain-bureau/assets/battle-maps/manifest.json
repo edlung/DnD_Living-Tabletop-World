@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "folded-post.webp",
+      "sha256": "58a44c55a5d50409199b06cac9191ea2b6cb839712bd78e2c2422eaf72bb06c9",
+      "originalSha256": "d185b9370c26a8d1465ac675beb0660312bc6d22c7315285d47ae472d80b79a5",
+      "originalFile": "exec-0457c766-a73e-4df0-b7b3-8b90c32b5ce4.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Забытая почтовая комната. Visible scenery: Комната над закрытым отделением. Пустые ячейки, стол с синим сукном и лестница, на которой помещается только один раскрытый зонт.. World style: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "folded-post",
+      "encounter": "cloak-guards",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "trolley-wash.webp",
+      "sha256": "ebd2ab6ac92912155220f0f2b5fbd1861bffa58563c199116f0b0ebc4fac315e",
+      "originalSha256": "7f0ef6f97b2805e937db8c9ea5d79791d87c88ce9ff478835f117ad8553ba69e",
+      "originalFile": "exec-dc34eda5-bcab-43ff-acb4-959e6496723f.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Старая трамвайная мойка. Visible scenery: Бывший павильон мойки, который иногда сдают для репетиций. Неглубокие канавки, кронштейны для декораций и высокое окно с матовым стеклом.. World style: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "trolley-wash",
+      "encounter": "frame-doubles",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "civic-table.webp",
+      "sha256": "83d53c427717239d525f2f897530bda0a55fda4bfda62243f961caa7b5ecf05d",
+      "originalSha256": "e3208441c14c7664cc7bc3f47c0088b0cc5ffff56e653e53de12abeae14532af",
+      "originalFile": "exec-2211f341-0904-41a3-98f2-d5fa80896310.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор маленьких премьер. Visible scenery: Камерный двор для показов: низкая сцена, передвижной навес и стулья в полукруге. На входе есть доска с условиями участия и корзинка для письменных вопросов.. World style: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "civic-table",
+      "encounter": "umbrella-extras",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "891485544bb0ce38e9166442156f2fd5133017c091948baeb491755f775aeb43",
+    "originalSha256": "24e97e95d1a3e159a10fc5e9829d040f8a17e1f3191be910b2d85d8c6a26ddf7",
+    "originalFile": "exec-f151d355-e160-467a-ab67-6be0db00e847.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Низовье. Style Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Берег крушения; 0.367,0.177 Пробный уступ; 0.623,0.15 Лагерь второго конца; 0.88,0.177 Сползающие могилы; 0.905,0.517 Подрусловой ход; 0.648,0.49 Эллинг без огня; 0.392,0.517 Безмолвная полка; 0.135,0.49 Река без береговых корней; 0.11,0.83 Последняя высадка; 0.367,0.857 Устье Вверх. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

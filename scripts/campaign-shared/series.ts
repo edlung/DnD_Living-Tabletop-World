@@ -22,6 +22,12 @@ import {
   SLUGS as NOIR_SLUGS,
   loadSource as loadNoir,
 } from '../noir-campaigns/source.ts';
+import { buildPackage as buildMixed } from '../mixed-campaigns/package.ts';
+import {
+  COLLECTION_ROOT as MIXED_ROOT,
+  SLUGS as MIXED_SLUGS,
+  loadSource as loadMixed,
+} from '../mixed-campaigns/source.ts';
 import type { ArtSeries } from './curated-art.ts';
 
 /**
@@ -80,4 +86,24 @@ export function campaignOf(id: string): { series: Series; slug: string } {
   if (!series || !slug || !series.slugs.includes(slug))
     throw new Error(`Unknown campaign ${id}; expected <series>/<slug>`);
   return { series, slug };
+}
+
+/** The mixed-age books also have cast cards for the GM's confirmed artwork import. */
+export function artworkCampaignOf(id: string): { series: Series; slug: string } {
+  const [name, slug] = id.split('/');
+  if (name !== 'mixed-ages-2026') return campaignOf(id);
+  if (!slug || !MIXED_SLUGS.some((candidate) => candidate === slug))
+    throw new Error(`Unknown campaign ${id}`);
+  return {
+    slug,
+    series: {
+      name,
+      tool: 'mixed-campaigns',
+      root: MIXED_ROOT,
+      slugs: MIXED_SLUGS,
+      loadSource: async (key) => ({ ...(await loadMixed(key)), items: [] }),
+      buildPackage: (source, size) =>
+        buildMixed(source as Awaited<ReturnType<typeof loadMixed>> & typeof source, size),
+    },
+  };
 }

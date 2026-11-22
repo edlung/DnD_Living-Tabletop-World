@@ -1,0 +1,377 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-c84508eb-fe89-418f-a51f-b9439c5f33bf.png",
+      "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Марс, котловина Красной Дюны. Characters, in strict cell order:\n1. Ася Круг — Янтарная куртка с нашивками маршрутов, короткие тёмные волосы и складной фантастический световой щит. Age 16.\n2. Тим Неро — Синяя безрукавка, карандаши за обоими ушами и дорожная сумка, в которой любой клочок бумаги имеет карман. Age 28.\n3. Рада Вей — Зелёный платок, прозрачная коробочка с засушенным листом и мягкие перчатки, расписанные детьми всего купола. Age 40.\n4. Мир Соль — Круглые очки, жилет с цветными стёклышками и блокнот с большими полями для чужих замечаний. Age 14.\n5. Ника Отт — Серебряная коса, яркая грузовая рама и фартук, на котором нарисованы семь совершенно разных кружек. Age 62.\n6. Федя Лан — Лиловый комбинезон, цветные напёрстки и набор бумажных ярлыков в форме маленьких планет. Age 19.\n7. Леви Ар — Шарф в узкую полоску, карманный вымышленный звуковой кристалл и привычка записывать мелодии точками. Age 33.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-24069884-ea6c-44e0-9e2a-8c236bd66e4c.png",
+      "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Warm illustrated adventure book, colourful gouache. World: Марс, котловина Красной Дюны. Characters, in strict cell order:\n1. Мира Тесс — Рыжая чёлка, чернильное пятно на манжете и печать в форме открытой ладони. Age 35.\n2. Орен Пак — Усы в форме двух стрелок, оранжевые нарукавники и коллекция смешных табличек «сюда». Age 54.\n3. Сева Рилл — Волосы собраны красной лентой, рукава в следах мела, в кармане складная линейка с нарисованными облаками. Age 15.\n4. Леон Вад — Мягкая серая шапка, большие очки и деревянная закладка в форме лестницы. Age 67.\n5. Эльда Венн — Белые волосы, две разные серьги-листочка и пальто с аккуратно зашитым локтем. Age 72.\n6. Искра-9 — Невысокий робот на круглых опорах, прозрачная грудная панель и нарисованное от руки солнце. Age 19.\n7. Тая Мерк — Песочный плащ, серьги из гладких камней и альбом, который всегда открывается плоско. Age 26.\n8. Борис Хэй — Полосатая рабочая рубашка, широкий пояс с мелками и улыбка, которая исчезает, когда начинают округлять цифры. Age 47.\n9. Лея Тэн — Тёмная куртка с нарисованной лестницей и папка с ответами жителей, перевязанная обычной бечёвкой. Age 17.\n10. Эн Ноа — Две тёмные косы, жилет с отражающими лунами и термос в форме почтового столба. Age 31.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "asya-krug",
+      "file": "cards/asya-krug.webp",
+      "title": "Ася Круг",
+      "subjects": [
+        "asya-krug"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "29c72fbf3055672cc75790395e438cc046890a5932e017ac20ae9b46f80d2c25"
+    },
+    {
+      "id": "tim-nero",
+      "file": "cards/tim-nero.webp",
+      "title": "Тим Неро",
+      "subjects": [
+        "tim-nero"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3a40c3c24d35841ff88c7a3ffc68f834ba0f68c6486df6e54dfc2c11bec7d22b"
+    },
+    {
+      "id": "rada-vey",
+      "file": "cards/rada-vey.webp",
+      "title": "Рада Вей",
+      "subjects": [
+        "rada-vey"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0ecf3df9961d754d6835875264033d7f3047dfa44d92228192da2d58bd5ea863"
+    },
+    {
+      "id": "mir-sol",
+      "file": "cards/mir-sol.webp",
+      "title": "Мир Соль",
+      "subjects": [
+        "mir-sol"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "55b746729c9e89cc017cdd2fd3886f85c1aca8f14c302c8b9602e63b86828e2c"
+    },
+    {
+      "id": "nika-ott",
+      "file": "cards/nika-ott.webp",
+      "title": "Ника Отт",
+      "subjects": [
+        "nika-ott"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1a1428abc63ac02140e3205a304f37d168083a4bc88ee53f6944ef4f8331fad3"
+    },
+    {
+      "id": "fedya-lan",
+      "file": "cards/fedya-lan.webp",
+      "title": "Федя Лан",
+      "subjects": [
+        "fedya-lan"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "80df170e1d246612aa23ffe691f59c3d1a3e293aa94e15a69ab7789cf5c00951"
+    },
+    {
+      "id": "levi-ar",
+      "file": "cards/levi-ar.webp",
+      "title": "Леви Ар",
+      "subjects": [
+        "levi-ar"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ba0311c475b172eff610071cbea123a804a6672834e3c9740002a481b4c33671"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "asya-krug-travel-kit",
+        "fedya-lan-travel-kit",
+        "levi-ar-travel-kit",
+        "mir-sol-travel-kit",
+        "nika-ott-travel-kit",
+        "rada-vey-travel-kit",
+        "tim-nero-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2c03a66dd8d9b6a25be3e7040f70db8e12bcd91a8817fb4350342a76699cd661"
+    },
+    {
+      "id": "mira-tess",
+      "file": "cards/mira-tess.webp",
+      "title": "Мира Тесс",
+      "subjects": [
+        "mira-tess"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "290bfac7a30817fcd56882eebecbbb5ef469ccde73f2abcc08f838ecd1eebbc8"
+    },
+    {
+      "id": "oren-pak",
+      "file": "cards/oren-pak.webp",
+      "title": "Орен Пак",
+      "subjects": [
+        "oren-pak"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "25ba742be6d823069b56b42adf6e3ea1a671f992061a6130f6e02278de666ecc"
+    },
+    {
+      "id": "seva-rill",
+      "file": "cards/seva-rill.webp",
+      "title": "Сева Рилл",
+      "subjects": [
+        "seva-rill"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "db3437001f031aac0583a602a94345025b80e6bd46ccd10c9536342386afcf91"
+    },
+    {
+      "id": "leon-vad",
+      "file": "cards/leon-vad.webp",
+      "title": "Леон Вад",
+      "subjects": [
+        "leon-vad"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "962377fbe5f9750806e8bc535e7ede40c7d002b18dcf60d891e164f69d0b421f"
+    },
+    {
+      "id": "elda-venn",
+      "file": "cards/elda-venn.webp",
+      "title": "Эльда Венн",
+      "subjects": [
+        "elda-venn"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3288a53bcda34351ad3f0f6d57094f0b4bc8bebae37578541a435284643619af"
+    },
+    {
+      "id": "iskra-nine",
+      "file": "cards/iskra-nine.webp",
+      "title": "Искра-9",
+      "subjects": [
+        "iskra-nine"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "edfd5c29091da6d346dc5588db63dde26369ee912a95b85a9ac99aab63f0cfa1"
+    },
+    {
+      "id": "taya-merk",
+      "file": "cards/taya-merk.webp",
+      "title": "Тая Мерк",
+      "subjects": [
+        "taya-merk"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0c0c33b5567f41883334bbdad37fa3f14ff42dcfb961bf4476312be396ec7314"
+    },
+    {
+      "id": "boris-hey",
+      "file": "cards/boris-hey.webp",
+      "title": "Борис Хэй",
+      "subjects": [
+        "boris-hey"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bcbebbfd37577578dc5a397cf0deb76eb0c6a42ac93202eca561394c1ed68ac0"
+    },
+    {
+      "id": "leya-ten",
+      "file": "cards/leya-ten.webp",
+      "title": "Лея Тэн",
+      "subjects": [
+        "leya-ten"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e954dc8767bf88b9f3bcd851b7dae6b568f0c1cf94b1d06d06f07bae995cc94c"
+    },
+    {
+      "id": "en-noa",
+      "file": "cards/en-noa.webp",
+      "title": "Эн Ноа",
+      "subjects": [
+        "en-noa"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "735586e1694470c165e4a63c0ba3b795777d4bbc0bd71549d32927156f55231d"
+    }
+  ]
+}

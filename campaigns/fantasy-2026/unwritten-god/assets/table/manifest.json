@@ -1,0 +1,660 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "unwritten-god-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-933b92ab-c54e-42a4-866e-125d140d926b.png",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Cell 1. Лада Край. Короткая коса, пыльные плечи, жёлтая стропа поперёк обычного дорожного доспеха.\nCell 2. Тим Рен. Куртка с пришитыми лоскутами, мел за ухом, мягкие сапоги с прочной шнуровкой.\nCell 3. Сана Стропа. Тёмно-синяя накидка, деревянная чашка у пояса, обычный дорожный посох.\nCell 4. Илия Тон. Стёкла в деревянной оправе, полосатый шарф, карманная тетрадь с рисунками простых опытов.\nCell 5. Бор Парус. Бритая голова, крепкие перчатки, рулон ткани за плечом.\nCell 6. Мира Ясенка. Зелёные манжеты в пятнах краски, плетёная сумка, морская галька в застёжке.\nCell 7. Ост Люмен. Серебристая борода, простая латунная лампа, поношенная куртка с множеством заплат.\nCell 8. Вера Чаша. Круглая шляпа, деревянная колотушка, пояс с маленькими звенящими чашами.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/lada-kray.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/tim-ren.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/sana-sling.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/ilia-ton.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/bor-sail.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/mira-ash.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/ost-lumen.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/vera-cup.webp"
+      ]
+    },
+    {
+      "id": "unwritten-god-places-0",
+      "originalFile": "exec-470c3ab7-a20b-492b-92ab-0a1c85181594.png",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Cell 1. Площадь Белого Полотна. Рынок парусов, каменных чаш и инструментов. В центре стоит незаполненный постамент, рядом — фонтан и длинные скамьи.\nCell 2. Галерея Уходящего Кита. Над карьером висит остаток рабочего настила. В скале зияет огромная выемка, вокруг лежат свежие белые обломки и верёвочные лестницы.\nCell 3. Спина Белого Кита. Покачивающаяся каменная поверхность с широкими желобами, резными звёздами и недоделанным хвостом. До земли отсюда очень далеко.\nCell 4. Двор ста ламп. Мастерская отражателей с длинным столом, ширмами, масляными лампами и старой подъёмной рамой. Пол выложен толстыми плитами.\nCell 5. Каменный Глаз. Открытая башня с большим полированным отражателем. С её площадки видны море, крыши города и вся сухая чаша карьера.\nCell 6. Склон гудящих чаш. Камнерезы испытывают здесь большие чаши ударом деревянной колотушки. Низкий звук долго идёт между белыми стенами котловины.\nCell 7. Синий сад. Небольшой сад красильных деревьев стоит у нижнего спуска. Между стволами сушат ткань, а в открытом канале идёт вода для мастерских.\nCell 8. Чаша открытого карьера. Широкое дно выработки окружено уступами. Здесь лежат груды негодного камня, рамы грузовых подъёмников и свёрнутые штормовые паруса.\nCell 9. Тихий Зев. Узкий морской залив с прочным каменным дном, старым погрузочным бассейном и низкими деревянными пристанями. Во время отлива видны гряды моллюсков.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "unwritten-god-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-584bd3d8-091e-48eb-9d76-705c794ccf8f.png",
+      "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Cell 1. Каменная ласта. Небольшое крылатое существо с тупым каменным клювом, защищающее кладку в щели.\nCell 2. Карьерный сторож. Работник в плотном переднике с короткой деревянной дубинкой и простым щитом.\nCell 3. Каменный клешневик. Невысокое прибрежное существо в раковине, защищающее укрытие между плитами.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "unwritten-god-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-be4846ca-ab0d-4814-ab80-baef25cc60c3.png",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Бог с чистой страницы. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Нев. Человеческая фигура из белой глины, размером со взрослого; на ладонях остаются тонкие линии, как следы мокрой кисти.\nCell 2. Руна Скол. Медные пряди волос, каменная пыль в швах куртки, деревянный измеритель на шнурке.\nCell 3. Орсат. Круглое лицо, белый платок на шее, рабочая рукавица с недавно зашитой дырой.\nCell 4. Хела Блик. Короткие тёмные волосы, прожжённый кожаный фартук, складное зеркальце на цепочке.\nCell 5. Марен Косой Луч. Длинная белая рубаха, широкополая шляпа, потемневший от солнца нос.\nCell 6. Келя Низкий Голос. Длинный жилет, ремень с деревянными колотушками, тяжёлая чаша на тележке.\nCell 7. Севр Синелист. Синие ладони, соломенная шляпа, одежда с аккуратно нашитыми прямоугольными заплатами.\nCell 8. Тура Глубина. Мокрые волосы стянуты красным шнурком, на поясе деревянный лот и гладкие каменные грузики.\nCell 9. Алум, Белый Кит. Огромное белое тело с недорезанными звёздами, широкими плавниками и медленно раскрывающимся дыхательным желобом.",
+      "references": [
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/nev.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/runa-skol.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/orsat.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/hela-glint.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/maren-eye.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/kelya-low.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/sevr-dye.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/tura-deep.webp",
+        "campaigns/fantasy-2026/unwritten-god/illustrations/cards/alum-whale.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "lada-kray",
+      "title": "Лада Край",
+      "kind": "hero",
+      "subjects": [
+        "lada-kray"
+      ],
+      "file": "heroes-lada-kray.webp",
+      "sha256": "5bddc4eb258366a86811b70e0c3902fddbe1c196769dbb5f5b30850cf093c4f4",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 12,
+        "width": 202,
+        "height": 416
+      }
+    },
+    {
+      "key": "tim-ren",
+      "title": "Тим Рен",
+      "kind": "hero",
+      "subjects": [
+        "tim-ren"
+      ],
+      "file": "heroes-tim-ren.webp",
+      "sha256": "054f5e554a2ea259d17bdf426ef8f328e02ca18588e0ab9e2a49bd573e930575",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 566,
+        "top": 8,
+        "width": 200,
+        "height": 420
+      }
+    },
+    {
+      "key": "sana-sling",
+      "title": "Сана Стропа",
+      "kind": "hero",
+      "subjects": [
+        "sana-sling"
+      ],
+      "file": "heroes-sana-sling.webp",
+      "sha256": "9e22f0e3b7951e56c541a3717667c536b032aaa3d694ba78a463605e28ba4238",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 985,
+        "top": 11,
+        "width": 227,
+        "height": 417
+      }
+    },
+    {
+      "key": "ilia-ton",
+      "title": "Илия Тон",
+      "kind": "hero",
+      "subjects": [
+        "ilia-ton"
+      ],
+      "file": "heroes-ilia-ton.webp",
+      "sha256": "f830e1689dac09232d92054509f3bc17b9e55139813680c5e471a32135e92dff",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1447,
+        "top": 12,
+        "width": 203,
+        "height": 416
+      }
+    },
+    {
+      "key": "bor-sail",
+      "title": "Бор Парус",
+      "kind": "hero",
+      "subjects": [
+        "bor-sail"
+      ],
+      "file": "heroes-bor-sail.webp",
+      "sha256": "111d425fddaab23b533f35446baafbbb225acf59cd0b1db6f0526ceab5926531",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 117,
+        "top": 450,
+        "width": 211,
+        "height": 420
+      }
+    },
+    {
+      "key": "mira-ash",
+      "title": "Мира Ясенка",
+      "kind": "hero",
+      "subjects": [
+        "mira-ash"
+      ],
+      "file": "heroes-mira-ash.webp",
+      "sha256": "435db7c0767aefa111b51eefd9e9ec3b27b9d1c607bcc12a7782745bca478d78",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 559,
+        "top": 454,
+        "width": 211,
+        "height": 416
+      }
+    },
+    {
+      "key": "ost-lumen",
+      "title": "Ост Люмен",
+      "kind": "hero",
+      "subjects": [
+        "ost-lumen"
+      ],
+      "file": "heroes-ost-lumen.webp",
+      "sha256": "e361134f3645c5ac22d53bef368a996cceb9998fbad79b864032ffa0a63571bd",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 996,
+        "top": 448,
+        "width": 216,
+        "height": 422
+      }
+    },
+    {
+      "key": "vera-cup",
+      "title": "Вера Чаша",
+      "kind": "hero",
+      "subjects": [
+        "vera-cup"
+      ],
+      "file": "heroes-vera-cup.webp",
+      "sha256": "8da2318444d66c7e34b6c290316f7681c28c3bfee00cc60aff0fa901327c24fa",
+      "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1445,
+        "top": 448,
+        "width": 210,
+        "height": 422
+      }
+    },
+    {
+      "key": "white-square",
+      "title": "Площадь Белого Полотна",
+      "kind": "place",
+      "subjects": [
+        "white-square"
+      ],
+      "file": "places-white-square.webp",
+      "sha256": "eba4b0e6ac831946d1317d6f2e0c215264c89f498f19842da6e4caadaa760a77",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "broken-gallery",
+      "title": "Галерея Уходящего Кита",
+      "kind": "place",
+      "subjects": [
+        "broken-gallery"
+      ],
+      "file": "places-broken-gallery.webp",
+      "sha256": "45e3f460429221e74140cc7ffa13066d508b7971dac4a052f478ca833aa206fb",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "whale-back",
+      "title": "Спина Белого Кита",
+      "kind": "place",
+      "subjects": [
+        "whale-back"
+      ],
+      "file": "places-whale-back.webp",
+      "sha256": "90eae52452886d66c26720aa8749a1c1b9b8b32f091fb31265af591731d63041",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "lamp-yard",
+      "title": "Двор ста ламп",
+      "kind": "place",
+      "subjects": [
+        "lamp-yard"
+      ],
+      "file": "places-lamp-yard.webp",
+      "sha256": "114abadad2a9895d957c0514ffa64c58343c49c7f5913249b770b4c3e1deaf7d",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "stone-eye",
+      "title": "Каменный Глаз",
+      "kind": "place",
+      "subjects": [
+        "stone-eye"
+      ],
+      "file": "places-stone-eye.webp",
+      "sha256": "b5c1e3ae9a025e5d713a912438206bce7b46048fbef511f4b101165142af30c4",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "bell-slope",
+      "title": "Склон гудящих чаш",
+      "kind": "place",
+      "subjects": [
+        "bell-slope"
+      ],
+      "file": "places-bell-slope.webp",
+      "sha256": "6d71809bd658d84c2f8eecb1f17ba28cfb9af9e296f8a0521afbb34ce4a3543f",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "blue-grove",
+      "title": "Синий сад",
+      "kind": "place",
+      "subjects": [
+        "blue-grove"
+      ],
+      "file": "places-blue-grove.webp",
+      "sha256": "0d099f6c382f346a1f5dca2321b43e1df9447ec9ca272f35c9ffbc061601fa63",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "empty-quarry",
+      "title": "Чаша открытого карьера",
+      "kind": "place",
+      "subjects": [
+        "empty-quarry"
+      ],
+      "file": "places-empty-quarry.webp",
+      "sha256": "9199b73c48153ff9934fc71228616839405f8908b2c24df1949da5b24ce81c0e",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "quiet-maw",
+      "title": "Тихий Зев",
+      "kind": "place",
+      "subjects": [
+        "quiet-maw"
+      ],
+      "file": "places-quiet-maw.webp",
+      "sha256": "7dee39b61654e8e04eb6dd366bf9d2198cf4fed80e84aeaf88232b1b4b3ae617",
+      "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 1025,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-9ace8d31ff",
+      "title": "Каменная ласта",
+      "kind": "foe",
+      "subjects": [
+        "ledge-swallows-foe-1",
+        "ledge-swallows-foe-2",
+        "ledge-swallows-foe-3",
+        "ledge-swallows-foe-4",
+        "ledge-swallows-foe-5",
+        "ledge-swallows-foe-6"
+      ],
+      "file": "foes-foe-9ace8d31ff.webp",
+      "sha256": "ab8d4433d839231f8cec9620a78e9e33e5f58f0903b7ccf239ead74e00f60ab5",
+      "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 52,
+        "top": 114,
+        "width": 605,
+        "height": 562
+      }
+    },
+    {
+      "key": "foe-4ab8fd951c",
+      "title": "Карьерный сторож",
+      "kind": "foe",
+      "subjects": [
+        "quarry-watch-foe-1",
+        "quarry-watch-foe-2",
+        "quarry-watch-foe-3",
+        "quarry-watch-foe-4",
+        "quarry-watch-foe-5",
+        "quarry-watch-foe-6"
+      ],
+      "file": "foes-foe-4ab8fd951c.webp",
+      "sha256": "00d0e79b683eaea7feb3870d561ca4eeebb54c8f8a005fc2baadbcbd57e50d2a",
+      "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 830,
+        "top": 17,
+        "width": 495,
+        "height": 662
+      }
+    },
+    {
+      "key": "foe-9269213901",
+      "title": "Каменный клешневик",
+      "kind": "foe",
+      "subjects": [
+        "reef-claws-foe-1",
+        "reef-claws-foe-2",
+        "reef-claws-foe-3",
+        "reef-claws-foe-4",
+        "reef-claws-foe-5",
+        "reef-claws-foe-6"
+      ],
+      "file": "foes-foe-9269213901.webp",
+      "sha256": "748fe8ab994c04fde4f483983f70b55e462776a3561d2ed48afdcdf95d019305",
+      "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1496,
+        "top": 111,
+        "width": 633,
+        "height": 563
+      }
+    },
+    {
+      "key": "nev",
+      "title": "Нев",
+      "kind": "npc",
+      "subjects": [
+        "nev"
+      ],
+      "file": "npcs-nev.webp",
+      "sha256": "8919c28242ec041588812841200ee272121054c2724b97236dfa5ed666ee1a80",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 117,
+        "top": 12,
+        "width": 225,
+        "height": 375
+      }
+    },
+    {
+      "key": "runa-skol",
+      "title": "Руна Скол",
+      "kind": "npc",
+      "subjects": [
+        "runa-skol"
+      ],
+      "file": "npcs-runa-skol.webp",
+      "sha256": "9be91099625afa7bb5ec543f6d900edb5d8a9779a78ef73835284fab8ae44ec4",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 532,
+        "top": 13,
+        "width": 228,
+        "height": 371
+      }
+    },
+    {
+      "key": "orsat",
+      "title": "Орсат",
+      "kind": "npc",
+      "subjects": [
+        "orsat"
+      ],
+      "file": "npcs-orsat.webp",
+      "sha256": "1c838de9b8040a45c02e44d08c4d66d3162a6b5b79e0a6648b92b292ae286e76",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 963,
+        "top": 13,
+        "width": 227,
+        "height": 371
+      }
+    },
+    {
+      "key": "hela-glint",
+      "title": "Хела Блик",
+      "kind": "npc",
+      "subjects": [
+        "hela-glint"
+      ],
+      "file": "npcs-hela-glint.webp",
+      "sha256": "bce711a0b04f9e839c3154ed7d5c815fd412b293325a2b025aa07fa2c31171fd",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 118,
+        "top": 404,
+        "width": 221,
+        "height": 365
+      }
+    },
+    {
+      "key": "maren-eye",
+      "title": "Марен Косой Луч",
+      "kind": "npc",
+      "subjects": [
+        "maren-eye"
+      ],
+      "file": "npcs-maren-eye.webp",
+      "sha256": "3efe792ddb84638812a1feca5f789caa519daac92e3db87349f1682d783336ef",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 534,
+        "top": 402,
+        "width": 229,
+        "height": 367
+      }
+    },
+    {
+      "key": "kelya-low",
+      "title": "Келя Низкий Голос",
+      "kind": "npc",
+      "subjects": [
+        "kelya-low"
+      ],
+      "file": "npcs-kelya-low.webp",
+      "sha256": "746e74454cd51d92e9836ea3c8bfccba5cad16b93d090b50471c5b4133b7a5f3",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 944,
+        "top": 403,
+        "width": 309,
+        "height": 366
+      }
+    },
+    {
+      "key": "sevr-dye",
+      "title": "Севр Синелист",
+      "kind": "npc",
+      "subjects": [
+        "sevr-dye"
+      ],
+      "file": "npcs-sevr-dye.webp",
+      "sha256": "ba1ea5890e822e2aec5797a26c5feac5fe57c1eb527d87010f4ebbd6a1947376",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 104,
+        "top": 788,
+        "width": 244,
+        "height": 363
+      }
+    },
+    {
+      "key": "tura-deep",
+      "title": "Тура Глубина",
+      "kind": "npc",
+      "subjects": [
+        "tura-deep"
+      ],
+      "file": "npcs-tura-deep.webp",
+      "sha256": "29a769a6f06fc0ed0e510a04e1bbadb4e5cb73393e31752500106cdb02847c09",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 498,
+        "top": 786,
+        "width": 279,
+        "height": 365
+      }
+    },
+    {
+      "key": "alum-whale",
+      "title": "Алум, Белый Кит",
+      "kind": "npc",
+      "subjects": [
+        "alum-whale"
+      ],
+      "file": "npcs-alum-whale.webp",
+      "sha256": "654491a62fbf9abe2cddd9d9cf340b89bc3eb1233d29372a147fd0a64290b583",
+      "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+      "generated": "2026-11-22",
+      "sheet": "unwritten-god-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 875,
+        "top": 794,
+        "width": 402,
+        "height": 354
+      }
+    }
+  ]
+}

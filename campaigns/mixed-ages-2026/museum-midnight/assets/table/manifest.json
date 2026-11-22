@@ -1,0 +1,656 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "museum-midnight-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5c4730c0-c2d3-4422-b284-f78d851b9e66.png",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ладомер и его завтрашние окна · Mirrored exhibition arches, paired ivory ticket shapes, deep blue ceramic glaze. Cell 1. Мира Лист. Синий плащ с карманами для сложенных планов, короткая коса и карандаш за ухом.\nCell 2. Тихон Медь. Жилет с деревянными пуговицами, широкая лента на запястье и складная трость, похожая на театральную шпагу.\nCell 3. Рада Свет. Песочный шарф, блокнот в клетку и очки с одной круглой, другой овальной оправой.\nCell 4. Осип Ручей. Плащ цвета речного камня, кружка на ремне и бумажные закладки в нагрудном кармане.\nCell 5. Ника Стрела. Клетчатая куртка, жёлтые ботинки и сумка со сменными печатными буквами.\nCell 6. Борис Вереск. Льняная рубаха, разноцветные носки и коробочка с увеличительным стеклом.\nCell 7. Ая Звон. Тёмно-зелёная куртка, маленький колокольчик без язычка и мягкие сценические перчатки.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/mira-list.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/tikhon-med.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/rada-svet.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/osip-ruchei.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/nika-strela.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/boris-veresk.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/aya-zvon.webp"
+      ]
+    },
+    {
+      "id": "museum-midnight-places-0",
+      "originalFile": "exec-9ada8530-2ec9-43ba-9f9b-d4ff03101006.png",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ладомер и его завтрашние окна · Mirrored exhibition arches, paired ivory ticket shapes, deep blue ceramic glaze. Cell 1. Атрий обратных билетов. Входной зал музея: низкая касса, скамьи разной высоты, авторский стол и две витрины с фарфоровыми чашками. Все подготовленные герои начинают здесь.\nCell 2. Галерея двух садов. Две стеклянные арки показывают один сад при разных прогулках. Над развилками светятся указатели; возле выходов стоят столы с прозрачными планами и картами посещений.\nCell 3. Мастерская мягких часов. Широкие верстаки, коробки карточек и линзы в войлочных чехлах. На стене нарисована ладонь: посетитель вправе попросить остановить опыт.\nCell 4. Набережная позднего рейса. Настоящий речной причал возле музейного окна. Здесь стоят скамья ожидания, крытая рампа и табличка с пустой строкой для вечернего расписания.\nCell 5. Зал неотправленных писем. Личные кабинки со шторами выходят в общую комнату. Письма лежат текстом наружу только на столе согласившегося читателя; у двери стоит корзина отказов.\nCell 6. Архив исходных условий. Выдвижные стеллажи с широкими проходами, стол увеличительного стекла и полка открытых копий. На корешках стоят даты сегодняшних записей и старых проектов.\nCell 7. Двор равных стульев. Городская площадка со стульями одинаковой высоты, переносной доской и столиком для письменных предложений. Центрального председательского кресла нет.\nCell 8. Площадка первого шага. Бывшая трамвайная площадка с испытательным столом, тремя табличками назначений и круглой скамьёй. Здесь можно сравнить ответ фонаря с заранее выбранной карточкой цели.\nCell 9. Круглая площадка премьеры. Круглый зал с переносными столами, световыми катушками и доской для прогнозов и наблюдений. Широкая боковая дверь ведёт в атрий; у каждого опыта есть свободный выход.\nCell 10. Тихая читальня. Небольшая комната отдыха с водой, карандашами и пустой стеной для новых афиш. Здесь можно пропустить сцену, дождаться группы или начать заключительную беседу.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "museum-midnight-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-3120896a-1d55-4049-90ad-29e441baaa58.png",
+      "originalSha256": "4fefaf6710cc6475286ed16d5b5ce71adb0403ee17bd631f6877cc3372b40145",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ладомер и его завтрашние окна · Mirrored exhibition arches, paired ivory ticket shapes, deep blue ceramic glaze. Cell 1. Бумажный смотритель. Мягкая складная фигура в бумажном жилете с тупым сценическим указателем. Это музейный реквизит, описанный через обычного противника, без особых временных сил.\nCell 2. Сценический исполнитель. Тканевый манекен с нарисованной улыбкой и мягкой тростью; изображает преувеличенно усердного учителя. Не является будущей версией героя и ничего о нём не знает.\nCell 3. Медная тележка. Невысокая музейная тележка с мягкими бортами и нарисованными глазами. Её сценический толчок использует обычную ближнюю атаку, без перемещения цели или дополнительных эффектов.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "museum-midnight-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f151cc3c-3135-45dc-83fa-0b5be81128c0.png",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Музей ненаступившего завтра. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Вера Вирт. Серая музейная форма, круглая брошь с открытой дверью, аккуратная стопка программ.\nCell 2. Данка Прут. Лиловый жилет экскурсовода, карманный компостер и значок с вопросительным знаком.\nCell 3. Никса Рой. Оранжевый рабочий фартук, мягкая щётка за поясом и защитные очки на лбу.\nCell 4. Лев Кром. Вязаная безрукавка, медленный внимательный взгляд и пальцы в синей типографской краске.\nCell 5. Ольха Рем. Светлые манжеты, цепочка с ключом от шкафчика и закладки из зелёной ткани.\nCell 6. Глеб Тис. Синий речной плащ, лёгкая трость и расписание, сложенное гармошкой.\nCell 7. Эмма Ширь. Плоская шляпа, тканевая сумка с семенами и серые перчатки на карабине.\nCell 8. Сава Шаг. Короткая жёлтая накидка, сумка для корреспонденции и шнурок с деревянным штампом.\nCell 9. Яся Нить. Красный шарф, доска с зажимом и линейка, разрисованная маленькими дверями.",
+      "references": [
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/vera-virt.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/danka-prut.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/niksa-roi.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/lev-krom.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/olha-rem.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/gleb-tis.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/emma-shir.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/sava-shag.webp",
+        "campaigns/mixed-ages-2026/museum-midnight/illustrations/cards/yasya-nit.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "mira-list",
+      "title": "Мира Лист",
+      "kind": "hero",
+      "subjects": [
+        "mira-list"
+      ],
+      "file": "heroes-mira-list.webp",
+      "sha256": "7e1142a8d42140ad3bdf7e563a612b5a65a52a57302f739cb02b59887cbac89c",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 118,
+        "top": 12,
+        "width": 221,
+        "height": 412
+      }
+    },
+    {
+      "key": "tikhon-med",
+      "title": "Тихон Медь",
+      "kind": "hero",
+      "subjects": [
+        "tikhon-med"
+      ],
+      "file": "heroes-tikhon-med.webp",
+      "sha256": "ed006edff2408cd738ff5c99678cdbf7a0a9b8d2febe87366ba508f37ce2b8ab",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 556,
+        "top": 10,
+        "width": 221,
+        "height": 413
+      }
+    },
+    {
+      "key": "rada-svet",
+      "title": "Рада Свет",
+      "kind": "hero",
+      "subjects": [
+        "rada-svet"
+      ],
+      "file": "heroes-rada-svet.webp",
+      "sha256": "eb0ca9d3bf07eb826c71815b7a1c788177f207dcd79b36cdf30391445861c01d",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 995,
+        "top": 17,
+        "width": 208,
+        "height": 407
+      }
+    },
+    {
+      "key": "osip-ruchei",
+      "title": "Осип Ручей",
+      "kind": "hero",
+      "subjects": [
+        "osip-ruchei"
+      ],
+      "file": "heroes-osip-ruchei.webp",
+      "sha256": "379d6419426b9285b688bbcad1545cd2f805364f2eb735a3d9499fd77c4d903b",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1420,
+        "top": 9,
+        "width": 235,
+        "height": 414
+      }
+    },
+    {
+      "key": "nika-strela",
+      "title": "Ника Стрела",
+      "kind": "hero",
+      "subjects": [
+        "nika-strela"
+      ],
+      "file": "heroes-nika-strela.webp",
+      "sha256": "9a2ce98eacb3a2cac38319a22f42c9300ca6b568f5d139d240b6009f468c23fb",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 126,
+        "top": 451,
+        "width": 198,
+        "height": 420
+      }
+    },
+    {
+      "key": "boris-veresk",
+      "title": "Борис Вереск",
+      "kind": "hero",
+      "subjects": [
+        "boris-veresk"
+      ],
+      "file": "heroes-boris-veresk.webp",
+      "sha256": "105de9c6e41d2e66971c0f2e180af32fee9770845f938d08ae15bb915582bf83",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 564,
+        "top": 451,
+        "width": 199,
+        "height": 420
+      }
+    },
+    {
+      "key": "aya-zvon",
+      "title": "Ая Звон",
+      "kind": "hero",
+      "subjects": [
+        "aya-zvon"
+      ],
+      "file": "heroes-aya-zvon.webp",
+      "sha256": "833c20c0150c38c5e6c50b40e93b296cc9ebffd4fc18e33b2f469c713c1d8291",
+      "originalSha256": "8bf078b811a83e930cf7766099e83cb7b199643bed4ec670f024970af007dd40",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1008,
+        "top": 449,
+        "width": 201,
+        "height": 422
+      }
+    },
+    {
+      "key": "ticket-atrium",
+      "title": "Атрий обратных билетов",
+      "kind": "place",
+      "subjects": [
+        "ticket-atrium"
+      ],
+      "file": "places-ticket-atrium.webp",
+      "sha256": "bcd6f986acb84ec1f8cda53fca016d7d2c5a019371946936a46293ea3b9839eb",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "double-orchard",
+      "title": "Галерея двух садов",
+      "kind": "place",
+      "subjects": [
+        "double-orchard"
+      ],
+      "file": "places-double-orchard.webp",
+      "sha256": "cb44c38a8ac838e2f3ce677365d24c6b9e2ae95a21647c6e233f4f03e221bbc4",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "restoration-workshop",
+      "title": "Мастерская мягких часов",
+      "kind": "place",
+      "subjects": [
+        "restoration-workshop"
+      ],
+      "file": "places-restoration-workshop.webp",
+      "sha256": "a1bc997fd1b4a8fc268a8484d054dc22b3531ad1c51dedd4a97fad8b5485aee8",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "night-quay",
+      "title": "Набережная позднего рейса",
+      "kind": "place",
+      "subjects": [
+        "night-quay"
+      ],
+      "file": "places-night-quay.webp",
+      "sha256": "5875813ee33c3569020f45d0556e030e1f3f4a3f07412fcd5cdcef96cab7f709",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "letters-room",
+      "title": "Зал неотправленных писем",
+      "kind": "place",
+      "subjects": [
+        "letters-room"
+      ],
+      "file": "places-letters-room.webp",
+      "sha256": "208d406d1f84eaa5af8c844dccc570142d9de43248d7740881d6161794d758bf",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "charter-archive",
+      "title": "Архив исходных условий",
+      "kind": "place",
+      "subjects": [
+        "charter-archive"
+      ],
+      "file": "places-charter-archive.webp",
+      "sha256": "d5e60a6017adde270e317b06d60f9c99ecadffeb20eba875be921d236a55aab6",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "citizen-courtyard",
+      "title": "Двор равных стульев",
+      "kind": "place",
+      "subjects": [
+        "citizen-courtyard"
+      ],
+      "file": "places-citizen-courtyard.webp",
+      "sha256": "5def8b7d21e49df0a1cb92a8b16ee539f30af6e886925f2eb20dd1ac32d2dc25",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "trial-platform",
+      "title": "Площадка первого шага",
+      "kind": "place",
+      "subjects": [
+        "trial-platform"
+      ],
+      "file": "places-trial-platform.webp",
+      "sha256": "be115887166b2315cc9d4326f939debb0a726de0f9e4398a364073d0df0b2a96",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "midnight-dais",
+      "title": "Круглая площадка премьеры",
+      "kind": "place",
+      "subjects": [
+        "midnight-dais"
+      ],
+      "file": "places-midnight-dais.webp",
+      "sha256": "2ecf4b901ed6b140a990b5f6338f74a4ca04feba6296b6e1fa72de2a144c606a",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "quiet-reading-room",
+      "title": "Тихая читальня",
+      "kind": "place",
+      "subjects": [
+        "quiet-reading-room"
+      ],
+      "file": "places-quiet-reading-room.webp",
+      "sha256": "7dbdc79fa2f159df97a5a6839d6a6a53d1dbe23d891540032d1684480ffb9b7b",
+      "originalSha256": "6e13db92fa4778fda70929cf5bced01316de51a2c1011d713df3d428acb859d8",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-ec0ce7bb97",
+      "title": "Бумажный смотритель",
+      "kind": "foe",
+      "subjects": [
+        "paper-ushers-foe-1",
+        "paper-ushers-foe-2",
+        "paper-ushers-foe-3",
+        "paper-ushers-foe-4",
+        "paper-ushers-foe-5"
+      ],
+      "file": "foes-foe-ec0ce7bb97.webp",
+      "sha256": "5a4c280cf9e5441138045ad9dcf1f3bde65033ce31ddd048ab1cafbb7f0279b3",
+      "originalSha256": "4fefaf6710cc6475286ed16d5b5ce71adb0403ee17bd631f6877cc3372b40145",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 87,
+        "top": 29,
+        "width": 592,
+        "height": 663
+      }
+    },
+    {
+      "key": "foe-aa7a28f0c5",
+      "title": "Сценический исполнитель",
+      "kind": "foe",
+      "subjects": [
+        "perfect-actors-foe-1",
+        "perfect-actors-foe-2",
+        "perfect-actors-foe-3",
+        "perfect-actors-foe-4",
+        "perfect-actors-foe-5"
+      ],
+      "file": "foes-foe-aa7a28f0c5.webp",
+      "sha256": "5b2ad0c7ea2428bbd7569a312b25e61bde7c6cce124c0c1273e9c0b0ac09700c",
+      "originalSha256": "4fefaf6710cc6475286ed16d5b5ce71adb0403ee17bd631f6877cc3372b40145",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 838,
+        "top": 16,
+        "width": 497,
+        "height": 677
+      }
+    },
+    {
+      "key": "foe-2e7cc4ec8b",
+      "title": "Медная тележка",
+      "kind": "foe",
+      "subjects": [
+        "brass-movers-foe-1",
+        "brass-movers-foe-2",
+        "brass-movers-foe-3",
+        "brass-movers-foe-4",
+        "brass-movers-foe-5"
+      ],
+      "file": "foes-foe-2e7cc4ec8b.webp",
+      "sha256": "1a612874850ea79eaccdf52ec6df31423ec8f9bd893edb1e914bd12c03df43d9",
+      "originalSha256": "4fefaf6710cc6475286ed16d5b5ce71adb0403ee17bd631f6877cc3372b40145",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1526,
+        "top": 125,
+        "width": 535,
+        "height": 567
+      }
+    },
+    {
+      "key": "vera-virt",
+      "title": "Вера Вирт",
+      "kind": "npc",
+      "subjects": [
+        "vera-virt"
+      ],
+      "file": "npcs-vera-virt.webp",
+      "sha256": "b69185116e8aa39d1361aaf008298d2028538c19634fb6274d44654fdfe79294",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 107,
+        "top": 17,
+        "width": 219,
+        "height": 405
+      }
+    },
+    {
+      "key": "danka-prut",
+      "title": "Данка Прут",
+      "kind": "npc",
+      "subjects": [
+        "danka-prut"
+      ],
+      "file": "npcs-danka-prut.webp",
+      "sha256": "95e0e50f61c5323d6a5c88b9d1399c7fde9fc7a99e31069161be745f6d8d386b",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 17,
+        "width": 229,
+        "height": 405
+      }
+    },
+    {
+      "key": "niksa-roi",
+      "title": "Никса Рой",
+      "kind": "npc",
+      "subjects": [
+        "niksa-roi"
+      ],
+      "file": "npcs-niksa-roi.webp",
+      "sha256": "bb7c9ce4a2f14bfe90163c7bda8a1eb42de13e02787bcd2af683ccda0a1f8c10",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 864,
+        "top": 17,
+        "width": 235,
+        "height": 405
+      }
+    },
+    {
+      "key": "lev-krom",
+      "title": "Лев Кром",
+      "kind": "npc",
+      "subjects": [
+        "lev-krom"
+      ],
+      "file": "npcs-lev-krom.webp",
+      "sha256": "1335f5e342b1a054d75b05381a7f64b1894fada347c2326d684908b3ed2946eb",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 92,
+        "top": 443,
+        "width": 235,
+        "height": 403
+      }
+    },
+    {
+      "key": "olha-rem",
+      "title": "Ольха Рем",
+      "kind": "npc",
+      "subjects": [
+        "olha-rem"
+      ],
+      "file": "npcs-olha-rem.webp",
+      "sha256": "7e9c36687d3e5f38c7039cd04ebf4607c16c372c21388ac43adfa767c4917da3",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 475,
+        "top": 446,
+        "width": 250,
+        "height": 401
+      }
+    },
+    {
+      "key": "gleb-tis",
+      "title": "Глеб Тис",
+      "kind": "npc",
+      "subjects": [
+        "gleb-tis"
+      ],
+      "file": "npcs-gleb-tis.webp",
+      "sha256": "30d53c82efbe1b1632efe8599bfcf7b2e2cfa83d9ff4e90295e9ce2c276844d7",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 854,
+        "top": 443,
+        "width": 254,
+        "height": 403
+      }
+    },
+    {
+      "key": "emma-shir",
+      "title": "Эмма Ширь",
+      "kind": "npc",
+      "subjects": [
+        "emma-shir"
+      ],
+      "file": "npcs-emma-shir.webp",
+      "sha256": "494a449c97bafc994e05069e04f38d2731258c895599dd3bada25e819d3fd286",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 99,
+        "top": 867,
+        "width": 243,
+        "height": 429
+      }
+    },
+    {
+      "key": "sava-shag",
+      "title": "Сава Шаг",
+      "kind": "npc",
+      "subjects": [
+        "sava-shag"
+      ],
+      "file": "npcs-sava-shag.webp",
+      "sha256": "fceb7d42a63eeb0351a20949002d7e7ec17e49651bbba4e74160cbc2c9d49a7a",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 478,
+        "top": 872,
+        "width": 246,
+        "height": 423
+      }
+    },
+    {
+      "key": "yasya-nit",
+      "title": "Яся Нить",
+      "kind": "npc",
+      "subjects": [
+        "yasya-nit"
+      ],
+      "file": "npcs-yasya-nit.webp",
+      "sha256": "0be53bfba64502ccd5e22792ecf82a09137b180cedc47e3ccdc3249caea0e9ad",
+      "originalSha256": "9c9dfec5b64e68d2ff271db219c0f17647a65b111f1e849640527e190510a179",
+      "generated": "2026-11-22",
+      "sheet": "museum-midnight-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 862,
+        "top": 877,
+        "width": 233,
+        "height": 418
+      }
+    }
+  ]
+}

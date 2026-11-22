@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "53b07663fe1718e36cc7e2ce5b87511916bc573ebf2966c18b28a2924004f880",
+    "originalSha256": "11e8ea6870b7817079aee06aca8a7cbc298895f90b7ee03e14efa77f1b47d245",
+    "originalFile": "exec-6e3b8e62-e74d-403a-992a-66cf32105ae0.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Ровель. Style Ровель · Layered indigo carbon paper, blind-stamped bookbinder folds and offset ruled lines. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Приёмная артели прошений; 0.367,0.177 Архив окружного разбора; 0.623,0.15 Двор Седьмой линии; 0.88,0.177 Чертёжная палата; 0.905,0.857 Кафе «Льняная чашка»; 0.648,0.83 Дом взаимной помощи; 0.392,0.857 Фотографическая мастерская «Матовая грань»; 0.135,0.83 Зал предметного разбора. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "region": "narechensk",
+  "name": "Карта · Нареченск: отель «Контур»",
+  "description": "План местности «Нареченск: отель «Контур»». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "contour-lobby",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "guest-gallery",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "suite-608",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "service-pantry",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "service-corridor",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "linen-room",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "manager-office",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "program-room",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "assembly-room",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

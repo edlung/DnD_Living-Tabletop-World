@@ -1,0 +1,2074 @@
+{
+ "id": "familiar-school",
+ "title": "Школа перепутанных фамильяров",
+ "genre": "Фэнтези, полевые приключения и самостоятельные магические спутники",
+ "audience": "12+",
+ "pitch": "В Школе Второго Крыла разумный спутник сам выбирает, с кем идти в поле. Но однажды заяц-наставник Крен объявляет все магические отклики между партнёрами зависимостью и ставит поперёк троп размыкающие ворота. Он намерен провести через них даже несогласные пары. Из безопасной школы вы отправляетесь в вылазки: перехватить давление, открыть обход, освободить задержанного и вместе с неожиданными спутниками сорвать конкретную операцию Крена.",
+ "tone": "Осязаемая опасность, добродушные несходства, трудные решения без унижения; приключение важнее школьных оценок.",
+ "duration": "8 сессий; 180 минут: 15 минут открытия и воспоминаний, три сцены по 45 минут, перерыв 10 минут и завершение 20 минут. Необязательное столкновение заменяет часть своей сцены.",
+ "cover": "campaigns/fantasy-2026/familiar-school/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "3aeb4363da111b1ac61cedbf913bb081c3dadf80e29a26b001ab10347395391f"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "d0e1048e8fdf6d4387faf15fb27267e0759d8277c1d428dd2e5728755f9b0c8d"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "1363a55f915850398f6948116728a5f6a5bc8688a243b59696b26f46c5bf7e10"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "091a6071ba57e9757d071d8598ab82002422d7a3c2895dc9eec163e8d92dc5cb"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "5c37fddc1456e8cb0277e26c880ba1b4a0fa427d5ebf262091a9b45f2ad40c6b"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "1b0587b0390f1c294074ae0924e6899b5e3252fdcf1c0c7b3ff17b813216cb91"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/nerin.webp",
+   "sha256": "90bdc4faaf2ef78ad99c7987cd558d231e68d0276b0f1c5bef574a0eb9d05aec",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нерин Сосновый Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerin"
+    ],
+    "4-players": [
+     "nerin"
+    ],
+    "5-players": [
+     "nerin"
+    ],
+    "6-players": [
+     "nerin"
+    ],
+    "7-players": [
+     "nerin"
+    ],
+    "8-players": [
+     "nerin"
+    ]
+   },
+   "file": "nerin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/tasya.webp",
+   "sha256": "bd04eaab2103a7d300996f9f67b2cf606d164bfffa530f9ec82d6a356a16fee3",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тася Угольная Лента",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tasya"
+    ],
+    "4-players": [
+     "tasya"
+    ],
+    "5-players": [
+     "tasya"
+    ],
+    "6-players": [
+     "tasya"
+    ],
+    "7-players": [
+     "tasya"
+    ],
+    "8-players": [
+     "tasya"
+    ]
+   },
+   "file": "tasya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/omel.webp",
+   "sha256": "47e5fba923a64bb4e8d61ccbfb7566f8581b8c7cdbfb4d288a4a146085c0fcd7",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Омел Тёплый Камень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "omel"
+    ],
+    "4-players": [
+     "omel"
+    ],
+    "5-players": [
+     "omel"
+    ],
+    "6-players": [
+     "omel"
+    ],
+    "7-players": [
+     "omel"
+    ],
+    "8-players": [
+     "omel"
+    ]
+   },
+   "file": "omel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/elsha.webp",
+   "sha256": "f5d267966eb91d70c712d4ccc0c3fa9a00d54d5705b2ef4fa33b269ca5cdbffb",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элша Семь Полей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "elsha"
+    ],
+    "5-players": [
+     "elsha"
+    ],
+    "6-players": [
+     "elsha"
+    ],
+    "7-players": [
+     "elsha"
+    ],
+    "8-players": [
+     "elsha"
+    ]
+   },
+   "file": "elsha.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/velt.webp",
+   "sha256": "ac01acc8e90c3a21e5971c04df1a9e5c96f08fbef8d75cd123067595fc36d55e",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Велт Крапчатый Щит",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "velt"
+    ],
+    "6-players": [
+     "velt"
+    ],
+    "7-players": [
+     "velt"
+    ],
+    "8-players": [
+     "velt"
+    ]
+   },
+   "file": "velt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/kora.webp",
+   "sha256": "35f1c55a5cd5c671582e8f7331e5a9d18b3dd17fe41135f6c39053b2bc784838",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кора Кривой Штрих",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "kora"
+    ],
+    "7-players": [
+     "kora"
+    ],
+    "8-players": [
+     "kora"
+    ]
+   },
+   "file": "kora.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/rin.webp",
+   "sha256": "b015f731141f146929d580a9bceece0172c00f5029868d2bfe7ff9e45d26ebca",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рин Янтарная Пуговица",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "rin"
+    ],
+    "8-players": [
+     "rin"
+    ]
+   },
+   "file": "rin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/yana.webp",
+   "sha256": "f43952a2e1bcc15f80256cfe3ee2231da9c3e281545414896dbff49cf0bfd409",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яна Неровная Ступень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "yana"
+    ]
+   },
+   "file": "yana.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/travel-kit.webp",
+   "sha256": "b7d2c6ad52bb2a9b355ccfddea432d3f3272639bfd9ebf5975ae9dfafee4ed39",
+   "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerin-travel-kit",
+     "omel-travel-kit",
+     "tasya-travel-kit"
+    ],
+    "4-players": [
+     "elsha-travel-kit",
+     "nerin-travel-kit",
+     "omel-travel-kit",
+     "tasya-travel-kit"
+    ],
+    "5-players": [
+     "elsha-travel-kit",
+     "nerin-travel-kit",
+     "omel-travel-kit",
+     "tasya-travel-kit",
+     "velt-travel-kit"
+    ],
+    "6-players": [
+     "elsha-travel-kit",
+     "kora-travel-kit",
+     "nerin-travel-kit",
+     "omel-travel-kit",
+     "tasya-travel-kit",
+     "velt-travel-kit"
+    ],
+    "7-players": [
+     "elsha-travel-kit",
+     "kora-travel-kit",
+     "nerin-travel-kit",
+     "omel-travel-kit",
+     "rin-travel-kit",
+     "tasya-travel-kit",
+     "velt-travel-kit"
+    ],
+    "8-players": [
+     "elsha-travel-kit",
+     "kora-travel-kit",
+     "nerin-travel-kit",
+     "omel-travel-kit",
+     "rin-travel-kit",
+     "tasya-travel-kit",
+     "velt-travel-kit",
+     "yana-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/mara.webp",
+   "sha256": "17058b74468b8fa7a03e2db907a6c50483559b24a0aba0cd4227c88d12ec6094",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Вишневая Ветка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara"
+    ],
+    "4-players": [
+     "mara"
+    ],
+    "5-players": [
+     "mara"
+    ],
+    "6-players": [
+     "mara"
+    ],
+    "7-players": [
+     "mara"
+    ],
+    "8-players": [
+     "mara"
+    ]
+   },
+   "file": "mara.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/kren.webp",
+   "sha256": "8478f0e450991974224767541792fb227dd9b4ffa32ecae6aeeae9368492e09e",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kren"
+    ],
+    "4-players": [
+     "kren"
+    ],
+    "5-players": [
+     "kren"
+    ],
+    "6-players": [
+     "kren"
+    ],
+    "7-players": [
+     "kren"
+    ],
+    "8-players": [
+     "kren"
+    ]
+   },
+   "file": "kren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/ruba.webp",
+   "sha256": "d0a29a70601a78fc5fbb184e1a99ed8ce73fc6fd38a1c1f46476b01eb7b9881b",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руба",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruba"
+    ],
+    "4-players": [
+     "ruba"
+    ],
+    "5-players": [
+     "ruba"
+    ],
+    "6-players": [
+     "ruba"
+    ],
+    "7-players": [
+     "ruba"
+    ],
+    "8-players": [
+     "ruba"
+    ]
+   },
+   "file": "ruba.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/losk.webp",
+   "sha256": "15931ab82f7cc95e4bb600e7e676480e53cda573f54e3cdf93a8072683f623e1",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лоск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "losk"
+    ],
+    "4-players": [
+     "losk"
+    ],
+    "5-players": [
+     "losk"
+    ],
+    "6-players": [
+     "losk"
+    ],
+    "7-players": [
+     "losk"
+    ],
+    "8-players": [
+     "losk"
+    ]
+   },
+   "file": "losk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/iven.webp",
+   "sha256": "75d8ee407cd5da03528018147b38dde1e97e259f599a5e6d4e2803d966f62c0c",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивен Низкий Карниз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iven"
+    ],
+    "4-players": [
+     "iven"
+    ],
+    "5-players": [
+     "iven"
+    ],
+    "6-players": [
+     "iven"
+    ],
+    "7-players": [
+     "iven"
+    ],
+    "8-players": [
+     "iven"
+    ]
+   },
+   "file": "iven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/brus.webp",
+   "sha256": "b12419094ee89b70654df1d7d7269a8c3ec0923fe1b9d3827896228adedcace7",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брус",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brus"
+    ],
+    "4-players": [
+     "brus"
+    ],
+    "5-players": [
+     "brus"
+    ],
+    "6-players": [
+     "brus"
+    ],
+    "7-players": [
+     "brus"
+    ],
+    "8-players": [
+     "brus"
+    ]
+   },
+   "file": "brus.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/shella.webp",
+   "sha256": "deb22f0ab4c569aa6b6e9a21563eaa035572ba5c735520cf9032d496e6e4b02f",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шелла",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shella"
+    ],
+    "4-players": [
+     "shella"
+    ],
+    "5-players": [
+     "shella"
+    ],
+    "6-players": [
+     "shella"
+    ],
+    "7-players": [
+     "shella"
+    ],
+    "8-players": [
+     "shella"
+    ]
+   },
+   "file": "shella.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/nema.webp",
+   "sha256": "4913535603f815aaf78d445e9d345e45e335cde4113e128acc454266199a4695",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нема",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nema"
+    ],
+    "4-players": [
+     "nema"
+    ],
+    "5-players": [
+     "nema"
+    ],
+    "6-players": [
+     "nema"
+    ],
+    "7-players": [
+     "nema"
+    ],
+    "8-players": [
+     "nema"
+    ]
+   },
+   "file": "nema.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/oda.webp",
+   "sha256": "c4d22d420eafa7a25826228f3b2eb6bb27ab2b04a9b090ab610c0e8faa0455fe",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ода Луговая Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oda"
+    ],
+    "4-players": [
+     "oda"
+    ],
+    "5-players": [
+     "oda"
+    ],
+    "6-players": [
+     "oda"
+    ],
+    "7-players": [
+     "oda"
+    ],
+    "8-players": [
+     "oda"
+    ]
+   },
+   "file": "oda.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/mila.webp",
+   "sha256": "2b27a9abcc7039afcc3456e19512a963c096b27d40f11d382085482a4dcf8237",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мила Короткий Рукав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mila"
+    ],
+    "4-players": [
+     "mila"
+    ],
+    "5-players": [
+     "mila"
+    ],
+    "6-players": [
+     "mila"
+    ],
+    "7-players": [
+     "mila"
+    ],
+    "8-players": [
+     "mila"
+    ]
+   },
+   "file": "mila.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/cards/krucha.webp",
+   "sha256": "1bc333c567b0616e23685b85df70c00c12f0d76129c9fc2e5aa69630bb3f1c5a",
+   "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Круча",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "krucha"
+    ],
+    "4-players": [
+     "krucha"
+    ],
+    "5-players": [
+     "krucha"
+    ],
+    "6-players": [
+     "krucha"
+    ],
+    "7-players": [
+     "krucha"
+    ],
+    "8-players": [
+     "krucha"
+    ]
+   },
+   "file": "krucha.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-nerin.webp",
+   "sha256": "7ed8bc4f66b3c230bcf3bec2873835336b84135e71bc5b4efad98232c7d68394",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нерин Сосновый Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerin"
+    ],
+    "4-players": [
+     "nerin"
+    ],
+    "5-players": [
+     "nerin"
+    ],
+    "6-players": [
+     "nerin"
+    ],
+    "7-players": [
+     "nerin"
+    ],
+    "8-players": [
+     "nerin"
+    ]
+   },
+   "file": "nerin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nerin.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-tasya.webp",
+   "sha256": "65793a8e1b323a86814c53c9962651805b6517cbbb4380a216569fd437a57e5e",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тася Угольная Лента",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tasya"
+    ],
+    "4-players": [
+     "tasya"
+    ],
+    "5-players": [
+     "tasya"
+    ],
+    "6-players": [
+     "tasya"
+    ],
+    "7-players": [
+     "tasya"
+    ],
+    "8-players": [
+     "tasya"
+    ]
+   },
+   "file": "tasya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tasya.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-omel.webp",
+   "sha256": "6519be8aac0cdf66f0d9cd633700061bbd860cebd297d3b4db1f7dde41c34859",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Омел Тёплый Камень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "omel"
+    ],
+    "4-players": [
+     "omel"
+    ],
+    "5-players": [
+     "omel"
+    ],
+    "6-players": [
+     "omel"
+    ],
+    "7-players": [
+     "omel"
+    ],
+    "8-players": [
+     "omel"
+    ]
+   },
+   "file": "omel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "omel.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-elsha.webp",
+   "sha256": "b7cba18968b60c3337ee5a7e3b2d1a9143406c2e8fc627a4e3766c1c6c13fb38",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элша Семь Полей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "elsha"
+    ],
+    "5-players": [
+     "elsha"
+    ],
+    "6-players": [
+     "elsha"
+    ],
+    "7-players": [
+     "elsha"
+    ],
+    "8-players": [
+     "elsha"
+    ]
+   },
+   "file": "elsha--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elsha.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-velt.webp",
+   "sha256": "702af0c816d78c9fc4d97693d3fc97bbd1a16387f008f61a87ef67ac92b91174",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Велт Крапчатый Щит",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "velt"
+    ],
+    "6-players": [
+     "velt"
+    ],
+    "7-players": [
+     "velt"
+    ],
+    "8-players": [
+     "velt"
+    ]
+   },
+   "file": "velt--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "velt.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-kora.webp",
+   "sha256": "6a7289d485ee70a743923f9f15102e881aa42fdf6bfb2773cddba78f2fc914f9",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кора Кривой Штрих",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "kora"
+    ],
+    "7-players": [
+     "kora"
+    ],
+    "8-players": [
+     "kora"
+    ]
+   },
+   "file": "kora--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kora.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-rin.webp",
+   "sha256": "d84c61c1d17db6ecff1ddc138de300e3ba46c0ee5924b4f75ad4cfabd327601a",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рин Янтарная Пуговица",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "rin"
+    ],
+    "8-players": [
+     "rin"
+    ]
+   },
+   "file": "rin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rin.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/heroes-yana.webp",
+   "sha256": "3c53b0195f0d8869494db1851359b394ede05cc3084e0392c491266f1edb5de2",
+   "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яна Неровная Ступень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "yana"
+    ]
+   },
+   "file": "yana--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yana.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-second-wing-yard.webp",
+   "sha256": "5f1c41a9788322e7d2700f4f4bd0438fddd2bc5bdbec55317ae308691b108e5e",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор Второго Крыла",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "second-wing-yard"
+    ],
+    "4-players": [
+     "second-wing-yard"
+    ],
+    "5-players": [
+     "second-wing-yard"
+    ],
+    "6-players": [
+     "second-wing-yard"
+    ],
+    "7-players": [
+     "second-wing-yard"
+    ],
+    "8-players": [
+     "second-wing-yard"
+    ]
+   },
+   "file": "second-wing-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-wind-attic.webp",
+   "sha256": "6fb03b5fff07116cb4d823a3969f3118ddc6ef2806663de98134b029fea63e1b",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сквозной чердак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wind-attic"
+    ],
+    "4-players": [
+     "wind-attic"
+    ],
+    "5-players": [
+     "wind-attic"
+    ],
+    "6-players": [
+     "wind-attic"
+    ],
+    "7-players": [
+     "wind-attic"
+    ],
+    "8-players": [
+     "wind-attic"
+    ]
+   },
+   "file": "wind-attic.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-bristled-slope.webp",
+   "sha256": "0578254f03a155e60feefbd459117d255c32c09e6383b5a03a20a87823907608",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Щетинистый склон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bristled-slope"
+    ],
+    "4-players": [
+     "bristled-slope"
+    ],
+    "5-players": [
+     "bristled-slope"
+    ],
+    "6-players": [
+     "bristled-slope"
+    ],
+    "7-players": [
+     "bristled-slope"
+    ],
+    "8-players": [
+     "bristled-slope"
+    ]
+   },
+   "file": "bristled-slope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-white-burrow.webp",
+   "sha256": "b8232f96bd11de8ced198890d0d7a7c2f494c77e457a00f561d83957e6e32d96",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Белая нора",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-burrow"
+    ],
+    "4-players": [
+     "white-burrow"
+    ],
+    "5-players": [
+     "white-burrow"
+    ],
+    "6-players": [
+     "white-burrow"
+    ],
+    "7-players": [
+     "white-burrow"
+    ],
+    "8-players": [
+     "white-burrow"
+    ]
+   },
+   "file": "white-burrow.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-three-ledges.webp",
+   "sha256": "e1cb01f7a03ef5cc183e19e1dcb66584f72e3e45d07933b83f1c06dc6c334e4c",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Три уступа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "three-ledges"
+    ],
+    "4-players": [
+     "three-ledges"
+    ],
+    "5-players": [
+     "three-ledges"
+    ],
+    "6-players": [
+     "three-ledges"
+    ],
+    "7-players": [
+     "three-ledges"
+    ],
+    "8-players": [
+     "three-ledges"
+    ]
+   },
+   "file": "three-ledges.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-thread-ravine.webp",
+   "sha256": "517d2529cc0904538ad68c7b1343d1ca3ef0f58463892947acb78ad84a456601",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Висячая расселина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "thread-ravine"
+    ],
+    "4-players": [
+     "thread-ravine"
+    ],
+    "5-players": [
+     "thread-ravine"
+    ],
+    "6-players": [
+     "thread-ravine"
+    ],
+    "7-players": [
+     "thread-ravine"
+    ],
+    "8-players": [
+     "thread-ravine"
+    ]
+   },
+   "file": "thread-ravine.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-shed-gallery.webp",
+   "sha256": "dc341581e1aa2aa7d223bc7e7c5713ec1ead0714e0c7581d189a1dc8df00e524",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полотняная галерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shed-gallery"
+    ],
+    "4-players": [
+     "shed-gallery"
+    ],
+    "5-players": [
+     "shed-gallery"
+    ],
+    "6-players": [
+     "shed-gallery"
+    ],
+    "7-players": [
+     "shed-gallery"
+    ],
+    "8-players": [
+     "shed-gallery"
+    ]
+   },
+   "file": "shed-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-hollow-meadow.webp",
+   "sha256": "992e261de9f17e25fa1908e3b7c934ca7cf06b54116798cd95d0df0d4da6e693",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гулкая поляна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hollow-meadow"
+    ],
+    "4-players": [
+     "hollow-meadow"
+    ],
+    "5-players": [
+     "hollow-meadow"
+    ],
+    "6-players": [
+     "hollow-meadow"
+    ],
+    "7-players": [
+     "hollow-meadow"
+    ],
+    "8-players": [
+     "hollow-meadow"
+    ]
+   },
+   "file": "hollow-meadow.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/places-split-rock.webp",
+   "sha256": "f2d09be613ede7011a8ff4a642a0a2f267b7fd488d006f7b39abfd2cd4864be5",
+   "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раздвоенная скала",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "split-rock"
+    ],
+    "4-players": [
+     "split-rock"
+    ],
+    "5-players": [
+     "split-rock"
+    ],
+    "6-players": [
+     "split-rock"
+    ],
+    "7-players": [
+     "split-rock"
+    ],
+    "8-players": [
+     "split-rock"
+    ]
+   },
+   "file": "split-rock.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/foes-foe-f1ea64334d.webp",
+   "sha256": "adb5d83464d924728049a04786d17cf6eb76397dfd34c682b533841508c36b90",
+   "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Холщовая учебная стойка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2"
+    ],
+    "4-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3"
+    ],
+    "5-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3"
+    ],
+    "6-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3",
+     "yard-wardens-foe-4"
+    ],
+    "7-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3",
+     "yard-wardens-foe-4",
+     "yard-wardens-foe-5"
+    ],
+    "8-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3",
+     "yard-wardens-foe-4",
+     "yard-wardens-foe-5",
+     "yard-wardens-foe-6"
+    ]
+   },
+   "file": "foe-f1ea64334d.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/foes-foe-f1ea64334d.webp",
+   "sha256": "adb5d83464d924728049a04786d17cf6eb76397dfd34c682b533841508c36b90",
+   "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Холщовая учебная стойка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2"
+    ],
+    "4-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3"
+    ],
+    "5-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3"
+    ],
+    "6-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3",
+     "yard-wardens-foe-4"
+    ],
+    "7-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3",
+     "yard-wardens-foe-4",
+     "yard-wardens-foe-5"
+    ],
+    "8-players": [
+     "yard-wardens-foe-1",
+     "yard-wardens-foe-2",
+     "yard-wardens-foe-3",
+     "yard-wardens-foe-4",
+     "yard-wardens-foe-5",
+     "yard-wardens-foe-6"
+    ]
+   },
+   "file": "foe-f1ea64334d--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-f1ea64334d.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/foes-foe-69beabb91a.webp",
+   "sha256": "7676b5734a69c6176f890bd313f9a5a5ba1383ca5bad717c61c20e7e1e69b43c",
+   "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чучело в полосатом чехле",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2"
+    ],
+    "4-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3"
+    ],
+    "5-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3"
+    ],
+    "6-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3",
+     "canvas-wardens-foe-4"
+    ],
+    "7-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3",
+     "canvas-wardens-foe-4",
+     "canvas-wardens-foe-5"
+    ],
+    "8-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3",
+     "canvas-wardens-foe-4",
+     "canvas-wardens-foe-5",
+     "canvas-wardens-foe-6"
+    ]
+   },
+   "file": "foe-69beabb91a.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/foes-foe-69beabb91a.webp",
+   "sha256": "7676b5734a69c6176f890bd313f9a5a5ba1383ca5bad717c61c20e7e1e69b43c",
+   "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чучело в полосатом чехле",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2"
+    ],
+    "4-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3"
+    ],
+    "5-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3"
+    ],
+    "6-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3",
+     "canvas-wardens-foe-4"
+    ],
+    "7-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3",
+     "canvas-wardens-foe-4",
+     "canvas-wardens-foe-5"
+    ],
+    "8-players": [
+     "canvas-wardens-foe-1",
+     "canvas-wardens-foe-2",
+     "canvas-wardens-foe-3",
+     "canvas-wardens-foe-4",
+     "canvas-wardens-foe-5",
+     "canvas-wardens-foe-6"
+    ]
+   },
+   "file": "foe-69beabb91a--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-69beabb91a.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/foes-foe-82ecafa721.webp",
+   "sha256": "44bce04fe160ddbd8f600072ad2b43016513b129142b7710091c30a1be2c6790",
+   "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чучело с красной лентой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2"
+    ],
+    "4-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3"
+    ],
+    "5-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3"
+    ],
+    "6-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3",
+     "gate-wardens-foe-4"
+    ],
+    "7-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3",
+     "gate-wardens-foe-4",
+     "gate-wardens-foe-5"
+    ],
+    "8-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3",
+     "gate-wardens-foe-4",
+     "gate-wardens-foe-5",
+     "gate-wardens-foe-6"
+    ]
+   },
+   "file": "foe-82ecafa721.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/foes-foe-82ecafa721.webp",
+   "sha256": "44bce04fe160ddbd8f600072ad2b43016513b129142b7710091c30a1be2c6790",
+   "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чучело с красной лентой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2"
+    ],
+    "4-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3"
+    ],
+    "5-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3"
+    ],
+    "6-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3",
+     "gate-wardens-foe-4"
+    ],
+    "7-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3",
+     "gate-wardens-foe-4",
+     "gate-wardens-foe-5"
+    ],
+    "8-players": [
+     "gate-wardens-foe-1",
+     "gate-wardens-foe-2",
+     "gate-wardens-foe-3",
+     "gate-wardens-foe-4",
+     "gate-wardens-foe-5",
+     "gate-wardens-foe-6"
+    ]
+   },
+   "file": "foe-82ecafa721--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-82ecafa721.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-mara.webp",
+   "sha256": "7cb85105a2611184804e415a7d1f36fdf6e434676fc8ca1e5a7740f3466b1391",
+   "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Вишневая Ветка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara"
+    ],
+    "4-players": [
+     "mara"
+    ],
+    "5-players": [
+     "mara"
+    ],
+    "6-players": [
+     "mara"
+    ],
+    "7-players": [
+     "mara"
+    ],
+    "8-players": [
+     "mara"
+    ]
+   },
+   "file": "mara--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mara.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-kren.webp",
+   "sha256": "8e4581ec836c5310834496019c2e47c881f5a31e3845fa06f15bdef5d3a500fe",
+   "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kren"
+    ],
+    "4-players": [
+     "kren"
+    ],
+    "5-players": [
+     "kren"
+    ],
+    "6-players": [
+     "kren"
+    ],
+    "7-players": [
+     "kren"
+    ],
+    "8-players": [
+     "kren"
+    ]
+   },
+   "file": "kren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kren.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-ruba.webp",
+   "sha256": "9dc1698919f9f521b67ee4614314028127a8ad7a16de326a3c8fdb860cc5533e",
+   "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руба",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruba"
+    ],
+    "4-players": [
+     "ruba"
+    ],
+    "5-players": [
+     "ruba"
+    ],
+    "6-players": [
+     "ruba"
+    ],
+    "7-players": [
+     "ruba"
+    ],
+    "8-players": [
+     "ruba"
+    ]
+   },
+   "file": "ruba--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruba.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-losk.webp",
+   "sha256": "887397b8d09d04a2b214e00a68e2344d3b088de8380c428c4e578d1612fb6962",
+   "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лоск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "losk"
+    ],
+    "4-players": [
+     "losk"
+    ],
+    "5-players": [
+     "losk"
+    ],
+    "6-players": [
+     "losk"
+    ],
+    "7-players": [
+     "losk"
+    ],
+    "8-players": [
+     "losk"
+    ]
+   },
+   "file": "losk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "losk.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-iven.webp",
+   "sha256": "4f088b09311e12f5328d52301404e665d483b84fa8ebb0f82efd015643f59832",
+   "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивен Низкий Карниз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iven"
+    ],
+    "4-players": [
+     "iven"
+    ],
+    "5-players": [
+     "iven"
+    ],
+    "6-players": [
+     "iven"
+    ],
+    "7-players": [
+     "iven"
+    ],
+    "8-players": [
+     "iven"
+    ]
+   },
+   "file": "iven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iven.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-brus.webp",
+   "sha256": "e8b3a572b067cfe2d230cdd647c4b47a83e1c0706ba2556e9d8eb48f433ca316",
+   "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брус",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brus"
+    ],
+    "4-players": [
+     "brus"
+    ],
+    "5-players": [
+     "brus"
+    ],
+    "6-players": [
+     "brus"
+    ],
+    "7-players": [
+     "brus"
+    ],
+    "8-players": [
+     "brus"
+    ]
+   },
+   "file": "brus--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "brus.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-shella.webp",
+   "sha256": "46699345c1ac87ad463884b45f56dfa95ba2b309995aeba9074cc13f2085145b",
+   "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шелла",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shella"
+    ],
+    "4-players": [
+     "shella"
+    ],
+    "5-players": [
+     "shella"
+    ],
+    "6-players": [
+     "shella"
+    ],
+    "7-players": [
+     "shella"
+    ],
+    "8-players": [
+     "shella"
+    ]
+   },
+   "file": "shella--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "shella.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-nema.webp",
+   "sha256": "4e5e267b651c37a48c5941d286aa7ad599506a24d95da7627de43751b575c629",
+   "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нема",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nema"
+    ],
+    "4-players": [
+     "nema"
+    ],
+    "5-players": [
+     "nema"
+    ],
+    "6-players": [
+     "nema"
+    ],
+    "7-players": [
+     "nema"
+    ],
+    "8-players": [
+     "nema"
+    ]
+   },
+   "file": "nema--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nema.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-oda.webp",
+   "sha256": "4fc1e3181708c313f0acfc00372f595af684f645c1823b232a2dda1d445e6f4d",
+   "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ода Луговая Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oda"
+    ],
+    "4-players": [
+     "oda"
+    ],
+    "5-players": [
+     "oda"
+    ],
+    "6-players": [
+     "oda"
+    ],
+    "7-players": [
+     "oda"
+    ],
+    "8-players": [
+     "oda"
+    ]
+   },
+   "file": "oda--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oda.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-mila.webp",
+   "sha256": "cb1d748c77ee8d856520d5329cd5ed2086bdd50107b8b81d1ff47786e462df44",
+   "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мила Короткий Рукав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mila"
+    ],
+    "4-players": [
+     "mila"
+    ],
+    "5-players": [
+     "mila"
+    ],
+    "6-players": [
+     "mila"
+    ],
+    "7-players": [
+     "mila"
+    ],
+    "8-players": [
+     "mila"
+    ]
+   },
+   "file": "mila--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mila.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/assets/table/npcs-krucha.webp",
+   "sha256": "26da7540567129545c7bd03faf43bd4084f726f15aad1ea2a36cfc2e86c68e69",
+   "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Круча",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "krucha"
+    ],
+    "4-players": [
+     "krucha"
+    ],
+    "5-players": [
+     "krucha"
+    ],
+    "6-players": [
+     "krucha"
+    ],
+    "7-players": [
+     "krucha"
+    ],
+    "8-players": [
+     "krucha"
+    ]
+   },
+   "file": "krucha--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "krucha.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/familiar-school/illustrations/opening.webp",
+   "sha256": "d55785eb64d0fd8a85764e22ac5de488a6514a68a974c9c140885545daf31e87",
+   "originalSha256": "462cf68e99c74bd6ef14c40014ea0d2b98ed768ba5112be8feb5f67f7f8e5bb7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор Второго Крыла — Школа перепутанных фамильяров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crooked-valley"
+    ],
+    "4-players": [
+     "crooked-valley"
+    ],
+    "5-players": [
+     "crooked-valley"
+    ],
+    "6-players": [
+     "crooked-valley"
+    ],
+    "7-players": [
+     "crooked-valley"
+    ],
+    "8-players": [
+     "crooked-valley"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "second-wing-yard--map.webp",
+   "source": "campaigns/fantasy-2026/familiar-school/assets/battle-maps/second-wing-yard.webp",
+   "sha256": "f139dda21ad1ebb0e6257f84ca77f8d0d8478b31ac8dbc568431f7f3b7595d66",
+   "originalSha256": "2837bef85404f1863475e111aa0dece0e8113efd6bf1c5420ed9c7bb6265a1f7",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор Второго Крыла. Visible scenery: Низкие учебные корпуса окружают двор с лестницами, верёвками и скамьями разной высоты. У ворот висит доска для добровольных полевых пар.. World style: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "second-wing-yard.webp",
+   "subjects": {
+    "3-players": [
+     "second-wing-yard"
+    ],
+    "4-players": [
+     "second-wing-yard"
+    ],
+    "5-players": [
+     "second-wing-yard"
+    ],
+    "6-players": [
+     "second-wing-yard"
+    ],
+    "7-players": [
+     "second-wing-yard"
+    ],
+    "8-players": [
+     "second-wing-yard"
+    ]
+   }
+  },
+  {
+   "file": "shed-gallery--map.webp",
+   "source": "campaigns/fantasy-2026/familiar-school/assets/battle-maps/shed-gallery.webp",
+   "sha256": "636409522a8274f8a3e0ac371c5fc52374a9ef97ced601c06ae4762be6e0f07a",
+   "originalSha256": "d230dbde2e16039119a51c8549d8a792e6c7e37cc7c23504c0f286bea01af0a5",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Полотняная галерея. Visible scenery: На узкой просеке между деревьями натянуты учебные тенты и сухие верёвочные сети. Между полотнами оставлены боковые лазки, а на дальней стороне видны низкие колышки.. World style: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "shed-gallery.webp",
+   "subjects": {
+    "3-players": [
+     "shed-gallery"
+    ],
+    "4-players": [
+     "shed-gallery"
+    ],
+    "5-players": [
+     "shed-gallery"
+    ],
+    "6-players": [
+     "shed-gallery"
+    ],
+    "7-players": [
+     "shed-gallery"
+    ],
+    "8-players": [
+     "shed-gallery"
+    ]
+   }
+  },
+  {
+   "file": "split-rock--map.webp",
+   "source": "campaigns/fantasy-2026/familiar-school/assets/battle-maps/split-rock.webp",
+   "sha256": "ddf92366ad3f57ef601bc6079f57780962632711765e9fea1074692b28984ca2",
+   "originalSha256": "4bb1c5d973995941ee9cbe949941a3c791ffcce90165168ef019ba799d1701cf",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Раздвоенная скала. Visible scenery: Два скальных зубца оставляют короткий проход к школе. Сбоку тянется пологий обход с неудобным поворотом для больших вещей; на верхней террасе может собраться вся группа.. World style: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "split-rock.webp",
+   "subjects": {
+    "3-players": [
+     "split-rock"
+    ],
+    "4-players": [
+     "split-rock"
+    ],
+    "5-players": [
+     "split-rock"
+    ],
+    "6-players": [
+     "split-rock"
+    ],
+    "7-players": [
+     "split-rock"
+    ],
+    "8-players": [
+     "split-rock"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/familiar-school/assets/world-map/world-map.webp",
+   "sha256": "3a3b9baf0a3296bcc775efcfe676cf4718120faf68f32245007c070969465138",
+   "originalSha256": "497cb22b33ed1fe5f0a417c4f55d56802e4aae99ec280c1665eca20cc6c0ed02",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Косая долина. Style Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Двор Второго Крыла; 0.367,0.177 Сквозной чердак; 0.623,0.15 Щетинистый склон; 0.88,0.177 Белая нора; 0.905,0.517 Три уступа; 0.648,0.49 Висячая расселина; 0.392,0.517 Полотняная галерея; 0.135,0.49 Гулкая поляна; 0.11,0.83 Раздвоенная скала. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

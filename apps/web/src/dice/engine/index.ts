@@ -1,3 +1,4 @@
+import { campaignTheme } from '../../visual/campaign-themes/index.ts';
 import { textureUrl } from '../../visual/ui-kit.ts';
 import { DiceEngine } from './engine.ts';
 import type { FaceArt } from './labels.ts';
@@ -23,14 +24,17 @@ async function picture(url: string): Promise<HTMLImageElement | null> {
  * The numerals need the display face: it is loaded before any face is drawn.
  */
 export async function createDiceEngine(canvas: HTMLCanvasElement): Promise<DiceEngine> {
-  const [obsidian, ivory] = await Promise.all([
+  const id = canvas.closest<HTMLElement>('[data-campaign-theme]')?.dataset['campaignTheme'];
+  const theme = id ? campaignTheme(id) : undefined;
+  const [obsidian, ivory, ornament] = await Promise.all([
     picture(textureUrl('dice-obsidian')),
     picture(textureUrl('dice-ivory')),
+    picture(theme ? `/table-materials/${theme.id}.webp` : ''),
     document.fonts.load('700 64px "Cormorant Garamond"').catch(() => []),
   ]);
   const arts: Record<'obsidian' | 'ivory', FaceArt> = {
-    obsidian: { surface: obsidian, ink: 'gold' },
-    ivory: { surface: ivory, ink: 'dark' },
+    obsidian: { surface: obsidian, ink: 'gold', ornament },
+    ivory: { surface: ivory, ink: 'dark', ornament },
   };
   return new DiceEngine(canvas, arts);
 }

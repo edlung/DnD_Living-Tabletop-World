@@ -1,0 +1,3812 @@
+{
+  "baseline": "3c8856506a1d",
+  "same_rules_and_tactics": true,
+  "encounters": 10,
+  "editions": [
+    {
+      "campaign": "hollowmere",
+      "key": "willow-ford-ambush",
+      "edition": "4-full",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 30,
+          "defeat": 2
+        },
+        "rounds": 147,
+        "zero": 28,
+        "dice": {
+          "4": 137,
+          "6": 271,
+          "8": 78,
+          "10": 50,
+          "20": 1328
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 30,
+          "defeat": 2
+        },
+        "rounds": 147,
+        "zero": 28,
+        "dice": {
+          "4": 137,
+          "6": 271,
+          "8": 78,
+          "10": 50,
+          "20": 1328
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 4,
+        "trials": 96,
+        "results": {
+          "win": 92,
+          "defeat": 4
+        },
+        "rounds": 452,
+        "zero": 71,
+        "dice": {
+          "4": 379,
+          "6": 917,
+          "8": 212,
+          "10": 125,
+          "20": 3834
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "willow-ford-ambush",
+      "edition": "3-without-1",
+      "party": [
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "defeat": 14,
+          "win": 18
+        },
+        "rounds": 130,
+        "zero": 22,
+        "dice": {
+          "4": 74,
+          "6": 287,
+          "8": 24,
+          "10": 19,
+          "20": 846
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 29,
+          "defeat": 3
+        },
+        "rounds": 119,
+        "zero": 14,
+        "dice": {
+          "4": 78,
+          "6": 235,
+          "8": 18,
+          "10": 13,
+          "20": 629
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 89,
+          "defeat": 7
+        },
+        "rounds": 315,
+        "zero": 42,
+        "dice": {
+          "4": 252,
+          "6": 720,
+          "8": 60,
+          "10": 39,
+          "20": 1746
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "willow-ford-ambush",
+      "edition": "3-without-2",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "defeat": 26,
+          "win": 6
+        },
+        "rounds": 176,
+        "zero": 31,
+        "dice": {
+          "4": 46,
+          "6": 320,
+          "10": 41,
+          "20": 1241
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 23,
+          "defeat": 9
+        },
+        "rounds": 169,
+        "zero": 26,
+        "dice": {
+          "4": 54,
+          "6": 230,
+          "10": 37,
+          "20": 1013
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 73,
+          "defeat": 23
+        },
+        "rounds": 539,
+        "zero": 73,
+        "dice": {
+          "4": 169,
+          "6": 716,
+          "10": 119,
+          "20": 3052
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "willow-ford-ambush",
+      "edition": "3-without-3",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "defeat": 18,
+          "win": 14
+        },
+        "rounds": 201,
+        "zero": 29,
+        "dice": {
+          "4": 80,
+          "6": 359,
+          "8": 19,
+          "10": 52,
+          "20": 1246
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 23,
+          "defeat": 9
+        },
+        "rounds": 132,
+        "zero": 14,
+        "dice": {
+          "4": 76,
+          "6": 264,
+          "8": 17,
+          "10": 30,
+          "20": 804
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 78,
+          "defeat": 18
+        },
+        "rounds": 467,
+        "zero": 60,
+        "dice": {
+          "4": 236,
+          "6": 781,
+          "8": 68,
+          "10": 111,
+          "20": 2722
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "willow-ford-ambush",
+      "edition": "3-without-4",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 12,
+          "defeat": 20
+        },
+        "rounds": 193,
+        "zero": 30,
+        "dice": {
+          "4": 24,
+          "6": 436,
+          "8": 32,
+          "10": 24,
+          "20": 1406
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "defeat": 8,
+          "win": 24
+        },
+        "rounds": 193,
+        "zero": 22,
+        "dice": {
+          "4": 22,
+          "6": 384,
+          "8": 42,
+          "10": 16,
+          "20": 1225
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "defeat": 34,
+          "win": 62
+        },
+        "rounds": 573,
+        "zero": 69,
+        "dice": {
+          "4": 74,
+          "6": 1156,
+          "8": 99,
+          "10": 56,
+          "20": 3658
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "cellar-rats",
+      "edition": "4-full",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "win": 27,
+          "defeat": 5
+        },
+        "rounds": 135,
+        "zero": 28,
+        "dice": {
+          "4": 412,
+          "6": 213,
+          "8": 46,
+          "10": 35,
+          "20": 1242
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "win": 27,
+          "defeat": 5
+        },
+        "rounds": 135,
+        "zero": 28,
+        "dice": {
+          "4": 412,
+          "6": 213,
+          "8": 46,
+          "10": 35,
+          "20": 1242
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 5,
+        "trials": 96,
+        "results": {
+          "win": 80,
+          "defeat": 16
+        },
+        "rounds": 405,
+        "zero": 87,
+        "dice": {
+          "4": 1309,
+          "6": 655,
+          "8": 182,
+          "10": 125,
+          "20": 3679
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "cellar-rats",
+      "edition": "3-without-1",
+      "party": [
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "win": 11,
+          "defeat": 21
+        },
+        "rounds": 113,
+        "zero": 28,
+        "dice": {
+          "4": 313,
+          "6": 166,
+          "8": 13,
+          "10": 12,
+          "20": 945
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 30,
+          "defeat": 2
+        },
+        "rounds": 87,
+        "zero": 13,
+        "dice": {
+          "4": 168,
+          "6": 190,
+          "8": 8,
+          "10": 7,
+          "20": 528
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 92,
+          "defeat": 4
+        },
+        "rounds": 256,
+        "zero": 44,
+        "dice": {
+          "4": 525,
+          "6": 623,
+          "8": 26,
+          "10": 29,
+          "20": 1541
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "cellar-rats",
+      "edition": "3-without-2",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "defeat": 14,
+          "win": 18
+        },
+        "rounds": 149,
+        "zero": 29,
+        "dice": {
+          "4": 340,
+          "6": 206,
+          "10": 48,
+          "20": 1136
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 30,
+          "defeat": 2
+        },
+        "rounds": 107,
+        "zero": 16,
+        "dice": {
+          "4": 181,
+          "6": 134,
+          "10": 26,
+          "20": 623
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 95,
+          "defeat": 1
+        },
+        "rounds": 319,
+        "zero": 66,
+        "dice": {
+          "4": 598,
+          "6": 407,
+          "10": 77,
+          "20": 1864
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "cellar-rats",
+      "edition": "3-without-3",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Лира Венн",
+          "wizard 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "defeat": 22,
+          "win": 10
+        },
+        "rounds": 132,
+        "zero": 32,
+        "dice": {
+          "4": 373,
+          "6": 189,
+          "8": 4,
+          "10": 38,
+          "20": 1056
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 86,
+        "zero": 13,
+        "dice": {
+          "4": 191,
+          "6": 156,
+          "8": 19,
+          "10": 17,
+          "20": 531
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 94,
+          "defeat": 2
+        },
+        "rounds": 273,
+        "zero": 41,
+        "dice": {
+          "4": 577,
+          "6": 564,
+          "8": 28,
+          "10": 47,
+          "20": 1632
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "cellar-rats",
+      "edition": "3-without-4",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 1"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 1"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 1"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "win": 15,
+          "defeat": 17
+        },
+        "rounds": 148,
+        "zero": 31,
+        "dice": {
+          "4": 347,
+          "6": 293,
+          "8": 18,
+          "10": 28,
+          "20": 1197
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 29,
+          "defeat": 3
+        },
+        "rounds": 127,
+        "zero": 20,
+        "dice": {
+          "4": 220,
+          "6": 349,
+          "8": 26,
+          "10": 7,
+          "20": 820
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 3,
+        "trials": 96,
+        "results": {
+          "win": 95,
+          "defeat": 1
+        },
+        "rounds": 401,
+        "zero": 55,
+        "dice": {
+          "4": 554,
+          "6": 1060,
+          "8": 52,
+          "10": 28,
+          "20": 2417
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-mill",
+      "edition": "4-full",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 3"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 3"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 3"
+        ],
+        [
+          "Лира Венн",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 8,
+        "trials": 32,
+        "results": {
+          "win": 5,
+          "defeat": 27
+        },
+        "rounds": 250,
+        "zero": 32,
+        "dice": {
+          "4": 266,
+          "6": 494,
+          "8": 680,
+          "10": 184,
+          "20": 4078
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "defeat": 1
+        },
+        "rounds": 209,
+        "zero": 29,
+        "dice": {
+          "4": 376,
+          "6": 517,
+          "8": 318,
+          "10": 119,
+          "20": 2496
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 4,
+        "trials": 96,
+        "results": {
+          "win": 91,
+          "defeat": 5
+        },
+        "rounds": 612,
+        "zero": 86,
+        "dice": {
+          "4": 1111,
+          "6": 1577,
+          "8": 980,
+          "10": 336,
+          "20": 7471
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-mill",
+      "edition": "3-without-1",
+      "party": [
+        [
+          "Хеск Коулберд",
+          "cleric 3"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 3"
+        ],
+        [
+          "Лира Венн",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 8,
+        "trials": 32,
+        "results": {
+          "defeat": 32
+        },
+        "rounds": 132,
+        "zero": 32,
+        "dice": {
+          "4": 88,
+          "6": 392,
+          "8": 453,
+          "10": 75,
+          "20": 2157
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 111,
+        "zero": 3,
+        "dice": {
+          "4": 70,
+          "6": 508,
+          "8": 22,
+          "10": 62,
+          "20": 956
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 96
+        },
+        "rounds": 348,
+        "zero": 15,
+        "dice": {
+          "4": 208,
+          "6": 1575,
+          "8": 57,
+          "10": 204,
+          "20": 2949
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-mill",
+      "edition": "3-without-2",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 3"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 3"
+        ],
+        [
+          "Лира Венн",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 8,
+        "trials": 32,
+        "results": {
+          "defeat": 32
+        },
+        "rounds": 143,
+        "zero": 32,
+        "dice": {
+          "4": 9,
+          "6": 327,
+          "8": 438,
+          "10": 108,
+          "20": 2447
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 157,
+        "zero": 13,
+        "dice": {
+          "4": 73,
+          "6": 369,
+          "8": 4,
+          "10": 94,
+          "20": 1389
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 93,
+          "defeat": 3
+        },
+        "rounds": 480,
+        "zero": 52,
+        "dice": {
+          "4": 225,
+          "6": 1119,
+          "8": 19,
+          "10": 336,
+          "20": 4264
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-mill",
+      "edition": "3-without-3",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 3"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 3"
+        ],
+        [
+          "Лира Венн",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 8,
+        "trials": 32,
+        "results": {
+          "defeat": 32
+        },
+        "rounds": 146,
+        "zero": 32,
+        "dice": {
+          "4": 70,
+          "6": 350,
+          "8": 492,
+          "10": 109,
+          "20": 2528
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "defeat": 1
+        },
+        "rounds": 135,
+        "zero": 5,
+        "dice": {
+          "4": 107,
+          "6": 477,
+          "8": 25,
+          "10": 79,
+          "20": 1263
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 96
+        },
+        "rounds": 374,
+        "zero": 12,
+        "dice": {
+          "4": 243,
+          "6": 1501,
+          "8": 61,
+          "10": 197,
+          "20": 3531
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-mill",
+      "edition": "3-without-4",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 3"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 3"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 8,
+        "trials": 32,
+        "results": {
+          "defeat": 32
+        },
+        "rounds": 120,
+        "zero": 32,
+        "dice": {
+          "4": 28,
+          "6": 132,
+          "8": 475,
+          "10": 93,
+          "20": 2100
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "defeat": 1
+        },
+        "rounds": 220,
+        "zero": 10,
+        "dice": {
+          "4": 88,
+          "6": 481,
+          "8": 57,
+          "10": 137,
+          "20": 1851
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 90,
+          "defeat": 6
+        },
+        "rounds": 660,
+        "zero": 27,
+        "dice": {
+          "4": 264,
+          "6": 1463,
+          "8": 153,
+          "10": 401,
+          "20": 5523
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-bell",
+      "edition": "4-full",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 4"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 4"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 4"
+        ],
+        [
+          "Лира Венн",
+          "wizard 4"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "defeat": 1
+        },
+        "rounds": 225,
+        "zero": 29,
+        "dice": {
+          "4": 376,
+          "6": 996,
+          "8": 557,
+          "10": 14,
+          "20": 2118
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "defeat": 1
+        },
+        "rounds": 225,
+        "zero": 29,
+        "dice": {
+          "4": 376,
+          "6": 996,
+          "8": 557,
+          "10": 14,
+          "20": 2118
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 4,
+        "trials": 96,
+        "results": {
+          "win": 89,
+          "defeat": 7
+        },
+        "rounds": 704,
+        "zero": 92,
+        "dice": {
+          "4": 1188,
+          "6": 3002,
+          "8": 1799,
+          "10": 43,
+          "20": 6472
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-bell",
+      "edition": "3-without-1",
+      "party": [
+        [
+          "Хеск Коулберд",
+          "cleric 4"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 4"
+        ],
+        [
+          "Лира Венн",
+          "wizard 4"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 15,
+          "defeat": 17
+        },
+        "rounds": 238,
+        "zero": 28,
+        "dice": {
+          "4": 153,
+          "6": 937,
+          "8": 578,
+          "10": 4,
+          "20": 1523
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 27,
+          "defeat": 5
+        },
+        "rounds": 162,
+        "zero": 20,
+        "dice": {
+          "4": 96,
+          "6": 690,
+          "8": 391,
+          "10": 1,
+          "20": 1044
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 84,
+          "defeat": 12
+        },
+        "rounds": 482,
+        "zero": 62,
+        "dice": {
+          "4": 291,
+          "6": 2068,
+          "8": 1145,
+          "10": 7,
+          "20": 3150
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-bell",
+      "edition": "3-without-2",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 4"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 4"
+        ],
+        [
+          "Лира Венн",
+          "wizard 4"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "defeat": 27,
+          "win": 5
+        },
+        "rounds": 318,
+        "zero": 32,
+        "dice": {
+          "4": 52,
+          "6": 820,
+          "8": 756,
+          "10": 79,
+          "20": 2137
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "defeat": 8,
+          "win": 24
+        },
+        "rounds": 220,
+        "zero": 29,
+        "dice": {
+          "4": 46,
+          "6": 564,
+          "8": 548,
+          "10": 34,
+          "20": 1540
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 79,
+          "defeat": 17
+        },
+        "rounds": 661,
+        "zero": 86,
+        "dice": {
+          "4": 159,
+          "6": 1736,
+          "8": 1406,
+          "10": 77,
+          "20": 4574
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-bell",
+      "edition": "3-without-3",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 4"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 4"
+        ],
+        [
+          "Лира Венн",
+          "wizard 4"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "defeat": 25,
+          "win": 7
+        },
+        "rounds": 348,
+        "zero": 31,
+        "dice": {
+          "4": 174,
+          "6": 865,
+          "8": 854,
+          "10": 84,
+          "20": 2262
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 28,
+          "defeat": 4
+        },
+        "rounds": 190,
+        "zero": 20,
+        "dice": {
+          "4": 109,
+          "6": 686,
+          "8": 445,
+          "10": 19,
+          "20": 1382
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "win": 90,
+          "defeat": 6
+        },
+        "rounds": 504,
+        "zero": 51,
+        "dice": {
+          "4": 358,
+          "6": 2091,
+          "8": 1113,
+          "10": 31,
+          "20": 3777
+        }
+      }
+    },
+    {
+      "campaign": "hollowmere",
+      "key": "sunken-bell",
+      "edition": "3-without-4",
+      "party": [
+        [
+          "Брин Эшдаун",
+          "fighter 4"
+        ],
+        [
+          "Хеск Коулберд",
+          "cleric 4"
+        ],
+        [
+          "Рен Андербоу",
+          "rogue 4"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "defeat": 25,
+          "win": 7
+        },
+        "rounds": 335,
+        "zero": 30,
+        "dice": {
+          "4": 89,
+          "6": 780,
+          "8": 783,
+          "10": 63,
+          "20": 2067
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "defeat": 14,
+          "win": 18
+        },
+        "rounds": 285,
+        "zero": 26,
+        "dice": {
+          "4": 61,
+          "6": 487,
+          "8": 651,
+          "10": 39,
+          "20": 1682
+        }
+      },
+      "holdout": {
+        "start": 3000,
+        "foes": 2,
+        "trials": 96,
+        "results": {
+          "defeat": 35,
+          "win": 61
+        },
+        "rounds": 840,
+        "zero": 73,
+        "dice": {
+          "4": 351,
+          "6": 1559,
+          "8": 1897,
+          "10": 106,
+          "20": 5173
+        }
+      }
+    },
+    {
+      "campaign": "clockwork-carnival",
+      "key": "rubezh-step",
+      "edition": "5-players",
+      "party": [
+        [
+          "Злата Две Пряжки",
+          "fighter 3"
+        ],
+        [
+          "Миро Фанфарон",
+          "rogue 3"
+        ],
+        [
+          "Ясна Напёрсток",
+          "cleric 3"
+        ],
+        [
+          "Борис Складень",
+          "wizard 3"
+        ],
+        [
+          "Полина Шаг-в-Шаг",
+          "fighter 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 29,
+          "partial": 3
+        },
+        "rounds": 138,
+        "zero": 0,
+        "dice": {
+          "20": 327
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 2,
+        "trials": 32,
+        "results": {
+          "win": 23,
+          "partial": 9
+        },
+        "rounds": 165,
+        "zero": 0,
+        "dice": {
+          "4": 6,
+          "6": 89,
+          "8": 8,
+          "10": 10,
+          "20": 618
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 2,
+        "trials": 48,
+        "results": {
+          "win": 29,
+          "partial": 19
+        },
+        "rounds": 249,
+        "zero": 0,
+        "dice": {
+          "4": 6,
+          "6": 137,
+          "8": 18,
+          "10": 19,
+          "20": 977
+        }
+      }
+    },
+    {
+      "campaign": "clockwork-carnival",
+      "key": "rubezh-step",
+      "edition": "6-players",
+      "party": [
+        [
+          "Злата Две Пряжки",
+          "fighter 3"
+        ],
+        [
+          "Миро Фанфарон",
+          "rogue 3"
+        ],
+        [
+          "Ясна Напёрсток",
+          "cleric 3"
+        ],
+        [
+          "Борис Складень",
+          "wizard 3"
+        ],
+        [
+          "Полина Шаг-в-Шаг",
+          "fighter 3"
+        ],
+        [
+          "Тим Кружевник",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 24,
+          "partial": 8
+        },
+        "rounds": 162,
+        "zero": 0,
+        "dice": {
+          "8": 1,
+          "10": 1,
+          "20": 458
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "partial": 18,
+          "win": 13,
+          "defeat": 1
+        },
+        "rounds": 171,
+        "zero": 1,
+        "dice": {
+          "4": 6,
+          "6": 176,
+          "8": 32,
+          "10": 15,
+          "20": 914
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 3,
+        "trials": 48,
+        "results": {
+          "win": 26,
+          "partial": 22
+        },
+        "rounds": 258,
+        "zero": 1,
+        "dice": {
+          "4": 8,
+          "6": 261,
+          "8": 54,
+          "10": 28,
+          "20": 1400
+        }
+      }
+    },
+    {
+      "campaign": "clockwork-carnival",
+      "key": "rubezh-step",
+      "edition": "7-players",
+      "party": [
+        [
+          "Злата Две Пряжки",
+          "fighter 3"
+        ],
+        [
+          "Миро Фанфарон",
+          "rogue 3"
+        ],
+        [
+          "Ясна Напёрсток",
+          "cleric 3"
+        ],
+        [
+          "Борис Складень",
+          "wizard 3"
+        ],
+        [
+          "Полина Шаг-в-Шаг",
+          "fighter 3"
+        ],
+        [
+          "Тим Кружевник",
+          "rogue 3"
+        ],
+        [
+          "Эльда Бубенчик",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "win": 16,
+          "partial": 16
+        },
+        "rounds": 174,
+        "zero": 0,
+        "dice": {
+          "6": 17,
+          "8": 5,
+          "10": 2,
+          "20": 559
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "partial": 15,
+          "win": 17
+        },
+        "rounds": 180,
+        "zero": 0,
+        "dice": {
+          "4": 6,
+          "6": 167,
+          "8": 34,
+          "10": 7,
+          "20": 1003
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 3,
+        "trials": 48,
+        "results": {
+          "partial": 16,
+          "win": 32
+        },
+        "rounds": 252,
+        "zero": 0,
+        "dice": {
+          "4": 4,
+          "6": 258,
+          "8": 54,
+          "10": 19,
+          "20": 1470
+        }
+      }
+    },
+    {
+      "campaign": "clockwork-carnival",
+      "key": "rubezh-step",
+      "edition": "8-players",
+      "party": [
+        [
+          "Злата Две Пряжки",
+          "fighter 3"
+        ],
+        [
+          "Миро Фанфарон",
+          "rogue 3"
+        ],
+        [
+          "Ясна Напёрсток",
+          "cleric 3"
+        ],
+        [
+          "Борис Складень",
+          "wizard 3"
+        ],
+        [
+          "Полина Шаг-в-Шаг",
+          "fighter 3"
+        ],
+        [
+          "Тим Кружевник",
+          "rogue 3"
+        ],
+        [
+          "Эльда Бубенчик",
+          "cleric 3"
+        ],
+        [
+          "Глеб Кармашек",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "partial": 23,
+          "win": 9
+        },
+        "rounds": 183,
+        "zero": 0,
+        "dice": {
+          "6": 55,
+          "8": 4,
+          "20": 625
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 3,
+        "trials": 32,
+        "results": {
+          "partial": 18,
+          "win": 14
+        },
+        "rounds": 180,
+        "zero": 1,
+        "dice": {
+          "4": 8,
+          "6": 183,
+          "8": 35,
+          "10": 8,
+          "20": 1065
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 3,
+        "trials": 48,
+        "results": {
+          "partial": 34,
+          "win": 14
+        },
+        "rounds": 270,
+        "zero": 2,
+        "dice": {
+          "4": 38,
+          "6": 288,
+          "8": 80,
+          "10": 7,
+          "20": 1656
+        }
+      }
+    },
+    {
+      "campaign": "last-orbit",
+      "key": "hull-walk",
+      "edition": "5-players",
+      "party": [
+        [
+          "Севра Дан",
+          "fighter 3"
+        ],
+        [
+          "Мир Авель",
+          "rogue 3"
+        ],
+        [
+          "Нара Вель",
+          "cleric 3"
+        ],
+        [
+          "Илай Рош",
+          "wizard 3"
+        ],
+        [
+          "Бор Камен",
+          "fighter 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "partial": 10,
+          "win": 17,
+          "defeat": 5
+        },
+        "rounds": 142,
+        "zero": 15,
+        "dice": {
+          "4": 82,
+          "6": 285,
+          "8": 5,
+          "10": 82,
+          "20": 1021
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "partial": 6,
+          "win": 19,
+          "defeat": 7
+        },
+        "rounds": 142,
+        "zero": 14,
+        "dice": {
+          "4": 68,
+          "6": 303,
+          "8": 2,
+          "10": 85,
+          "20": 1015
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 4,
+        "trials": 48,
+        "results": {
+          "win": 29,
+          "defeat": 9,
+          "partial": 10
+        },
+        "rounds": 216,
+        "zero": 22,
+        "dice": {
+          "4": 106,
+          "6": 442,
+          "8": 4,
+          "10": 140,
+          "20": 1547
+        }
+      }
+    },
+    {
+      "campaign": "last-orbit",
+      "key": "hull-walk",
+      "edition": "6-players",
+      "party": [
+        [
+          "Севра Дан",
+          "fighter 3"
+        ],
+        [
+          "Мир Авель",
+          "rogue 3"
+        ],
+        [
+          "Нара Вель",
+          "cleric 3"
+        ],
+        [
+          "Илай Рош",
+          "wizard 3"
+        ],
+        [
+          "Бор Камен",
+          "fighter 3"
+        ],
+        [
+          "Агата Лун",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "partial": 18,
+          "win": 13,
+          "defeat": 1
+        },
+        "rounds": 132,
+        "zero": 8,
+        "dice": {
+          "4": 76,
+          "6": 281,
+          "8": 4,
+          "10": 99,
+          "20": 1024
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 4,
+        "trials": 32,
+        "results": {
+          "win": 22,
+          "partial": 4,
+          "defeat": 6
+        },
+        "rounds": 139,
+        "zero": 16,
+        "dice": {
+          "4": 80,
+          "6": 312,
+          "10": 93,
+          "20": 1056
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 4,
+        "trials": 48,
+        "results": {
+          "partial": 9,
+          "win": 31,
+          "defeat": 8
+        },
+        "rounds": 216,
+        "zero": 24,
+        "dice": {
+          "4": 118,
+          "6": 499,
+          "8": 2,
+          "10": 134,
+          "20": 1652
+        }
+      }
+    },
+    {
+      "campaign": "last-orbit",
+      "key": "hull-walk",
+      "edition": "7-players",
+      "party": [
+        [
+          "Севра Дан",
+          "fighter 3"
+        ],
+        [
+          "Мир Авель",
+          "rogue 3"
+        ],
+        [
+          "Нара Вель",
+          "cleric 3"
+        ],
+        [
+          "Илай Рош",
+          "wizard 3"
+        ],
+        [
+          "Бор Камен",
+          "fighter 3"
+        ],
+        [
+          "Агата Лун",
+          "rogue 3"
+        ],
+        [
+          "Юна Ис",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "defeat": 12,
+          "win": 16,
+          "partial": 4
+        },
+        "rounds": 144,
+        "zero": 19,
+        "dice": {
+          "4": 146,
+          "6": 442,
+          "8": 4,
+          "10": 104,
+          "20": 1368
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "defeat": 11,
+          "partial": 6,
+          "win": 15
+        },
+        "rounds": 145,
+        "zero": 16,
+        "dice": {
+          "4": 142,
+          "6": 439,
+          "8": 4,
+          "10": 110,
+          "20": 1350
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 5,
+        "trials": 48,
+        "results": {
+          "defeat": 13,
+          "win": 16,
+          "partial": 19
+        },
+        "rounds": 226,
+        "zero": 27,
+        "dice": {
+          "4": 200,
+          "6": 686,
+          "8": 12,
+          "10": 168,
+          "20": 2081
+        }
+      }
+    },
+    {
+      "campaign": "last-orbit",
+      "key": "hull-walk",
+      "edition": "8-players",
+      "party": [
+        [
+          "Севра Дан",
+          "fighter 3"
+        ],
+        [
+          "Мир Авель",
+          "rogue 3"
+        ],
+        [
+          "Нара Вель",
+          "cleric 3"
+        ],
+        [
+          "Илай Рош",
+          "wizard 3"
+        ],
+        [
+          "Бор Камен",
+          "fighter 3"
+        ],
+        [
+          "Агата Лун",
+          "rogue 3"
+        ],
+        [
+          "Юна Ис",
+          "cleric 3"
+        ],
+        [
+          "Дамир Олль",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "partial": 10,
+          "win": 17,
+          "defeat": 5
+        },
+        "rounds": 152,
+        "zero": 17,
+        "dice": {
+          "4": 120,
+          "6": 467,
+          "8": 6,
+          "10": 109,
+          "20": 1459
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 5,
+        "trials": 32,
+        "results": {
+          "defeat": 6,
+          "partial": 10,
+          "win": 16
+        },
+        "rounds": 150,
+        "zero": 16,
+        "dice": {
+          "4": 122,
+          "6": 452,
+          "8": 8,
+          "10": 116,
+          "20": 1454
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 5,
+        "trials": 48,
+        "results": {
+          "defeat": 10,
+          "partial": 10,
+          "win": 28
+        },
+        "rounds": 224,
+        "zero": 28,
+        "dice": {
+          "4": 184,
+          "6": 687,
+          "8": 8,
+          "10": 171,
+          "20": 2166
+        }
+      }
+    },
+    {
+      "campaign": "mountain-wedding",
+      "key": "last-touch",
+      "edition": "3-players",
+      "party": [
+        [
+          "Огняна Широкий Шаг",
+          "fighter 3"
+        ],
+        [
+          "Яр Листомер",
+          "rogue 3"
+        ],
+        [
+          "Сева Ясная Ладонь",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 28,
+          "missed": 4
+        },
+        "rounds": 192,
+        "zero": 9,
+        "dice": {
+          "4": 46,
+          "6": 72,
+          "8": 94,
+          "10": 21,
+          "20": 541
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 23,
+          "partial": 7,
+          "missed": 2
+        },
+        "rounds": 160,
+        "zero": 2,
+        "dice": {
+          "4": 22,
+          "8": 54,
+          "20": 345
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 36,
+          "partial": 9,
+          "missed": 3
+        },
+        "rounds": 243,
+        "zero": 3,
+        "dice": {
+          "4": 30,
+          "8": 52,
+          "20": 521
+        }
+      }
+    },
+    {
+      "campaign": "mountain-wedding",
+      "key": "last-touch",
+      "edition": "4-players",
+      "party": [
+        [
+          "Огняна Широкий Шаг",
+          "fighter 3"
+        ],
+        [
+          "Яр Листомер",
+          "rogue 3"
+        ],
+        [
+          "Сева Ясная Ладонь",
+          "cleric 3"
+        ],
+        [
+          "Лина Кварцевый Мел",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 31,
+          "missed": 1
+        },
+        "rounds": 192,
+        "zero": 11,
+        "dice": {
+          "4": 82,
+          "6": 76,
+          "8": 144,
+          "10": 32,
+          "20": 620
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 4,
+          "win": 28
+        },
+        "rounds": 151,
+        "zero": 2,
+        "dice": {
+          "4": 8,
+          "8": 40,
+          "20": 475
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 42,
+          "partial": 6
+        },
+        "rounds": 232,
+        "zero": 4,
+        "dice": {
+          "4": 18,
+          "8": 70,
+          "20": 734
+        }
+      }
+    },
+    {
+      "campaign": "mountain-wedding",
+      "key": "last-touch",
+      "edition": "5-players",
+      "party": [
+        [
+          "Огняна Широкий Шаг",
+          "fighter 3"
+        ],
+        [
+          "Яр Листомер",
+          "rogue 3"
+        ],
+        [
+          "Сева Ясная Ладонь",
+          "cleric 3"
+        ],
+        [
+          "Лина Кварцевый Мел",
+          "wizard 3"
+        ],
+        [
+          "Борин Тихий Утёс",
+          "fighter 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 32
+        },
+        "rounds": 192,
+        "zero": 5,
+        "dice": {
+          "4": 14,
+          "6": 58,
+          "8": 38,
+          "10": 15,
+          "20": 924
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 139,
+        "zero": 1,
+        "dice": {
+          "4": 8,
+          "8": 46,
+          "10": 3,
+          "20": 733
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 46,
+          "partial": 2
+        },
+        "rounds": 214,
+        "zero": 0,
+        "dice": {
+          "4": 26,
+          "8": 90,
+          "10": 7,
+          "20": 1111
+        }
+      }
+    },
+    {
+      "campaign": "mountain-wedding",
+      "key": "last-touch",
+      "edition": "6-players",
+      "party": [
+        [
+          "Огняна Широкий Шаг",
+          "fighter 3"
+        ],
+        [
+          "Яр Листомер",
+          "rogue 3"
+        ],
+        [
+          "Сева Ясная Ладонь",
+          "cleric 3"
+        ],
+        [
+          "Лина Кварцевый Мел",
+          "wizard 3"
+        ],
+        [
+          "Борин Тихий Утёс",
+          "fighter 3"
+        ],
+        [
+          "Тесса Ласточкин Поворот",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 32
+        },
+        "rounds": 192,
+        "zero": 4,
+        "dice": {
+          "4": 14,
+          "6": 60,
+          "8": 32,
+          "10": 9,
+          "20": 1063
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "partial": 1
+        },
+        "rounds": 139,
+        "zero": 0,
+        "dice": {
+          "4": 6,
+          "8": 56,
+          "10": 3,
+          "20": 988
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 204,
+        "zero": 0,
+        "dice": {
+          "4": 18,
+          "8": 82,
+          "10": 3,
+          "20": 1487
+        }
+      }
+    },
+    {
+      "campaign": "mountain-wedding",
+      "key": "last-touch",
+      "edition": "7-players",
+      "party": [
+        [
+          "Огняна Широкий Шаг",
+          "fighter 3"
+        ],
+        [
+          "Яр Листомер",
+          "rogue 3"
+        ],
+        [
+          "Сева Ясная Ладонь",
+          "cleric 3"
+        ],
+        [
+          "Лина Кварцевый Мел",
+          "wizard 3"
+        ],
+        [
+          "Борин Тихий Утёс",
+          "fighter 3"
+        ],
+        [
+          "Тесса Ласточкин Поворот",
+          "rogue 3"
+        ],
+        [
+          "Одар Тёплый Камень",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 32
+        },
+        "rounds": 192,
+        "zero": 4,
+        "dice": {
+          "4": 16,
+          "6": 34,
+          "8": 12,
+          "10": 1,
+          "20": 1347
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 31,
+          "partial": 1
+        },
+        "rounds": 143,
+        "zero": 4,
+        "dice": {
+          "4": 20,
+          "8": 66,
+          "10": 4,
+          "20": 1132
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 46,
+          "partial": 2
+        },
+        "rounds": 216,
+        "zero": 1,
+        "dice": {
+          "4": 24,
+          "8": 90,
+          "10": 5,
+          "20": 1685
+        }
+      }
+    },
+    {
+      "campaign": "mountain-wedding",
+      "key": "last-touch",
+      "edition": "8-players",
+      "party": [
+        [
+          "Огняна Широкий Шаг",
+          "fighter 3"
+        ],
+        [
+          "Яр Листомер",
+          "rogue 3"
+        ],
+        [
+          "Сева Ясная Ладонь",
+          "cleric 3"
+        ],
+        [
+          "Лина Кварцевый Мел",
+          "wizard 3"
+        ],
+        [
+          "Борин Тихий Утёс",
+          "fighter 3"
+        ],
+        [
+          "Тесса Ласточкин Поворот",
+          "rogue 3"
+        ],
+        [
+          "Одар Тёплый Камень",
+          "cleric 3"
+        ],
+        [
+          "Нива Седьмая Линия",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "partial": 32
+        },
+        "rounds": 192,
+        "zero": 3,
+        "dice": {
+          "4": 24,
+          "6": 38,
+          "8": 28,
+          "10": 2,
+          "20": 1274
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 133,
+        "zero": 3,
+        "dice": {
+          "4": 32,
+          "8": 64,
+          "20": 1096
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 46,
+          "partial": 2
+        },
+        "rounds": 205,
+        "zero": 1,
+        "dice": {
+          "4": 18,
+          "8": 80,
+          "10": 2,
+          "20": 1679
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "throat-follower",
+      "edition": "3-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 65,
+        "zero": 2,
+        "dice": {
+          "4": 6,
+          "6": 60,
+          "10": 1,
+          "20": 237
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 67,
+        "zero": 11,
+        "dice": {
+          "4": 24,
+          "8": 176,
+          "10": 6,
+          "20": 237
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 99,
+        "zero": 15,
+        "dice": {
+          "4": 32,
+          "8": 240,
+          "10": 8,
+          "20": 345
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "throat-follower",
+      "edition": "4-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 64,
+        "zero": 0,
+        "dice": {
+          "6": 52,
+          "10": 2,
+          "20": 260
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 68,
+        "zero": 11,
+        "dice": {
+          "4": 22,
+          "8": 140,
+          "10": 1,
+          "20": 263
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 104,
+        "zero": 30,
+        "dice": {
+          "4": 70,
+          "8": 278,
+          "10": 4,
+          "20": 412
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "throat-follower",
+      "edition": "5-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ],
+        [
+          "Яр Осок",
+          "fighter 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 64,
+        "zero": 0,
+        "dice": {
+          "4": 2,
+          "6": 54,
+          "10": 2,
+          "20": 304
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 67,
+        "zero": 15,
+        "dice": {
+          "4": 32,
+          "8": 196,
+          "10": 5,
+          "20": 317
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 104,
+        "zero": 19,
+        "dice": {
+          "4": 44,
+          "8": 248,
+          "10": 5,
+          "20": 462
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "throat-follower",
+      "edition": "6-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ],
+        [
+          "Яр Осок",
+          "fighter 3"
+        ],
+        [
+          "Сана Мель",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 64,
+        "zero": 0,
+        "dice": {
+          "6": 64,
+          "10": 12,
+          "20": 326
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 67,
+        "zero": 7,
+        "dice": {
+          "4": 18,
+          "8": 164,
+          "10": 17,
+          "20": 333
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 105,
+        "zero": 17,
+        "dice": {
+          "4": 32,
+          "8": 294,
+          "10": 24,
+          "20": 516
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "throat-follower",
+      "edition": "7-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ],
+        [
+          "Яр Осок",
+          "fighter 3"
+        ],
+        [
+          "Сана Мель",
+          "rogue 3"
+        ],
+        [
+          "Олесь Край",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 64,
+        "zero": 0,
+        "dice": {
+          "4": 2,
+          "6": 68,
+          "10": 5,
+          "20": 362
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 65,
+        "zero": 4,
+        "dice": {
+          "4": 16,
+          "8": 150,
+          "10": 8,
+          "20": 361
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 104,
+        "zero": 15,
+        "dice": {
+          "4": 54,
+          "8": 274,
+          "10": 2,
+          "20": 570
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "seam-nest",
+      "edition": "3-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 158,
+        "zero": 14,
+        "dice": {
+          "4": 56,
+          "6": 218,
+          "8": 263,
+          "10": 61,
+          "20": 773
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 137,
+        "zero": 8,
+        "dice": {
+          "4": 34,
+          "6": 362,
+          "8": 233,
+          "10": 54,
+          "20": 760
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 200,
+        "zero": 11,
+        "dice": {
+          "4": 38,
+          "6": 504,
+          "8": 380,
+          "10": 60,
+          "20": 1128
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "seam-nest",
+      "edition": "4-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 135,
+        "zero": 14,
+        "dice": {
+          "4": 40,
+          "6": 245,
+          "8": 253,
+          "10": 39,
+          "20": 793
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 140,
+        "zero": 14,
+        "dice": {
+          "4": 50,
+          "6": 218,
+          "8": 245,
+          "10": 50,
+          "20": 793
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 209,
+        "zero": 24,
+        "dice": {
+          "4": 74,
+          "6": 343,
+          "8": 370,
+          "10": 72,
+          "20": 1175
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "seam-nest",
+      "edition": "5-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ],
+        [
+          "Яр Осок",
+          "fighter 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 115,
+        "zero": 7,
+        "dice": {
+          "4": 22,
+          "6": 197,
+          "8": 143,
+          "10": 29,
+          "20": 819
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 127,
+        "zero": 7,
+        "dice": {
+          "4": 18,
+          "6": 197,
+          "8": 159,
+          "10": 66,
+          "20": 884
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 171,
+        "zero": 7,
+        "dice": {
+          "4": 34,
+          "6": 308,
+          "8": 196,
+          "10": 70,
+          "20": 1218
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "seam-nest",
+      "edition": "6-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ],
+        [
+          "Яр Осок",
+          "fighter 3"
+        ],
+        [
+          "Сана Мель",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 96,
+        "zero": 2,
+        "dice": {
+          "4": 12,
+          "6": 296,
+          "8": 110,
+          "10": 24,
+          "20": 816
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 102,
+        "zero": 3,
+        "dice": {
+          "4": 20,
+          "6": 301,
+          "8": 118,
+          "10": 29,
+          "20": 864
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 141,
+        "zero": 2,
+        "dice": {
+          "4": 20,
+          "6": 501,
+          "8": 165,
+          "10": 38,
+          "20": 1238
+        }
+      }
+    },
+    {
+      "campaign": "marrow-crown",
+      "key": "seam-nest",
+      "edition": "7-players",
+      "party": [
+        [
+          "Ирма Скол",
+          "fighter 3"
+        ],
+        [
+          "Федор Нев",
+          "rogue 3"
+        ],
+        [
+          "Янина Вей",
+          "cleric 3"
+        ],
+        [
+          "Ксана Торн",
+          "wizard 3"
+        ],
+        [
+          "Яр Осок",
+          "fighter 3"
+        ],
+        [
+          "Сана Мель",
+          "rogue 3"
+        ],
+        [
+          "Олесь Край",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 90,
+        "zero": 1,
+        "dice": {
+          "4": 20,
+          "6": 309,
+          "8": 118,
+          "10": 12,
+          "20": 865
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 32
+        },
+        "rounds": 90,
+        "zero": 1,
+        "dice": {
+          "4": 18,
+          "6": 295,
+          "8": 119,
+          "10": 17,
+          "20": 885
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 48
+        },
+        "rounds": 141,
+        "zero": 6,
+        "dice": {
+          "4": 38,
+          "6": 460,
+          "8": 182,
+          "10": 30,
+          "20": 1323
+        }
+      }
+    },
+    {
+      "campaign": "salt-widows",
+      "key": "widows-line-hunt",
+      "edition": "3-players",
+      "party": [
+        [
+          "Дерва Клин",
+          "fighter 3"
+        ],
+        [
+          "Тарон Веха",
+          "rogue 3"
+        ],
+        [
+          "Сельма Ров",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 21,
+          "partial": 11
+        },
+        "rounds": 186,
+        "zero": 22,
+        "dice": {
+          "4": 126,
+          "6": 4,
+          "8": 346,
+          "10": 24,
+          "20": 670
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 28,
+          "partial": 4
+        },
+        "rounds": 163,
+        "zero": 15,
+        "dice": {
+          "4": 48,
+          "6": 16,
+          "8": 204,
+          "10": 19,
+          "20": 496
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 37,
+          "partial": 10,
+          "defeat": 1
+        },
+        "rounds": 256,
+        "zero": 27,
+        "dice": {
+          "4": 96,
+          "6": 20,
+          "8": 374,
+          "10": 32,
+          "20": 787
+        }
+      }
+    },
+    {
+      "campaign": "salt-widows",
+      "key": "widows-line-hunt",
+      "edition": "4-players",
+      "party": [
+        [
+          "Дерва Клин",
+          "fighter 3"
+        ],
+        [
+          "Тарон Веха",
+          "rogue 3"
+        ],
+        [
+          "Сельма Ров",
+          "cleric 3"
+        ],
+        [
+          "Эйран Лист",
+          "wizard 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 27,
+          "partial": 5
+        },
+        "rounds": 167,
+        "zero": 16,
+        "dice": {
+          "4": 64,
+          "6": 30,
+          "8": 256,
+          "10": 15,
+          "20": 628
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 28,
+          "partial": 4
+        },
+        "rounds": 162,
+        "zero": 10,
+        "dice": {
+          "4": 66,
+          "6": 40,
+          "8": 184,
+          "10": 21,
+          "20": 528
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 40,
+          "partial": 8
+        },
+        "rounds": 248,
+        "zero": 21,
+        "dice": {
+          "4": 100,
+          "6": 38,
+          "8": 324,
+          "10": 33,
+          "20": 833
+        }
+      }
+    },
+    {
+      "campaign": "salt-widows",
+      "key": "widows-line-hunt",
+      "edition": "5-players",
+      "party": [
+        [
+          "Дерва Клин",
+          "fighter 3"
+        ],
+        [
+          "Тарон Веха",
+          "rogue 3"
+        ],
+        [
+          "Сельма Ров",
+          "cleric 3"
+        ],
+        [
+          "Эйран Лист",
+          "wizard 3"
+        ],
+        [
+          "Ната Уголь",
+          "fighter 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 24,
+          "partial": 8
+        },
+        "rounds": 196,
+        "zero": 32,
+        "dice": {
+          "4": 142,
+          "6": 18,
+          "8": 558,
+          "10": 42,
+          "20": 968
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 27,
+          "partial": 5
+        },
+        "rounds": 195,
+        "zero": 27,
+        "dice": {
+          "4": 136,
+          "6": 14,
+          "8": 500,
+          "10": 50,
+          "20": 882
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "partial": 10,
+          "win": 38
+        },
+        "rounds": 288,
+        "zero": 41,
+        "dice": {
+          "4": 224,
+          "6": 30,
+          "8": 728,
+          "10": 79,
+          "20": 1290
+        }
+      }
+    },
+    {
+      "campaign": "salt-widows",
+      "key": "widows-line-hunt",
+      "edition": "6-players",
+      "party": [
+        [
+          "Дерва Клин",
+          "fighter 3"
+        ],
+        [
+          "Тарон Веха",
+          "rogue 3"
+        ],
+        [
+          "Сельма Ров",
+          "cleric 3"
+        ],
+        [
+          "Эйран Лист",
+          "wizard 3"
+        ],
+        [
+          "Ната Уголь",
+          "fighter 3"
+        ],
+        [
+          "Воск Рез",
+          "rogue 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 22,
+          "partial": 10
+        },
+        "rounds": 202,
+        "zero": 29,
+        "dice": {
+          "4": 190,
+          "6": 28,
+          "8": 554,
+          "10": 44,
+          "20": 1014
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 22,
+          "partial": 10
+        },
+        "rounds": 204,
+        "zero": 29,
+        "dice": {
+          "4": 148,
+          "6": 20,
+          "8": 524,
+          "10": 37,
+          "20": 957
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 41,
+          "partial": 7
+        },
+        "rounds": 280,
+        "zero": 39,
+        "dice": {
+          "4": 252,
+          "6": 24,
+          "8": 690,
+          "10": 67,
+          "20": 1305
+        }
+      }
+    },
+    {
+      "campaign": "salt-widows",
+      "key": "widows-line-hunt",
+      "edition": "7-players",
+      "party": [
+        [
+          "Дерва Клин",
+          "fighter 3"
+        ],
+        [
+          "Тарон Веха",
+          "rogue 3"
+        ],
+        [
+          "Сельма Ров",
+          "cleric 3"
+        ],
+        [
+          "Эйран Лист",
+          "wizard 3"
+        ],
+        [
+          "Ната Уголь",
+          "fighter 3"
+        ],
+        [
+          "Воск Рез",
+          "rogue 3"
+        ],
+        [
+          "Рива Ночь",
+          "cleric 3"
+        ]
+      ],
+      "before": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 28,
+          "partial": 4
+        },
+        "rounds": 181,
+        "zero": 27,
+        "dice": {
+          "4": 268,
+          "6": 36,
+          "8": 486,
+          "10": 37,
+          "20": 930
+        }
+      },
+      "after": {
+        "start": 0,
+        "foes": 1,
+        "trials": 32,
+        "results": {
+          "win": 27,
+          "partial": 5
+        },
+        "rounds": 186,
+        "zero": 29,
+        "dice": {
+          "4": 248,
+          "6": 22,
+          "8": 488,
+          "10": 43,
+          "20": 896
+        }
+      },
+      "holdout": {
+        "start": 5000,
+        "foes": 1,
+        "trials": 48,
+        "results": {
+          "win": 37,
+          "partial": 11
+        },
+        "rounds": 288,
+        "zero": 39,
+        "dice": {
+          "4": 388,
+          "6": 22,
+          "8": 746,
+          "10": 51,
+          "20": 1385
+        }
+      }
+    }
+  ]
+}

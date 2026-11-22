@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "long-step.webp",
+      "sha256": "6a5a5f1f5aaf0aa9dea6c689fe542f4b2d651dad369794eac09a78836448a781",
+      "originalSha256": "0d985c5a80022087d89eaa43fc8091edb2eed155a75b417409ab5d9ddf83ad9e",
+      "originalFile": "exec-1c93462f-399a-4faa-949c-bb5d6980e850.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Плато Долгого Шага. Visible scenery: Остров героических баллад с высоким, но широким уступом и удобной нижней тропой. На камнях вырезаны имена путников, а ветер относит песни к далёким домам.. World style: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "long-step",
+      "encounter": "epic-folds",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "loud-garden.webp",
+      "sha256": "70e9469a0ab260c004149eeab7ae355b714578adc450f6a3b10e9834254c0a2b",
+      "originalSha256": "36c39b681ed420471e3c897a443554427bea2fc050cd75263f581d74bded1aa6",
+      "originalFile": "exec-1dc584df-e87c-4772-ab1a-a299cf015fa9.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Парк Преувеличений. Visible scenery: Остров комических рассказов: зонтики похожи на грибы, скамейки подписаны громкими сравнениями. Между весёлыми столами есть тихая дорожка без обязательных шуток.. World style: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "loud-garden",
+      "encounter": "comic-folds",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "bracket-salon.webp",
+      "sha256": "243b33b00b3b1246b07a83a09a445364d4b4cd7321c9f55a75249bdc4ef630ce",
+      "originalSha256": "4b46dc3844016c6634dce0cdbebcc534d994cdcb91528b3d8617a0f408f9b13e",
+      "originalFile": "exec-02f3f7aa-8763-488b-8631-a279dc278be0.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Салон Незакрытых Скобок. Visible scenery: Комната, где будущие книги получают пробные названия. На подставках лежат предложения издателя; рядом достаточно чистой бумаги для своего варианта. Двери не запираются.. World style: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "bracket-salon",
+      "encounter": "final-folds",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -1,6 +1,8 @@
-import type { CampaignPackage } from '../../packages/contracts/src/index.ts';
+import type { CampaignPackage, CreatureSize } from '../../packages/contracts/src/index.ts';
+import { spanOfSize } from '../../packages/rules/src/space.ts';
 
-import { foeRoster, srdEntry, type KitEncounter } from './combat-kit.ts';
+import { foeRoster, type KitBoss, type KitEncounter } from './combat-kit.ts';
+import { statBlockFor } from './foe-blocks.ts';
 
 type Built = CampaignPackage['encounters'][number];
 
@@ -11,7 +13,7 @@ const esc = (text: string) =>
   text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 /** The fight's own battlefield, drawn from the same geometry the engine plays on. */
-export function tacticalSvg(e: Built): string {
+export function tacticalSvg(e: Built, bossSize?: CreatureSize): string {
   const { width, height, difficult, cover } = e.battlefield;
   const cells: string[] = [];
   const rough = new Set(difficult.map((c) => `${c.x},${c.y}`));
@@ -32,8 +34,17 @@ export function tacticalSvg(e: Built): string {
       );
     }
   e.combatants.forEach((c, i) => {
-    const cx = MARGIN + c.position.x * CELL + CELL / 2;
-    const cy = MARGIN + c.position.y * CELL + CELL / 2;
+    const span = bossSize && c.entity === e.key + '-boss' ? spanOfSize(bossSize) : 1;
+    const x = MARGIN + c.position.x * CELL;
+    const y = MARGIN + c.position.y * CELL;
+    if (span > 1) {
+      const extent = span * CELL - 4;
+      cells.push(
+        `<rect x="${x + 2}" y="${y + 2}" width="${extent}" height="${extent}" rx="4" fill="#843b28" fill-opacity=".2" stroke="#843b28" stroke-width="3"><title>Противник занимает ${span} × ${span} клетки</title></rect>`,
+      );
+    }
+    const cx = x + (span * CELL) / 2;
+    const cy = y + (span * CELL) / 2;
     cells.push(
       `<circle cx="${cx}" cy="${cy}" r="15" fill="${c.side === 'party' ? '#164c62' : '#843b28'}"/><text x="${cx}" y="${cy + 5}" text-anchor="middle" fill="#fff" font-size="13">${i + 1}</text>`,
     );
@@ -70,17 +81,23 @@ interface BookEncounter extends KitEncounter {
 export function encounterSection(e: BookEncounter, built: Built, size: number, h: Helpers): string {
   const squares = (list: readonly { x: number; y: number }[]) =>
     list.map((c) => `${column(c.x)}${c.y + 1}`).join(', ') || 'нет';
-  const groups = new Map<string, { name: string; count: number }>();
+  const groups = new Map<string, { name: string; count: number; srd: string; boss?: KitBoss }>();
   for (const foe of foeRoster(e, size)) {
     const base = foe.name.replace(/ \d+$/, '');
-    const group = groups.get(`${foe.srd}:${base}`) ?? { name: base, count: 0 };
+    const boss = foe.key === e.key + '-boss' ? e.boss : undefined;
+    const key = `${foe.srd}:${base}${boss ? ':boss' : ''}`;
+    const group = groups.get(key) ?? {
+      name: base,
+      count: 0,
+      srd: foe.srd,
+      ...(boss ? { boss } : {}),
+    };
     group.count += 1;
-    groups.set(`${foe.srd}:${base}`, group);
+    groups.set(key, group);
   }
-  const stats = [...groups.entries()]
-    .map(([id, group]) => {
-      const entry = srdEntry(id.split(':')[0] as string);
-      const b = entry.block;
+  const stats = [...groups.values()]
+    .map((group) => {
+      const b = statBlockFor(group.srd, group.boss);
       const attacks = b.attacks
         .map(
           (a) =>
@@ -104,7 +121,7 @@ export function encounterSection(e: BookEncounter, built: Built, size: number, h
       h.p(e.scaling) +
       '<h3>Поле</h3>' +
       h.p(e.terrain) +
-      `<div class="map-scroll">${tacticalSvg(built)}</div>` +
+      `<div class="map-scroll">${tacticalSvg(built, e.boss?.size)}</div>` +
       h.p(`Трудная местность: ${squares(difficult)}. Укрытия: ${squares(cover)}.`),
   );
 }

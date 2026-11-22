@@ -1,0 +1,207 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "ember-crown-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-3eee07fd-659b-4248-83af-d63ddb6739db.png",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Корона Последнего Угля. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Ильвара Даргет. Дорожное платье в золе, перевязанная рука; простой железный обруч лежит рядом со схемой стены, а не на голове.\nCell 2. Харвен Орст. Высокий дворф с кожаной перевязью, золой в бороде и дощечками приказов за поясом.\nCell 3. Мейра Рунц. Широкий пояс, короткие рукава, деревянная ложка за ухом и сложенные списки в кармане фартука.\nCell 4. Журна Кельт. Серебряная коса, кожаный фартук, отполированный молоток на поясе, руки в саже.\nCell 5. Эрдик Ковыль. Полуэльф в плаще из грубой шерсти; на копье синяя и обтрёпанная белая ленты.\nCell 6. Гарден Риорд. Ухоженная седая борода, неброский панцирь, перчатки, которые он снимает перед подписью.\nCell 7. Лессара Нив. Перевязанное запястье, простой знак посольской службы, очень аккуратно сложенный плащ.\nCell 8. Борук Файн. Молодой человек в чужой, слишком большой обозной куртке, с ремнём носильщика через плечо.\nCell 9. Ормунд Сайр. Лёгкая чешуя под серым плащом, длинная секира; за спиной на древке — знамя «Серый молот».",
+      "references": [
+        "campaigns/collection-2026/ember-crown/assets/runtime/ilvara-tal.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/harven-orst.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/meyra-runts.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/zhurna-kelt.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/erdik-var.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/garden-riord.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/lessara-niv.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/boruk-fain.webp",
+        "campaigns/collection-2026/ember-crown/assets/runtime/ormund-sair.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "ilvara-tal",
+      "title": "Ильвара Даргет",
+      "kind": "npc",
+      "subjects": [
+        "ilvara-tal"
+      ],
+      "file": "npcs-ilvara-tal.webp",
+      "sha256": "13da843a1ddaf6272383cb4b56da7cda834d721ee102da02f609285fb47b17a4",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 80,
+        "top": 19,
+        "width": 266,
+        "height": 396
+      }
+    },
+    {
+      "key": "harven-orst",
+      "title": "Харвен Орст",
+      "kind": "npc",
+      "subjects": [
+        "harven-orst"
+      ],
+      "file": "npcs-harven-orst.webp",
+      "sha256": "f1530e6d5712da5fba0d9cbd41881628e39f8f0a766f104821a0b3fc78bd6e9a",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 469,
+        "top": 24,
+        "width": 259,
+        "height": 389
+      }
+    },
+    {
+      "key": "meyra-runts",
+      "title": "Мейра Рунц",
+      "kind": "npc",
+      "subjects": [
+        "meyra-runts"
+      ],
+      "file": "npcs-meyra-runts.webp",
+      "sha256": "2177b4512221e36584f55f6389fbe9bf72f41def302f9093e7119adff8839a85",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 863,
+        "top": 30,
+        "width": 256,
+        "height": 385
+      }
+    },
+    {
+      "key": "zhurna-kelt",
+      "title": "Журна Кельт",
+      "kind": "npc",
+      "subjects": [
+        "zhurna-kelt"
+      ],
+      "file": "npcs-zhurna-kelt.webp",
+      "sha256": "e9028e960dfb44aae6388dc18f00b2c5451c34b684b2b61f2dce28d7ebd23924",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 70,
+        "top": 448,
+        "width": 271,
+        "height": 406
+      }
+    },
+    {
+      "key": "erdik-var",
+      "title": "Эрдик Ковыль",
+      "kind": "npc",
+      "subjects": [
+        "erdik-var"
+      ],
+      "file": "npcs-erdik-var.webp",
+      "sha256": "0f23cf08d8f9f207f6a365c73c6257cc96577777be032f427295928590dea3eb",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 455,
+        "top": 431,
+        "width": 273,
+        "height": 422
+      }
+    },
+    {
+      "key": "garden-riord",
+      "title": "Гарден Риорд",
+      "kind": "npc",
+      "subjects": [
+        "garden-riord"
+      ],
+      "file": "npcs-garden-riord.webp",
+      "sha256": "c5ed9c9f34536c582aa016726f794405db39168cece8dccc0ec8ad37a14b493a",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 860,
+        "top": 440,
+        "width": 266,
+        "height": 414
+      }
+    },
+    {
+      "key": "lessara-niv",
+      "title": "Лессара Нив",
+      "kind": "npc",
+      "subjects": [
+        "lessara-niv"
+      ],
+      "file": "npcs-lessara-niv.webp",
+      "sha256": "383555112838087a4a5fb04636754017c00f5c0ca7135b23536f8b9775a809b2",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 77,
+        "top": 880,
+        "width": 255,
+        "height": 413
+      }
+    },
+    {
+      "key": "boruk-fain",
+      "title": "Борук Файн",
+      "kind": "npc",
+      "subjects": [
+        "boruk-fain"
+      ],
+      "file": "npcs-boruk-fain.webp",
+      "sha256": "fbfb309d23c0ce06ec7d3da3d202a6ecc0b953fbe74d105615a565b5ac4f70ad",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 462,
+        "top": 886,
+        "width": 260,
+        "height": 405
+      }
+    },
+    {
+      "key": "ormund-sair",
+      "title": "Ормунд Сайр",
+      "kind": "npc",
+      "subjects": [
+        "ormund-sair"
+      ],
+      "file": "npcs-ormund-sair.webp",
+      "sha256": "92499a60111048457b3c11bfacfd05764c4713d8468488dc53959853f2b9d22d",
+      "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+      "generated": "2026-11-22",
+      "sheet": "ember-crown-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 838,
+        "top": 876,
+        "width": 285,
+        "height": 414
+      }
+    }
+  ]
+}

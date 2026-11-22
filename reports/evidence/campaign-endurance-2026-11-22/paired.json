@@ -1,0 +1,457 @@
+[
+  {
+    "slug": "sky-archipelago",
+    "edition": "6-players",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 12,
+      "closed": 6,
+      "outcomes": {
+        "win": 6,
+        "defeat": 6
+      },
+      "hpAtFinal": 859,
+      "maxAtFinal": 1848,
+      "slotsAtFinal": 94
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "win": 6,
+        "withdrawn": 25,
+        "pursuit": 1
+      },
+      "hpAtFinal": 2967,
+      "maxAtFinal": 4928,
+      "slotsAtFinal": 284
+    }
+  },
+  {
+    "slug": "sky-archipelago",
+    "edition": "7-players",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 30,
+      "closed": 20,
+      "outcomes": {
+        "win": 20,
+        "defeat": 10
+      },
+      "hpAtFinal": 3517,
+      "maxAtFinal": 5340,
+      "slotsAtFinal": 243
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "win": 21,
+        "pursuit": 3,
+        "withdrawn": 8
+      },
+      "hpAtFinal": 4717,
+      "maxAtFinal": 5696,
+      "slotsAtFinal": 277
+    }
+  },
+  {
+    "slug": "sky-archipelago",
+    "edition": "8-players",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 29,
+      "closed": 25,
+      "outcomes": {
+        "win": 25,
+        "defeat": 4
+      },
+      "hpAtFinal": 3581,
+      "maxAtFinal": 5742,
+      "slotsAtFinal": 405
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "win": 22,
+        "withdrawn": 10
+      },
+      "hpAtFinal": 5100,
+      "maxAtFinal": 6336,
+      "slotsAtFinal": 463
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-1",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 2,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 2
+      },
+      "hpAtFinal": 37,
+      "maxAtFinal": 184,
+      "slotsAtFinal": 16
+    },
+    "after": {
+      "runs": 32,
+      "reached": 31,
+      "closed": 26,
+      "outcomes": {
+        "win": 26,
+        "defeat": 5
+      },
+      "hpAtFinal": 1709,
+      "maxAtFinal": 2756,
+      "slotsAtFinal": 324
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-2",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 2,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 2
+      },
+      "hpAtFinal": 45,
+      "maxAtFinal": 186,
+      "slotsAtFinal": 7
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 30,
+      "outcomes": {
+        "win": 30,
+        "defeat": 2
+      },
+      "hpAtFinal": 1556,
+      "maxAtFinal": 2760,
+      "slotsAtFinal": 143
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-3",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 1,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 1
+      },
+      "hpAtFinal": 41,
+      "maxAtFinal": 97,
+      "slotsAtFinal": 7
+    },
+    "after": {
+      "runs": 32,
+      "reached": 31,
+      "closed": 29,
+      "outcomes": {
+        "win": 29,
+        "defeat": 2
+      },
+      "hpAtFinal": 1661,
+      "maxAtFinal": 2783,
+      "slotsAtFinal": 302
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-4",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 1,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 1
+      },
+      "hpAtFinal": 29,
+      "maxAtFinal": 102,
+      "slotsAtFinal": 6
+    },
+    "after": {
+      "runs": 32,
+      "reached": 31,
+      "closed": 28,
+      "outcomes": {
+        "defeat": 3,
+        "win": 28
+      },
+      "hpAtFinal": 1515,
+      "maxAtFinal": 2960,
+      "slotsAtFinal": 177
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "4-full",
+    "series": "проверка",
+    "before": {
+      "runs": 32,
+      "reached": 2,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 2
+      },
+      "hpAtFinal": 91,
+      "maxAtFinal": 256,
+      "slotsAtFinal": 13
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 31,
+      "outcomes": {
+        "win": 31,
+        "defeat": 1
+      },
+      "hpAtFinal": 3414,
+      "maxAtFinal": 3992,
+      "slotsAtFinal": 348
+    }
+  },
+  {
+    "slug": "sky-archipelago",
+    "edition": "6-players",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 14,
+      "closed": 9,
+      "outcomes": {
+        "win": 9,
+        "defeat": 5
+      },
+      "hpAtFinal": 1136,
+      "maxAtFinal": 2156,
+      "slotsAtFinal": 111
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "withdrawn": 23,
+        "win": 8,
+        "pursuit": 1
+      },
+      "hpAtFinal": 3161,
+      "maxAtFinal": 4928,
+      "slotsAtFinal": 296
+    }
+  },
+  {
+    "slug": "sky-archipelago",
+    "edition": "7-players",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 31,
+      "closed": 21,
+      "outcomes": {
+        "win": 21,
+        "defeat": 10
+      },
+      "hpAtFinal": 3288,
+      "maxAtFinal": 5518,
+      "slotsAtFinal": 273
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "win": 24,
+        "withdrawn": 8
+      },
+      "hpAtFinal": 4570,
+      "maxAtFinal": 5696,
+      "slotsAtFinal": 287
+    }
+  },
+  {
+    "slug": "sky-archipelago",
+    "edition": "8-players",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 29,
+      "closed": 24,
+      "outcomes": {
+        "win": 24,
+        "defeat": 5
+      },
+      "hpAtFinal": 3422,
+      "maxAtFinal": 5742,
+      "slotsAtFinal": 425
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "win": 22,
+        "withdrawn": 9,
+        "pursuit": 1
+      },
+      "hpAtFinal": 5242,
+      "maxAtFinal": 6336,
+      "slotsAtFinal": 485
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-1",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 3,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 3
+      },
+      "hpAtFinal": 86,
+      "maxAtFinal": 276,
+      "slotsAtFinal": 26
+    },
+    "after": {
+      "runs": 32,
+      "reached": 31,
+      "closed": 27,
+      "outcomes": {
+        "win": 27,
+        "defeat": 4
+      },
+      "hpAtFinal": 1680,
+      "maxAtFinal": 2762,
+      "slotsAtFinal": 339
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-2",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 0,
+      "closed": 0,
+      "outcomes": {},
+      "hpAtFinal": 0,
+      "maxAtFinal": 0,
+      "slotsAtFinal": 0
+    },
+    "after": {
+      "runs": 32,
+      "reached": 29,
+      "closed": 27,
+      "outcomes": {
+        "win": 27,
+        "defeat": 2
+      },
+      "hpAtFinal": 1625,
+      "maxAtFinal": 2535,
+      "slotsAtFinal": 144
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-3",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 3,
+      "closed": 1,
+      "outcomes": {
+        "defeat": 2,
+        "win": 1
+      },
+      "hpAtFinal": 80,
+      "maxAtFinal": 291,
+      "slotsAtFinal": 25
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 30,
+      "outcomes": {
+        "win": 30,
+        "defeat": 2
+      },
+      "hpAtFinal": 2109,
+      "maxAtFinal": 2958,
+      "slotsAtFinal": 329
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "3-without-4",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 3,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 3
+      },
+      "hpAtFinal": 72,
+      "maxAtFinal": 306,
+      "slotsAtFinal": 14
+    },
+    "after": {
+      "runs": 32,
+      "reached": 31,
+      "closed": 31,
+      "outcomes": {
+        "win": 31
+      },
+      "hpAtFinal": 1826,
+      "maxAtFinal": 2925,
+      "slotsAtFinal": 135
+    }
+  },
+  {
+    "slug": "hollowmere",
+    "edition": "4-full",
+    "series": "независимая серия",
+    "before": {
+      "runs": 32,
+      "reached": 1,
+      "closed": 0,
+      "outcomes": {
+        "defeat": 1
+      },
+      "hpAtFinal": 18,
+      "maxAtFinal": 128,
+      "slotsAtFinal": 8
+    },
+    "after": {
+      "runs": 32,
+      "reached": 32,
+      "closed": 32,
+      "outcomes": {
+        "win": 32
+      },
+      "hpAtFinal": 3423,
+      "maxAtFinal": 4060,
+      "slotsAtFinal": 342
+    }
+  }
+]

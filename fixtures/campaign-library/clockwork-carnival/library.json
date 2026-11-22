@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "eb1197efd54b7cdb4c8d16fd2e22279deb79fd69281488cdd6cacbf20e76e92a"
+   "digest": "d687bc1fdb5ba5e95bbf3f7bfc7a9fb0b56cff0d5cf6c545986795543f7d2daa"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "c2afc7432748e766beb2a1fcbc2406c5eeb4078f5233c7c9dc5e3a874ec453d6"
+   "digest": "289dd13355650dfaff731e395922f352cf912457a50f7d98ec773b5b45b2f8b1"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "f2b543eb1c08fff19f1bd98d00697e75f0a6932cb4065fe06974c5626e274732"
+   "digest": "061bbef400570e6e70d80259a016151c3ab6d36725f0834147f0463a8a9686a7"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "7ea0aa53ae14bf20bdc9c21f2fb58debe8c3339302b8503cfdd2fde1dfbfb042"
+   "digest": "d35c1edce9448ddbc69c5a9dd0601765c3394942b24680d9ecf86a51859c9c57"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1458,6 +1458,529 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-net-captain.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/illustrations/cards/travel-kit.webp",
+   "sha256": "23c126a245ea52fd4290c50e79fc4396141402c708683403a82999284d6c7dc7",
+   "originalSha256": "e563f5a860b841d640401ca18b5958822ba45ff89f2f23223766824271a51d19",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "boris-fold-travel-kit",
+     "miro-fanfare-travel-kit",
+     "polina-step-travel-kit",
+     "vera-buckles-travel-kit",
+     "yasna-thimble-travel-kit"
+    ],
+    "6-players": [
+     "boris-fold-travel-kit",
+     "miro-fanfare-travel-kit",
+     "polina-step-travel-kit",
+     "tim-lace-travel-kit",
+     "vera-buckles-travel-kit",
+     "yasna-thimble-travel-kit"
+    ],
+    "7-players": [
+     "boris-fold-travel-kit",
+     "elda-bell-travel-kit",
+     "miro-fanfare-travel-kit",
+     "polina-step-travel-kit",
+     "tim-lace-travel-kit",
+     "vera-buckles-travel-kit",
+     "yasna-thimble-travel-kit"
+    ],
+    "8-players": [
+     "boris-fold-travel-kit",
+     "elda-bell-travel-kit",
+     "gleb-pocket-travel-kit",
+     "miro-fanfare-travel-kit",
+     "polina-step-travel-kit",
+     "tim-lace-travel-kit",
+     "vera-buckles-travel-kit",
+     "yasna-thimble-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-vera-buckles.webp",
+   "sha256": "8874f4a418494cacb0fa737abe8245f27051c663704394c827e82a67cfb633ce",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Злата Две Пряжки",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "vera-buckles"
+    ],
+    "6-players": [
+     "vera-buckles"
+    ],
+    "7-players": [
+     "vera-buckles"
+    ],
+    "8-players": [
+     "vera-buckles"
+    ]
+   },
+   "file": "vera-buckles--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-buckles.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-miro-fanfare.webp",
+   "sha256": "875a769394d8123911cd13354fde52f48c42ab157473faa5632ce59ddb271038",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Миро Фанфарон",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "miro-fanfare"
+    ],
+    "6-players": [
+     "miro-fanfare"
+    ],
+    "7-players": [
+     "miro-fanfare"
+    ],
+    "8-players": [
+     "miro-fanfare"
+    ]
+   },
+   "file": "miro-fanfare--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "miro-fanfare.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-yasna-thimble.webp",
+   "sha256": "f4c4f94197889b11e11f8e6079e5ec6dfcb50ac3ce01b7c522291c473d050597",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ясна Напёрсток",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "yasna-thimble"
+    ],
+    "6-players": [
+     "yasna-thimble"
+    ],
+    "7-players": [
+     "yasna-thimble"
+    ],
+    "8-players": [
+     "yasna-thimble"
+    ]
+   },
+   "file": "yasna-thimble--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yasna-thimble.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-boris-fold.webp",
+   "sha256": "cb6afd3cd0c38f2aefeee7498e78fe6d924fcd0586d556dcdda76478cb5181bc",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Складень",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "boris-fold"
+    ],
+    "6-players": [
+     "boris-fold"
+    ],
+    "7-players": [
+     "boris-fold"
+    ],
+    "8-players": [
+     "boris-fold"
+    ]
+   },
+   "file": "boris-fold--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boris-fold.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-polina-step.webp",
+   "sha256": "a36cfeaed2373b38a4830bd1c9f23fbbb0c417df439e1c82d0deec28afe7f936",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Шаг-в-Шаг",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "polina-step"
+    ],
+    "6-players": [
+     "polina-step"
+    ],
+    "7-players": [
+     "polina-step"
+    ],
+    "8-players": [
+     "polina-step"
+    ]
+   },
+   "file": "polina-step--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "polina-step.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-tim-lace.webp",
+   "sha256": "406f0f26778aa62aa0ffdc28dfd355236eeca5f67a9fd235f475e08f1863b997",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Кружевник",
+   "references": [],
+   "subjects": {
+    "5-players": [],
+    "6-players": [
+     "tim-lace"
+    ],
+    "7-players": [
+     "tim-lace"
+    ],
+    "8-players": [
+     "tim-lace"
+    ]
+   },
+   "file": "tim-lace--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tim-lace.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-elda-bell.webp",
+   "sha256": "4ef84ea528ecc40c026f55655b719c1af6f6fd54bf276adf0ca92141475e23db",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльда Бубенчик",
+   "references": [],
+   "subjects": {
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "elda-bell"
+    ],
+    "8-players": [
+     "elda-bell"
+    ]
+   },
+   "file": "elda-bell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elda-bell.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/heroes-gleb-pocket.webp",
+   "sha256": "35e39fa63775c6d85eb60952bf31094ce6e92533a321e2f5d0cc53417c0cdde7",
+   "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глеб Кармашек",
+   "references": [],
+   "subjects": {
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "gleb-pocket"
+    ]
+   },
+   "file": "gleb-pocket--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gleb-pocket.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-octavian-blam.webp",
+   "sha256": "3520fc25b7b9ffeb6d41ff6a3e4193138323a4d2e861ea5cf124cf5b02f4f5c7",
+   "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Октавиан Блям",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "octavian-blam"
+    ],
+    "6-players": [
+     "octavian-blam"
+    ],
+    "7-players": [
+     "octavian-blam"
+    ],
+    "8-players": [
+     "octavian-blam"
+    ]
+   },
+   "file": "octavian-blam--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "octavian-blam.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-bibi-count.webp",
+   "sha256": "790c10a9e185ecc13f5671f1a19dfb5c5e39077e716a893a810f2c6876228b54",
+   "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Биби Счёткина",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "bibi-count"
+    ],
+    "6-players": [
+     "bibi-count"
+    ],
+    "7-players": [
+     "bibi-count"
+    ],
+    "8-players": [
+     "bibi-count"
+    ]
+   },
+   "file": "bibi-count--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bibi-count.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-serafima-bant.webp",
+   "sha256": "00df7af33eb905bf006d0fb4d4bd8a23b858303d7d6f1271913081eaedc76b79",
+   "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Серафима Фальшбантик",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "serafima-bant"
+    ],
+    "6-players": [
+     "serafima-bant"
+    ],
+    "7-players": [
+     "serafima-bant"
+    ],
+    "8-players": [
+     "serafima-bant"
+    ]
+   },
+   "file": "serafima-bant--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "serafima-bant.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-bronk-button.webp",
+   "sha256": "0f209e3809824f4edbcaecfb68b757c76ab05cfad4f0bc1baa94d67e81d8d4fb",
+   "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бронк Пуговица",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "bronk-button"
+    ],
+    "6-players": [
+     "bronk-button"
+    ],
+    "7-players": [
+     "bronk-button"
+    ],
+    "8-players": [
+     "bronk-button"
+    ]
+   },
+   "file": "bronk-button--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bronk-button.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-tesha-needle.webp",
+   "sha256": "0fc5cc278cc125d86e1ea059ed00a5a9aab5c8a17c3d74005d728d13dc8d2770",
+   "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Теша Иголкина",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "tesha-needle"
+    ],
+    "6-players": [
+     "tesha-needle"
+    ],
+    "7-players": [
+     "tesha-needle"
+    ],
+    "8-players": [
+     "tesha-needle"
+    ]
+   },
+   "file": "tesha-needle--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tesha-needle.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-pafnuty-loop.webp",
+   "sha256": "2eb57ca844ad1ce399c00c10d35cb301cfbad8f0db16573db7e0e2e7bf7ed793",
+   "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пафнутий Петля",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "pafnuty-loop"
+    ],
+    "6-players": [
+     "pafnuty-loop"
+    ],
+    "7-players": [
+     "pafnuty-loop"
+    ],
+    "8-players": [
+     "pafnuty-loop"
+    ]
+   },
+   "file": "pafnuty-loop--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pafnuty-loop.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-marta-arc.webp",
+   "sha256": "d38e15ce526e24c0d399a77c5f4cd7894b09a643db1ce7adb1509ef3800384c1",
+   "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Дуга",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "marta-arc"
+    ],
+    "6-players": [
+     "marta-arc"
+    ],
+    "7-players": [
+     "marta-arc"
+    ],
+    "8-players": [
+     "marta-arc"
+    ]
+   },
+   "file": "marta-arc--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marta-arc.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-felix-skip.webp",
+   "sha256": "adb1792e92017c5df43c8ceeaf99fd0aab462731fb89111b3be831d80615b267",
+   "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Феликс Перескок",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "felix-skip"
+    ],
+    "6-players": [
+     "felix-skip"
+    ],
+    "7-players": [
+     "felix-skip"
+    ],
+    "8-players": [
+     "felix-skip"
+    ]
+   },
+   "file": "felix-skip--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "felix-skip.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-agrippina-net.webp",
+   "sha256": "fcd0fa1b0c33a19befc666655df620596bcca5244ff3702434a4018a684b6ba8",
+   "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Агриппина Сачок",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "agrippina-net"
+    ],
+    "6-players": [
+     "agrippina-net"
+    ],
+    "7-players": [
+     "agrippina-net"
+    ],
+    "8-players": [
+     "agrippina-net"
+    ]
+   },
+   "file": "agrippina-net--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "agrippina-net.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/clockwork-carnival/assets/table/npcs-grusha-mill.webp",
+   "sha256": "a8fcacf0a85d2b94734ef6fdbde097151f0e60972c42ff0290d7e29179930dd1",
+   "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Груша Мельникова",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "grusha-mill"
+    ],
+    "6-players": [
+     "grusha-mill"
+    ],
+    "7-players": [
+     "grusha-mill"
+    ],
+    "8-players": [
+     "grusha-mill"
+    ]
+   },
+   "file": "grusha-mill--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "grusha-mill.webp"
   },
   {
    "file": "echo-salon--map.webp",

@@ -1,0 +1,481 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "sky-archipelago-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-ac600ace-b5d2-440b-9f57-eb850430b39d.png",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лазурный Разлом · Aeronautical brass wind vanes and gauzy contour lines stamped on sky-blue linen. Cell 1. Альта Ренн. Короткий синий плащ, перчатки с медными застёжками, белая прядь у виска.\nCell 2. Лис Тарен. Пальцы в пятнах бирюзовых чернил, короткая куртка со множеством карманов, мягкие сапоги.\nCell 3. Яра Вей. Серый дорожный жилет поверх светлой одежды, маленький колокольчик без языка, спокойная улыбка.\nCell 4. Брин Орт. Круглые очки на шнурке, мел в нагрудном кармане, раскрывающийся деревянный угольник.\nCell 5. Рута Кель. Широкий пояс с карабинами, на поясе — запасная страховка в красной оплётке, плетёные браслеты из старых канатов, волосы под красным платком.\nCell 6. Искра Ним. Жёлтая лента на рукаве, блокнот из разноцветных листов, серьга в форме крошечного паруса.\nCell 7. Сев Аран. Зелёный фартук с дорожными карманами, серебряная борода, деревянные жетоны для счёта пассажиров.\nCell 8. Мея Сол. Короткие тёмные волосы, медные трубочки на ремне, плащ с подкладкой цвета вечернего облака.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-alta.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-lis.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-yara.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-brin.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-ruta.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-iskra.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-sev.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/hero-meya.webp"
+      ]
+    },
+    {
+      "id": "sky-archipelago-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-28928f30-e2d9-4d85-be9b-d51307780a39.png",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 7 distinct hand-painted tabletop miniature figurines for the world of Атлас Небесных Островов. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Веста Рон. Диспетчер с седой косой, чернильные рукава, связка причальных ключей на поясе, мел за обоими ушами.\nCell 2. Орин Кельм. Механик в заплатанном жилете; на запястьях на шнурках четыре мелка — белый, жёлтый, красный, зелёный. Левша.\nCell 3. Дария Варр. Белый камзол с зашитым воротником, футляр карт со стёртыми краями, на поясе белый капитанский пакет с судейской печатью.\nCell 4. Нери Айрен. Короткие тёмные волосы, красная гоночная лента, деревянная счётная рамка на ремне.\nCell 5. Гедда Айрен. Обветренное лицо, трость, большой складной деревянный угольник, рабочий жилет.\nCell 6. Наим Рош. Дымчатые очки, мерный шест, песочные часы на шнурке; к шесту привязана выцветшая красная полоса вымпела.\nCell 7. Фея Ланн. Мел за ухом, трость со стрелками ветра, рабочее пальто с широкими карманами.",
+      "references": [
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/vesta-ron.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/orin-kelm.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/daria-varr.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/neri-ayren.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/gedda-ayren.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/naim-rosh.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/feya-lann.webp"
+      ]
+    },
+    {
+      "id": "sky-archipelago-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f187c721-f8de-4b2f-b04d-ceaf76444144.png",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Атлас Небесных Островов. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Тобель Ист. Тёмная мантия, медная линейка, медный мелодержатель с тремя насечками у зажима. Белые перчатки меняет каждый вечер; парадная пара с медной пуговицей лежит в лаковом футляре.\nCell 2. Горран Таль. Капитан облачных налётчиков с брига «Сорока»; кожаный плащ в заплатах из чужих парусов, абордажный крюк на плече, серебряный свисток.\nCell 3. Сарош Ведь. Худой, бритая голова, чёрная борода, тёмно-фиолетовый кафтан; на ремне медная ночная зрительная труба.\nCell 4. Сельва Прим. Недавняя ученица Школы ветров: короткие рыжие волосы, веснушки, серо-голубая ученическая куртка с меловыми манжетами, тетрадь на шнурке.\nCell 5. Тиса Хорн. Высокая, в длинную чёрную косу вплетены три пера, стёганый зелёный лётный жилет, спокойный ястребиный взгляд.\nCell 6. Гальт Рудой. Коренастый, огромные медно-рыжие усы, старомодный медный лётный шлем с наушниками, трубка, которую он никогда не зажигает.",
+      "references": [
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/tobel-ist.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/gorran-tal.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/sarosh-ved.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/selva-prim.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/tisa-horn.webp",
+        "campaigns/collection-2026/sky-archipelago/assets/runtime/galt-rudoy.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "hero-alta",
+      "title": "Альта Ренн",
+      "kind": "hero",
+      "subjects": [
+        "hero-alta"
+      ],
+      "file": "heroes-hero-alta.webp",
+      "sha256": "0ffb0fd59148c4482a85c705cfd8cd34e51e432903b99842d7e0c47b3990622a",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 111,
+        "top": 22,
+        "width": 217,
+        "height": 401
+      }
+    },
+    {
+      "key": "hero-lis",
+      "title": "Лис Тарен",
+      "kind": "hero",
+      "subjects": [
+        "hero-lis"
+      ],
+      "file": "heroes-hero-lis.webp",
+      "sha256": "7e119ecaf5e87042ace3c64bd8f86997465ab531dacf340a165c26f0dde11aed",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 559,
+        "top": 16,
+        "width": 203,
+        "height": 406
+      }
+    },
+    {
+      "key": "hero-yara",
+      "title": "Яра Вей",
+      "kind": "hero",
+      "subjects": [
+        "hero-yara"
+      ],
+      "file": "heroes-hero-yara.webp",
+      "sha256": "07b97a4705575bee51084868d5275dd3afb51987f964cc7060114582d82fd516",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1008,
+        "top": 21,
+        "width": 202,
+        "height": 401
+      }
+    },
+    {
+      "key": "hero-brin",
+      "title": "Брин Орт",
+      "kind": "hero",
+      "subjects": [
+        "hero-brin"
+      ],
+      "file": "heroes-hero-brin.webp",
+      "sha256": "01348db512814fa9238f3b5d8ac0ad0ffaff612d90eb21be2615b2c81d6e89d4",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1429,
+        "top": 19,
+        "width": 223,
+        "height": 404
+      }
+    },
+    {
+      "key": "hero-ruta",
+      "title": "Рута Кель",
+      "kind": "hero",
+      "subjects": [
+        "hero-ruta"
+      ],
+      "file": "heroes-hero-ruta.webp",
+      "sha256": "6834033c2805606966379a408babc0983d55df8074215b55d1aca580e55097cc",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 122,
+        "top": 459,
+        "width": 208,
+        "height": 409
+      }
+    },
+    {
+      "key": "hero-iskra",
+      "title": "Искра Ним",
+      "kind": "hero",
+      "subjects": [
+        "hero-iskra"
+      ],
+      "file": "heroes-hero-iskra.webp",
+      "sha256": "0f81bd206b48ac0fc07c13be6f8e8fd519595df27e731d989d35fe2b009a374b",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 560,
+        "top": 457,
+        "width": 216,
+        "height": 412
+      }
+    },
+    {
+      "key": "hero-sev",
+      "title": "Сев Аран",
+      "kind": "hero",
+      "subjects": [
+        "hero-sev"
+      ],
+      "file": "heroes-hero-sev.webp",
+      "sha256": "33ebe279ae8e7f218719667081f7909b6156a218980b667cafafa444f0b977c1",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1001,
+        "top": 456,
+        "width": 209,
+        "height": 413
+      }
+    },
+    {
+      "key": "hero-meya",
+      "title": "Мея Сол",
+      "kind": "hero",
+      "subjects": [
+        "hero-meya"
+      ],
+      "file": "heroes-hero-meya.webp",
+      "sha256": "b4ddc13a11f354c181d5729e3584975bb73bd71e297bb2aea9154474cdf4b2c0",
+      "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1415,
+        "top": 459,
+        "width": 242,
+        "height": 410
+      }
+    },
+    {
+      "key": "vesta-ron",
+      "title": "Веста Рон",
+      "kind": "npc",
+      "subjects": [
+        "vesta-ron"
+      ],
+      "file": "npcs-vesta-ron.webp",
+      "sha256": "50d4852f2f531d5aad68bffb9f4ebab081537841ba28a6baeb18c24fbd1ea8fb",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 84,
+        "top": 21,
+        "width": 234,
+        "height": 398
+      }
+    },
+    {
+      "key": "orin-kelm",
+      "title": "Орин Кельм",
+      "kind": "npc",
+      "subjects": [
+        "orin-kelm"
+      ],
+      "file": "npcs-orin-kelm.webp",
+      "sha256": "b246af72bdf118d7c0fbc59dcaa6ac5345a9234bb821a6d912f17f92183cf1c9",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 477,
+        "top": 22,
+        "width": 233,
+        "height": 397
+      }
+    },
+    {
+      "key": "daria-varr",
+      "title": "Дария Варр",
+      "kind": "npc",
+      "subjects": [
+        "daria-varr"
+      ],
+      "file": "npcs-daria-varr.webp",
+      "sha256": "7a2363431f430ee8fc7f6f47743894b24e9744031f6cdff5d8a72156a58d0083",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 872,
+        "top": 18,
+        "width": 242,
+        "height": 402
+      }
+    },
+    {
+      "key": "neri-ayren",
+      "title": "Нери Айрен",
+      "kind": "npc",
+      "subjects": [
+        "neri-ayren"
+      ],
+      "file": "npcs-neri-ayren.webp",
+      "sha256": "ff30b163ee1746a6b37671a9677c13d18a94f7bc548e10fe3a92f526adeca4ef",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 61,
+        "top": 437,
+        "width": 259,
+        "height": 423
+      }
+    },
+    {
+      "key": "gedda-ayren",
+      "title": "Гедда Айрен",
+      "kind": "npc",
+      "subjects": [
+        "gedda-ayren"
+      ],
+      "file": "npcs-gedda-ayren.webp",
+      "sha256": "2d3f39799dd6ab8b420f9158a3d8f12f98a32160fc4dc7182e396e6bf5902298",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 473,
+        "top": 446,
+        "width": 236,
+        "height": 414
+      }
+    },
+    {
+      "key": "naim-rosh",
+      "title": "Наим Рош",
+      "kind": "npc",
+      "subjects": [
+        "naim-rosh"
+      ],
+      "file": "npcs-naim-rosh.webp",
+      "sha256": "4f4f668d6aaf5c4145d54cb9eda87603b0f777897ec56404e37793027a36e302",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 872,
+        "top": 437,
+        "width": 246,
+        "height": 423
+      }
+    },
+    {
+      "key": "feya-lann",
+      "title": "Фея Ланн",
+      "kind": "npc",
+      "subjects": [
+        "feya-lann"
+      ],
+      "file": "npcs-feya-lann.webp",
+      "sha256": "66b68cde0930eb4fabbe915b3b0161c8a4443b76ba258169a17daee56cb83511",
+      "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 78,
+        "top": 893,
+        "width": 245,
+        "height": 402
+      }
+    },
+    {
+      "key": "tobel-ist",
+      "title": "Тобель Ист",
+      "kind": "npc",
+      "subjects": [
+        "tobel-ist"
+      ],
+      "file": "npcs-tobel-ist.webp",
+      "sha256": "d8690f9c6165cc8140c19f9ea1df515fc21926e1229b730d02ca5bd7769ba25b",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 142,
+        "top": 13,
+        "width": 256,
+        "height": 486
+      }
+    },
+    {
+      "key": "gorran-tal",
+      "title": "Горран Таль",
+      "kind": "npc",
+      "subjects": [
+        "gorran-tal"
+      ],
+      "file": "npcs-gorran-tal.webp",
+      "sha256": "98be2bd4e17fd625827f42c9d71aab5815f880a99549e434f117728c3565cc56",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 619,
+        "top": 15,
+        "width": 276,
+        "height": 484
+      }
+    },
+    {
+      "key": "sarosh-ved",
+      "title": "Сарош Ведь",
+      "kind": "npc",
+      "subjects": [
+        "sarosh-ved"
+      ],
+      "file": "npcs-sarosh-ved.webp",
+      "sha256": "97797d3e32a4942ebfd8204fd93fa7fb868bf9bfae7810ffb249e24f252640d7",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1132,
+        "top": 16,
+        "width": 268,
+        "height": 483
+      }
+    },
+    {
+      "key": "selva-prim",
+      "title": "Сельва Прим",
+      "kind": "npc",
+      "subjects": [
+        "selva-prim"
+      ],
+      "file": "npcs-selva-prim.webp",
+      "sha256": "3847d61894af50ee523a1b58448fb3e9b61978c4bfce250c4b26e20dc87ab9df",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 129,
+        "top": 524,
+        "width": 256,
+        "height": 491
+      }
+    },
+    {
+      "key": "tisa-horn",
+      "title": "Тиса Хорн",
+      "kind": "npc",
+      "subjects": [
+        "tisa-horn"
+      ],
+      "file": "npcs-tisa-horn.webp",
+      "sha256": "ea9f8a893fbf6bfbbb9684f54bea6948dde82ec38363ebcc6c9c1018b4269b19",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 637,
+        "top": 518,
+        "width": 258,
+        "height": 495
+      }
+    },
+    {
+      "key": "galt-rudoy",
+      "title": "Гальт Рудой",
+      "kind": "npc",
+      "subjects": [
+        "galt-rudoy"
+      ],
+      "file": "npcs-galt-rudoy.webp",
+      "sha256": "1cd6cd5b05ca3cdb1123159f106b17487c548a0c055b3097f441841f2dd94864",
+      "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+      "generated": "2026-11-22",
+      "sheet": "sky-archipelago-npcs-1",
+      "cell": 6,
+      "crop": {
+        "left": 1133,
+        "top": 521,
+        "width": 273,
+        "height": 492
+      }
+    }
+  ]
+}

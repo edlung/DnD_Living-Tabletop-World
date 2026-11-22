@@ -1,0 +1,1783 @@
+{
+ "id": "red-dune-post",
+ "title": "Почта Красной Дюны",
+ "genre": "Оптимистичная планетарная научная фантастика / экспедиция",
+ "audience": "12+",
+ "pitch": "Накануне марсианского почтового состязания приходит посылка из оранжереи, закрытой девятнадцать лет назад. Внутри — фотографии пустого стола и письма людям, которым трудно сказать простые вещи. Каждый адресат вправе выбрать следующий адрес, прислать ответ или отказаться. Курьерам предстоит закончить цепь личных доставок и понять, какое обещание можно исполнить, если не все хотят встретиться.",
+ "tone": "Тёплая экспедиционная история: смешные почтовые привычки, серьёзные обещания, красота маленьких поселений и надежда, которая требует совместной работы.",
+ "duration": "8 сессий; 2 часа 15 минут: 10 минут встречи и пересказа, сцены 30 + 40 + 35 минут, перерыв 10 минут после второй сцены, завершение 10 минут.",
+ "cover": "campaigns/mixed-ages-2026/red-dune-post/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "e7e82fe6fe5b5345f2f13800ef9ddf04a74f28ff39243d2c562a3f92a54faf4e"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "9af8218be5816c41d3d74a7f857e582d915ea8985c6f49e1d1c57f7517de783d"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "3503dfff74bac7af2093bbd633e9a3000669c5b87ffc6ad66ec9ad59062bbae0"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "f1742fcc987f96ea84da9a0ef60e0282cdec80d7250907ba00376cd4f1d20a75"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "213ac86568fde9e881aa3ab8e71d9c2934f11af2f8bbaeb6686381ef05f35d5d"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/asya-krug.webp",
+   "sha256": "29c72fbf3055672cc75790395e438cc046890a5932e017ac20ae9b46f80d2c25",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Круг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-krug"
+    ],
+    "4-players": [
+     "asya-krug"
+    ],
+    "5-players": [
+     "asya-krug"
+    ],
+    "6-players": [
+     "asya-krug"
+    ],
+    "7-players": [
+     "asya-krug"
+    ]
+   },
+   "file": "asya-krug.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/tim-nero.webp",
+   "sha256": "3a40c3c24d35841ff88c7a3ffc68f834ba0f68c6486df6e54dfc2c11bec7d22b",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Неро",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-nero"
+    ],
+    "4-players": [
+     "tim-nero"
+    ],
+    "5-players": [
+     "tim-nero"
+    ],
+    "6-players": [
+     "tim-nero"
+    ],
+    "7-players": [
+     "tim-nero"
+    ]
+   },
+   "file": "tim-nero.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/rada-vey.webp",
+   "sha256": "0ecf3df9961d754d6835875264033d7f3047dfa44d92228192da2d58bd5ea863",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-vey"
+    ],
+    "4-players": [
+     "rada-vey"
+    ],
+    "5-players": [
+     "rada-vey"
+    ],
+    "6-players": [
+     "rada-vey"
+    ],
+    "7-players": [
+     "rada-vey"
+    ]
+   },
+   "file": "rada-vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/mir-sol.webp",
+   "sha256": "55b746729c9e89cc017cdd2fd3886f85c1aca8f14c302c8b9602e63b86828e2c",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мир Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "mir-sol"
+    ],
+    "5-players": [
+     "mir-sol"
+    ],
+    "6-players": [
+     "mir-sol"
+    ],
+    "7-players": [
+     "mir-sol"
+    ]
+   },
+   "file": "mir-sol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/nika-ott.webp",
+   "sha256": "1a1428abc63ac02140e3205a304f37d168083a4bc88ee53f6944ef4f8331fad3",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Отт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nika-ott"
+    ],
+    "6-players": [
+     "nika-ott"
+    ],
+    "7-players": [
+     "nika-ott"
+    ]
+   },
+   "file": "nika-ott.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/fedya-lan.webp",
+   "sha256": "80df170e1d246612aa23ffe691f59c3d1a3e293aa94e15a69ab7789cf5c00951",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Федя Лан",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "fedya-lan"
+    ],
+    "7-players": [
+     "fedya-lan"
+    ]
+   },
+   "file": "fedya-lan.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/levi-ar.webp",
+   "sha256": "ba0311c475b172eff610071cbea123a804a6672834e3c9740002a481b4c33671",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Леви Ар",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "levi-ar"
+    ]
+   },
+   "file": "levi-ar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/travel-kit.webp",
+   "sha256": "2c03a66dd8d9b6a25be3e7040f70db8e12bcd91a8817fb4350342a76699cd661",
+   "originalSha256": "f9dedeb2df1c228114146bb538229d2d92f129366975d982a85cd0c275525e9f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-krug-travel-kit",
+     "rada-vey-travel-kit",
+     "tim-nero-travel-kit"
+    ],
+    "4-players": [
+     "asya-krug-travel-kit",
+     "mir-sol-travel-kit",
+     "rada-vey-travel-kit",
+     "tim-nero-travel-kit"
+    ],
+    "5-players": [
+     "asya-krug-travel-kit",
+     "mir-sol-travel-kit",
+     "nika-ott-travel-kit",
+     "rada-vey-travel-kit",
+     "tim-nero-travel-kit"
+    ],
+    "6-players": [
+     "asya-krug-travel-kit",
+     "fedya-lan-travel-kit",
+     "mir-sol-travel-kit",
+     "nika-ott-travel-kit",
+     "rada-vey-travel-kit",
+     "tim-nero-travel-kit"
+    ],
+    "7-players": [
+     "asya-krug-travel-kit",
+     "fedya-lan-travel-kit",
+     "levi-ar-travel-kit",
+     "mir-sol-travel-kit",
+     "nika-ott-travel-kit",
+     "rada-vey-travel-kit",
+     "tim-nero-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/mira-tess.webp",
+   "sha256": "290bfac7a30817fcd56882eebecbbb5ef469ccde73f2abcc08f838ecd1eebbc8",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Тесс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-tess"
+    ],
+    "4-players": [
+     "mira-tess"
+    ],
+    "5-players": [
+     "mira-tess"
+    ],
+    "6-players": [
+     "mira-tess"
+    ],
+    "7-players": [
+     "mira-tess"
+    ]
+   },
+   "file": "mira-tess.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/oren-pak.webp",
+   "sha256": "25ba742be6d823069b56b42adf6e3ea1a671f992061a6130f6e02278de666ecc",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орен Пак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oren-pak"
+    ],
+    "4-players": [
+     "oren-pak"
+    ],
+    "5-players": [
+     "oren-pak"
+    ],
+    "6-players": [
+     "oren-pak"
+    ],
+    "7-players": [
+     "oren-pak"
+    ]
+   },
+   "file": "oren-pak.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/seva-rill.webp",
+   "sha256": "db3437001f031aac0583a602a94345025b80e6bd46ccd10c9536342386afcf91",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сева Рилл",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seva-rill"
+    ],
+    "4-players": [
+     "seva-rill"
+    ],
+    "5-players": [
+     "seva-rill"
+    ],
+    "6-players": [
+     "seva-rill"
+    ],
+    "7-players": [
+     "seva-rill"
+    ]
+   },
+   "file": "seva-rill.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/leon-vad.webp",
+   "sha256": "962377fbe5f9750806e8bc535e7ede40c7d002b18dcf60d891e164f69d0b421f",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Леон Вад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leon-vad"
+    ],
+    "4-players": [
+     "leon-vad"
+    ],
+    "5-players": [
+     "leon-vad"
+    ],
+    "6-players": [
+     "leon-vad"
+    ],
+    "7-players": [
+     "leon-vad"
+    ]
+   },
+   "file": "leon-vad.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/elda-venn.webp",
+   "sha256": "3288a53bcda34351ad3f0f6d57094f0b4bc8bebae37578541a435284643619af",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльда Венн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elda-venn"
+    ],
+    "4-players": [
+     "elda-venn"
+    ],
+    "5-players": [
+     "elda-venn"
+    ],
+    "6-players": [
+     "elda-venn"
+    ],
+    "7-players": [
+     "elda-venn"
+    ]
+   },
+   "file": "elda-venn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/iskra-nine.webp",
+   "sha256": "edfd5c29091da6d346dc5588db63dde26369ee912a95b85a9ac99aab63f0cfa1",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Искра-9",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iskra-nine"
+    ],
+    "4-players": [
+     "iskra-nine"
+    ],
+    "5-players": [
+     "iskra-nine"
+    ],
+    "6-players": [
+     "iskra-nine"
+    ],
+    "7-players": [
+     "iskra-nine"
+    ]
+   },
+   "file": "iskra-nine.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/taya-merk.webp",
+   "sha256": "0c0c33b5567f41883334bbdad37fa3f14ff42dcfb961bf4476312be396ec7314",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Мерк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya-merk"
+    ],
+    "4-players": [
+     "taya-merk"
+    ],
+    "5-players": [
+     "taya-merk"
+    ],
+    "6-players": [
+     "taya-merk"
+    ],
+    "7-players": [
+     "taya-merk"
+    ]
+   },
+   "file": "taya-merk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/boris-hey.webp",
+   "sha256": "bcbebbfd37577578dc5a397cf0deb76eb0c6a42ac93202eca561394c1ed68ac0",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Хэй",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "boris-hey"
+    ],
+    "4-players": [
+     "boris-hey"
+    ],
+    "5-players": [
+     "boris-hey"
+    ],
+    "6-players": [
+     "boris-hey"
+    ],
+    "7-players": [
+     "boris-hey"
+    ]
+   },
+   "file": "boris-hey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/leya-ten.webp",
+   "sha256": "e954dc8767bf88b9f3bcd851b7dae6b568f0c1cf94b1d06d06f07bae995cc94c",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Тэн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leya-ten"
+    ],
+    "4-players": [
+     "leya-ten"
+    ],
+    "5-players": [
+     "leya-ten"
+    ],
+    "6-players": [
+     "leya-ten"
+    ],
+    "7-players": [
+     "leya-ten"
+    ]
+   },
+   "file": "leya-ten.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/en-noa.webp",
+   "sha256": "735586e1694470c165e4a63c0ba3b795777d4bbc0bd71549d32927156f55231d",
+   "originalSha256": "c1154a5d29741f8b47f9fdc8128f5c032553e08d1653af6c06ff2b2e118622f5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эн Ноа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "en-noa"
+    ],
+    "4-players": [
+     "en-noa"
+    ],
+    "5-players": [
+     "en-noa"
+    ],
+    "6-players": [
+     "en-noa"
+    ],
+    "7-players": [
+     "en-noa"
+    ]
+   },
+   "file": "en-noa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-asya-krug.webp",
+   "sha256": "83c976407149f0948537bf13a98fc726480e27f0b8725383684f56ffdc88cd2a",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Круг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-krug"
+    ],
+    "4-players": [
+     "asya-krug"
+    ],
+    "5-players": [
+     "asya-krug"
+    ],
+    "6-players": [
+     "asya-krug"
+    ],
+    "7-players": [
+     "asya-krug"
+    ]
+   },
+   "file": "asya-krug--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "asya-krug.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-tim-nero.webp",
+   "sha256": "45f1d79d127a93f610c156c00764931e03b0307daf31e980f0de57cd6f797df1",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Неро",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-nero"
+    ],
+    "4-players": [
+     "tim-nero"
+    ],
+    "5-players": [
+     "tim-nero"
+    ],
+    "6-players": [
+     "tim-nero"
+    ],
+    "7-players": [
+     "tim-nero"
+    ]
+   },
+   "file": "tim-nero--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tim-nero.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-rada-vey.webp",
+   "sha256": "8db604a796dd57a56856d6ba2551c28215d7617338bf2f50e77f8b6c55feec31",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-vey"
+    ],
+    "4-players": [
+     "rada-vey"
+    ],
+    "5-players": [
+     "rada-vey"
+    ],
+    "6-players": [
+     "rada-vey"
+    ],
+    "7-players": [
+     "rada-vey"
+    ]
+   },
+   "file": "rada-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-vey.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-mir-sol.webp",
+   "sha256": "ccde94b8fd71622df193b6d329a5a0bb9c8b5b447e88eb1c0a265cd420fe3388",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мир Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "mir-sol"
+    ],
+    "5-players": [
+     "mir-sol"
+    ],
+    "6-players": [
+     "mir-sol"
+    ],
+    "7-players": [
+     "mir-sol"
+    ]
+   },
+   "file": "mir-sol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mir-sol.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-nika-ott.webp",
+   "sha256": "bbd4b73c767a00f664fd5bbb855edcabe5e2c8ac9f3e0957280fd9eaddc61cbd",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Отт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nika-ott"
+    ],
+    "6-players": [
+     "nika-ott"
+    ],
+    "7-players": [
+     "nika-ott"
+    ]
+   },
+   "file": "nika-ott--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nika-ott.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-fedya-lan.webp",
+   "sha256": "d665bd97bb59a592954fb487a4dca49c1559906e8772b064fe78ae877359aea1",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Федя Лан",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "fedya-lan"
+    ],
+    "7-players": [
+     "fedya-lan"
+    ]
+   },
+   "file": "fedya-lan--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fedya-lan.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/heroes-levi-ar.webp",
+   "sha256": "6968b94fc09ee057a1a3162f1e6dd56ce453282b4b1e15f7ee5fe8f706a97089",
+   "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Леви Ар",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "levi-ar"
+    ]
+   },
+   "file": "levi-ar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "levi-ar.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-red-dune.webp",
+   "sha256": "6c295ce95c4b2f0fba6bc571a12f2a3daac35fba684aca7abbbb5218430c6e07",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Красная Дюна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "red-dune"
+    ],
+    "4-players": [
+     "red-dune"
+    ],
+    "5-players": [
+     "red-dune"
+    ],
+    "6-players": [
+     "red-dune"
+    ],
+    "7-players": [
+     "red-dune"
+    ]
+   },
+   "file": "red-dune.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-post-house.webp",
+   "sha256": "6cfb42d8d152a1d9f6e11991233d2c20e0d9e5fc1ceacb594e812ef8c9e2e15f",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Почтовый дом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "post-house"
+    ],
+    "4-players": [
+     "post-house"
+    ],
+    "5-players": [
+     "post-house"
+    ],
+    "6-players": [
+     "post-house"
+    ],
+    "7-players": [
+     "post-house"
+    ]
+   },
+   "file": "post-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-glass-switch.webp",
+   "sha256": "68edb4f2fbe8eb498a8b116408275170b4e00dba615594af9f73124bfe48578d",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стеклянная Развилка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "glass-switch"
+    ],
+    "4-players": [
+     "glass-switch"
+    ],
+    "5-players": [
+     "glass-switch"
+    ],
+    "6-players": [
+     "glass-switch"
+    ],
+    "7-players": [
+     "glass-switch"
+    ]
+   },
+   "file": "glass-switch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-quiet-steps.webp",
+   "sha256": "e0eb409d1d731cef84bd0eafdfdc8186b77a7120fe58c4e0e2b6000de102bdc6",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихие Ступени",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-steps"
+    ],
+    "4-players": [
+     "quiet-steps"
+    ],
+    "5-players": [
+     "quiet-steps"
+    ],
+    "6-players": [
+     "quiet-steps"
+    ],
+    "7-players": [
+     "quiet-steps"
+    ]
+   },
+   "file": "quiet-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-echo-archive.webp",
+   "sha256": "8f2047b067879c95e38f3b4644d38ba1bfbbac30c54fc4e10c0a4cc56d924f0c",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Архив Отзвука",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "echo-archive"
+    ],
+    "4-players": [
+     "echo-archive"
+    ],
+    "5-players": [
+     "echo-archive"
+    ],
+    "6-players": [
+     "echo-archive"
+    ],
+    "7-players": [
+     "echo-archive"
+    ]
+   },
+   "file": "echo-archive.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-fourth-dawn.webp",
+   "sha256": "cd3bffc6b25ef134063fe6f41cced61dac2b89f59846d16720bdf2a3ab6758fe",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оранжерея Четвёртый Рассвет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fourth-dawn"
+    ],
+    "4-players": [
+     "fourth-dawn"
+    ],
+    "5-players": [
+     "fourth-dawn"
+    ],
+    "6-players": [
+     "fourth-dawn"
+    ],
+    "7-players": [
+     "fourth-dawn"
+    ]
+   },
+   "file": "fourth-dawn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-salt-terraces.webp",
+   "sha256": "bf57427e38b82c01d0e3b28d921bf9ebd1160d11f7988479dd8e388fc085e299",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Поющие соляные террасы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "salt-terraces"
+    ],
+    "4-players": [
+     "salt-terraces"
+    ],
+    "5-players": [
+     "salt-terraces"
+    ],
+    "6-players": [
+     "salt-terraces"
+    ],
+    "7-players": [
+     "salt-terraces"
+    ]
+   },
+   "file": "salt-terraces.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-wind-harbor.webp",
+   "sha256": "d2e7190279507eb6ee9706b09d680b3dce6d0beccec6b8fdf92b4298483c4298",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ветряная Гавань",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wind-harbor"
+    ],
+    "4-players": [
+     "wind-harbor"
+    ],
+    "5-players": [
+     "wind-harbor"
+    ],
+    "6-players": [
+     "wind-harbor"
+    ],
+    "7-players": [
+     "wind-harbor"
+    ]
+   },
+   "file": "wind-harbor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-hanging-road.webp",
+   "sha256": "4d2103427d0b4beae65f2b381483e48f4fa6457abe290933a84a24c8417ad81a",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Подвесной тракт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hanging-road"
+    ],
+    "4-players": [
+     "hanging-road"
+    ],
+    "5-players": [
+     "hanging-road"
+    ],
+    "6-players": [
+     "hanging-road"
+    ],
+    "7-players": [
+     "hanging-road"
+    ]
+   },
+   "file": "hanging-road.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/places-receiving-garden.webp",
+   "sha256": "4545212b9dd24357bde27da92b8fd3491353e16fb8fa00d0c7135c3a2a94691d",
+   "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Приёмный сад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "receiving-garden"
+    ],
+    "4-players": [
+     "receiving-garden"
+    ],
+    "5-players": [
+     "receiving-garden"
+    ],
+    "6-players": [
+     "receiving-garden"
+    ],
+    "7-players": [
+     "receiving-garden"
+    ]
+   },
+   "file": "receiving-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/foes-foe-5137c30bb7.webp",
+   "sha256": "70dce873610385a0d0de91dd8cba36928832fd5a00ce2d625cd6d36b5178b2f5",
+   "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тележка-сортировщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2"
+    ],
+    "4-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3"
+    ],
+    "5-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3"
+    ],
+    "6-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3",
+     "parcel-parade-foe-4"
+    ],
+    "7-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3",
+     "parcel-parade-foe-4",
+     "parcel-parade-foe-5"
+    ]
+   },
+   "file": "foe-5137c30bb7.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/foes-foe-5137c30bb7.webp",
+   "sha256": "70dce873610385a0d0de91dd8cba36928832fd5a00ce2d625cd6d36b5178b2f5",
+   "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тележка-сортировщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2"
+    ],
+    "4-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3"
+    ],
+    "5-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3"
+    ],
+    "6-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3",
+     "parcel-parade-foe-4"
+    ],
+    "7-players": [
+     "parcel-parade-foe-1",
+     "parcel-parade-foe-2",
+     "parcel-parade-foe-3",
+     "parcel-parade-foe-4",
+     "parcel-parade-foe-5"
+    ]
+   },
+   "file": "foe-5137c30bb7--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-5137c30bb7.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/foes-foe-1d90e79079.webp",
+   "sha256": "8f088b21e1481d31ef592383273e2585028850c1ca515d159f5a6db3b574997e",
+   "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лепестковый билетёр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2"
+    ],
+    "4-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3"
+    ],
+    "5-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3"
+    ],
+    "6-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3",
+     "petal-ushers-foe-4"
+    ],
+    "7-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3",
+     "petal-ushers-foe-4",
+     "petal-ushers-foe-5"
+    ]
+   },
+   "file": "foe-1d90e79079.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/foes-foe-1d90e79079.webp",
+   "sha256": "8f088b21e1481d31ef592383273e2585028850c1ca515d159f5a6db3b574997e",
+   "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лепестковый билетёр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2"
+    ],
+    "4-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3"
+    ],
+    "5-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3"
+    ],
+    "6-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3",
+     "petal-ushers-foe-4"
+    ],
+    "7-players": [
+     "petal-ushers-foe-1",
+     "petal-ushers-foe-2",
+     "petal-ushers-foe-3",
+     "petal-ushers-foe-4",
+     "petal-ushers-foe-5"
+    ]
+   },
+   "file": "foe-1d90e79079--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-1d90e79079.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/foes-foe-badea26f19.webp",
+   "sha256": "73e63b5238b32a48431ba71c1a5467779c7b57595cfc922365225de96d628998",
+   "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Флажковый бегун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2"
+    ],
+    "4-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3"
+    ],
+    "5-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3"
+    ],
+    "6-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3",
+     "banner-runners-foe-4"
+    ],
+    "7-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3",
+     "banner-runners-foe-4",
+     "banner-runners-foe-5"
+    ]
+   },
+   "file": "foe-badea26f19.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/foes-foe-badea26f19.webp",
+   "sha256": "73e63b5238b32a48431ba71c1a5467779c7b57595cfc922365225de96d628998",
+   "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Флажковый бегун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2"
+    ],
+    "4-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3"
+    ],
+    "5-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3"
+    ],
+    "6-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3",
+     "banner-runners-foe-4"
+    ],
+    "7-players": [
+     "banner-runners-foe-1",
+     "banner-runners-foe-2",
+     "banner-runners-foe-3",
+     "banner-runners-foe-4",
+     "banner-runners-foe-5"
+    ]
+   },
+   "file": "foe-badea26f19--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-badea26f19.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-mira-tess.webp",
+   "sha256": "50688961eb086309ab553e5798582a7ddefa6708f1dadb04975883e4c0739beb",
+   "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Тесс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-tess"
+    ],
+    "4-players": [
+     "mira-tess"
+    ],
+    "5-players": [
+     "mira-tess"
+    ],
+    "6-players": [
+     "mira-tess"
+    ],
+    "7-players": [
+     "mira-tess"
+    ]
+   },
+   "file": "mira-tess--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-tess.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-oren-pak.webp",
+   "sha256": "eae165c4eacf6ba9fdfb50d8edd4d3c5c05db05145f394e132e61e6a851b2a24",
+   "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орен Пак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oren-pak"
+    ],
+    "4-players": [
+     "oren-pak"
+    ],
+    "5-players": [
+     "oren-pak"
+    ],
+    "6-players": [
+     "oren-pak"
+    ],
+    "7-players": [
+     "oren-pak"
+    ]
+   },
+   "file": "oren-pak--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oren-pak.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-seva-rill.webp",
+   "sha256": "a239e239c1b69a153eb645a717386990c0db49038f8c8e36ef471431e852738c",
+   "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сева Рилл",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seva-rill"
+    ],
+    "4-players": [
+     "seva-rill"
+    ],
+    "5-players": [
+     "seva-rill"
+    ],
+    "6-players": [
+     "seva-rill"
+    ],
+    "7-players": [
+     "seva-rill"
+    ]
+   },
+   "file": "seva-rill--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "seva-rill.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-leon-vad.webp",
+   "sha256": "77e721b48dd4a32b0261102d767e56817f29625048db425605ca7a6ddd2102c5",
+   "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Леон Вад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leon-vad"
+    ],
+    "4-players": [
+     "leon-vad"
+    ],
+    "5-players": [
+     "leon-vad"
+    ],
+    "6-players": [
+     "leon-vad"
+    ],
+    "7-players": [
+     "leon-vad"
+    ]
+   },
+   "file": "leon-vad--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leon-vad.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-elda-venn.webp",
+   "sha256": "f78a80627c26b23ba2e6973d1a0d9cefcadec8c275a1ad89f91dab05bad2de26",
+   "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльда Венн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elda-venn"
+    ],
+    "4-players": [
+     "elda-venn"
+    ],
+    "5-players": [
+     "elda-venn"
+    ],
+    "6-players": [
+     "elda-venn"
+    ],
+    "7-players": [
+     "elda-venn"
+    ]
+   },
+   "file": "elda-venn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elda-venn.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-iskra-nine.webp",
+   "sha256": "ffa2040d21263a88e9f8b33b315a087b3fbf0e5c77c7d783784782e5977afcf7",
+   "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Искра-9",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iskra-nine"
+    ],
+    "4-players": [
+     "iskra-nine"
+    ],
+    "5-players": [
+     "iskra-nine"
+    ],
+    "6-players": [
+     "iskra-nine"
+    ],
+    "7-players": [
+     "iskra-nine"
+    ]
+   },
+   "file": "iskra-nine--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iskra-nine.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-taya-merk.webp",
+   "sha256": "a7ed1b90f12e325d0a7417a362baff308bf9170389ef51f7b6173a326a10a46a",
+   "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Мерк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya-merk"
+    ],
+    "4-players": [
+     "taya-merk"
+    ],
+    "5-players": [
+     "taya-merk"
+    ],
+    "6-players": [
+     "taya-merk"
+    ],
+    "7-players": [
+     "taya-merk"
+    ]
+   },
+   "file": "taya-merk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taya-merk.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-boris-hey.webp",
+   "sha256": "b3b04ce786da340eff4f63068aef748644dc16351ef661001c37c8d14e159fc0",
+   "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Хэй",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "boris-hey"
+    ],
+    "4-players": [
+     "boris-hey"
+    ],
+    "5-players": [
+     "boris-hey"
+    ],
+    "6-players": [
+     "boris-hey"
+    ],
+    "7-players": [
+     "boris-hey"
+    ]
+   },
+   "file": "boris-hey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boris-hey.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-leya-ten.webp",
+   "sha256": "2cfce4db4bfbb313af56d9e5bb19f365d7ad2bf3f9864ee2763aab79a7d52728",
+   "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Тэн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leya-ten"
+    ],
+    "4-players": [
+     "leya-ten"
+    ],
+    "5-players": [
+     "leya-ten"
+    ],
+    "6-players": [
+     "leya-ten"
+    ],
+    "7-players": [
+     "leya-ten"
+    ]
+   },
+   "file": "leya-ten--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leya-ten.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/table/npcs-en-noa.webp",
+   "sha256": "c30433b8d51d3769e3ab7fe1cdccb23fc0c90fa861809836aa93e3b90e529d63",
+   "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эн Ноа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "en-noa"
+    ],
+    "4-players": [
+     "en-noa"
+    ],
+    "5-players": [
+     "en-noa"
+    ],
+    "6-players": [
+     "en-noa"
+    ],
+    "7-players": [
+     "en-noa"
+    ]
+   },
+   "file": "en-noa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "en-noa.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/red-dune-post/illustrations/opening.webp",
+   "sha256": "193501432609a2e13e90975f9c4fce2d7a8fd0cada44a515cfc98556323bdff6",
+   "originalSha256": "65498bbf0782a6548e2d0db3ab1787610e3031273fb22da5f37d2ff84d32bf2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Почтовый дом — Почта Красной Дюны",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "red-basin"
+    ],
+    "4-players": [
+     "red-basin"
+    ],
+    "5-players": [
+     "red-basin"
+    ],
+    "6-players": [
+     "red-basin"
+    ],
+    "7-players": [
+     "red-basin"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "glass-switch--map.webp",
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/battle-maps/glass-switch.webp",
+   "sha256": "d56235a2a7de9a6eb178fa2ff9234c84d4a392f018c630d7bb6912733f427b3f",
+   "originalSha256": "0855f2f0da48c0cb47f4ba89b1cb5714cfcd08c93db6b7c06345200db13c79e1",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стеклянная Развилка. Visible scenery: Крытый почтовый узел над развилкой дорог. За прозрачными стенками лежат старые таблички адресов и аккуратно припаркованные тележки.. World style: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "glass-switch.webp",
+   "subjects": {
+    "3-players": [
+     "glass-switch"
+    ],
+    "4-players": [
+     "glass-switch"
+    ],
+    "5-players": [
+     "glass-switch"
+    ],
+    "6-players": [
+     "glass-switch"
+    ],
+    "7-players": [
+     "glass-switch"
+    ]
+   }
+  },
+  {
+   "file": "fourth-dawn--map.webp",
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/battle-maps/fourth-dawn.webp",
+   "sha256": "2ab2850447be0387cdf8397f57c991f0fca5ae36e18662f8024c4bcd3ae024c8",
+   "originalSha256": "b147c7c24f34cbeb826b460aab29ef630320175065f92b612f78ed39ba242042",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Оранжерея Четвёртый Рассвет. Visible scenery: Закрытая оранжерея с четырьмя серебряными лепестками крыши. Сквозь матовое стекло видны столы и мягкое голубое свечение.. World style: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "fourth-dawn.webp",
+   "subjects": {
+    "3-players": [
+     "fourth-dawn"
+    ],
+    "4-players": [
+     "fourth-dawn"
+    ],
+    "5-players": [
+     "fourth-dawn"
+    ],
+    "6-players": [
+     "fourth-dawn"
+    ],
+    "7-players": [
+     "fourth-dawn"
+    ]
+   }
+  },
+  {
+   "file": "hanging-road--map.webp",
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/battle-maps/hanging-road.webp",
+   "sha256": "1efa39b5a59d8c89fbf790ea6f42fb773bafb3f365d19af3a16d948e8d1510ef",
+   "originalSha256": "202473969a4cbb54846624d75935a3c61f7b90efd6f0fa09150976425c7cb9c6",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Подвесной тракт. Visible scenery: Защищённый переход через неглубокий разлом. Под прозрачным настилом медленно движутся ленты красной пыли.. World style: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "hanging-road.webp",
+   "subjects": {
+    "3-players": [
+     "hanging-road"
+    ],
+    "4-players": [
+     "hanging-road"
+    ],
+    "5-players": [
+     "hanging-road"
+    ],
+    "6-players": [
+     "hanging-road"
+    ],
+    "7-players": [
+     "hanging-road"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/red-dune-post/assets/world-map/world-map.webp",
+   "sha256": "f93526fd0d493a17cb1c3eef1116ea6dee916efd37b16e1604173e0b5ad3c7b7",
+   "originalSha256": "eb759f4f5de51a5a4444aa8d8974cf7974daa9511baf7a2867cc1108d7027235",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Марс, котловина Красной Дюны. Style Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Красная Дюна; 0.367,0.177 Почтовый дом; 0.623,0.15 Стеклянная Развилка; 0.88,0.177 Тихие Ступени; 0.905,0.517 Архив Отзвука; 0.648,0.49 Оранжерея Четвёртый Рассвет; 0.392,0.517 Поющие соляные террасы; 0.135,0.49 Ветряная Гавань; 0.11,0.83 Подвесной тракт; 0.367,0.857 Приёмный сад. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

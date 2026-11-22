@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "55f3657f094f9ae4251a9f45bd3f0ea027f60764df0c2e31edbb157360445f86"
+   "digest": "ac32c12f1aa96d7708e09a1999fe71d3c7b4272b851167c19ed8f2707d743476"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "f92b55170c941a7320a47ddb46be5f3c807dad9814fceaa86536f6d106273edd"
+   "digest": "9aaac5bd4262cbe4e29e700128a4784fb1a28bb08a0fcdf6a5111e1e59866fcb"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "8f407de73aee52bd48fdc15f20ff991d0954802b1ccdbc5f30ef9e7d0f87f042"
+   "digest": "9d34555fbc7ab98ebc287b1b62f808c09347a2a90f2119f8e1ce97a72fe9bafb"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1516,6 +1516,264 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "irsa-med.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/illustrations/cards/travel-kit.webp",
+   "sha256": "7497f94a61e6ffac424b5fd1204084eb7495ca4972cd7f06ed8a1ff54882e81b",
+   "originalSha256": "ffcb4a5c2b790335b6c4ea6c0a261534f95564b41399f2c7f8115d17124b832a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "demek-harr-travel-kit",
+     "ollir-pen-travel-kit",
+     "radeya-list-travel-kit",
+     "sunya-fert-travel-kit",
+     "tarna-brik-travel-kit",
+     "vonda-kress-travel-kit"
+    ],
+    "7-players": [
+     "demek-harr-travel-kit",
+     "nel-tor-travel-kit",
+     "ollir-pen-travel-kit",
+     "radeya-list-travel-kit",
+     "sunya-fert-travel-kit",
+     "tarna-brik-travel-kit",
+     "vonda-kress-travel-kit"
+    ],
+    "8-players": [
+     "demek-harr-travel-kit",
+     "irsa-med-travel-kit",
+     "nel-tor-travel-kit",
+     "ollir-pen-travel-kit",
+     "radeya-list-travel-kit",
+     "sunya-fert-travel-kit",
+     "tarna-brik-travel-kit",
+     "vonda-kress-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-ilvara-tal.webp",
+   "sha256": "13da843a1ddaf6272383cb4b56da7cda834d721ee102da02f609285fb47b17a4",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильвара Даргет",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "ilvara-tal"
+    ],
+    "7-players": [
+     "ilvara-tal"
+    ],
+    "8-players": [
+     "ilvara-tal"
+    ]
+   },
+   "file": "ilvara-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilvara-tal.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-harven-orst.webp",
+   "sha256": "f1530e6d5712da5fba0d9cbd41881628e39f8f0a766f104821a0b3fc78bd6e9a",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Харвен Орст",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "harven-orst"
+    ],
+    "7-players": [
+     "harven-orst"
+    ],
+    "8-players": [
+     "harven-orst"
+    ]
+   },
+   "file": "harven-orst--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "harven-orst.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-meyra-runts.webp",
+   "sha256": "2177b4512221e36584f55f6389fbe9bf72f41def302f9093e7119adff8839a85",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мейра Рунц",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "meyra-runts"
+    ],
+    "7-players": [
+     "meyra-runts"
+    ],
+    "8-players": [
+     "meyra-runts"
+    ]
+   },
+   "file": "meyra-runts--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "meyra-runts.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-zhurna-kelt.webp",
+   "sha256": "e9028e960dfb44aae6388dc18f00b2c5451c34b684b2b61f2dce28d7ebd23924",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Журна Кельт",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "zhurna-kelt"
+    ],
+    "7-players": [
+     "zhurna-kelt"
+    ],
+    "8-players": [
+     "zhurna-kelt"
+    ]
+   },
+   "file": "zhurna-kelt--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zhurna-kelt.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-erdik-var.webp",
+   "sha256": "0f23cf08d8f9f207f6a365c73c6257cc96577777be032f427295928590dea3eb",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эрдик Ковыль",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "erdik-var"
+    ],
+    "7-players": [
+     "erdik-var"
+    ],
+    "8-players": [
+     "erdik-var"
+    ]
+   },
+   "file": "erdik-var--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "erdik-var.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-garden-riord.webp",
+   "sha256": "c5ed9c9f34536c582aa016726f794405db39168cece8dccc0ec8ad37a14b493a",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гарден Риорд",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "garden-riord"
+    ],
+    "7-players": [
+     "garden-riord"
+    ],
+    "8-players": [
+     "garden-riord"
+    ]
+   },
+   "file": "garden-riord--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "garden-riord.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-lessara-niv.webp",
+   "sha256": "383555112838087a4a5fb04636754017c00f5c0ca7135b23536f8b9775a809b2",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лессара Нив",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "lessara-niv"
+    ],
+    "7-players": [
+     "lessara-niv"
+    ],
+    "8-players": [
+     "lessara-niv"
+    ]
+   },
+   "file": "lessara-niv--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lessara-niv.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-boruk-fain.webp",
+   "sha256": "fbfb309d23c0ce06ec7d3da3d202a6ecc0b953fbe74d105615a565b5ac4f70ad",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борук Файн",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "boruk-fain"
+    ],
+    "7-players": [
+     "boruk-fain"
+    ],
+    "8-players": [
+     "boruk-fain"
+    ]
+   },
+   "file": "boruk-fain--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boruk-fain.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ember-crown/assets/table/npcs-ormund-sair.webp",
+   "sha256": "92499a60111048457b3c11bfacfd05764c4713d8468488dc53959853f2b9d22d",
+   "originalSha256": "2f69674d50c8a3722105a5b2db19ff2a6f7eb88c73ddccdc36390fd0e63efc42",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ормунд Сайр",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "ormund-sair"
+    ],
+    "7-players": [
+     "ormund-sair"
+    ],
+    "8-players": [
+     "ormund-sair"
+    ]
+   },
+   "file": "ormund-sair--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ormund-sair.webp"
   },
   {
    "file": "east-wall--map.webp",

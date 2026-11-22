@@ -1,0 +1,708 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "ash-tithe-places-0",
+      "originalFile": "exec-107f17de-b21f-46dd-b5b0-714f2d2c5807.png",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Cell 1. Лисий Брод. Низкие дома окружают общий хлебный двор. На мостках у каждой двери лежит горсть остывшего пепла.\nCell 2. Кривые Стога. Деревня скотоводов среди наклонённых стогов; жители держат двери открытыми даже на морозе, чтобы слышать друг друга.\nCell 3. Меловицы. Белёные дома жмутся к старым обжиговым ямам. На ветру известь кажется снегом, которого ещё не было.\nCell 4. Меновая мельница. Колесо давно не движется; под крышей хранят общие мешки и принимают людей, которым некуда вернуться.\nCell 5. Холодный навес. Над рабочим двором натянут навес из закопчённых плит. Взрослые работники несут к печам глиняные заготовки.\nCell 6. Белая печь. Открытая обжиговая яма с низкой каменной кромкой. Над ровным жаром висит большая незавершённая глиняная ладонь.\nCell 7. Терновый затвор. Терновые стены скрывают просторную ложбину. Среди корней устроены сухие лежанки и место для общего огня.\nCell 8. Расколотая часовня. Две половины бывшей часовни расходятся над чашей тёмного камня. Крыши нет, но дождь не попадает в чашу.\nCell 9. Чёрная борозда. На длинном поле стоят три круглые жаровни и деревянные рабочие помосты. Земля между ними всегда тёплая.\nCell 10. Обугленный перелаз. Старый перелаз пересекает ложбину. По одну сторону тянется терновник, по другую стоят пустые известковые тележки.\nCell 11. Пепельный двор. В бывшей конюшне держат рыцарские доспехи. Каждое пустое стойло освещает одна маленькая жаровня.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "ash-tithe-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b36164a5-08fb-4116-9680-2affd73a75b0.png",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Cell 1. Лада Мезень. Широкий платок поверх кольчуги, щит с потёртой хлебной меткой.\nCell 2. Иль Вяз. Глина под ногтями, вязаная накидка и маленькая дорожная миска.\nCell 3. Марта Тихолист. Седая прядь, шерстяные рукавицы, запах сухого можжевельника.\nCell 4. Терен Клин. Пятна сажи на рукавах, медная рамка без стекла.\nCell 5. Зорна Круча. Тёплый плащ с выгоревшим плечом, посох и короткий меч.\nCell 6. Ост Лыко. Перевязь из разноцветных лоскутов, лёгкие сапоги и аккуратные ножны.\nCell 7. Даня Лев. Тихий голос, тяжёлая сумка с чашками, истёртый дорожный посох.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/lada-mezen.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/il-vyaz.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/marta-quietleaf.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/teren-wedge.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/zorna-steep.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/ost-bast.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/danya-lion.webp"
+      ]
+    },
+    {
+      "id": "ash-tithe-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-0fd9fc8a-c0a9-46f6-be2b-816bd5c841ac.png",
+      "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Cell 1. Пепельный сборщик. Пустой закопчённый доспех, в котором шевелится зола. Все его удары используют обычный разрешённый ближний бой; огонь в прорези — описание, не дополнительный урон.\nCell 2. Зольный ловчий. Пустой рыцарский панцирь с плащом из серых искр. Он следует за вымышленным пепельным следом и не обладает чтением мыслей или автоматическим обнаружением.\nCell 3. Страж жаровни. Глиняная оболочка поверх пустого доспеха, светящаяся ровным серым жаром. Оболочка не даёт особой защиты сверх указанного AC.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "ash-tithe-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-2aebd981-7f82-4afd-9cb0-3fbd36b9be69.png",
+      "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Десятина пепельных рыцарей. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Ярина Северь. Короткие седые волосы, мука на тёмном фартуке.\nCell 2. Сава Крута. Плащ из грубой шерсти, белая прядь над виском.\nCell 3. Мирта Круч. Плотная дорожная юбка, ладони в шерстяных повязках.\nCell 4. Тара Веха. Прямые плечи, серый рабочий халат, глиняный браслет.\nCell 5. Фена Узел. Грубые рукавицы, длинная коса, пёстрая заплата на локте.",
+      "references": [
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/yarina-north.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/sava-turn.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/mirtha-ridge.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/tara-mark.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/fena-knot.webp"
+      ]
+    },
+    {
+      "id": "ash-tithe-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-cc80a330-48d2-40e8-899f-4dd1a5a5a7b0.png",
+      "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Десятина пепельных рыцарей. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Боривей Рог. Старый овчинный жилет, белёсые глаза, тёплая глиняная чашка.\nCell 2. Радом Низкий. Кожаный фартук поверх драного кафтана, глина на подбородке.\nCell 3. Верал Кел. Высокий доспех цвета печной золы; в прорези шлема виден взрослый человеческий профиль.\nCell 4. Ольх Дан. Белёный передник, спокойные руки, корзина чистых повязок.\nCell 5. Лут Чернозём. Застёгнутый до горла плащ, тяжёлый деревянный костыль.",
+      "references": [
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/borivey-horn.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/radom-low.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/verall-kel.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/olh-dan.webp",
+        "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/lut-blacksoil.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "fox-ford",
+      "title": "Лисий Брод",
+      "kind": "place",
+      "subjects": [
+        "fox-ford"
+      ],
+      "file": "places-fox-ford.webp",
+      "sha256": "56574e40ee65400ae560e620410f5895dbc2439110fa964db780e8fda824f796",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "crooked-stacks",
+      "title": "Кривые Стога",
+      "kind": "place",
+      "subjects": [
+        "crooked-stacks"
+      ],
+      "file": "places-crooked-stacks.webp",
+      "sha256": "d057623ab3f5f8a8f35da1c38ead9225daf648626dcde548b8a9880abe71ca92",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "chalk-homes",
+      "title": "Меловицы",
+      "kind": "place",
+      "subjects": [
+        "chalk-homes"
+      ],
+      "file": "places-chalk-homes.webp",
+      "sha256": "55cbfaba1431bd480c23b08a7103a2aa5fc010647987ef6012ae05c888011572",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "exchange-mill",
+      "title": "Меновая мельница",
+      "kind": "place",
+      "subjects": [
+        "exchange-mill"
+      ],
+      "file": "places-exchange-mill.webp",
+      "sha256": "68069f29b857a3fdda4ae60142100c81b3cc94ab8d4925cf6ab08aa553491950",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "cold-shed",
+      "title": "Холодный навес",
+      "kind": "place",
+      "subjects": [
+        "cold-shed"
+      ],
+      "file": "places-cold-shed.webp",
+      "sha256": "415f149ad656b5ce7c88ee4cfa4051c28a5e610a3ef0178054e0c4f5ad8e5dbb",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "white-kiln",
+      "title": "Белая печь",
+      "kind": "place",
+      "subjects": [
+        "white-kiln"
+      ],
+      "file": "places-white-kiln.webp",
+      "sha256": "2ff4b9e04ebd84ff2678810f6223d8afedcd4788b61d2fd0c6f8636f15efa579",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "thorn-close",
+      "title": "Терновый затвор",
+      "kind": "place",
+      "subjects": [
+        "thorn-close"
+      ],
+      "file": "places-thorn-close.webp",
+      "sha256": "eef9a1b4003b8108b32487df0c01395b1e1927159717644603314436818c89b8",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "split-chapel",
+      "title": "Расколотая часовня",
+      "kind": "place",
+      "subjects": [
+        "split-chapel"
+      ],
+      "file": "places-split-chapel.webp",
+      "sha256": "24899215596e79edbf07b7522dd073d1764d709ea62d1527ed30fd25fa396e94",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "long-field",
+      "title": "Чёрная борозда",
+      "kind": "place",
+      "subjects": [
+        "long-field"
+      ],
+      "file": "places-long-field.webp",
+      "sha256": "7a3bef7943a9ed9514e7809c3ef49dfaa68fcc7ac98bc04548fafbc69f7fdec8",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "charred-crossing",
+      "title": "Обугленный перелаз",
+      "kind": "place",
+      "subjects": [
+        "charred-crossing"
+      ],
+      "file": "places-charred-crossing.webp",
+      "sha256": "81533688731bdac948ba5643d9d78505c183cc09390fecf7204e803a694daff3",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "ash-yard",
+      "title": "Пепельный двор",
+      "kind": "place",
+      "subjects": [
+        "ash-yard"
+      ],
+      "file": "places-ash-yard.webp",
+      "sha256": "4e542fb013a8cd676588b9e0aff75fb3b60bd4301f6f018cece2b12007dea05a",
+      "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-places-0",
+      "cell": 11,
+      "crop": {
+        "left": 363,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "lada-mezen",
+      "title": "Лада Мезень",
+      "kind": "hero",
+      "subjects": [
+        "lada-mezen"
+      ],
+      "file": "heroes-lada-mezen.webp",
+      "sha256": "3ecea779741a9ab2914a353690c1ff07bfa465a1ed1840af06c048a851dab53c",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 124,
+        "top": 15,
+        "width": 227,
+        "height": 413
+      }
+    },
+    {
+      "key": "il-vyaz",
+      "title": "Иль Вяз",
+      "kind": "hero",
+      "subjects": [
+        "il-vyaz"
+      ],
+      "file": "heroes-il-vyaz.webp",
+      "sha256": "7d86324824780f542da1d3dd26df52193647af6019adb9938f3eb59dc1bda5aa",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 557,
+        "top": 12,
+        "width": 215,
+        "height": 416
+      }
+    },
+    {
+      "key": "marta-quietleaf",
+      "title": "Марта Тихолист",
+      "kind": "hero",
+      "subjects": [
+        "marta-quietleaf"
+      ],
+      "file": "heroes-marta-quietleaf.webp",
+      "sha256": "00d49b236f609b9022979c9743424e8aae7919c57754eb4c5bb22aefa8ae96c1",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1001,
+        "top": 16,
+        "width": 215,
+        "height": 412
+      }
+    },
+    {
+      "key": "teren-wedge",
+      "title": "Терен Клин",
+      "kind": "hero",
+      "subjects": [
+        "teren-wedge"
+      ],
+      "file": "heroes-teren-wedge.webp",
+      "sha256": "5da584bb755e28a1d9bc065e8b2b5c04efb7013ded774fd67ecdc1d6deca5527",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1440,
+        "top": 16,
+        "width": 224,
+        "height": 412
+      }
+    },
+    {
+      "key": "zorna-steep",
+      "title": "Зорна Круча",
+      "kind": "hero",
+      "subjects": [
+        "zorna-steep"
+      ],
+      "file": "heroes-zorna-steep.webp",
+      "sha256": "fde6e92859549a8681e30a1bdb14f0cfd141208b98f05b681a8ddd7a20356a6d",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 111,
+        "top": 449,
+        "width": 256,
+        "height": 423
+      }
+    },
+    {
+      "key": "ost-bast",
+      "title": "Ост Лыко",
+      "kind": "hero",
+      "subjects": [
+        "ost-bast"
+      ],
+      "file": "heroes-ost-bast.webp",
+      "sha256": "95167147de297ba9cbb596b860bda9f2318bd14b3d28b17f5e14380656b6d639",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 555,
+        "top": 453,
+        "width": 220,
+        "height": 419
+      }
+    },
+    {
+      "key": "danya-lion",
+      "title": "Даня Лев",
+      "kind": "hero",
+      "subjects": [
+        "danya-lion"
+      ],
+      "file": "heroes-danya-lion.webp",
+      "sha256": "7f8732b360795e3d28d32b2f84e2ba8d517ac5c121b2e82747dc79515ec989a6",
+      "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 992,
+        "top": 453,
+        "width": 236,
+        "height": 419
+      }
+    },
+    {
+      "key": "foe-1e6d33502b",
+      "title": "Пепельный сборщик",
+      "kind": "foe",
+      "subjects": [
+        "tithe-collectors-foe-1",
+        "tithe-collectors-foe-2",
+        "tithe-collectors-foe-3",
+        "tithe-collectors-foe-4",
+        "tithe-collectors-foe-5"
+      ],
+      "file": "foes-foe-1e6d33502b.webp",
+      "sha256": "a693e8375c9e9868f3061b5f401f365729940854ef5c469776f323d6e90fb8f2",
+      "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 107,
+        "top": 16,
+        "width": 509,
+        "height": 694
+      }
+    },
+    {
+      "key": "foe-6aa1993841",
+      "title": "Зольный ловчий",
+      "kind": "foe",
+      "subjects": [
+        "cinder-hunt-foe-1",
+        "cinder-hunt-foe-2",
+        "cinder-hunt-foe-3",
+        "cinder-hunt-foe-4",
+        "cinder-hunt-foe-5"
+      ],
+      "file": "foes-foe-6aa1993841.webp",
+      "sha256": "60085b41abee6af36c450e194f2d7febfebbffa3f0a86ec9f508f4be58c7925a",
+      "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 757,
+        "top": 31,
+        "width": 657,
+        "height": 678
+      }
+    },
+    {
+      "key": "foe-b89fca207d",
+      "title": "Страж жаровни",
+      "kind": "foe",
+      "subjects": [
+        "brazier-wardens-foe-1",
+        "brazier-wardens-foe-2",
+        "brazier-wardens-foe-3",
+        "brazier-wardens-foe-4",
+        "brazier-wardens-foe-5"
+      ],
+      "file": "foes-foe-b89fca207d.webp",
+      "sha256": "4103d7dc57f7173e963467bf6af00120e456bd8e44ac7f8b6c1b5a68040f931d",
+      "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1558,
+        "top": 15,
+        "width": 549,
+        "height": 693
+      }
+    },
+    {
+      "key": "yarina-north",
+      "title": "Ярина Северь",
+      "kind": "npc",
+      "subjects": [
+        "yarina-north"
+      ],
+      "file": "npcs-yarina-north.webp",
+      "sha256": "ba4b1e98f347e370b77c57720dafafcf31ae7b132355116bb92de4b791f99bbc",
+      "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 131,
+        "top": 19,
+        "width": 273,
+        "height": 478
+      }
+    },
+    {
+      "key": "sava-turn",
+      "title": "Сава Крута",
+      "kind": "npc",
+      "subjects": [
+        "sava-turn"
+      ],
+      "file": "npcs-sava-turn.webp",
+      "sha256": "aa7249289187bca012ee50cdddd5f16fc10bd3d819c7e729f6af2c82165c5727",
+      "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 628,
+        "top": 18,
+        "width": 277,
+        "height": 478
+      }
+    },
+    {
+      "key": "mirtha-ridge",
+      "title": "Мирта Круч",
+      "kind": "npc",
+      "subjects": [
+        "mirtha-ridge"
+      ],
+      "file": "npcs-mirtha-ridge.webp",
+      "sha256": "c1e6141b5923d95f975891a6c953de74068c13c7b440fc9537a4e08755d3ec05",
+      "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1137,
+        "top": 15,
+        "width": 268,
+        "height": 481
+      }
+    },
+    {
+      "key": "tara-mark",
+      "title": "Тара Веха",
+      "kind": "npc",
+      "subjects": [
+        "tara-mark"
+      ],
+      "file": "npcs-tara-mark.webp",
+      "sha256": "7fbd0c61f1678348805e0471ba65767393d78d1592660f37105811b106f968c5",
+      "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 128,
+        "top": 529,
+        "width": 274,
+        "height": 479
+      }
+    },
+    {
+      "key": "fena-knot",
+      "title": "Фена Узел",
+      "kind": "npc",
+      "subjects": [
+        "fena-knot"
+      ],
+      "file": "npcs-fena-knot.webp",
+      "sha256": "58ae510e3e28091767d2c968b419562c8d428833a903918ca563052410a43487",
+      "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 634,
+        "top": 530,
+        "width": 270,
+        "height": 478
+      }
+    },
+    {
+      "key": "borivey-horn",
+      "title": "Боривей Рог",
+      "kind": "npc",
+      "subjects": [
+        "borivey-horn"
+      ],
+      "file": "npcs-borivey-horn.webp",
+      "sha256": "f2a2bb340e2e5c138d5f231dc7ea6bf5f5f26ec582bf65d912e7f363079e9823",
+      "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 123,
+        "top": 20,
+        "width": 258,
+        "height": 473
+      }
+    },
+    {
+      "key": "radom-low",
+      "title": "Радом Низкий",
+      "kind": "npc",
+      "subjects": [
+        "radom-low"
+      ],
+      "file": "npcs-radom-low.webp",
+      "sha256": "7df54f4d799bcd092c80fd7389a204b9211cca1029a86bdb5044c76fff2c7452",
+      "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 629,
+        "top": 19,
+        "width": 278,
+        "height": 473
+      }
+    },
+    {
+      "key": "verall-kel",
+      "title": "Верал Кел",
+      "kind": "npc",
+      "subjects": [
+        "verall-kel"
+      ],
+      "file": "npcs-verall-kel.webp",
+      "sha256": "555853f0611d1693fafea6dd8011788fcae8ea7e47471e74f097e5f6604d8c54",
+      "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1148,
+        "top": 14,
+        "width": 266,
+        "height": 479
+      }
+    },
+    {
+      "key": "olh-dan",
+      "title": "Ольх Дан",
+      "kind": "npc",
+      "subjects": [
+        "olh-dan"
+      ],
+      "file": "npcs-olh-dan.webp",
+      "sha256": "2be84baaae2385a282cf27b82be014ef37ab3dbd74ded2ac131ee8f090734eb2",
+      "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 120,
+        "top": 525,
+        "width": 269,
+        "height": 482
+      }
+    },
+    {
+      "key": "lut-blacksoil",
+      "title": "Лут Чернозём",
+      "kind": "npc",
+      "subjects": [
+        "lut-blacksoil"
+      ],
+      "file": "npcs-lut-blacksoil.webp",
+      "sha256": "794e6df8c483ebb736b02f4d20e9a6446fab2b16f7934b9095d329005b4e425e",
+      "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+      "generated": "2026-11-22",
+      "sheet": "ash-tithe-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 625,
+        "top": 528,
+        "width": 286,
+        "height": 478
+      }
+    }
+  ]
+}

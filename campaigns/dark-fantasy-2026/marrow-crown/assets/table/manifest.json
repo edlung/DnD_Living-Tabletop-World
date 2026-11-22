@@ -1,0 +1,365 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "marrow-crown-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-e87895ec-c345-49c7-be15-46a66a554961.png",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ущелье Олома · Fossil ivory cross sections set in grey slate, small interwoven crown tines. Cell 1. Ирма Скол. Короткие волосы, шерстяной ворот и множество выцветших узлов на поясе; на плече кованый крюк-кошка и бухта верёвки с узлами.\nCell 2. Федор Нев. Пыльный плащ, плоские мелки и маленькое зеркало в оправе из тёмного дерева.\nCell 3. Янина Вей. Тёмная дорожная одежда, рукава с простыми стежками и пустой деревянный футляр длиной в локоть, выложенный изнутри солью.\nCell 4. Ксана Торн. Перчатки в меловой пыли и складывающаяся дощечка с чистыми листами.\nCell 5. Яр Осок. Широкий мягкий пояс, чинёная рама за плечами и аккуратный свёрток сухих носков.\nCell 6. Сана Мель. Седая коса, кожаный передник поверх дорожной куртки и гладкие глиняные бусины.\nCell 7. Олесь Край. Простой плащ с полосой светлой ткани и закрытый фонарь без украшений.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/irma-skol.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/fedor-nev.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/lada-vey.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/nika-torn.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/yar-osok.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/sana-mel.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/oles-kray.webp"
+      ]
+    },
+    {
+      "id": "marrow-crown-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-38df6ff3-d4af-451c-a042-9b7ce01b0357.png",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Корона из чужих костей. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Дара Вей. Женщина в тёмной шерстяной куртке, руки в соли; у ног повозка со связками запаса и пустой каменный ларь.\nCell 2. Освин Глод. Невысокий человек с белой бровью, старые верёвочные петли на поясе сложены по длине; в руке фонарь в сетке.\nCell 3. Иста Ручей. Невысокая жилистая женщина с коротким шестом, полосами сухой ткани на рукавах и пустыми мешками за спиной.\nCell 4. Марк Льник. Человек в аккуратно заштопанном плаще среди рулонов шерсти; рядом разобранная широкая рама и две сальные лампы.\nCell 5. Тихон Керн. Молодой мужчина с катушкой короткого шнура, меловыми полосами на плечах и лампой с треснувшим стеклом.\nCell 6. Устина Аст. Высокая женщина с высоким воротом, маленькой сумкой у бедра и вытертыми мягкими накладками на ремнях.\nCell 7. Эрна Вей. Одна гладкая дуга белой решётки качается отдельно от остальных; из неё отвечает низкий женский голос. Самой женщины не видно.\nCell 8. Веда Соть. Женщина в сухом плаще сидит на чёрном каменном дне; рядом широкая сумка, из которой выступает край глиняного сосуда.\nCell 9. Стась Ребец. Голос и тень наверху, в полосе дня; фонарь, бухта верёвки и связка пустых чехлов.",
+      "references": [
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/dara-vey.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/osvin-glod.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/ista-ruchey.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/mark-lnik.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/tikhon-kern.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/runa-ast.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/erna-vey.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/veda-sot.webp",
+        "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/stas-rebets.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "irma-skol",
+      "title": "Ирма Скол",
+      "kind": "hero",
+      "subjects": [
+        "irma-skol"
+      ],
+      "file": "heroes-irma-skol.webp",
+      "sha256": "a4b902d90e99d8d4ad32c6a2f0977b8daa81720b3d22575225c5ede7b9a35044",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 114,
+        "top": 11,
+        "width": 215,
+        "height": 408
+      }
+    },
+    {
+      "key": "fedor-nev",
+      "title": "Федор Нев",
+      "kind": "hero",
+      "subjects": [
+        "fedor-nev"
+      ],
+      "file": "heroes-fedor-nev.webp",
+      "sha256": "988112efaae052efb05fe47d817dfc9ebf137f3dc201c50f6eb1bbb6bb3ffa46",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 546,
+        "top": 11,
+        "width": 223,
+        "height": 408
+      }
+    },
+    {
+      "key": "lada-vey",
+      "title": "Янина Вей",
+      "kind": "hero",
+      "subjects": [
+        "lada-vey"
+      ],
+      "file": "heroes-lada-vey.webp",
+      "sha256": "8ac6802761c2308d6ca05b79a11c1e839fd936ea9c24d377c92840c68c1a1f3a",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1002,
+        "top": 16,
+        "width": 214,
+        "height": 403
+      }
+    },
+    {
+      "key": "nika-torn",
+      "title": "Ксана Торн",
+      "kind": "hero",
+      "subjects": [
+        "nika-torn"
+      ],
+      "file": "heroes-nika-torn.webp",
+      "sha256": "716b26c7d47e9149489b81846fb7c7785594ccc42200a08eb8f240161207453b",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1447,
+        "top": 16,
+        "width": 212,
+        "height": 403
+      }
+    },
+    {
+      "key": "yar-osok",
+      "title": "Яр Осок",
+      "kind": "hero",
+      "subjects": [
+        "yar-osok"
+      ],
+      "file": "heroes-yar-osok.webp",
+      "sha256": "8d8d03a1ed92b9b94315ae2ea36e48819a89697d619c746b9cf267b50dcbd528",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 115,
+        "top": 455,
+        "width": 217,
+        "height": 408
+      }
+    },
+    {
+      "key": "sana-mel",
+      "title": "Сана Мель",
+      "kind": "hero",
+      "subjects": [
+        "sana-mel"
+      ],
+      "file": "heroes-sana-mel.webp",
+      "sha256": "324b07c2e5c17e5deb05eb7b604a2680db2ac885d10c7e226959d3bcffe5b457",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 557,
+        "top": 454,
+        "width": 217,
+        "height": 410
+      }
+    },
+    {
+      "key": "oles-kray",
+      "title": "Олесь Край",
+      "kind": "hero",
+      "subjects": [
+        "oles-kray"
+      ],
+      "file": "heroes-oles-kray.webp",
+      "sha256": "1a70576bd042fbfeee3e8c8f6344c76d2a6bc802ff96c180778f400eb6d8bfcd",
+      "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1000,
+        "top": 455,
+        "width": 217,
+        "height": 408
+      }
+    },
+    {
+      "key": "dara-vey",
+      "title": "Дара Вей",
+      "kind": "npc",
+      "subjects": [
+        "dara-vey"
+      ],
+      "file": "npcs-dara-vey.webp",
+      "sha256": "8bfae013fa7fceceb337357abfca61036e9bf8c942b7e86073808adee2299e28",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 55,
+        "top": 14,
+        "width": 338,
+        "height": 377
+      }
+    },
+    {
+      "key": "osvin-glod",
+      "title": "Освин Глод",
+      "kind": "npc",
+      "subjects": [
+        "osvin-glod"
+      ],
+      "file": "npcs-osvin-glod.webp",
+      "sha256": "c6a65732226b03cd1ac89c2806143ccedc9418b843a84653bf1ca68cbc4a9b11",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 524,
+        "top": 16,
+        "width": 248,
+        "height": 375
+      }
+    },
+    {
+      "key": "ista-ruchey",
+      "title": "Иста Ручей",
+      "kind": "npc",
+      "subjects": [
+        "ista-ruchey"
+      ],
+      "file": "npcs-ista-ruchey.webp",
+      "sha256": "631de2ba792b163e9ad6d2421606b89e09014dda87f3de1e5b1af79e37d913f3",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 946,
+        "top": 16,
+        "width": 257,
+        "height": 375
+      }
+    },
+    {
+      "key": "mark-lnik",
+      "title": "Марк Льник",
+      "kind": "npc",
+      "subjects": [
+        "mark-lnik"
+      ],
+      "file": "npcs-mark-lnik.webp",
+      "sha256": "37200678363e9c42ee0325a57c5aca100c925e4be2e2426713e548698cf4cb29",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 27,
+        "top": 419,
+        "width": 408,
+        "height": 362
+      }
+    },
+    {
+      "key": "tikhon-kern",
+      "title": "Тихон Керн",
+      "kind": "npc",
+      "subjects": [
+        "tikhon-kern"
+      ],
+      "file": "npcs-tikhon-kern.webp",
+      "sha256": "8d0250d1169583b78184caafb81358af1bdf9af708d6f528291c67a813700d84",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 416,
+        "width": 268,
+        "height": 369
+      }
+    },
+    {
+      "key": "runa-ast",
+      "title": "Устина Аст",
+      "kind": "npc",
+      "subjects": [
+        "runa-ast"
+      ],
+      "file": "npcs-runa-ast.webp",
+      "sha256": "3b5d6cfe4cb829e3d13d5e96f878be75500c2868bdc5e92a95351832ac811625",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 944,
+        "top": 411,
+        "width": 271,
+        "height": 374
+      }
+    },
+    {
+      "key": "erna-vey",
+      "title": "Эрна Вей",
+      "kind": "npc",
+      "subjects": [
+        "erna-vey"
+      ],
+      "file": "npcs-erna-vey.webp",
+      "sha256": "8f240ea9ee04a352b2b5cfc04ef05026e6a0ef099612e3501c8cf617976e63d7",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 76,
+        "top": 804,
+        "width": 299,
+        "height": 383
+      }
+    },
+    {
+      "key": "veda-sot",
+      "title": "Веда Соть",
+      "kind": "npc",
+      "subjects": [
+        "veda-sot"
+      ],
+      "file": "npcs-veda-sot.webp",
+      "sha256": "27030ef44fd59e41385310271b902cfc365f01f6c39a0acad85dbe7d4ee284c7",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 460,
+        "top": 811,
+        "width": 376,
+        "height": 376
+      }
+    },
+    {
+      "key": "stas-rebets",
+      "title": "Стась Ребец",
+      "kind": "npc",
+      "subjects": [
+        "stas-rebets"
+      ],
+      "file": "npcs-stas-rebets.webp",
+      "sha256": "9209da1a0bd92e877ff95baaa8cf5c7e0d5a7be5ef254ce141a429c6bd92cb49",
+      "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+      "generated": "2026-11-22",
+      "sheet": "marrow-crown-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 916,
+        "top": 809,
+        "width": 299,
+        "height": 378
+      }
+    }
+  ]
+}

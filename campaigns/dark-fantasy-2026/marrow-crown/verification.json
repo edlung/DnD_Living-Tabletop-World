@@ -6,65 +6,65 @@
   "variants": [
     {
       "size": 3,
-      "sha256": "a59b30599de80161376ea82ca3e9ea4f7eaa802eac511fdc073d08bd4e500a37",
+      "sha256": "16e2ecd410a2fbd71488d51bc69685e7040b698ca726e84a7a2cad42f0ccea02",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 68,
-        "knowledge": 97,
+        "knowledge": 98,
         "encounters": 6,
         "quests": 8
       }
     },
     {
       "size": 4,
-      "sha256": "a0a1dd240db86e5484896d4e2a9bacbac340917d8e8e367811f34df91353d607",
+      "sha256": "b6bc550f8db22968be5d9587a40e5593b8f2e2185e49017223c87e0968fcd1c8",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 70,
-        "knowledge": 97,
+        "knowledge": 98,
         "encounters": 6,
         "quests": 8
       }
     },
     {
       "size": 5,
-      "sha256": "61817f5f3ccc46cb36e46a1fa51cd1384878d33a81f3603a4f9ced8e337db06b",
+      "sha256": "26988d9c7251fa0bd54f61ab74260f92d6463a9e37bd1ac198875878fb98f7db",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 76,
-        "knowledge": 97,
+        "knowledge": 98,
         "encounters": 6,
         "quests": 8
       }
     },
     {
       "size": 6,
-      "sha256": "430709e30a6501aadf79dcd1b99f526dd175ba032d9daaf0d49f0db1dde8cfab",
+      "sha256": "5160e830828a792173c4d304f6883e338b430923fb5aaf0c009b5ca7fdd1dcbc",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 78,
-        "knowledge": 97,
+        "knowledge": 98,
         "encounters": 6,
         "quests": 8
       }
     },
     {
       "size": 7,
-      "sha256": "f210c4210f77b9cf61e8ff1c835dbfe02c43d9ba9af0a70b88743b2262065f30",
+      "sha256": "1b2f79f99c55253d6d064e477ee33a29090a1806855448b39344484dd8cb0a7b",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 84,
-        "knowledge": 97,
+        "knowledge": 98,
         "encounters": 6,
         "quests": 8
       }

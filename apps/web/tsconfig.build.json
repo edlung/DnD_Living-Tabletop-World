@@ -4,11 +4,12 @@
     "composite": true,
     "lib": ["es2024", "dom", "dom.iterable"],
     "jsx": "react-jsx",
+    "resolveJsonModule": true,
     "rootDir": "src",
     "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/visual/campaign-themes/catalog.json"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
     { "path": "../../packages/contracts/tsconfig.build.json" },

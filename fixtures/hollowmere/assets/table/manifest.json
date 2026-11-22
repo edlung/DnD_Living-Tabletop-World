@@ -1,0 +1,102 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "hollowmere-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-77961f3b-41f8-4653-bc62-e263255b196c.png",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "columns": 4,
+      "rows": 1,
+      "prompt": "Create a clean production sprite sheet of 4 distinct hand-painted tabletop miniature figurines for the world of Холлоумир: колокола в тумане. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 4 columns by 1 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Агна Бриск. Вдова торговца лампадным маслом: деловитая, пальцы в чернилах, оправданий не терпит.\nCell 2. Хобб Фенвик. Староста Холлоумира: грузный, усталый, всё пересчитывает дважды и плохо спит с тех пор, как зазвонил колокол.\nCell 3. Сестра Ильзе. Хранительница святыни утонувшего святого, которую теперь держат в рыбацкой хижине; зоркая, набожная и не боится ничего живого.\nCell 4. Старый Маттис. Звонарь Холлоумира: белобородый, полуглухой после полувека колоколов.",
+      "references": [
+        "fixtures/hollowmere/assets/agna-brisk.webp",
+        "fixtures/hollowmere/assets/hobb-fenwick.webp",
+        "fixtures/hollowmere/assets/sister-ilse.webp",
+        "fixtures/hollowmere/assets/old-matthis.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "agna-brisk",
+      "title": "Агна Бриск",
+      "kind": "npc",
+      "subjects": [
+        "agna-brisk"
+      ],
+      "file": "../agna-brisk--figure.webp",
+      "sha256": "7e9b37c32bf506b0d5a35cb178222ec8fa4a69df209c7a76255976f0b1948bda",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "sheet": "hollowmere-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 76,
+        "top": 37,
+        "width": 389,
+        "height": 655
+      }
+    },
+    {
+      "key": "hobb-fenwick",
+      "title": "Хобб Фенвик",
+      "kind": "npc",
+      "subjects": [
+        "hobb-fenwick"
+      ],
+      "file": "../hobb-fenwick--figure.webp",
+      "sha256": "1537a4cdb7f5465d973fa286a6bb8bcdbc78dd3b611419feacd5479a0362869b",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "sheet": "hollowmere-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 616,
+        "top": 41,
+        "width": 383,
+        "height": 651
+      }
+    },
+    {
+      "key": "sister-ilse",
+      "title": "Сестра Ильзе",
+      "kind": "npc",
+      "subjects": [
+        "sister-ilse"
+      ],
+      "file": "../sister-ilse--figure.webp",
+      "sha256": "4ddaeb77de891d0e49954f6d2b51209af4e7fd5e4ffaae4f96344850fe357b3f",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "sheet": "hollowmere-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1164,
+        "top": 40,
+        "width": 374,
+        "height": 652
+      }
+    },
+    {
+      "key": "old-matthis",
+      "title": "Старый Маттис",
+      "kind": "npc",
+      "subjects": [
+        "old-matthis"
+      ],
+      "file": "../old-matthis--figure.webp",
+      "sha256": "7620460578a9f9af747db5b99b35733b14c2dae003e0cfdacab203aadfe77b31",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "sheet": "hollowmere-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 1699,
+        "top": 41,
+        "width": 390,
+        "height": 651
+      }
+    }
+  ]
+}

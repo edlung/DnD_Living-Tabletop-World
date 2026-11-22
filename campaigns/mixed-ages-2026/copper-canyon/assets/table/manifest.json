@@ -1,0 +1,636 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "copper-canyon-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-11f87449-bb8c-421e-b179-aceb3188cbb4.png",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Cell 1. Ива Леден. Короткие седые пряди, медные пуговицы, дорожная сумка с аккуратно свёрнутыми лентами.\nCell 2. Арсен Лютек. Пёстрый жилет, широкая улыбка и связка демонстрационных замков без чужих ключей.\nCell 3. Тамара Вен. Светлая накидка с нашивкой маленькой двери, большие дорожные ботинки, карманный набор цветных карандашей.\nCell 4. Нина Отлей. Длинный шарф с буквами, чернильное пятно на манжете, походная шляпа без украшений.\nCell 5. Олег Искрен. Мягкая походная куртка, широкая соломенная шляпа и складной стульчик с криво вышитой горой.\nCell 6. Зоя Трелль. Бархатная кепка, тканевый гусь на ремешке и очень серьёзный футляр для несерьёзного реквизита.\nCell 7. Лев Норин. Вязаная жилетка, круглая коробка деревянных фигурок и простой карандаш за ухом.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/iva-leden.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/arsen-lutek.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/tamara-ven.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/nina-otley.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/oleg-iskren.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/zoya-trell.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/lev-norin.webp"
+      ]
+    },
+    {
+      "id": "copper-canyon-places-0",
+      "originalFile": "exec-c174c022-49c2-41ad-aed0-81af1ac8dd3b.png",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Cell 1. Вестибюль с каруселью. Поворотный круг для багажа соседствует со стойкой, креслами и большим плащом на нескольких съёмных лентах. Круг вращают рукой и останавливают ручкой.\nCell 2. Солнечная галерея. Широкие окна, длинный стол для настольных игр и стенд с пожелтевшими карточками; за стеклом спокойно движутся кабинки.\nCell 3. Широкая прогулочная лестница. Низкие ступени и длинный пологий обход ведут к близкой смотровой площадке. По краям стоят смешные указатели туристических рекордов.\nCell 4. Балкон второго окна. Просторный застеклённый балкон с четырьмя креслами, двумя ширмами и доской для рисования. Здесь слышно эхо из соседней галереи.\nCell 5. Бархатная гостиная. Комната с низкой сценической площадкой, мягкими ширмами и коробкой крупного реквизита; над диваном висит ложная корона размером с обруч.\nCell 6. Чердак дорожных ролей. Светлый доступный по широкой лестнице и подъёмной площадке чердак с открытыми полками, чехлами и небольшим столом для починки костюмов.\nCell 7. Комната дорожных макетов. На столе стоят игрушечная кабинка и шесть разноцветных деревянных чемоданов. Рядом лежат большие копии фигур, удобные для игры без мелкой моторики.\nCell 8. Двор плюшевых гусей. Ровная площадка для шуточных эстафет; мягкие гуси в жилетах дремлют на подставках, рядом есть стол и свободный обход.\nCell 9. Крыльцо фуникулёра. Накрытое крыльцо с лавками и большой доской рейсов. Из пансиона сюда ведёт широкий короткий проход без опасного обрыва.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "copper-canyon-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b3bb8ba1-9ff7-41cd-980e-ff6fd3afcfc3.png",
+      "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Cell 1. Плюшевый покоритель. Зачарованное набивное чучело в огромной пробковой шляпе, вооружённое мягкой указкой. Это реквизит, а не настоящий человек; способности остаются каноническими характеристиками подготовленного противника.\nCell 2. Мягкий кольценосец. Набивная реквизитная фигура с подушкой вместо щита и очень маленьким нарисованным усом. Имена, возраст и человеческие чувства ей не приписываются.\nCell 3. Плюшевый гусь. Мягкий зачарованный гусь в просторном жилете, который во время паузы смотрит на собственную нашивку. Его удары — канонические атаки подготовленного противника с комедийным описанием.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "copper-canyon-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f63dc589-b7d3-410c-a393-9250bac463a7.png",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Пансион Медного Каньона. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Вера Сольм. Медный значок хозяйки, удобные туфли и карандаш, который всякий раз оказывается за другим ухом.\nCell 2. Марк Волн. Короткая борода, слишком большой парадный плащ на одном плече и крепкий синий чемодан.\nCell 3. Алина Клен. Рыжий платок, короткая рабочая куртка и плоский медный ящик с аккуратными угловыми накладками.\nCell 4. Денис Скат. Фиолетовый жилет, длинная мягкая лента на запястье и выразительные, всё время занятые руки.\nCell 5. Полина Вет. Светлый плоский кофр, большие очки в янтарной оправе и потёртый ремень камеры.\nCell 6. Рамиль Горн. Полосатый небольшой чемодан, мягкая куртка и деревянный театральный бинокль без стёкол.\nCell 7. София Ланс. Зелёная круглая шляпная коробка, простой льняной костюм и миниатюрная кабинка на ладони.\nCell 8. Борис Откос. Аккуратная фуражка, короткая тёплая куртка и мягкая щётка для скамеек.\nCell 9. Лида Финн. Полосатая безрукавка, два медных жетона на цепочке и коробка крупных цветных прищепок.",
+      "references": [
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/vera-solm.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/mark-voln.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/alina-klen.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/denis-skat.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/polina-vet.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/ramil-gorn.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/sofia-lans.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/boris-otkos.webp",
+        "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/lida-finn.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "iva-leden",
+      "title": "Ива Леден",
+      "kind": "hero",
+      "subjects": [
+        "iva-leden"
+      ],
+      "file": "heroes-iva-leden.webp",
+      "sha256": "687e6bb79b4be4eeb7fbcc201f38e0b46bcc5a633de9dd854d7243bd75b646c0",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 102,
+        "top": 11,
+        "width": 240,
+        "height": 419
+      }
+    },
+    {
+      "key": "arsen-lutek",
+      "title": "Арсен Лютек",
+      "kind": "hero",
+      "subjects": [
+        "arsen-lutek"
+      ],
+      "file": "heroes-arsen-lutek.webp",
+      "sha256": "6d0cc260a54ed4def6c3e4584279f0866935b090c14d17ba84603ea601c65bb0",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 538,
+        "top": 8,
+        "width": 248,
+        "height": 422
+      }
+    },
+    {
+      "key": "tamara-ven",
+      "title": "Тамара Вен",
+      "kind": "hero",
+      "subjects": [
+        "tamara-ven"
+      ],
+      "file": "heroes-tamara-ven.webp",
+      "sha256": "02a14e507d01204c7360e691f407b19e14ca2d2c49d4d969a665567d8cd4a024",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 986,
+        "top": 11,
+        "width": 241,
+        "height": 419
+      }
+    },
+    {
+      "key": "nina-otley",
+      "title": "Нина Отлей",
+      "kind": "hero",
+      "subjects": [
+        "nina-otley"
+      ],
+      "file": "heroes-nina-otley.webp",
+      "sha256": "9c4687ceef20d16d2cdf773a0845594abe0400534dac65c979057b70a0ea9733",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1417,
+        "top": 8,
+        "width": 254,
+        "height": 422
+      }
+    },
+    {
+      "key": "oleg-iskren",
+      "title": "Олег Искрен",
+      "kind": "hero",
+      "subjects": [
+        "oleg-iskren"
+      ],
+      "file": "heroes-oleg-iskren.webp",
+      "sha256": "4d253d23da526c5cbfe103d8b6eef608fdf962d0298d4eea6e2c95d1ff6b3d30",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 102,
+        "top": 449,
+        "width": 252,
+        "height": 423
+      }
+    },
+    {
+      "key": "zoya-trell",
+      "title": "Зоя Трелль",
+      "kind": "hero",
+      "subjects": [
+        "zoya-trell"
+      ],
+      "file": "heroes-zoya-trell.webp",
+      "sha256": "7e1b83479e8282ff57a178e04a9f779e439d177fa95d8684603f871719e83c20",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 536,
+        "top": 447,
+        "width": 259,
+        "height": 425
+      }
+    },
+    {
+      "key": "lev-norin",
+      "title": "Лев Норин",
+      "kind": "hero",
+      "subjects": [
+        "lev-norin"
+      ],
+      "file": "heroes-lev-norin.webp",
+      "sha256": "f3c95a63ae56272d11d024cbed0f38ac4e52edf954187810a0344135b04f2411",
+      "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 987,
+        "top": 445,
+        "width": 241,
+        "height": 427
+      }
+    },
+    {
+      "key": "copper-vestibule",
+      "title": "Вестибюль с каруселью",
+      "kind": "place",
+      "subjects": [
+        "copper-vestibule"
+      ],
+      "file": "places-copper-vestibule.webp",
+      "sha256": "2ccd3727d09e3d709042605050da3280c4826ca3e8535052727a85f646fbc510",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "sun-gallery",
+      "title": "Солнечная галерея",
+      "kind": "place",
+      "subjects": [
+        "sun-gallery"
+      ],
+      "file": "places-sun-gallery.webp",
+      "sha256": "6c64f24f987636f949167c3bc19e26ac6dec061663396d0dcca6cf1b753d861b",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "broad-stair",
+      "title": "Широкая прогулочная лестница",
+      "kind": "place",
+      "subjects": [
+        "broad-stair"
+      ],
+      "file": "places-broad-stair.webp",
+      "sha256": "43abca67c53b9ec0e7c352fc01a2b816ecbd363eed7aac201dfd6f85693250dd",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "double-balcony",
+      "title": "Балкон второго окна",
+      "kind": "place",
+      "subjects": [
+        "double-balcony"
+      ],
+      "file": "places-double-balcony.webp",
+      "sha256": "1c8d5b51bba22fe49098f1c52901800b9af1ded10a11be4ed5ee2c8f631edff0",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "velvet-parlor",
+      "title": "Бархатная гостиная",
+      "kind": "place",
+      "subjects": [
+        "velvet-parlor"
+      ],
+      "file": "places-velvet-parlor.webp",
+      "sha256": "43bbc84b69d87c8b80d03a67b070a4ef4cd7de4ee623c9f4759d2df23d2426f6",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "costume-attic",
+      "title": "Чердак дорожных ролей",
+      "kind": "place",
+      "subjects": [
+        "costume-attic"
+      ],
+      "file": "places-costume-attic.webp",
+      "sha256": "3024ee1481a62c6c5e30f602c34c32b2b3f33f289b99f8985957d8453e51eeca",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "model-room",
+      "title": "Комната дорожных макетов",
+      "kind": "place",
+      "subjects": [
+        "model-room"
+      ],
+      "file": "places-model-room.webp",
+      "sha256": "4047a6a5db93813a3dba149deb699dc8437264b5d28906d3dee38dee4cfa72a4",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "goose-court",
+      "title": "Двор плюшевых гусей",
+      "kind": "place",
+      "subjects": [
+        "goose-court"
+      ],
+      "file": "places-goose-court.webp",
+      "sha256": "6801cac0e83179fd244d6ee3f38a0ea069ce5f565dcadbf6514bdc48ef8c37d5",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "funicular-porch",
+      "title": "Крыльцо фуникулёра",
+      "kind": "place",
+      "subjects": [
+        "funicular-porch"
+      ],
+      "file": "places-funicular-porch.webp",
+      "sha256": "f3f1e6f787ba94afc47ebd23be6d62da562e533e7b83157089e3fcceef77dec3",
+      "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-b813bb99a0",
+      "title": "Плюшевый покоритель",
+      "kind": "foe",
+      "subjects": [
+        "plush-summit-foe-1",
+        "plush-summit-foe-2",
+        "plush-summit-foe-3",
+        "plush-summit-foe-4",
+        "plush-summit-foe-5"
+      ],
+      "file": "foes-foe-b813bb99a0.webp",
+      "sha256": "2460822e665f3bdc8b2620fee0ba26e2cb99f8997994275fea222726afcc6e43",
+      "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 45,
+        "top": 7,
+        "width": 616,
+        "height": 703
+      }
+    },
+    {
+      "key": "foe-fb5b2cc416",
+      "title": "Мягкий кольценосец",
+      "kind": "foe",
+      "subjects": [
+        "ring-bearer-dance-foe-1",
+        "ring-bearer-dance-foe-2",
+        "ring-bearer-dance-foe-3",
+        "ring-bearer-dance-foe-4",
+        "ring-bearer-dance-foe-5"
+      ],
+      "file": "foes-foe-fb5b2cc416.webp",
+      "sha256": "1b06e346b0f7ba518b5588ee89820bb75693fae772bf1323edfdc8bedf056695",
+      "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 829,
+        "top": 12,
+        "width": 561,
+        "height": 698
+      }
+    },
+    {
+      "key": "foe-11b2c3f893",
+      "title": "Плюшевый гусь",
+      "kind": "foe",
+      "subjects": [
+        "goose-guard-foe-1",
+        "goose-guard-foe-2",
+        "goose-guard-foe-3",
+        "goose-guard-foe-4",
+        "goose-guard-foe-5"
+      ],
+      "file": "foes-foe-11b2c3f893.webp",
+      "sha256": "ca69ede2c1293423dc6b8dd3d033ac986dc2c62f297f59bad113787fa2c507e8",
+      "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1594,
+        "top": 9,
+        "width": 491,
+        "height": 702
+      }
+    },
+    {
+      "key": "vera-solm",
+      "title": "Вера Сольм",
+      "kind": "npc",
+      "subjects": [
+        "vera-solm"
+      ],
+      "file": "npcs-vera-solm.webp",
+      "sha256": "d3d15b5bd5fecdf3744fb8438a782ea90deecc08035bbc00bc833b50fddbd083",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 108,
+        "top": 20,
+        "width": 204,
+        "height": 393
+      }
+    },
+    {
+      "key": "mark-voln",
+      "title": "Марк Волн",
+      "kind": "npc",
+      "subjects": [
+        "mark-voln"
+      ],
+      "file": "npcs-mark-voln.webp",
+      "sha256": "7bb8b09a8efa9d61da5e3e09d99d57f7fe471206e8aa385b50808bade8bb8976",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 451,
+        "top": 18,
+        "width": 259,
+        "height": 394
+      }
+    },
+    {
+      "key": "alina-klen",
+      "title": "Алина Клен",
+      "kind": "npc",
+      "subjects": [
+        "alina-klen"
+      ],
+      "file": "npcs-alina-klen.webp",
+      "sha256": "1fee4b18c824af59a42afb49d1a48d56c6fee20354db9a2506a5e75ff689a26e",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 867,
+        "top": 21,
+        "width": 228,
+        "height": 391
+      }
+    },
+    {
+      "key": "denis-skat",
+      "title": "Денис Скат",
+      "kind": "npc",
+      "subjects": [
+        "denis-skat"
+      ],
+      "file": "npcs-denis-skat.webp",
+      "sha256": "49d2666ab2b13cdc61f157e8cb894d62f1d165cd6784471fd9568e4d85ebe5d3",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 97,
+        "top": 445,
+        "width": 217,
+        "height": 398
+      }
+    },
+    {
+      "key": "polina-vet",
+      "title": "Полина Вет",
+      "kind": "npc",
+      "subjects": [
+        "polina-vet"
+      ],
+      "file": "npcs-polina-vet.webp",
+      "sha256": "accc149ea8fef5840da09fe677909405fae5cade3d7c3ecb66594f4bfd9f4472",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 479,
+        "top": 444,
+        "width": 226,
+        "height": 399
+      }
+    },
+    {
+      "key": "ramil-gorn",
+      "title": "Рамиль Горн",
+      "kind": "npc",
+      "subjects": [
+        "ramil-gorn"
+      ],
+      "file": "npcs-ramil-gorn.webp",
+      "sha256": "e8bb98a2ac44f7cea9a0327518ab1a12d70445ca202100fb6e3d07031d19b377",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 875,
+        "top": 444,
+        "width": 238,
+        "height": 399
+      }
+    },
+    {
+      "key": "sofia-lans",
+      "title": "София Ланс",
+      "kind": "npc",
+      "subjects": [
+        "sofia-lans"
+      ],
+      "file": "npcs-sofia-lans.webp",
+      "sha256": "ca66702e4fe0e9f6aff2306ea7fb69782df1a28bc2b03df90e00adfbc09797ff",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 92,
+        "top": 875,
+        "width": 223,
+        "height": 414
+      }
+    },
+    {
+      "key": "boris-otkos",
+      "title": "Борис Откос",
+      "kind": "npc",
+      "subjects": [
+        "boris-otkos"
+      ],
+      "file": "npcs-boris-otkos.webp",
+      "sha256": "4e2fdf71e8d3d017a7132f002faf0a36dddce1fc8780757f4636ba01d175dbee",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 472,
+        "top": 871,
+        "width": 239,
+        "height": 416
+      }
+    },
+    {
+      "key": "lida-finn",
+      "title": "Лида Финн",
+      "kind": "npc",
+      "subjects": [
+        "lida-finn"
+      ],
+      "file": "npcs-lida-finn.webp",
+      "sha256": "fb59d98469a9eb7699b8ead6a3a8c4d36f5a3b59b323ad60ff27ec9751cc649c",
+      "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+      "generated": "2026-11-22",
+      "sheet": "copper-canyon-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 875,
+        "top": 874,
+        "width": 237,
+        "height": 414
+      }
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { campaignAppearance } from '../visual/campaign-themes/index.ts';
 import type { AccountCampaign } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
 import { useId } from 'react';
@@ -104,6 +105,7 @@ function CampaignCard({
   return (
     <li
       className={`hub-campaign${finished !== null ? ' hub-campaign--finished' : ''}`}
+      {...campaignAppearance(campaign.name)}
       aria-labelledby={titleId}
     >
       <Glyph name={campaign.role === 'dm' ? 'game-master' : 'character'} />

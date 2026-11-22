@@ -1,0 +1,148 @@
+{
+  "region": "three-bounds",
+  "name": "Карта · Низина трёх меж",
+  "description": "План местности «Низина трёх меж». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "fox-ford",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "crooked-stacks",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "chalk-homes",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "exchange-mill",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "cold-shed",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "white-kiln",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "thorn-close",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "split-chapel",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "long-field",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "charred-crossing",
+      "x": 0.367,
+      "y": 0.857
+    },
+    {
+      "place": "ash-yard",
+      "x": 0.623,
+      "y": 0.83
+    }
+  ],
+  "routes": [
+    {
+      "from": "fox-ford",
+      "to": "crooked-stacks",
+      "miles": 3,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "crooked-stacks",
+      "to": "chalk-homes",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "chalk-homes",
+      "to": "exchange-mill",
+      "miles": 4,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "exchange-mill",
+      "to": "cold-shed",
+      "miles": 1,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "cold-shed",
+      "to": "white-kiln",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "fox-ford",
+      "to": "thorn-close",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "thorn-close",
+      "to": "split-chapel",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "split-chapel",
+      "to": "long-field",
+      "miles": 3,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "long-field",
+      "to": "charred-crossing",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "charred-crossing",
+      "to": "ash-yard",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "ash-yard",
+      "to": "white-kiln",
+      "miles": 1,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "exchange-mill",
+      "to": "long-field",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    }
+  ]
+}

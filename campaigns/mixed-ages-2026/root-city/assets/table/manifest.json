@@ -1,0 +1,656 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "root-city-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c2d51d38-90dc-4fb8-b1b4-cbc132bb8322.png",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Cell 1. Ная Век. Короткая куртка с тканевыми заплатами, складной метр на поясе и мягкие подошвы.\nCell 2. Марк Ру. Пятнистый шарф, гладкие деревянные фигурки в карманах, руки в следах цветного мела.\nCell 3. Эли Ден. Солнечные линзы на шнурке, зелёная рабочая накидка и тетрадь, в которой оставлены пустые страницы.\nCell 4. Сана Лис. Сумка с многоразовыми лентами, широкополая шапка, нашивка в форме пустого горшка.\nCell 5. Вец Ом. Светлый плащ, удобная трость и нашитые на рукав знаки мест, где тебя принимали гостем.\nCell 6. Ора Таль. Длинный жилет с карманами для карточек; на пальцах смываемая синяя краска.\nCell 7. Геро Ис. Полотняная безрукавка, маленький бесшумный метроном и набор простых колокольчиков.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/naya-vek.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/mark-ru.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/eli-den.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/sana-lis.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/vets-om.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/ora-tal.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/gero-is.webp"
+      ]
+    },
+    {
+      "id": "root-city-places-0",
+      "originalFile": "exec-cd88991d-a70f-48a5-b99f-158c285bee6d.png",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Cell 1. Листовой Мост. Благополучный город на высоких лёгких опорах. Между домами висят сады, сушится бумага и блестят солнечные навесы.\nCell 2. Солнечная площадь. Общая площадь у края города. Белая стена удобна для теней; на переносных досках жители оставляют вопросы.\nCell 3. Теневая ограда. Низкая ограда перед широким лугом. В её просветах хорошо видны отдельные ветви подошедшего Сада.\nCell 4. Роща стыков. Открытый участок на краю Сада; гибкие стебли здесь сходятся и расходятся над гладкими камнями.\nCell 5. Балкон одного листа. Городской наблюдательный балкон напротив больших листьев. Можно одновременно видеть их жилки и человеческие часы.\nCell 6. Дом пробных даров. Мастерская с лёгкими макетами, безвредными цветными экранами и местом для черновиков чужих жестов.\nCell 7. Раздельная крона. Две большие ветви расходятся над просветом. Их листья похожи, но каждая отбрасывает свой рисунок тени.\nCell 8. Белая галерея. Длинный городской навес с белыми ширмами. Здесь удобно разыгрывать сообщения без слов.\nCell 9. Низкая пристань. Съёмная площадка у земли, подготовленная для осмотра. Пока никто не подтвердил приглашение, она остаётся на городских подпорках.\nCell 10. Поляна ответа. Ровная поляна между городом и Садом. Хорошо видны обе стороны, а любой участник может остаться на удобном расстоянии.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "root-city-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-026b31fc-9d4b-457f-873d-72cfb5faa228.png",
+      "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Cell 1. Шагающая учебная ширма. Исправная несознательная праздничная машинка на мягких ножках, закрытая полотном с нарисованной ладонью. Это тренировочная бутафория соларпанка, а не личность Сада.\nCell 2. Учебная гибкая опора. Съёмная растительная конструкция без отдельной личности, которую Склад заранее предъявляет как свой инструмент. Перед контактом ведущий явно сообщает эту границу.\nCell 3. Пружинный испытатель. Небольшая городская кукла с мягкими лапами, которой мастера проверяют внимание участников. Она исправна, не обладает разумом и действует только внутри добровольной репетиции.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "root-city-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5ec2bf7a-4d17-44d0-8ad1-1715a18c04c9.png",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Город на спине Сада. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Ира Фен. Пёстрый рабочий передник и полоса белой краски на щеке.\nCell 2. Дина Ро. Жёлтые очки на лбу, короткая коса, доска объявлений под мышкой.\nCell 3. Тим Ош. Светлая рубаха, ладони в пыльце, блокнот с рисунками листьев.\nCell 4. Леон Ки. Белый плащ, мягкие перчатки и деревянная рамка вместо театральной маски.\nCell 5. Рин Ва. Большая кепка, бумажные карточки на кольце и мел, завёрнутый в ткань.\nCell 6. Склад. Три широких стебля соприкасаются ребром и держат горизонтальную ветвь с серебристой нижней стороной.\nCell 7. Кромка. Тонкая ветвь с листьями, у которых светлая полоса проходит только по одному краю.\nCell 8. Бок. Низкая ветвь с тёмной гладкой корой, одним крупным листом и несколькими короткими побегами.\nCell 9. Бегущий Стебель. Гибкий низкий побег с парными круглыми листьями, способный перемещать опору небольшими шагами.",
+      "references": [
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/ira-fen.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/dina-ro.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/tim-osh.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/leon-ki.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/rin-va.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/fold.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/edge.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/side.webp",
+        "campaigns/mixed-ages-2026/root-city/illustrations/cards/runner.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "naya-vek",
+      "title": "Ная Век",
+      "kind": "hero",
+      "subjects": [
+        "naya-vek"
+      ],
+      "file": "heroes-naya-vek.webp",
+      "sha256": "1c8503944cfda881dd45dfec68b447a35916ea50d18296a6e8de81a5b93820d3",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 18,
+        "width": 200,
+        "height": 408
+      }
+    },
+    {
+      "key": "mark-ru",
+      "title": "Марк Ру",
+      "kind": "hero",
+      "subjects": [
+        "mark-ru"
+      ],
+      "file": "heroes-mark-ru.webp",
+      "sha256": "3596f92e3cee2fa0b28d780cb9d5a9b9f3cf93b616513c24fb37846c0c43b29c",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 564,
+        "top": 15,
+        "width": 204,
+        "height": 411
+      }
+    },
+    {
+      "key": "eli-den",
+      "title": "Эли Ден",
+      "kind": "hero",
+      "subjects": [
+        "eli-den"
+      ],
+      "file": "heroes-eli-den.webp",
+      "sha256": "d0b6ba969245f09251db253eebb510bda6451c34a5e9f7be751a248bd447febd",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1008,
+        "top": 17,
+        "width": 203,
+        "height": 409
+      }
+    },
+    {
+      "key": "sana-lis",
+      "title": "Сана Лис",
+      "kind": "hero",
+      "subjects": [
+        "sana-lis"
+      ],
+      "file": "heroes-sana-lis.webp",
+      "sha256": "44244f1b0a4a561641bc21ffdcc4769e201c503fa3e08d7e8bef7004e34bd4c2",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1451,
+        "top": 13,
+        "width": 201,
+        "height": 414
+      }
+    },
+    {
+      "key": "vets-om",
+      "title": "Вец Ом",
+      "kind": "hero",
+      "subjects": [
+        "vets-om"
+      ],
+      "file": "heroes-vets-om.webp",
+      "sha256": "fd7a90284985b1536677c74510a941d2cd5ac9026fce88829892ceb0868c840c",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 104,
+        "top": 453,
+        "width": 232,
+        "height": 418
+      }
+    },
+    {
+      "key": "ora-tal",
+      "title": "Ора Таль",
+      "kind": "hero",
+      "subjects": [
+        "ora-tal"
+      ],
+      "file": "heroes-ora-tal.webp",
+      "sha256": "dc7c15149e3085243468685f84d2391513694cefdfca911beeced40a209cd4d1",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 561,
+        "top": 456,
+        "width": 208,
+        "height": 414
+      }
+    },
+    {
+      "key": "gero-is",
+      "title": "Геро Ис",
+      "kind": "hero",
+      "subjects": [
+        "gero-is"
+      ],
+      "file": "heroes-gero-is.webp",
+      "sha256": "b1ff3dfe355b17a51e8d69969a1a7983de0797ea454d18d47a2a241185ed095d",
+      "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+      "generated": "2026-11-22",
+      "sheet": "root-city-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1005,
+        "top": 451,
+        "width": 210,
+        "height": 420
+      }
+    },
+    {
+      "key": "leaf-bridge",
+      "title": "Листовой Мост",
+      "kind": "place",
+      "subjects": [
+        "leaf-bridge"
+      ],
+      "file": "places-leaf-bridge.webp",
+      "sha256": "e81b8886c167fbcd5559ab1f58c36a8c3d1bea28517d6732be9f757deb3db022",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "sun-square",
+      "title": "Солнечная площадь",
+      "kind": "place",
+      "subjects": [
+        "sun-square"
+      ],
+      "file": "places-sun-square.webp",
+      "sha256": "a0d984ee4fb01de76603a2831c5bf13570d14cf74365c5af030438529409417e",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "shade-rail",
+      "title": "Теневая ограда",
+      "kind": "place",
+      "subjects": [
+        "shade-rail"
+      ],
+      "file": "places-shade-rail.webp",
+      "sha256": "d351c5e1b7d71c145f360e4bdf5e39b870878dd0df3be940b31a53a22d5241e8",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "join-grove",
+      "title": "Роща стыков",
+      "kind": "place",
+      "subjects": [
+        "join-grove"
+      ],
+      "file": "places-join-grove.webp",
+      "sha256": "40ac33d9b7c563b1e47550a11b587ced747b5874a1b6d6e009628e6c47e3dbe1",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "leaf-clock",
+      "title": "Балкон одного листа",
+      "kind": "place",
+      "subjects": [
+        "leaf-clock"
+      ],
+      "file": "places-leaf-clock.webp",
+      "sha256": "78897fda19b14202ab79811da9727ec87946903166076c4b6bfa7bafce0b46a8",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "gift-house",
+      "title": "Дом пробных даров",
+      "kind": "place",
+      "subjects": [
+        "gift-house"
+      ],
+      "file": "places-gift-house.webp",
+      "sha256": "aa7d4f71dfe03fcc2f856630f2a2f5ac133b4487cfec7c25d35219675b470f22",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "split-crown",
+      "title": "Раздельная крона",
+      "kind": "place",
+      "subjects": [
+        "split-crown"
+      ],
+      "file": "places-split-crown.webp",
+      "sha256": "9c53d805b3e96ed8e9c40588ac92898b0e892316425ee59ebb2390ad69ecb4ff",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "white-gallery",
+      "title": "Белая галерея",
+      "kind": "place",
+      "subjects": [
+        "white-gallery"
+      ],
+      "file": "places-white-gallery.webp",
+      "sha256": "f023fd82d88d00ada11c6fac07284d60bef9fe0467ede53a3aaef92418c3f191",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "low-deck",
+      "title": "Низкая пристань",
+      "kind": "place",
+      "subjects": [
+        "low-deck"
+      ],
+      "file": "places-low-deck.webp",
+      "sha256": "7456d98fed021e958fd788974c75f1c2bd091620c8093ac2d6d23bfe05a8285c",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "meeting-glade",
+      "title": "Поляна ответа",
+      "kind": "place",
+      "subjects": [
+        "meeting-glade"
+      ],
+      "file": "places-meeting-glade.webp",
+      "sha256": "0ebf70c9a7004930534fe899691ca4fa5a3571d78feeaec7bf1d313a682b3361",
+      "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+      "generated": "2026-11-22",
+      "sheet": "root-city-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "foe-abc4bac753",
+      "title": "Шагающая учебная ширма",
+      "kind": "foe",
+      "subjects": [
+        "screen-match-foe-1",
+        "screen-match-foe-2",
+        "screen-match-foe-3",
+        "screen-match-foe-4",
+        "screen-match-foe-5"
+      ],
+      "file": "foes-foe-abc4bac753.webp",
+      "sha256": "513aa23bdf2c771a5949f4f87053f1daa5facde02688bcacfd7bbcb40190af87",
+      "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+      "generated": "2026-11-22",
+      "sheet": "root-city-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 73,
+        "top": 30,
+        "width": 596,
+        "height": 661
+      }
+    },
+    {
+      "key": "foe-d277c1fc8a",
+      "title": "Учебная гибкая опора",
+      "kind": "foe",
+      "subjects": [
+        "support-trial-foe-1",
+        "support-trial-foe-2",
+        "support-trial-foe-3",
+        "support-trial-foe-4",
+        "support-trial-foe-5"
+      ],
+      "file": "foes-foe-d277c1fc8a.webp",
+      "sha256": "fadb17298b557fde61f43a11a10c42cb9d17c46ab9cb65481164922b3879f272",
+      "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+      "generated": "2026-11-22",
+      "sheet": "root-city-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 791,
+        "top": 37,
+        "width": 596,
+        "height": 652
+      }
+    },
+    {
+      "key": "foe-79b2dd8c63",
+      "title": "Пружинный испытатель",
+      "kind": "foe",
+      "subjects": [
+        "deck-rehearsal-foe-1",
+        "deck-rehearsal-foe-2",
+        "deck-rehearsal-foe-3",
+        "deck-rehearsal-foe-4",
+        "deck-rehearsal-foe-5"
+      ],
+      "file": "foes-foe-79b2dd8c63.webp",
+      "sha256": "be939338b3d2dfb29e35ae02822b664173fc5443a987e056c4c1e66c8f9efd3f",
+      "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+      "generated": "2026-11-22",
+      "sheet": "root-city-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1576,
+        "top": 47,
+        "width": 504,
+        "height": 646
+      }
+    },
+    {
+      "key": "ira-fen",
+      "title": "Ира Фен",
+      "kind": "npc",
+      "subjects": [
+        "ira-fen"
+      ],
+      "file": "npcs-ira-fen.webp",
+      "sha256": "9a3e57b6ff120b9d10b2dba3e42c023ce9242d3e7b44af3a0d214516166e8a69",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 104,
+        "top": 14,
+        "width": 253,
+        "height": 377
+      }
+    },
+    {
+      "key": "dina-ro",
+      "title": "Дина Ро",
+      "kind": "npc",
+      "subjects": [
+        "dina-ro"
+      ],
+      "file": "npcs-dina-ro.webp",
+      "sha256": "462c25adc47ad570529ab64cab51d3847f3d49085fd08a74559fc4ba018b7da0",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 533,
+        "top": 14,
+        "width": 242,
+        "height": 377
+      }
+    },
+    {
+      "key": "tim-osh",
+      "title": "Тим Ош",
+      "kind": "npc",
+      "subjects": [
+        "tim-osh"
+      ],
+      "file": "npcs-tim-osh.webp",
+      "sha256": "5db3bf2eff959d8b184615a6af380baa81efc8c0b3758dc5c7a03d0a77219d65",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 954,
+        "top": 9,
+        "width": 257,
+        "height": 381
+      }
+    },
+    {
+      "key": "leon-ki",
+      "title": "Леон Ки",
+      "kind": "npc",
+      "subjects": [
+        "leon-ki"
+      ],
+      "file": "npcs-leon-ki.webp",
+      "sha256": "1530243afca2cff0e782997b820f0e631200ada17a896f488189c576732d133e",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 97,
+        "top": 404,
+        "width": 266,
+        "height": 374
+      }
+    },
+    {
+      "key": "rin-va",
+      "title": "Рин Ва",
+      "kind": "npc",
+      "subjects": [
+        "rin-va"
+      ],
+      "file": "npcs-rin-va.webp",
+      "sha256": "37e5f989f785a1e4dcdd6fc6d4a1405282526507e85e394c1a9a9f1d331c9f12",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 536,
+        "top": 404,
+        "width": 229,
+        "height": 373
+      }
+    },
+    {
+      "key": "fold",
+      "title": "Склад",
+      "kind": "npc",
+      "subjects": [
+        "fold"
+      ],
+      "file": "npcs-fold.webp",
+      "sha256": "098dea2e8c16ae07ad9f32e5bac5d4e953bbe70a3bc39e4217465ff952ce9050",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 915,
+        "top": 406,
+        "width": 337,
+        "height": 372
+      }
+    },
+    {
+      "key": "edge",
+      "title": "Кромка",
+      "kind": "npc",
+      "subjects": [
+        "edge"
+      ],
+      "file": "npcs-edge.webp",
+      "sha256": "078e1760a988e81b1af9cf2dda0f62ca9549845f75d11ea99fcfa5b9834a959d",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 102,
+        "top": 796,
+        "width": 250,
+        "height": 374
+      }
+    },
+    {
+      "key": "side",
+      "title": "Бок",
+      "kind": "npc",
+      "subjects": [
+        "side"
+      ],
+      "file": "npcs-side.webp",
+      "sha256": "9a18e317319ff6cc8a5c15aa63c4558ed65c8e24a329c7d0be2fcfbda0b3376c",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 787,
+        "width": 257,
+        "height": 382
+      }
+    },
+    {
+      "key": "runner",
+      "title": "Бегущий Стебель",
+      "kind": "npc",
+      "subjects": [
+        "runner"
+      ],
+      "file": "npcs-runner.webp",
+      "sha256": "8b0e54eee766e752d698b93d1a4a79d5180b8bdb02ee80d191aefc93b3f4eb38",
+      "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+      "generated": "2026-11-22",
+      "sheet": "root-city-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 922,
+        "top": 793,
+        "width": 306,
+        "height": 376
+      }
+    }
+  ]
+}

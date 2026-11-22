@@ -1,0 +1,12 @@
+{
+  "file": "opening.webp",
+  "location": "claims-office",
+  "reveal": "opening",
+  "generator": "OpenAI imagegen (Codex)",
+  "generatedOn": "2026-11-22",
+  "original": "exec-51b88ca9-cdf7-446f-8db1-d3062d774f13.png",
+  "originalSha256": "8eeff1ec81db1590e3833a0199c12338248af1e61dfbeae1c027643194a397e1",
+  "sha256": "db8500a3d4300d12e5baca1d7febe72d6b2542fe45fa20a43ec453adfd910580",
+  "prompt": "Landscape 3:2 text-free book illustration for the opening of a tabletop roleplaying adventure. moody film-noir gouache, evocative reflected light, muted graphite and amber. Convey the specific premise through one striking, visually coherent scene in the opening location. Use only public observations, leave every mystery unresolved. Exclude text, captions, letters, logos, gore, grids, borders, diagrams and spoilers. Story title for context only: Приговор под копирку. Public premise: Шесть лет назад переплётчика Марека Грона осудили за пожар товарного двора, унёсший две жизни. Уважаемая попечительница нанимает вас проверить один чертёж из дела. В городе, где свидетельства переписывали аккуратнее, чем проверяли, исправление приговора может потребовать выступить против собственного заказчика. Opening setting: Приёмная артели прошений. Длинный стол, сушилка для пальто и отдельный кабинет для разговоров без посторонних.",
+  "alt": "Приёмная артели прошений — Приговор под копирку"
+}

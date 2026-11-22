@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "covered-stairs.webp",
+      "sha256": "1e02c2e67a5c1c87fb7b317a9fa955672324baf8c5399abedf533ad63862fb4c",
+      "originalSha256": "1f8a771fdc6a428cdd752e82b6a901b34a30df643b6212ca591548aedc7de864",
+      "originalFile": "exec-05461e90-781b-4470-9eaa-f20b93fbc42e.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Крытая лестница. Visible scenery: Широкая лестница между двором и верхней улицей; на площадке удобно встретиться, не заходя в жильё.. World style: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "covered-stairs",
+      "encounter": "courtyard-obstruction",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "assembly-house.webp",
+      "sha256": "9885943539b65f6d057fd3916898d6b8b65b0b3f55a6a78ea5854259f01b10c1",
+      "originalSha256": "cccef2d87caba0e959a24faddd05af98b410c4ab5a4cc26040b13b3e7f1e1214",
+      "originalFile": "exec-d556caba-a40f-426e-9613-007316c8cccd.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Дом собраний. Visible scenery: Стулья расставляют для открытых бесед, а малую комнату можно попросить для закрытого разговора.. World style: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "assembly-house",
+      "encounter": "hall-dispute",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "stone-crossing.webp",
+      "sha256": "142bd72b891d2cb470d6a480ff279af6af950e28c95560a75951aea5f63b8911",
+      "originalSha256": "41c7e1a5aebc743c3318ecdf6e5bc16a4419164e0b1048e399cecae8fe6942a4",
+      "originalFile": "exec-7e833adb-3f4c-430b-8e5c-d4eff6dce11a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Каменный переход. Visible scenery: Крытый переход через мелкий городской канал; скамьи и опоры оставляют несколько спокойных путей обхода.. World style: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "stone-crossing",
+      "encounter": "crossing-crowd",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

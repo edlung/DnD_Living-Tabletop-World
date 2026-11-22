@@ -1,0 +1,619 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "strike-fund-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-85601dfb-b923-4392-82d7-bcb9ecb65d2b.png",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Cell 1. Нина Баженова. Короткое пальто, крепкая нить на запястье, привычка складывать мокрые вещи отдельно.\nCell 2. Семён Орлов. Старый форменный жилет, аккуратно заштопанные рукава и усталая открытая улыбка.\nCell 3. Ольга Яровая. Тёмный шарф, блокнот с чистыми страницами для чужих записок, спокойная речь.\nCell 4. Алексей Метлин. Чернильный след на большом пальце, очки в починенной оправе, ровно подрезанные карточки.\nCell 5. Злата Тихова. Плащ до колен, сухой мешок на ремне, маленький колокольчик вместо громкого окрика.\nCell 6. Руслан Елов. Широкие ладони, чистый воротник и бумажный футляр для карандашей, которые он одалживает всем.\nCell 7. Борис Дрозд. Светлые стружки на манжете, медленные движения, маленькая записная книжка с рисунками.\nCell 8. Елена Красина. Простой костюм, короткий карандаш на шнурке, привычка оставлять место для исправлений.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/strike-fund/illustrations/cards/nina-bazhenova.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/semen-orlov.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/olga-yarovaya.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/alexey-metlin.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/zlata-tikhova.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/ruslan-elov.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/boris-drozd.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/elena-krasina.webp"
+      ]
+    },
+    {
+      "id": "strike-fund-places-0",
+      "originalFile": "exec-a1af91fc-db4e-4b22-9d83-c0353a5e7e02.png",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Cell 1. Дом артели. Бывшая контора с общим столом, переносной денежной кассой и сухим местом для ожидающих под лестницей.\nCell 2. Столовая «Третий гудок». За запотевшими окнами пахнет хлебом; взрослые посетители сами складывают использованные тарелки на тележку.\nCell 3. Комнаты над булочной. Узкая лестница ведёт к съёмным комнатам. На общей двери просят стучать и не называть жильцов с улицы.\nCell 4. Тележный двор. Ручные тележки стоят под брезентом; сухая будка обращена окном к широкой площадке для разворота.\nCell 5. Печатня «Шрифт». Небольшая печатня с наборными кассами, сушильными верёвками и столом для чтения пробных оттисков.\nCell 6. Сухой склад у мола. Склад сдаёт отдельные ограждённые секции. Проход между ними ведёт прямо к широким воротам и открытому молу.\nCell 7. Мастерская Ремеза. Мастер чинит бытовые замки за низкой перегородкой; готовые заказы висят в подписанных бумажных пакетах.\nCell 8. Проходная канатной фабрики. Кирпичная арка и навес отделяют фабричный двор от улицы. Напротив развешивают объявления о сменах и перевозках.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "strike-fund-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-1db3c269-b085-4fb3-9c19-ba09ade7f964.png",
+      "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Cell 1. Наёмный сопровождающий. Взрослый старше 21 года в плотной рабочей куртке; действует обычной палкой, которую игровой лист обозначает посохом.\nCell 2. Сторож заказчика. Взрослый старше 21 года в одинаковом плаще без знаков службы, оплаченный стоять у двери; оружейный профиль — обычная палка.\nCell 3. Складской сопровождающий. Взрослый старше 21 года, нанятый для переноски; защищает проход обычной палкой, без огнестрельного оружия и специальных приёмов.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "strike-fund-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d2650869-40de-45c5-b0f2-fdd31188456f.png",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Касса забастовки. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Лидия Рябцева. Серая кофта, красный след от ручки денежного ящика на ладони, тщательно выровненные конверты.\nCell 2. Глеб Сумарин. Хорошо подогнанный плащ, потёртый портфель и вежливое обращение к каждому по имени.\nCell 3. Рада Мельник. Закатанные рукава, связка обычных комнатных ключей, чашка, которую она постоянно забывает допить.\nCell 4. Тамара Вязова. Брезентовый фартук, коротко остриженные волосы, счётные камешки на подоконнике будки.\nCell 5. Иосиф Карцев. Тёмные нарукавники, невысохшее пятно на щеке и стопка бумаги, прижатая гладким камнем.\nCell 6. Марфа Теслина. Белая косынка, медные пуговицы и привычка сначала придвинуть человеку стул.\nCell 7. Захар Ремез. Чистые перчатки поверх испачканных манжет, тяжёлая лампа и тихая привычка пересчитывать заказы.\nCell 8. Вера Зорина. Потёртая сумка для камеры, длинные шарфы вместо ремней и картонная папка под плащом.",
+      "references": [
+        "campaigns/noir-2026/strike-fund/illustrations/cards/lidia-ryabtseva.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/gleb-sumarin.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/rada-melnik.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/tamara-vyazova.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/iosif-kartsev.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/marfa-teslina.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/zakhar-remez.webp",
+        "campaigns/noir-2026/strike-fund/illustrations/cards/vera-zorina.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "nina-bazhenova",
+      "title": "Нина Баженова",
+      "kind": "hero",
+      "subjects": [
+        "nina-bazhenova"
+      ],
+      "file": "heroes-nina-bazhenova.webp",
+      "sha256": "11fd69bae71666f8b561d5e77d3af0a1529248ca0310ff0259df442f8a63d2cc",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 131,
+        "top": 17,
+        "width": 194,
+        "height": 410
+      }
+    },
+    {
+      "key": "semen-orlov",
+      "title": "Семён Орлов",
+      "kind": "hero",
+      "subjects": [
+        "semen-orlov"
+      ],
+      "file": "heroes-semen-orlov.webp",
+      "sha256": "8558cac3c2c3c69a66b2c76a0172240553fc247674d26c5c387f7f9a196041a3",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 573,
+        "top": 14,
+        "width": 186,
+        "height": 413
+      }
+    },
+    {
+      "key": "olga-yarovaya",
+      "title": "Ольга Яровая",
+      "kind": "hero",
+      "subjects": [
+        "olga-yarovaya"
+      ],
+      "file": "heroes-olga-yarovaya.webp",
+      "sha256": "c6c0991e3650022938bfe613633082d6fd0e30497dc03150fcf17445c066f8be",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1017,
+        "top": 17,
+        "width": 185,
+        "height": 410
+      }
+    },
+    {
+      "key": "alexey-metlin",
+      "title": "Алексей Метлин",
+      "kind": "hero",
+      "subjects": [
+        "alexey-metlin"
+      ],
+      "file": "heroes-alexey-metlin.webp",
+      "sha256": "16a14818f604ddf73bda1014968f69a0990a67182116ce5a79f76d0bbfb35496",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1461,
+        "top": 11,
+        "width": 184,
+        "height": 416
+      }
+    },
+    {
+      "key": "zlata-tikhova",
+      "title": "Злата Тихова",
+      "kind": "hero",
+      "subjects": [
+        "zlata-tikhova"
+      ],
+      "file": "heroes-zlata-tikhova.webp",
+      "sha256": "31923b7350c434c9406715d1215e91a00639bb6cbc7cbfb4439d4efb20fcaddd",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 131,
+        "top": 452,
+        "width": 186,
+        "height": 420
+      }
+    },
+    {
+      "key": "ruslan-elov",
+      "title": "Руслан Елов",
+      "kind": "hero",
+      "subjects": [
+        "ruslan-elov"
+      ],
+      "file": "heroes-ruslan-elov.webp",
+      "sha256": "ba85dcefd533177e8e4711a25c43b70c1163933cad8c48531e1c93985f70f445",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 568,
+        "top": 451,
+        "width": 197,
+        "height": 422
+      }
+    },
+    {
+      "key": "boris-drozd",
+      "title": "Борис Дрозд",
+      "kind": "hero",
+      "subjects": [
+        "boris-drozd"
+      ],
+      "file": "heroes-boris-drozd.webp",
+      "sha256": "4d5008b8971bd4eb3c9b1c6329190d8c11437a1006f4964eea3df766b29ba87d",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1016,
+        "top": 456,
+        "width": 190,
+        "height": 416
+      }
+    },
+    {
+      "key": "elena-krasina",
+      "title": "Елена Красина",
+      "kind": "hero",
+      "subjects": [
+        "elena-krasina"
+      ],
+      "file": "heroes-elena-krasina.webp",
+      "sha256": "5b99f8ab9b12fba94f6a4f33a175a75a72236b1c05425ec0e0425fa80a68d0ff",
+      "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1460,
+        "top": 454,
+        "width": 188,
+        "height": 419
+      }
+    },
+    {
+      "key": "union-house",
+      "title": "Дом артели",
+      "kind": "place",
+      "subjects": [
+        "union-house"
+      ],
+      "file": "places-union-house.webp",
+      "sha256": "97717ac52beb712cd270e926a19f85271f5a7ee3dff9492c7d236cb748f74088",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "third-whistle",
+      "title": "Столовая «Третий гудок»",
+      "kind": "place",
+      "subjects": [
+        "third-whistle"
+      ],
+      "file": "places-third-whistle.webp",
+      "sha256": "0d032716b6f72b71cf49ba2518753ea23a9d9034b44dd7eb1e919b2ec1adb185",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "bakery-rooms",
+      "title": "Комнаты над булочной",
+      "kind": "place",
+      "subjects": [
+        "bakery-rooms"
+      ],
+      "file": "places-bakery-rooms.webp",
+      "sha256": "e252793bd53aea34167d341ab80920424abd7121e7f341166f368024044ff77a",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "cart-yard",
+      "title": "Тележный двор",
+      "kind": "place",
+      "subjects": [
+        "cart-yard"
+      ],
+      "file": "places-cart-yard.webp",
+      "sha256": "da76109f2edb609cee7ee3a45e570a28d8db0881ccfea28fde7288aeee23a708",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "type-printshop",
+      "title": "Печатня «Шрифт»",
+      "kind": "place",
+      "subjects": [
+        "type-printshop"
+      ],
+      "file": "places-type-printshop.webp",
+      "sha256": "805691be0d0de94c1438a6330ebd58eeeb9fe83ee961fd314ae774bb43ef904f",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "dry-store",
+      "title": "Сухой склад у мола",
+      "kind": "place",
+      "subjects": [
+        "dry-store"
+      ],
+      "file": "places-dry-store.webp",
+      "sha256": "3970f0c1e25f82f45b6d4b31cff2b49fc642c9a361372426dc4a4de32a3b9583",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "lock-workshop",
+      "title": "Мастерская Ремеза",
+      "kind": "place",
+      "subjects": [
+        "lock-workshop"
+      ],
+      "file": "places-lock-workshop.webp",
+      "sha256": "f85d0c4b558f508496584e7b88a6ab7c17dd00b43c509881e738fe3588df2458",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "factory-gate",
+      "title": "Проходная канатной фабрики",
+      "kind": "place",
+      "subjects": [
+        "factory-gate"
+      ],
+      "file": "places-factory-gate.webp",
+      "sha256": "25c923b14dd338a7eeb9234ca41b68307d59b7384acafaaed9ae5a32a9f269ad",
+      "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-c4d2df1e47",
+      "title": "Наёмный сопровождающий",
+      "kind": "foe",
+      "subjects": [
+        "yard-pressure-foe-1",
+        "yard-pressure-foe-2",
+        "yard-pressure-foe-3",
+        "yard-pressure-foe-4",
+        "yard-pressure-foe-5",
+        "yard-pressure-foe-6"
+      ],
+      "file": "foes-foe-c4d2df1e47.webp",
+      "sha256": "95b706b3523d9820488bda468f941d0ec044249eca9af2a1fca6e07461c72307",
+      "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 179,
+        "top": 11,
+        "width": 372,
+        "height": 699
+      }
+    },
+    {
+      "key": "foe-3b19ad4605",
+      "title": "Сторож заказчика",
+      "kind": "foe",
+      "subjects": [
+        "press-doorway-foe-1",
+        "press-doorway-foe-2",
+        "press-doorway-foe-3",
+        "press-doorway-foe-4",
+        "press-doorway-foe-5",
+        "press-doorway-foe-6"
+      ],
+      "file": "foes-foe-3b19ad4605.webp",
+      "sha256": "4b57cc357c296c2b5f3aad720ed596e5dd8a298d2ffd2f347678d44de46ae9f2",
+      "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 859,
+        "top": 12,
+        "width": 412,
+        "height": 698
+      }
+    },
+    {
+      "key": "foe-a550a56ccc",
+      "title": "Складской сопровождающий",
+      "kind": "foe",
+      "subjects": [
+        "store-exit-foe-1",
+        "store-exit-foe-2",
+        "store-exit-foe-3",
+        "store-exit-foe-4",
+        "store-exit-foe-5",
+        "store-exit-foe-6"
+      ],
+      "file": "foes-foe-a550a56ccc.webp",
+      "sha256": "ab2ee8783d5e01aa79b9f9b4bf90e2cce134422fedcdde497610cfaa3aa74776",
+      "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1555,
+        "top": 20,
+        "width": 433,
+        "height": 690
+      }
+    },
+    {
+      "key": "lidia-ryabtseva",
+      "title": "Лидия Рябцева",
+      "kind": "npc",
+      "subjects": [
+        "lidia-ryabtseva"
+      ],
+      "file": "npcs-lidia-ryabtseva.webp",
+      "sha256": "a4cb064206a8c178278cd0eaa562a376bac64a13c31138a52bfcc82636df6fda",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 58,
+        "top": 33,
+        "width": 316,
+        "height": 367
+      }
+    },
+    {
+      "key": "gleb-sumarin",
+      "title": "Глеб Сумарин",
+      "kind": "npc",
+      "subjects": [
+        "gleb-sumarin"
+      ],
+      "file": "npcs-gleb-sumarin.webp",
+      "sha256": "6a4419f57b31a90abd21f91a92abfeb7021c86791b167cffd79341be2193218c",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 435,
+        "top": 25,
+        "width": 306,
+        "height": 383
+      }
+    },
+    {
+      "key": "rada-melnik",
+      "title": "Рада Мельник",
+      "kind": "npc",
+      "subjects": [
+        "rada-melnik"
+      ],
+      "file": "npcs-rada-melnik.webp",
+      "sha256": "63fc352707c3b9166d27f30e0aa8b40e610e011d8197c45bbbb4487586795835",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 835,
+        "top": 32,
+        "width": 304,
+        "height": 358
+      }
+    },
+    {
+      "key": "tamara-vyazova",
+      "title": "Тамара Вязова",
+      "kind": "npc",
+      "subjects": [
+        "tamara-vyazova"
+      ],
+      "file": "npcs-tamara-vyazova.webp",
+      "sha256": "61089d67bba67d5aa7210bae0a1e2b28fbadeeb0dbd7519449e1034f4f49b8b8",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 50,
+        "top": 453,
+        "width": 337,
+        "height": 369
+      }
+    },
+    {
+      "key": "iosif-kartsev",
+      "title": "Иосиф Карцев",
+      "kind": "npc",
+      "subjects": [
+        "iosif-kartsev"
+      ],
+      "file": "npcs-iosif-kartsev.webp",
+      "sha256": "e2125e16f7978a3cde08d14243e7871f725e4ac045a5f4dcad2f9266d27d89e2",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 437,
+        "top": 448,
+        "width": 334,
+        "height": 371
+      }
+    },
+    {
+      "key": "marfa-teslina",
+      "title": "Марфа Теслина",
+      "kind": "npc",
+      "subjects": [
+        "marfa-teslina"
+      ],
+      "file": "npcs-marfa-teslina.webp",
+      "sha256": "51e0891f527e21c4498351cfb7752652555809c044784e98f5c63eb735ec7d60",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 842,
+        "top": 449,
+        "width": 320,
+        "height": 370
+      }
+    },
+    {
+      "key": "zakhar-remez",
+      "title": "Захар Ремез",
+      "kind": "npc",
+      "subjects": [
+        "zakhar-remez"
+      ],
+      "file": "npcs-zakhar-remez.webp",
+      "sha256": "b00b1ce7d5ac5827df7c44bf56e291ba2e12ca0936ff67654b41592aadb38d22",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 37,
+        "top": 886,
+        "width": 349,
+        "height": 381
+      }
+    },
+    {
+      "key": "vera-zorina",
+      "title": "Вера Зорина",
+      "kind": "npc",
+      "subjects": [
+        "vera-zorina"
+      ],
+      "file": "npcs-vera-zorina.webp",
+      "sha256": "4c6510f1fbcf383fc8a27ca3c6b4f3ec4d7c5b501ac56d5ecb53fc455d78707b",
+      "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+      "generated": "2026-11-22",
+      "sheet": "strike-fund-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 439,
+        "top": 880,
+        "width": 318,
+        "height": 403
+      }
+    }
+  ]
+}

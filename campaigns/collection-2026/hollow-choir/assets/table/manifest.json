@@ -1,0 +1,186 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "hollow-choir-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-09f6191c-0cfc-4c7c-885e-a256b8d88078.png",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Хор Пустых Комнат. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Гаспар Урм. Высокий хозяин лет пятидесяти с виду, серебряные виски, старый безупречный сюртук, карманные часы на цепочке, на которые он никогда не смотрит. Руки тёплые и сухие.\nCell 2. Ирина Вард. Светлая трость, плотная дорожная шаль, в кармане свёрток из платка. Держит свечу низко и всё время смотрит на большие часы.\nCell 3. Бронислава Ковш. Поварской фартук поверх дорожного платья, мука на запястьях, тяжёлая связка ключей на поясе.\nCell 4. Дорота Весс. Строгое дорожное платье, книжка с карандашом на шнурке. Всех называет полностью, по имени и фамилии.\nCell 5. Мартин Сех. Инженерный жилет, лупа на лбу, пальцы в часовом масле. Говорит о колёсах и воздухе, как другие о погоде.\nCell 6. Эвелина Аррен. Врачебный саквояж, шерстяной жилет, флакон тёмного стекла на цепочке, пробка залита воском.\nCell 7. Егор Нелл. Плотные рабочие перчатки, широкая лямка через плечо, чужие саквояжи в обеих руках.\nCell 8. Тадеуш Рен. Архитекторский жилет, складная линейка, планшет с калькой, карандаш за ухом. Чертит на ходу.",
+      "references": [
+        "campaigns/collection-2026/hollow-choir/assets/runtime/gaspar-urm.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/irina-vard.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/agata-norr.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/dorota-vess.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/martin-sekh.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/lidia-arren.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/egor-nell.webp",
+        "campaigns/collection-2026/hollow-choir/assets/runtime/tadeush-ren.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "gaspar-urm",
+      "title": "Гаспар Урм",
+      "kind": "npc",
+      "subjects": [
+        "gaspar-urm"
+      ],
+      "file": "npcs-gaspar-urm.webp",
+      "sha256": "e6bcb9e529eb4cd175ac76246a029fa737fb263d8d1ab4557f2bbaea9ce76721",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 85,
+        "top": 18,
+        "width": 236,
+        "height": 403
+      }
+    },
+    {
+      "key": "irina-vard",
+      "title": "Ирина Вард",
+      "kind": "npc",
+      "subjects": [
+        "irina-vard"
+      ],
+      "file": "npcs-irina-vard.webp",
+      "sha256": "629dd0c2b7d3883adfaee0c9555ecc305de1196096f8a2566f55b38699480862",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 481,
+        "top": 23,
+        "width": 234,
+        "height": 400
+      }
+    },
+    {
+      "key": "agata-norr",
+      "title": "Бронислава Ковш",
+      "kind": "npc",
+      "subjects": [
+        "agata-norr"
+      ],
+      "file": "npcs-agata-norr.webp",
+      "sha256": "46b1b306790e1064d50e11f55682d0cdfc44ec3bc94ac5eb4da85ad540070bae",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 885,
+        "top": 19,
+        "width": 234,
+        "height": 404
+      }
+    },
+    {
+      "key": "dorota-vess",
+      "title": "Дорота Весс",
+      "kind": "npc",
+      "subjects": [
+        "dorota-vess"
+      ],
+      "file": "npcs-dorota-vess.webp",
+      "sha256": "ee4b9e1243d130c6ec72f34482a14d0c6ba734fb405ef080cc3a5d0d08a1fc39",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 86,
+        "top": 442,
+        "width": 228,
+        "height": 418
+      }
+    },
+    {
+      "key": "martin-sekh",
+      "title": "Мартин Сех",
+      "kind": "npc",
+      "subjects": [
+        "martin-sekh"
+      ],
+      "file": "npcs-martin-sekh.webp",
+      "sha256": "3e94e6cf5c5e99c077159a2d60db5b5be8391872887245adffffeea16618246d",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 478,
+        "top": 442,
+        "width": 240,
+        "height": 419
+      }
+    },
+    {
+      "key": "lidia-arren",
+      "title": "Эвелина Аррен",
+      "kind": "npc",
+      "subjects": [
+        "lidia-arren"
+      ],
+      "file": "npcs-lidia-arren.webp",
+      "sha256": "440699bca55ca07532acf2323305bb574be655b81a05b55eb6000591455d7fae",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 880,
+        "top": 446,
+        "width": 237,
+        "height": 415
+      }
+    },
+    {
+      "key": "egor-nell",
+      "title": "Егор Нелл",
+      "kind": "npc",
+      "subjects": [
+        "egor-nell"
+      ],
+      "file": "npcs-egor-nell.webp",
+      "sha256": "bfa803a03884e2ff1a4d68817e3e7cf5b02b0a1ffed456a8ed85274facedc01e",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 71,
+        "top": 880,
+        "width": 269,
+        "height": 417
+      }
+    },
+    {
+      "key": "tadeush-ren",
+      "title": "Тадеуш Рен",
+      "kind": "npc",
+      "subjects": [
+        "tadeush-ren"
+      ],
+      "file": "npcs-tadeush-ren.webp",
+      "sha256": "fa5f5a71ca84c02fc97c22d6bbff0ef6a10871475d60a7b380a9395aa44b6d24",
+      "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+      "generated": "2026-11-22",
+      "sheet": "hollow-choir-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 474,
+        "top": 882,
+        "width": 249,
+        "height": 415
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "orchard-path.webp",
+      "sha256": "587d6c0197e4b3100271e88630bb36abad696e4777bc79cbcbc5f31fa4b7d3d2",
+      "originalSha256": "72f2371439299e4ca8bee502f7a2aa5daee2e3aad4513d55a251085baaebf902",
+      "originalFile": "exec-0b334aff-b9ae-4931-9c1b-4d7f9151ddf3.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Сад перевязанных ветвей. Visible scenery: Ветви старых груш поддерживают тканевые ленты. Между деревьями достаточно места для небольшого собрания.. World style: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "orchard-path",
+      "encounter": "orchard-folds",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "flooded-mill.webp",
+      "sha256": "153bd7d149093ebbcf2f1513640795821a3e2e480c74ffdf41a439ac6d320375",
+      "originalSha256": "d130d807ec1086d986dfa7c5fa717b7c8af5ba439a882be721cfb4d07941b7e6",
+      "originalFile": "exec-b3767038-6540-434d-8aba-4098ffc6fc47.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мельница Стоячей Воды. Visible scenery: Неподвижное колесо погружено в чёрный пруд. К сухому верхнему настилу ведут широкие мостки с верёвочными перилами.. World style: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "flooded-mill",
+      "encounter": "mill-hushers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "last-belfry.webp",
+      "sha256": "c3e04a6cbf4745f94b28b07c723ce91432345efc60b9a1e66ad12b12824e2f48",
+      "originalSha256": "e78ecc3eb9122695c79417e2aeb1d5f9f2a0cef20ed17e887987a0c6c27376c9",
+      "originalFile": "exec-284bec58-22cd-4307-b3bc-e25eb2a05a18.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Звонница Последнего Воздуха. Visible scenery: Открытая башня на невысоком гребне. Под её крышей висит неподвижный колокол, а на площадке видны гнёзда для дорожных фонарей.. World style: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "last-belfry",
+      "encounter": "belfry-shards",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

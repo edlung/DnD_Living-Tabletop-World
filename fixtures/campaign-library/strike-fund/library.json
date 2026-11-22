@@ -1,0 +1,1843 @@
+{
+ "id": "strike-fund",
+ "title": "Касса забастовки",
+ "genre": "Детективный промышленный нуар",
+ "audience": "21+",
+ "pitch": "Из кассы бастующих канатчиков исчезли две трети наличности. Люди готовы искать предателя, пока посредник предлагает заменить взаимопомощь собственным покровительством. Расследователям предстоит проследить настоящие пачки денег, услышать несовместимые обещания и вернуть помощь тем, кому она принадлежит.",
+ "tone": "Мокрый картон, усталое достоинство, щедрость без разрешения и помощь, требующая подчинения. Насилие необязательно; уважение нельзя доказать одной распиской.",
+ "duration": "8 сессий; 180 минут: 10 минут вступления и пересказа, три сцены по 45 минут, перерыв 15 минут и завершение 20 минут. Необязательная стычка занимает часть своей сцены.",
+ "cover": "campaigns/noir-2026/strike-fund/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "d0c25ab6d279cb06315293a365119b8c72581d2923d231a01e36be123c342a25"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "66bab7de35697b4cc256d5f62df6c54b18c3f4378a8707baf8cae2ade6f7518e"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "7851d46214e9f23eb3484cb149cfd794e648894ce7bcbc07fc18f98c105f8502"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "a846ece2e119d6b14a918f01fa0df15c2a934b3d0648891d5982a20bf03fd24e"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "72126e0842e4b296af260fcd905c20e554c887c833a6755fa1660283d031b94c"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "740581ee64825357b6751860f69a9e5aaecad5b679b10f5ebca426353b95d119"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/nina-bazhenova.webp",
+   "sha256": "f18d02e43e21946afe57d86b2df58839a00dfc6d208e41bfc35d4e4ca0f0bc74",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Баженова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-bazhenova"
+    ],
+    "4-players": [
+     "nina-bazhenova"
+    ],
+    "5-players": [
+     "nina-bazhenova"
+    ],
+    "6-players": [
+     "nina-bazhenova"
+    ],
+    "7-players": [
+     "nina-bazhenova"
+    ],
+    "8-players": [
+     "nina-bazhenova"
+    ]
+   },
+   "file": "nina-bazhenova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/semen-orlov.webp",
+   "sha256": "0c37f85110ff6556fa3f5d166ba9466c5dd77dc8f7257870e73ed7746763198d",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Орлов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "semen-orlov"
+    ],
+    "4-players": [
+     "semen-orlov"
+    ],
+    "5-players": [
+     "semen-orlov"
+    ],
+    "6-players": [
+     "semen-orlov"
+    ],
+    "7-players": [
+     "semen-orlov"
+    ],
+    "8-players": [
+     "semen-orlov"
+    ]
+   },
+   "file": "semen-orlov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/olga-yarovaya.webp",
+   "sha256": "6cabae282900a4cd8cd18da6569df7875250a317f3823fa71a45e4aa9c5623ac",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольга Яровая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olga-yarovaya"
+    ],
+    "4-players": [
+     "olga-yarovaya"
+    ],
+    "5-players": [
+     "olga-yarovaya"
+    ],
+    "6-players": [
+     "olga-yarovaya"
+    ],
+    "7-players": [
+     "olga-yarovaya"
+    ],
+    "8-players": [
+     "olga-yarovaya"
+    ]
+   },
+   "file": "olga-yarovaya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/alexey-metlin.webp",
+   "sha256": "437ec5fdeb6bdb4cac6ee2a9d02c56770741919060c35f7e37915ecc2c7f0815",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алексей Метлин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "alexey-metlin"
+    ],
+    "5-players": [
+     "alexey-metlin"
+    ],
+    "6-players": [
+     "alexey-metlin"
+    ],
+    "7-players": [
+     "alexey-metlin"
+    ],
+    "8-players": [
+     "alexey-metlin"
+    ]
+   },
+   "file": "alexey-metlin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/zlata-tikhova.webp",
+   "sha256": "7ccec6ece6607f12c7730bef7115ed0669df23faaa5773bec70f58797e91b958",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Злата Тихова",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "zlata-tikhova"
+    ],
+    "6-players": [
+     "zlata-tikhova"
+    ],
+    "7-players": [
+     "zlata-tikhova"
+    ],
+    "8-players": [
+     "zlata-tikhova"
+    ]
+   },
+   "file": "zlata-tikhova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/ruslan-elov.webp",
+   "sha256": "aad13309987a8c9799f8b6d5c2d42af53ca7ce69cd031ebef08e16a639bf0e73",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руслан Елов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ruslan-elov"
+    ],
+    "7-players": [
+     "ruslan-elov"
+    ],
+    "8-players": [
+     "ruslan-elov"
+    ]
+   },
+   "file": "ruslan-elov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/boris-drozd.webp",
+   "sha256": "8572974e4094a702508bc4e10130ca42f6460b3d65c80513dcf099e45aa2e225",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Дрозд",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "boris-drozd"
+    ],
+    "8-players": [
+     "boris-drozd"
+    ]
+   },
+   "file": "boris-drozd.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/elena-krasina.webp",
+   "sha256": "6573654f6af0f22f2c310a676eba25c536f521d28216c1169b163eac35f7edac",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Елена Красина",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "elena-krasina"
+    ]
+   },
+   "file": "elena-krasina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/travel-kit.webp",
+   "sha256": "24aecb9639ccdd604c759d8baaccbdeb4af60db1e823bf6ebdac3ec5eb35f5ae",
+   "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-bazhenova-travel-kit",
+     "olga-yarovaya-travel-kit",
+     "semen-orlov-travel-kit"
+    ],
+    "4-players": [
+     "alexey-metlin-travel-kit",
+     "nina-bazhenova-travel-kit",
+     "olga-yarovaya-travel-kit",
+     "semen-orlov-travel-kit"
+    ],
+    "5-players": [
+     "alexey-metlin-travel-kit",
+     "nina-bazhenova-travel-kit",
+     "olga-yarovaya-travel-kit",
+     "semen-orlov-travel-kit",
+     "zlata-tikhova-travel-kit"
+    ],
+    "6-players": [
+     "alexey-metlin-travel-kit",
+     "nina-bazhenova-travel-kit",
+     "olga-yarovaya-travel-kit",
+     "ruslan-elov-travel-kit",
+     "semen-orlov-travel-kit",
+     "zlata-tikhova-travel-kit"
+    ],
+    "7-players": [
+     "alexey-metlin-travel-kit",
+     "boris-drozd-travel-kit",
+     "nina-bazhenova-travel-kit",
+     "olga-yarovaya-travel-kit",
+     "ruslan-elov-travel-kit",
+     "semen-orlov-travel-kit",
+     "zlata-tikhova-travel-kit"
+    ],
+    "8-players": [
+     "alexey-metlin-travel-kit",
+     "boris-drozd-travel-kit",
+     "elena-krasina-travel-kit",
+     "nina-bazhenova-travel-kit",
+     "olga-yarovaya-travel-kit",
+     "ruslan-elov-travel-kit",
+     "semen-orlov-travel-kit",
+     "zlata-tikhova-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/lidia-ryabtseva.webp",
+   "sha256": "5e24220165c100295d79c007ee6527371b372e93db7e0c9d88501ab5c0ea0da3",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лидия Рябцева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lidia-ryabtseva"
+    ],
+    "4-players": [
+     "lidia-ryabtseva"
+    ],
+    "5-players": [
+     "lidia-ryabtseva"
+    ],
+    "6-players": [
+     "lidia-ryabtseva"
+    ],
+    "7-players": [
+     "lidia-ryabtseva"
+    ],
+    "8-players": [
+     "lidia-ryabtseva"
+    ]
+   },
+   "file": "lidia-ryabtseva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/gleb-sumarin.webp",
+   "sha256": "b2c4fdf276bc5ae26d8f6d9d299cfe97be5a886535ed02e9116c58819d4ab81c",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глеб Сумарин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gleb-sumarin"
+    ],
+    "4-players": [
+     "gleb-sumarin"
+    ],
+    "5-players": [
+     "gleb-sumarin"
+    ],
+    "6-players": [
+     "gleb-sumarin"
+    ],
+    "7-players": [
+     "gleb-sumarin"
+    ],
+    "8-players": [
+     "gleb-sumarin"
+    ]
+   },
+   "file": "gleb-sumarin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/rada-melnik.webp",
+   "sha256": "b9e3c0829b50bd60fdb580e8fb8b75eb8c505b26d7fbda31e1908bc03d3e2b24",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Мельник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-melnik"
+    ],
+    "4-players": [
+     "rada-melnik"
+    ],
+    "5-players": [
+     "rada-melnik"
+    ],
+    "6-players": [
+     "rada-melnik"
+    ],
+    "7-players": [
+     "rada-melnik"
+    ],
+    "8-players": [
+     "rada-melnik"
+    ]
+   },
+   "file": "rada-melnik.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/tamara-vyazova.webp",
+   "sha256": "d11ae11a151a1527ed96c6a1cab7fe76b4b54b978ad312d39a7aa13221fb466c",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Вязова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-vyazova"
+    ],
+    "4-players": [
+     "tamara-vyazova"
+    ],
+    "5-players": [
+     "tamara-vyazova"
+    ],
+    "6-players": [
+     "tamara-vyazova"
+    ],
+    "7-players": [
+     "tamara-vyazova"
+    ],
+    "8-players": [
+     "tamara-vyazova"
+    ]
+   },
+   "file": "tamara-vyazova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/iosif-kartsev.webp",
+   "sha256": "88b68524f20eec9bf9f6c8e732d1214fb07a780e4d8d7f3970e3940f7a533a19",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иосиф Карцев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iosif-kartsev"
+    ],
+    "4-players": [
+     "iosif-kartsev"
+    ],
+    "5-players": [
+     "iosif-kartsev"
+    ],
+    "6-players": [
+     "iosif-kartsev"
+    ],
+    "7-players": [
+     "iosif-kartsev"
+    ],
+    "8-players": [
+     "iosif-kartsev"
+    ]
+   },
+   "file": "iosif-kartsev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/marfa-teslina.webp",
+   "sha256": "aeb909a6a8fc2c16ce58304f93f9457da47a3ad182976eec9bbb4f4223c67afb",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марфа Теслина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marfa-teslina"
+    ],
+    "4-players": [
+     "marfa-teslina"
+    ],
+    "5-players": [
+     "marfa-teslina"
+    ],
+    "6-players": [
+     "marfa-teslina"
+    ],
+    "7-players": [
+     "marfa-teslina"
+    ],
+    "8-players": [
+     "marfa-teslina"
+    ]
+   },
+   "file": "marfa-teslina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/zakhar-remez.webp",
+   "sha256": "32e3ad16fd5b26753aeb3ede31eb3d401c172d0045af9a9411f5b2ba148af176",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Захар Ремез",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zakhar-remez"
+    ],
+    "4-players": [
+     "zakhar-remez"
+    ],
+    "5-players": [
+     "zakhar-remez"
+    ],
+    "6-players": [
+     "zakhar-remez"
+    ],
+    "7-players": [
+     "zakhar-remez"
+    ],
+    "8-players": [
+     "zakhar-remez"
+    ]
+   },
+   "file": "zakhar-remez.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/cards/vera-zorina.webp",
+   "sha256": "6f4aa043cf617cdbd20cc3467c441b6886ce21a169b39e8351729dd58e32b900",
+   "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Зорина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-zorina"
+    ],
+    "4-players": [
+     "vera-zorina"
+    ],
+    "5-players": [
+     "vera-zorina"
+    ],
+    "6-players": [
+     "vera-zorina"
+    ],
+    "7-players": [
+     "vera-zorina"
+    ],
+    "8-players": [
+     "vera-zorina"
+    ]
+   },
+   "file": "vera-zorina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-nina-bazhenova.webp",
+   "sha256": "11fd69bae71666f8b561d5e77d3af0a1529248ca0310ff0259df442f8a63d2cc",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Баженова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-bazhenova"
+    ],
+    "4-players": [
+     "nina-bazhenova"
+    ],
+    "5-players": [
+     "nina-bazhenova"
+    ],
+    "6-players": [
+     "nina-bazhenova"
+    ],
+    "7-players": [
+     "nina-bazhenova"
+    ],
+    "8-players": [
+     "nina-bazhenova"
+    ]
+   },
+   "file": "nina-bazhenova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-bazhenova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-semen-orlov.webp",
+   "sha256": "8558cac3c2c3c69a66b2c76a0172240553fc247674d26c5c387f7f9a196041a3",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Орлов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "semen-orlov"
+    ],
+    "4-players": [
+     "semen-orlov"
+    ],
+    "5-players": [
+     "semen-orlov"
+    ],
+    "6-players": [
+     "semen-orlov"
+    ],
+    "7-players": [
+     "semen-orlov"
+    ],
+    "8-players": [
+     "semen-orlov"
+    ]
+   },
+   "file": "semen-orlov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "semen-orlov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-olga-yarovaya.webp",
+   "sha256": "c6c0991e3650022938bfe613633082d6fd0e30497dc03150fcf17445c066f8be",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольга Яровая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olga-yarovaya"
+    ],
+    "4-players": [
+     "olga-yarovaya"
+    ],
+    "5-players": [
+     "olga-yarovaya"
+    ],
+    "6-players": [
+     "olga-yarovaya"
+    ],
+    "7-players": [
+     "olga-yarovaya"
+    ],
+    "8-players": [
+     "olga-yarovaya"
+    ]
+   },
+   "file": "olga-yarovaya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olga-yarovaya.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-alexey-metlin.webp",
+   "sha256": "16a14818f604ddf73bda1014968f69a0990a67182116ce5a79f76d0bbfb35496",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алексей Метлин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "alexey-metlin"
+    ],
+    "5-players": [
+     "alexey-metlin"
+    ],
+    "6-players": [
+     "alexey-metlin"
+    ],
+    "7-players": [
+     "alexey-metlin"
+    ],
+    "8-players": [
+     "alexey-metlin"
+    ]
+   },
+   "file": "alexey-metlin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "alexey-metlin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-zlata-tikhova.webp",
+   "sha256": "31923b7350c434c9406715d1215e91a00639bb6cbc7cbfb4439d4efb20fcaddd",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Злата Тихова",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "zlata-tikhova"
+    ],
+    "6-players": [
+     "zlata-tikhova"
+    ],
+    "7-players": [
+     "zlata-tikhova"
+    ],
+    "8-players": [
+     "zlata-tikhova"
+    ]
+   },
+   "file": "zlata-tikhova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zlata-tikhova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-ruslan-elov.webp",
+   "sha256": "ba85dcefd533177e8e4711a25c43b70c1163933cad8c48531e1c93985f70f445",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руслан Елов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ruslan-elov"
+    ],
+    "7-players": [
+     "ruslan-elov"
+    ],
+    "8-players": [
+     "ruslan-elov"
+    ]
+   },
+   "file": "ruslan-elov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruslan-elov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-boris-drozd.webp",
+   "sha256": "4d5008b8971bd4eb3c9b1c6329190d8c11437a1006f4964eea3df766b29ba87d",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Дрозд",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "boris-drozd"
+    ],
+    "8-players": [
+     "boris-drozd"
+    ]
+   },
+   "file": "boris-drozd--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boris-drozd.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/heroes-elena-krasina.webp",
+   "sha256": "5b99f8ab9b12fba94f6a4f33a175a75a72236b1c05425ec0e0425fa80a68d0ff",
+   "originalSha256": "d5b90a9e71508906ba635f5b9a6dd2db019df22777c153cc06be6639ab66708c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Елена Красина",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "elena-krasina"
+    ]
+   },
+   "file": "elena-krasina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elena-krasina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-union-house.webp",
+   "sha256": "97717ac52beb712cd270e926a19f85271f5a7ee3dff9492c7d236cb748f74088",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом артели",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "union-house"
+    ],
+    "4-players": [
+     "union-house"
+    ],
+    "5-players": [
+     "union-house"
+    ],
+    "6-players": [
+     "union-house"
+    ],
+    "7-players": [
+     "union-house"
+    ],
+    "8-players": [
+     "union-house"
+    ]
+   },
+   "file": "union-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-third-whistle.webp",
+   "sha256": "0d032716b6f72b71cf49ba2518753ea23a9d9034b44dd7eb1e919b2ec1adb185",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Столовая «Третий гудок»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "third-whistle"
+    ],
+    "4-players": [
+     "third-whistle"
+    ],
+    "5-players": [
+     "third-whistle"
+    ],
+    "6-players": [
+     "third-whistle"
+    ],
+    "7-players": [
+     "third-whistle"
+    ],
+    "8-players": [
+     "third-whistle"
+    ]
+   },
+   "file": "third-whistle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-bakery-rooms.webp",
+   "sha256": "e252793bd53aea34167d341ab80920424abd7121e7f341166f368024044ff77a",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комнаты над булочной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bakery-rooms"
+    ],
+    "4-players": [
+     "bakery-rooms"
+    ],
+    "5-players": [
+     "bakery-rooms"
+    ],
+    "6-players": [
+     "bakery-rooms"
+    ],
+    "7-players": [
+     "bakery-rooms"
+    ],
+    "8-players": [
+     "bakery-rooms"
+    ]
+   },
+   "file": "bakery-rooms.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-cart-yard.webp",
+   "sha256": "da76109f2edb609cee7ee3a45e570a28d8db0881ccfea28fde7288aeee23a708",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тележный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cart-yard"
+    ],
+    "4-players": [
+     "cart-yard"
+    ],
+    "5-players": [
+     "cart-yard"
+    ],
+    "6-players": [
+     "cart-yard"
+    ],
+    "7-players": [
+     "cart-yard"
+    ],
+    "8-players": [
+     "cart-yard"
+    ]
+   },
+   "file": "cart-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-type-printshop.webp",
+   "sha256": "805691be0d0de94c1438a6330ebd58eeeb9fe83ee961fd314ae774bb43ef904f",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Печатня «Шрифт»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "type-printshop"
+    ],
+    "4-players": [
+     "type-printshop"
+    ],
+    "5-players": [
+     "type-printshop"
+    ],
+    "6-players": [
+     "type-printshop"
+    ],
+    "7-players": [
+     "type-printshop"
+    ],
+    "8-players": [
+     "type-printshop"
+    ]
+   },
+   "file": "type-printshop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-dry-store.webp",
+   "sha256": "3970f0c1e25f82f45b6d4b31cff2b49fc642c9a361372426dc4a4de32a3b9583",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сухой склад у мола",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dry-store"
+    ],
+    "4-players": [
+     "dry-store"
+    ],
+    "5-players": [
+     "dry-store"
+    ],
+    "6-players": [
+     "dry-store"
+    ],
+    "7-players": [
+     "dry-store"
+    ],
+    "8-players": [
+     "dry-store"
+    ]
+   },
+   "file": "dry-store.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-lock-workshop.webp",
+   "sha256": "f85d0c4b558f508496584e7b88a6ab7c17dd00b43c509881e738fe3588df2458",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская Ремеза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lock-workshop"
+    ],
+    "4-players": [
+     "lock-workshop"
+    ],
+    "5-players": [
+     "lock-workshop"
+    ],
+    "6-players": [
+     "lock-workshop"
+    ],
+    "7-players": [
+     "lock-workshop"
+    ],
+    "8-players": [
+     "lock-workshop"
+    ]
+   },
+   "file": "lock-workshop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/places-factory-gate.webp",
+   "sha256": "25c923b14dd338a7eeb9234ca41b68307d59b7384acafaaed9ae5a32a9f269ad",
+   "originalSha256": "3b651b8dbd05dc66a8b8a3c0dc5da831d1c187ebb6ab732151e9ca9407107011",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Проходная канатной фабрики",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "factory-gate"
+    ],
+    "4-players": [
+     "factory-gate"
+    ],
+    "5-players": [
+     "factory-gate"
+    ],
+    "6-players": [
+     "factory-gate"
+    ],
+    "7-players": [
+     "factory-gate"
+    ],
+    "8-players": [
+     "factory-gate"
+    ]
+   },
+   "file": "factory-gate.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/foes-foe-c4d2df1e47.webp",
+   "sha256": "95b706b3523d9820488bda468f941d0ec044249eca9af2a1fca6e07461c72307",
+   "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Наёмный сопровождающий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2"
+    ],
+    "4-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "5-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "6-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4"
+    ],
+    "7-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5"
+    ],
+    "8-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5",
+     "yard-pressure-foe-6"
+    ]
+   },
+   "file": "foe-c4d2df1e47.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/foes-foe-c4d2df1e47.webp",
+   "sha256": "95b706b3523d9820488bda468f941d0ec044249eca9af2a1fca6e07461c72307",
+   "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Наёмный сопровождающий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2"
+    ],
+    "4-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "5-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "6-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4"
+    ],
+    "7-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5"
+    ],
+    "8-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5",
+     "yard-pressure-foe-6"
+    ]
+   },
+   "file": "foe-c4d2df1e47--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-c4d2df1e47.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/foes-foe-3b19ad4605.webp",
+   "sha256": "4b57cc357c296c2b5f3aad720ed596e5dd8a298d2ffd2f347678d44de46ae9f2",
+   "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сторож заказчика",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2"
+    ],
+    "4-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3"
+    ],
+    "5-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3"
+    ],
+    "6-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3",
+     "press-doorway-foe-4"
+    ],
+    "7-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3",
+     "press-doorway-foe-4",
+     "press-doorway-foe-5"
+    ],
+    "8-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3",
+     "press-doorway-foe-4",
+     "press-doorway-foe-5",
+     "press-doorway-foe-6"
+    ]
+   },
+   "file": "foe-3b19ad4605.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/foes-foe-3b19ad4605.webp",
+   "sha256": "4b57cc357c296c2b5f3aad720ed596e5dd8a298d2ffd2f347678d44de46ae9f2",
+   "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сторож заказчика",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2"
+    ],
+    "4-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3"
+    ],
+    "5-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3"
+    ],
+    "6-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3",
+     "press-doorway-foe-4"
+    ],
+    "7-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3",
+     "press-doorway-foe-4",
+     "press-doorway-foe-5"
+    ],
+    "8-players": [
+     "press-doorway-foe-1",
+     "press-doorway-foe-2",
+     "press-doorway-foe-3",
+     "press-doorway-foe-4",
+     "press-doorway-foe-5",
+     "press-doorway-foe-6"
+    ]
+   },
+   "file": "foe-3b19ad4605--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-3b19ad4605.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/foes-foe-a550a56ccc.webp",
+   "sha256": "ab2ee8783d5e01aa79b9f9b4bf90e2cce134422fedcdde497610cfaa3aa74776",
+   "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Складской сопровождающий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2"
+    ],
+    "4-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3"
+    ],
+    "5-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3"
+    ],
+    "6-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3",
+     "store-exit-foe-4"
+    ],
+    "7-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3",
+     "store-exit-foe-4",
+     "store-exit-foe-5"
+    ],
+    "8-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3",
+     "store-exit-foe-4",
+     "store-exit-foe-5",
+     "store-exit-foe-6"
+    ]
+   },
+   "file": "foe-a550a56ccc.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/foes-foe-a550a56ccc.webp",
+   "sha256": "ab2ee8783d5e01aa79b9f9b4bf90e2cce134422fedcdde497610cfaa3aa74776",
+   "originalSha256": "2877e84229287b5c7b738b5513a39349d123272ec7effd067fc435126b500f1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Складской сопровождающий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2"
+    ],
+    "4-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3"
+    ],
+    "5-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3"
+    ],
+    "6-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3",
+     "store-exit-foe-4"
+    ],
+    "7-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3",
+     "store-exit-foe-4",
+     "store-exit-foe-5"
+    ],
+    "8-players": [
+     "store-exit-foe-1",
+     "store-exit-foe-2",
+     "store-exit-foe-3",
+     "store-exit-foe-4",
+     "store-exit-foe-5",
+     "store-exit-foe-6"
+    ]
+   },
+   "file": "foe-a550a56ccc--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-a550a56ccc.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-lidia-ryabtseva.webp",
+   "sha256": "a4cb064206a8c178278cd0eaa562a376bac64a13c31138a52bfcc82636df6fda",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лидия Рябцева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lidia-ryabtseva"
+    ],
+    "4-players": [
+     "lidia-ryabtseva"
+    ],
+    "5-players": [
+     "lidia-ryabtseva"
+    ],
+    "6-players": [
+     "lidia-ryabtseva"
+    ],
+    "7-players": [
+     "lidia-ryabtseva"
+    ],
+    "8-players": [
+     "lidia-ryabtseva"
+    ]
+   },
+   "file": "lidia-ryabtseva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lidia-ryabtseva.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-gleb-sumarin.webp",
+   "sha256": "6a4419f57b31a90abd21f91a92abfeb7021c86791b167cffd79341be2193218c",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глеб Сумарин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gleb-sumarin"
+    ],
+    "4-players": [
+     "gleb-sumarin"
+    ],
+    "5-players": [
+     "gleb-sumarin"
+    ],
+    "6-players": [
+     "gleb-sumarin"
+    ],
+    "7-players": [
+     "gleb-sumarin"
+    ],
+    "8-players": [
+     "gleb-sumarin"
+    ]
+   },
+   "file": "gleb-sumarin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gleb-sumarin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-rada-melnik.webp",
+   "sha256": "63fc352707c3b9166d27f30e0aa8b40e610e011d8197c45bbbb4487586795835",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Мельник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-melnik"
+    ],
+    "4-players": [
+     "rada-melnik"
+    ],
+    "5-players": [
+     "rada-melnik"
+    ],
+    "6-players": [
+     "rada-melnik"
+    ],
+    "7-players": [
+     "rada-melnik"
+    ],
+    "8-players": [
+     "rada-melnik"
+    ]
+   },
+   "file": "rada-melnik--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-melnik.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-tamara-vyazova.webp",
+   "sha256": "61089d67bba67d5aa7210bae0a1e2b28fbadeeb0dbd7519449e1034f4f49b8b8",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Вязова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-vyazova"
+    ],
+    "4-players": [
+     "tamara-vyazova"
+    ],
+    "5-players": [
+     "tamara-vyazova"
+    ],
+    "6-players": [
+     "tamara-vyazova"
+    ],
+    "7-players": [
+     "tamara-vyazova"
+    ],
+    "8-players": [
+     "tamara-vyazova"
+    ]
+   },
+   "file": "tamara-vyazova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tamara-vyazova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-iosif-kartsev.webp",
+   "sha256": "e2125e16f7978a3cde08d14243e7871f725e4ac045a5f4dcad2f9266d27d89e2",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иосиф Карцев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iosif-kartsev"
+    ],
+    "4-players": [
+     "iosif-kartsev"
+    ],
+    "5-players": [
+     "iosif-kartsev"
+    ],
+    "6-players": [
+     "iosif-kartsev"
+    ],
+    "7-players": [
+     "iosif-kartsev"
+    ],
+    "8-players": [
+     "iosif-kartsev"
+    ]
+   },
+   "file": "iosif-kartsev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iosif-kartsev.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-marfa-teslina.webp",
+   "sha256": "51e0891f527e21c4498351cfb7752652555809c044784e98f5c63eb735ec7d60",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марфа Теслина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marfa-teslina"
+    ],
+    "4-players": [
+     "marfa-teslina"
+    ],
+    "5-players": [
+     "marfa-teslina"
+    ],
+    "6-players": [
+     "marfa-teslina"
+    ],
+    "7-players": [
+     "marfa-teslina"
+    ],
+    "8-players": [
+     "marfa-teslina"
+    ]
+   },
+   "file": "marfa-teslina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marfa-teslina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-zakhar-remez.webp",
+   "sha256": "b00b1ce7d5ac5827df7c44bf56e291ba2e12ca0936ff67654b41592aadb38d22",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Захар Ремез",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zakhar-remez"
+    ],
+    "4-players": [
+     "zakhar-remez"
+    ],
+    "5-players": [
+     "zakhar-remez"
+    ],
+    "6-players": [
+     "zakhar-remez"
+    ],
+    "7-players": [
+     "zakhar-remez"
+    ],
+    "8-players": [
+     "zakhar-remez"
+    ]
+   },
+   "file": "zakhar-remez--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zakhar-remez.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/assets/table/npcs-vera-zorina.webp",
+   "sha256": "4c6510f1fbcf383fc8a27ca3c6b4f3ec4d7c5b501ac56d5ecb53fc455d78707b",
+   "originalSha256": "d2603f0be3ea288c20d13004973dfb8fe6f55116af31341cd4f88994ba48ca0a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Зорина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-zorina"
+    ],
+    "4-players": [
+     "vera-zorina"
+    ],
+    "5-players": [
+     "vera-zorina"
+    ],
+    "6-players": [
+     "vera-zorina"
+    ],
+    "7-players": [
+     "vera-zorina"
+    ],
+    "8-players": [
+     "vera-zorina"
+    ]
+   },
+   "file": "vera-zorina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-zorina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/strike-fund/illustrations/opening.webp",
+   "sha256": "90bc5071b008c26a331d235d5fe9db2d0d3a9f6f4021c45efd84440e3e15fbef",
+   "originalSha256": "953360945da7ec458717ce445a8828e66b2777a4d6794aa30a361853cc379864",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом артели — Касса забастовки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "river-wedge"
+    ],
+    "4-players": [
+     "river-wedge"
+    ],
+    "5-players": [
+     "river-wedge"
+    ],
+    "6-players": [
+     "river-wedge"
+    ],
+    "7-players": [
+     "river-wedge"
+    ],
+    "8-players": [
+     "river-wedge"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "cart-yard--map.webp",
+   "source": "campaigns/noir-2026/strike-fund/assets/battle-maps/cart-yard.webp",
+   "sha256": "aee2540f1d01bd014a22628890705b46c304d4e2a001da1077ec4676be041692",
+   "originalSha256": "3607a3584dd06c3cae1d625f6fde5045742d0a7595dd2229ae75fef2af2e321f",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Тележный двор. Visible scenery: Ручные тележки стоят под брезентом; сухая будка обращена окном к широкой площадке для разворота.. World style: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "cart-yard.webp",
+   "subjects": {
+    "3-players": [
+     "cart-yard"
+    ],
+    "4-players": [
+     "cart-yard"
+    ],
+    "5-players": [
+     "cart-yard"
+    ],
+    "6-players": [
+     "cart-yard"
+    ],
+    "7-players": [
+     "cart-yard"
+    ],
+    "8-players": [
+     "cart-yard"
+    ]
+   }
+  },
+  {
+   "file": "type-printshop--map.webp",
+   "source": "campaigns/noir-2026/strike-fund/assets/battle-maps/type-printshop.webp",
+   "sha256": "a1c0f2a554592b0bfa81618c1b34801d565c05c3c0ebb30176b1ae9c7d3ba9db",
+   "originalSha256": "548fbfcaf3778ecdfacdb5102d320b5e13460315b4d8d09512b465923e665f85",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Печатня «Шрифт». Visible scenery: Небольшая печатня с наборными кассами, сушильными верёвками и столом для чтения пробных оттисков.. World style: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "type-printshop.webp",
+   "subjects": {
+    "3-players": [
+     "type-printshop"
+    ],
+    "4-players": [
+     "type-printshop"
+    ],
+    "5-players": [
+     "type-printshop"
+    ],
+    "6-players": [
+     "type-printshop"
+    ],
+    "7-players": [
+     "type-printshop"
+    ],
+    "8-players": [
+     "type-printshop"
+    ]
+   }
+  },
+  {
+   "file": "dry-store--map.webp",
+   "source": "campaigns/noir-2026/strike-fund/assets/battle-maps/dry-store.webp",
+   "sha256": "96516d0ae47c487b260ad75ffb95fafdf14d3e0b2415bb5f092ff8619e465fe6",
+   "originalSha256": "20338e6ff4c7596264cb972039d97f36a2b2d0f8686ff53b235548bc4ce8fc2f",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Сухой склад у мола. Visible scenery: Склад сдаёт отдельные ограждённые секции. Проход между ними ведёт прямо к широким воротам и открытому молу.. World style: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "dry-store.webp",
+   "subjects": {
+    "3-players": [
+     "dry-store"
+    ],
+    "4-players": [
+     "dry-store"
+    ],
+    "5-players": [
+     "dry-store"
+    ],
+    "6-players": [
+     "dry-store"
+    ],
+    "7-players": [
+     "dry-store"
+    ],
+    "8-players": [
+     "dry-store"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/strike-fund/assets/world-map/world-map.webp",
+   "sha256": "04186b653f827d7cd76cd064de39e689018e95f13aa882262a8ec31eef12b0b7",
+   "originalSha256": "c3879b1a19a04fa6675c456f7275312c1663211c74891fcbf2c4964fdc339800",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Речной Клин. Style Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом артели; 0.367,0.177 Столовая «Третий гудок»; 0.623,0.15 Комнаты над булочной; 0.88,0.177 Тележный двор; 0.905,0.857 Печатня «Шрифт»; 0.648,0.83 Сухой склад у мола; 0.392,0.857 Мастерская Ремеза; 0.135,0.83 Проходная канатной фабрики. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

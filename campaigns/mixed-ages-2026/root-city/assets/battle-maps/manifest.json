@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "shade-rail.webp",
+      "sha256": "c13bdf905087046d5b032f126a129e2b2a8128c232ebf3bdd33927758d013abe",
+      "originalSha256": "500cc1e7138d3aad9e1c54650ae07c8c405d7234183a807f39b8edf88d5067ef",
+      "originalFile": "exec-c2734424-b7b8-41da-bbe3-6db953b0fe4d.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Теневая ограда. Visible scenery: Низкая ограда перед широким лугом. В её просветах хорошо видны отдельные ветви подошедшего Сада.. World style: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "shade-rail",
+      "encounter": "screen-match",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "join-grove.webp",
+      "sha256": "b3312b12601ca68f3a118d2baefef1a5b16faf8c4e0043e98827df2077fe7376",
+      "originalSha256": "19656a4d498b8be22f49f8b8d8a3e6b0e53928ed84eb37de0e401e3816dfebb2",
+      "originalFile": "exec-934b935c-402e-4f90-87d2-b84c745b07c9.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Роща стыков. Visible scenery: Открытый участок на краю Сада; гибкие стебли здесь сходятся и расходятся над гладкими камнями.. World style: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "join-grove",
+      "encounter": "support-trial",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "low-deck.webp",
+      "sha256": "142eec331f8b3569933e5d1ea779c5a2bd7a9ce117b9c46cdecc49941d703e35",
+      "originalSha256": "9c91c76c70f801c9c8428597669073b21dce7f12bdac67d281128df96f86c2b4",
+      "originalFile": "exec-e14e38f9-a3f5-49bb-96bf-90d0ab52e76d.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Низкая пристань. Visible scenery: Съёмная площадка у земли, подготовленная для осмотра. Пока никто не подтвердил приглашение, она остаётся на городских подпорках.. World style: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "low-deck",
+      "encounter": "deck-rehearsal",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

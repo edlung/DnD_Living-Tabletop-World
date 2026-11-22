@@ -1,0 +1,49 @@
+{
+  "region": "rovel",
+  "name": "Карта · Ровель",
+  "description": "План местности «Ровель». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "claims-office",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "court-archive",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "seventh-yard",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "survey-room",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "linen-cafe",
+      "x": 0.905,
+      "y": 0.857
+    },
+    {
+      "place": "mutual-house",
+      "x": 0.648,
+      "y": 0.83
+    },
+    {
+      "place": "photo-workshop",
+      "x": 0.392,
+      "y": 0.857
+    },
+    {
+      "place": "hearing-hall",
+      "x": 0.135,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

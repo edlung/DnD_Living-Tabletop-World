@@ -1,0 +1,35 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-f3656a6f-b637-4378-b123-b5c6bff146cf.png",
+      "originalSha256": "eb74f4a19367f0e172b6de209fb3b1749ef9116544b9bcba2f184c431817aa0e",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Завещание Пепла. Art direction: match the following very specific material as a very subtle detail on the case: Ash-grey charred ledger paper with brass notarial wax-ring impressions. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "ada-vyaz-travel-kit",
+        "leon-klyuch-travel-kit",
+        "mark-ostrov-travel-kit",
+        "nika-roi-travel-kit",
+        "osip-len-travel-kit",
+        "stas-remen-travel-kit",
+        "vera-klen-travel-kit",
+        "yara-som-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "366c9b640fc3fca61e4c9dfe2113fb5f3b5c7487a48cbd334e6d8780bf32728b"
+    }
+  ]
+}

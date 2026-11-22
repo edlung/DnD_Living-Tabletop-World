@@ -1,3 +1,4 @@
+import { withBookTableLinks } from '../campaign-shared/book-table-links.ts';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { COLLECTION_ROOT, SLUGS, loadSource, type Source } from './source.ts';
 import { verifySource } from './editorial.ts';
@@ -15,7 +16,10 @@ for (const slug of selected.length ? selected : SLUGS) {
   verifySource(s);
   sources.push(s);
   const save = (file: string, text: string) =>
-    writeFile(new URL(`${slug}/${file}`, COLLECTION_ROOT), text);
+    writeFile(
+      new URL(`${slug}/${file}`, COLLECTION_ROOT),
+      withBookTableLinks(new URL(slug + '/', COLLECTION_ROOT), file, text),
+    );
   await mkdir(new URL(`${slug}/handouts/`, COLLECTION_ROOT), { recursive: true });
   await mkdir(new URL(`${slug}/maps/`, COLLECTION_ROOT), { recursive: true });
   await save(

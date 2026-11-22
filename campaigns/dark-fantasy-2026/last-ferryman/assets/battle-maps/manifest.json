@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "seized-boathouse.webp",
+      "sha256": "7ce2e5a48a7954598cec5bbd2c6cd34e5eb8dd2f8fdd2cb2b1baeeb3d1e739f1",
+      "originalSha256": "a3a1bc76fb8690dac88e2a83533182aabff9bc165dd0db352d5cd1aed21665e8",
+      "originalFile": "exec-ac68d106-df41-48f4-9dde-7f76e89845ad.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Эллинг без огня. Visible scenery: Крытый спуск к воде, козлы для вёсел и обыкновенная широкая лодка. С внешней стороны строения виден обход к пешему карнизу.. World style: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "seized-boathouse",
+      "encounter": "held-slip",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "rootless-river.webp",
+      "sha256": "c0112abe24e0a7d4c9b031c966f6d7702e9dc8cfe5773930a546c7cc420939c8",
+      "originalSha256": "5dc179226a69b924edd876e62bbc5174a20ac416955bb9ef1943d99e5618a9f5",
+      "originalFile": "exec-c88fd63e-c02c-434d-b878-023ac47ed07b.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Река без береговых корней. Visible scenery: Вода течёт вниз почти отвесно. Рядом извивается непрерывный каменный карниз, местами широкий, местами требующий движения по одному.. World style: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "rootless-river",
+      "encounter": "river-interception",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "last-landing.webp",
+      "sha256": "a4b17abbc8c6b72b8c83e3a04548fe5b9c6624cd57f2fa4901a9796aa36c82b2",
+      "originalSha256": "96cbc22e1d7a22b069c1b38e0ba28557095b9a09f4f416e94b0e1bf43d0d8474",
+      "originalFile": "exec-a942441f-87d2-49dd-92b4-0febb86f1a07.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Последняя высадка. Visible scenery: Лодочный причал и пешая тропа сходятся на одной просторной площадке. Отсюда видна светлая линия глубоко под ногами.. World style: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "last-landing",
+      "encounter": "landing-cordon",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

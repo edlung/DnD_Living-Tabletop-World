@@ -1,0 +1,1783 @@
+{
+ "id": "lantern-mere",
+ "title": "Фонари утонувшего города",
+ "genre": "Тёмное готическое фэнтези о призраках, неподвижной памяти и праве измениться",
+ "audience": "14+",
+ "pitch": "В затопленной Велини фонари показывают тех, кого давно нет. Большинство образов повторяет знакомые жесты, но одна женщина вдруг задаёт вопрос, которого никогда не было в её прошлом. За восемь вечеров герои выяснят, кто способен услышать ответ, почему чужая память не позволяет призраку измениться и можно ли помочь умершему начать собственную историю, не обещая живым возвращения прежней жизни.",
+ "tone": "Меланхолическое готическое чудо, тревога перед слишком точным утешением, любопытство к новому собеседнику и надежда без отмены утраты. Ужас создают застывшие улыбки, повторяющиеся бытовые звуки и чужие слова, произнесённые вместо человека.",
+ "duration": "8 сессий; 165 минут: вступление и повторение 10 минут, три сцены по 45 минут, перерыв 10 минут и завершение 10 минут. Перерыв после второй сцены или раньше по просьбе участника.",
+ "cover": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "830aff44a36aaae6eb9379ef4f62dc25567ab37ca459e87a9bf9362784c9660c"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "89293c14ecdfc175b21d864cd0cea0000d7b3ab5c303f9f248c3b555cfaebd31"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "3e3ff222407e7ba3ca3545e4ba2bda3cb1e8d2d7897ad8e7f16ef401a47c03bc"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "0d47348c77d2c027b1fe13b8616fe4b3196186822aa0da618c922fa055e888ea"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "5f7c4e8c178f65bc2786ec9ae7eced4deebc21ed1647362745df20f66bece35e"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/lada-roven.webp",
+   "sha256": "36947b8bc9cbe5ff94a6f7c978fb824a21d157cf3a31e9e581e6fae41ef160db",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Ровень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-roven"
+    ],
+    "4-players": [
+     "lada-roven"
+    ],
+    "5-players": [
+     "lada-roven"
+    ],
+    "6-players": [
+     "lada-roven"
+    ],
+    "7-players": [
+     "lada-roven"
+    ]
+   },
+   "file": "lada-roven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/yarin-tale.webp",
+   "sha256": "4b61aabe55d8ba52b1175d1fa17ee975dc8f7fa2f4a2902073240e241014ed33",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ярин Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yarin-tale"
+    ],
+    "4-players": [
+     "yarin-tale"
+    ],
+    "5-players": [
+     "yarin-tale"
+    ],
+    "6-players": [
+     "yarin-tale"
+    ],
+    "7-players": [
+     "yarin-tale"
+    ]
+   },
+   "file": "yarin-tale.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/meret-il.webp",
+   "sha256": "f1faca32abc62698d2dc75c33fa1d65b2ae35957622cc2a2c5c091e8c1fffe72",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мерет Иль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "meret-il"
+    ],
+    "4-players": [
+     "meret-il"
+    ],
+    "5-players": [
+     "meret-il"
+    ],
+    "6-players": [
+     "meret-il"
+    ],
+    "7-players": [
+     "meret-il"
+    ]
+   },
+   "file": "meret-il.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/oden-sol.webp",
+   "sha256": "0783daa01b651fd015c830a952bcfc76a728ec53c558d317446d09e8ba26e950",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оден Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "oden-sol"
+    ],
+    "5-players": [
+     "oden-sol"
+    ],
+    "6-players": [
+     "oden-sol"
+    ],
+    "7-players": [
+     "oden-sol"
+    ]
+   },
+   "file": "oden-sol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/esta-niv.webp",
+   "sha256": "2c3e8142b16a0aa48cab937cbf60dfe52793988e465bef33a1eec137c3605f38",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эста Нив",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "esta-niv"
+    ],
+    "6-players": [
+     "esta-niv"
+    ],
+    "7-players": [
+     "esta-niv"
+    ]
+   },
+   "file": "esta-niv.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/rina-tess.webp",
+   "sha256": "fc89170890a7e9b80330ecb300f0c0431ab8005fd6d31fdb23ec6bcb835f2ab7",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рина Тесс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "rina-tess"
+    ],
+    "7-players": [
+     "rina-tess"
+    ]
+   },
+   "file": "rina-tess.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/korvin-lugov.webp",
+   "sha256": "1910ac8ced7213d9c56fa96b659a65d111e2bfb8f9eb82949f600e4c9800863d",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Корвин Лугов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "korvin-lugov"
+    ]
+   },
+   "file": "korvin-lugov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/travel-kit.webp",
+   "sha256": "a29a8dc1ae50fd92cf153fed9347f7349bb9ce558cdc1bfc554fbdb69ed952d9",
+   "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-roven-travel-kit",
+     "meret-il-travel-kit",
+     "yarin-tale-travel-kit"
+    ],
+    "4-players": [
+     "lada-roven-travel-kit",
+     "meret-il-travel-kit",
+     "oden-sol-travel-kit",
+     "yarin-tale-travel-kit"
+    ],
+    "5-players": [
+     "esta-niv-travel-kit",
+     "lada-roven-travel-kit",
+     "meret-il-travel-kit",
+     "oden-sol-travel-kit",
+     "yarin-tale-travel-kit"
+    ],
+    "6-players": [
+     "esta-niv-travel-kit",
+     "lada-roven-travel-kit",
+     "meret-il-travel-kit",
+     "oden-sol-travel-kit",
+     "rina-tess-travel-kit",
+     "yarin-tale-travel-kit"
+    ],
+    "7-players": [
+     "esta-niv-travel-kit",
+     "korvin-lugov-travel-kit",
+     "lada-roven-travel-kit",
+     "meret-il-travel-kit",
+     "oden-sol-travel-kit",
+     "rina-tess-travel-kit",
+     "yarin-tale-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/mara-vesn.webp",
+   "sha256": "19c69eeb9366b3605d42441663c653fc1bcff824a6a1c9e09d74b75b8187fbcd",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Веснь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-vesn"
+    ],
+    "4-players": [
+     "mara-vesn"
+    ],
+    "5-players": [
+     "mara-vesn"
+    ],
+    "6-players": [
+     "mara-vesn"
+    ],
+    "7-players": [
+     "mara-vesn"
+    ]
+   },
+   "file": "mara-vesn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/elina-orst.webp",
+   "sha256": "545e20929724227c7c0c0ac158ce61a810162f74fcdb10e85299ae2cb06febe7",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элина Орст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elina-orst"
+    ],
+    "4-players": [
+     "elina-orst"
+    ],
+    "5-players": [
+     "elina-orst"
+    ],
+    "6-players": [
+     "elina-orst"
+    ],
+    "7-players": [
+     "elina-orst"
+    ]
+   },
+   "file": "elina-orst.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/timur-shev.webp",
+   "sha256": "6a3fd774d9d2db728f3046c94d7bf1c6cbf45a60fb55e1896936516962e4dad4",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимур Шев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "timur-shev"
+    ],
+    "4-players": [
+     "timur-shev"
+    ],
+    "5-players": [
+     "timur-shev"
+    ],
+    "6-players": [
+     "timur-shev"
+    ],
+    "7-players": [
+     "timur-shev"
+    ]
+   },
+   "file": "timur-shev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/alden-vey.webp",
+   "sha256": "280b56c14c79f538548a066bf5240bcf5684b6ce1fd9319345a12a3fd1430260",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алден Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alden-vey"
+    ],
+    "4-players": [
+     "alden-vey"
+    ],
+    "5-players": [
+     "alden-vey"
+    ],
+    "6-players": [
+     "alden-vey"
+    ],
+    "7-players": [
+     "alden-vey"
+    ]
+   },
+   "file": "alden-vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/ilda-sever.webp",
+   "sha256": "312330f400379f91f51a09263ec408be5392c1120532bf6f7c59c2a0b5a7bc7e",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильда Север",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilda-sever"
+    ],
+    "4-players": [
+     "ilda-sever"
+    ],
+    "5-players": [
+     "ilda-sever"
+    ],
+    "6-players": [
+     "ilda-sever"
+    ],
+    "7-players": [
+     "ilda-sever"
+    ]
+   },
+   "file": "ilda-sever.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/nela-rud.webp",
+   "sha256": "7f271ad1b254187ec47e715e4f711f7f640612898c209c071312f8ac0e06a41b",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нела Руд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nela-rud"
+    ],
+    "4-players": [
+     "nela-rud"
+    ],
+    "5-players": [
+     "nela-rud"
+    ],
+    "6-players": [
+     "nela-rud"
+    ],
+    "7-players": [
+     "nela-rud"
+    ]
+   },
+   "file": "nela-rud.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/bren-toll.webp",
+   "sha256": "64b6475d1b59810454d79e8fe2c2cb40da85270b97e6bfaa45506088d97771a5",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брен Толль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bren-toll"
+    ],
+    "4-players": [
+     "bren-toll"
+    ],
+    "5-players": [
+     "bren-toll"
+    ],
+    "6-players": [
+     "bren-toll"
+    ],
+    "7-players": [
+     "bren-toll"
+    ]
+   },
+   "file": "bren-toll.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/sena-lir.webp",
+   "sha256": "b45879349e3404ae97ef3b415f4c4fb26473a3ae48a0022c5c5b872a0ef1934d",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сена Лир",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sena-lir"
+    ],
+    "4-players": [
+     "sena-lir"
+    ],
+    "5-players": [
+     "sena-lir"
+    ],
+    "6-players": [
+     "sena-lir"
+    ],
+    "7-players": [
+     "sena-lir"
+    ]
+   },
+   "file": "sena-lir.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/ruvel-ash.webp",
+   "sha256": "116382d9096abf31f53cf23802a145ad55f73c08f58f40de7960f8df6045f5c0",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Смотритель Рувель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruvel-ash"
+    ],
+    "4-players": [
+     "ruvel-ash"
+    ],
+    "5-players": [
+     "ruvel-ash"
+    ],
+    "6-players": [
+     "ruvel-ash"
+    ],
+    "7-players": [
+     "ruvel-ash"
+    ]
+   },
+   "file": "ruvel-ash.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/demir-tal.webp",
+   "sha256": "6d055b158189339b462eb05e638f5f6936456cb4b28ba425e2af53fa5615e667",
+   "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демир Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "demir-tal"
+    ],
+    "4-players": [
+     "demir-tal"
+    ],
+    "5-players": [
+     "demir-tal"
+    ],
+    "6-players": [
+     "demir-tal"
+    ],
+    "7-players": [
+     "demir-tal"
+    ]
+   },
+   "file": "demir-tal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-bell-quay.webp",
+   "sha256": "7d542f6d9d000a3547016aa240022500739526d4968a088f3b5892bf0a2a1732",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Колокольный причал",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bell-quay"
+    ],
+    "4-players": [
+     "bell-quay"
+    ],
+    "5-players": [
+     "bell-quay"
+    ],
+    "6-players": [
+     "bell-quay"
+    ],
+    "7-players": [
+     "bell-quay"
+    ]
+   },
+   "file": "bell-quay.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-raftward.webp",
+   "sha256": "fdc19b21e4fe2c8e0de240c4990747ed601a34a9cdd87dafdb0da1caef0d5b7f",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Новый Плёс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "raftward"
+    ],
+    "4-players": [
+     "raftward"
+    ],
+    "5-players": [
+     "raftward"
+    ],
+    "6-players": [
+     "raftward"
+    ],
+    "7-players": [
+     "raftward"
+    ]
+   },
+   "file": "raftward.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-inverted-court.webp",
+   "sha256": "72e89840260bbb7b0c23117bb08acb1faf689a682df582ea02d9797c9bf6842e",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Косая палата",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "inverted-court"
+    ],
+    "4-players": [
+     "inverted-court"
+    ],
+    "5-players": [
+     "inverted-court"
+    ],
+    "6-players": [
+     "inverted-court"
+    ],
+    "7-players": [
+     "inverted-court"
+    ]
+   },
+   "file": "inverted-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-hanging-garden.webp",
+   "sha256": "675a632bc545b46f286187c9480cd078c6ac57ae8103d519697614ec54a7e818",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Висячий сад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hanging-garden"
+    ],
+    "4-players": [
+     "hanging-garden"
+    ],
+    "5-players": [
+     "hanging-garden"
+    ],
+    "6-players": [
+     "hanging-garden"
+    ],
+    "7-players": [
+     "hanging-garden"
+    ]
+   },
+   "file": "hanging-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-ferry-choir.webp",
+   "sha256": "d15871646e9c9d0ac9921a20d3e4a2e12e9b84b15e3e253a1f75ec2e4ed41290",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Паромный хор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ferry-choir"
+    ],
+    "4-players": [
+     "ferry-choir"
+    ],
+    "5-players": [
+     "ferry-choir"
+    ],
+    "6-players": [
+     "ferry-choir"
+    ],
+    "7-players": [
+     "ferry-choir"
+    ]
+   },
+   "file": "ferry-choir.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-return-house.webp",
+   "sha256": "ab86461003001423f4f9f6510f2575c5bc634109169536d19d76d7f66bef9fe2",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом незакрытых дверей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "return-house"
+    ],
+    "4-players": [
+     "return-house"
+    ],
+    "5-players": [
+     "return-house"
+    ],
+    "6-players": [
+     "return-house"
+    ],
+    "7-players": [
+     "return-house"
+    ]
+   },
+   "file": "return-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-mirror-square.webp",
+   "sha256": "1c88db04759b7b72009f1735c4ec5c374e6a354329f04599faef7dad2e17a4fa",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Площадь ненаписанных теней",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirror-square"
+    ],
+    "4-players": [
+     "mirror-square"
+    ],
+    "5-players": [
+     "mirror-square"
+    ],
+    "6-players": [
+     "mirror-square"
+    ],
+    "7-players": [
+     "mirror-square"
+    ]
+   },
+   "file": "mirror-square.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-roof-bridge.webp",
+   "sha256": "6078070bb52fd80bc4decf69ddbb0346af740cd88878c649db00d1715410d575",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галерея косого дождя",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roof-bridge"
+    ],
+    "4-players": [
+     "roof-bridge"
+    ],
+    "5-players": [
+     "roof-bridge"
+    ],
+    "6-players": [
+     "roof-bridge"
+    ],
+    "7-players": [
+     "roof-bridge"
+    ]
+   },
+   "file": "roof-bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-quiet-harbor.webp",
+   "sha256": "11a1e2d143676b2432151a684d45793493f0cf64194c1f02688cc9b7c4abceba",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихая гавань",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-harbor"
+    ],
+    "4-players": [
+     "quiet-harbor"
+    ],
+    "5-players": [
+     "quiet-harbor"
+    ],
+    "6-players": [
+     "quiet-harbor"
+    ],
+    "7-players": [
+     "quiet-harbor"
+    ]
+   },
+   "file": "quiet-harbor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/places-dawn-bank.webp",
+   "sha256": "c7ec370dc6e5fd765b9d3dd6c07affa9d557ccbc044ba8d557548568f51b8925",
+   "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берег раннего света",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dawn-bank"
+    ],
+    "4-players": [
+     "dawn-bank"
+    ],
+    "5-players": [
+     "dawn-bank"
+    ],
+    "6-players": [
+     "dawn-bank"
+    ],
+    "7-players": [
+     "dawn-bank"
+    ]
+   },
+   "file": "dawn-bank.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/foes-foe-70e2a67737.webp",
+   "sha256": "74e8972b1ae3fd0db8fea1b443613535b38bd94fbeac8beff658153022093766",
+   "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фарфоровая помеха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2"
+    ],
+    "4-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3"
+    ],
+    "5-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3"
+    ],
+    "6-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3",
+     "porcelain-repeats-foe-4"
+    ],
+    "7-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3",
+     "porcelain-repeats-foe-4",
+     "porcelain-repeats-foe-5"
+    ]
+   },
+   "file": "foe-70e2a67737.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/foes-foe-70e2a67737.webp",
+   "sha256": "74e8972b1ae3fd0db8fea1b443613535b38bd94fbeac8beff658153022093766",
+   "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фарфоровая помеха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2"
+    ],
+    "4-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3"
+    ],
+    "5-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3"
+    ],
+    "6-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3",
+     "porcelain-repeats-foe-4"
+    ],
+    "7-players": [
+     "porcelain-repeats-foe-1",
+     "porcelain-repeats-foe-2",
+     "porcelain-repeats-foe-3",
+     "porcelain-repeats-foe-4",
+     "porcelain-repeats-foe-5"
+    ]
+   },
+   "file": "foe-70e2a67737--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-70e2a67737.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/foes-foe-f81e1979b0.webp",
+   "sha256": "a4ffc1455f5fc2bf74404078f675e5f31f6c88dc096b3a9487d5f7708916c6ce",
+   "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дождевой отблеск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2"
+    ],
+    "4-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3"
+    ],
+    "5-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3"
+    ],
+    "6-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3",
+     "rain-steps-foe-4"
+    ],
+    "7-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3",
+     "rain-steps-foe-4",
+     "rain-steps-foe-5"
+    ]
+   },
+   "file": "foe-f81e1979b0.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/foes-foe-f81e1979b0.webp",
+   "sha256": "a4ffc1455f5fc2bf74404078f675e5f31f6c88dc096b3a9487d5f7708916c6ce",
+   "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дождевой отблеск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2"
+    ],
+    "4-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3"
+    ],
+    "5-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3"
+    ],
+    "6-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3",
+     "rain-steps-foe-4"
+    ],
+    "7-players": [
+     "rain-steps-foe-1",
+     "rain-steps-foe-2",
+     "rain-steps-foe-3",
+     "rain-steps-foe-4",
+     "rain-steps-foe-5"
+    ]
+   },
+   "file": "foe-f81e1979b0--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-f81e1979b0.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/foes-foe-0d27ec23ff.webp",
+   "sha256": "c1c3613e6b070406d79db0608b651b2331abd5c25d587eb17a89679efa27ca04",
+   "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чернильный контур",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2"
+    ],
+    "4-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3"
+    ],
+    "5-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3"
+    ],
+    "6-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3",
+     "ink-shapes-foe-4"
+    ],
+    "7-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3",
+     "ink-shapes-foe-4",
+     "ink-shapes-foe-5"
+    ]
+   },
+   "file": "foe-0d27ec23ff.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/foes-foe-0d27ec23ff.webp",
+   "sha256": "c1c3613e6b070406d79db0608b651b2331abd5c25d587eb17a89679efa27ca04",
+   "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чернильный контур",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2"
+    ],
+    "4-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3"
+    ],
+    "5-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3"
+    ],
+    "6-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3",
+     "ink-shapes-foe-4"
+    ],
+    "7-players": [
+     "ink-shapes-foe-1",
+     "ink-shapes-foe-2",
+     "ink-shapes-foe-3",
+     "ink-shapes-foe-4",
+     "ink-shapes-foe-5"
+    ]
+   },
+   "file": "foe-0d27ec23ff--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-0d27ec23ff.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-lada-roven.webp",
+   "sha256": "c9d0cf24736b6374bb1cdc2984d0b6efb9966596c83da45bde7c35006d08f44a",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Ровень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-roven"
+    ],
+    "4-players": [
+     "lada-roven"
+    ],
+    "5-players": [
+     "lada-roven"
+    ],
+    "6-players": [
+     "lada-roven"
+    ],
+    "7-players": [
+     "lada-roven"
+    ]
+   },
+   "file": "lada-roven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lada-roven.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-yarin-tale.webp",
+   "sha256": "4f668881613826c3c9f1e5ab8f2e4ec2c6cbdcc3efe874da7c6f39d75955260f",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ярин Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yarin-tale"
+    ],
+    "4-players": [
+     "yarin-tale"
+    ],
+    "5-players": [
+     "yarin-tale"
+    ],
+    "6-players": [
+     "yarin-tale"
+    ],
+    "7-players": [
+     "yarin-tale"
+    ]
+   },
+   "file": "yarin-tale--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yarin-tale.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-meret-il.webp",
+   "sha256": "a0bb6af8ee304cbce34a71be7d1e861593d137445abae051f103aa7e59ec6eb7",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мерет Иль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "meret-il"
+    ],
+    "4-players": [
+     "meret-il"
+    ],
+    "5-players": [
+     "meret-il"
+    ],
+    "6-players": [
+     "meret-il"
+    ],
+    "7-players": [
+     "meret-il"
+    ]
+   },
+   "file": "meret-il--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "meret-il.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-oden-sol.webp",
+   "sha256": "9d09093484b7f5bafa3b9c44c4c877b30c340ca9b54a7324f20884d9414160aa",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оден Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "oden-sol"
+    ],
+    "5-players": [
+     "oden-sol"
+    ],
+    "6-players": [
+     "oden-sol"
+    ],
+    "7-players": [
+     "oden-sol"
+    ]
+   },
+   "file": "oden-sol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oden-sol.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-esta-niv.webp",
+   "sha256": "95e78a264bcc80f0a20cf6f66a7e09eeec8070405f11c0b826d11181c52fbefa",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эста Нив",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "esta-niv"
+    ],
+    "6-players": [
+     "esta-niv"
+    ],
+    "7-players": [
+     "esta-niv"
+    ]
+   },
+   "file": "esta-niv--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "esta-niv.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-rina-tess.webp",
+   "sha256": "65e7a09d98dc2d697321fbd7d6d24429f62035a8fd8b31f8e23238ba82f8fc7a",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рина Тесс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "rina-tess"
+    ],
+    "7-players": [
+     "rina-tess"
+    ]
+   },
+   "file": "rina-tess--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rina-tess.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/heroes-korvin-lugov.webp",
+   "sha256": "cd179cf591315018310c43b75efcef6682c155a8ee3b4e46bec0053a2b914465",
+   "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Корвин Лугов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "korvin-lugov"
+    ]
+   },
+   "file": "korvin-lugov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "korvin-lugov.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-nela-rud.webp",
+   "sha256": "623b304585599d5e0686a3934e10f7c0b938b9f40693983f09bab755100096d1",
+   "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нела Руд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nela-rud"
+    ],
+    "4-players": [
+     "nela-rud"
+    ],
+    "5-players": [
+     "nela-rud"
+    ],
+    "6-players": [
+     "nela-rud"
+    ],
+    "7-players": [
+     "nela-rud"
+    ]
+   },
+   "file": "nela-rud--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nela-rud.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-bren-toll.webp",
+   "sha256": "4ce46e0fe7576cc21aa57a99995bd8e6158ed32bca9c87ebf8c2be1bae57e58f",
+   "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брен Толль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bren-toll"
+    ],
+    "4-players": [
+     "bren-toll"
+    ],
+    "5-players": [
+     "bren-toll"
+    ],
+    "6-players": [
+     "bren-toll"
+    ],
+    "7-players": [
+     "bren-toll"
+    ]
+   },
+   "file": "bren-toll--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bren-toll.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-sena-lir.webp",
+   "sha256": "cf2e61100375c495b77685833f4755987288623765ae94a5f946ac986a0735e3",
+   "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сена Лир",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sena-lir"
+    ],
+    "4-players": [
+     "sena-lir"
+    ],
+    "5-players": [
+     "sena-lir"
+    ],
+    "6-players": [
+     "sena-lir"
+    ],
+    "7-players": [
+     "sena-lir"
+    ]
+   },
+   "file": "sena-lir--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sena-lir.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-ruvel-ash.webp",
+   "sha256": "a6ec5dc802ab943c3910ddedfc5b3d84d2febc6a2f07d7321e3b69d783fefb07",
+   "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Смотритель Рувель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruvel-ash"
+    ],
+    "4-players": [
+     "ruvel-ash"
+    ],
+    "5-players": [
+     "ruvel-ash"
+    ],
+    "6-players": [
+     "ruvel-ash"
+    ],
+    "7-players": [
+     "ruvel-ash"
+    ]
+   },
+   "file": "ruvel-ash--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruvel-ash.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-demir-tal.webp",
+   "sha256": "5cccb0f64ded8c19ead0dc2cc6607d4dd5e177aef88f4b520f43baefa82749e6",
+   "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демир Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "demir-tal"
+    ],
+    "4-players": [
+     "demir-tal"
+    ],
+    "5-players": [
+     "demir-tal"
+    ],
+    "6-players": [
+     "demir-tal"
+    ],
+    "7-players": [
+     "demir-tal"
+    ]
+   },
+   "file": "demir-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "demir-tal.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-mara-vesn.webp",
+   "sha256": "6f7f919a3f14510532db847900cb89af8bb74328604aa3fcfda5af4337c9a5fd",
+   "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Веснь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-vesn"
+    ],
+    "4-players": [
+     "mara-vesn"
+    ],
+    "5-players": [
+     "mara-vesn"
+    ],
+    "6-players": [
+     "mara-vesn"
+    ],
+    "7-players": [
+     "mara-vesn"
+    ]
+   },
+   "file": "mara-vesn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mara-vesn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-elina-orst.webp",
+   "sha256": "5841d6c44692e23201fb088ac4636c7d2fe664039457129d7403e45f4cdf28cd",
+   "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элина Орст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elina-orst"
+    ],
+    "4-players": [
+     "elina-orst"
+    ],
+    "5-players": [
+     "elina-orst"
+    ],
+    "6-players": [
+     "elina-orst"
+    ],
+    "7-players": [
+     "elina-orst"
+    ]
+   },
+   "file": "elina-orst--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elina-orst.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-timur-shev.webp",
+   "sha256": "efd089d0347ce9b94c2a5b2ff20ffd977d92d5490e9cdd275a3c28784b16f65b",
+   "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимур Шев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "timur-shev"
+    ],
+    "4-players": [
+     "timur-shev"
+    ],
+    "5-players": [
+     "timur-shev"
+    ],
+    "6-players": [
+     "timur-shev"
+    ],
+    "7-players": [
+     "timur-shev"
+    ]
+   },
+   "file": "timur-shev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "timur-shev.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-alden-vey.webp",
+   "sha256": "8bddcfef388580c5698f926d3d76b8d310b513f94588df2100b0185991c15cdc",
+   "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алден Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alden-vey"
+    ],
+    "4-players": [
+     "alden-vey"
+    ],
+    "5-players": [
+     "alden-vey"
+    ],
+    "6-players": [
+     "alden-vey"
+    ],
+    "7-players": [
+     "alden-vey"
+    ]
+   },
+   "file": "alden-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "alden-vey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/table/npcs-ilda-sever.webp",
+   "sha256": "16b56a7c2fc6a0ab6c8dccdf8a0c0c68554224d5229d7dde70078ac3ab2e48d0",
+   "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильда Север",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilda-sever"
+    ],
+    "4-players": [
+     "ilda-sever"
+    ],
+    "5-players": [
+     "ilda-sever"
+    ],
+    "6-players": [
+     "ilda-sever"
+    ],
+    "7-players": [
+     "ilda-sever"
+    ]
+   },
+   "file": "ilda-sever--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilda-sever.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/illustrations/opening.webp",
+   "sha256": "2a07d02add0d6b294e23c917bc9cdcc4eb49176360540576a9e5e0c991b1662b",
+   "originalSha256": "dd86b139a3609583289d35f19ee54c8a494ac5d35a0dc5363ef3258aa34eb495",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Колокольный причал — Фонари утонувшего города",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mere-reach"
+    ],
+    "4-players": [
+     "mere-reach"
+    ],
+    "5-players": [
+     "mere-reach"
+    ],
+    "6-players": [
+     "mere-reach"
+    ],
+    "7-players": [
+     "mere-reach"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "inverted-court--map.webp",
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/battle-maps/inverted-court.webp",
+   "sha256": "114e3159f5b5e596bad51f8673455140f7a0c0027b2317f713f9b2f829dec9c1",
+   "originalSha256": "50831716d8c559007eb3a17254da7be82274baaf7dd8532b068a8eca673c4bd1",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Косая палата. Visible scenery: Каменный двор с наклонными окнами. Одна лестница идёт вдоль стены, а на широком подоконнике оставлены чашки и мел.. World style: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "inverted-court.webp",
+   "subjects": {
+    "3-players": [
+     "inverted-court"
+    ],
+    "4-players": [
+     "inverted-court"
+    ],
+    "5-players": [
+     "inverted-court"
+    ],
+    "6-players": [
+     "inverted-court"
+    ],
+    "7-players": [
+     "inverted-court"
+    ]
+   }
+  },
+  {
+   "file": "roof-bridge--map.webp",
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/battle-maps/roof-bridge.webp",
+   "sha256": "a84dfb9b05d1feeb42022b25e88bce20a12742f1e01c3986eb6856c403b4d9ac",
+   "originalSha256": "b0d899d75002541c4f36e64c9b440453691567c660dd7d59c29d988f880826de",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея косого дождя. Visible scenery: Широкая крытая галерея между высокими фронтонами. Дождь стекает по стене, а под навесом остаётся сухая полоса камня.. World style: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "roof-bridge.webp",
+   "subjects": {
+    "3-players": [
+     "roof-bridge"
+    ],
+    "4-players": [
+     "roof-bridge"
+    ],
+    "5-players": [
+     "roof-bridge"
+    ],
+    "6-players": [
+     "roof-bridge"
+    ],
+    "7-players": [
+     "roof-bridge"
+    ]
+   }
+  },
+  {
+   "file": "mirror-square--map.webp",
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/battle-maps/mirror-square.webp",
+   "sha256": "b6e8d7b0555db4d541db1b4f613de56716658d39b92d85a30754136e33316a87",
+   "originalSha256": "75fbcc6de5478d36720d215a147928576b83aada6606847dcbe33cea9b597306",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Площадь ненаписанных теней. Visible scenery: Мокрая площадь со скамьями и каменной статуей. Тени прохожих ложатся на стены, рядом висят незаполненные дощечки для подписей.. World style: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "mirror-square.webp",
+   "subjects": {
+    "3-players": [
+     "mirror-square"
+    ],
+    "4-players": [
+     "mirror-square"
+    ],
+    "5-players": [
+     "mirror-square"
+    ],
+    "6-players": [
+     "mirror-square"
+    ],
+    "7-players": [
+     "mirror-square"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/lantern-mere/assets/world-map/world-map.webp",
+   "sha256": "e687b2d61aa2cca6abf7c5156611b4a89f02eb2ffdd71d94782ec4f86d3595cb",
+   "originalSha256": "b65e76966934b4f3ef290b3153fd14b0a856ea35e6f6b0b3a719711adee9bce7",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Велинь и Сумеречная заводь. Style Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Колокольный причал; 0.367,0.177 Новый Плёс; 0.623,0.15 Косая палата; 0.88,0.177 Висячий сад; 0.905,0.517 Паромный хор; 0.648,0.49 Дом незакрытых дверей; 0.392,0.517 Площадь ненаписанных теней; 0.135,0.49 Галерея косого дождя; 0.11,0.83 Тихая гавань; 0.367,0.857 Берег раннего света. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

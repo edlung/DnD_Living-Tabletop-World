@@ -1,0 +1,59 @@
+{
+  "region": "basalt-fold",
+  "name": "Карта · Чёрная складка",
+  "description": "План местности «Чёрная складка». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "shale-house",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "crack-yard",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "black-stairs",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "glass-stream",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "listening-ledge",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "imprint-hall",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "dry-neck",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "steady-islands",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "hollow-crown",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "return-balcony",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

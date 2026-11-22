@@ -1,0 +1,124 @@
+{
+  "region": "patchwork-ridges",
+  "name": "Карта · Лоскутные кряжи",
+  "description": "План местности «Лоскутные кряжи». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "noonday-yard",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "lower-tooth",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "white-scree",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "heather-descent",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "bare-needle",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "applause-house",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "blind-ledge",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "split-saddle",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "ragged-crown",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [
+    {
+      "from": "noonday-yard",
+      "to": "lower-tooth",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "lower-tooth",
+      "to": "white-scree",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "white-scree",
+      "to": "bare-needle",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "bare-needle",
+      "to": "blind-ledge",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "blind-ledge",
+      "to": "ragged-crown",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "noonday-yard",
+      "to": "heather-descent",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "heather-descent",
+      "to": "applause-house",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "applause-house",
+      "to": "split-saddle",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "split-saddle",
+      "to": "ragged-crown",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "white-scree",
+      "to": "split-saddle",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    }
+  ]
+}

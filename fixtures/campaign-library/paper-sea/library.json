@@ -1,0 +1,1753 @@
+{
+ "id": "paper-sea",
+ "title": "Море бумажных островов",
+ "genre": "Литературное метаприключение о выборе собственного продолжения",
+ "audience": "12+",
+ "pitch": "Рута Вей вышла из незаконченного романа с простым вопросом: что ей делать дальше? Она приглашает вас пройти по островам разных литературных жанров, попробовать их обещания и сочинить продолжение поступками. Не всякая загадка нуждается в виновнике, не каждое возвращение обязано означать победу, а счастливый день может обойтись без подвига. Вернуться из книг можно всегда. Но прожить сразу все понравившиеся жизни не получится.",
+ "tone": "Тёплое любопытство, остроумные жанровые повороты, честная неловкость и личные решения без единственного правильного ответа.",
+ "duration": "8 сессий; 165 минут: вход и повторение 15, три сцены по 40, перерыв 10, завершение 20.",
+ "cover": "campaigns/mixed-ages-2026/paper-sea/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "fbed2913bd2115609a8cfc4eb0d46b56cfcfb1b2e0ef3236e906ecb92c90a606"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "ac2226a22c0f5b8a3ae0d2e7e05749509dd013da584dc81654a5e6d2fa0b72e7"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "7dd1aa9bf0959a4d733bbb8d9e32a4cfc5d42b86429d9c55abab01e4daeb1650"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "d83102432997ce1676bb7bc2869a2300d28c71dc9d6c2596c29c2ac3ccc4462b"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "eb81d32acee5c14d52d8fd7370e61dee9b4ea5dd46dd7ef809bcf03754f506c3"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/taya-skat.webp",
+   "sha256": "d89ea78b5aad616b916ab023d7fa3a5cc8f5f36ae754feed7e2f1411ebb2f70c",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Скат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya-skat"
+    ],
+    "4-players": [
+     "taya-skat"
+    ],
+    "5-players": [
+     "taya-skat"
+    ],
+    "6-players": [
+     "taya-skat"
+    ],
+    "7-players": [
+     "taya-skat"
+    ]
+   },
+   "file": "taya-skat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/miro-lin.webp",
+   "sha256": "a153b43006aa53a0049207fc36d2898d7267a1bffd62f8da8cbbd6dc6eace130",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Миро Лин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "miro-lin"
+    ],
+    "4-players": [
+     "miro-lin"
+    ],
+    "5-players": [
+     "miro-lin"
+    ],
+    "6-players": [
+     "miro-lin"
+    ],
+    "7-players": [
+     "miro-lin"
+    ]
+   },
+   "file": "miro-lin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/ena-ton.webp",
+   "sha256": "bc6a39a7bdc9a2b730ba656934ad674deefa72ceb52eb558ce5f67326f391891",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эна Тон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ena-ton"
+    ],
+    "4-players": [
+     "ena-ton"
+    ],
+    "5-players": [
+     "ena-ton"
+    ],
+    "6-players": [
+     "ena-ton"
+    ],
+    "7-players": [
+     "ena-ton"
+    ]
+   },
+   "file": "ena-ton.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/lissa-yor.webp",
+   "sha256": "f01b0d89adf94587e8dae709bd06b82678b52e441172948e6242e0c62ac482b2",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисса Ёр",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "lissa-yor"
+    ],
+    "5-players": [
+     "lissa-yor"
+    ],
+    "6-players": [
+     "lissa-yor"
+    ],
+    "7-players": [
+     "lissa-yor"
+    ]
+   },
+   "file": "lissa-yor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/ruen-pik.webp",
+   "sha256": "5aa03715bdd7c24bf23935e40132b9276cd48f602d53f971c32eb91113ea1b2e",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руэн Пик",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "ruen-pik"
+    ],
+    "6-players": [
+     "ruen-pik"
+    ],
+    "7-players": [
+     "ruen-pik"
+    ]
+   },
+   "file": "ruen-pik.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/orey-kley.webp",
+   "sha256": "471071b38491902d0d6fa99cd83c53c2bd4e5eafb15284d383f148baf936a43e",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орей Клей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "orey-kley"
+    ],
+    "7-players": [
+     "orey-kley"
+    ]
+   },
+   "file": "orey-kley.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/nimi-rey.webp",
+   "sha256": "6d004e0a817b0a0c4c5863db9e0385e794b98eaa2ba784002828bd1b08221de3",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ними Рей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "nimi-rey"
+    ]
+   },
+   "file": "nimi-rey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/travel-kit.webp",
+   "sha256": "2fb41933048f18734e00d737914598baca22be32ac395587a209b1614f5224a3",
+   "originalSha256": "b36e90d47dcfa65f0957bbe4dc61d67adb016ace9016faaada55c2fbd7e2ed0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ena-ton-travel-kit",
+     "miro-lin-travel-kit",
+     "taya-skat-travel-kit"
+    ],
+    "4-players": [
+     "ena-ton-travel-kit",
+     "lissa-yor-travel-kit",
+     "miro-lin-travel-kit",
+     "taya-skat-travel-kit"
+    ],
+    "5-players": [
+     "ena-ton-travel-kit",
+     "lissa-yor-travel-kit",
+     "miro-lin-travel-kit",
+     "ruen-pik-travel-kit",
+     "taya-skat-travel-kit"
+    ],
+    "6-players": [
+     "ena-ton-travel-kit",
+     "lissa-yor-travel-kit",
+     "miro-lin-travel-kit",
+     "orey-kley-travel-kit",
+     "ruen-pik-travel-kit",
+     "taya-skat-travel-kit"
+    ],
+    "7-players": [
+     "ena-ton-travel-kit",
+     "lissa-yor-travel-kit",
+     "miro-lin-travel-kit",
+     "nimi-rey-travel-kit",
+     "orey-kley-travel-kit",
+     "ruen-pik-travel-kit",
+     "taya-skat-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/ruta-vey.webp",
+   "sha256": "37d679055e6e8c076918ba103b018d1e5e13ba7f154dd021b2fbab539cbe0953",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruta-vey"
+    ],
+    "4-players": [
+     "ruta-vey"
+    ],
+    "5-players": [
+     "ruta-vey"
+    ],
+    "6-players": [
+     "ruta-vey"
+    ],
+    "7-players": [
+     "ruta-vey"
+    ]
+   },
+   "file": "ruta-vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/tavin-rov.webp",
+   "sha256": "8db1fe245d7086a722d343f8adc0943a18a7fe6e2f83f1906ed76e2bd0c1ac26",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тавин Ров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tavin-rov"
+    ],
+    "4-players": [
+     "tavin-rov"
+    ],
+    "5-players": [
+     "tavin-rov"
+    ],
+    "6-players": [
+     "tavin-rov"
+    ],
+    "7-players": [
+     "tavin-rov"
+    ]
+   },
+   "file": "tavin-rov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/mayna-ker.webp",
+   "sha256": "97f14a1d2c7090b11a7d38f59b44cdf6b7d10909653385a68539730f5ef7c88d",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мэйна Кер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mayna-ker"
+    ],
+    "4-players": [
+     "mayna-ker"
+    ],
+    "5-players": [
+     "mayna-ker"
+    ],
+    "6-players": [
+     "mayna-ker"
+    ],
+    "7-players": [
+     "mayna-ker"
+    ]
+   },
+   "file": "mayna-ker.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/saya-tarn.webp",
+   "sha256": "35512cf37368ea603fac721e6ef27bacd9720b7eea9b3a4e267d67efcf1c0edf",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сая Тарн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "saya-tarn"
+    ],
+    "4-players": [
+     "saya-tarn"
+    ],
+    "5-players": [
+     "saya-tarn"
+    ],
+    "6-players": [
+     "saya-tarn"
+    ],
+    "7-players": [
+     "saya-tarn"
+    ]
+   },
+   "file": "saya-tarn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/dal-orn.webp",
+   "sha256": "93c2d06e1009a76e00fd31208f95029cd497744025f06d9498fba24325c467a9",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дал Орн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dal-orn"
+    ],
+    "4-players": [
+     "dal-orn"
+    ],
+    "5-players": [
+     "dal-orn"
+    ],
+    "6-players": [
+     "dal-orn"
+    ],
+    "7-players": [
+     "dal-orn"
+    ]
+   },
+   "file": "dal-orn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/bel-atr.webp",
+   "sha256": "dafa6e853d5d79b241eb102d18edb953b6bf2fc7a7ed3325baa6872d0989ca52",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бель Атр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bel-atr"
+    ],
+    "4-players": [
+     "bel-atr"
+    ],
+    "5-players": [
+     "bel-atr"
+    ],
+    "6-players": [
+     "bel-atr"
+    ],
+    "7-players": [
+     "bel-atr"
+    ]
+   },
+   "file": "bel-atr.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/nora-shov.webp",
+   "sha256": "a946f37ff38c21502a2bc35d2178a484a7db0b712c45ca4c1e2bc6a086211b84",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нора Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nora-shov"
+    ],
+    "4-players": [
+     "nora-shov"
+    ],
+    "5-players": [
+     "nora-shov"
+    ],
+    "6-players": [
+     "nora-shov"
+    ],
+    "7-players": [
+     "nora-shov"
+    ]
+   },
+   "file": "nora-shov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/sam-tir.webp",
+   "sha256": "5cdcada9e23e6ecb2222c6603664e9f1e827c388a4a1257514438637a1c78546",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сэм Тир",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sam-tir"
+    ],
+    "4-players": [
+     "sam-tir"
+    ],
+    "5-players": [
+     "sam-tir"
+    ],
+    "6-players": [
+     "sam-tir"
+    ],
+    "7-players": [
+     "sam-tir"
+    ]
+   },
+   "file": "sam-tir.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/kass-rem.webp",
+   "sha256": "09240b6eac37f7af57324f3fed2b05c59c161ab19b34081c081ae638dd79d68b",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Касс Рем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kass-rem"
+    ],
+    "4-players": [
+     "kass-rem"
+    ],
+    "5-players": [
+     "kass-rem"
+    ],
+    "6-players": [
+     "kass-rem"
+    ],
+    "7-players": [
+     "kass-rem"
+    ]
+   },
+   "file": "kass-rem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/velya-ruk.webp",
+   "sha256": "e6494b341d7540f811ccaa959acdb85e71fab563508c2cabe7d685aa537ab59c",
+   "originalSha256": "24562e4b25a9f351234958e2ec995b409cc8c755ab8b7f0cd985a7c65bd64a56",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веля Рук",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velya-ruk"
+    ],
+    "4-players": [
+     "velya-ruk"
+    ],
+    "5-players": [
+     "velya-ruk"
+    ],
+    "6-players": [
+     "velya-ruk"
+    ],
+    "7-players": [
+     "velya-ruk"
+    ]
+   },
+   "file": "velya-ruk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-taya-skat.webp",
+   "sha256": "fe372ecea685a9e4f99f0236c00f14c6db7e8ff6d0789bf4069ecc6142ff605c",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Скат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya-skat"
+    ],
+    "4-players": [
+     "taya-skat"
+    ],
+    "5-players": [
+     "taya-skat"
+    ],
+    "6-players": [
+     "taya-skat"
+    ],
+    "7-players": [
+     "taya-skat"
+    ]
+   },
+   "file": "taya-skat--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taya-skat.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-miro-lin.webp",
+   "sha256": "d7e80c022e2f9709c9381763cc3a76bb2f9cd48e6d751915d4e7741bfa90dfcf",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Миро Лин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "miro-lin"
+    ],
+    "4-players": [
+     "miro-lin"
+    ],
+    "5-players": [
+     "miro-lin"
+    ],
+    "6-players": [
+     "miro-lin"
+    ],
+    "7-players": [
+     "miro-lin"
+    ]
+   },
+   "file": "miro-lin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "miro-lin.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-ena-ton.webp",
+   "sha256": "97823b45e7407b2b840bcae6355b2ea5601df3e33f11aedf1c20a71376fd2e55",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эна Тон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ena-ton"
+    ],
+    "4-players": [
+     "ena-ton"
+    ],
+    "5-players": [
+     "ena-ton"
+    ],
+    "6-players": [
+     "ena-ton"
+    ],
+    "7-players": [
+     "ena-ton"
+    ]
+   },
+   "file": "ena-ton--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ena-ton.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-lissa-yor.webp",
+   "sha256": "dffac6a883c382deec4cc20f4c3524465630bdb3fe12f153b2ebe1528b7fdd58",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисса Ёр",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "lissa-yor"
+    ],
+    "5-players": [
+     "lissa-yor"
+    ],
+    "6-players": [
+     "lissa-yor"
+    ],
+    "7-players": [
+     "lissa-yor"
+    ]
+   },
+   "file": "lissa-yor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lissa-yor.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-ruen-pik.webp",
+   "sha256": "858833dae1b5afbd5f2aa062d4cba457a70d29a73c932c313ef6121a30fbce43",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руэн Пик",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "ruen-pik"
+    ],
+    "6-players": [
+     "ruen-pik"
+    ],
+    "7-players": [
+     "ruen-pik"
+    ]
+   },
+   "file": "ruen-pik--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruen-pik.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-orey-kley.webp",
+   "sha256": "49bb0236bca57434500165f090a5084e5688418dd58c17ce8892ef84b91deef5",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орей Клей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "orey-kley"
+    ],
+    "7-players": [
+     "orey-kley"
+    ]
+   },
+   "file": "orey-kley--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orey-kley.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/heroes-nimi-rey.webp",
+   "sha256": "f572bd877c717a1fcca5309fe9b4d4de0fcedff7a3a66d93f80bdd20afcbbb09",
+   "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ними Рей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "nimi-rey"
+    ]
+   },
+   "file": "nimi-rey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nimi-rey.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/foes-foe-d40201b3e8.webp",
+   "sha256": "fa2892281eb2d240f8e4cc111d4ae0205d56d49b87ee7a3987b21d885ed3bf92",
+   "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный великан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2"
+    ],
+    "4-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3"
+    ],
+    "5-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3"
+    ],
+    "6-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3",
+     "epic-folds-foe-4"
+    ],
+    "7-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3",
+     "epic-folds-foe-4",
+     "epic-folds-foe-5"
+    ]
+   },
+   "file": "foe-d40201b3e8.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/foes-foe-d40201b3e8.webp",
+   "sha256": "fa2892281eb2d240f8e4cc111d4ae0205d56d49b87ee7a3987b21d885ed3bf92",
+   "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный великан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2"
+    ],
+    "4-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3"
+    ],
+    "5-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3"
+    ],
+    "6-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3",
+     "epic-folds-foe-4"
+    ],
+    "7-players": [
+     "epic-folds-foe-1",
+     "epic-folds-foe-2",
+     "epic-folds-foe-3",
+     "epic-folds-foe-4",
+     "epic-folds-foe-5"
+    ]
+   },
+   "file": "foe-d40201b3e8--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-d40201b3e8.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/foes-foe-28bbdf5a26.webp",
+   "sha256": "2d54dd9b324314f0b693c0d78a73ea1e583e2e994de42b82cf197e70477f3261",
+   "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Надутое сравнение",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2"
+    ],
+    "4-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3"
+    ],
+    "5-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3"
+    ],
+    "6-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3",
+     "comic-folds-foe-4"
+    ],
+    "7-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3",
+     "comic-folds-foe-4",
+     "comic-folds-foe-5"
+    ]
+   },
+   "file": "foe-28bbdf5a26.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/foes-foe-28bbdf5a26.webp",
+   "sha256": "2d54dd9b324314f0b693c0d78a73ea1e583e2e994de42b82cf197e70477f3261",
+   "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Надутое сравнение",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2"
+    ],
+    "4-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3"
+    ],
+    "5-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3"
+    ],
+    "6-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3",
+     "comic-folds-foe-4"
+    ],
+    "7-players": [
+     "comic-folds-foe-1",
+     "comic-folds-foe-2",
+     "comic-folds-foe-3",
+     "comic-folds-foe-4",
+     "comic-folds-foe-5"
+    ]
+   },
+   "file": "foe-28bbdf5a26--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-28bbdf5a26.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/foes-foe-562e7e04f1.webp",
+   "sha256": "b17c1ba6551ad457ae42d49dc67547ab7b81160759881d454fc502b345e4b6f3",
+   "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямая скобка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2"
+    ],
+    "4-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3"
+    ],
+    "5-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3"
+    ],
+    "6-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3",
+     "final-folds-foe-4"
+    ],
+    "7-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3",
+     "final-folds-foe-4",
+     "final-folds-foe-5"
+    ]
+   },
+   "file": "foe-562e7e04f1.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/foes-foe-562e7e04f1.webp",
+   "sha256": "b17c1ba6551ad457ae42d49dc67547ab7b81160759881d454fc502b345e4b6f3",
+   "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямая скобка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2"
+    ],
+    "4-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3"
+    ],
+    "5-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3"
+    ],
+    "6-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3",
+     "final-folds-foe-4"
+    ],
+    "7-players": [
+     "final-folds-foe-1",
+     "final-folds-foe-2",
+     "final-folds-foe-3",
+     "final-folds-foe-4",
+     "final-folds-foe-5"
+    ]
+   },
+   "file": "foe-562e7e04f1--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-562e7e04f1.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-comma-quay.webp",
+   "sha256": "a627a7930add53df15abd7ad25daed6fe6f049c250a08e52b9b9a554c9a706d6",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пристань Запятой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "comma-quay"
+    ],
+    "4-players": [
+     "comma-quay"
+    ],
+    "5-players": [
+     "comma-quay"
+    ],
+    "6-players": [
+     "comma-quay"
+    ],
+    "7-players": [
+     "comma-quay"
+    ]
+   },
+   "file": "comma-quay.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-umbrella-street.webp",
+   "sha256": "6db92086bf956aebda6d2fd3c2153ca4bfe4f4e7c5eaf22f314770ae11b49c0e",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Улица Семи Зонтов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "umbrella-street"
+    ],
+    "4-players": [
+     "umbrella-street"
+    ],
+    "5-players": [
+     "umbrella-street"
+    ],
+    "6-players": [
+     "umbrella-street"
+    ],
+    "7-players": [
+     "umbrella-street"
+    ]
+   },
+   "file": "umbrella-street.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-long-step.webp",
+   "sha256": "3a020a2fb70c55a4ccb2d92e30b6efa9cf94488b0047552d7129a1f09f16f7a1",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плато Долгого Шага",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "long-step"
+    ],
+    "4-players": [
+     "long-step"
+    ],
+    "5-players": [
+     "long-step"
+    ],
+    "6-players": [
+     "long-step"
+    ],
+    "7-players": [
+     "long-step"
+    ]
+   },
+   "file": "long-step.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-loud-garden.webp",
+   "sha256": "e4c8654ee562dd77120a5273a4f9060f4f532497514f208b71c772051ae246ea",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Парк Преувеличений",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "loud-garden"
+    ],
+    "4-players": [
+     "loud-garden"
+    ],
+    "5-players": [
+     "loud-garden"
+    ],
+    "6-players": [
+     "loud-garden"
+    ],
+    "7-players": [
+     "loud-garden"
+    ]
+   },
+   "file": "loud-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-tuesday-house.webp",
+   "sha256": "cbf18bff3781c4d81941da5a090d8f46ab8e795d941f53643ae578497b283e22",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом Тихого Вторника",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tuesday-house"
+    ],
+    "4-players": [
+     "tuesday-house"
+    ],
+    "5-players": [
+     "tuesday-house"
+    ],
+    "6-players": [
+     "tuesday-house"
+    ],
+    "7-players": [
+     "tuesday-house"
+    ]
+   },
+   "file": "tuesday-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-bracket-salon.webp",
+   "sha256": "fbeef85ba44441b381e19b6aeff87b8aecb4cc7487e365856332c28bab42556e",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Салон Незакрытых Скобок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bracket-salon"
+    ],
+    "4-players": [
+     "bracket-salon"
+    ],
+    "5-players": [
+     "bracket-salon"
+    ],
+    "6-players": [
+     "bracket-salon"
+    ],
+    "7-players": [
+     "bracket-salon"
+    ]
+   },
+   "file": "bracket-salon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-quiet-margin.webp",
+   "sha256": "e4c63ffa1ca3089cb874df217367f35119666810a13f57849336b3c2e18378d2",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихое Поле",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-margin"
+    ],
+    "4-players": [
+     "quiet-margin"
+    ],
+    "5-players": [
+     "quiet-margin"
+    ],
+    "6-players": [
+     "quiet-margin"
+    ],
+    "7-players": [
+     "quiet-margin"
+    ]
+   },
+   "file": "quiet-margin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-last-bridge.webp",
+   "sha256": "2d8f6272496230116a69cba675a906b4fc19f6c49274c7dbc697175cfcb56371",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мост Последней Фразы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "last-bridge"
+    ],
+    "4-players": [
+     "last-bridge"
+    ],
+    "5-players": [
+     "last-bridge"
+    ],
+    "6-players": [
+     "last-bridge"
+    ],
+    "7-players": [
+     "last-bridge"
+    ]
+   },
+   "file": "last-bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/places-reader-porch.webp",
+   "sha256": "3545fb2ad8bf4d73f852f6cbdab447d288336c81951946ba2a5849fce1f2e7e6",
+   "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Читательское крыльцо",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reader-porch"
+    ],
+    "4-players": [
+     "reader-porch"
+    ],
+    "5-players": [
+     "reader-porch"
+    ],
+    "6-players": [
+     "reader-porch"
+    ],
+    "7-players": [
+     "reader-porch"
+    ]
+   },
+   "file": "reader-porch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-ruta-vey.webp",
+   "sha256": "9487925152c655fd288a5158c21bb9add3085d9336259aea884ae63d0ac55d7f",
+   "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruta-vey"
+    ],
+    "4-players": [
+     "ruta-vey"
+    ],
+    "5-players": [
+     "ruta-vey"
+    ],
+    "6-players": [
+     "ruta-vey"
+    ],
+    "7-players": [
+     "ruta-vey"
+    ]
+   },
+   "file": "ruta-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruta-vey.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-tavin-rov.webp",
+   "sha256": "66c226649151d26f04c12e8028ea102781720106c03e0113c6663d66d2396fcb",
+   "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тавин Ров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tavin-rov"
+    ],
+    "4-players": [
+     "tavin-rov"
+    ],
+    "5-players": [
+     "tavin-rov"
+    ],
+    "6-players": [
+     "tavin-rov"
+    ],
+    "7-players": [
+     "tavin-rov"
+    ]
+   },
+   "file": "tavin-rov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tavin-rov.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-mayna-ker.webp",
+   "sha256": "054ffd67c7875a0ec58bbbfefac69c072447679656665e09478c5b2a7a8381ca",
+   "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мэйна Кер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mayna-ker"
+    ],
+    "4-players": [
+     "mayna-ker"
+    ],
+    "5-players": [
+     "mayna-ker"
+    ],
+    "6-players": [
+     "mayna-ker"
+    ],
+    "7-players": [
+     "mayna-ker"
+    ]
+   },
+   "file": "mayna-ker--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mayna-ker.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-saya-tarn.webp",
+   "sha256": "9f052d449e4f16b5b67bb8d6d82278196cb036861179e2ea39fa2d89d090b8f8",
+   "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сая Тарн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "saya-tarn"
+    ],
+    "4-players": [
+     "saya-tarn"
+    ],
+    "5-players": [
+     "saya-tarn"
+    ],
+    "6-players": [
+     "saya-tarn"
+    ],
+    "7-players": [
+     "saya-tarn"
+    ]
+   },
+   "file": "saya-tarn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "saya-tarn.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-dal-orn.webp",
+   "sha256": "eafcaf73bceb5ed268491c592dcac1d6a2fd8306c4f7afabc09420f0bbf0fe43",
+   "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дал Орн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dal-orn"
+    ],
+    "4-players": [
+     "dal-orn"
+    ],
+    "5-players": [
+     "dal-orn"
+    ],
+    "6-players": [
+     "dal-orn"
+    ],
+    "7-players": [
+     "dal-orn"
+    ]
+   },
+   "file": "dal-orn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dal-orn.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-bel-atr.webp",
+   "sha256": "cafe4565f2aa2db249f386b0c528db042ebb9a5796503189b8590813a91c4807",
+   "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бель Атр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bel-atr"
+    ],
+    "4-players": [
+     "bel-atr"
+    ],
+    "5-players": [
+     "bel-atr"
+    ],
+    "6-players": [
+     "bel-atr"
+    ],
+    "7-players": [
+     "bel-atr"
+    ]
+   },
+   "file": "bel-atr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bel-atr.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-nora-shov.webp",
+   "sha256": "a20ceb54b3e68d8dc6155e79aedebea926611f642de7fa9ba1b57905df7d2780",
+   "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нора Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nora-shov"
+    ],
+    "4-players": [
+     "nora-shov"
+    ],
+    "5-players": [
+     "nora-shov"
+    ],
+    "6-players": [
+     "nora-shov"
+    ],
+    "7-players": [
+     "nora-shov"
+    ]
+   },
+   "file": "nora-shov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nora-shov.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-sam-tir.webp",
+   "sha256": "3213a67f486ff98201bbfd2d30d0f63dfca59dd8292e5c8b58ea2b4ba2b2a60b",
+   "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сэм Тир",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sam-tir"
+    ],
+    "4-players": [
+     "sam-tir"
+    ],
+    "5-players": [
+     "sam-tir"
+    ],
+    "6-players": [
+     "sam-tir"
+    ],
+    "7-players": [
+     "sam-tir"
+    ]
+   },
+   "file": "sam-tir--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sam-tir.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-kass-rem.webp",
+   "sha256": "00087ee03d36113ef955adc982d2287589bf22a8b21424916c671fa8e27b935b",
+   "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Касс Рем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kass-rem"
+    ],
+    "4-players": [
+     "kass-rem"
+    ],
+    "5-players": [
+     "kass-rem"
+    ],
+    "6-players": [
+     "kass-rem"
+    ],
+    "7-players": [
+     "kass-rem"
+    ]
+   },
+   "file": "kass-rem--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kass-rem.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/table/npcs-velya-ruk.webp",
+   "sha256": "0f4392a9a08be160c37b694590574f4f8cb8f9c5a8263f6b2b9e9b48c34b71ea",
+   "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веля Рук",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velya-ruk"
+    ],
+    "4-players": [
+     "velya-ruk"
+    ],
+    "5-players": [
+     "velya-ruk"
+    ],
+    "6-players": [
+     "velya-ruk"
+    ],
+    "7-players": [
+     "velya-ruk"
+    ]
+   },
+   "file": "velya-ruk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "velya-ruk.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/paper-sea/illustrations/opening.webp",
+   "sha256": "e3b09e479d3d145a38856736a07bd4cd339eef439e02d83b1b8c1374d6c85c07",
+   "originalSha256": "c9679c79a0b9c577100d599010c989ff2e83ae9676e77632640e679c223c3c92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пристань Запятой — Море бумажных островов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "paper-waters"
+    ],
+    "4-players": [
+     "paper-waters"
+    ],
+    "5-players": [
+     "paper-waters"
+    ],
+    "6-players": [
+     "paper-waters"
+    ],
+    "7-players": [
+     "paper-waters"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "long-step--map.webp",
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/battle-maps/long-step.webp",
+   "sha256": "6a5a5f1f5aaf0aa9dea6c689fe542f4b2d651dad369794eac09a78836448a781",
+   "originalSha256": "0d985c5a80022087d89eaa43fc8091edb2eed155a75b417409ab5d9ddf83ad9e",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Плато Долгого Шага. Visible scenery: Остров героических баллад с высоким, но широким уступом и удобной нижней тропой. На камнях вырезаны имена путников, а ветер относит песни к далёким домам.. World style: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "long-step.webp",
+   "subjects": {
+    "3-players": [
+     "long-step"
+    ],
+    "4-players": [
+     "long-step"
+    ],
+    "5-players": [
+     "long-step"
+    ],
+    "6-players": [
+     "long-step"
+    ],
+    "7-players": [
+     "long-step"
+    ]
+   }
+  },
+  {
+   "file": "loud-garden--map.webp",
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/battle-maps/loud-garden.webp",
+   "sha256": "70e9469a0ab260c004149eeab7ae355b714578adc450f6a3b10e9834254c0a2b",
+   "originalSha256": "36c39b681ed420471e3c897a443554427bea2fc050cd75263f581d74bded1aa6",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Парк Преувеличений. Visible scenery: Остров комических рассказов: зонтики похожи на грибы, скамейки подписаны громкими сравнениями. Между весёлыми столами есть тихая дорожка без обязательных шуток.. World style: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "loud-garden.webp",
+   "subjects": {
+    "3-players": [
+     "loud-garden"
+    ],
+    "4-players": [
+     "loud-garden"
+    ],
+    "5-players": [
+     "loud-garden"
+    ],
+    "6-players": [
+     "loud-garden"
+    ],
+    "7-players": [
+     "loud-garden"
+    ]
+   }
+  },
+  {
+   "file": "bracket-salon--map.webp",
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/battle-maps/bracket-salon.webp",
+   "sha256": "243b33b00b3b1246b07a83a09a445364d4b4cd7321c9f55a75249bdc4ef630ce",
+   "originalSha256": "4b46dc3844016c6634dce0cdbebcc534d994cdcb91528b3d8617a0f408f9b13e",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Салон Незакрытых Скобок. Visible scenery: Комната, где будущие книги получают пробные названия. На подставках лежат предложения издателя; рядом достаточно чистой бумаги для своего варианта. Двери не запираются.. World style: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "bracket-salon.webp",
+   "subjects": {
+    "3-players": [
+     "bracket-salon"
+    ],
+    "4-players": [
+     "bracket-salon"
+    ],
+    "5-players": [
+     "bracket-salon"
+    ],
+    "6-players": [
+     "bracket-salon"
+    ],
+    "7-players": [
+     "bracket-salon"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/paper-sea/assets/world-map/world-map.webp",
+   "sha256": "858fe3a0c5fcd9aefe8b2ad1be870870697d4e643a473830aa9f5d0e7f1e093c",
+   "originalSha256": "d4d4df4f20009961c2afafd5aae0aad539620d742e486f5f0e772e66c2d9cb98",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Море незаконченных продолжений. Style Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Пристань Запятой; 0.367,0.177 Улица Семи Зонтов; 0.623,0.15 Плато Долгого Шага; 0.88,0.177 Парк Преувеличений; 0.905,0.517 Дом Тихого Вторника; 0.648,0.49 Салон Незакрытых Скобок; 0.392,0.517 Тихое Поле; 0.135,0.49 Мост Последней Фразы; 0.11,0.83 Читательское крыльцо. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "sail-store.webp",
+      "sha256": "77c155386e2122ae5e2e24c37eb30c500bdd9ec74b92fd5902ca2ff2f73cb58a",
+      "originalSha256": "d37eb30c0a17a080327e9c01764660d553090eb670cc7183ace22297c476ba47",
+      "originalFile": "exec-86bb108a-4069-4c71-ab8d-ee1c5232b0ef.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Склад «Парус». Visible scenery: Высокие полки с опечатанными тюками и большими адресными бирками. У конторского столика всегда лежат второй карандаш и чистая копия накладной.. World style: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "sail-store",
+      "encounter": "crate-standoff",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "copper-terrace.webp",
+      "sha256": "9a8c3f6bd5962ef3a170f5ab18816a5f4ef1cc9be0ee879992eee51e4f52bd42",
+      "originalSha256": "6e39a1330671794b8f68b00a09f1f59f21c8ea8776fd1757a48224d68ced7248",
+      "originalFile": "exec-f7d1c84c-fb01-41c6-adbc-1c45ad7541a0.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Медная терраса. Visible scenery: Небольшая площадка перед мастерской вывесок, защищённая высоким городским фасадом. Медные буквы под навесом звенят от ветра.. World style: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "copper-terrace",
+      "encounter": "terrace-standoff",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "glass-arcade.webp",
+      "sha256": "71ac189378b9a1313e21a66de6fde45f6aafaa5669e546aaa789f9442c56f2a8",
+      "originalSha256": "c043ffc7232c295d448d491bdccf04925a41c22fdebea9156a8103906c9252e7",
+      "originalFile": "exec-192da68f-57b0-4f55-ad55-d19bf9637cd5.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стеклянный пассаж. Visible scenery: Крытая улица с закрытыми витринами и столом справочной службы. Сквозь цветное стекло серый день выглядит розовым и зелёным.. World style: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "glass-arcade",
+      "encounter": "papers-standoff",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

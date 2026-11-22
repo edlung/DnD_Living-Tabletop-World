@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "bfcba53104ea3802f0e984ea1e822c88378f4e1ad5e383fc40a8ec656d652c93"
+   "digest": "32a2e9a90ab131d09f620e66e87c161ff6e055c694581f95155606073809ff1c"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "edddd665a6ee7d663ff29030ec259202fc66e48bf6428fc506cb863f291425a4"
+   "digest": "988ebad7706fe88fb628978623224efec0100391742f9cc10b4b47c979a7b213"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "57f3e5ce1cb073b0b9e52249a9d476200168abe5005c48db9cf5558a9bf007c8"
+   "digest": "12df4b1186ea5bed37801003ce981ac677c8cb7e05c1c70336b1e3d31d0d99a0"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1458,6 +1458,546 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-bandit-captain.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/illustrations/cards/travel-kit.webp",
+   "sha256": "6ea0ee2e2f641d6c6f6f8e502cff2f0d2becd26e034df8583b939bfe564b1b42",
+   "originalSha256": "eb231fa9c8f34cc403865c66150b5c5a66166881be2d002f97b1102d5f7d6a21",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-alta-travel-kit",
+     "hero-brin-travel-kit",
+     "hero-iskra-travel-kit",
+     "hero-lis-travel-kit",
+     "hero-ruta-travel-kit",
+     "hero-yara-travel-kit"
+    ],
+    "7-players": [
+     "hero-alta-travel-kit",
+     "hero-brin-travel-kit",
+     "hero-iskra-travel-kit",
+     "hero-lis-travel-kit",
+     "hero-ruta-travel-kit",
+     "hero-sev-travel-kit",
+     "hero-yara-travel-kit"
+    ],
+    "8-players": [
+     "hero-alta-travel-kit",
+     "hero-brin-travel-kit",
+     "hero-iskra-travel-kit",
+     "hero-lis-travel-kit",
+     "hero-meya-travel-kit",
+     "hero-ruta-travel-kit",
+     "hero-sev-travel-kit",
+     "hero-yara-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-alta.webp",
+   "sha256": "0ffb0fd59148c4482a85c705cfd8cd34e51e432903b99842d7e0c47b3990622a",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Альта Ренн",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-alta"
+    ],
+    "7-players": [
+     "hero-alta"
+    ],
+    "8-players": [
+     "hero-alta"
+    ]
+   },
+   "file": "hero-alta--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-alta.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-lis.webp",
+   "sha256": "7e119ecaf5e87042ace3c64bd8f86997465ab531dacf340a165c26f0dde11aed",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лис Тарен",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-lis"
+    ],
+    "7-players": [
+     "hero-lis"
+    ],
+    "8-players": [
+     "hero-lis"
+    ]
+   },
+   "file": "hero-lis--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-lis.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-yara.webp",
+   "sha256": "07b97a4705575bee51084868d5275dd3afb51987f964cc7060114582d82fd516",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яра Вей",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-yara"
+    ],
+    "7-players": [
+     "hero-yara"
+    ],
+    "8-players": [
+     "hero-yara"
+    ]
+   },
+   "file": "hero-yara--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-yara.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-brin.webp",
+   "sha256": "01348db512814fa9238f3b5d8ac0ad0ffaff612d90eb21be2615b2c81d6e89d4",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брин Орт",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-brin"
+    ],
+    "7-players": [
+     "hero-brin"
+    ],
+    "8-players": [
+     "hero-brin"
+    ]
+   },
+   "file": "hero-brin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-brin.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-ruta.webp",
+   "sha256": "6834033c2805606966379a408babc0983d55df8074215b55d1aca580e55097cc",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Кель",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-ruta"
+    ],
+    "7-players": [
+     "hero-ruta"
+    ],
+    "8-players": [
+     "hero-ruta"
+    ]
+   },
+   "file": "hero-ruta--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-ruta.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-iskra.webp",
+   "sha256": "0f81bd206b48ac0fc07c13be6f8e8fd519595df27e731d989d35fe2b009a374b",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Искра Ним",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "hero-iskra"
+    ],
+    "7-players": [
+     "hero-iskra"
+    ],
+    "8-players": [
+     "hero-iskra"
+    ]
+   },
+   "file": "hero-iskra--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-iskra.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-sev.webp",
+   "sha256": "33ebe279ae8e7f218719667081f7909b6156a218980b667cafafa444f0b977c1",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сев Аран",
+   "references": [],
+   "subjects": {
+    "6-players": [],
+    "7-players": [
+     "hero-sev"
+    ],
+    "8-players": [
+     "hero-sev"
+    ]
+   },
+   "file": "hero-sev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-sev.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/heroes-hero-meya.webp",
+   "sha256": "b4ddc13a11f354c181d5729e3584975bb73bd71e297bb2aea9154474cdf4b2c0",
+   "originalSha256": "ac2c47aa8ebe7cd8d97c61dcde2ab7a4a5078dc179a65ba69ff915fc7d8c68d4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мея Сол",
+   "references": [],
+   "subjects": {
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "hero-meya"
+    ]
+   },
+   "file": "hero-meya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-meya.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-vesta-ron.webp",
+   "sha256": "50d4852f2f531d5aad68bffb9f4ebab081537841ba28a6baeb18c24fbd1ea8fb",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веста Рон",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "vesta-ron"
+    ],
+    "7-players": [
+     "vesta-ron"
+    ],
+    "8-players": [
+     "vesta-ron"
+    ]
+   },
+   "file": "vesta-ron--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesta-ron.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-orin-kelm.webp",
+   "sha256": "b246af72bdf118d7c0fbc59dcaa6ac5345a9234bb821a6d912f17f92183cf1c9",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орин Кельм",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "orin-kelm"
+    ],
+    "7-players": [
+     "orin-kelm"
+    ],
+    "8-players": [
+     "orin-kelm"
+    ]
+   },
+   "file": "orin-kelm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orin-kelm.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-daria-varr.webp",
+   "sha256": "7a2363431f430ee8fc7f6f47743894b24e9744031f6cdff5d8a72156a58d0083",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дария Варр",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "daria-varr"
+    ],
+    "7-players": [
+     "daria-varr"
+    ],
+    "8-players": [
+     "daria-varr"
+    ]
+   },
+   "file": "daria-varr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "daria-varr.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-neri-ayren.webp",
+   "sha256": "ff30b163ee1746a6b37671a9677c13d18a94f7bc548e10fe3a92f526adeca4ef",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нери Айрен",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "neri-ayren"
+    ],
+    "7-players": [
+     "neri-ayren"
+    ],
+    "8-players": [
+     "neri-ayren"
+    ]
+   },
+   "file": "neri-ayren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "neri-ayren.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-gedda-ayren.webp",
+   "sha256": "2d3f39799dd6ab8b420f9158a3d8f12f98a32160fc4dc7182e396e6bf5902298",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гедда Айрен",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "gedda-ayren"
+    ],
+    "7-players": [
+     "gedda-ayren"
+    ],
+    "8-players": [
+     "gedda-ayren"
+    ]
+   },
+   "file": "gedda-ayren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gedda-ayren.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-naim-rosh.webp",
+   "sha256": "4f4f668d6aaf5c4145d54cb9eda87603b0f777897ec56404e37793027a36e302",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Наим Рош",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "naim-rosh"
+    ],
+    "7-players": [
+     "naim-rosh"
+    ],
+    "8-players": [
+     "naim-rosh"
+    ]
+   },
+   "file": "naim-rosh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "naim-rosh.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-feya-lann.webp",
+   "sha256": "66b68cde0930eb4fabbe915b3b0161c8a4443b76ba258169a17daee56cb83511",
+   "originalSha256": "3efbc1a81c935ef6982535c84e0199e60fc8c62c2241b3549a06c06dc7c04f49",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фея Ланн",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "feya-lann"
+    ],
+    "7-players": [
+     "feya-lann"
+    ],
+    "8-players": [
+     "feya-lann"
+    ]
+   },
+   "file": "feya-lann--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "feya-lann.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-tobel-ist.webp",
+   "sha256": "d8690f9c6165cc8140c19f9ea1df515fc21926e1229b730d02ca5bd7769ba25b",
+   "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тобель Ист",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "tobel-ist"
+    ],
+    "7-players": [
+     "tobel-ist"
+    ],
+    "8-players": [
+     "tobel-ist"
+    ]
+   },
+   "file": "tobel-ist--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tobel-ist.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-gorran-tal.webp",
+   "sha256": "98be2bd4e17fd625827f42c9d71aab5815f880a99549e434f117728c3565cc56",
+   "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Горран Таль",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "gorran-tal"
+    ],
+    "7-players": [
+     "gorran-tal"
+    ],
+    "8-players": [
+     "gorran-tal"
+    ]
+   },
+   "file": "gorran-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gorran-tal.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-sarosh-ved.webp",
+   "sha256": "97797d3e32a4942ebfd8204fd93fa7fb868bf9bfae7810ffb249e24f252640d7",
+   "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сарош Ведь",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "sarosh-ved"
+    ],
+    "7-players": [
+     "sarosh-ved"
+    ],
+    "8-players": [
+     "sarosh-ved"
+    ]
+   },
+   "file": "sarosh-ved--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sarosh-ved.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-selva-prim.webp",
+   "sha256": "3847d61894af50ee523a1b58448fb3e9b61978c4bfce250c4b26e20dc87ab9df",
+   "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сельва Прим",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "selva-prim"
+    ],
+    "7-players": [
+     "selva-prim"
+    ],
+    "8-players": [
+     "selva-prim"
+    ]
+   },
+   "file": "selva-prim--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "selva-prim.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-tisa-horn.webp",
+   "sha256": "ea9f8a893fbf6bfbbb9684f54bea6948dde82ec38363ebcc6c9c1018b4269b19",
+   "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тиса Хорн",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "tisa-horn"
+    ],
+    "7-players": [
+     "tisa-horn"
+    ],
+    "8-players": [
+     "tisa-horn"
+    ]
+   },
+   "file": "tisa-horn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tisa-horn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/sky-archipelago/assets/table/npcs-galt-rudoy.webp",
+   "sha256": "1cd6cd5b05ca3cdb1123159f106b17487c548a0c055b3097f441841f2dd94864",
+   "originalSha256": "84fbb4aee62cdc432577b1f0a9c63e9ea4d526bd50026f3fa73ec539f0218225",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гальт Рудой",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "galt-rudoy"
+    ],
+    "7-players": [
+     "galt-rudoy"
+    ],
+    "8-players": [
+     "galt-rudoy"
+    ]
+   },
+   "file": "galt-rudoy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "galt-rudoy.webp"
   },
   {
    "file": "upside-quay--map.webp",

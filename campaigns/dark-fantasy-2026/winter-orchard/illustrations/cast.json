@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-c64b1806-5a90-4b12-9716-1edeb1ac8cd6.png",
+      "originalSha256": "21d5d2e93a824d577329fd8bd465143a01abf0f17935c1996b093fcc33c77a9e",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Тихая Чаша. Characters, in strict cell order:\n1. Мира Тёплая Чаша — Шерстяная накидка, плоская медная чаша и привычка ставить свой стул на уровне собеседника. Age 29.\n2. Лев Косая Мера — Пальцы в чернилах, складная линейка и множество маленьких пустых коробочек. Age 24.\n3. Тарен Узельщик — Короткий плащ с многочисленными петлями и потрёпанный щит, на котором нарисована открытая дверь. Age 35.\n4. Хава Полутень — Очки с разными стёклами и тетрадь, в которой неудачные предположения не зачёркнуты. Age 22.\n5. Демар Семь Колёс — Седая коса, широкие рукавицы и ремень с деревянными клиньями. Age 47.\n6. Сея Тихая Нить — Простой дорожный костюм, связка цветных нитей на запястье и спокойный, хорошо слышный голос. Age 31.\n7. Вар Снежная Кромка — Сумка с углём, мягкие сапоги и карта, на которой отмечены места отдыха. Age 26.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-45cec189-3cd6-46e1-9673-8196bc5a8223.png",
+      "originalSha256": "2661c388dc676f4ecca9681f77004fdc85bfa746cac4aff65a4050c46bb87354",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Тихая Чаша. Characters, in strict cell order:\n1. Дара Медный Ключ — Женщина с короткими седыми волосами и связкой маленьких ключей на поясе. Age 54.\n2. Ивар Веточник — Высокий садовник в потёртом фартуке; на карманах мелом подписаны названия рядов. Age 42.\n3. Нема Круглый Хлеб — Пекарь с зелёной прядью у виска и сухим мучным следом на рукаве. Age 38.\n4. Орел Ровный Поднос — Строго одетый распорядитель с чистым деревянным подносом и усталым взглядом. Age 49.\n5. Веска Без Рамы — Невысокая мастерица в тёмных очках с серебряной застёжкой на вороте. Age 63.\n6. Бохан Моховой Свет — Фонарщик с крошечными листьями на бровях и тщательно начищенной лампой. Age 57.\n7. Сута Белый Уток — Ткачиха с несколькими белыми нитями, завязанными поверх тёмной косы. Age 46.\n8. Элла Дождевой Шаг — Картограф с прозрачными ногтями, которые тихо звенят при прикосновении к бумаге. Age 27.\n9. Фер Дальний Порог — Дорожный носильщик с мягким древесным узором на ладонях и аккуратно собранной сумкой. Age 40.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "mira-bowl",
+      "file": "cards/mira-bowl.webp",
+      "title": "Мира Тёплая Чаша",
+      "subjects": [
+        "mira-bowl"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b5240239055baccaf868f22f71e2a0c04eaf004b571c30efc8196df0266e239e"
+    },
+    {
+      "id": "lev-measure",
+      "file": "cards/lev-measure.webp",
+      "title": "Лев Косая Мера",
+      "subjects": [
+        "lev-measure"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0d5e1d0a35c07ed20e8ff6be881be375d1ac93e086a7b1beee0045ae62acdb45"
+    },
+    {
+      "id": "taren-rope",
+      "file": "cards/taren-rope.webp",
+      "title": "Тарен Узельщик",
+      "subjects": [
+        "taren-rope"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e24073820cf18355b878cf5b8269d51cbf8a1a08f4ccf83fbc0395270272aecf"
+    },
+    {
+      "id": "hava-shade",
+      "file": "cards/hava-shade.webp",
+      "title": "Хава Полутень",
+      "subjects": [
+        "hava-shade"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f054afd38c1fb67fc583f3fdcb78b8c0eff7ca935a686181592a3b082cde3996"
+    },
+    {
+      "id": "demar-cart",
+      "file": "cards/demar-cart.webp",
+      "title": "Демар Семь Колёс",
+      "subjects": [
+        "demar-cart"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cde23dac87bd5107ad6618f1bd88a471b4f09b5d296dffd8c4b26e20a47391d6"
+    },
+    {
+      "id": "seya-thread",
+      "file": "cards/seya-thread.webp",
+      "title": "Сея Тихая Нить",
+      "subjects": [
+        "seya-thread"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "947ef128e3d9b938a0b69db61f7c7e7c747468d4f49572111102b7ed4d9b4b76"
+    },
+    {
+      "id": "var-snow",
+      "file": "cards/var-snow.webp",
+      "title": "Вар Снежная Кромка",
+      "subjects": [
+        "var-snow"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b06470cc50737484d5f54692f25db49046f3f08fece9ed827a2ece227f9038c9"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "demar-cart-travel-kit",
+        "hava-shade-travel-kit",
+        "lev-measure-travel-kit",
+        "mira-bowl-travel-kit",
+        "seya-thread-travel-kit",
+        "taren-rope-travel-kit",
+        "var-snow-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d1f329e09efb967e1f8fce7e21e5e8121422299744762d639654285eda920c95"
+    },
+    {
+      "id": "dara-keeper",
+      "file": "cards/dara-keeper.webp",
+      "title": "Дара Медный Ключ",
+      "subjects": [
+        "dara-keeper"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8048aa320bc19298da5a47cd04fc8f43e810e6fe4f2e711640fdeb739f21f1fa"
+    },
+    {
+      "id": "ivar-grafter",
+      "file": "cards/ivar-grafter.webp",
+      "title": "Ивар Веточник",
+      "subjects": [
+        "ivar-grafter"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8031580d1f4733ee1f39caf9cc925b9aa8c5afbefd8a3a96e5d342c8b424d782"
+    },
+    {
+      "id": "nema-baker",
+      "file": "cards/nema-baker.webp",
+      "title": "Нема Круглый Хлеб",
+      "subjects": [
+        "nema-baker"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "481efbd5262ab7930a1801cdc467d55c6de237e5e13e31b0aaf3bcaa55d14558"
+    },
+    {
+      "id": "orel-purveyor",
+      "file": "cards/orel-purveyor.webp",
+      "title": "Орел Ровный Поднос",
+      "subjects": [
+        "orel-purveyor"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d41ddf907bcc2b09be3bf1562d5c8b5ccacd28a8f909cd979f721ecc821c0651"
+    },
+    {
+      "id": "veska-reflector",
+      "file": "cards/veska-reflector.webp",
+      "title": "Веска Без Рамы",
+      "subjects": [
+        "veska-reflector"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c4547f61ffd681cd1be67fc38ee368cd91b175ccbfbb595989157773ac964225"
+    },
+    {
+      "id": "bohan-lamplighter",
+      "file": "cards/bohan-lamplighter.webp",
+      "title": "Бохан Моховой Свет",
+      "subjects": [
+        "bohan-lamplighter"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5b39f4492bed65bf2a6a31a01d304f4595b376090ff30f27ed1edf6b2546b1a4"
+    },
+    {
+      "id": "suta-weaver",
+      "file": "cards/suta-weaver.webp",
+      "title": "Сута Белый Уток",
+      "subjects": [
+        "suta-weaver"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fb752052e72d9e8f9d4179459a56c440c4d09216a1382583014941ede7a9acf5"
+    },
+    {
+      "id": "ella-surveyor",
+      "file": "cards/ella-surveyor.webp",
+      "title": "Элла Дождевой Шаг",
+      "subjects": [
+        "ella-surveyor"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e9461df6a7b9ca9279d1662375b9d34da06cf254eb20291f541e9830880d5cce"
+    },
+    {
+      "id": "fer-porter",
+      "file": "cards/fer-porter.webp",
+      "title": "Фер Дальний Порог",
+      "subjects": [
+        "fer-porter"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "25a7899b78a2c8d5a6692e7d259c31f767152b2a379e931a1535eb6d789a3ff9"
+    }
+  ]
+}

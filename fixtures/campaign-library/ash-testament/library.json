@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "3434829616b0c65de44b4322186f4578b8bcf606a348f1c9f414b67ce0214057"
+   "digest": "57a2f87c127095e4859698e86e215c39079bb9bdb4cd75ca75612a35cfef0817"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "2e215454242e101a5ca7009f13abf6ded2cff1067931e0f967b2cd72508e5ecf"
+   "digest": "abfae3de70da3c443d9ab3fcfe6b6c8adaa181c67861d6cfb4185867409b3bc8"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "6defacc13ddeffd6806c46f5884e2a5b9f07c957e79c9f6a7cafc12c99d535fb"
+   "digest": "5d55c7289b43aa0cf877729a1217eceb9519154411b064e3b2ef6f75ee069bfb"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "9d9d37c70b765236801cceeb72a9febe60317985040bf8f06b5f903b5fd96e2a"
+   "digest": "5a06666ae336988edcd0840252251500833a46e547db2d023fbe9d0764129f38"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1690,6 +1690,352 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "osip-len.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/illustrations/cards/travel-kit.webp",
+   "sha256": "366c9b640fc3fca61e4c9dfe2113fb5f3b5c7487a48cbd334e6d8780bf32728b",
+   "originalSha256": "eb74f4a19367f0e172b6de209fb3b1749ef9116544b9bcba2f184c431817aa0e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "mark-ostrov-travel-kit",
+     "nika-roi-travel-kit",
+     "stas-remen-travel-kit",
+     "vera-klen-travel-kit",
+     "yara-som-travel-kit"
+    ],
+    "6-players": [
+     "leon-klyuch-travel-kit",
+     "mark-ostrov-travel-kit",
+     "nika-roi-travel-kit",
+     "stas-remen-travel-kit",
+     "vera-klen-travel-kit",
+     "yara-som-travel-kit"
+    ],
+    "7-players": [
+     "ada-vyaz-travel-kit",
+     "leon-klyuch-travel-kit",
+     "mark-ostrov-travel-kit",
+     "nika-roi-travel-kit",
+     "stas-remen-travel-kit",
+     "vera-klen-travel-kit",
+     "yara-som-travel-kit"
+    ],
+    "8-players": [
+     "ada-vyaz-travel-kit",
+     "leon-klyuch-travel-kit",
+     "mark-ostrov-travel-kit",
+     "nika-roi-travel-kit",
+     "osip-len-travel-kit",
+     "stas-remen-travel-kit",
+     "vera-klen-travel-kit",
+     "yara-som-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-efim-krai.webp",
+   "sha256": "93d13ea8f542f563b64e7ae5ae430f871262503576e01359b6d034b33dc40543",
+   "originalSha256": "41939d148971b6c416a6e57666a3b3e9a33b98136084f40f6c627ac842f5e94b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ефим Сажин",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "efim-krai"
+    ],
+    "6-players": [
+     "efim-krai"
+    ],
+    "7-players": [
+     "efim-krai"
+    ],
+    "8-players": [
+     "efim-krai"
+    ]
+   },
+   "file": "efim-krai--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "efim-krai.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-ruma-sedykh.webp",
+   "sha256": "dcaba2056e2e75d3cd99976024bf525d06e839953e0b6d72d09731bc3d99479a",
+   "originalSha256": "41939d148971b6c416a6e57666a3b3e9a33b98136084f40f6c627ac842f5e94b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рума Седых",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "ruma-sedykh"
+    ],
+    "6-players": [
+     "ruma-sedykh"
+    ],
+    "7-players": [
+     "ruma-sedykh"
+    ],
+    "8-players": [
+     "ruma-sedykh"
+    ]
+   },
+   "file": "ruma-sedykh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruma-sedykh.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-kondrat-obukh.webp",
+   "sha256": "766ebee6403688faf53d6f41f67accac949414fcde02c26737814267e751d99a",
+   "originalSha256": "41939d148971b6c416a6e57666a3b3e9a33b98136084f40f6c627ac842f5e94b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кондрат Обух",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "kondrat-obukh"
+    ],
+    "6-players": [
+     "kondrat-obukh"
+    ],
+    "7-players": [
+     "kondrat-obukh"
+    ],
+    "8-players": [
+     "kondrat-obukh"
+    ]
+   },
+   "file": "kondrat-obukh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kondrat-obukh.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-platon-sazhin.webp",
+   "sha256": "90297fd7366f18c094510f9e6c139dd131b8f876c310ee43108bf6f646da3206",
+   "originalSha256": "41939d148971b6c416a6e57666a3b3e9a33b98136084f40f6c627ac842f5e94b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Платон Сажин",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "platon-sazhin"
+    ],
+    "6-players": [
+     "platon-sazhin"
+    ],
+    "7-players": [
+     "platon-sazhin"
+    ],
+    "8-players": [
+     "platon-sazhin"
+    ]
+   },
+   "file": "platon-sazhin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "platon-sazhin.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-olet-morin.webp",
+   "sha256": "b80337401cf0bf87cd454ee7e15bc5e486fada187da6e04f3f1518f189cee970",
+   "originalSha256": "41939d148971b6c416a6e57666a3b3e9a33b98136084f40f6c627ac842f5e94b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олет Морин",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "olet-morin"
+    ],
+    "6-players": [
+     "olet-morin"
+    ],
+    "7-players": [
+     "olet-morin"
+    ],
+    "8-players": [
+     "olet-morin"
+    ]
+   },
+   "file": "olet-morin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olet-morin.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-lidiya-tal.webp",
+   "sha256": "ce2b8d36d0e829cefed490cf1157512d9621e4e6e8586f3c23bce1eb271ef360",
+   "originalSha256": "41939d148971b6c416a6e57666a3b3e9a33b98136084f40f6c627ac842f5e94b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Агафья Свая",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "lidiya-tal"
+    ],
+    "6-players": [
+     "lidiya-tal"
+    ],
+    "7-players": [
+     "lidiya-tal"
+    ],
+    "8-players": [
+     "lidiya-tal"
+    ]
+   },
+   "file": "lidiya-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lidiya-tal.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-arsen-lug.webp",
+   "sha256": "339ed5d0e0d98fad4f73737ccaf50e5ac6d9b3f082e78510869747124513733f",
+   "originalSha256": "35b654eb2f6233d4cbd7ab371f61750a3280609b95f17ce7389bac24b0e665b7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсен Луг",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "arsen-lug"
+    ],
+    "6-players": [
+     "arsen-lug"
+    ],
+    "7-players": [
+     "arsen-lug"
+    ],
+    "8-players": [
+     "arsen-lug"
+    ]
+   },
+   "file": "arsen-lug--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arsen-lug.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-semen-uzlov.webp",
+   "sha256": "3ac765a7a00f9b22ab4854a2864473ad4699554c5c49928e6275c79c433bfc19",
+   "originalSha256": "35b654eb2f6233d4cbd7ab371f61750a3280609b95f17ce7389bac24b0e665b7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Узлов",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "semen-uzlov"
+    ],
+    "6-players": [
+     "semen-uzlov"
+    ],
+    "7-players": [
+     "semen-uzlov"
+    ],
+    "8-players": [
+     "semen-uzlov"
+    ]
+   },
+   "file": "semen-uzlov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "semen-uzlov.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-tikhon-shelest.webp",
+   "sha256": "503bb70eebfeffc5454b414bc0bf2df410c4a477bdbf4d32dce928411698a01c",
+   "originalSha256": "35b654eb2f6233d4cbd7ab371f61750a3280609b95f17ce7389bac24b0e665b7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Игнат Половик",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "tikhon-shelest"
+    ],
+    "6-players": [
+     "tikhon-shelest"
+    ],
+    "7-players": [
+     "tikhon-shelest"
+    ],
+    "8-players": [
+     "tikhon-shelest"
+    ]
+   },
+   "file": "tikhon-shelest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tikhon-shelest.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-nella-ark.webp",
+   "sha256": "3e8b8497c5ef0e8774f8a33a32d7437d66ab681e866345f25c31c7cb892dc693",
+   "originalSha256": "35b654eb2f6233d4cbd7ab371f61750a3280609b95f17ce7389bac24b0e665b7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нелла Арк",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "nella-ark"
+    ],
+    "6-players": [
+     "nella-ark"
+    ],
+    "7-players": [
+     "nella-ark"
+    ],
+    "8-players": [
+     "nella-ark"
+    ]
+   },
+   "file": "nella-ark--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nella-ark.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/ash-testament/assets/table/npcs-dina-vetrova.webp",
+   "sha256": "9ee3699a4bf1a28b4b5b4a0612901bafa37efee74a40bf6a1a7e1aaf8743738a",
+   "originalSha256": "35b654eb2f6233d4cbd7ab371f61750a3280609b95f17ce7389bac24b0e665b7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фёкла Стремя",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "dina-vetrova"
+    ],
+    "6-players": [
+     "dina-vetrova"
+    ],
+    "7-players": [
+     "dina-vetrova"
+    ],
+    "8-players": [
+     "dina-vetrova"
+    ]
+   },
+   "file": "dina-vetrova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dina-vetrova.webp"
   },
   {
    "file": "ash-tract--map.webp",

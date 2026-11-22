@@ -1,0 +1,692 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "room-608-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-606b48cb-aa3b-49bf-9fe9-996f290d031b.png",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Cell 1. Кирилл Савин. Потёртый блокнот, мягкие туфли, складная линейка в чехле.\nCell 2. Галина Труш. Тёмное пальто, простая записная книжка, спокойный низкий голос.\nCell 3. Матвей Осокин. Чистый рабочий пиджак, карандаш за ухом, ладони в старых мозолях.\nCell 4. Рая Белик. Крепкий плащ, короткая стрижка, обычная дорожная трость.\nCell 5. Никита Орелин. Тубус с пустой бумагой, чернильное пятно на манжете.\nCell 6. Дина Шестак. Две ручки разного цвета, плоская папка, внимательный взгляд.\nCell 7. Арсен Холм. Старомодный жилет и конверты с пустыми бланками обращений.\nCell 8. Полина Рудь. Тёмный костюм, карманные карточки, привычка оставлять свободный проход.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/room-608/illustrations/cards/kirill-savin.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/galina-trush.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/matvey-osokin.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/raya-belik.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/nikita-orelin.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/dina-shestak.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/arsen-kholm.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/polina-rud.webp"
+      ]
+    },
+    {
+      "id": "room-608-places-0",
+      "originalFile": "exec-b24e544b-f8d4-4499-b0a2-7b1c0edf5635.png",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Cell 1. Вестибюль «Контура». Латунная стойка, настенные часы, сиденья для ожидания. Здесь инспектор собирает приглашённых специалистов.\nCell 2. Гостевая галерея шестого этажа. Прямая галерея с дверями номеров и лифтовым холлом на западном конце. У 608-го есть обычная табличка с номером.\nCell 3. Номер 608. Прихожая, гостиная, южная спальня. На восточной стене гостиной видна дверь с надписью «Сервизная». Южные окна выходят на глухой двор.\nCell 4. Сервизная 608-го. Небольшая моечная между гостиной и служебным коридором: раковина, полка, две обычные двери. Помещение используется ежедневно.\nCell 5. Восточный служебный коридор. Узкий коридор с номерными дверями сервизных. На юге обычная лестница ведёт к бельевой; её существование никто не скрывает.\nCell 6. Бельевая и площадка лестницы. Сортировочный стол, пустые тележки, шкафы сменной одежды. Сюда выходит служебная лестница; закрытые шкафы принадлежат работникам.\nCell 7. Кабинет управляющей. Кабинет на пятом этаже рядом с бельевой: стол с книгой ключей, опечатанная рабочая сумка управляющей и два стула для посетителей.\nCell 8. Редакционная комната юбилейного вечера. Временный стол общества путешественников: уже напечатанные книги, программа встречи и копии старых отчётов. Документы просматривают при секретаре.\nCell 9. Малый зал отеля. Зал с переносной ширмой и стульями. Здесь можно провести ограниченный показ наблюдений или встречу с работниками.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "room-608-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-62b6de04-08aa-49a0-b44a-ed66e58aafac.png",
+      "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Cell 1. Испуганный взрослый работник. Временные работники 28–54 лет в обычной рабочей одежде. Защищают личные вещи и чужое право на границу, не знают тайны убийства. Условный профиль ближнего боя; магия и огнестрельное оружие отсутствуют.\nCell 2. Гостиничный охранник. Совершеннолетние охранники 30–55 лет, ошибочно считающие указание администрации достаточным основанием закрыть кабинет. Не соучастники убийства, не обладают магией; близкий контакт изображается условными игровыми профилями.\nCell 3. Возбуждённый взрослый слушатель. Посетители юбилейного вечера 35–63 лет, требующие немедленного простого ответа. Вооружены только игровыми условностями ближнего контакта, не служат тайному организатору и ничего не знают сверх услышанного на показе.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "room-608-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5d289cf8-d3a4-4ecf-9e09-3587783757ca.png",
+      "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Шестьсот восьмая комната. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Зинаида Таль. Безупречный серый костюм; пальто висит на отдельной вешалке. Говорит тихо, ожидая, что остальные тоже понизят голос.\nCell 2. Григорий Ракитин. На служебном портрете мужчина в светлом жилете; тело при осмотре закрыто простынёй.\nCell 3. Софья Дрозд. Льняной фартук поверх аккуратного платья; перед ответом складывает полотенце по шву.\nCell 4. Тимур Улан. Форменная куртка, поднос с одним чистым стаканом, заметная усталость.\nCell 5. Павел Резник. Дорогой дорожный костюм, смятый конверт, чашка остывшего чая.",
+      "references": [
+        "campaigns/noir-2026/room-608/illustrations/cards/zinaida-tal.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/grigory-rakitin.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/sofia-drozd.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/timur-ulan.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/pavel-reznik.webp"
+      ]
+    },
+    {
+      "id": "room-608-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d0fa1e8b-05dc-4f0f-b875-a4e861a4b22d.png",
+      "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Шестьсот восьмая комната. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Егор Яшин. Рабочий жилет, бирки на короткой связке ключей, чистый платок для очков.\nCell 2. Инна Рост. Простое пальто, карточки предметов в отдельной папке, осторожная речь.\nCell 3. Мила Судак. Синий жакет, бумажные закладки на столе, аккуратно подрезанные ногти.\nCell 4. Антон Ракитин. Несессер брата, закрытый конверт, усталая щетина.\nCell 5. Нина Лехт. Рабочая блуза, полоска измерительной ленты, уставшие плечи.",
+      "references": [
+        "campaigns/noir-2026/room-608/illustrations/cards/egor-yashin.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/inna-rost.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/mila-sudak.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/anton-rakitin.webp",
+        "campaigns/noir-2026/room-608/illustrations/cards/nina-leht.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "kirill-savin",
+      "title": "Кирилл Савин",
+      "kind": "hero",
+      "subjects": [
+        "kirill-savin"
+      ],
+      "file": "heroes-kirill-savin.webp",
+      "sha256": "2a1ba8c95a9845ff8d07d6cd104fb89c3cbd56fd9ab1cdf3f1606592e054c9be",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 11,
+        "width": 202,
+        "height": 422
+      }
+    },
+    {
+      "key": "galina-trush",
+      "title": "Галина Труш",
+      "kind": "hero",
+      "subjects": [
+        "galina-trush"
+      ],
+      "file": "heroes-galina-trush.webp",
+      "sha256": "d4d35586c004d1d2f10166047731779030ed45b7fe035b70dd2a65672150890d",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 567,
+        "top": 15,
+        "width": 200,
+        "height": 418
+      }
+    },
+    {
+      "key": "matvey-osokin",
+      "title": "Матвей Осокин",
+      "kind": "hero",
+      "subjects": [
+        "matvey-osokin"
+      ],
+      "file": "heroes-matvey-osokin.webp",
+      "sha256": "89c2b6584ca9d688c3331efcc1afddfd459a12a95a8e41a9a81afa9bb0a3ccbf",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1007,
+        "top": 15,
+        "width": 198,
+        "height": 419
+      }
+    },
+    {
+      "key": "raya-belik",
+      "title": "Рая Белик",
+      "kind": "hero",
+      "subjects": [
+        "raya-belik"
+      ],
+      "file": "heroes-raya-belik.webp",
+      "sha256": "689c3038be36aab64b9a9176f132f5ec75584b3edc16336c31a9a23f028ba459",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1432,
+        "top": 12,
+        "width": 221,
+        "height": 421
+      }
+    },
+    {
+      "key": "nikita-orelin",
+      "title": "Никита Орелин",
+      "kind": "hero",
+      "subjects": [
+        "nikita-orelin"
+      ],
+      "file": "heroes-nikita-orelin.webp",
+      "sha256": "972890215e12228be9b5baacfc67c8e181bf3559b0e721009b268dd001cbde6a",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 120,
+        "top": 452,
+        "width": 206,
+        "height": 425
+      }
+    },
+    {
+      "key": "dina-shestak",
+      "title": "Дина Шестак",
+      "kind": "hero",
+      "subjects": [
+        "dina-shestak"
+      ],
+      "file": "heroes-dina-shestak.webp",
+      "sha256": "eb669df2415794e81b524478dbcf018f580026c0aacd19d68d6fa303d08b4928",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 564,
+        "top": 457,
+        "width": 205,
+        "height": 420
+      }
+    },
+    {
+      "key": "arsen-kholm",
+      "title": "Арсен Холм",
+      "kind": "hero",
+      "subjects": [
+        "arsen-kholm"
+      ],
+      "file": "heroes-arsen-kholm.webp",
+      "sha256": "bc946f6aaf694aa257c51840e484425b64a7c05db4a912e0fe89e48e3453589f",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 998,
+        "top": 456,
+        "width": 214,
+        "height": 421
+      }
+    },
+    {
+      "key": "polina-rud",
+      "title": "Полина Рудь",
+      "kind": "hero",
+      "subjects": [
+        "polina-rud"
+      ],
+      "file": "heroes-polina-rud.webp",
+      "sha256": "20aabb8c7ccbb26ffda6c6e6af3ee5d23e5fc0a5df2868111e0c7315ee9695bc",
+      "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+      "generated": "2026-11-22",
+      "sheet": "room-608-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1445,
+        "top": 457,
+        "width": 209,
+        "height": 420
+      }
+    },
+    {
+      "key": "contour-lobby",
+      "title": "Вестибюль «Контура»",
+      "kind": "place",
+      "subjects": [
+        "contour-lobby"
+      ],
+      "file": "places-contour-lobby.webp",
+      "sha256": "361c230d592a9fd8d41fcfb1370b0a07db6091e2284c939080012994d7d7c28a",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "guest-gallery",
+      "title": "Гостевая галерея шестого этажа",
+      "kind": "place",
+      "subjects": [
+        "guest-gallery"
+      ],
+      "file": "places-guest-gallery.webp",
+      "sha256": "d41946ad7893416b836112b07c4ad757aa9815cebc5d5459f7e1993750d45623",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "suite-608",
+      "title": "Номер 608",
+      "kind": "place",
+      "subjects": [
+        "suite-608"
+      ],
+      "file": "places-suite-608.webp",
+      "sha256": "2ca3f6a7db6194ed823faf15f62b86f007f33d36d93defb2ef6f873013bb62a8",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "service-pantry",
+      "title": "Сервизная 608-го",
+      "kind": "place",
+      "subjects": [
+        "service-pantry"
+      ],
+      "file": "places-service-pantry.webp",
+      "sha256": "cd59476272ced6141638fe199aa307f53ded0113a8c91139b734f1959c289dd2",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "service-corridor",
+      "title": "Восточный служебный коридор",
+      "kind": "place",
+      "subjects": [
+        "service-corridor"
+      ],
+      "file": "places-service-corridor.webp",
+      "sha256": "a9fd4a154fb2cbaa80d66b8f81062e07eea94b42d435990c07789e5747c0ce2f",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "linen-room",
+      "title": "Бельевая и площадка лестницы",
+      "kind": "place",
+      "subjects": [
+        "linen-room"
+      ],
+      "file": "places-linen-room.webp",
+      "sha256": "3d2d8b3a1ead86ba9c65608580bf89d9410e5504dc1fe2ac96d5d99e320f5b71",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "manager-office",
+      "title": "Кабинет управляющей",
+      "kind": "place",
+      "subjects": [
+        "manager-office"
+      ],
+      "file": "places-manager-office.webp",
+      "sha256": "5ff15df9d661fb9c53ced3981b9e7bde2d39e5e47f52f17bdffc10764b4478ba",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "program-room",
+      "title": "Редакционная комната юбилейного вечера",
+      "kind": "place",
+      "subjects": [
+        "program-room"
+      ],
+      "file": "places-program-room.webp",
+      "sha256": "523822ddaa495f4264a599738fe1390ac90ebc7ce1b9794162fcfd17ce595435",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "assembly-room",
+      "title": "Малый зал отеля",
+      "kind": "place",
+      "subjects": [
+        "assembly-room"
+      ],
+      "file": "places-assembly-room.webp",
+      "sha256": "6b31a8a15a281fd0a7143df2914024504f7fef984b24f509dd567b24ab89127a",
+      "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+      "generated": "2026-11-22",
+      "sheet": "room-608-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-5578771f57",
+      "title": "Испуганный взрослый работник",
+      "kind": "foe",
+      "subjects": [
+        "linen-dispute-foe-1",
+        "linen-dispute-foe-2",
+        "linen-dispute-foe-3",
+        "linen-dispute-foe-4",
+        "linen-dispute-foe-5",
+        "linen-dispute-foe-6"
+      ],
+      "file": "foes-foe-5578771f57.webp",
+      "sha256": "7f4cc31766f7674b030e1022c966b1b5aa1983498fb9349af3a05f26c88eb245",
+      "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+      "generated": "2026-11-22",
+      "sheet": "room-608-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 147,
+        "top": 27,
+        "width": 397,
+        "height": 673
+      }
+    },
+    {
+      "key": "foe-403dcc39be",
+      "title": "Гостиничный охранник",
+      "kind": "foe",
+      "subjects": [
+        "cabinet-pressure-foe-1",
+        "cabinet-pressure-foe-2",
+        "cabinet-pressure-foe-3",
+        "cabinet-pressure-foe-4",
+        "cabinet-pressure-foe-5",
+        "cabinet-pressure-foe-6"
+      ],
+      "file": "foes-foe-403dcc39be.webp",
+      "sha256": "0f58df475f2fea0da8b0ebcf2b525578c5c03e53dd681cca44d68e057c749be0",
+      "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+      "generated": "2026-11-22",
+      "sheet": "room-608-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 854,
+        "top": 16,
+        "width": 465,
+        "height": 684
+      }
+    },
+    {
+      "key": "foe-4705deb096",
+      "title": "Возбуждённый взрослый слушатель",
+      "kind": "foe",
+      "subjects": [
+        "audience-exit-foe-1",
+        "audience-exit-foe-2",
+        "audience-exit-foe-3",
+        "audience-exit-foe-4",
+        "audience-exit-foe-5",
+        "audience-exit-foe-6"
+      ],
+      "file": "foes-foe-4705deb096.webp",
+      "sha256": "1f8339080a3e378f6c50f5066b01f6de96c328ac22d6427edb5aad7676eb7d48",
+      "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+      "generated": "2026-11-22",
+      "sheet": "room-608-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1583,
+        "top": 22,
+        "width": 536,
+        "height": 678
+      }
+    },
+    {
+      "key": "zinaida-tal",
+      "title": "Зинаида Таль",
+      "kind": "npc",
+      "subjects": [
+        "zinaida-tal"
+      ],
+      "file": "npcs-zinaida-tal.webp",
+      "sha256": "93e4707496267a8504b8e227b26ff0fcd4bf6f2687a951d0265140aea70de1d2",
+      "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 118,
+        "top": 20,
+        "width": 276,
+        "height": 470
+      }
+    },
+    {
+      "key": "grigory-rakitin",
+      "title": "Григорий Ракитин",
+      "kind": "npc",
+      "subjects": [
+        "grigory-rakitin"
+      ],
+      "file": "npcs-grigory-rakitin.webp",
+      "sha256": "f4298475b7e3e530992da7ab3c8942aa9ad6df3701598fa31259b0543ea03607",
+      "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 608,
+        "top": 21,
+        "width": 322,
+        "height": 468
+      }
+    },
+    {
+      "key": "sofia-drozd",
+      "title": "Софья Дрозд",
+      "kind": "npc",
+      "subjects": [
+        "sofia-drozd"
+      ],
+      "file": "npcs-sofia-drozd.webp",
+      "sha256": "e56399003fb50c6253deb224a1911eeeb9bd4fc74b5921a8bcda593d33e5d309",
+      "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1141,
+        "top": 21,
+        "width": 279,
+        "height": 469
+      }
+    },
+    {
+      "key": "timur-ulan",
+      "title": "Тимур Улан",
+      "kind": "npc",
+      "subjects": [
+        "timur-ulan"
+      ],
+      "file": "npcs-timur-ulan.webp",
+      "sha256": "094342dcf846086b9e7c86fae53fc6ddd084214f316f73a3c597a66cb934959c",
+      "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 119,
+        "top": 527,
+        "width": 275,
+        "height": 475
+      }
+    },
+    {
+      "key": "pavel-reznik",
+      "title": "Павел Резник",
+      "kind": "npc",
+      "subjects": [
+        "pavel-reznik"
+      ],
+      "file": "npcs-pavel-reznik.webp",
+      "sha256": "63d9ed0c7e4ae817199ba8bd0bc3d39acf6fe2c5c665c20b6d096832bd222956",
+      "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 595,
+        "top": 543,
+        "width": 347,
+        "height": 458
+      }
+    },
+    {
+      "key": "egor-yashin",
+      "title": "Егор Яшин",
+      "kind": "npc",
+      "subjects": [
+        "egor-yashin"
+      ],
+      "file": "npcs-egor-yashin.webp",
+      "sha256": "84cabb377239a8bef60fcab2b4933fe0cd7130a7cbcdb0c280fd5569a3af031b",
+      "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 127,
+        "top": 19,
+        "width": 261,
+        "height": 479
+      }
+    },
+    {
+      "key": "inna-rost",
+      "title": "Инна Рост",
+      "kind": "npc",
+      "subjects": [
+        "inna-rost"
+      ],
+      "file": "npcs-inna-rost.webp",
+      "sha256": "f58a0054f8659e985d68f95c664a3987583885e2bd18114a97fcf4d8fdd37d0e",
+      "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 636,
+        "top": 18,
+        "width": 263,
+        "height": 495
+      }
+    },
+    {
+      "key": "mila-sudak",
+      "title": "Мила Судак",
+      "kind": "npc",
+      "subjects": [
+        "mila-sudak"
+      ],
+      "file": "npcs-mila-sudak.webp",
+      "sha256": "074c591b6f679088700a8c739f8588dd10680b92c7a444200657fa9880b55ae9",
+      "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1134,
+        "top": 20,
+        "width": 297,
+        "height": 477
+      }
+    },
+    {
+      "key": "anton-rakitin",
+      "title": "Антон Ракитин",
+      "kind": "npc",
+      "subjects": [
+        "anton-rakitin"
+      ],
+      "file": "npcs-anton-rakitin.webp",
+      "sha256": "a8408d2754cf90d73d9ee509252d0e10274e294197e9b3bec7be6d12923b11d4",
+      "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 99,
+        "top": 530,
+        "width": 310,
+        "height": 475
+      }
+    },
+    {
+      "key": "nina-leht",
+      "title": "Нина Лехт",
+      "kind": "npc",
+      "subjects": [
+        "nina-leht"
+      ],
+      "file": "npcs-nina-leht.webp",
+      "sha256": "795effe9a98439b34e25b9fd43e78947e0beb4b4a24af1c5bc70fcb9d2ad7b85",
+      "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+      "generated": "2026-11-22",
+      "sheet": "room-608-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 590,
+        "top": 529,
+        "width": 330,
+        "height": 479
+      }
+    }
+  ]
+}

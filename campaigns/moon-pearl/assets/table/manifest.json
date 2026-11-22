@@ -1,0 +1,355 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "moon-pearl-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-455dd61e-99ac-4efe-acd2-6fc03c6f2bb2.png",
+      "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+      "columns": 4,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Перламутр · Overlapping mother-of-pearl scallops and three ripples in teal enamel. Cell 1. Торен Риф. Коренастый дварф с медной бородой, бирюзовым плащом и круглым щитом с волной. На поясе простая серебристая звёздочка.\nCell 2. Лея Скат. Полурослик с тёмной косой, коралловой курткой и сумкой для находок. На шее маленький пустой стеклянный футляр.\nCell 3. Амалия Морева. Взрослая женщина с тёплой смуглой кожей, волнистыми тёмными волосами и синим дорожным платьем. На посохе маленький ракушечный колокольчик.\nCell 4. Эмиль Стеклосвет. Эльф с короткими серебристыми волосами, круглой оправой очков и тёмно-синим жилетом. В руках латунная рамка с цветной линзой.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/moon-pearl/assets/runtime/toren.webp",
+        "campaigns/moon-pearl/assets/runtime/leya.webp",
+        "campaigns/moon-pearl/assets/runtime/amalia.webp",
+        "campaigns/moon-pearl/assets/runtime/emil.webp"
+      ]
+    },
+    {
+      "id": "moon-pearl-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-a421d560-5f1b-4e44-a600-af8471d6ba41.png",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Тайна Лунной Жемчужины. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Капитан Нора Волнорез. Пожилая женщина с серебряными волосами, синим капитанским пальто, золотыми пуговицами и доброй морщинкой у глаз.\nCell 2. Эльма Ракит. Высокая женщина с каштановой косой, белым музейным жакетом и бирюзовыми перчатками.\nCell 3. Люсьен Коралл. Ухоженный мужчина с узкими усами, винным бархатным сюртуком и золотой заколкой в форме коралла.\nCell 4. Бубо. Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой.\nCell 5. Дора Стеклянница. Дварфийка с тёмной кожей, белыми короткими кудрями, медными очками и абрикосовым рабочим фартуком.\nCell 6. Остин Восемь-Пауз. Сиреневый осьминог с маленьким золотым жилетом и восемью выразительными руками; сидит у круглого бассейна.",
+      "references": [
+        "campaigns/moon-pearl/assets/runtime/nora.webp",
+        "campaigns/moon-pearl/assets/runtime/elma.webp",
+        "campaigns/moon-pearl/assets/runtime/lucien.webp",
+        "campaigns/moon-pearl/assets/runtime/bubo.webp",
+        "campaigns/moon-pearl/assets/runtime/dora.webp",
+        "campaigns/moon-pearl/assets/runtime/ostin.webp"
+      ]
+    },
+    {
+      "id": "moon-pearl-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-21a3cdc5-9b31-41d9-94be-0b116731b40f.png",
+      "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Тайна Лунной Жемчужины. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Велла Листоплав. Добродушная морская саламандра с бирюзовой кожей, коралловыми наружными жабрами и соломенной садовой шляпой.\nCell 2. Архивариус Ур. Пожилой черепахообразный житель в чернильном жилете, с круглыми очками и закладкой на запястье.\nCell 3. Ирис Береговая. Женщина с тёмными короткими волосами, перламутровым плащом и коралловой лентой на папке.\nCell 4. Служитель Пинна. Худой пожилой человек в перламутровом жилете, с латунным молотком на шнурке и книгой расписания под мышкой.\nCell 5. Тимоха Окунь. Долговязый подросток в великоватой рыбацкой куртке, с ободранными коленками и сумкой разносчика через плечо.",
+      "references": [
+        "campaigns/moon-pearl/assets/runtime/vella.webp",
+        "campaigns/moon-pearl/assets/runtime/ur.webp",
+        "campaigns/moon-pearl/assets/runtime/iris.webp",
+        "campaigns/moon-pearl/assets/runtime/pinna.webp",
+        "campaigns/moon-pearl/assets/runtime/timokha.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "toren",
+      "title": "Торен Риф",
+      "kind": "hero",
+      "subjects": [
+        "toren"
+      ],
+      "file": "heroes-toren.webp",
+      "sha256": "f95993eaa03a44da2c98d908c5f7c1674ff75854b8177b7763687fe676f6a464",
+      "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 78,
+        "top": 66,
+        "width": 386,
+        "height": 610
+      }
+    },
+    {
+      "key": "leya",
+      "title": "Лея Скат",
+      "kind": "hero",
+      "subjects": [
+        "leya"
+      ],
+      "file": "heroes-leya.webp",
+      "sha256": "0064b9af3f572e97f9c2d249eeeaa30d96dea8daf1126a47dd559b20c3123b74",
+      "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 642,
+        "top": 63,
+        "width": 326,
+        "height": 613
+      }
+    },
+    {
+      "key": "amalia",
+      "title": "Амалия Морева",
+      "kind": "hero",
+      "subjects": [
+        "amalia"
+      ],
+      "file": "heroes-amalia.webp",
+      "sha256": "25d651e0a2fc38ce0ff7aed548e57e0aaf4a07723e5a71c9c5f7d7f67c7a20d2",
+      "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1186,
+        "top": 44,
+        "width": 336,
+        "height": 632
+      }
+    },
+    {
+      "key": "emil",
+      "title": "Эмиль Стеклосвет",
+      "kind": "hero",
+      "subjects": [
+        "emil"
+      ],
+      "file": "heroes-emil.webp",
+      "sha256": "1c5194aa76203f5e9de0c15f7d99521c9a1a879357de1bd56c8af3caa07280a2",
+      "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1731,
+        "top": 38,
+        "width": 323,
+        "height": 638
+      }
+    },
+    {
+      "key": "nora",
+      "title": "Капитан Нора Волнорез",
+      "kind": "npc",
+      "subjects": [
+        "nora"
+      ],
+      "file": "npcs-nora.webp",
+      "sha256": "7f961ad7fceb9ab575f4a858d4fcdc89213fd741196b739581b6e1282368114f",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 116,
+        "top": 0,
+        "width": 346,
+        "height": 508
+      }
+    },
+    {
+      "key": "elma",
+      "title": "Эльма Ракит",
+      "kind": "npc",
+      "subjects": [
+        "elma"
+      ],
+      "file": "npcs-elma.webp",
+      "sha256": "2c8c89f54dfe617cbef5bb7c8df4b338a2a944a97f24564c2d5034c523a465c2",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 474,
+        "top": 0,
+        "width": 478,
+        "height": 521
+      }
+    },
+    {
+      "key": "lucien",
+      "title": "Люсьен Коралл",
+      "kind": "npc",
+      "subjects": [
+        "lucien"
+      ],
+      "file": "npcs-lucien.webp",
+      "sha256": "abac4d77951c3e9327de82aef820fea7c8e1837501de077c1097e7f055388bce",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1125,
+        "top": 0,
+        "width": 296,
+        "height": 518
+      }
+    },
+    {
+      "key": "bubo",
+      "title": "Бубо",
+      "kind": "npc",
+      "subjects": [
+        "bubo"
+      ],
+      "file": "npcs-bubo.webp",
+      "sha256": "8129d8b642401d2400bf284d38680a760bb1b844bc676e3d9c2e133839ad6fa6",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 79,
+        "top": 630,
+        "width": 347,
+        "height": 361
+      }
+    },
+    {
+      "key": "dora",
+      "title": "Дора Стеклянница",
+      "kind": "npc",
+      "subjects": [
+        "dora"
+      ],
+      "file": "npcs-dora.webp",
+      "sha256": "4bc46c88c70233f6802c5ea0c00eca59f694ebfb32160e8b51b8949b99145429",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 595,
+        "top": 530,
+        "width": 347,
+        "height": 494
+      }
+    },
+    {
+      "key": "ostin",
+      "title": "Остин Восемь-Пауз",
+      "kind": "npc",
+      "subjects": [
+        "ostin"
+      ],
+      "file": "npcs-ostin.webp",
+      "sha256": "49264b40784fc73e7c615c96a3dd4a05ba7e3b27c105a08bd606145bc51ae49a",
+      "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 1077,
+        "top": 558,
+        "width": 396,
+        "height": 443
+      }
+    },
+    {
+      "key": "vella",
+      "title": "Велла Листоплав",
+      "kind": "npc",
+      "subjects": [
+        "vella"
+      ],
+      "file": "npcs-vella.webp",
+      "sha256": "2e43a995026d8573ddd01fb485021b365fa0472a2228b7784a53b512110ef931",
+      "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 122,
+        "top": 16,
+        "width": 267,
+        "height": 470
+      }
+    },
+    {
+      "key": "ur",
+      "title": "Архивариус Ур",
+      "kind": "npc",
+      "subjects": [
+        "ur"
+      ],
+      "file": "npcs-ur.webp",
+      "sha256": "7a6825492ba0a27bcac6cfed4ac8611c3e4c41b025e7af9e5e3666d7be54ddaa",
+      "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 602,
+        "top": 50,
+        "width": 322,
+        "height": 430
+      }
+    },
+    {
+      "key": "iris",
+      "title": "Ирис Береговая",
+      "kind": "npc",
+      "subjects": [
+        "iris"
+      ],
+      "file": "npcs-iris.webp",
+      "sha256": "cdb5b6f8d9bd43497531fc83df5534a601788d2c205116cd467f2bff098a2743",
+      "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1144,
+        "top": 18,
+        "width": 285,
+        "height": 465
+      }
+    },
+    {
+      "key": "pinna",
+      "title": "Служитель Пинна",
+      "kind": "npc",
+      "subjects": [
+        "pinna"
+      ],
+      "file": "npcs-pinna.webp",
+      "sha256": "da28a5663de26ce7a7164b2ca60ba6a83ed6eb1c1e31e225de7e03f04a11213c",
+      "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 117,
+        "top": 525,
+        "width": 276,
+        "height": 475
+      }
+    },
+    {
+      "key": "timokha",
+      "title": "Тимоха Окунь",
+      "kind": "npc",
+      "subjects": [
+        "timokha"
+      ],
+      "file": "npcs-timokha.webp",
+      "sha256": "6c96aa61abc5098d29bf5a93b2333ca6ae653ae4faae2cb1c083d2776ac76e58",
+      "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+      "generated": "2026-11-22",
+      "sheet": "moon-pearl-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 614,
+        "top": 526,
+        "width": 288,
+        "height": 473
+      }
+    }
+  ]
+}

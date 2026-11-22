@@ -1,0 +1,136 @@
+{
+  "region": "nether-reaches",
+  "name": "Карта · Низовье",
+  "description": "План местности «Низовье». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "wreck-shore",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "trial-ledge",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "second-end-camp",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "grave-slope",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "underbed-way",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "seized-boathouse",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "silent-shelf",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "rootless-river",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "last-landing",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "upward-mouth",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [
+    {
+      "from": "wreck-shore",
+      "to": "trial-ledge",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "trial-ledge",
+      "to": "second-end-camp",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "second-end-camp",
+      "to": "grave-slope",
+      "miles": 1,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "grave-slope",
+      "to": "underbed-way",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "underbed-way",
+      "to": "silent-shelf",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "wreck-shore",
+      "to": "seized-boathouse",
+      "miles": 3,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "seized-boathouse",
+      "to": "rootless-river",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "rootless-river",
+      "to": "last-landing",
+      "miles": 3,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "last-landing",
+      "to": "upward-mouth",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "grave-slope",
+      "to": "seized-boathouse",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "silent-shelf",
+      "to": "upward-mouth",
+      "miles": 1,
+      "terrain": "coastal",
+      "road": false
+    }
+  ]
+}

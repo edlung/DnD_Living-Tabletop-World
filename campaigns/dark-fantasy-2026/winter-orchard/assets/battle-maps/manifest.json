@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "mirror-cut.webp",
+      "sha256": "5382c0a47cc190e865a69aa0d1ae429ade5d6cebccb54ae7a24abb89906280f2",
+      "originalSha256": "a3b021d5cb3dabba413b4818ab1e97345c551346f5b93ca63d9293247ac42eb6",
+      "originalFile": "exec-26dedf1c-419f-4c98-8819-4682a288c026.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зеркальный разрез. Visible scenery: Овраг, где плоские камни отражают свет без солнца, а отражения иногда запаздывают на один жест.. World style: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "mirror-cut",
+      "encounter": "mirror-echoes",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "moss-well.webp",
+      "sha256": "0d8d2b7a92b795132000fcb987389397c6f868b0551d29351bc9d11f7299242f",
+      "originalSha256": "791b229614a54e4815a282896b37eb59a7319614abf13fad530cbbc1ce536eba",
+      "originalFile": "exec-b05268d8-1a64-4d38-b295-10f476696363.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Моховой колодец. Visible scenery: Широкая сухая цистерна с лестницей, светящимся мхом и подвешенными фонарями.. World style: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "moss-well",
+      "encounter": "lamp-wickers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "white-ward.webp",
+      "sha256": "5d22e9f92b1f23232b0423839f2ff197efd7f8481017d4637e13217fb734d08b",
+      "originalSha256": "14c5b11f99c3b35e0c6dbfa603c8d5dd1651069127738929e71d418c4a9907cc",
+      "originalFile": "exec-696518ae-6c04-48e3-bdb7-0fac02cf91ea.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Белая палата. Visible scenery: Гостевой дом с просторной общей комнатой и личными занавесями; каждая дверь открывается изнутри.. World style: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "white-ward",
+      "encounter": "white-ushers",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

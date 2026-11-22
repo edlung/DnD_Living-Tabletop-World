@@ -1,0 +1,397 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-13291eec-491d-4d39-aa93-24ca39818d83.png",
+      "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Дом Медный Напёрсток. Characters, in strict cell order:\n1. Яра Корин — Короткие медные волосы, стёганый жилет, рабочие перчатки с разноцветными заплатами; щит теперь похож на большую пуговицу. Age 19.\n2. Лис Овст — Тёмные кудри под плоской шапкой, карманный блокнот, на рукаве следы угля; мягкие сапоги почти не слышны на ткани. Age 27.\n3. Неда Рыжий Шов — Серебристая прядь в рыжей косе, зелёный платок и оловянная чашка на поясе; на перчатке вышита открытая ладонь. Age 46.\n4. Эм Раст — Прямые чёрные волосы, широкая куртка, мелки в петлях пояса; очки перевязаны тонкой тесьмой. Age 16.\n5. Тавр Липовый — Крупные ладони, седая борода, жёлтый шарф; привычная трость уменьшилась до гибкого прутика. Age 53.\n6. Сея Складка — Один рукав в клетку, другой полосатый, лёгкая сумка и булавки с тупыми головками; улыбается перед трудным вопросом. Age 22.\n7. Вен Ясень — Смуглое лицо, короткая светлая стрижка, плащ с карманами для семян; деревянный знак ростка висит на шнурке. Age 17.\n8. Дорна Янтарная — Длинные седые волосы в узле, фиолетовый фартук и прозрачные образцы в коробочке; на пальце простое деревянное кольцо. Age 61.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-a665a9a4-b772-4e8c-9348-0ac9b4643a9d.png",
+      "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Дом Медный Напёрсток. Characters, in strict cell order:\n1. Арда Стежинка — Ладонница в фартуке с медной застёжкой; носит катушку как переносной рабочий стол. Age 41.\n2. Брун Ложечный — Ладонник с плетёным нагрудником и крышечкой вместо щита; на поясе ключ от кладовой. Age 35.\n3. Сила Пыльцевей — Ладонница в мягкой куртке, на плечах защитные тканевые лепестки; руки пахнут сушёной мелиссой. Age 29.\n4. Мур Чашечник — Ладонник в водостойком переднике, с крошечными керамическими флягами на деревянной раме. Age 58.\n5. Рем Мерочник — Ладонник в дорожной накидке с пришитой мерной полосой, носит большой лист как складную ширму. Age 22.\n6. Вельда Тихорукая — Великанша в выцветшем синем платье, с толстыми очками и аккуратными переплётными мозолями; рядом складная опора для отдыха. Age 68.\n7. Кем Верёвочный — Молодой великан с засученными рукавами, поясом для бечёвки и шляпой, измятой о дверной косяк. Age 24.\n8. Оба Крепица — Великанша с широким поясом, на котором закреплены образцы тканей; носит круглые деревянные серьги. Age 44.\n9. Песка Листовая — Ладонница в соломенной шляпе, с сумкой черепков, на которых выцарапаны наблюдения за растениями. Age 63.\n10. Тен Пряжка — Ладонник в жилете из лоскутов, с широкой пряжкой на плече и тележкой для добровольно отданных вещей. Age 31.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "yara-corin",
+      "file": "cards/yara-corin.webp",
+      "title": "Яра Корин",
+      "subjects": [
+        "yara-corin"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "91132f0d6699da1ac583adc5b2322c41fae79308ba910cd010be5610fb3e83b3"
+    },
+    {
+      "id": "lis-ovst",
+      "file": "cards/lis-ovst.webp",
+      "title": "Лис Овст",
+      "subjects": [
+        "lis-ovst"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9b61037ce4ac1db3d0b777d7af3b26acc3a6ee31b1b87ce5e45168ee7cea7122"
+    },
+    {
+      "id": "neda-seam",
+      "file": "cards/neda-seam.webp",
+      "title": "Неда Рыжий Шов",
+      "subjects": [
+        "neda-seam"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "130af5a7e01134015517151785d747fbcd4516379538c314d63b42135d675444"
+    },
+    {
+      "id": "em-rast",
+      "file": "cards/em-rast.webp",
+      "title": "Эм Раст",
+      "subjects": [
+        "em-rast"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c0e3bbc727f7ae21ac274c5f70f022e5985da1ac9ac2cf086f75450d589d5c26"
+    },
+    {
+      "id": "tavr-linden",
+      "file": "cards/tavr-linden.webp",
+      "title": "Тавр Липовый",
+      "subjects": [
+        "tavr-linden"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bc26e7df0e551abd5c3b97ef6811c96f81c49cada77886a0f54ed2efe3884abf"
+    },
+    {
+      "id": "seya-fold",
+      "file": "cards/seya-fold.webp",
+      "title": "Сея Складка",
+      "subjects": [
+        "seya-fold"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c4d0e78a0c9f750e3ddb28632cef163acff31cc6509cb998b32321aea7041b1d"
+    },
+    {
+      "id": "ven-ash",
+      "file": "cards/ven-ash.webp",
+      "title": "Вен Ясень",
+      "subjects": [
+        "ven-ash"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "262acdfc54f252ee60344c265aed9020be726446f07e1e02e9697058d85305a7"
+    },
+    {
+      "id": "dorna-amber",
+      "file": "cards/dorna-amber.webp",
+      "title": "Дорна Янтарная",
+      "subjects": [
+        "dorna-amber"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2a57f038a811925bb99f233083cbe44d5d3c188718b573783dc126662df9e996"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "dorna-amber-travel-kit",
+        "em-rast-travel-kit",
+        "lis-ovst-travel-kit",
+        "neda-seam-travel-kit",
+        "seya-fold-travel-kit",
+        "tavr-linden-travel-kit",
+        "ven-ash-travel-kit",
+        "yara-corin-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "011f4f66ad9bfbf7b83e97b65a24df5bcfdc9fd9d43e591e609ed918a8d7f763"
+    },
+    {
+      "id": "arda-spool",
+      "file": "cards/arda-spool.webp",
+      "title": "Арда Стежинка",
+      "subjects": [
+        "arda-spool"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fa78b7081cb0dc50bde666c6151e9111512a624ddb671fc1ca64622d0f66ffb7"
+    },
+    {
+      "id": "brun-ladle",
+      "file": "cards/brun-ladle.webp",
+      "title": "Брун Ложечный",
+      "subjects": [
+        "brun-ladle"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dffe92d99bba491d76e6e4da5fc4a2b895ab41da0f4a2879a1058ef1d48f383b"
+    },
+    {
+      "id": "sila-pollen",
+      "file": "cards/sila-pollen.webp",
+      "title": "Сила Пыльцевей",
+      "subjects": [
+        "sila-pollen"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6666eeab3a9a28054a822b80dd3ad7976cb1009e9a475b0a05eaf968a94f71ae"
+    },
+    {
+      "id": "mur-vessels",
+      "file": "cards/mur-vessels.webp",
+      "title": "Мур Чашечник",
+      "subjects": [
+        "mur-vessels"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "59027ee30324720a8f6197bbae6d5c7590c2bc3dfdf387393c8102fc2fc96449"
+    },
+    {
+      "id": "rem-measure",
+      "file": "cards/rem-measure.webp",
+      "title": "Рем Мерочник",
+      "subjects": [
+        "rem-measure"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5723d93af4761f28d192a566e4580ff980f1247bff816f64db7fbe9ddab7dc58"
+    },
+    {
+      "id": "velda-home",
+      "file": "cards/velda-home.webp",
+      "title": "Вельда Тихорукая",
+      "subjects": [
+        "velda-home"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dca566fdab50de5cc1b44f1657716558a8db2694ac34b2c9157f6da0d797ac58"
+    },
+    {
+      "id": "kem-cord",
+      "file": "cards/kem-cord.webp",
+      "title": "Кем Верёвочный",
+      "subjects": [
+        "kem-cord"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c03171cf8641f6e1a139300bff08c9b93e41394702bbf94dd5a65a750c105775"
+    },
+    {
+      "id": "oba-linen",
+      "file": "cards/oba-linen.webp",
+      "title": "Оба Крепица",
+      "subjects": [
+        "oba-linen"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d814cd3b3097baca334d3f9b8dc9e85684279e556235c65e9ceca36a01f95ddc"
+    },
+    {
+      "id": "peska-leaf",
+      "file": "cards/peska-leaf.webp",
+      "title": "Песка Листовая",
+      "subjects": [
+        "peska-leaf"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "853dc854f865bcd08c9a3552be2b795bf22e200bfe3b19ff06d28cc347e7ae16"
+    },
+    {
+      "id": "ten-buckle",
+      "file": "cards/ten-buckle.webp",
+      "title": "Тен Пряжка",
+      "subjects": [
+        "ten-buckle"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "585d68a8878796e5933081f1a09b0df76a39d78dff4ef0032a47fca8cbcb1a07"
+    }
+  ]
+}

@@ -1,0 +1,713 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "familiar-school-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-40e0e542-ea9c-468c-a404-4347f7e51bbb.png",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Cell 1. Нерин Сосновый Шаг. Короткий плащ, потёртые перчатки и аккуратно подписанные верёвочные мешки.\nCell 2. Тася Угольная Лента. Высокие сапоги, угольные карандаши за ремешком и свободные карманы для собственных записок.\nCell 3. Омел Тёплый Камень. Медный знак очага на шнурке, дорожная сумка и закатанные до локтя рукава.\nCell 4. Элша Семь Полей. Широкий капюшон, разные застёжки на рукавах и тетрадь с полями шире самого текста.\nCell 5. Велт Крапчатый Щит. Седая прядь, короткий дорожный щит и учебный значок, приколотый вверх ногами по рассеянности.\nCell 6. Кора Кривой Штрих. Клетчатый платок и колпачки на карандашах, привязанные к сумке толстой ниткой.\nCell 7. Рин Янтарная Пуговица. Яркий жилет, мягкие сапоги и старая деревянная линейка вместо торжественного указательного жезла.\nCell 8. Яна Неровная Ступень. Посох удобной высоты, красные тесёмки на сумках и лёгкие наколенники поверх дорожной одежды.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/nerin.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/tasya.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/omel.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/elsha.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/velt.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/kora.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/rin.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/yana.webp"
+      ]
+    },
+    {
+      "id": "familiar-school-places-0",
+      "originalFile": "exec-3970653c-3349-4f18-91ab-6743f1684690.png",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Cell 1. Двор Второго Крыла. Низкие учебные корпуса окружают двор с лестницами, верёвками и скамьями разной высоты. У ворот висит доска для добровольных полевых пар.\nCell 2. Сквозной чердак. Просторный чердак без одной стены смотрит прямо на склон. Под потолком хранятся парусные полотна и тренировочные корзины, внизу стоят обычные лестницы.\nCell 3. Щетинистый склон. Высокая жёсткая трава шуршит даже без ветра. Круглые камни образуют три расходящиеся полосы, а сбоку проходит широкая козья тропа.\nCell 4. Белая нора. Под светлым корнем открывается прохладная щель размером с дверь. Сухая боковая галерея выходит на нижнюю террасу; у входа можно оставить человека на виду.\nCell 5. Три уступа. Три широкие полки поднимаются над заросшим оврагом. Между ними есть короткие крутые лазки и долгий пологий обход с площадками для отдыха.\nCell 6. Висячая расселина. По краям узкой расселины растут гибкие деревья. Здесь удобно закреплять верёвки, а дно можно обойти по открытой каменной кромке.\nCell 7. Полотняная галерея. На узкой просеке между деревьями натянуты учебные тенты и сухие верёвочные сети. Между полотнами оставлены боковые лазки, а на дальней стороне видны низкие колышки.\nCell 8. Гулкая поляна. На открытой поляне даже тихий голос хорошо слышен с другой стороны. Здесь стоит полевой лагерь с низкими палатками и широким местом для общей карты.\nCell 9. Раздвоенная скала. Два скальных зубца оставляют короткий проход к школе. Сбоку тянется пологий обход с неудобным поворотом для больших вещей; на верхней террасе может собраться вся группа.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "familiar-school-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-713314b1-6311-46b7-8267-23201a89584b.png",
+      "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Cell 1. Холщовая учебная стойка. Оживлённый школьный манекен на коротких деревянных ногах, с мягкими тренировочными лапами. Это обычный поддерживаемый противник в сказочном облике, не разумный фамильяр и не новый боевой класс.\nCell 2. Чучело в полосатом чехле. Заранее выставленный учебный манекен с мягкой набивкой и полосатой тканью. Круча остаётся говорящим NPC; этот профиль не добавляет ему неуязвимость или особые способности.\nCell 3. Чучело с красной лентой. Полевой манекен, стоящий на виду у опоры. Его мягкие лапы и деревянные ноги используют тот же обычный профиль; никакого заклинания разрыва у него нет.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "familiar-school-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c2a8b7ab-121f-4d95-a1c9-45c732fd42ac.png",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Школа перепутанных фамильяров. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Мара Вишневая Ветка. Преподавательница с широким поясом, короткими волосами и следами мела на локте.\nCell 2. Крен. Крупный серый заяц с четырьмя ушами, жилетом без застёжек и маленькой полевой сумкой.\nCell 3. Руба. Саламандра длиной с предплечье, с янтарным пузом и плетёными накладками на лапах.\nCell 4. Лоск. Пёс размером с лису, с широкими мягкими крыльями и кожаным футляром для собственных мелочей.\nCell 5. Ивен Низкий Карниз. Ученик с коротким дорожным копьём, флягой в сетке и ровно зашитыми заплатами.\nCell 6. Брус. Разумный ёж с широкими мягкими иглами, похожими на плоские щепки, и сумкой рисунков.",
+      "references": [
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/mara.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/kren.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/ruba.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/losk.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/iven.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/brus.webp"
+      ]
+    },
+    {
+      "id": "familiar-school-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-80bb1690-97f5-4dc6-8a7f-411c94ad1ec7.png",
+      "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Школа перепутанных фамильяров. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Шелла. Маленькая лисица с восемью тонкими лапами и серебристым узором вдоль спины.\nCell 2. Нема. Чёрная ворона с белым ободком вокруг клюва и очками на шёлковой тесьме.\nCell 3. Ода Луговая Кромка. Смотрительница полевого лагеря в широких брюках, с деревянным браслетом и связкой обычных колышков.\nCell 4. Мила Короткий Рукав. Ученица в длинном жилете, с короткими волосами и матерчатым пеналом на ремне.\nCell 5. Круча. Разумный каменный краб величиной с большой рюкзак, с плоскими клешнями и красной лентой на панцире.",
+      "references": [
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/shella.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/nema.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/oda.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/mila.webp",
+        "campaigns/fantasy-2026/familiar-school/illustrations/cards/krucha.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "nerin",
+      "title": "Нерин Сосновый Шаг",
+      "kind": "hero",
+      "subjects": [
+        "nerin"
+      ],
+      "file": "heroes-nerin.webp",
+      "sha256": "7ed8bc4f66b3c230bcf3bec2873835336b84135e71bc5b4efad98232c7d68394",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 115,
+        "top": 9,
+        "width": 216,
+        "height": 422
+      }
+    },
+    {
+      "key": "tasya",
+      "title": "Тася Угольная Лента",
+      "kind": "hero",
+      "subjects": [
+        "tasya"
+      ],
+      "file": "heroes-tasya.webp",
+      "sha256": "65793a8e1b323a86814c53c9962651805b6517cbbb4380a216569fd437a57e5e",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 558,
+        "top": 16,
+        "width": 210,
+        "height": 415
+      }
+    },
+    {
+      "key": "omel",
+      "title": "Омел Тёплый Камень",
+      "kind": "hero",
+      "subjects": [
+        "omel"
+      ],
+      "file": "heroes-omel.webp",
+      "sha256": "6519be8aac0cdf66f0d9cd633700061bbd860cebd297d3b4db1f7dde41c34859",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1001,
+        "top": 10,
+        "width": 215,
+        "height": 422
+      }
+    },
+    {
+      "key": "elsha",
+      "title": "Элша Семь Полей",
+      "kind": "hero",
+      "subjects": [
+        "elsha"
+      ],
+      "file": "heroes-elsha.webp",
+      "sha256": "b7cba18968b60c3337ee5a7e3b2d1a9143406c2e8fc627a4e3766c1c6c13fb38",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1434,
+        "top": 13,
+        "width": 225,
+        "height": 419
+      }
+    },
+    {
+      "key": "velt",
+      "title": "Велт Крапчатый Щит",
+      "kind": "hero",
+      "subjects": [
+        "velt"
+      ],
+      "file": "heroes-velt.webp",
+      "sha256": "702af0c816d78c9fc4d97693d3fc97bbd1a16387f008f61a87ef67ac92b91174",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 109,
+        "top": 449,
+        "width": 229,
+        "height": 426
+      }
+    },
+    {
+      "key": "kora",
+      "title": "Кора Кривой Штрих",
+      "kind": "hero",
+      "subjects": [
+        "kora"
+      ],
+      "file": "heroes-kora.webp",
+      "sha256": "6a7289d485ee70a743923f9f15102e881aa42fdf6bfb2773cddba78f2fc914f9",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 558,
+        "top": 450,
+        "width": 217,
+        "height": 425
+      }
+    },
+    {
+      "key": "rin",
+      "title": "Рин Янтарная Пуговица",
+      "kind": "hero",
+      "subjects": [
+        "rin"
+      ],
+      "file": "heroes-rin.webp",
+      "sha256": "d84c61c1d17db6ecff1ddc138de300e3ba46c0ee5924b4f75ad4cfabd327601a",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1000,
+        "top": 452,
+        "width": 216,
+        "height": 423
+      }
+    },
+    {
+      "key": "yana",
+      "title": "Яна Неровная Ступень",
+      "kind": "hero",
+      "subjects": [
+        "yana"
+      ],
+      "file": "heroes-yana.webp",
+      "sha256": "3c53b0195f0d8869494db1851359b394ede05cc3084e0392c491266f1edb5de2",
+      "originalSha256": "dc2c930e36dbe826e02d255db92f0b6eaae48fdeb76a24ab62770c29b0f2fbb7",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1439,
+        "top": 453,
+        "width": 224,
+        "height": 422
+      }
+    },
+    {
+      "key": "second-wing-yard",
+      "title": "Двор Второго Крыла",
+      "kind": "place",
+      "subjects": [
+        "second-wing-yard"
+      ],
+      "file": "places-second-wing-yard.webp",
+      "sha256": "5f1c41a9788322e7d2700f4f4bd0438fddd2bc5bdbec55317ae308691b108e5e",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "wind-attic",
+      "title": "Сквозной чердак",
+      "kind": "place",
+      "subjects": [
+        "wind-attic"
+      ],
+      "file": "places-wind-attic.webp",
+      "sha256": "6fb03b5fff07116cb4d823a3969f3118ddc6ef2806663de98134b029fea63e1b",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "bristled-slope",
+      "title": "Щетинистый склон",
+      "kind": "place",
+      "subjects": [
+        "bristled-slope"
+      ],
+      "file": "places-bristled-slope.webp",
+      "sha256": "0578254f03a155e60feefbd459117d255c32c09e6383b5a03a20a87823907608",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "white-burrow",
+      "title": "Белая нора",
+      "kind": "place",
+      "subjects": [
+        "white-burrow"
+      ],
+      "file": "places-white-burrow.webp",
+      "sha256": "b8232f96bd11de8ced198890d0d7a7c2f494c77e457a00f561d83957e6e32d96",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "three-ledges",
+      "title": "Три уступа",
+      "kind": "place",
+      "subjects": [
+        "three-ledges"
+      ],
+      "file": "places-three-ledges.webp",
+      "sha256": "e1cb01f7a03ef5cc183e19e1dcb66584f72e3e45d07933b83f1c06dc6c334e4c",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "thread-ravine",
+      "title": "Висячая расселина",
+      "kind": "place",
+      "subjects": [
+        "thread-ravine"
+      ],
+      "file": "places-thread-ravine.webp",
+      "sha256": "517d2529cc0904538ad68c7b1343d1ca3ef0f58463892947acb78ad84a456601",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "shed-gallery",
+      "title": "Полотняная галерея",
+      "kind": "place",
+      "subjects": [
+        "shed-gallery"
+      ],
+      "file": "places-shed-gallery.webp",
+      "sha256": "dc341581e1aa2aa7d223bc7e7c5713ec1ead0714e0c7581d189a1dc8df00e524",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "hollow-meadow",
+      "title": "Гулкая поляна",
+      "kind": "place",
+      "subjects": [
+        "hollow-meadow"
+      ],
+      "file": "places-hollow-meadow.webp",
+      "sha256": "992e261de9f17e25fa1908e3b7c934ca7cf06b54116798cd95d0df0d4da6e693",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "split-rock",
+      "title": "Раздвоенная скала",
+      "kind": "place",
+      "subjects": [
+        "split-rock"
+      ],
+      "file": "places-split-rock.webp",
+      "sha256": "f2d09be613ede7011a8ff4a642a0a2f267b7fd488d006f7b39abfd2cd4864be5",
+      "originalSha256": "95cbd199d66fa0707479e1fb3b653fa76b50bb6d63a65454d6d5c38e0e4f5b77",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-f1ea64334d",
+      "title": "Холщовая учебная стойка",
+      "kind": "foe",
+      "subjects": [
+        "yard-wardens-foe-1",
+        "yard-wardens-foe-2",
+        "yard-wardens-foe-3",
+        "yard-wardens-foe-4",
+        "yard-wardens-foe-5",
+        "yard-wardens-foe-6"
+      ],
+      "file": "foes-foe-f1ea64334d.webp",
+      "sha256": "adb5d83464d924728049a04786d17cf6eb76397dfd34c682b533841508c36b90",
+      "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 140,
+        "top": 5,
+        "width": 466,
+        "height": 711
+      }
+    },
+    {
+      "key": "foe-69beabb91a",
+      "title": "Чучело в полосатом чехле",
+      "kind": "foe",
+      "subjects": [
+        "canvas-wardens-foe-1",
+        "canvas-wardens-foe-2",
+        "canvas-wardens-foe-3",
+        "canvas-wardens-foe-4",
+        "canvas-wardens-foe-5",
+        "canvas-wardens-foe-6"
+      ],
+      "file": "foes-foe-69beabb91a.webp",
+      "sha256": "7676b5734a69c6176f890bd313f9a5a5ba1383ca5bad717c61c20e7e1e69b43c",
+      "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 868,
+        "top": 5,
+        "width": 462,
+        "height": 711
+      }
+    },
+    {
+      "key": "foe-82ecafa721",
+      "title": "Чучело с красной лентой",
+      "kind": "foe",
+      "subjects": [
+        "gate-wardens-foe-1",
+        "gate-wardens-foe-2",
+        "gate-wardens-foe-3",
+        "gate-wardens-foe-4",
+        "gate-wardens-foe-5",
+        "gate-wardens-foe-6"
+      ],
+      "file": "foes-foe-82ecafa721.webp",
+      "sha256": "44bce04fe160ddbd8f600072ad2b43016513b129142b7710091c30a1be2c6790",
+      "originalSha256": "5ab5521d3416886354955d21af447debf6c155d758fba20a4d86f8f5cbe4f423",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1599,
+        "top": 7,
+        "width": 459,
+        "height": 709
+      }
+    },
+    {
+      "key": "mara",
+      "title": "Мара Вишневая Ветка",
+      "kind": "npc",
+      "subjects": [
+        "mara"
+      ],
+      "file": "npcs-mara.webp",
+      "sha256": "7cb85105a2611184804e415a7d1f36fdf6e434676fc8ca1e5a7740f3466b1391",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 114,
+        "top": 17,
+        "width": 326,
+        "height": 476
+      }
+    },
+    {
+      "key": "kren",
+      "title": "Крен",
+      "kind": "npc",
+      "subjects": [
+        "kren"
+      ],
+      "file": "npcs-kren.webp",
+      "sha256": "8e4581ec836c5310834496019c2e47c881f5a31e3845fa06f15bdef5d3a500fe",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 608,
+        "top": 11,
+        "width": 319,
+        "height": 474
+      }
+    },
+    {
+      "key": "ruba",
+      "title": "Руба",
+      "kind": "npc",
+      "subjects": [
+        "ruba"
+      ],
+      "file": "npcs-ruba.webp",
+      "sha256": "9dc1698919f9f521b67ee4614314028127a8ad7a16de326a3c8fdb860cc5533e",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1088,
+        "top": 195,
+        "width": 362,
+        "height": 270
+      }
+    },
+    {
+      "key": "losk",
+      "title": "Лоск",
+      "kind": "npc",
+      "subjects": [
+        "losk"
+      ],
+      "file": "npcs-losk.webp",
+      "sha256": "887397b8d09d04a2b214e00a68e2344d3b088de8380c428c4e578d1612fb6962",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 59,
+        "top": 530,
+        "width": 404,
+        "height": 463
+      }
+    },
+    {
+      "key": "iven",
+      "title": "Ивен Низкий Карниз",
+      "kind": "npc",
+      "subjects": [
+        "iven"
+      ],
+      "file": "npcs-iven.webp",
+      "sha256": "4f088b09311e12f5328d52301404e665d483b84fa8ebb0f82efd015643f59832",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 614,
+        "top": 518,
+        "width": 312,
+        "height": 477
+      }
+    },
+    {
+      "key": "brus",
+      "title": "Брус",
+      "kind": "npc",
+      "subjects": [
+        "brus"
+      ],
+      "file": "npcs-brus.webp",
+      "sha256": "e8b3a572b067cfe2d230cdd647c4b47a83e1c0706ba2556e9d8eb48f433ca316",
+      "originalSha256": "bac3ea2b61b9f389da2b9b15e682c1c38cc006c84d11c6ebd5039f5537184476",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 1097,
+        "top": 553,
+        "width": 360,
+        "height": 442
+      }
+    },
+    {
+      "key": "shella",
+      "title": "Шелла",
+      "kind": "npc",
+      "subjects": [
+        "shella"
+      ],
+      "file": "npcs-shella.webp",
+      "sha256": "46699345c1ac87ad463884b45f56dfa95ba2b309995aeba9074cc13f2085145b",
+      "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 58,
+        "top": 55,
+        "width": 404,
+        "height": 422
+      }
+    },
+    {
+      "key": "nema",
+      "title": "Нема",
+      "kind": "npc",
+      "subjects": [
+        "nema"
+      ],
+      "file": "npcs-nema.webp",
+      "sha256": "4e5e267b651c37a48c5941d286aa7ad599506a24d95da7627de43751b575c629",
+      "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 599,
+        "top": 73,
+        "width": 335,
+        "height": 406
+      }
+    },
+    {
+      "key": "oda",
+      "title": "Ода Луговая Кромка",
+      "kind": "npc",
+      "subjects": [
+        "oda"
+      ],
+      "file": "npcs-oda.webp",
+      "sha256": "4fc1e3181708c313f0acfc00372f595af684f645c1823b232a2dda1d445e6f4d",
+      "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1128,
+        "top": 18,
+        "width": 293,
+        "height": 477
+      }
+    },
+    {
+      "key": "mila",
+      "title": "Мила Короткий Рукав",
+      "kind": "npc",
+      "subjects": [
+        "mila"
+      ],
+      "file": "npcs-mila.webp",
+      "sha256": "cb1d748c77ee8d856520d5329cd5ed2086bdd50107b8b81d1ff47786e462df44",
+      "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 122,
+        "top": 523,
+        "width": 287,
+        "height": 482
+      }
+    },
+    {
+      "key": "krucha",
+      "title": "Круча",
+      "kind": "npc",
+      "subjects": [
+        "krucha"
+      ],
+      "file": "npcs-krucha.webp",
+      "sha256": "26da7540567129545c7bd03faf43bd4084f726f15aad1ea2a36cfc2e86c68e69",
+      "originalSha256": "99f23d2147875498dbb699862f9ed48726f6441fe1076c3043bf0a56af8f516b",
+      "generated": "2026-11-22",
+      "sheet": "familiar-school-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 542,
+        "top": 585,
+        "width": 449,
+        "height": 377
+      }
+    }
+  ]
+}

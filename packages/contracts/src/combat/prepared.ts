@@ -22,7 +22,16 @@ export const preparedEncounterSchema = z
     locationId: entityIdSchema,
     battlefield: battlefieldSchema,
     foes: z
-      .array(z.object({ entityId: entityIdSchema, position: squareSchema }).strict())
+      .array(
+        z
+          .object({
+            entityId: entityIdSchema,
+            position: squareSchema,
+            /** This reinforcement joins only when this many heroes enter the fight. */
+            minPartySize: z.number().int().min(2).max(8).optional(),
+          })
+          .strict(),
+      )
       .min(1)
       .max(MAX_COMBATANTS - 1),
     /** Where the party's characters start, in order: as many as can join. */

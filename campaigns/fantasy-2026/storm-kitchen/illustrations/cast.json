@@ -1,0 +1,359 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-800a4e1e-7cfe-48a3-a372-8751f52cfc90.png",
+      "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Долина Оваль. Characters, in strict cell order:\n1. Ася Красная Ложка — Медные застёжки на фартуке, короткие волосы и широкая деревянная ложка за поясом. Age 24.\n2. Тим Округлый Шов — Карманы с цветными карточками, мягкие ботинки и нарисованные на рукаве мерные кружки. Age 17.\n3. Мира Тёплый Порог — Накидка цвета печёного света, круглый значок открытой двери и блокнот с крупными полями. Age 31.\n4. Нэл Лиловый Пар — Фиолетовая косынка, прозрачные пустые чаши и мел на всех пуговицах. Age 19.\n5. Яр Широкий Поднос — Серебряная прядь, штаны с широкими коленями и поднос, расписанный весёлыми стрелками. Age 46.\n6. Рута Семь Лент — Разноцветные ленты на запястьях и жилет с плоскими карманами для карточек. Age 22.\n7. Сев Удобная Скамья — Зелёный шарф, мягкая сумка с подставками и значок маленькой скамьи. Age 16.\n8. Ольса Незаконченная Чашка — Белые завитки волос, яркая куртка и чашка с намеренно неровной ручкой. Age 67.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-605281d1-0c0c-4b67-bfba-3b1462b6f71a.png",
+      "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Долина Оваль. Characters, in strict cell order:\n1. Илла Световей — Высокий дух в движущихся полосах золотого света; вместо пальцев расходятся мягкие лучи. Age 86.\n2. Ун Тихая Кромка — Невысокий многогранный дух; внутри его прозрачного плаща неподвижно отражается небо. Age 103.\n3. Фрель Семишаг — Дух из полупрозрачных лент; его шаги остаются маленькими кругами в воздухе. Age 42.\n4. Ору Тихая Глубь — Плотный округлый дух со спокойными углублениями на поверхности; рядом с ним слегка пружинят облака. Age 212.\n5. Езга Пять Полок — Человек с короткой серебристой косой и пятью маленькими полочками на переносной стойке. Age 51.\n6. Ганна Тенешов — Человек с узорными напёрстками, широкими рукавами и лёгким облачным полотном на плече. Age 38.\n7. Тинн Неровный Образец — Маленький глиняный дух с широким планшетом и завитками вместо бровей. Age 67.\n8. Овелна Два Фартука — Человек с двумя фартуками разных цветов, удобной тростью и маленькой доской заказов. Age 59.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "asya-spoon",
+      "file": "cards/asya-spoon.webp",
+      "title": "Ася Красная Ложка",
+      "subjects": [
+        "asya-spoon"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "94b1499a735523877282d33caf731d46862b600f046cce97e1f31de3c5c8b902"
+    },
+    {
+      "id": "tim-seam",
+      "file": "cards/tim-seam.webp",
+      "title": "Тим Округлый Шов",
+      "subjects": [
+        "tim-seam"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d4546cd4f58bfa66cc99de597274dae1df01ac2efd3e61e3badc6b4f3124ff00"
+    },
+    {
+      "id": "mira-threshold",
+      "file": "cards/mira-threshold.webp",
+      "title": "Мира Тёплый Порог",
+      "subjects": [
+        "mira-threshold"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3f7f3b2d591de947597dd0b7eefb07745e77b7b5f986a225ead137b1734c1db5"
+    },
+    {
+      "id": "nel-steam",
+      "file": "cards/nel-steam.webp",
+      "title": "Нэл Лиловый Пар",
+      "subjects": [
+        "nel-steam"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "df1a09ed493c0a98f88ce36dc33352b3d590d776bc4eb6f1ef21ec365b8e2737"
+    },
+    {
+      "id": "yar-tray",
+      "file": "cards/yar-tray.webp",
+      "title": "Яр Широкий Поднос",
+      "subjects": [
+        "yar-tray"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "db01f5f08f7204c66c926de6932b0558ad31394cb9de882fd947c022f2c5a95d"
+    },
+    {
+      "id": "ruta-ribbon",
+      "file": "cards/ruta-ribbon.webp",
+      "title": "Рута Семь Лент",
+      "subjects": [
+        "ruta-ribbon"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "da51e686856f572e38fcdf12cc666116cbb55fe875a03c265bd374d9c5350807"
+    },
+    {
+      "id": "sev-bench",
+      "file": "cards/sev-bench.webp",
+      "title": "Сев Удобная Скамья",
+      "subjects": [
+        "sev-bench"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5b0dbb74e6eba8793fa263211345014c792ef487668cf47fe78a58144218ee26"
+    },
+    {
+      "id": "olsa-cup",
+      "file": "cards/olsa-cup.webp",
+      "title": "Ольса Незаконченная Чашка",
+      "subjects": [
+        "olsa-cup"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c3d310926ab470aa6f65d8da58235fcb7eb64db9f807f58d5b18bdd69d0e8083"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "asya-spoon-travel-kit",
+        "mira-threshold-travel-kit",
+        "nel-steam-travel-kit",
+        "olsa-cup-travel-kit",
+        "ruta-ribbon-travel-kit",
+        "sev-bench-travel-kit",
+        "tim-seam-travel-kit",
+        "yar-tray-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "74011dea82c9dc44f0b5acf5c4dd6048219704990280ef837969de8095bf087e"
+    },
+    {
+      "id": "illa-light",
+      "file": "cards/illa-light.webp",
+      "title": "Илла Световей",
+      "subjects": [
+        "illa-light"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4caa9c363df7b47eb46832b180914aa4331c0b38eceefaba60a5717ad5260366"
+    },
+    {
+      "id": "un-edge",
+      "file": "cards/un-edge.webp",
+      "title": "Ун Тихая Кромка",
+      "subjects": [
+        "un-edge"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a044dc746a5b93a082dce13c243b6ce85db212c045b57597bd5a42e453ad6d44"
+    },
+    {
+      "id": "frel-steps",
+      "file": "cards/frel-steps.webp",
+      "title": "Фрель Семишаг",
+      "subjects": [
+        "frel-steps"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5ec2442403e5ed195c73044020ff59294fdc939e382719db0176a4f3984afa08"
+    },
+    {
+      "id": "oru-depth",
+      "file": "cards/oru-depth.webp",
+      "title": "Ору Тихая Глубь",
+      "subjects": [
+        "oru-depth"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c849c9203ca17ffeac89b0a652c24dd553301402d8d7129e74bc8127ee9fb1bb"
+    },
+    {
+      "id": "ezga-shelves",
+      "file": "cards/ezga-shelves.webp",
+      "title": "Езга Пять Полок",
+      "subjects": [
+        "ezga-shelves"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "df92391e50be0aa9eaa2084ccd0fd8b4d98e18e3f71937e1b32b2ea23220c282"
+    },
+    {
+      "id": "ganna-shadow",
+      "file": "cards/ganna-shadow.webp",
+      "title": "Ганна Тенешов",
+      "subjects": [
+        "ganna-shadow"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "be1f0278a12d47673dca55027fd4101c863a2100448b7bac2f0831d53f7a533b"
+    },
+    {
+      "id": "tinn-sample",
+      "file": "cards/tinn-sample.webp",
+      "title": "Тинн Неровный Образец",
+      "subjects": [
+        "tinn-sample"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5f5915e03393fc56bf24773ae478424ed7e362b6235a9a9ff905573d55bd7c73"
+    },
+    {
+      "id": "ovelna-apron",
+      "file": "cards/ovelna-apron.webp",
+      "title": "Овелна Два Фартука",
+      "subjects": [
+        "ovelna-apron"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f9be26916ca37d740cef7817290b20aca0d9322c6dff7dff2fd8d6854661535e"
+    }
+  ]
+}

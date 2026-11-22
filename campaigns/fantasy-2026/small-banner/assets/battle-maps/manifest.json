@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "sewing-terrace.webp",
+      "sha256": "ab6c98c6cf7c2b1c3ad287af7949cf7806229b032b9aa2f06267ab36a402176f",
+      "originalSha256": "e0747b2c1d71cc0d59932399655001b73536ac9e61c49fa10dbf5fc99c2285ad",
+      "originalFile": "exec-7ea31741-7cc5-49c1-8418-c6253adf0c33.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Катушечные террасы. Visible scenery: Улицы между катушками, балконы из напёрстков и сушильни на натянутых лентах. Артель чинит большие ткани и получает за работу свои материалы.. World style: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "sewing-terrace",
+      "encounter": "ribbon-holders",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "cupboard-common.webp",
+      "sha256": "44887ea04a8ca99e62e0e9977307c6ff7d94d246465d2f6cda397d330fb127b4",
+      "originalSha256": "c9dfba3501038e1bbfe6102223712a5de0c748e9468317ef8be414abc3029536",
+      "originalFile": "exec-f3204ec0-08a7-4f85-be8e-d71a3256ab8a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Буфетная площадь. Visible scenery: Три полки с глиняными домиками, стражей у ложечного мостика и огородами в блюдцах; резная дверца отбрасывает прохладную решётчатую тень.. World style: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "cupboard-common",
+      "encounter": "lid-dispute",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "packing-table.webp",
+      "sha256": "89d557fb7280a8be480253527f2390e80411152a8df35280a507c1b292b0c038",
+      "originalSha256": "e5a0d7181812e4c819968d9a2de198517ee7e5077fffb337b3c95c4136d39368",
+      "originalFile": "exec-c7c3f2bf-becb-4dce-a603-3205d3b21b7d.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Упаковочный стол. Visible scenery: Огромная столешница с бумагой, бечёвкой, открытыми коробками и крупными ярлыками. Здесь человеческий рост и ладонный масштаб встречаются особенно наглядно.. World style: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "packing-table",
+      "encounter": "paper-crabs",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

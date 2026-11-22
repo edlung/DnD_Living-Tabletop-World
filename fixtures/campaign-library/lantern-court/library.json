@@ -1,0 +1,1783 @@
+{
+ "id": "lantern-court",
+ "title": "Суд Фонарей",
+ "genre": "Сказочная судебная драма",
+ "audience": "14+",
+ "pitch": "Каменные грифоны требуют оставить им законно выигранный Красный Штандарт. Огненные саламандры требуют сжечь его по столь же подлинному праву отказаться от собственного герба. Вас приглашают в скамью вопросителей Суда Фонарей: слушать обе стороны, проверять свидетельства и вынести решение, после которого кто-то действительно потеряет дорогое.",
+ "tone": "Тёплое чудо, трудные честные вопросы, остроумные возражения и горечь проигрыша без унижения.",
+ "duration": "8 сессий; 165 минут: вступление и повторение — 15, три сцены по 40, перерыв — 15, завершение — 15. При письменных ответах сократите свободный обмен, сохранив круг решений.",
+ "cover": "campaigns/mixed-ages-2026/lantern-court/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "50e084f45665b2b98dc6b208d4dc9c9d62b3ba97673e310c13bb873f3d70153f"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "8b98b7183aeed749002f6aa1c88f2e0f7821d5882a9a3fed989180f46887f46b"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "dcc8198f89a0e626dfe47c92e9258c6b957c60796e326df5fc526148484c4629"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "56fabd5be3172ab96e3904134c88bc616dc0b0705e56eca81cd1dfe5a9c9f150"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "4d01353a4bb21d6368f509a8524915f540efbed7ea340586e79c5433c245ab55"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/tara.webp",
+   "sha256": "be46233f08e542be9243b2c511d928ffa923c6874614affbf321a2a147b135a9",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тара Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tara"
+    ],
+    "4-players": [
+     "tara"
+    ],
+    "5-players": [
+     "tara"
+    ],
+    "6-players": [
+     "tara"
+    ],
+    "7-players": [
+     "tara"
+    ]
+   },
+   "file": "tara.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/miron.webp",
+   "sha256": "8bf79b432989b48fa348f29e53f4219e32a2cf969802faa426253a975076d500",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирон Вязь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "miron"
+    ],
+    "4-players": [
+     "miron"
+    ],
+    "5-players": [
+     "miron"
+    ],
+    "6-players": [
+     "miron"
+    ],
+    "7-players": [
+     "miron"
+    ]
+   },
+   "file": "miron.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/solvi.webp",
+   "sha256": "1298d31894a7853a0bc479847d94c1996fbc89ad5d8f503734ceec176c481e05",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сольви Роса",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "solvi"
+    ],
+    "4-players": [
+     "solvi"
+    ],
+    "5-players": [
+     "solvi"
+    ],
+    "6-players": [
+     "solvi"
+    ],
+    "7-players": [
+     "solvi"
+    ]
+   },
+   "file": "solvi.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/nika.webp",
+   "sha256": "cc62ed8475f56884d25aed9d31e21c75fc020cbc3cfe7d5a5b0f5831238dfe4a",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Плёт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nika"
+    ],
+    "5-players": [
+     "nika"
+    ],
+    "6-players": [
+     "nika"
+    ],
+    "7-players": [
+     "nika"
+    ]
+   },
+   "file": "nika.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/dem.webp",
+   "sha256": "96315ce9a262940a169526d9de46808aab41ced1fc9cb3eca6d8051d056b415f",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дем Рун",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "dem"
+    ],
+    "6-players": [
+     "dem"
+    ],
+    "7-players": [
+     "dem"
+    ]
+   },
+   "file": "dem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/iva.webp",
+   "sha256": "672f7f23ded443d37b6583fa53808f2f6021b2624b3ff8bfee276e7448f43042",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Ласт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "iva"
+    ],
+    "7-players": [
+     "iva"
+    ]
+   },
+   "file": "iva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/ari.webp",
+   "sha256": "4bf00d1d09b1a221b985c9e98abbee4018f99db3d4fab034808dda60d478c886",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ари Рябь",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "ari"
+    ]
+   },
+   "file": "ari.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/travel-kit.webp",
+   "sha256": "dbf4f34cbca7d506006683d840940e3255152ee6b3ab043b50a720a5c09eb79f",
+   "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "miron-travel-kit",
+     "solvi-travel-kit",
+     "tara-travel-kit"
+    ],
+    "4-players": [
+     "miron-travel-kit",
+     "nika-travel-kit",
+     "solvi-travel-kit",
+     "tara-travel-kit"
+    ],
+    "5-players": [
+     "dem-travel-kit",
+     "miron-travel-kit",
+     "nika-travel-kit",
+     "solvi-travel-kit",
+     "tara-travel-kit"
+    ],
+    "6-players": [
+     "dem-travel-kit",
+     "iva-travel-kit",
+     "miron-travel-kit",
+     "nika-travel-kit",
+     "solvi-travel-kit",
+     "tara-travel-kit"
+    ],
+    "7-players": [
+     "ari-travel-kit",
+     "dem-travel-kit",
+     "iva-travel-kit",
+     "miron-travel-kit",
+     "nika-travel-kit",
+     "solvi-travel-kit",
+     "tara-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/eira.webp",
+   "sha256": "4712b8fd31381e06fe36b359afe29007cd985f0bc1d2495107c91b8f07a0c7c0",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйра, цапля-председательница",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eira"
+    ],
+    "4-players": [
+     "eira"
+    ],
+    "5-players": [
+     "eira"
+    ],
+    "6-players": [
+     "eira"
+    ],
+    "7-players": [
+     "eira"
+    ]
+   },
+   "file": "eira.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/kard.webp",
+   "sha256": "45cbe17214c911f524d771277bda42b17316d7b4e12781d96ef833c50a1e35e0",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кард Серый Утёс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kard"
+    ],
+    "4-players": [
+     "kard"
+    ],
+    "5-players": [
+     "kard"
+    ],
+    "6-players": [
+     "kard"
+    ],
+    "7-players": [
+     "kard"
+    ]
+   },
+   "file": "kard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/vesh.webp",
+   "sha256": "62790f9d52619bc91a378b91ae178ba215e3f71870555e459d4e854364a9fdc2",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веш Тихая Искра",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesh"
+    ],
+    "4-players": [
+     "vesh"
+    ],
+    "5-players": [
+     "vesh"
+    ],
+    "6-players": [
+     "vesh"
+    ],
+    "7-players": [
+     "vesh"
+    ]
+   },
+   "file": "vesh.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/pika.webp",
+   "sha256": "ad3d6b672ad9bab1f97e6e3bafd44832c271a3c985fdc430ea5c2a8142a12977",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пика Белая Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pika"
+    ],
+    "4-players": [
+     "pika"
+    ],
+    "5-players": [
+     "pika"
+    ],
+    "6-players": [
+     "pika"
+    ],
+    "7-players": [
+     "pika"
+    ]
+   },
+   "file": "pika.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/remi.webp",
+   "sha256": "808796ce7a5200c117c304d18a10077d1af2e0dea8a0fd3a8c2bd34fc21f3b8b",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Реми Угольный Нос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "remi"
+    ],
+    "4-players": [
+     "remi"
+    ],
+    "5-players": [
+     "remi"
+    ],
+    "6-players": [
+     "remi"
+    ],
+    "7-players": [
+     "remi"
+    ]
+   },
+   "file": "remi.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/ulya.webp",
+   "sha256": "fef016bd72604678f8b98bfeba3ef9b434cd2d67cb22953ba05d004be987cee2",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Уля Восемь Петель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ulya"
+    ],
+    "4-players": [
+     "ulya"
+    ],
+    "5-players": [
+     "ulya"
+    ],
+    "6-players": [
+     "ulya"
+    ],
+    "7-players": [
+     "ulya"
+    ]
+   },
+   "file": "ulya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/nors.webp",
+   "sha256": "9cf7ddcd2b31b1cf35fc9a6bedb75eb95c5982e8dd1aa4a7cb644b7e1cd66ff5",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Норс, речной уж-писец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nors"
+    ],
+    "4-players": [
+     "nors"
+    ],
+    "5-players": [
+     "nors"
+    ],
+    "6-players": [
+     "nors"
+    ],
+    "7-players": [
+     "nors"
+    ]
+   },
+   "file": "nors.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/mora.webp",
+   "sha256": "5244ce3258f540f5a76ca0b41a0648980e64ab752b8e07445dc6af695c542b5a",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мора Круглый Панцирь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mora"
+    ],
+    "4-players": [
+     "mora"
+    ],
+    "5-players": [
+     "mora"
+    ],
+    "6-players": [
+     "mora"
+    ],
+    "7-players": [
+     "mora"
+    ]
+   },
+   "file": "mora.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/bela.webp",
+   "sha256": "e727375c2a056bc139e1584e146b2f1efd3ed43322aaaccb3c7c2fb624486b81",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бела Прямая Линия",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bela"
+    ],
+    "4-players": [
+     "bela"
+    ],
+    "5-players": [
+     "bela"
+    ],
+    "6-players": [
+     "bela"
+    ],
+    "7-players": [
+     "bela"
+    ]
+   },
+   "file": "bela.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/aska.webp",
+   "sha256": "ecbdd51cbcb65626469d2469422e097299a3a0b14fb9f2f0b7e5707f3ef24927",
+   "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аска Бронзовое Перо",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "aska"
+    ],
+    "4-players": [
+     "aska"
+    ],
+    "5-players": [
+     "aska"
+    ],
+    "6-players": [
+     "aska"
+    ],
+    "7-players": [
+     "aska"
+    ]
+   },
+   "file": "aska.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-tara.webp",
+   "sha256": "c5626c1b202b52f9b9e2a25da5986bb78dcd3b36724fbcd227ed564b51c01416",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тара Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tara"
+    ],
+    "4-players": [
+     "tara"
+    ],
+    "5-players": [
+     "tara"
+    ],
+    "6-players": [
+     "tara"
+    ],
+    "7-players": [
+     "tara"
+    ]
+   },
+   "file": "tara--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tara.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-miron.webp",
+   "sha256": "9a2b25f81e3358c9c0e8f244a2fd5c6fb133b28627ef3fadcfd39b8d2ea56424",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирон Вязь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "miron"
+    ],
+    "4-players": [
+     "miron"
+    ],
+    "5-players": [
+     "miron"
+    ],
+    "6-players": [
+     "miron"
+    ],
+    "7-players": [
+     "miron"
+    ]
+   },
+   "file": "miron--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "miron.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-solvi.webp",
+   "sha256": "03cdc32776e57205ae0e10814932b8eb0dc852a1b142c14b723161013871e00e",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сольви Роса",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "solvi"
+    ],
+    "4-players": [
+     "solvi"
+    ],
+    "5-players": [
+     "solvi"
+    ],
+    "6-players": [
+     "solvi"
+    ],
+    "7-players": [
+     "solvi"
+    ]
+   },
+   "file": "solvi--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "solvi.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-nika.webp",
+   "sha256": "9aac1d6638b64d827f14ea8d85610f36b9af81f8a226cabc2e58bdf518075bfa",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Плёт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nika"
+    ],
+    "5-players": [
+     "nika"
+    ],
+    "6-players": [
+     "nika"
+    ],
+    "7-players": [
+     "nika"
+    ]
+   },
+   "file": "nika--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nika.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-dem.webp",
+   "sha256": "f5679f04b2e63cb63670abde2fb2a524d70314e41be70e446c3ffefcfab4aba7",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дем Рун",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "dem"
+    ],
+    "6-players": [
+     "dem"
+    ],
+    "7-players": [
+     "dem"
+    ]
+   },
+   "file": "dem--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dem.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-iva.webp",
+   "sha256": "d1f958f0a87a51f2549fe55c22c5eca24d99aec3e9e56ed63e5d918afe561eb0",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Ласт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "iva"
+    ],
+    "7-players": [
+     "iva"
+    ]
+   },
+   "file": "iva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iva.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/heroes-ari.webp",
+   "sha256": "d629c06ae87565974fbaa0ae182e4039a5088937761b08396317499bc28ee977",
+   "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ари Рябь",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "ari"
+    ]
+   },
+   "file": "ari--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ari.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-petition-porch.webp",
+   "sha256": "e26e0b3f2bab1cab62e848ed678f3c2feb703037f3026aa0724fb83bfbac5857",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крыльцо прошений",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "petition-porch"
+    ],
+    "4-players": [
+     "petition-porch"
+    ],
+    "5-players": [
+     "petition-porch"
+    ],
+    "6-players": [
+     "petition-porch"
+    ],
+    "7-players": [
+     "petition-porch"
+    ]
+   },
+   "file": "petition-porch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-lantern-hall.webp",
+   "sha256": "a482c456ad7a7202f9fc2430732b21eb02612f5ee4372b44e97037b922b913ff",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зал раскрытых фонарей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lantern-hall"
+    ],
+    "4-players": [
+     "lantern-hall"
+    ],
+    "5-players": [
+     "lantern-hall"
+    ],
+    "6-players": [
+     "lantern-hall"
+    ],
+    "7-players": [
+     "lantern-hall"
+    ]
+   },
+   "file": "lantern-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-silent-ring.webp",
+   "sha256": "dd79e5cae7b1bbf6a7be4f09e106e7124e8cb7198ac394e49a8a100a4c59cdcf",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Круг тихого поединка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "silent-ring"
+    ],
+    "4-players": [
+     "silent-ring"
+    ],
+    "5-players": [
+     "silent-ring"
+    ],
+    "6-players": [
+     "silent-ring"
+    ],
+    "7-players": [
+     "silent-ring"
+    ]
+   },
+   "file": "silent-ring.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-stone-roost.webp",
+   "sha256": "b4ada9eb331fa12baa668c2524ca0aba71898dd0d8d02b8dd038f33ec38e792a",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменное гнездовье",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-roost"
+    ],
+    "4-players": [
+     "stone-roost"
+    ],
+    "5-players": [
+     "stone-roost"
+    ],
+    "6-players": [
+     "stone-roost"
+    ],
+    "7-players": [
+     "stone-roost"
+    ]
+   },
+   "file": "stone-roost.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-ember-lodge.webp",
+   "sha256": "e8006f62709d6f27634793ee47a1149172a36e65eebc930c4d066d9c6623f93c",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом остывшей искры",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ember-lodge"
+    ],
+    "4-players": [
+     "ember-lodge"
+    ],
+    "5-players": [
+     "ember-lodge"
+    ],
+    "6-players": [
+     "ember-lodge"
+    ],
+    "7-players": [
+     "ember-lodge"
+    ]
+   },
+   "file": "ember-lodge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-thread-room.webp",
+   "sha256": "1cc660d3f1693c8a39b5cb47f3043e90586725dfdf1dfc8c5558ba051a4194de",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комната нитей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "thread-room"
+    ],
+    "4-players": [
+     "thread-room"
+    ],
+    "5-players": [
+     "thread-room"
+    ],
+    "6-players": [
+     "thread-room"
+    ],
+    "7-players": [
+     "thread-room"
+    ]
+   },
+   "file": "thread-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-reed-balcony.webp",
+   "sha256": "7816805623446554920ecf15284e5419005e37af58fd78eb2277275ad08bed09",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тростниковый балкон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reed-balcony"
+    ],
+    "4-players": [
+     "reed-balcony"
+    ],
+    "5-players": [
+     "reed-balcony"
+    ],
+    "6-players": [
+     "reed-balcony"
+    ],
+    "7-players": [
+     "reed-balcony"
+    ]
+   },
+   "file": "reed-balcony.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-sealed-gallery.webp",
+   "sha256": "de2ec1c54cc056ce30fe2bc1632802072e10e7151fd2c42c397352ee2bdf1324",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галерея двух печатей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sealed-gallery"
+    ],
+    "4-players": [
+     "sealed-gallery"
+    ],
+    "5-players": [
+     "sealed-gallery"
+    ],
+    "6-players": [
+     "sealed-gallery"
+    ],
+    "7-players": [
+     "sealed-gallery"
+    ]
+   },
+   "file": "sealed-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-wax-yard.webp",
+   "sha256": "decc0a04daa417ea5e7ba118270eebe025f23e0bca2a13732e08dfe3b1e28575",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Восковый двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wax-yard"
+    ],
+    "4-players": [
+     "wax-yard"
+    ],
+    "5-players": [
+     "wax-yard"
+    ],
+    "6-players": [
+     "wax-yard"
+    ],
+    "7-players": [
+     "wax-yard"
+    ]
+   },
+   "file": "wax-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/places-verdict-steps.webp",
+   "sha256": "e86adab604d699aac92c066cd44a0e1d6938000d1d9d709536c1030b6642a67e",
+   "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ступени решения",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "verdict-steps"
+    ],
+    "4-players": [
+     "verdict-steps"
+    ],
+    "5-players": [
+     "verdict-steps"
+    ],
+    "6-players": [
+     "verdict-steps"
+    ],
+    "7-players": [
+     "verdict-steps"
+    ]
+   },
+   "file": "verdict-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/foes-foe-22a62ae5c5.webp",
+   "sha256": "1aa0fd91bc863b50e8023427b07b66f6c025527ef475f6bc1a6913674b784bff",
+   "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Угольный задира",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2"
+    ],
+    "4-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3"
+    ],
+    "5-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3"
+    ],
+    "6-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3",
+     "coal-pickets-foe-4"
+    ],
+    "7-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3",
+     "coal-pickets-foe-4",
+     "coal-pickets-foe-5"
+    ]
+   },
+   "file": "foe-22a62ae5c5.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/foes-foe-22a62ae5c5.webp",
+   "sha256": "1aa0fd91bc863b50e8023427b07b66f6c025527ef475f6bc1a6913674b784bff",
+   "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Угольный задира",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2"
+    ],
+    "4-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3"
+    ],
+    "5-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3"
+    ],
+    "6-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3",
+     "coal-pickets-foe-4"
+    ],
+    "7-players": [
+     "coal-pickets-foe-1",
+     "coal-pickets-foe-2",
+     "coal-pickets-foe-3",
+     "coal-pickets-foe-4",
+     "coal-pickets-foe-5"
+    ]
+   },
+   "file": "foe-22a62ae5c5--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-22a62ae5c5.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/foes-foe-01f06f1739.webp",
+   "sha256": "9594572d1da2fdd396de3ae84a70c2d705a9c751aa6e224e99f7e3344ce238e3",
+   "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Свечной мотылёк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2"
+    ],
+    "4-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3"
+    ],
+    "5-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3"
+    ],
+    "6-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3",
+     "glass-moths-foe-4"
+    ],
+    "7-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3",
+     "glass-moths-foe-4",
+     "glass-moths-foe-5"
+    ]
+   },
+   "file": "foe-01f06f1739.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/foes-foe-01f06f1739.webp",
+   "sha256": "9594572d1da2fdd396de3ae84a70c2d705a9c751aa6e224e99f7e3344ce238e3",
+   "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Свечной мотылёк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2"
+    ],
+    "4-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3"
+    ],
+    "5-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3"
+    ],
+    "6-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3",
+     "glass-moths-foe-4"
+    ],
+    "7-players": [
+     "glass-moths-foe-1",
+     "glass-moths-foe-2",
+     "glass-moths-foe-3",
+     "glass-moths-foe-4",
+     "glass-moths-foe-5"
+    ]
+   },
+   "file": "foe-01f06f1739--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-01f06f1739.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/foes-foe-6012381db5.webp",
+   "sha256": "36f3fb3d60f43002c98d8017dcde1df967333373bd002dea0b0102236feb2d4f",
+   "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Восковой спорщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2"
+    ],
+    "4-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3"
+    ],
+    "5-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3"
+    ],
+    "6-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3",
+     "wax-arguments-foe-4"
+    ],
+    "7-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3",
+     "wax-arguments-foe-4",
+     "wax-arguments-foe-5"
+    ]
+   },
+   "file": "foe-6012381db5.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/foes-foe-6012381db5.webp",
+   "sha256": "36f3fb3d60f43002c98d8017dcde1df967333373bd002dea0b0102236feb2d4f",
+   "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Восковой спорщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2"
+    ],
+    "4-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3"
+    ],
+    "5-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3"
+    ],
+    "6-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3",
+     "wax-arguments-foe-4"
+    ],
+    "7-players": [
+     "wax-arguments-foe-1",
+     "wax-arguments-foe-2",
+     "wax-arguments-foe-3",
+     "wax-arguments-foe-4",
+     "wax-arguments-foe-5"
+    ]
+   },
+   "file": "foe-6012381db5--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-6012381db5.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-eira.webp",
+   "sha256": "0dfae6bccd8e6df88014250789f0976366d7eeecd566d5a74466b50dbdc6b62f",
+   "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйра, цапля-председательница",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eira"
+    ],
+    "4-players": [
+     "eira"
+    ],
+    "5-players": [
+     "eira"
+    ],
+    "6-players": [
+     "eira"
+    ],
+    "7-players": [
+     "eira"
+    ]
+   },
+   "file": "eira--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eira.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-kard.webp",
+   "sha256": "0ec95e04e685ecf8a029b3b0ab072cf247288fc8e41e93948c72201100a5f459",
+   "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кард Серый Утёс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kard"
+    ],
+    "4-players": [
+     "kard"
+    ],
+    "5-players": [
+     "kard"
+    ],
+    "6-players": [
+     "kard"
+    ],
+    "7-players": [
+     "kard"
+    ]
+   },
+   "file": "kard--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kard.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-vesh.webp",
+   "sha256": "b3e58f442d1fbe35592f1c8c2570650a6829a74c335a821632f38e057253e8b8",
+   "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веш Тихая Искра",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesh"
+    ],
+    "4-players": [
+     "vesh"
+    ],
+    "5-players": [
+     "vesh"
+    ],
+    "6-players": [
+     "vesh"
+    ],
+    "7-players": [
+     "vesh"
+    ]
+   },
+   "file": "vesh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesh.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-pika.webp",
+   "sha256": "afbfb231e64e58d4e5eb2a96dd88ad685296339b4a29d131a534ec0db31bb8a7",
+   "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пика Белая Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pika"
+    ],
+    "4-players": [
+     "pika"
+    ],
+    "5-players": [
+     "pika"
+    ],
+    "6-players": [
+     "pika"
+    ],
+    "7-players": [
+     "pika"
+    ]
+   },
+   "file": "pika--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pika.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-remi.webp",
+   "sha256": "6a41b5173ed6461cc7731189fcf2b0f163d30a10cfb8b14de3e2434a4882577c",
+   "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Реми Угольный Нос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "remi"
+    ],
+    "4-players": [
+     "remi"
+    ],
+    "5-players": [
+     "remi"
+    ],
+    "6-players": [
+     "remi"
+    ],
+    "7-players": [
+     "remi"
+    ]
+   },
+   "file": "remi--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "remi.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-ulya.webp",
+   "sha256": "19258edc6c0b869c9526f13f3494044e6198c1781ff35c30f03c6b0034679240",
+   "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Уля Восемь Петель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ulya"
+    ],
+    "4-players": [
+     "ulya"
+    ],
+    "5-players": [
+     "ulya"
+    ],
+    "6-players": [
+     "ulya"
+    ],
+    "7-players": [
+     "ulya"
+    ]
+   },
+   "file": "ulya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ulya.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-nors.webp",
+   "sha256": "191dcb887e14bddac4ef23918166ff70e63720b11766fe0ff614f7858a44f87f",
+   "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Норс, речной уж-писец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nors"
+    ],
+    "4-players": [
+     "nors"
+    ],
+    "5-players": [
+     "nors"
+    ],
+    "6-players": [
+     "nors"
+    ],
+    "7-players": [
+     "nors"
+    ]
+   },
+   "file": "nors--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nors.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-mora.webp",
+   "sha256": "64c9a9a53f84b486b8f2a3a44cb11c616207c0054dfce97d070829d9c9065f33",
+   "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мора Круглый Панцирь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mora"
+    ],
+    "4-players": [
+     "mora"
+    ],
+    "5-players": [
+     "mora"
+    ],
+    "6-players": [
+     "mora"
+    ],
+    "7-players": [
+     "mora"
+    ]
+   },
+   "file": "mora--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mora.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-bela.webp",
+   "sha256": "5690ab17917cd71dc1748078bba8dc77d16f98030b1eb3fa381555da025f3ced",
+   "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бела Прямая Линия",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bela"
+    ],
+    "4-players": [
+     "bela"
+    ],
+    "5-players": [
+     "bela"
+    ],
+    "6-players": [
+     "bela"
+    ],
+    "7-players": [
+     "bela"
+    ]
+   },
+   "file": "bela--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bela.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/table/npcs-aska.webp",
+   "sha256": "2c18804f054cdbc3cfa0bdb831dd704d303bb9113cf31f1d8ed12b62d3e84890",
+   "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аска Бронзовое Перо",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "aska"
+    ],
+    "4-players": [
+     "aska"
+    ],
+    "5-players": [
+     "aska"
+    ],
+    "6-players": [
+     "aska"
+    ],
+    "7-players": [
+     "aska"
+    ]
+   },
+   "file": "aska--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "aska.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/lantern-court/illustrations/opening.webp",
+   "sha256": "c37ff313cc6496641178078ab2fc99094777d8c5337aa65e05e1aafa61409068",
+   "originalSha256": "f67cbb2404b9c18addb9bf97a6d0a4ffd7d9bdcb02e57b1070623835b82f17c6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крыльцо прошений — Суд Фонарей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lantern-reach"
+    ],
+    "4-players": [
+     "lantern-reach"
+    ],
+    "5-players": [
+     "lantern-reach"
+    ],
+    "6-players": [
+     "lantern-reach"
+    ],
+    "7-players": [
+     "lantern-reach"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "ember-lodge--map.webp",
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/battle-maps/ember-lodge.webp",
+   "sha256": "71cd371cdde4142e191f9f44986d515e0fb4cc7df8a46341ca37f5e85d81f026",
+   "originalSha256": "81bbbf923d934889f614f6d8f34e7780bdcc9e16fb5a5de70cf38524105ac0b7",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Дом остывшей искры. Visible scenery: Саламандровый дом с красной керамикой, негорючими сиденьями и выставленными образцами гербовой ткани.. World style: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "ember-lodge.webp",
+   "subjects": {
+    "3-players": [
+     "ember-lodge"
+    ],
+    "4-players": [
+     "ember-lodge"
+    ],
+    "5-players": [
+     "ember-lodge"
+    ],
+    "6-players": [
+     "ember-lodge"
+    ],
+    "7-players": [
+     "ember-lodge"
+    ]
+   }
+  },
+  {
+   "file": "sealed-gallery--map.webp",
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/battle-maps/sealed-gallery.webp",
+   "sha256": "7cfeea4fbdf88970b0fe1ebcc050c836f4c583390af9cec709e1d37238d87245",
+   "originalSha256": "5cee22f68bfa513eeaa04509a290ed1bdf04079535f3fe5c0b4993e75c4f4a49",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея двух печатей. Visible scenery: Светлая комната для добровольно переданных спорных вещей; доступ записывают на видимой доске.. World style: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "sealed-gallery.webp",
+   "subjects": {
+    "3-players": [
+     "sealed-gallery"
+    ],
+    "4-players": [
+     "sealed-gallery"
+    ],
+    "5-players": [
+     "sealed-gallery"
+    ],
+    "6-players": [
+     "sealed-gallery"
+    ],
+    "7-players": [
+     "sealed-gallery"
+    ]
+   }
+  },
+  {
+   "file": "wax-yard--map.webp",
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/battle-maps/wax-yard.webp",
+   "sha256": "78fdbe89a4755fa567d406c6eec0c044a3c1c0e87233765979a5127de0318019",
+   "originalSha256": "73cf1255df4f31819b4263df0e6350e57a1383230a52a3b8cfd3c2c2fef6dabd",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Восковый двор. Visible scenery: Учебная площадка с подвижными восковыми фигурами и стендом добровольных упражнений.. World style: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "wax-yard.webp",
+   "subjects": {
+    "3-players": [
+     "wax-yard"
+    ],
+    "4-players": [
+     "wax-yard"
+    ],
+    "5-players": [
+     "wax-yard"
+    ],
+    "6-players": [
+     "wax-yard"
+    ],
+    "7-players": [
+     "wax-yard"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/lantern-court/assets/world-map/world-map.webp",
+   "sha256": "16bbe0ef4c584fd791729d6953693e7be39991fe9a79dfbad6e2603aa66f1868",
+   "originalSha256": "abf446a8bfc7ebb392748670024a462b72dde3148af7cfcb13d10af467d7c9e8",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Фонарный Предел. Style Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Крыльцо прошений; 0.367,0.177 Зал раскрытых фонарей; 0.623,0.15 Круг тихого поединка; 0.88,0.177 Каменное гнездовье; 0.905,0.517 Дом остывшей искры; 0.648,0.49 Комната нитей; 0.392,0.517 Тростниковый балкон; 0.135,0.49 Галерея двух печатей; 0.11,0.83 Восковый двор; 0.367,0.857 Ступени решения. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

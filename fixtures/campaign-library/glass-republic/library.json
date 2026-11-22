@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "e1549f873d7d11e6956108be56a0c832068506eda4904885f1e6d0ed255c4af6"
+   "digest": "616f98b9348662e5235e94bc31c22017ba201e22893ecf9f0fbe854fea82fbdf"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "45d8c88c38de4a717d873736eac362af9cca11b9056e896daf38e352e2c65a90"
+   "digest": "d1c17a930f3ac8bc784094c071dd3e9c48c32382dc9d87d06803993bc927fdf5"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "db6d58ec6a6448caa73c914cd7fbafcb26542b94ab7178622d30143c52d1a921"
+   "digest": "545f210ad68a9e97a60fb3afa9557ef82818bd8b221aed77f0503e2b606ab0d0"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1532,6 +1532,312 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "h-ora.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/illustrations/cards/travel-kit.webp",
+   "sha256": "07a1af6e401237fb6cfd7d1468067b3bb07145e3e10d92ea0a918107debaba06",
+   "originalSha256": "2a364d6a13562eafd1c160aa4fc0ceb7122efe5384c7d062af60e1226315bf64",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "h-ilan-travel-kit",
+     "h-lis-travel-kit",
+     "h-mara-travel-kit",
+     "h-nadir-travel-kit",
+     "h-sava-travel-kit",
+     "h-tera-travel-kit"
+    ],
+    "7-players": [
+     "h-ilan-travel-kit",
+     "h-lis-travel-kit",
+     "h-mara-travel-kit",
+     "h-nadir-travel-kit",
+     "h-sava-travel-kit",
+     "h-tera-travel-kit",
+     "h-vey-travel-kit"
+    ],
+    "8-players": [
+     "h-ilan-travel-kit",
+     "h-lis-travel-kit",
+     "h-mara-travel-kit",
+     "h-nadir-travel-kit",
+     "h-ora-travel-kit",
+     "h-sava-travel-kit",
+     "h-tera-travel-kit",
+     "h-vey-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-vera.webp",
+   "sha256": "551c0f18e4c8df4ac679a1eb99a8e3b7df016438724e16daa7c8478992a6d2b2",
+   "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кассия Аммер",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-vera"
+    ],
+    "7-players": [
+     "n-vera"
+    ],
+    "8-players": [
+     "n-vera"
+    ]
+   },
+   "file": "n-vera--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-vera.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-lev.webp",
+   "sha256": "15b2a94e2518ddfca09226444a3a7efae483148a092dbf0479ecb4eb88966a92",
+   "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ростислав Пелль",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-lev"
+    ],
+    "7-players": [
+     "n-lev"
+    ],
+    "8-players": [
+     "n-lev"
+    ]
+   },
+   "file": "n-lev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-lev.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-oren.webp",
+   "sha256": "2be484e087ac37cb42a9b82ecc9f717fc204911251446ecff2f7cd230d985796",
+   "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орен Вальт",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-oren"
+    ],
+    "7-players": [
+     "n-oren"
+    ],
+    "8-players": [
+     "n-oren"
+    ]
+   },
+   "file": "n-oren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-oren.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-ada.webp",
+   "sha256": "7a764739f1de029785f8800d9c45fde6dd55860b3c5e4dbe60bcea7e36e025b8",
+   "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Северина Линт",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-ada"
+    ],
+    "7-players": [
+     "n-ada"
+    ],
+    "8-players": [
+     "n-ada"
+    ]
+   },
+   "file": "n-ada--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-ada.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-mirel.webp",
+   "sha256": "1f24e6aaa270be8bd00fd393182379629b737a729674c941e943313163e2108b",
+   "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иветта Сомм",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-mirel"
+    ],
+    "7-players": [
+     "n-mirel"
+    ],
+    "8-players": [
+     "n-mirel"
+    ]
+   },
+   "file": "n-mirel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-mirel.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-enna.webp",
+   "sha256": "a109fa1b7effec8803fa808ae0aee3eb134390b31e46de62926c20bdc4d6698b",
+   "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Энна Рей",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-enna"
+    ],
+    "7-players": [
+     "n-enna"
+    ],
+    "8-players": [
+     "n-enna"
+    ]
+   },
+   "file": "n-enna--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-enna.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-doran.webp",
+   "sha256": "891a21718fec9e4027281d5afa98de9724ec6e314767d238cdf30790532d5fb2",
+   "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фабиан Рушт",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-doran"
+    ],
+    "7-players": [
+     "n-doran"
+    ],
+    "8-players": [
+     "n-doran"
+    ]
+   },
+   "file": "n-doran--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-doran.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-rada.webp",
+   "sha256": "680b78757667bd820ea671d630ce7dd9a9b2d42a3636eca50d9b04f7378e5a4d",
+   "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гелена Шир",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-rada"
+    ],
+    "7-players": [
+     "n-rada"
+    ],
+    "8-players": [
+     "n-rada"
+    ]
+   },
+   "file": "n-rada--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-rada.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-senn.webp",
+   "sha256": "f39229750067e40cd7bd49759f6d11b31932f164a517fa2ba62ff83dc9090b44",
+   "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Богдан Ольшев",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-senn"
+    ],
+    "7-players": [
+     "n-senn"
+    ],
+    "8-players": [
+     "n-senn"
+    ]
+   },
+   "file": "n-senn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-senn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-yula.webp",
+   "sha256": "81aab11c1def3c46f63cc757f16eb5c2a415e207ed4f1b60c0c60c43ad4802d3",
+   "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юла Нер",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-yula"
+    ],
+    "7-players": [
+     "n-yula"
+    ],
+    "8-players": [
+     "n-yula"
+    ]
+   },
+   "file": "n-yula--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-yula.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/glass-republic/assets/table/npcs-n-zenon.webp",
+   "sha256": "ab41a4bec66bb4b1163a64bdfd320aae316348daedc0ef17c4db3183905500ed",
+   "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зенон Карх",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "n-zenon"
+    ],
+    "7-players": [
+     "n-zenon"
+    ],
+    "8-players": [
+     "n-zenon"
+    ]
+   },
+   "file": "n-zenon--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "n-zenon.webp"
   },
   {
    "file": "copper-steps--map.webp",

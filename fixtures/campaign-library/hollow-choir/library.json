@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "439018ca32e7a1070208ceb78c2ea16a211249fdab766af6d1891d7b58c06e33"
+   "digest": "f112dfd32d663fc32d03358408b793c3b226cce2d23107a6c01ff09e62809b76"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "34af2bed86c37f903b63cd098862c4de456b82826941a5e64a259f44f387d51a"
+   "digest": "72695fcfab7947db2ba2e8e99db91059bde45330a0a290a3c1bb7f3e2a848915"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "cd59faf08ba7ef0829d4b0d5f41ef9dcd414593c1ebc1265aa29d5ad3227b4de"
+   "digest": "f9872e0cb2a87a403b6243a7344eabf868bd2f4c827eb779b347cc36372bb300"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "72eeb8e78e12cd8379ab2a221a28d843aa07a37599e7af388811fb05316b0e93"
+   "digest": "d436afc55962e64776c6a682128c724cbadcddef6c7b66e28ac3010c048e322e"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1603,6 +1603,271 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "sofia-mere.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/illustrations/cards/travel-kit.webp",
+   "sha256": "9a7f245eb00f1afc74089e5e0b9e7707d0f29c9687025cc86e92c2a6f9f97aa2",
+   "originalSha256": "d9918d362e773e49b05ab503a5575fb00997beffedc544ae8d8c9edcd586fc8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "anton-grey-travel-kit",
+     "ilya-fenn-travel-kit",
+     "mara-elm-travel-kit",
+     "roza-flint-travel-kit",
+     "vera-reed-travel-kit"
+    ],
+    "6-players": [
+     "anton-grey-travel-kit",
+     "ilya-fenn-travel-kit",
+     "mara-elm-travel-kit",
+     "nina-slate-travel-kit",
+     "roza-flint-travel-kit",
+     "vera-reed-travel-kit"
+    ],
+    "7-players": [
+     "anton-grey-travel-kit",
+     "david-ash-travel-kit",
+     "ilya-fenn-travel-kit",
+     "mara-elm-travel-kit",
+     "nina-slate-travel-kit",
+     "roza-flint-travel-kit",
+     "vera-reed-travel-kit"
+    ],
+    "8-players": [
+     "anton-grey-travel-kit",
+     "david-ash-travel-kit",
+     "ilya-fenn-travel-kit",
+     "mara-elm-travel-kit",
+     "nina-slate-travel-kit",
+     "roza-flint-travel-kit",
+     "sofia-mere-travel-kit",
+     "vera-reed-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-gaspar-urm.webp",
+   "sha256": "e6bcb9e529eb4cd175ac76246a029fa737fb263d8d1ab4557f2bbaea9ce76721",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гаспар Урм",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "gaspar-urm"
+    ],
+    "6-players": [
+     "gaspar-urm"
+    ],
+    "7-players": [
+     "gaspar-urm"
+    ],
+    "8-players": [
+     "gaspar-urm"
+    ]
+   },
+   "file": "gaspar-urm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gaspar-urm.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-irina-vard.webp",
+   "sha256": "629dd0c2b7d3883adfaee0c9555ecc305de1196096f8a2566f55b38699480862",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ирина Вард",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "irina-vard"
+    ],
+    "6-players": [
+     "irina-vard"
+    ],
+    "7-players": [
+     "irina-vard"
+    ],
+    "8-players": [
+     "irina-vard"
+    ]
+   },
+   "file": "irina-vard--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "irina-vard.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-agata-norr.webp",
+   "sha256": "46b1b306790e1064d50e11f55682d0cdfc44ec3bc94ac5eb4da85ad540070bae",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бронислава Ковш",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "agata-norr"
+    ],
+    "6-players": [
+     "agata-norr"
+    ],
+    "7-players": [
+     "agata-norr"
+    ],
+    "8-players": [
+     "agata-norr"
+    ]
+   },
+   "file": "agata-norr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "agata-norr.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-dorota-vess.webp",
+   "sha256": "ee4b9e1243d130c6ec72f34482a14d0c6ba734fb405ef080cc3a5d0d08a1fc39",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорота Весс",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "dorota-vess"
+    ],
+    "6-players": [
+     "dorota-vess"
+    ],
+    "7-players": [
+     "dorota-vess"
+    ],
+    "8-players": [
+     "dorota-vess"
+    ]
+   },
+   "file": "dorota-vess--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dorota-vess.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-martin-sekh.webp",
+   "sha256": "3e94e6cf5c5e99c077159a2d60db5b5be8391872887245adffffeea16618246d",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мартин Сех",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "martin-sekh"
+    ],
+    "6-players": [
+     "martin-sekh"
+    ],
+    "7-players": [
+     "martin-sekh"
+    ],
+    "8-players": [
+     "martin-sekh"
+    ]
+   },
+   "file": "martin-sekh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "martin-sekh.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-lidia-arren.webp",
+   "sha256": "440699bca55ca07532acf2323305bb574be655b81a05b55eb6000591455d7fae",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эвелина Аррен",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "lidia-arren"
+    ],
+    "6-players": [
+     "lidia-arren"
+    ],
+    "7-players": [
+     "lidia-arren"
+    ],
+    "8-players": [
+     "lidia-arren"
+    ]
+   },
+   "file": "lidia-arren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lidia-arren.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-egor-nell.webp",
+   "sha256": "bfa803a03884e2ff1a4d68817e3e7cf5b02b0a1ffed456a8ed85274facedc01e",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Егор Нелл",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "egor-nell"
+    ],
+    "6-players": [
+     "egor-nell"
+    ],
+    "7-players": [
+     "egor-nell"
+    ],
+    "8-players": [
+     "egor-nell"
+    ]
+   },
+   "file": "egor-nell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "egor-nell.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/hollow-choir/assets/table/npcs-tadeush-ren.webp",
+   "sha256": "fa5f5a71ca84c02fc97c22d6bbff0ef6a10871475d60a7b380a9395aa44b6d24",
+   "originalSha256": "f3c5e9487a7416b0bff264b4864d98df56c8b59605eb22e2cafaf0a49f6a6bce",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тадеуш Рен",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "tadeush-ren"
+    ],
+    "6-players": [
+     "tadeush-ren"
+    ],
+    "7-players": [
+     "tadeush-ren"
+    ],
+    "8-players": [
+     "tadeush-ren"
+    ]
+   },
+   "file": "tadeush-ren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tadeush-ren.webp"
   },
   {
    "file": "quiet-parlor--map.webp",

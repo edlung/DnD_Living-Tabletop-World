@@ -1,0 +1,377 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-f75b3cbe-0a3d-4784-9885-98e371543957.png",
+      "originalSha256": "8ff5ecbd13696f73190c4741db4f3cc493b3e9221028d516bab6293e1b0f0d69",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Фонарный Предел. Characters, in strict cell order:\n1. Тара Шаг — Короткий плащ, медный карандаш и круглый щит с чистой внутренней стороной. Age 17.\n2. Мирон Вязь — Жилет с карманами для карточек и круглая лупа на зелёной ленте. Age 34.\n3. Сольви Роса — Белые перчатки с чернильными кончиками и деревянная брошь в форме раскрытой ладони. Age 22.\n4. Ника Плёт — Пальцы в цветном меле, тёмный берет и складная дощечка. Age 15.\n5. Дем Рун — Дорожная куртка, мягкие сапоги и коробочка с обычными пуговицами для примеров. Age 43.\n6. Ива Ласт — Каштановый шарф и блокнот с двумя колонками: «слышала» и «решила». Age 16.\n7. Ари Рябь — Серебристая коса, дорожная трость и длинный футляр для линейки. Age 62.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-ed198730-a45c-4951-b97f-0650e4c3d37e.png",
+      "originalSha256": "fb417ebfd6b48412f18d371d704653a93a69fe74df70290af970e53924c5b834",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Warm illustrated adventure book, colourful gouache. World: Фонарный Предел. Characters, in strict cell order:\n1. Эйра, цапля-председательница — Высокая цапля с очками на тонкой цепочке и двумя одинаковыми свечами. Age 188.\n2. Кард Серый Утёс — Каменный грифон с отполированным клювом и красной лентой на лапе. Age 94.\n3. Веш Тихая Искра — Огненная саламандра в синей керамической накидке, с холодной жаровней в руках. Age 61.\n4. Пика Белая Кромка — Невысокая каменная грифоница с меловым пятном на крыле. Age 23.\n5. Реми Угольный Нос — Саламандра с неровно завязанным шарфом и маленькими керамическими бусами. Age 19.\n6. Уля Восемь Петель — Паучиха в рабочем фартуке с восемью маленькими карманами. Age 87.\n7. Норс, речной уж-писец — Уж с чернильной подушечкой на хвосте и очками в кожаном чехле. Age 71.\n8. Мора Круглый Панцирь — Черепаха с дорожной сумкой и ярким платком, защищающим от ветра. Age 222.\n9. Бела Прямая Линия — Куница в сером переднике, с футляром для ножниц и опечатанной сумкой. Age 38.\n10. Аска Бронзовое Перо — Козодой с маленькой бронзовой серьгой в бархатной коробке. Age 42.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "tara",
+      "file": "cards/tara.webp",
+      "title": "Тара Шаг",
+      "subjects": [
+        "tara"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "be46233f08e542be9243b2c511d928ffa923c6874614affbf321a2a147b135a9"
+    },
+    {
+      "id": "miron",
+      "file": "cards/miron.webp",
+      "title": "Мирон Вязь",
+      "subjects": [
+        "miron"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8bf79b432989b48fa348f29e53f4219e32a2cf969802faa426253a975076d500"
+    },
+    {
+      "id": "solvi",
+      "file": "cards/solvi.webp",
+      "title": "Сольви Роса",
+      "subjects": [
+        "solvi"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1298d31894a7853a0bc479847d94c1996fbc89ad5d8f503734ceec176c481e05"
+    },
+    {
+      "id": "nika",
+      "file": "cards/nika.webp",
+      "title": "Ника Плёт",
+      "subjects": [
+        "nika"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cc62ed8475f56884d25aed9d31e21c75fc020cbc3cfe7d5a5b0f5831238dfe4a"
+    },
+    {
+      "id": "dem",
+      "file": "cards/dem.webp",
+      "title": "Дем Рун",
+      "subjects": [
+        "dem"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "96315ce9a262940a169526d9de46808aab41ced1fc9cb3eca6d8051d056b415f"
+    },
+    {
+      "id": "iva",
+      "file": "cards/iva.webp",
+      "title": "Ива Ласт",
+      "subjects": [
+        "iva"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "672f7f23ded443d37b6583fa53808f2f6021b2624b3ff8bfee276e7448f43042"
+    },
+    {
+      "id": "ari",
+      "file": "cards/ari.webp",
+      "title": "Ари Рябь",
+      "subjects": [
+        "ari"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4bf00d1d09b1a221b985c9e98abbee4018f99db3d4fab034808dda60d478c886"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "ari-travel-kit",
+        "dem-travel-kit",
+        "iva-travel-kit",
+        "miron-travel-kit",
+        "nika-travel-kit",
+        "solvi-travel-kit",
+        "tara-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dbf4f34cbca7d506006683d840940e3255152ee6b3ab043b50a720a5c09eb79f"
+    },
+    {
+      "id": "eira",
+      "file": "cards/eira.webp",
+      "title": "Эйра, цапля-председательница",
+      "subjects": [
+        "eira"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4712b8fd31381e06fe36b359afe29007cd985f0bc1d2495107c91b8f07a0c7c0"
+    },
+    {
+      "id": "kard",
+      "file": "cards/kard.webp",
+      "title": "Кард Серый Утёс",
+      "subjects": [
+        "kard"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "45cbe17214c911f524d771277bda42b17316d7b4e12781d96ef833c50a1e35e0"
+    },
+    {
+      "id": "vesh",
+      "file": "cards/vesh.webp",
+      "title": "Веш Тихая Искра",
+      "subjects": [
+        "vesh"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "62790f9d52619bc91a378b91ae178ba215e3f71870555e459d4e854364a9fdc2"
+    },
+    {
+      "id": "pika",
+      "file": "cards/pika.webp",
+      "title": "Пика Белая Кромка",
+      "subjects": [
+        "pika"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ad3d6b672ad9bab1f97e6e3bafd44832c271a3c985fdc430ea5c2a8142a12977"
+    },
+    {
+      "id": "remi",
+      "file": "cards/remi.webp",
+      "title": "Реми Угольный Нос",
+      "subjects": [
+        "remi"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "808796ce7a5200c117c304d18a10077d1af2e0dea8a0fd3a8c2bd34fc21f3b8b"
+    },
+    {
+      "id": "ulya",
+      "file": "cards/ulya.webp",
+      "title": "Уля Восемь Петель",
+      "subjects": [
+        "ulya"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fef016bd72604678f8b98bfeba3ef9b434cd2d67cb22953ba05d004be987cee2"
+    },
+    {
+      "id": "nors",
+      "file": "cards/nors.webp",
+      "title": "Норс, речной уж-писец",
+      "subjects": [
+        "nors"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9cf7ddcd2b31b1cf35fc9a6bedb75eb95c5982e8dd1aa4a7cb644b7e1cd66ff5"
+    },
+    {
+      "id": "mora",
+      "file": "cards/mora.webp",
+      "title": "Мора Круглый Панцирь",
+      "subjects": [
+        "mora"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5244ce3258f540f5a76ca0b41a0648980e64ab752b8e07445dc6af695c542b5a"
+    },
+    {
+      "id": "bela",
+      "file": "cards/bela.webp",
+      "title": "Бела Прямая Линия",
+      "subjects": [
+        "bela"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e727375c2a056bc139e1584e146b2f1efd3ed43322aaaccb3c7c2fb624486b81"
+    },
+    {
+      "id": "aska",
+      "file": "cards/aska.webp",
+      "title": "Аска Бронзовое Перо",
+      "subjects": [
+        "aska"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ecbdd51cbcb65626469d2469422e097299a3a0b14fb9f2f0b7e5707f3ef24927"
+    }
+  ]
+}

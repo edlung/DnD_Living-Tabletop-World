@@ -1,3 +1,4 @@
+import { campaignAppearance } from '../visual/campaign-themes/index.ts';
 import { campaignLibraryResponseSchema, type CampaignLibraryEntry } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useState } from 'react';
@@ -65,7 +66,7 @@ export function HubLibrary({
           const select = `hub-library-variant-${campaign.id}`;
           const mine = busy === `library:${campaign.id}`;
           return (
-            <li key={campaign.id} className="hub-library-card">
+            <li key={campaign.id} className="hub-library-card" {...campaignAppearance(campaign.id)}>
               <div className="hub-library-cover">
                 <img
                   src={`/api/account/library/${encodeURIComponent(campaign.id)}/cover`}

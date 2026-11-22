@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "station.webp",
+      "sha256": "da6f7cc686c1951a233bfd502d952939f68c932d17728d6818fd0ea3901e2865",
+      "originalSha256": "4bacd42e749a15b68c14440b328e70335835f1ab21a5397a70143383c9a2424d",
+      "originalFile": "exec-a7e299df-d5bc-4df8-b66d-7bab62833fa8.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Вересковый Вокзал. Visible scenery: Большой вокзал внутри старого дуба. Под стеклянным навесом пахнет хлебом, стоят аккуратные зонты и готовится к пути красный экспресс.. World style: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 12:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "station",
+      "encounter": "baggage-gardeners",
+      "grid": [
+        12,
+        8
+      ]
+    },
+    {
+      "file": "glass.webp",
+      "sha256": "44118eec9711ac52b60a1d6eaba6c536a6eac3eea7340e64769b4f9182d8b02d",
+      "originalSha256": "d1863e22e9fe006bb0b7e3866334b556ca2a3d7a72e5a99a0fb10abcea2102f7",
+      "originalFile": "exec-fec05c05-cbd8-4354-9710-29dae730e704.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Хрустальная Оранжерея. Visible scenery: Стеклянные своды, ровные ряды растений и медные поливочные трубки. В центре стоит пустой колокол с открытой дверцей и настоящей землёй.. World style: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:10; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "glass",
+      "encounter": "glass-gardeners",
+      "grid": [
+        10,
+        10
+      ]
+    },
+    {
+      "file": "storm.webp",
+      "sha256": "80227e845cbfe91bad16dce092e454933f7ee356df411b31366278c23e3f9e1b",
+      "originalSha256": "8de1e4a00dc47e752f97300229eb343bda431606c6bae2d3cb18bc49040c4910",
+      "originalFile": "exec-b2d66633-acb3-4690-8e83-2c37ede9af06.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Высокая Эстакада. Visible scenery: Путевой узел над оврагом: основной мост, параллельный служебный настил, боковая ветка и ремонтный кран. Здесь можно остановить состав безопасным ручным тормозом.. World style: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 12:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "storm",
+      "encounter": "bridge-repairers",
+      "grid": [
+        12,
+        8
+      ]
+    }
+  ]
+}

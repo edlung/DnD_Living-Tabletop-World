@@ -1,0 +1,299 @@
+@import './fonts/fonts.css';
+
+:root {
+  color-scheme: dark;
+  --accent: #e5c49a;
+  --bg: #13181c;
+  --paper: #20282b;
+  --line: #465052;
+  --type: 'Cormorant Garamond', Georgia, serif;
+  --body: system-ui, sans-serif;
+  color: #f3eee5;
+  background: var(--bg);
+  font-family: var(--body);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font: 1rem/1.5 var(--body);
+}
+.story {
+  --body: 'Alegreya', Georgia, serif;
+}
+.folio {
+  --type: 'Alegreya', Georgia, serif;
+}
+.instrument {
+  --type: ui-monospace, 'Courier New', monospace;
+}
+main {
+  max-width: 80rem;
+  margin: auto;
+  padding: 2rem clamp(1rem, 4vw, 4rem) 6rem;
+}
+h1,
+h2,
+h3,
+strong {
+  font-family: var(--type);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+h1 {
+  font-size: clamp(2.4rem, 6vw, 5.6rem);
+  margin: 0.25em 0;
+  max-width: 23ch;
+}
+h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  margin: 0 0 0.7em;
+}
+h2 small {
+  font: 500 0.46em system-ui;
+  color: var(--accent);
+  vertical-align: middle;
+}
+h3 {
+  font-size: 1.55rem;
+  margin: 0;
+}
+header {
+  margin-top: 1.5rem;
+  padding: 1.25rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+}
+header > p {
+  max-width: 57ch;
+}
+.kicker {
+  color: var(--accent);
+  font: 600 0.76rem/1.4 system-ui;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+a:hover {
+  color: white;
+}
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+nav,
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.3rem;
+  align-items: baseline;
+}
+nav {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+nav a,
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.35rem;
+}
+section {
+  margin-top: 2.8rem;
+  scroll-margin: 1.5rem;
+}
+.shelf,
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+}
+.cover {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom: 3px solid var(--accent);
+  color: #f4f1e9;
+  text-decoration: none;
+}
+.cover span {
+  display: block;
+  height: 5.5rem;
+  background: var(--tile) center / 175px;
+}
+.cover strong {
+  display: block;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+.cover:hover {
+  border-color: var(--accent);
+}
+.specimen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding: clamp(1rem, 3vw, 2.3rem);
+  background:
+    linear-gradient(100deg, #111619f7, #111619df 65%, #111619aa),
+    var(--tile) center / 190px;
+  border: 1px solid var(--line);
+}
+.specimen p {
+  margin: 0.5em 0;
+}
+.sample {
+  font: 700 clamp(1.25rem, 3vw, 2rem)/1.25 var(--type);
+}
+.dice-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.dice-examples > div {
+  text-align: center;
+}
+.dice-examples span {
+  display: block;
+  font:
+    0.85rem/1.6 system-ui,
+    sans-serif;
+}
+.face {
+  width: 5rem;
+  margin: 0 auto 0.5rem;
+  height: 5rem;
+  display: grid;
+  place-content: center;
+  clip-path: polygon(50% 0, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
+}
+.face b {
+  font:
+    700 2.1rem 'Cormorant Garamond',
+    Georgia,
+    serif;
+}
+.face.dark {
+  background:
+    linear-gradient(#111820d0, #111820e8),
+    var(--tile) center / 90px;
+  color: #f7db95;
+}
+.face.light {
+  background:
+    linear-gradient(#eee2c4d8, #f4e5cadd),
+    var(--tile) center / 90px;
+  color: #322615;
+}
+.entry {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  background: var(--paper);
+  border-top: 2px solid var(--accent);
+}
+.entry > div {
+  padding: 1rem;
+}
+.entry img {
+  display: block;
+  width: 100%;
+  height: 12rem;
+  object-fit: contain;
+  background: #10161a;
+}
+.entry .stamp {
+  display: grid;
+  place-content: center;
+  height: 4rem;
+  background:
+    linear-gradient(95deg, #17191bd9, #17191b99),
+    var(--tile) center / 160px;
+  color: var(--accent);
+  font: 700 1.8rem var(--type);
+}
+.entry p {
+  margin: 0.75rem 0 0;
+}
+.entry small {
+  color: #e4cfad;
+}
+.rows {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.rows li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.rows p {
+  margin: 0.3rem 0;
+  color: #d2d7d5;
+  max-width: 90ch;
+}
+@media (max-width: 420px) {
+  main {
+    padding-top: 1rem;
+  }
+  section {
+    margin-top: 2rem;
+  }
+  .dice-examples {
+    gap: 0.7rem;
+  }
+}
+@media print {
+  :root,
+  body,
+  .entry,
+  .cover,
+  .specimen {
+    background: white;
+    color: #171717;
+  }
+  main {
+    padding: 0;
+  }
+  .entry {
+    break-inside: avoid;
+    border: 1px solid #999;
+  }
+  a,
+  .entry small,
+  .kicker,
+  h2 small,
+  .rows p {
+    color: #222;
+  }
+  nav,
+  .links {
+    display: none;
+  }
+}
+
+/* Long catalogue references and unspaced strings in authored handouts wrap on a phone. */
+.rows li,
+.rows p,
+.specimen > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.entry details {
+  margin-top: 0.9rem;
+}
+.entry summary {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.atlas {
+  display: block;
+  width: 100%;
+  max-height: 34rem;
+  object-fit: contain;
+  margin-block: 1rem;
+}

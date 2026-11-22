@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "inverted-court.webp",
+      "sha256": "114e3159f5b5e596bad51f8673455140f7a0c0027b2317f713f9b2f829dec9c1",
+      "originalSha256": "50831716d8c559007eb3a17254da7be82274baaf7dd8532b068a8eca673c4bd1",
+      "originalFile": "exec-9c160fef-6f5c-49fb-a9e3-2f2a15c8df7c.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Косая палата. Visible scenery: Каменный двор с наклонными окнами. Одна лестница идёт вдоль стены, а на широком подоконнике оставлены чашки и мел.. World style: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "inverted-court",
+      "encounter": "porcelain-repeats",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "roof-bridge.webp",
+      "sha256": "a84dfb9b05d1feeb42022b25e88bce20a12742f1e01c3986eb6856c403b4d9ac",
+      "originalSha256": "b0d899d75002541c4f36e64c9b440453691567c660dd7d59c29d988f880826de",
+      "originalFile": "exec-d3ff064a-5a45-4fd9-a999-c8b2d4700f6e.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея косого дождя. Visible scenery: Широкая крытая галерея между высокими фронтонами. Дождь стекает по стене, а под навесом остаётся сухая полоса камня.. World style: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "roof-bridge",
+      "encounter": "rain-steps",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "mirror-square.webp",
+      "sha256": "b6e8d7b0555db4d541db1b4f613de56716658d39b92d85a30754136e33316a87",
+      "originalSha256": "75fbcc6de5478d36720d215a147928576b83aada6606847dcbe33cea9b597306",
+      "originalFile": "exec-9be609c0-c44a-43d9-ba02-2b8e42fb878b.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Площадь ненаписанных теней. Visible scenery: Мокрая площадь со скамьями и каменной статуей. Тени прохожих ложатся на стены, рядом висят незаполненные дощечки для подписей.. World style: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "mirror-square",
+      "encounter": "ink-shapes",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

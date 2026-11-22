@@ -29,19 +29,26 @@ const library = await loadCampaignLibrary();
 /** A package saved into a draft and activated in memory, the library's pictures wired in. */
 async function activate(content: CampaignPackage) {
   const f = await activationMemoryFixture();
+  const scope = { ownerId: f.scope.ownerId, draftId: randomUUID() };
+  await f.deps.store.createDraft(
+    scope.ownerId,
+    { requestId: randomUUID(), title: content.world.name, language: 'ru' },
+    scope.draftId,
+    new Date(f.now()).toISOString(),
+  );
   const saved = await f.revisions.append({
-    ...f.scope,
+    ...scope,
     requestId: randomUUID(),
-    basedOnRevision: 1,
+    basedOnRevision: 0,
     content,
     source: { kind: 'OWNER', actorId: f.ownerId },
     createdAt: new Date(f.now()).toISOString(),
   });
   if (saved.kind !== 'saved') throw new Error(`revision: ${saved.kind}`);
-  const reviewed = await loadCampaignActivationReview(f.deps, f.scope, { textOnly: true });
+  const reviewed = await loadCampaignActivationReview(f.deps, scope, { textOnly: true });
   if (!reviewed?.frozen) throw new Error('activation review missing');
   const activation = await acceptedActivation(f.repository, {
-    ...f.scope,
+    ...scope,
     authSessionId: f.authSessionId,
     request: activationRequest(reviewed.review),
     frozen: reviewed.frozen,
@@ -57,7 +64,7 @@ async function activate(content: CampaignPackage) {
       logger: createLogger({ service: 'library-test', level: 'silent' }),
     },
   });
-  await worker.run({ ...f.scope, activationId: activation.activationId });
+  await worker.run({ ...scope, activationId: activation.activationId });
   await worker.shutdown();
   const engine = new WorldEngine({
     store: new PublishedEventStore(f.rawStore, f.publication),
@@ -118,6 +125,18 @@ describe('campaign library', () => {
       );
       const figured = new Set(shown.filter((a) => a.purpose === 'figure').map((a) => a.entityId));
       for (const foe of foes) expect(figured.has(foe), `${id}: a foe without a figure`).toBe(true);
+      const cast = content.entities.filter(
+        (e) => e.kind === 'npc' || content.party.includes(e.key),
+      );
+      for (const { key: hero } of cast) {
+        const entityId = revision.identities.entities[hero];
+        expect(figured.has(entityId ?? ''), id + ': missing cast figure ' + hero).toBe(true);
+        expect(
+          shown.some(
+            (a) => a.entityId === entityId && a.purpose === 'image' && a.variant === 'reference',
+          ),
+        ).toBe(true);
+      }
       // The world map (ADR 0057 §10): the DM sees its picture with every place but the region
       // pinned on it, and routes that join every pinned place, each end pinned.
       const mapId = revision.identities.entities['world-map'] ?? '';
@@ -133,8 +152,16 @@ describe('campaign library', () => {
       );
       for (const place of places)
         expect(pinned.has(revision.identities.entities[place.key] ?? ''), place.key).toBe(true);
-      // A house's rooms are a plan without miles: travel there is walking, not a journey.
-      if (id === 'hollow-choir') {
+      // Schematic plans have pins without measured overland travel.
+      const source = LIBRARY.find((s) => s.id === id);
+      const root = new URL(
+        '../../campaigns/' + (source?.series ? source.series + '/' : '') + id + '/',
+        import.meta.url,
+      );
+      const plan = JSON.parse(await readFile(new URL('source/world-map.json', root), 'utf8')) as {
+        scale?: string;
+      };
+      if (id === 'hollow-choir' || plan.scale === 'schematic') {
         expect(view.routes).toEqual([]);
         return;
       }

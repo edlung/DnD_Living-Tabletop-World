@@ -156,6 +156,21 @@ textarea {
 input {
   width: 100%;
 }
+/* WebKit's native menu can collapse to 23px on a touch screen even with min-height. */
+.perspective-control select,
+.item-card select {
+  appearance: none;
+  min-height: 42px;
+  padding-inline-end: 1.8rem;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    right 1rem center,
+    right 0.7rem center;
+  background-size: 0.3rem 0.3rem;
+  background-repeat: no-repeat;
+}
 textarea {
   display: block;
   width: 100%;

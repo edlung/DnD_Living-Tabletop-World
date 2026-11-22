@@ -1,3 +1,4 @@
+import { campaignAppearance } from '../visual/campaign-themes/index.ts';
 import {
   campaignLibraryResponseSchema,
   campaignPackageSchema,
@@ -75,7 +76,11 @@ export function CampaignLibraryPick({
         {(campaigns ?? []).map((campaign) => {
           const select = `library-variant-${campaign.id}`;
           return (
-            <li key={campaign.id} className="campaign-library-card">
+            <li
+              key={campaign.id}
+              className="campaign-library-card"
+              {...campaignAppearance(campaign.id)}
+            >
               <div className="campaign-library-cover">
                 <img
                   src={`/api/workshop/library/${campaign.id}/cover`}

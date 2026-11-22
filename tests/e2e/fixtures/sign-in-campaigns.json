@@ -53,5 +53,12 @@
   "placeSoundRu": "ui-signin-place-sound-ru",
   "storyCast": "ui-signin-story-cast",
   "storyCastRu": "ui-signin-story-cast-ru",
-  "hubLibrary": "ui-signin-hub-library"
+  "hubLibrary": "ui-signin-hub-library",
+  "phoneGroup1": "ui-phone-group-1",
+  "phoneGroup2": "ui-phone-group-2",
+  "phoneGroup3": "ui-phone-group-3",
+  "phoneGroup4": "ui-phone-group-4",
+  "phoneGroup5": "ui-phone-group-5",
+  "phoneGroup6": "ui-phone-group-6",
+  "phoneBuiltin": "ui-phone-builtin"
 }

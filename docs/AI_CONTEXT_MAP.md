@@ -8,6 +8,8 @@ Noir collection (3–8 adults): `campaigns/noir-2026/AGENTS.md`, `campaigns/noir
 
 ## Process and product
 
+Interactive DM book concept (2026-11-22) — [open the offline Hollowmere spread](design/dm-book/index.html), [scope](../work-orders/DM_BOOK_CONCEPT_2026-11-22.md).
+
 | Task | Smallest starting set |
 |---|---|
 | Start or authorize a stage | `QUICKSTART.md`, `EFFORT_MATRIX.md`, `AGENT_WORKFLOW.md`, the one authorized file in `work-orders/` |
@@ -25,6 +27,7 @@ Noir collection (3–8 adults): `campaigns/noir-2026/AGENTS.md`, `campaigns/noir
 | "I'll come / I can't" for the next game (Stage 890): one answer a character to the date as it stands, read by the table | ADR 0073 §10 (amends ADR 0071 §3, 0043 §6, 0062 §1, 0061 §5; reverses `MEMORY_RITUAL_PLAN.md` decision 14), `work-orders/STAGE_890.md`, `reports/STAGE_890_COMPLETION.md` (the program's close); contracts `session/lobby.ts` (`COMING_ANSWERS`, `LobbyCharacter.coming`, `lobbyComingRequestSchema`); migration `0048_next_game_answers.sql`; server `apps/server/src/table/coming-store.ts`, `postgres-coming-store.ts`, `lobby-routes.ts` (`POST …/lobby/coming`); client `apps/web/src/ritual/coming.tsx` (`ComingAsk`, `ComingForDm`), `session/lobby-banner.tsx`, `ritual/next-game.tsx`, `styles/coming.css`, `i18n/ru-coming.ts`; journey `tests/e2e/coming.spec.ts` |
 | Sealed envelopes (Stage 880): a kept handout sealed for the party, opened on the DM's word or when the evening's chapter is written | ADR 0073 §9 (amends ADR 0058 §3, 0044 §5, 0033, 0061 §5), `work-orders/STAGE_880.md`, `reports/STAGE_880_COMPLETION.md`; contracts `play/envelopes.ts`; migration `0047_envelopes.sql`; server `apps/server/src/envelopes/` (`envelope-store.ts`, `postgres-envelope-store.ts`, `envelope-routes.ts` with `openEnvelope`, `openEnvelopesForChapter`), the hook `onPartyChapter` in `http/routes/chronicle-routes.ts`; client `apps/web/src/library/envelopes.tsx` (`SealEnvelope`, `DmEnvelopes`), `library/kept-handouts.tsx`, `handouts/sealed-envelopes.tsx`, `world/journal-sheet.tsx`, `i18n/ru-envelopes.ts`, styles in `library.css`; journey `tests/e2e/envelopes.spec.ts` |
 | Theatre of the mind on the table's screen (Stage 870): the `story` cast — one picture and the words read aloud | ADR 0073 §8 (amends ADR 0042 §3, 0044 §5), `work-orders/STAGE_870.md`, `reports/STAGE_870_COMPLETION.md`; contracts `display/display.ts` (`castSchema` `story`, `STORY_CAST_CHARS`); server `apps/server/src/display/display-routes.ts` (`castForParty`); client `apps/web/src/display/cast-views.tsx` (`StoryCast`), `display/moments.ts`, `dm/story-cast-fields.tsx`, `dm/cast-form.tsx`, `online/shared-screen.tsx`, `styles/story-cast.css`, `i18n/ru-story-cast.ts`; journey `tests/e2e/story-cast.spec.ts` |
+| Campaign editorial review (2026-11-22), session branches, portraits and campaign interface materials | [DM review](../reports/CAMPAIGN_EDITORIAL_2026-11-22.md), [offline reference](../campaigns/interface/index.html), `apps/web/src/visual/campaign-themes/`, [built-in adventures](BUILTIN_ADVENTURES_DM_RU.md); authored books use each pack’s `source/table-guide.json` and `scripts/campaign-shared/table-guide.ts`. |
 | Campaign distinctness review — acceptance reopened | `work-orders/CAMPAIGN_ORIGINALITY_AUDIT_2026-11-08.md`; current assessment `reports/CAMPAIGN_DISTINCTNESS_REASSESSMENT_2026-11-08.md`; prior follow-up `reports/CAMPAIGN_ORIGINALITY_FOLLOWUP_2026-11-08.md`; findings `reports/evidence/campaign-originality-followup-2026-11-08/index.md`. A1–A12 fixed; D1–D3 open for repeated gameplay sequences. Read one review/manifest at a time. |
 | AI-generated campaigns: Stages 370–450, scenario and visual preview, unlimited monetary policy | Accepted `docs/STAGE_370_DESIGN.md` / ADR 0038 (disposition `reviews/STAGE_370_OWNER_DISPOSITION_2026-10-30.json`; reviewed bytes frozen), `docs/design/campaign-generation/AGENTS.md` and its example; current integration `work-orders/STAGE_450.md`; activation `work-orders/STAGE_440.md`, `docs/STAGE_440_DESIGN.md`; status `docs/PROJECT_WORKFLOW.md` |
 | Stage 320 visual language (contract) | `docs/STAGE_320_DESIGN.md` (adopted), `docs/adr/0034-visual-language.md`, the owner's concepts `docs/design/stage-320/owner-concepts/`; parts A (tokens, fonts, UI kit in the client, shell, scene, conversation, details, sign-in), B (battlefield: tilted board, GPT pieces and tokens, HUD, turn tray, reaction prompt) and C (Chronicle book, flashback scene, DM tools, accessibility and responsive pass) are implemented; owner play acceptance pending (`reports/STAGE_320_COMPLETION.md`, evidence `reports/evidence/stage-320/index.md`) |
@@ -45,6 +48,16 @@ Noir collection (3–8 adults): `campaigns/noir-2026/AGENTS.md`, `campaigns/noir
 | Remediation/retest | Exact failed report, `OPUS_REMEDIATION_TEMPLATE.md`, `HANDOFF_TEMPLATE.md`, `AGENT_WORKFLOW.md` (Remediation and severity) |
 | UX, validation, release | Authorized Stage 200–250 work order, relevant product/Ravenford acceptance sections |
 | Alpha phase: language, live AI, live session, visual, images, sign-in, deployment, playtests | `EXECUTION_PLAN.md` (Alpha Phase), `docs/IMPLEMENTATION_PREREQUISITES.md` (Q4–Q11), the one authorized Stage 290–360 work order; Gate 06 mission in `ASTRA_GATE_PROMPTS.md` |
+
+For GM and player rehearsals of all 55 campaigns, start with `reports/CAMPAIGN_REHEARSAL_2026-11-22.md`. The isolated HTTP runner is `scripts/campaign-rehearsal/run.mjs`; each book keeps its decisions and branching evidence in `source/table-routes.json`.
+
+For continuous combat across all 55 books, use `scripts/campaign-endurance/AGENTS.md`, the chapter and rest ledger in `scripts/campaign-endurance/itineraries.json`, and the paired results in `reports/CAMPAIGN_ENDURANCE_2026-11-22.md`.
+
+For the 39 parties stopped in that archive, use `scripts/campaign-defeats/AGENTS.md` and `reports/CAMPAIGN_DEFEATS_2026-11-22.md`. The replay forks at the last played fight and includes the GM’s scene after a loss.
+
+For encounter balance across the library, start with `reports/CAMPAIGN_COMBAT_BALANCE_2026-11-22.md` and `scripts/campaign-balance/AGENTS.md`. Run `pnpm campaigns:balance` for every prepared encounter and party edition. Hollowmere's optional reinforcements are part of its prepared book and the server's preview and start routes.
+
+The per-campaign playability matrix is in `reports/evidence/campaign-play-readiness.md`. Table assets are built by `scripts/campaign-library/`, the offline DM reference by `scripts/campaign-interface/` and the mobile player journeys live in `tests/campaign-readiness/`.
 
 ## Code and tooling
 

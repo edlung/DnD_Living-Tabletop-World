@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "4ecc5d8231a1eb48eeb2a02bf8b441330fb6b77b2c848815d885855f834c14e6",
+    "originalSha256": "9c6f2a50764728fc93e10e49837aa7677dc2c3e2ecb11b07165899323ae48034",
+    "originalFile": "exec-07d9f2cf-bb2c-485d-ab65-617be3b2aca4.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Тихая Чаша. Style Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом Фонарей; 0.367,0.177 Крапивный Рынок; 0.623,0.15 Зимний сад; 0.88,0.177 Домик прививок; 0.905,0.517 Зеркальный разрез; 0.648,0.49 Моховой колодец; 0.392,0.517 Шёлковый чердак; 0.135,0.49 Пустая мельница; 0.11,0.83 Тихие ступени; 0.367,0.857 Белая палата. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

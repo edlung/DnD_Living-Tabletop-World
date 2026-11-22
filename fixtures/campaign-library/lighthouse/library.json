@@ -1,0 +1,1505 @@
+{
+ "id": "lighthouse",
+ "title": "Маяк Между Ветрами",
+ "genre": "Семейное путешествие между островами",
+ "audience": "8+",
+ "pitch": "В Фонарной Гавани перестаёт гаснуть вечерняя звезда. Затем замолкают колокола, яблоки перестают созревать, а знакомые дороги ведут на вчерашние острова. Трое друзей получают дом-корабль «Чайник» и берутся вернуть миру завтрашний день.",
+ "tone": "Чудеса, любопытство, тёплый юмор, честные трудные решения. Опасность приключенческая; никаких жестоких подробностей, пыток, гибели детей или неизбежной жертвы спутника.",
+ "duration": "12 вечеров по 2,5–3,5 часа с паузой каждые 40–50 минут. Каждый вечер делится на три законченных отрезка; можно сыграть за 24 короткие встречи.",
+ "cover": "campaigns/lighthouse/assets/runtime/cover.webp",
+ "defaultVariant": "original-party",
+ "variants": [
+  {
+   "id": "four-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/four-players.json",
+   "digest": "e84c49865c5b536af129923611d015fe8e70021c8862844113654ede76fa9345"
+  },
+  {
+   "id": "original-party",
+   "players": 3,
+   "label": "3 игрока · основной состав",
+   "file": "packages/original-party.json",
+   "digest": "c8688a23681d2c6bbf9c36c72921965888e3dbf75b4d7caacff87c3a99dd5270"
+  },
+  {
+   "id": "without-finn",
+   "players": 3,
+   "label": "3 игрока, без героя «Финн Меднолист»",
+   "file": "packages/without-finn.json",
+   "digest": "1f12a56470c8b46ee9d7f291728a07357871adc4e64088481ca0054ea0f537dc"
+  },
+  {
+   "id": "without-tess",
+   "players": 3,
+   "label": "3 игрока, без героя «Тэс Быстрый Стежок»",
+   "file": "packages/without-tess.json",
+   "digest": "a0eea9852d18ac0335ebaaec614337a0c6ed41547cf8cf2924dba3614ec86096"
+  },
+  {
+   "id": "without-asya",
+   "players": 3,
+   "label": "3 игрока, без героя «Ася Вереск»",
+   "file": "packages/without-asya.json",
+   "digest": "5e3dc67aae9359ff931c965a4229dafbbda39520694f346067b4858be6154540"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/lighthouse/assets/runtime/cover.webp",
+   "sha256": "b44a1677babc2826ab3599af036af90c813d4b0f2257a5df9e6fdf8801d15cf2",
+   "originalSha256": "5abccbbbea1f1dfb35b9cfb92ce2218d73ffc0c9838c4f0c696027c1dcd6dbc5",
+   "generated": "2026-11-08",
+   "prompt": "Key art for an original family fantasy campaign called The Lighthouse Between Winds (DO NOT render any title). A vast archipelago of floating rocky islands above an ocean of luminous dusk clouds. A graceful stone lighthouse rises from a distant island, four immense brass orbital rings around its glass lantern dome. In the foreground, a small seaworthy flying timber houseboat with a copper roof and chimney, one cream sail with a teal patch, one round amber lantern; its warm lit windows promise a home. The ship sails from lower left toward the lighthouse in the upper right, wondrous bridges, tiny waterfalls and stars receding into mist. Big beautiful readable silhouettes and inviting detail. No people in close-up. A compelling cinematic cover with breathing room in the upper left.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "winds"
+    ],
+    "original-party": [
+     "winds"
+    ],
+    "without-finn": [
+     "winds"
+    ],
+    "without-tess": [
+     "winds"
+    ],
+    "without-asya": [
+     "winds"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/harbor.webp",
+   "sha256": "731319672f1d1665d027bdcad30a12cd8c0d278869bcca98f79737824114a126",
+   "originalSha256": "d30c90d6cca36da44309d6ddde4ad4cfe67dc4d4687df2ae52c526b346215112",
+   "generated": "2026-11-08",
+   "prompt": "A playable establishing scene: the floating island town Lantern Harbor on festival evening, seen at street level across a broad cobbled plaza. Warm crooked timber houses, copper roofs, fabric awnings, suspended amber lanterns, a tiny pastry stall, a public fountain, arched gate to a distant airship dock. Beyond the quay an ocean of pink and blue clouds and floating islands. A few small friendly adult townsfolk at the edges; unobstructed center for players to imagine standing in the scene. A little flying houseboat at the dock has a copper roof, chimney, one cream sail with teal patch and round amber lantern. The town feels inhabited, not a theme park. No secret symbols or puzzle solutions.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "harbor"
+    ],
+    "original-party": [
+     "harbor"
+    ],
+    "without-finn": [
+     "harbor"
+    ],
+    "without-tess": [
+     "harbor"
+    ],
+    "without-asya": [
+     "harbor"
+    ]
+   },
+   "file": "harbor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/ship.webp",
+   "sha256": "cd02ee28aa62332ecb0273afb9aca47b03fd65563aac8c1f0087097aed08a27e",
+   "originalSha256": "b2f4f9e19b4b21180e2bd3f8273eb1c05934a4742e8f97e16343b54b6be07269",
+   "generated": "2026-11-08",
+   "prompt": "Interior of a tiny flying houseboat: a warmly lit timber cabin with a large oval window overlooking a vast cloud sea, a brass kettle steaming on a compact stove, three mismatched chairs around a round map table, folded teal blankets, drawers for travel treasures and a hammock. A small brass mechanical fox with turquoise glass eyes, one copper ear and an articulated tail sits beside a basket. No visible readable map text. The room is a real cozy home between adventures; composition creates a welcoming playable scene.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ship"
+    ],
+    "original-party": [
+     "ship"
+    ],
+    "without-finn": [
+     "ship"
+    ],
+    "without-tess": [
+     "ship"
+    ],
+    "without-asya": [
+     "ship"
+    ]
+   },
+   "file": "ship.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/orchard.webp",
+   "sha256": "b0bbedd12ab8c25eb0f0f9c2fc9e94055ffc6dac9e2d4b2d0c1f2f832d04f9d5",
+   "originalSha256": "8dd15198d84795a60142cf4f7a8b769c03c24fe429f3d8b4e291af6df371292e",
+   "generated": "2026-11-08",
+   "prompt": "A spectacular floating orchard island at golden morning, ancient apple trees with spiralling copper wind chimes and luminous amber fruit, little rope bridges linking mossy terraces above clouds. A vast friendly tortoise with a garden growing on its shell sleeps beside a broken water wheel. Elegant glass irrigation channels and a broad grassy clearing with a picnic cloth. Wondrous scale, no peril, no people in foreground.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "orchard"
+    ],
+    "original-party": [
+     "orchard"
+    ],
+    "without-finn": [
+     "orchard"
+    ],
+    "without-tess": [
+     "orchard"
+    ],
+    "without-asya": [
+     "orchard"
+    ]
+   },
+   "file": "orchard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/library.webp",
+   "sha256": "eb28f2ff12277da27456b114044cccfb5dbce26ce992b6e3ce9f970d68bcead5",
+   "originalSha256": "9fb7d2c3f6cbbf0bec7585fee50e83208288967df3e50255b88bea2227ca1508",
+   "generated": "2026-11-08",
+   "prompt": "The Library of Tides, a magnificent circular hall cut into a floating pearl-white rock. Curving bookcases and brass ladders surround a shallow mirror-like pool that reflects stars in daytime. Small paper boats carry books along narrow turquoise channels. Arched windows look onto drifting clouds; warm reading lamps and a broad accessible walkway. A huge gentle sky whale visible far beyond one window. Books have no readable letters. Dreamlike but credible architecture.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "library"
+    ],
+    "original-party": [
+     "library"
+    ],
+    "without-finn": [
+     "library"
+    ],
+    "without-tess": [
+     "library"
+    ],
+    "without-asya": [
+     "library"
+    ]
+   },
+   "file": "library.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/market.webp",
+   "sha256": "b8f4519e12ade6b4312c27595978a95573367ad6eabe0d5015dff3aad461d66d",
+   "originalSha256": "13279cad6c84fc909e31c3a340c0bc1c15873f2b3afa845e44a4ee6f099c4514",
+   "generated": "2026-11-08",
+   "prompt": "The Mirror Bazaar at blue hour, a playful sophisticated open air market built on interlocking floating stone terraces. Tall freestanding mirrors in ornate copper frames reflect harmless alternate seasonal scenery, stalls sell bottled breezes, folded kites and ribbon spools. Indigo canvas roofs, strings of soft amber lamps, mosaic paving, distant cloud sea. Elegant clear central path, no sinister faces, no puzzle codes, only tiny adult background silhouettes.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "market"
+    ],
+    "original-party": [
+     "market"
+    ],
+    "without-finn": [
+     "market"
+    ],
+    "without-tess": [
+     "market"
+    ],
+    "without-asya": [
+     "market"
+    ]
+   },
+   "file": "market.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/forge.webp",
+   "sha256": "a87ac6c40f915d42ecc6c4674bd7ede43fdcd8be63b7f13c263452cc4fdfccc9",
+   "originalSha256": "2a00e95246f0643a1a30502eff1fc8b192e541dc82c4d87d30a3306ee5abc326",
+   "generated": "2026-11-08",
+   "prompt": "The Cloud Forge, a spectacular open-air brass and stone workshop built inside the curved hollow of a floating basalt island. Immense copper wind wheels, suspended silk sails, brilliant turquoise harmless plasma in a contained furnace, amber work lamps, tool benches and broad safe stone bridges with railings. Clouds stream through the background arches. No people foreground. Breathtaking industrial fantasy craftsmanship with a coherent sense of scale.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "forge"
+    ],
+    "original-party": [
+     "forge"
+    ],
+    "without-finn": [
+     "forge"
+    ],
+    "without-tess": [
+     "forge"
+    ],
+    "without-asya": [
+     "forge"
+    ]
+   },
+   "file": "forge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/observatory.webp",
+   "sha256": "f122f7ec3b3764e85bea21b754596ba1ba233c96936d019be7a21689475ad7cb",
+   "originalSha256": "e94d5dbbd82089bc8b5f3ce66b97cb958b33038c0972b37d3102f63355580ee5",
+   "generated": "2026-11-08",
+   "prompt": "The Observatory on the Back of a Sky Whale. A vast serene cobalt whale floats through a starry dusk ocean of clouds, its curved back supporting a small white observatory with brass telescope and warm windows, a wooden landing jetty and a hanging garden. Seen from a nearby low flight angle so the observatory and the whale's gentle eye are both readable. Tiny cream-sailed timber houseboat approaching in the distance. Magical natural majesty, completely peaceful and safe.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "observatory"
+    ],
+    "original-party": [
+     "observatory"
+    ],
+    "without-finn": [
+     "observatory"
+    ],
+    "without-tess": [
+     "observatory"
+    ],
+    "without-asya": [
+     "observatory"
+    ]
+   },
+   "file": "observatory.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/observatory.webp",
+   "sha256": "f122f7ec3b3764e85bea21b754596ba1ba233c96936d019be7a21689475ad7cb",
+   "originalSha256": "e94d5dbbd82089bc8b5f3ce66b97cb958b33038c0972b37d3102f63355580ee5",
+   "generated": "2026-11-08",
+   "prompt": "The Observatory on the Back of a Sky Whale. A vast serene cobalt whale floats through a starry dusk ocean of clouds, its curved back supporting a small white observatory with brass telescope and warm windows, a wooden landing jetty and a hanging garden. Seen from a nearby low flight angle so the observatory and the whale's gentle eye are both readable. Tiny cream-sailed timber houseboat approaching in the distance. Magical natural majesty, completely peaceful and safe.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "omb"
+    ],
+    "original-party": [
+     "omb"
+    ],
+    "without-finn": [
+     "omb"
+    ],
+    "without-tess": [
+     "omb"
+    ],
+    "without-asya": [
+     "omb"
+    ]
+   },
+   "file": "omb--portrait.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/bells.webp",
+   "sha256": "7a7218da4429f6904d42427b6c705f84478b076f5837b1425bf7ca417fdf123e",
+   "originalSha256": "87c3818d004fbc5f04a63253c5084709e9af46c53dd2c87611ea5486816818c2",
+   "generated": "2026-11-08",
+   "prompt": "The City of Listening Bells: a sunlit floating island city with tall slender copper bell towers, bridges between tiled roofs, hundreds of little hanging bells and ribbons stirring in gentle wind. A broad circular plaza surrounds four differently shaped big bells on a low wooden stage. Misty pink morning clouds below, warm ochre plaster and teal patina, no writing and no visual solution code. Lived-in, witty details, sophisticated painted fantasy.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "bells"
+    ],
+    "original-party": [
+     "bells"
+    ],
+    "without-finn": [
+     "bells"
+    ],
+    "without-tess": [
+     "bells"
+    ],
+    "without-asya": [
+     "bells"
+    ]
+   },
+   "file": "bells.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/winter.webp",
+   "sha256": "baf88ee4b4dbfb62228cd1cfee43c657c0a9efa7ff2b87c14ec722572f051be8",
+   "originalSha256": "7449451de791db6b4bcc2d7f59bce2c4f472388032a4ac03b276a2f7844a2453",
+   "generated": "2026-11-08",
+   "prompt": "The Palace of the Still Minute, a poignant quiet winter glass conservatory on a floating island, viewed from inside a tall arched entrance. Frost flowers on huge glass panes, a marble floor, one suspended golden leaf frozen halfway to the floor, a tea table set for two adults, enormous brass clockwork with no visible numbers. Cold blue silver light balanced by a single warm amber desk lamp, wistful but not frightening. No people, no ghost or death imagery.\nOriginal premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "winter"
+    ],
+    "original-party": [
+     "winter"
+    ],
+    "without-finn": [
+     "winter"
+    ],
+    "without-tess": [
+     "winter"
+    ],
+    "without-asya": [
+     "winter"
+    ]
+   },
+   "file": "winter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/lighthouse.webp",
+   "sha256": "fe115f0ca3800ff289ca2dff7d2902625feba2853793490a28686fadfc9e8b6d",
+   "originalSha256": "ff718b72543a2be13953c824c0bbbefe55dbc421aec0dbbc44179fbfb7d33bb1",
+   "generated": "2026-11-08",
+   "prompt": "Edit target: the attached lighthouse environment painting. Preserve the entire beautiful composition, stone tower, glass lantern dome, sunset, colors, brushwork, floating island, entry bridge, all four control desks and the atmosphere. One precise correction: the story requires EXACTLY FOUR distinct large brass orbital rings encircling the glass lantern dome, but the target visibly has only three. Add a fourth complete brass ring, elegantly spaced so that all FOUR rings are easy to count, with four separate circular mounting joints down the vertical left support. Keep their believable perspective and physical construction. Slightly enlarge the space occupied by the rings if needed without covering the dome. Do not change the number of control desks (four). No text, no symbols, no people, no added features elsewhere. Final landscape aspect ratio 3:2, same premium gouache fantasy environment art and resolution.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "lighthouse"
+    ],
+    "original-party": [
+     "lighthouse"
+    ],
+    "without-finn": [
+     "lighthouse"
+    ],
+    "without-tess": [
+     "lighthouse"
+    ],
+    "without-asya": [
+     "lighthouse"
+    ]
+   },
+   "file": "lighthouse.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/finn.webp",
+   "sha256": "92cec81c364ac2e919cd613b2f3c8ba4b7e29ebe7d29323ec8bd4c99aa20839a",
+   "originalSha256": "8b783da3dc6453c170e644756a232c70e53bd08a591b3ee19e7fd2257728ee11",
+   "generated": "2026-11-08",
+   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Finn Copperleaf, a young adult stocky dwarf man with curly copper beard, warm expressive face, indigo travel coat over practical light armor, round wooden shield embossed with one copper leaf, sheathed short sword, a few carpentry tools. Confident kind protector, no aggressive pose. Standing by a warm harbor wall with softly blurred lanterns, painterly sophisticated fantasy, teal amber copper palette, tactile materials. No text, no logo, no watermark. Portrait 2:3.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "finn"
+    ],
+    "original-party": [
+     "finn"
+    ],
+    "without-finn": [],
+    "without-tess": [
+     "finn"
+    ],
+    "without-asya": [
+     "finn"
+    ]
+   },
+   "file": "finn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/tess.webp",
+   "sha256": "a29e323c0299b3a17ad42811e2243a65764e326b2195dead293082ef8bfa9bc4",
+   "originalSha256": "f066f8cc0a91aa3db2caffd635f39fe6d9f25b0274d9adccc19d17d67a887028",
+   "generated": "2026-11-08",
+   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Tess Quickstitch, an adult human woman in her twenties, short dark curls, curious mischievous intelligent eyes, a coral scarf, teal practical travel vest and trousers, belt with colorful thread spools and small safe crafting tools, soft boots, a sheathed rapier. Agile explorer and inventor, not a thief stereotype. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile cloth. No text no logos no watermark. Portrait 2:3.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "tess"
+    ],
+    "original-party": [
+     "tess"
+    ],
+    "without-finn": [
+     "tess"
+    ],
+    "without-tess": [],
+    "without-asya": [
+     "tess"
+    ]
+   },
+   "file": "tess.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/asya.webp",
+   "sha256": "7c99ef272d587fb0d3303e1ae6d4be50c2981dce8df6f0a00ff42b8378bc8365",
+   "originalSha256": "1833252be8fb30200d6052d9076156d76a50e0a9e664f0900c5166ac2151a7b3",
+   "generated": "2026-11-08",
+   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Asya Heather, an adult half-elven woman about forty with dark brown skin, long silver braid, subtle pointed ears, calm lively face, green-teal hooded travelling cloak over practical linen clothes, leather seed satchel, simple wooden walking staff, a tiny sprig with white blossoms in one hand. Healer and gardener with quiet strength, not saintly or sexualized. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile cloth. No text no logos no watermark. Portrait 2:3.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "asya"
+    ],
+    "original-party": [
+     "asya"
+    ],
+    "without-finn": [
+     "asya"
+    ],
+    "without-tess": [
+     "asya"
+    ],
+    "without-asya": []
+   },
+   "file": "asya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/mika.webp",
+   "sha256": "69915f4dd1ec59381f7e59827cc320ca22c69de5074af81e2e8d996cc495fb9f",
+   "originalSha256": "a0fe7ff5578266ecdd3b05edeee0d55d4be58e6e8ea754c427c08af1417a8dd6",
+   "generated": "2026-11-08",
+   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Mika Bookbinder, adult gnome cartographer with round spectacles, cherry-red beret, tousled dark hair, cream travel coat with indigo cuffs, a thick book filled with colorful paper tabs and a plain wooden staff. Thoughtful, slightly absent-minded and friendly, clever adult rather than child. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile paper and cloth. No readable book text no logos no watermark. Portrait 2:3.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "mika"
+    ],
+    "original-party": [],
+    "without-finn": [
+     "mika"
+    ],
+    "without-tess": [
+     "mika"
+    ],
+    "without-asya": [
+     "mika"
+    ]
+   },
+   "file": "mika.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/runa.webp",
+   "sha256": "9fd1fb14b8eccf2807f2e87ce995decd691d4838e5fb256199a8d6a71017b0aa",
+   "originalSha256": "00f523d989282a0031d3c91195d28dc6f47ead0c64054cc88d004e0c1eea1838",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3. Runa Tea, a capable elderly woman skyship captain with silver hair swept into a practical bun, amber spectacles on a chain, a large indigo captain's coat with brass buttons, teal scarf, weathered kind face with a wry smile, holding a ceramic teacup. Seated comfortably at the dock of a floating island harbor, warm lantern blurred background, original sophisticated painterly gouache fantasy, copper amber teal indigo and cream palette, tactile wood and cloth. Clearly adult elderly heroine, warm but not saccharine. No text logos watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "runa"
+    ],
+    "original-party": [
+     "runa"
+    ],
+    "without-finn": [
+     "runa"
+    ],
+    "without-tess": [
+     "runa"
+    ],
+    "without-asya": [
+     "runa"
+    ]
+   },
+   "file": "runa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/severin.webp",
+   "sha256": "7be3691584774a867f42daefe198065cde025bb93acb85ecef6453e51912d0ef",
+   "originalSha256": "2eec6c88f16bf270fd062fd1a9d182dea89e9f2707f67a46a0a442a0e3d69bfc",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3. Severin, an original fantasy cartographer in his fifties, wavy salt-and-pepper silver-black hair, round brass spectacles, indigo long coat with copper clasps, practical gloves, holding a rolled map with no readable marks. Attentive tired intelligent face, dignified and approachable, not sinister, no villain symbols. Background a softly blurred frost-glass conservatory with one warm amber desk lamp. Sophisticated painterly gouache illustration, tactile brass linen paper, teal indigo copper cream. No text logos watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "severin"
+    ],
+    "original-party": [
+     "severin"
+    ],
+    "without-finn": [
+     "severin"
+    ],
+    "without-tess": [
+     "severin"
+    ],
+    "without-asya": [
+     "severin"
+    ]
+   },
+   "file": "severin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/spool.webp",
+   "sha256": "523cc130b4f8352a3d91ac1fa684b02c6401d8236e46dbc7556ff41391c391a2",
+   "originalSha256": "bb8253509f189890dcf1f738617e81e3c49b65177b638f4daddc5b06624d3ea1",
+   "generated": "2026-11-08",
+   "prompt": "A single original mechanical fox companion, full body, centered, transparent background. Small elegant brass automaton with turquoise glass eyes, one distinctive copper ear, articulated long tail ending in a soft copper brush, delicate clockwork joints, warm curious expression and triangular fox ears. Sitting with one paw slightly raised as if asking a question. Tactile exquisite brass and enamel, painterly premium fantasy illustration, precise readable silhouette, no ground plane, no cast backdrop, no frame, no text, no logos, no weapons. Real alpha transparency.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "spool"
+    ],
+    "original-party": [
+     "spool"
+    ],
+    "without-finn": [
+     "spool"
+    ],
+    "without-tess": [
+     "spool"
+    ],
+    "without-asya": [
+     "spool"
+    ]
+   },
+   "file": "spool.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/pom.webp",
+   "sha256": "750f47fb41bcbe6250c825fc9b8ea806898bd3d2a041db6d6615535df60b6710",
+   "originalSha256": "bf3238c7af102bc6e18146ded9bbff7aabacceecc7725be71f4c0f69cfb29b48",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3 of Pom, a stocky adult gnome gardener with weathered cheerful face, leaf-shaped broad hat, indigo linen overalls, a copper watering can and apple seeds in his pockets. Standing in a luminous floating orchard; softly blurred amber fruit and teal glass irrigation channels. Original premium painterly gouache fantasy with tactile materials, cozy but sophisticated, copper amber teal indigo palette. No text, no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "pom"
+    ],
+    "original-party": [
+     "pom"
+    ],
+    "without-finn": [
+     "pom"
+    ],
+    "without-tess": [
+     "pom"
+    ],
+    "without-asya": [
+     "pom"
+    ]
+   },
+   "file": "pom.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/saffra.webp",
+   "sha256": "e4fa54a1c4b76e2d7992d702089f10bc168cd73d150b3ff9d25d0e6ad16694d9",
+   "originalSha256": "46387c5fd6c1ee5f705cde42d12cc5a2f19742791bc8a85316b6deabb613a694",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3 of Saffra, a tall adult human librarian with a long dark braid and intelligent calm face, flowing sea-teal practical robe with indigo trim, holding a small paper boat carrying a book. Softly blurred circular pearl-stone library with waterways and brass reading lamps behind her. Original premium painterly gouache fantasy, rich tactile paper cloth brass, amber teal indigo cream palette. No readable text, no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "saffra"
+    ],
+    "original-party": [
+     "saffra"
+    ],
+    "without-finn": [
+     "saffra"
+    ],
+    "without-tess": [
+     "saffra"
+    ],
+    "without-asya": [
+     "saffra"
+    ]
+   },
+   "file": "saffra.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/vey.webp",
+   "sha256": "bf80115f9962c7529b441aec994fcbc305c3ec9c72186135d42ac85f2a2745f2",
+   "originalSha256": "7e1ef0e4ca606e2216deeb8695b2da1b7051bc967b3cc3fc4c219c7670a8fbe3",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3 of Vey Three Pockets, an adult anthropomorphic red fox merchant, witty dignified expression, lavender waistcoat with exactly three large visibly separate pockets, brass monocle, teal cravat, holding a tiny empty copper mirror frame. Softly blurred whimsical floating market with copper mirrors and indigo awnings. Original premium painterly gouache fantasy, amber teal indigo copper palette, very expressive but not cartoonishly evil. No text, no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "vey"
+    ],
+    "original-party": [
+     "vey"
+    ],
+    "without-finn": [
+     "vey"
+    ],
+    "without-tess": [
+     "vey"
+    ],
+    "without-asya": [
+     "vey"
+    ]
+   },
+   "file": "vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/ilyr.webp",
+   "sha256": "87bf167e39d910042e5c1ac9ea9bb6cdf06fbd30f8193278eee94c5dbf780947",
+   "originalSha256": "03940c6b6c8dd59374ee209c9b2ae8f9d6aeb95947d05ec9cdc217a50f97a113",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3 of Ilyr, an adult tall fantasy craftsperson with a kind thoughtful face, dark tied-back hair, a clearly visible beautifully articulated wooden-and-brass prosthetic left hand, copper work apron, soft protective goggles resting on forehead, holding a simple four-way connector. Cloud forge softly blurred behind, teal sky through stone arches and amber work lamps. Original premium painterly gouache fantasy with tactile materials, indigo teal copper amber palette. No text no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ilyr"
+    ],
+    "original-party": [
+     "ilyr"
+    ],
+    "without-finn": [
+     "ilyr"
+    ],
+    "without-tess": [
+     "ilyr"
+    ],
+    "without-asya": [
+     "ilyr"
+    ]
+   },
+   "file": "ilyr.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/kanto.webp",
+   "sha256": "8b6fb594cc2078b1344378a94c18d00e5e41a0e1e77babe9f610f8c34a9c92ed",
+   "originalSha256": "936de72d524a6300d7750469f06c5dabb453c3f94e02dfb781916c79d84ca074",
+   "generated": "2026-11-08",
+   "prompt": "Portrait 2:3 of Kanto, an adult anthropomorphic secretary bird, tall elegant grey-and-white plumage, expressive observant eyes, long black feather crest, neat indigo-blue waistcoat and teal bow tie, holding a small brass tuning fork and a closed plain folder. Warm bell-city plaza softly blurred behind. Gently funny dignified town coordinator, no human hands or extra limbs; wing tips hold props plausibly. Original premium painterly gouache fantasy, copper amber teal indigo. No text no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "kanto"
+    ],
+    "original-party": [
+     "kanto"
+    ],
+    "without-finn": [
+     "kanto"
+    ],
+    "without-tess": [
+     "kanto"
+    ],
+    "without-asya": [
+     "kanto"
+    ]
+   },
+   "file": "kanto.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/seed.webp",
+   "sha256": "8381ad89eb74f36e257a184f5e5c5e9ec352f3802a4eeb402ee8a4aa1cc840b7",
+   "originalSha256": "3fa9bec96a92a3f3d463c593ec9eab377729e9ebb6647efd05f9749587c6880f",
+   "generated": "2026-11-08",
+   "prompt": "Square original fantasy inventory item illustration. A single precious walnut-like seed resting in a tiny open hammered copper pot, a delicate glowing green leaf sprouting inside, a simple teal ribbon around the pot. Macro still life on dark indigo linen with warm amber light, painterly gouache, exquisite tactile handmade copper and botanical detail, a clear readable silhouette and generous margin, no extra unrelated objects. No text no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "seed"
+    ],
+    "original-party": [
+     "seed"
+    ],
+    "without-finn": [
+     "seed"
+    ],
+    "without-tess": [
+     "seed"
+    ],
+    "without-asya": [
+     "seed"
+    ]
+   },
+   "file": "seed.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/mirror.webp",
+   "sha256": "a9d10d76a6f7f41c6caf0ee9926ad81b233f7799b23846bef1982c6969a91484",
+   "originalSha256": "524434014389bf744a9e9c6d91f455c80fec358a343e260d4bc1d80bb1250c39",
+   "generated": "2026-11-08",
+   "prompt": "Square original fantasy inventory item illustration. A single handheld round honest mirror, plain beautifully crafted copper frame and short turquoise enamel handle, clean pale silver reflective glass showing only a soft white cloud. Resting on dark indigo linen, warm amber side lighting, painterly premium gouache with tactile brass enamel and cloth, generous margins, simple readable silhouette. No person in reflection, no secrets or symbols, no text no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "mirror"
+    ],
+    "original-party": [
+     "mirror"
+    ],
+    "without-finn": [
+     "mirror"
+    ],
+    "without-tess": [
+     "mirror"
+    ],
+    "without-asya": [
+     "mirror"
+    ]
+   },
+   "file": "mirror.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/bridge.webp",
+   "sha256": "06a297d5896885df8a35d9304b0b72213eaac248aba543317f3bdf9b15f40f4f",
+   "originalSha256": "dd2db557ab1d1643befbc82b0e320216ac57a1e00069664f69e674adc71e1c48",
+   "generated": "2026-11-08",
+   "prompt": "Square original fantasy inventory item illustration. A single compact four-way brass connector with exactly four round copper sockets and curved transparent glass tubes joining them, a tiny ribbon of teal air glowing inside, practical handmade engineering with small screws. Resting on dark indigo linen in amber side light. Painterly premium gouache, tactile metal and glass, readable silhouette, generous margins. No text or symbols, no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "bridge"
+    ],
+    "original-party": [
+     "bridge"
+    ],
+    "without-finn": [
+     "bridge"
+    ],
+    "without-tess": [
+     "bridge"
+    ],
+    "without-asya": [
+     "bridge"
+    ]
+   },
+   "file": "bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/tuning.webp",
+   "sha256": "d8a7dc7ace89905b813922fb109d3413d4a63d164d587dfe2159c6b31d3da119",
+   "originalSha256": "03e6503ef07e905f0351102d259c2d050b0fae7b7a8ac663cdf77b5a1cf24eea",
+   "generated": "2026-11-08",
+   "prompt": "Square original fantasy inventory item illustration. One elegant brass tuning fork with four small separate hanging charms: a leaf, a wave, a star and a tiny bell. The charms are visibly different shapes, not letters. Warm copper frame and teal ribbon, resting on dark indigo linen, amber side light, original premium painterly gouache fantasy, beautifully crafted tactile metal, generous margins. No written text, no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "tuning"
+    ],
+    "original-party": [
+     "tuning"
+    ],
+    "without-finn": [
+     "tuning"
+    ],
+    "without-tess": [
+     "tuning"
+    ],
+    "without-asya": [
+     "tuning"
+    ]
+   },
+   "file": "tuning.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/notebook.webp",
+   "sha256": "8f9ff96c29cac4c9ebdc7517ca6c6f1a6f07e0eb85f44cbd7ac8002ea6b3b530",
+   "originalSha256": "90cb36110dd22997b3ed97824dc279b5c569a0d42456f3708c80f568d6e65ead",
+   "generated": "2026-11-08",
+   "prompt": "Square original fantasy inventory item illustration. A single travel notebook open to completely blank cream pages, indigo cloth cover, small copper corner protectors, teal ribbon bookmark, a plain pencil alongside it. Slight overhead three-quarter view on dark indigo linen, warm amber light. Original premium painterly gouache fantasy with exquisite tactile paper and cloth. No marks or writing on pages, no watermark.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "notebook"
+    ],
+    "original-party": [
+     "notebook"
+    ],
+    "without-finn": [
+     "notebook"
+    ],
+    "without-tess": [
+     "notebook"
+    ],
+    "without-asya": [
+     "notebook"
+    ]
+   },
+   "file": "notebook.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/automaton.webp",
+   "sha256": "b634eb67c9343109fdfba800bfdac310149fb772d66869d922b7901c99f68e60",
+   "originalSha256": "02ccacb9650790360d1be5154eabc5d0b66ea59ff281bf2f302cead3c751ea85",
+   "generated": "2026-11-08",
+   "prompt": "Single original friendly fantasy maintenance automaton, full body centered on transparent background. Compact rounded brass body, two sturdy feet, two arms ending in broad padded leather bumpers, two round turquoise glass eyes, small copper cap, visible removable template plate on its side but no symbols or text. Built for moving crates and repairs, slightly stubborn attentive posture, no weapon, no threatening spikes. Premium painterly gouache illustration with tactile brass, copper and leather, clear silhouette and generous transparent margin, no shadow backdrop no text no watermark. Real alpha transparency.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "original-party": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "without-finn": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "without-tess": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "without-asya": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ]
+   },
+   "file": "automaton.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/lighthouse/assets/runtime/automaton.webp",
+   "sha256": "b634eb67c9343109fdfba800bfdac310149fb772d66869d922b7901c99f68e60",
+   "originalSha256": "02ccacb9650790360d1be5154eabc5d0b66ea59ff281bf2f302cead3c751ea85",
+   "generated": "2026-11-08",
+   "prompt": "Single original friendly fantasy maintenance automaton, full body centered on transparent background. Compact rounded brass body, two sturdy feet, two arms ending in broad padded leather bumpers, two round turquoise glass eyes, small copper cap, visible removable template plate on its side but no symbols or text. Built for moving crates and repairs, slightly stubborn attentive posture, no weapon, no threatening spikes. Premium painterly gouache illustration with tactile brass, copper and leather, clear silhouette and generous transparent margin, no shadow backdrop no text no watermark. Real alpha transparency.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "original-party": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "without-finn": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "without-tess": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ],
+    "without-asya": [
+     "dock-keeper-a",
+     "dock-keeper-b",
+     "repairer",
+     "repeat-guardian"
+    ]
+   },
+   "file": "automaton--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "automaton.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/heroes-finn.webp",
+   "sha256": "c3cb592cde8adf61baf77e3d864bd63d75190bd8f885835ff701ecfbfb6393ae",
+   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Финн Меднолист",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "finn"
+    ],
+    "original-party": [
+     "finn"
+    ],
+    "without-finn": [],
+    "without-tess": [
+     "finn"
+    ],
+    "without-asya": [
+     "finn"
+    ]
+   },
+   "file": "finn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "finn.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/heroes-tess.webp",
+   "sha256": "0b814c90b9e8c8d61b6e395f6d9ad3656100f2af57ab324ba59849cbd5167fd7",
+   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тэс Быстрый Стежок",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "tess"
+    ],
+    "original-party": [
+     "tess"
+    ],
+    "without-finn": [
+     "tess"
+    ],
+    "without-tess": [],
+    "without-asya": [
+     "tess"
+    ]
+   },
+   "file": "tess--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tess.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/heroes-asya.webp",
+   "sha256": "b6cf57ddcaa63747537815644d542963c16dddff17caa4d097fd80787065285b",
+   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Вереск",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "asya"
+    ],
+    "original-party": [
+     "asya"
+    ],
+    "without-finn": [
+     "asya"
+    ],
+    "without-tess": [
+     "asya"
+    ],
+    "without-asya": []
+   },
+   "file": "asya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "asya.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/heroes-mika.webp",
+   "sha256": "7516622cfaf44aed939a7957252e3dda12e9183b9f7c186baa571d9ca7d1dac9",
+   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мика Переплёт",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "mika"
+    ],
+    "original-party": [],
+    "without-finn": [
+     "mika"
+    ],
+    "without-tess": [
+     "mika"
+    ],
+    "without-asya": [
+     "mika"
+    ]
+   },
+   "file": "mika--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mika.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-runa.webp",
+   "sha256": "b01e319b4606aca6b7b04f156c209e1acedce3344b2c570392d277c6c5342963",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Капитан Руна Чайная",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "runa"
+    ],
+    "original-party": [
+     "runa"
+    ],
+    "without-finn": [
+     "runa"
+    ],
+    "without-tess": [
+     "runa"
+    ],
+    "without-asya": [
+     "runa"
+    ]
+   },
+   "file": "runa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runa.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-spool.webp",
+   "sha256": "9833ffd0da0ae1977f4130fd1b7d9d457c06840b008fab59dbe78f9afe476a4a",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шпуль",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "spool"
+    ],
+    "original-party": [
+     "spool"
+    ],
+    "without-finn": [
+     "spool"
+    ],
+    "without-tess": [
+     "spool"
+    ],
+    "without-asya": [
+     "spool"
+    ]
+   },
+   "file": "spool--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "spool.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-pom.webp",
+   "sha256": "d4441fba57a5785a824d1dc532bb8dbabacf49bdc6350db7a1ea6516cb9a4cc8",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пом, садовник черепахи",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "pom"
+    ],
+    "original-party": [
+     "pom"
+    ],
+    "without-finn": [
+     "pom"
+    ],
+    "without-tess": [
+     "pom"
+    ],
+    "without-asya": [
+     "pom"
+    ]
+   },
+   "file": "pom--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pom.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-saffra.webp",
+   "sha256": "42e4bb0b1ade375e4ed8efcc6a984ba314d288a4f93ffb03d844557c7a587799",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сафра Лист",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "saffra"
+    ],
+    "original-party": [
+     "saffra"
+    ],
+    "without-finn": [
+     "saffra"
+    ],
+    "without-tess": [
+     "saffra"
+    ],
+    "without-asya": [
+     "saffra"
+    ]
+   },
+   "file": "saffra--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "saffra.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-vey.webp",
+   "sha256": "0133123d3d5085d9a1f2f807792b0aecb8d1e219dc60be63c35234fd6733fb8b",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вей Три Кармана",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "vey"
+    ],
+    "original-party": [
+     "vey"
+    ],
+    "without-finn": [
+     "vey"
+    ],
+    "without-tess": [
+     "vey"
+    ],
+    "without-asya": [
+     "vey"
+    ]
+   },
+   "file": "vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vey.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-ilyr.webp",
+   "sha256": "1558d5fb3d47233b9b8bdadf059eb18bdf4e1466ac8813606f121c026e966fb0",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастер Ильер",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ilyr"
+    ],
+    "original-party": [
+     "ilyr"
+    ],
+    "without-finn": [
+     "ilyr"
+    ],
+    "without-tess": [
+     "ilyr"
+    ],
+    "without-asya": [
+     "ilyr"
+    ]
+   },
+   "file": "ilyr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilyr.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-omb.webp",
+   "sha256": "456e4cdd77dd2e11d8be969d138a999dd961edda8da8609e7121ce7a64a48392",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Омб, почтовый кит",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "omb"
+    ],
+    "original-party": [
+     "omb"
+    ],
+    "without-finn": [
+     "omb"
+    ],
+    "without-tess": [
+     "omb"
+    ],
+    "without-asya": [
+     "omb"
+    ]
+   },
+   "file": "omb--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "omb--portrait.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-kanto.webp",
+   "sha256": "1489e884844850f8321753d51121681498b8f8676cf9f527a72a20b819995602",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Канто, настройщик колоколов",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "kanto"
+    ],
+    "original-party": [
+     "kanto"
+    ],
+    "without-finn": [
+     "kanto"
+    ],
+    "without-tess": [
+     "kanto"
+    ],
+    "without-asya": [
+     "kanto"
+    ]
+   },
+   "file": "kanto--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kanto.webp"
+  },
+  {
+   "source": "campaigns/lighthouse/assets/table/npcs-severin.webp",
+   "sha256": "a79a954f56f373bbe659e4b40d1c89ee1fdd57357384710b73b8f2629c74bfcf",
+   "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Северин, хранитель Атласа",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "severin"
+    ],
+    "original-party": [
+     "severin"
+    ],
+    "without-finn": [
+     "severin"
+    ],
+    "without-tess": [
+     "severin"
+    ],
+    "without-asya": [
+     "severin"
+    ]
+   },
+   "file": "severin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "severin.webp"
+  },
+  {
+   "file": "harbor--map.webp",
+   "source": "campaigns/lighthouse/assets/battle-maps/harbor.webp",
+   "sha256": "1962d4abe6b04c83f8aef1fd34dd6bf61161b8a5a95af6e3dad59422897d2f10",
+   "originalSha256": "55bcf1abf8890b628bfb1436f8db7996ccd79c2e93ad3e8dec208cfcdaead8ee",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Фонарная Гавань. Visible scenery: Медные крыши, пироги с грушей, тёплые фонари и пристань над розовыми облаками.. World style: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "harbor.webp",
+   "subjects": {
+    "four-players": [
+     "harbor"
+    ],
+    "original-party": [
+     "harbor"
+    ],
+    "without-finn": [
+     "harbor"
+    ],
+    "without-tess": [
+     "harbor"
+    ],
+    "without-asya": [
+     "harbor"
+    ]
+   }
+  },
+  {
+   "file": "forge--map.webp",
+   "source": "campaigns/lighthouse/assets/battle-maps/forge.webp",
+   "sha256": "af6d9da673296439f6aaac9ba82643565e90ab5e7538a04628aa344872ce083a",
+   "originalSha256": "24d51f4d4373fc2a8e79e9caf3f31db45c61fbd6b016a0cce9835c4f3be5f59d",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Облачная Кузница. Visible scenery: В скальной арке вращаются медные ветроколы. Шёлковые паруса несут инструменты от верстака к верстаку.. World style: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "forge.webp",
+   "subjects": {
+    "four-players": [
+     "forge"
+    ],
+    "original-party": [
+     "forge"
+    ],
+    "without-finn": [
+     "forge"
+    ],
+    "without-tess": [
+     "forge"
+    ],
+    "without-asya": [
+     "forge"
+    ]
+   }
+  },
+  {
+   "file": "lighthouse--map.webp",
+   "source": "campaigns/lighthouse/assets/battle-maps/lighthouse.webp",
+   "sha256": "0b26f39d7f920200c37219f69a4189f34f131e1d1fcc860088fd8a3a6eb0ff29",
+   "originalSha256": "fe3955be36874943133c0890a0f7feb8116d2e9420036a1a280d0a603bc8d2d8",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Маяк Между Ветрами. Visible scenery: Каменная башня с прозрачным куполом и четырьмя латунными кольцами. К широкому двору ведёт мост с фонарями.. World style: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "lighthouse.webp",
+   "subjects": {
+    "four-players": [
+     "lighthouse"
+    ],
+    "original-party": [
+     "lighthouse"
+    ],
+    "without-finn": [
+     "lighthouse"
+    ],
+    "without-tess": [
+     "lighthouse"
+    ],
+    "without-asya": [
+     "lighthouse"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/lighthouse/assets/world-map/world-map.webp",
+   "sha256": "603c9dd461ecb3905c6b2fd24b5940381b8726da6f65a722b0286ba0390fe2cd",
+   "originalSha256": "2d2fb614d03f861038d3a7cfd91c1a8ac0a4484c87a22479e92111e6096d6e0d",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Острова Между Ветрами. Style Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Фонарная Гавань; 0.367,0.177 Дом-корабль «Чайник»; 0.623,0.15 Сад На Спине Черепахи; 0.88,0.177 Библиотека Приливов; 0.905,0.517 Зеркальный Базар; 0.648,0.49 Облачная Кузница; 0.392,0.517 Обсерватория На Ките; 0.135,0.49 Город Слушающих Колоколов; 0.11,0.83 Дворец Неподвижной Минуты; 0.367,0.857 Маяк Между Ветрами. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "four-players": [
+     "world-map"
+    ],
+    "original-party": [
+     "world-map"
+    ],
+    "without-finn": [
+     "world-map"
+    ],
+    "without-tess": [
+     "world-map"
+    ],
+    "without-asya": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

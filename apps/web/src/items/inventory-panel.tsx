@@ -153,6 +153,8 @@ export function InventoryPanel({
         <>
           <div className="inventory-layout">
             <PaperDoll
+              characterId={characterId}
+              api={api}
               worn={worn}
               carried={carried}
               selectedId={selectedId}
@@ -164,6 +166,7 @@ export function InventoryPanel({
               }}
             />
             <Bag
+              api={api}
               carried={carried}
               worn={worn}
               selectedId={selectedId}
@@ -178,6 +181,7 @@ export function InventoryPanel({
           <div ref={card}>
             {selected ? (
               <ItemCard
+                api={api}
                 key={selected.itemId}
                 item={selected}
                 worn={worn}

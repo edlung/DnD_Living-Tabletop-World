@@ -1,0 +1,619 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "last-round-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-752e4018-59d0-41a6-8dd1-87506ee07950.png",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Cell 1. Тамара Леск. Тёмный жилет, аккуратные карточки в кармане, привычка сначала предлагать стул.\nCell 2. Яков Рутов. Рабочий шарф, подогнанные перчатки, неторопливые движения.\nCell 3. Нина Чек. Светлый платок, карандаш за ухом, потёртая сумка с бытовыми принадлежностями.\nCell 4. Сава Мелин. Короткая куртка, очки в футляре и блокнот, который закрывается перед чужим ответом.\nCell 5. Элина Грань. Водонепроницаемый плащ, чистые манжеты, внимательный взгляд.\nCell 6. Глеб Острин. Широкое пальто, пустые авоськи, привычка проверять, всем ли хватило чашек.\nCell 7. Дина Рат. Простой жакет, счётная доска, два разных карандаша для денег и обещаний.\nCell 8. Осип Верст. Мел на рукаве, папка с чистыми листами, спокойная речь без жаргона.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/last-round/illustrations/cards/tamara-lesk.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/yakov-rutov.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/nina-chek.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/sava-melin.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/elina-gran.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/gleb-ostrin.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/dina-rat.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/osip-verst.webp"
+      ]
+    },
+    {
+      "id": "last-round-places-0",
+      "originalFile": "exec-55dc66c7-1dc1-4674-908c-a022f41b4b8e.png",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Cell 1. Столовая «После звонка». Чайник у кассы, восемь стульев за составленными столами и матовое окно на остановку. Здесь удобно встречаться без обязательного заказа.\nCell 2. Канатный двор. Несколько небольших залов выходят в общий двор. На стене висят объявления о подработке, а у ворот сушатся полотенца.\nCell 3. Кабинет восстановления. Светлая приёмная, шкаф с тренировочными принадлежностями и отдельный стол для расчётов. Запах мыла смешан с запахом старого линолеума.\nCell 4. Прачечная при бане. За стойкой выдачи находятся примерочная с ширмой и внутренний дворик. Форточка примерочной смотрит на соседнюю ремонтную мастерскую.\nCell 5. Мастерская Бека. Ремни, кофры, вешалки с чинеными пальто. Рабочий стол стоит у окна, выходящего в тесный общий двор.\nCell 6. Трамвайное депо «Речной тупик». Освещённая комната ожидания рядом с дежурным постом. Пассажиры и ремонтники могут спокойно разговаривать за длинной скамьёй.\nCell 7. Дом самостоятельных комнат. Небольшой доходный дом с общей кухней и отдельными запирающимися комнатами. Жильцы сами решают, кого принимать.\nCell 8. Крытый речной павильон. Навес с двумя открытыми выходами, скамьями и видом на трамвайную остановку. Днём здесь ждут лодку, вечером укрываются от дождя.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "last-round-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-eaa5fa22-6d6c-4d99-b295-7d97c968c43d.png",
+      "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Cell 1. Взрослый сторож залов. Совершеннолетний работник не моложе 21 года в обычном рабочем пальто; боится потерять заработок, не желает убивать.\nCell 2. Взрослый переносчик заказов. Наёмный работник не моложе 21 года с биркой кабинета; знает только поручение забрать инструмент, а не тайну убийства.\nCell 3. Взрослый сопровождающий кабинета. Человек не моложе 21 года, нанятый сопровождать хозяйственные вещи; не посвящён в убийство и способен отказаться от поручения.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "last-round-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-a3406860-a81e-4720-b7fd-aefcfd5746ca.png",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of После последнего раунда. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Матвей Клин. Седина на висках, простой свитер, руки, привыкшие ждать разрешения перед прикосновением.\nCell 2. Вера Клин. Трамвайный пиджак под мокрым пальто, остывшая чашка в ладонях.\nCell 3. Лада Ветрова. Аккуратно подшитый халат, привычка выравнивать чужие бумаги.\nCell 4. Раиса Штейн. Серый костюм, большой зонтик, негромкий голос в шумном дворе.\nCell 5. Павел Грин. Пальто на размер велико, чистые ботинки, сумка с рабочей одеждой.\nCell 6. Лев Кварцев. Вязаный жилет, хозяйственные ключи, очки на шнурке.\nCell 7. Арсений Бек. Круглые очки, кожаный фартук, старый спортивный значок на коробке с нитками.\nCell 8. Ирина Садовая. На фотографии — женщина в клетчатом жакете с медной застёжкой в форме листа.",
+      "references": [
+        "campaigns/noir-2026/last-round/illustrations/cards/matvey-klin.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/vera-klin.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/lada-vetrova.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/raisa-shtein.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/pavel-grin.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/lev-kvartsev.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/arseny-bek.webp",
+        "campaigns/noir-2026/last-round/illustrations/cards/irina-sadovaya.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "tamara-lesk",
+      "title": "Тамара Леск",
+      "kind": "hero",
+      "subjects": [
+        "tamara-lesk"
+      ],
+      "file": "heroes-tamara-lesk.webp",
+      "sha256": "e85ffe395e6bbdbda5eb2bce5b440252e32eff28c6fe09e60a807b83cac30665",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 126,
+        "top": 12,
+        "width": 194,
+        "height": 419
+      }
+    },
+    {
+      "key": "yakov-rutov",
+      "title": "Яков Рутов",
+      "kind": "hero",
+      "subjects": [
+        "yakov-rutov"
+      ],
+      "file": "heroes-yakov-rutov.webp",
+      "sha256": "b6eb1dbfc9f2e0026cfb0af5c0614c57465fe18a4c700142925529ecae86741e",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 568,
+        "top": 10,
+        "width": 195,
+        "height": 421
+      }
+    },
+    {
+      "key": "nina-chek",
+      "title": "Нина Чек",
+      "kind": "hero",
+      "subjects": [
+        "nina-chek"
+      ],
+      "file": "heroes-nina-chek.webp",
+      "sha256": "79fcb891f1f652811042c6d3d5b53ff5a4080475372c53ce1d9cb586a9d48a21",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1008,
+        "top": 11,
+        "width": 198,
+        "height": 420
+      }
+    },
+    {
+      "key": "sava-melin",
+      "title": "Сава Мелин",
+      "kind": "hero",
+      "subjects": [
+        "sava-melin"
+      ],
+      "file": "heroes-sava-melin.webp",
+      "sha256": "2efbbf40dde5263f666465aa939ce298ae677afadbfce83fafba1538ef76e52c",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1454,
+        "top": 10,
+        "width": 195,
+        "height": 421
+      }
+    },
+    {
+      "key": "elina-gran",
+      "title": "Элина Грань",
+      "kind": "hero",
+      "subjects": [
+        "elina-gran"
+      ],
+      "file": "heroes-elina-gran.webp",
+      "sha256": "cff3a26a6f1a7cac0fc6c58d76226e8e14f48ebcbc6773149f41e7a9d94f9ec9",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 126,
+        "top": 455,
+        "width": 195,
+        "height": 419
+      }
+    },
+    {
+      "key": "gleb-ostrin",
+      "title": "Глеб Острин",
+      "kind": "hero",
+      "subjects": [
+        "gleb-ostrin"
+      ],
+      "file": "heroes-gleb-ostrin.webp",
+      "sha256": "e03cd17f566dcdc5c6592f07b4dd267c1a19380fc4ff83f79392381b30f326ad",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 560,
+        "top": 449,
+        "width": 204,
+        "height": 425
+      }
+    },
+    {
+      "key": "dina-rat",
+      "title": "Дина Рат",
+      "kind": "hero",
+      "subjects": [
+        "dina-rat"
+      ],
+      "file": "heroes-dina-rat.webp",
+      "sha256": "4b94566bfdb54bc882e324dc18201b336f897fa06e9c536ae741f93e0acd4c83",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1011,
+        "top": 453,
+        "width": 196,
+        "height": 421
+      }
+    },
+    {
+      "key": "osip-verst",
+      "title": "Осип Верст",
+      "kind": "hero",
+      "subjects": [
+        "osip-verst"
+      ],
+      "file": "heroes-osip-verst.webp",
+      "sha256": "1b3be96cc56d1d92e36debb28b0e8e96af87c3488f6734547750a3525053e133",
+      "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1455,
+        "top": 448,
+        "width": 195,
+        "height": 426
+      }
+    },
+    {
+      "key": "corner-kitchen",
+      "title": "Столовая «После звонка»",
+      "kind": "place",
+      "subjects": [
+        "corner-kitchen"
+      ],
+      "file": "places-corner-kitchen.webp",
+      "sha256": "ab72f2e6d98de5599a90e2ebd78a22a01e5ac891417b2bdb62e73d611287e7a8",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "gym-yard",
+      "title": "Канатный двор",
+      "kind": "place",
+      "subjects": [
+        "gym-yard"
+      ],
+      "file": "places-gym-yard.webp",
+      "sha256": "346b5c1e1f8ecd3aa5f0250e49054d379ef3b29b61ff4f878dd0b26c8ceb92e5",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "rehab-office",
+      "title": "Кабинет восстановления",
+      "kind": "place",
+      "subjects": [
+        "rehab-office"
+      ],
+      "file": "places-rehab-office.webp",
+      "sha256": "1e3973c176595cfdae5ef97f2f7e9810720c06144255eb6ca88da301410ecffd",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "steam-laundry",
+      "title": "Прачечная при бане",
+      "kind": "place",
+      "subjects": [
+        "steam-laundry"
+      ],
+      "file": "places-steam-laundry.webp",
+      "sha256": "ae008597e8acc1ae6d8d2c9b6d24a7dfd326b99ffddc1ab93ce256efefc13b91",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "repair-bench",
+      "title": "Мастерская Бека",
+      "kind": "place",
+      "subjects": [
+        "repair-bench"
+      ],
+      "file": "places-repair-bench.webp",
+      "sha256": "0f179203b8bcac704c8cc0af73620902cbabeafdf3fb4160a4b92804a97e5495",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "tram-depot",
+      "title": "Трамвайное депо «Речной тупик»",
+      "kind": "place",
+      "subjects": [
+        "tram-depot"
+      ],
+      "file": "places-tram-depot.webp",
+      "sha256": "512478a25142e5792399021d53bf0e87cc52645235789c3dceec13c9892b624c",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "quiet-rooms",
+      "title": "Дом самостоятельных комнат",
+      "kind": "place",
+      "subjects": [
+        "quiet-rooms"
+      ],
+      "file": "places-quiet-rooms.webp",
+      "sha256": "450f741c20fa0b9ee4cf4b9315f7ef6407cdea83dc1f7fa60222f3edba7cf623",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "river-pavilion",
+      "title": "Крытый речной павильон",
+      "kind": "place",
+      "subjects": [
+        "river-pavilion"
+      ],
+      "file": "places-river-pavilion.webp",
+      "sha256": "9fce71f9f0477aafeb8d0722dc1f4d8438d04b6bd02ea1bf27c8b011ce7691f0",
+      "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+      "generated": "2026-11-22",
+      "sheet": "last-round-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-b9410fdf17",
+      "title": "Взрослый сторож залов",
+      "kind": "foe",
+      "subjects": [
+        "yard-pressure-foe-1",
+        "yard-pressure-foe-2",
+        "yard-pressure-foe-3",
+        "yard-pressure-foe-4",
+        "yard-pressure-foe-5",
+        "yard-pressure-foe-6"
+      ],
+      "file": "foes-foe-b9410fdf17.webp",
+      "sha256": "e9847438d1a864a8b2487ea656a588327db760575e060293e70a122414b38089",
+      "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+      "generated": "2026-11-22",
+      "sheet": "last-round-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 182,
+        "top": 6,
+        "width": 408,
+        "height": 706
+      }
+    },
+    {
+      "key": "foe-2b5e1d94e3",
+      "title": "Взрослый переносчик заказов",
+      "kind": "foe",
+      "subjects": [
+        "repair-dispute-foe-1",
+        "repair-dispute-foe-2",
+        "repair-dispute-foe-3",
+        "repair-dispute-foe-4",
+        "repair-dispute-foe-5",
+        "repair-dispute-foe-6"
+      ],
+      "file": "foes-foe-2b5e1d94e3.webp",
+      "sha256": "775279cecc8fb55f6d2ccbba61f78a2bb4879ddc68aa93d1fe4f92646b67b25e",
+      "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+      "generated": "2026-11-22",
+      "sheet": "last-round-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 879,
+        "top": 21,
+        "width": 391,
+        "height": 691
+      }
+    },
+    {
+      "key": "foe-c9473052f4",
+      "title": "Взрослый сопровождающий кабинета",
+      "kind": "foe",
+      "subjects": [
+        "pavilion-push-foe-1",
+        "pavilion-push-foe-2",
+        "pavilion-push-foe-3",
+        "pavilion-push-foe-4",
+        "pavilion-push-foe-5",
+        "pavilion-push-foe-6"
+      ],
+      "file": "foes-foe-c9473052f4.webp",
+      "sha256": "e1e3c22d3a91e7b82d01b6a1902aec170449d48947601f1c69f9c8e3e2d5620a",
+      "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+      "generated": "2026-11-22",
+      "sheet": "last-round-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1555,
+        "top": 11,
+        "width": 439,
+        "height": 699
+      }
+    },
+    {
+      "key": "matvey-klin",
+      "title": "Матвей Клин",
+      "kind": "npc",
+      "subjects": [
+        "matvey-klin"
+      ],
+      "file": "npcs-matvey-klin.webp",
+      "sha256": "6d8f149f052607d588f9bb770470571facd0e770e0e51c0dba0c3d748b622a21",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 88,
+        "top": 15,
+        "width": 225,
+        "height": 402
+      }
+    },
+    {
+      "key": "vera-klin",
+      "title": "Вера Клин",
+      "kind": "npc",
+      "subjects": [
+        "vera-klin"
+      ],
+      "file": "npcs-vera-klin.webp",
+      "sha256": "3cfa2103d5af55c4a4ccdabbc03f0734d2adbb4f9ea86ce19586b4093cb32914",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 488,
+        "top": 15,
+        "width": 224,
+        "height": 402
+      }
+    },
+    {
+      "key": "lada-vetrova",
+      "title": "Лада Ветрова",
+      "kind": "npc",
+      "subjects": [
+        "lada-vetrova"
+      ],
+      "file": "npcs-lada-vetrova.webp",
+      "sha256": "ffcd9020678318bd2d6e205b9db1c6667e1b29f61424382ac254e4ff65cf84d6",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 886,
+        "top": 17,
+        "width": 222,
+        "height": 400
+      }
+    },
+    {
+      "key": "raisa-shtein",
+      "title": "Раиса Штейн",
+      "kind": "npc",
+      "subjects": [
+        "raisa-shtein"
+      ],
+      "file": "npcs-raisa-shtein.webp",
+      "sha256": "53a7419538b5063f2d9c374514ee3122c4eddab60828036d12c5604332bb2bd5",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 99,
+        "top": 447,
+        "width": 224,
+        "height": 409
+      }
+    },
+    {
+      "key": "pavel-grin",
+      "title": "Павел Грин",
+      "kind": "npc",
+      "subjects": [
+        "pavel-grin"
+      ],
+      "file": "npcs-pavel-grin.webp",
+      "sha256": "66f8a7500263f1644b2fb9e840fee1697a7cd67469492ba8c3a2165b40eb9c88",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 449,
+        "width": 227,
+        "height": 406
+      }
+    },
+    {
+      "key": "lev-kvartsev",
+      "title": "Лев Кварцев",
+      "kind": "npc",
+      "subjects": [
+        "lev-kvartsev"
+      ],
+      "file": "npcs-lev-kvartsev.webp",
+      "sha256": "20a1e2ca58d22ced01cdbd931bfa095e41c208b52aee88e5879790d3102fd8aa",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 878,
+        "top": 448,
+        "width": 226,
+        "height": 409
+      }
+    },
+    {
+      "key": "arseny-bek",
+      "title": "Арсений Бек",
+      "kind": "npc",
+      "subjects": [
+        "arseny-bek"
+      ],
+      "file": "npcs-arseny-bek.webp",
+      "sha256": "5e13b0894e38c80ab7d8fc86356025857355c3c7920cee6b65960cd3fc09ac65",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 101,
+        "top": 887,
+        "width": 222,
+        "height": 409
+      }
+    },
+    {
+      "key": "irina-sadovaya",
+      "title": "Ирина Садовая",
+      "kind": "npc",
+      "subjects": [
+        "irina-sadovaya"
+      ],
+      "file": "npcs-irina-sadovaya.webp",
+      "sha256": "36ffcb76e938c5b24e88e98389122d554678d9890b693ff18fb3b8173164addc",
+      "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+      "generated": "2026-11-22",
+      "sheet": "last-round-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 488,
+        "top": 887,
+        "width": 225,
+        "height": 409
+      }
+    }
+  ]
+}

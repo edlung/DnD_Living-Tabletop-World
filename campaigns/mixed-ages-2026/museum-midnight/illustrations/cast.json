@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-3d5c250f-0531-4b77-bab5-3b985dd6ee89.png",
+      "originalSha256": "01447aaab26374c7f607d3eca61244693f30f3d4de22c917cf4954e7ea3beac7",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Ладомер и его завтрашние окна. Characters, in strict cell order:\n1. Мира Лист — Синий плащ с карманами для сложенных планов, короткая коса и карандаш за ухом. Age 16.\n2. Тихон Медь — Жилет с деревянными пуговицами, широкая лента на запястье и складная трость, похожая на театральную шпагу. Age 32.\n3. Рада Свет — Песочный шарф, блокнот в клетку и очки с одной круглой, другой овальной оправой. Age 19.\n4. Осип Ручей — Плащ цвета речного камня, кружка на ремне и бумажные закладки в нагрудном кармане. Age 45.\n5. Ника Стрела — Клетчатая куртка, жёлтые ботинки и сумка со сменными печатными буквами. Age 14.\n6. Борис Вереск — Льняная рубаха, разноцветные носки и коробочка с увеличительным стеклом. Age 61.\n7. Ая Звон — Тёмно-зелёная куртка, маленький колокольчик без язычка и мягкие сценические перчатки. Age 24.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-8861636d-2389-4792-8922-259619c89c45.png",
+      "originalSha256": "8e21458450318fff9fd3ae5e8e98387707ae1c66d91d8d9f5a2cd99a99f09e78",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Ладомер и его завтрашние окна. Characters, in strict cell order:\n1. Вера Вирт — Серая музейная форма, круглая брошь с открытой дверью, аккуратная стопка программ. Age 41.\n2. Данка Прут — Лиловый жилет экскурсовода, карманный компостер и значок с вопросительным знаком. Age 15.\n3. Никса Рой — Оранжевый рабочий фартук, мягкая щётка за поясом и защитные очки на лбу. Age 27.\n4. Лев Кром — Вязаная безрукавка, медленный внимательный взгляд и пальцы в синей типографской краске. Age 67.\n5. Ольха Рем — Светлые манжеты, цепочка с ключом от шкафчика и закладки из зелёной ткани. Age 52.\n6. Глеб Тис — Синий речной плащ, лёгкая трость и расписание, сложенное гармошкой. Age 58.\n7. Эмма Ширь — Плоская шляпа, тканевая сумка с семенами и серые перчатки на карабине. Age 34.\n8. Сава Шаг — Короткая жёлтая накидка, сумка для корреспонденции и шнурок с деревянным штампом. Age 17.\n9. Яся Нить — Красный шарф, доска с зажимом и линейка, разрисованная маленькими дверями. Age 13.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "mira-list",
+      "file": "cards/mira-list.webp",
+      "title": "Мира Лист",
+      "subjects": [
+        "mira-list"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e69f5895f11599ffeb3ec44e1df65ad94c84f7fee6eea7ade044b4d2238b11f3"
+    },
+    {
+      "id": "tikhon-med",
+      "file": "cards/tikhon-med.webp",
+      "title": "Тихон Медь",
+      "subjects": [
+        "tikhon-med"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "999fc3a89b7178faeebaebdfa1a6ec142693a8bdbaf5646bf374bcbf5f8f0a20"
+    },
+    {
+      "id": "rada-svet",
+      "file": "cards/rada-svet.webp",
+      "title": "Рада Свет",
+      "subjects": [
+        "rada-svet"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d5fa4c63344d25a7b21b9f2c4333a432aaa8ec99ca92e65eecfc5d23640b4692"
+    },
+    {
+      "id": "osip-ruchei",
+      "file": "cards/osip-ruchei.webp",
+      "title": "Осип Ручей",
+      "subjects": [
+        "osip-ruchei"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "01f1b1c4d84e3a1412f57f3dc3812aaacf258f6a75164a58c0dcaaa86830d2d7"
+    },
+    {
+      "id": "nika-strela",
+      "file": "cards/nika-strela.webp",
+      "title": "Ника Стрела",
+      "subjects": [
+        "nika-strela"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "be36e3814dc3e9889b0a01e4028a53e1f6a500b9d183ebe9fef199b57db4511b"
+    },
+    {
+      "id": "boris-veresk",
+      "file": "cards/boris-veresk.webp",
+      "title": "Борис Вереск",
+      "subjects": [
+        "boris-veresk"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "af0b82ea0388d09c98c900c2a82747fc3aca0ca674838faf8a6ff1df51e776db"
+    },
+    {
+      "id": "aya-zvon",
+      "file": "cards/aya-zvon.webp",
+      "title": "Ая Звон",
+      "subjects": [
+        "aya-zvon"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4a9ad3624c2ef2c757a3e97d0465e0c8f26ad77df76296cc76ad422cb7e644ee"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "aya-zvon-travel-kit",
+        "boris-veresk-travel-kit",
+        "mira-list-travel-kit",
+        "nika-strela-travel-kit",
+        "osip-ruchei-travel-kit",
+        "rada-svet-travel-kit",
+        "tikhon-med-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c58fc1a669538b90a3f4f9089314638890c505e6dd25a9d55717163c138731c4"
+    },
+    {
+      "id": "vera-virt",
+      "file": "cards/vera-virt.webp",
+      "title": "Вера Вирт",
+      "subjects": [
+        "vera-virt"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2eb989b29b0bf8bfb31536dd9b4e5fc2b727254b0e5fb161db8b7992e40fe78d"
+    },
+    {
+      "id": "danka-prut",
+      "file": "cards/danka-prut.webp",
+      "title": "Данка Прут",
+      "subjects": [
+        "danka-prut"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f13d3f6d4e4720ade19ef65c845fc2862425346ae56132bcd0f7406d0880ac8f"
+    },
+    {
+      "id": "niksa-roi",
+      "file": "cards/niksa-roi.webp",
+      "title": "Никса Рой",
+      "subjects": [
+        "niksa-roi"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "26d68ba6df86e1f2a9f820a929585fb1edd11c4d30840d9447cf0cc7cac11619"
+    },
+    {
+      "id": "lev-krom",
+      "file": "cards/lev-krom.webp",
+      "title": "Лев Кром",
+      "subjects": [
+        "lev-krom"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ecafc6e2e444ae412ad36fb645128fe72cb947d56309b3c74e7492e91de09534"
+    },
+    {
+      "id": "olha-rem",
+      "file": "cards/olha-rem.webp",
+      "title": "Ольха Рем",
+      "subjects": [
+        "olha-rem"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ecd121b715690640af3c7f7c80219c537837861dc405553aaae628e617176eb2"
+    },
+    {
+      "id": "gleb-tis",
+      "file": "cards/gleb-tis.webp",
+      "title": "Глеб Тис",
+      "subjects": [
+        "gleb-tis"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "377f0a4af78aa2cf8359fbb269a1b10c1ad99398b0b122fc42bd3f4c1a27b833"
+    },
+    {
+      "id": "emma-shir",
+      "file": "cards/emma-shir.webp",
+      "title": "Эмма Ширь",
+      "subjects": [
+        "emma-shir"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fe69741e3fb44ce25a601c4c6e0f879e7970310dd8a59f4f94b60e3c244528f4"
+    },
+    {
+      "id": "sava-shag",
+      "file": "cards/sava-shag.webp",
+      "title": "Сава Шаг",
+      "subjects": [
+        "sava-shag"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "44ded50da7c84ae5f88d211674c078e8263da0fdf992a04a10699e4922146d10"
+    },
+    {
+      "id": "yasya-nit",
+      "file": "cards/yasya-nit.webp",
+      "title": "Яся Нить",
+      "subjects": [
+        "yasya-nit"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "51515de2b425795f6a13f4c7fdd82ce6feef6a177717421573968c1e0143fc74"
+    }
+  ]
+}

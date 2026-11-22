@@ -1,0 +1,688 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "rain-bureau-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-982bba6c-493d-45f5-8fe2-0af3175773e9.png",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Cell 1. Тая Рябинская. Жёлтый плащ, мел за ухом, сумка с аккуратно заштопанной лямкой.\nCell 2. Григорий Лужин. Фартук с деревянной застёжкой, крепкая трость-мерка и удивительно чистые руки.\nCell 3. Лина Мелова. Синий свитер, бумажные манжеты и увеличительное стекло на шнурке.\nCell 4. Даня Ручьёв. Зелёный шарф, плоская аптечная сумка и кружка с неровной ручкой.\nCell 5. Рада Полозова. Фиолетовые кеды, блокнот на пружине, карман с бумажными ярлыками.\nCell 6. Сева Окладов. Клетчатая кепка, пенал с цветными карандашами и мягкие ботинки.\nCell 7. Мила Авдеева. Комбинезон цвета кирпича, складной табурет и широкая полотняная лента.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/taya.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/grigory.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/lina.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/danya.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/rada.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/seva.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/mila.webp"
+      ]
+    },
+    {
+      "id": "rain-bureau-places-0",
+      "originalFile": "exec-14994fa1-cb3e-4f2e-959d-87599d57725d.png",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Cell 1. Бюро погоды. Бюро наблюдений с семью разными чашками, барометром и почтовым лотком из чувствительной бумаги. Здесь записывают погоду, а не распоряжаются небом.\nCell 2. Забытая почтовая комната. Комната над закрытым отделением. Пустые ячейки, стол с синим сукном и лестница, на которой помещается только один раскрытый зонт.\nCell 3. Кафе «Пуговица». Маленькое кафе с банкой запасных пуговиц. Из окна видно служебный вход трамвайной мойки; на стойке лежит журнал заказов.\nCell 4. Архив учебных образцов. Небольшая комната с пронумерованными учебными флаконами, карточками опытов и столом сверки. Посетителям выдают мягкие карандаши и тканевые закладки.\nCell 5. Кинотеатр «Пятый стул». Небольшой кинозал с редкими показами, деревянными креслами и коллекцией расписаний. На крыльце всегда стоит один свободный стул.\nCell 6. Старая трамвайная мойка. Бывший павильон мойки, который иногда сдают для репетиций. Неглубокие канавки, кронштейны для декораций и высокое окно с матовым стеклом.\nCell 7. Оранжерея реквизита. Бывшая теплица, где теперь выращивают растения для спектаклей и хранят бутафорские пейзажи. У двери стоит конторка выдачи реквизита.\nCell 8. Мастерская подвижных декораций. Общий зал со складными стенами, ширмами и длинным чайным столом. На инструментах подписаны имена мастеров, а на готовых вещах — условия проката.\nCell 9. Мерный двор. Открытый двор с двумя одинаковыми тазами, навесом и плиткой в крупную клетку. Здесь можно наблюдать воду, не запирая никого внутри.\nCell 10. Двор маленьких премьер. Камерный двор для показов: низкая сцена, передвижной навес и стулья в полукруге. На входе есть доска с условиями участия и корзинка для письменных вопросов.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "rain-bureau-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-1876055f-2cc1-4c2c-bd67-8e3f315c517d.png",
+      "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Cell 1. Плащ на лёгком каркасе. Оживший сценический плащ с мягкими деревянными кистями; повторяет репетиционное движение и не преследует за дверью.\nCell 2. Каркасный дублёр. Высокая плетёная фигура с нарисованной улыбкой, заменявшая актёра на световой репетиции.\nCell 3. Зонтичный статист. Сценический зонт на мягких ножках; считает всякую переносимую вещь букетом для последнего поклона.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "rain-bureau-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-47f08e6e-8865-4989-af80-74d9a8a2de7e.png",
+      "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Бюро украденного дождя. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Вера Осокина. Серебристая коса, тёмно-красный жилет и карандаш с короткой резинкой.\nCell 2. Лев Кордон. Бархатный шарф цвета хвои, круглые запонки и плоский тубус для афиш.\nCell 3. Эмиль Носов. Серые нарукавники, круглые очки и тканевые закладки в кармане.\nCell 4. Алёна Цаплина. Синий рабочий берет, мерная лента и перчатки с разными заплатами.\nCell 5. Юра Медовый. Белая рубашка с вышитой грушей и фартук, завязанный сбоку.",
+      "references": [
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/vera.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/lev.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/emil.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/alena.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/yura.webp"
+      ]
+    },
+    {
+      "id": "rain-bureau-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-01a76e11-c6c3-4700-95fe-4211f34e68a4.png",
+      "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Бюро украденного дождя. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Ида Кленц. Лиловый плащ, короткая стрижка и ключи на ленте от киноплёнки.\nCell 2. Олег Вяз. Соломенная шляпа, кожаный блокнот и зелёные заплаты на коленях.\nCell 3. Надя Локоть. Полосатый шарф, книжная тележка и деревянные закладки в волосах.\nCell 4. Тоня Белич. Оранжевая куртка, прозрачный пенал и сапоги с нарисованными звёздами.\nCell 5. Полина Резцова. Песочный жилет, папка и деревянный таймер для очереди реплик.",
+      "references": [
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/ida.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/oleg.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/nadya.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/tonya.webp",
+        "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/polina.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "taya",
+      "title": "Тая Рябинская",
+      "kind": "hero",
+      "subjects": [
+        "taya"
+      ],
+      "file": "heroes-taya.webp",
+      "sha256": "23ed0b26de4532ae94c62857d7a8b8364795bb403fecd9e35a3ce4e73b9c55df",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 103,
+        "top": 7,
+        "width": 237,
+        "height": 420
+      }
+    },
+    {
+      "key": "grigory",
+      "title": "Григорий Лужин",
+      "kind": "hero",
+      "subjects": [
+        "grigory"
+      ],
+      "file": "heroes-grigory.webp",
+      "sha256": "db3b2abb40e20d86ae78de0b552d4619f3c55dd278f1342dd13cf53495f5c935",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 547,
+        "top": 9,
+        "width": 237,
+        "height": 417
+      }
+    },
+    {
+      "key": "lina",
+      "title": "Лина Мелова",
+      "kind": "hero",
+      "subjects": [
+        "lina"
+      ],
+      "file": "heroes-lina.webp",
+      "sha256": "819004492589c3eefa73ef2072c1fa8d924754a83a8e71a58ae1076ccd47329b",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 990,
+        "top": 11,
+        "width": 237,
+        "height": 416
+      }
+    },
+    {
+      "key": "danya",
+      "title": "Даня Ручьёв",
+      "kind": "hero",
+      "subjects": [
+        "danya"
+      ],
+      "file": "heroes-danya.webp",
+      "sha256": "f4d8b46fe9a06de30eeb2c40f77692f467606a355d8ab1cdf1fb05fe1e1ac87e",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1434,
+        "top": 6,
+        "width": 237,
+        "height": 420
+      }
+    },
+    {
+      "key": "rada",
+      "title": "Рада Полозова",
+      "kind": "hero",
+      "subjects": [
+        "rada"
+      ],
+      "file": "heroes-rada.webp",
+      "sha256": "fac8aa807727be01946f7aad71b672a454508516dd4946050843059ac80a12df",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 102,
+        "top": 448,
+        "width": 239,
+        "height": 424
+      }
+    },
+    {
+      "key": "seva",
+      "title": "Сева Окладов",
+      "kind": "hero",
+      "subjects": [
+        "seva"
+      ],
+      "file": "heroes-seva.webp",
+      "sha256": "b51f9ea62fd3c3f91c9ad3f6a902f547888cc3ee3b5e688664b4e3193e91aef0",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 546,
+        "top": 448,
+        "width": 239,
+        "height": 423
+      }
+    },
+    {
+      "key": "mila",
+      "title": "Мила Авдеева",
+      "kind": "hero",
+      "subjects": [
+        "mila"
+      ],
+      "file": "heroes-mila.webp",
+      "sha256": "59cdb0cd79abd7cbdadf39caea4da245c1011ce8176338e790c04648a710c8de",
+      "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 988,
+        "top": 449,
+        "width": 242,
+        "height": 422
+      }
+    },
+    {
+      "key": "weather-bureau",
+      "title": "Бюро погоды",
+      "kind": "place",
+      "subjects": [
+        "weather-bureau"
+      ],
+      "file": "places-weather-bureau.webp",
+      "sha256": "fb5b538c5d207d8d0f2b1157733c1ca14c64ddfa2d239b6192c976495fada02e",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "folded-post",
+      "title": "Забытая почтовая комната",
+      "kind": "place",
+      "subjects": [
+        "folded-post"
+      ],
+      "file": "places-folded-post.webp",
+      "sha256": "218a92d854d7ccb052a8a57ba3fe867cd3fab1d954cdc96f3597c5cd062b357a",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "button-cafe",
+      "title": "Кафе «Пуговица»",
+      "kind": "place",
+      "subjects": [
+        "button-cafe"
+      ],
+      "file": "places-button-cafe.webp",
+      "sha256": "df4ebc044a4c52c7311fc643a54b465b895210cbfd5466d546b7744fc233dfd2",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "dry-archive",
+      "title": "Архив учебных образцов",
+      "kind": "place",
+      "subjects": [
+        "dry-archive"
+      ],
+      "file": "places-dry-archive.webp",
+      "sha256": "6c964925210866b96065f2723bb133efe554fe5d866488581dc3be509cb38705",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "closed-cinema",
+      "title": "Кинотеатр «Пятый стул»",
+      "kind": "place",
+      "subjects": [
+        "closed-cinema"
+      ],
+      "file": "places-closed-cinema.webp",
+      "sha256": "a7180a6b84f4799ee8d6df641c4ab102b57039a81d15b9171ed35532eafcab3c",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "trolley-wash",
+      "title": "Старая трамвайная мойка",
+      "kind": "place",
+      "subjects": [
+        "trolley-wash"
+      ],
+      "file": "places-trolley-wash.webp",
+      "sha256": "d97930112e0214015e063cb7833d21ebd2be0066236b10348fe6961d08a4732b",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "seed-glasshouse",
+      "title": "Оранжерея реквизита",
+      "kind": "place",
+      "subjects": [
+        "seed-glasshouse"
+      ],
+      "file": "places-seed-glasshouse.webp",
+      "sha256": "4a19fbad9c8a00d3a59b088d278ade48a9738382b1dbaf4255c5a84f79058b7b",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "moving-hall",
+      "title": "Мастерская подвижных декораций",
+      "kind": "place",
+      "subjects": [
+        "moving-hall"
+      ],
+      "file": "places-moving-hall.webp",
+      "sha256": "2e6b5d5d09642b45aa35a7db4394e2db107170d1168c6e5dc62d48f00b8d9dd0",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "measure-yard",
+      "title": "Мерный двор",
+      "kind": "place",
+      "subjects": [
+        "measure-yard"
+      ],
+      "file": "places-measure-yard.webp",
+      "sha256": "eb27978f41ef0fcfa8164b7470aad5b025420772619b5aaa50ba0db006dbc726",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "civic-table",
+      "title": "Двор маленьких премьер",
+      "kind": "place",
+      "subjects": [
+        "civic-table"
+      ],
+      "file": "places-civic-table.webp",
+      "sha256": "5ec942eb9c573fd0d6fcaf24c70ffcac7cbfbc09b3e7f6658405127b7f280ada",
+      "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-0110213c0b",
+      "title": "Плащ на лёгком каркасе",
+      "kind": "foe",
+      "subjects": [
+        "cloak-guards-foe-1",
+        "cloak-guards-foe-2",
+        "cloak-guards-foe-3",
+        "cloak-guards-foe-4",
+        "cloak-guards-foe-5"
+      ],
+      "file": "foes-foe-0110213c0b.webp",
+      "sha256": "b237c672aa35a1949808e406b87bba1b55f22ea0dc8ade14a38359f2c689b767",
+      "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 84,
+        "top": 19,
+        "width": 600,
+        "height": 696
+      }
+    },
+    {
+      "key": "foe-81d38d2cad",
+      "title": "Каркасный дублёр",
+      "kind": "foe",
+      "subjects": [
+        "frame-doubles-foe-1",
+        "frame-doubles-foe-2",
+        "frame-doubles-foe-3",
+        "frame-doubles-foe-4",
+        "frame-doubles-foe-5"
+      ],
+      "file": "foes-foe-81d38d2cad.webp",
+      "sha256": "7c1819c192f09462928773297d3786da4856614f80d4ece8827db8d53f328432",
+      "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 823,
+        "top": 8,
+        "width": 561,
+        "height": 707
+      }
+    },
+    {
+      "key": "foe-335d98bcc8",
+      "title": "Зонтичный статист",
+      "kind": "foe",
+      "subjects": [
+        "umbrella-extras-foe-1",
+        "umbrella-extras-foe-2",
+        "umbrella-extras-foe-3",
+        "umbrella-extras-foe-4",
+        "umbrella-extras-foe-5"
+      ],
+      "file": "foes-foe-335d98bcc8.webp",
+      "sha256": "4ee0ea5b6b992500fcce5aa5414c820a42e8aeccc85262ebafe9745d04c991bc",
+      "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1535,
+        "top": 7,
+        "width": 591,
+        "height": 705
+      }
+    },
+    {
+      "key": "vera",
+      "title": "Вера Осокина",
+      "kind": "npc",
+      "subjects": [
+        "vera"
+      ],
+      "file": "npcs-vera.webp",
+      "sha256": "455b075cf92c93511a2ad27bbaa24686bb0dd7ed4878e6b5580b431e8613971f",
+      "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 123,
+        "top": 14,
+        "width": 250,
+        "height": 505
+      }
+    },
+    {
+      "key": "lev",
+      "title": "Лев Кордон",
+      "kind": "npc",
+      "subjects": [
+        "lev"
+      ],
+      "file": "npcs-lev.webp",
+      "sha256": "c10030794ac80b1121f2a427dedb88200519c7c9dae43360cd1c303c2b536ee4",
+      "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 599,
+        "top": 10,
+        "width": 253,
+        "height": 505
+      }
+    },
+    {
+      "key": "emil",
+      "title": "Эмиль Носов",
+      "kind": "npc",
+      "subjects": [
+        "emil"
+      ],
+      "file": "npcs-emil.webp",
+      "sha256": "40b5aa4a3606fd2622f9b5aa9960684c907fd0bf177436ed8d6ac9201abbb235",
+      "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1101,
+        "top": 0,
+        "width": 238,
+        "height": 519
+      }
+    },
+    {
+      "key": "alena",
+      "title": "Алёна Цаплина",
+      "kind": "npc",
+      "subjects": [
+        "alena"
+      ],
+      "file": "npcs-alena.webp",
+      "sha256": "0c6fd885dedb5fbe12b8d311f989ec0953e4362643a23b278627223429d5ae38",
+      "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 123,
+        "top": 546,
+        "width": 248,
+        "height": 514
+      }
+    },
+    {
+      "key": "yura",
+      "title": "Юра Медовый",
+      "kind": "npc",
+      "subjects": [
+        "yura"
+      ],
+      "file": "npcs-yura.webp",
+      "sha256": "9b5a5a22370a18b310af090665acaeda8a79065a59f287a56e3a84df57e83d7a",
+      "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 604,
+        "top": 542,
+        "width": 262,
+        "height": 514
+      }
+    },
+    {
+      "key": "ida",
+      "title": "Ида Кленц",
+      "kind": "npc",
+      "subjects": [
+        "ida"
+      ],
+      "file": "npcs-ida.webp",
+      "sha256": "4c9924d47ac91ea0142699461f5653324afc95d657576bd8550a7b1e52bcfa55",
+      "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 118,
+        "top": 17,
+        "width": 281,
+        "height": 483
+      }
+    },
+    {
+      "key": "oleg",
+      "title": "Олег Вяз",
+      "kind": "npc",
+      "subjects": [
+        "oleg"
+      ],
+      "file": "npcs-oleg.webp",
+      "sha256": "ea873f5437135b7865cd013ed6d19d57c69ed80f5d71c714c95a48e6fa890599",
+      "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 587,
+        "top": 18,
+        "width": 344,
+        "height": 478
+      }
+    },
+    {
+      "key": "nadya",
+      "title": "Надя Локоть",
+      "kind": "npc",
+      "subjects": [
+        "nadya"
+      ],
+      "file": "npcs-nadya.webp",
+      "sha256": "b03a085055e9d384428fa4bd8d27badc472e4156df3713f3e006117148117d30",
+      "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1068,
+        "top": 23,
+        "width": 408,
+        "height": 475
+      }
+    },
+    {
+      "key": "tonya",
+      "title": "Тоня Белич",
+      "kind": "npc",
+      "subjects": [
+        "tonya"
+      ],
+      "file": "npcs-tonya.webp",
+      "sha256": "e5284dd0b5a40951914261ac9b2e4f61d77f8eaca5b207d031e3034496fb5050",
+      "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 73,
+        "top": 530,
+        "width": 363,
+        "height": 472
+      }
+    },
+    {
+      "key": "polina",
+      "title": "Полина Резцова",
+      "kind": "npc",
+      "subjects": [
+        "polina"
+      ],
+      "file": "npcs-polina.webp",
+      "sha256": "32635400c2b09bbeb190793eec768226ce77bf7d5dab04eabc04b301772dba75",
+      "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+      "generated": "2026-11-22",
+      "sheet": "rain-bureau-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 591,
+        "top": 531,
+        "width": 331,
+        "height": 471
+      }
+    }
+  ]
+}

@@ -1,0 +1,672 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "absent-voters-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-3fe43958-0021-40a0-8cdf-28d609d6f6d0.png",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Cell 1. Ира Восс. Широкие манжеты, короткий карандаш за ухом и взгляд, привыкший искать второй вход.\nCell 2. Рем Дорн. Высокий воротник, аккуратная трость, заплаты на коленях рабочего пальто.\nCell 3. Она Телл. Простой тёмный костюм, термос и блокнот с отдельными вкладками для согласий.\nCell 4. Соль Иск. Квадратные очки, жилет с карманами под карточки и сухие чернила на большом пальце.\nCell 5. Аврен Нелл. Старое пальто без значков и матерчатая папка с широкими завязками.\nCell 6. Мирта Кельд. Неброский платок, сложенный табурет и привычка оставлять собеседнику паузу.\nCell 7. Теор Брин. Выправленное пальто и мягкая шляпа, которую он снимает даже в шумном помещении.\nCell 8. Лисса Орн. Светлые перчатки, разлинованные карточки и всегда закрытая крышка чернильницы.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/absent-voters/illustrations/cards/ira-voss.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/rem-dorn.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/ona-tell.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/sol-isk.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/avren-nell.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/mirta-keld.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/teor-brin.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/lissa-orn.webp"
+      ]
+    },
+    {
+      "id": "absent-voters-places-0",
+      "originalFile": "exec-7ab4ce0b-e0bf-4c26-b800-16776e779198.png",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Cell 1. Чайная под навесом. Длинный стол отделён от улицы мокрой занавеской; здесь можно поговорить без трибуны.\nCell 2. Шнуровый двор. Два жилых корпуса соединены бельевыми шнурами. На нескольких дверях видны следы недавнего ремонта.\nCell 3. Мастерская литер. Печатный станок, сушильные рамки и стол, на котором заказы лежат отдельно от проб.\nCell 4. Комната сверки. Небольшое помещение для предварительных вопросов о местном голосовании; посетителям выдают квитанции.\nCell 5. Крытая лестница. Широкая лестница между двором и верхней улицей; на площадке удобно встретиться, не заходя в жильё.\nCell 6. Дом собраний. Стулья расставляют для открытых бесед, а малую комнату можно попросить для закрытого разговора.\nCell 7. Каменный переход. Крытый переход через мелкий городской канал; скамьи и опоры оставляют несколько спокойных путей обхода.\nCell 8. Участок при прачечной. Бывшая прачечная с отдельными столами приёма, личных обращений и выдачи; кабины скрыты ширмами.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "absent-voters-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-aeb61d46-b346-43dc-af18-7b689312375b.png",
+      "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Cell 1. Упрямый распорядитель. Взрослые работники собраний, каждому не менее 24 лет; спорят о праве стоять на площадке. Их трости представлены обычным абстрактным ближним ударом, намерение несмертельное.\nCell 2. Сердитый устроитель. Взрослые организаторы от 26 лет, раздражённые сорванным порядком беседы; без оружия огнестрельного типа. Трости и толчки используют только поддержанный абстрактный ближний профиль.\nCell 3. Настойчивый спорщик. Взрослые горожане от 23 лет, переоценившие своё право удерживать собеседника. Политические предпочтения не определяют их человеческую ценность; механика тростей условна и несмертельна.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "absent-voters-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-55f97f02-1194-4317-a802-a955be447b6e.png",
+      "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Голоса отсутствующих. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Лея Мольц. Рабочий фартук под плащом, влажные рукава, квитанция в сухой жестяной коробке.\nCell 2. Саверий Крам. Плотный серый костюм, потёртый портфель, вежливая привычка подставлять посетителю стул.\nCell 3. Тада Верн. Сухой плащ, корзинка с пустыми банками и рука на перилах вместо протянутой ладони.\nCell 4. Дина Арк. Медные пуговицы, ключ на шнурке и аккуратные мелкие буквы на дощечке дежурств.\nCell 5. Венц Ольден. Чернильные пальцы, стеклянный козырёк над рабочим столом и выцветший фартук.",
+      "references": [
+        "campaigns/noir-2026/absent-voters/illustrations/cards/lea-moltz.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/saveriy-kram.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/tada-vern.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/dina-ark.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/vents-olden.webp"
+      ]
+    },
+    {
+      "id": "absent-voters-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b39e292f-0ce6-4f2f-8a3d-2037968ff8cf.png",
+      "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Голоса отсутствующих. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Эрида Сель. Тёмный жилет, песочные часы для очередности выступлений и три отдельные папки на столе.\nCell 2. Бран Нев. Короткий непромокаемый плащ, ремень для свёртков и пустые ладони во время разговора.\nCell 3. Нель Рут. Простой жакет, прямой пробор и сухая тряпица рядом с подушкой для штампа.\nCell 4. Мати Селт. Ровно завязанный рабочий галстук, жестяной обеденный футляр и натёртые ладони.\nCell 5. Фарен Кест. Потёртый воротник, кружка воды и медленная речь человека, привыкшего к заседаниям.",
+      "references": [
+        "campaigns/noir-2026/absent-voters/illustrations/cards/erida-sel.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/bran-nev.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/nell-rut.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/mati-selt.webp",
+        "campaigns/noir-2026/absent-voters/illustrations/cards/faren-kest.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "ira-voss",
+      "title": "Ира Восс",
+      "kind": "hero",
+      "subjects": [
+        "ira-voss"
+      ],
+      "file": "heroes-ira-voss.webp",
+      "sha256": "81151c7c84683987cda47ea864ec03698181dadef4a3bd5e1bb4fb459de37ecb",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 134,
+        "top": 12,
+        "width": 179,
+        "height": 422
+      }
+    },
+    {
+      "key": "rem-dorn",
+      "title": "Рем Дорн",
+      "kind": "hero",
+      "subjects": [
+        "rem-dorn"
+      ],
+      "file": "heroes-rem-dorn.webp",
+      "sha256": "19a4321ecfa31a68c6ff45df6ab71b32a20c2acababb3442965429b15e4ddd58",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 576,
+        "top": 10,
+        "width": 179,
+        "height": 423
+      }
+    },
+    {
+      "key": "ona-tell",
+      "title": "Она Телл",
+      "kind": "hero",
+      "subjects": [
+        "ona-tell"
+      ],
+      "file": "heroes-ona-tell.webp",
+      "sha256": "6c68afd2ada985633b97d8d40933ae9f2efff3772f78f70722e2a07a6ae1f91e",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1016,
+        "top": 12,
+        "width": 174,
+        "height": 420
+      }
+    },
+    {
+      "key": "sol-isk",
+      "title": "Соль Иск",
+      "kind": "hero",
+      "subjects": [
+        "sol-isk"
+      ],
+      "file": "heroes-sol-isk.webp",
+      "sha256": "312f64327399a8dd65cfb1e835f893a37744481fa0f9ecfd404427e61a953ae3",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1456,
+        "top": 10,
+        "width": 177,
+        "height": 422
+      }
+    },
+    {
+      "key": "avren-nell",
+      "title": "Аврен Нелл",
+      "kind": "hero",
+      "subjects": [
+        "avren-nell"
+      ],
+      "file": "heroes-avren-nell.webp",
+      "sha256": "fae398226d92cad631c0b57cc5cf9cfc51b053d84aafd7d52b616f1cce22143e",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 131,
+        "top": 447,
+        "width": 190,
+        "height": 430
+      }
+    },
+    {
+      "key": "mirta-keld",
+      "title": "Мирта Кельд",
+      "kind": "hero",
+      "subjects": [
+        "mirta-keld"
+      ],
+      "file": "heroes-mirta-keld.webp",
+      "sha256": "1f2137e33662a21a08d65e2b82830e9bb0cebc53b63e4698b9281c16213ed243",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 574,
+        "top": 452,
+        "width": 182,
+        "height": 425
+      }
+    },
+    {
+      "key": "teor-brin",
+      "title": "Теор Брин",
+      "kind": "hero",
+      "subjects": [
+        "teor-brin"
+      ],
+      "file": "heroes-teor-brin.webp",
+      "sha256": "650e4a0145c37106163261f8bc6c157e895296407ec0a7d85b4f6f5aa8d47fd9",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1018,
+        "top": 449,
+        "width": 184,
+        "height": 427
+      }
+    },
+    {
+      "key": "lissa-orn",
+      "title": "Лисса Орн",
+      "kind": "hero",
+      "subjects": [
+        "lissa-orn"
+      ],
+      "file": "heroes-lissa-orn.webp",
+      "sha256": "740fd2e6ff83773f80172eba72ed9dfead2c2024e85a7eaa64bf903d336e2b5a",
+      "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1459,
+        "top": 452,
+        "width": 184,
+        "height": 425
+      }
+    },
+    {
+      "key": "awning-teahouse",
+      "title": "Чайная под навесом",
+      "kind": "place",
+      "subjects": [
+        "awning-teahouse"
+      ],
+      "file": "places-awning-teahouse.webp",
+      "sha256": "e3850bc3a72b64545f82c1c1e4147a2e3101b06c3b11d480cad60837d5d2e9fb",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "cord-court",
+      "title": "Шнуровый двор",
+      "kind": "place",
+      "subjects": [
+        "cord-court"
+      ],
+      "file": "places-cord-court.webp",
+      "sha256": "0cad78dd8897079fcf393a98a0f3f0f72b6c1e5bc788dd2d5bb7048233918773",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "type-workshop",
+      "title": "Мастерская литер",
+      "kind": "place",
+      "subjects": [
+        "type-workshop"
+      ],
+      "file": "places-type-workshop.webp",
+      "sha256": "49366615465173f721384abb829d9d1b1015d09c919cb67fccb2585d52d36a07",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "checking-room",
+      "title": "Комната сверки",
+      "kind": "place",
+      "subjects": [
+        "checking-room"
+      ],
+      "file": "places-checking-room.webp",
+      "sha256": "128b156536023dd21c0571589b505ffe343bb6f46ed31c650ceffbef4b5776f2",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "covered-stairs",
+      "title": "Крытая лестница",
+      "kind": "place",
+      "subjects": [
+        "covered-stairs"
+      ],
+      "file": "places-covered-stairs.webp",
+      "sha256": "a48ada10cd4088b374d256f3d9b4a41f8cb2a3d0c564127544c819be4f0b94b1",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "assembly-house",
+      "title": "Дом собраний",
+      "kind": "place",
+      "subjects": [
+        "assembly-house"
+      ],
+      "file": "places-assembly-house.webp",
+      "sha256": "11c80b7e14b0570712899ca0b4445b32397237573fc09556ef787ef19d71c09f",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "stone-crossing",
+      "title": "Каменный переход",
+      "kind": "place",
+      "subjects": [
+        "stone-crossing"
+      ],
+      "file": "places-stone-crossing.webp",
+      "sha256": "c3ee5d968a9693a8c2be01e2460975b7503d9af8269cec2dbdcf3873d48837a8",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "laundry-poll",
+      "title": "Участок при прачечной",
+      "kind": "place",
+      "subjects": [
+        "laundry-poll"
+      ],
+      "file": "places-laundry-poll.webp",
+      "sha256": "3bccefc765cdd8db7d7404f035a570e3b3d5ee518c9eea0a277fe493bbe42891",
+      "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-7cc7fdca2c",
+      "title": "Упрямый распорядитель",
+      "kind": "foe",
+      "subjects": [
+        "courtyard-obstruction-foe-1",
+        "courtyard-obstruction-foe-2",
+        "courtyard-obstruction-foe-3",
+        "courtyard-obstruction-foe-4",
+        "courtyard-obstruction-foe-5",
+        "courtyard-obstruction-foe-6"
+      ],
+      "file": "foes-foe-7cc7fdca2c.webp",
+      "sha256": "faa76e04f6eca18b6bae5d8e451b53f89854bb7402ac59078e89b14e60326521",
+      "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 86,
+        "top": 15,
+        "width": 597,
+        "height": 691
+      }
+    },
+    {
+      "key": "foe-b33b6f39f2",
+      "title": "Сердитый устроитель",
+      "kind": "foe",
+      "subjects": [
+        "hall-dispute-foe-1",
+        "hall-dispute-foe-2",
+        "hall-dispute-foe-3",
+        "hall-dispute-foe-4",
+        "hall-dispute-foe-5",
+        "hall-dispute-foe-6"
+      ],
+      "file": "foes-foe-b33b6f39f2.webp",
+      "sha256": "b24a161aa0365a189c3c190f179da4c384fbff701838d3f8cdfafefaf995a4ca",
+      "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 812,
+        "top": 21,
+        "width": 580,
+        "height": 687
+      }
+    },
+    {
+      "key": "foe-55cb9d192c",
+      "title": "Настойчивый спорщик",
+      "kind": "foe",
+      "subjects": [
+        "crossing-crowd-foe-1",
+        "crossing-crowd-foe-2",
+        "crossing-crowd-foe-3",
+        "crossing-crowd-foe-4",
+        "crossing-crowd-foe-5",
+        "crossing-crowd-foe-6"
+      ],
+      "file": "foes-foe-55cb9d192c.webp",
+      "sha256": "7d4899e40b74036c7ebc71f400622325b4e6275fe739c97f1f1d2b50700a9e9e",
+      "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1545,
+        "top": 14,
+        "width": 482,
+        "height": 694
+      }
+    },
+    {
+      "key": "lea-moltz",
+      "title": "Лея Мольц",
+      "kind": "npc",
+      "subjects": [
+        "lea-moltz"
+      ],
+      "file": "npcs-lea-moltz.webp",
+      "sha256": "07734e2c528f7eff8a13dec20610c572bddf79f6c0907e481d36f3a98060831b",
+      "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 11,
+        "width": 273,
+        "height": 502
+      }
+    },
+    {
+      "key": "saveriy-kram",
+      "title": "Саверий Крам",
+      "kind": "npc",
+      "subjects": [
+        "saveriy-kram"
+      ],
+      "file": "npcs-saveriy-kram.webp",
+      "sha256": "e5da18b64828ed362bf1d50c06c866d122e53543bfc558877a1b3fb906b292a2",
+      "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 610,
+        "top": 16,
+        "width": 302,
+        "height": 497
+      }
+    },
+    {
+      "key": "tada-vern",
+      "title": "Тада Верн",
+      "kind": "npc",
+      "subjects": [
+        "tada-vern"
+      ],
+      "file": "npcs-tada-vern.webp",
+      "sha256": "db90eb906f2c33de1e5a9ba6c9407eed3a9ddcd7feced45b8d5b49880cabe69c",
+      "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1127,
+        "top": 17,
+        "width": 313,
+        "height": 482
+      }
+    },
+    {
+      "key": "dina-ark",
+      "title": "Дина Арк",
+      "kind": "npc",
+      "subjects": [
+        "dina-ark"
+      ],
+      "file": "npcs-dina-ark.webp",
+      "sha256": "5200d11516048d3e6b9320901037475669a6001bac5d86292c0f7dad726a8f6a",
+      "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 114,
+        "top": 525,
+        "width": 285,
+        "height": 483
+      }
+    },
+    {
+      "key": "vents-olden",
+      "title": "Венц Ольден",
+      "kind": "npc",
+      "subjects": [
+        "vents-olden"
+      ],
+      "file": "npcs-vents-olden.webp",
+      "sha256": "7c46df0be0226906c92418b0a6fe32886197d705698a283c2653b544d1d4518b",
+      "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 592,
+        "top": 521,
+        "width": 353,
+        "height": 487
+      }
+    },
+    {
+      "key": "erida-sel",
+      "title": "Эрида Сель",
+      "kind": "npc",
+      "subjects": [
+        "erida-sel"
+      ],
+      "file": "npcs-erida-sel.webp",
+      "sha256": "2fb85be93cd02701a51c1ba9004296cfa407b62e06877e6831a37397ff602334",
+      "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 46,
+        "top": 19,
+        "width": 422,
+        "height": 480
+      }
+    },
+    {
+      "key": "bran-nev",
+      "title": "Бран Нев",
+      "kind": "npc",
+      "subjects": [
+        "bran-nev"
+      ],
+      "file": "npcs-bran-nev.webp",
+      "sha256": "2b01e36244aae04633a8a168a7ded9d27f79936777d80b0a58e0122a16095d98",
+      "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 560,
+        "top": 20,
+        "width": 414,
+        "height": 478
+      }
+    },
+    {
+      "key": "nell-rut",
+      "title": "Нель Рут",
+      "kind": "npc",
+      "subjects": [
+        "nell-rut"
+      ],
+      "file": "npcs-nell-rut.webp",
+      "sha256": "d54cb55865030789b3935d235421ac37b4445c41076178b658e3f804e5df2274",
+      "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1071,
+        "top": 24,
+        "width": 419,
+        "height": 474
+      }
+    },
+    {
+      "key": "mati-selt",
+      "title": "Мати Селт",
+      "kind": "npc",
+      "subjects": [
+        "mati-selt"
+      ],
+      "file": "npcs-mati-selt.webp",
+      "sha256": "96d75e2ddbec58ea675a2f4d9d955723c207ef136d8482e267fdd3c7f0398672",
+      "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 51,
+        "top": 524,
+        "width": 414,
+        "height": 483
+      }
+    },
+    {
+      "key": "faren-kest",
+      "title": "Фарен Кест",
+      "kind": "npc",
+      "subjects": [
+        "faren-kest"
+      ],
+      "file": "npcs-faren-kest.webp",
+      "sha256": "dd9c8356498c689ae9facabeb282ece2484a87328aba3ef2ab05f17627216294",
+      "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+      "generated": "2026-11-22",
+      "sheet": "absent-voters-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 556,
+        "top": 529,
+        "width": 425,
+        "height": 478
+      }
+    }
+  ]
+}

@@ -1,0 +1,1693 @@
+{
+ "id": "cedar-tournament",
+ "title": "Турнир под Кедровой Луной",
+ "genre": "Спортивное приключение и добрая уся о школах мастерства",
+ "audience": "12+",
+ "pitch": "Мостовой Двор впервые приглашён на Турнир Кедровой Луны. Вы составите его сборную, потренируетесь с тремя знаменитыми школами и выступите в общем финале. Чужой красивый стиль можно понять, заимствовать с благодарностью или оставить сопернику. Кубок достанется одной команде либо разделившим первое место; кем вы станете друг для друга, не решает табло.",
+ "tone": "Тёплая соревновательная история с серьёзным желанием выиграть, смешными тренировками и правом огорчиться. Соперник может стать другом и всё равно стараться обойти вас.",
+ "duration": "8 сессий; 150 минут: 10 минут входа и воспоминаний, сцены 35 + 35 + 40 минут, перерыв 10 минут после второй сцены, 20 минут личных итогов и завершения.",
+ "cover": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "5c9ca86135c5766f885c8c9de310cbb08fcb065546baefe447ec934698414301"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "665f267c6332234cf6405a1e3ba360817f14f6d6143c8049986280f19e264d0f"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "a0262454a5e5ad8eda476f20eaf1caf466349467aecb15ffc3a170a626c26b44"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "748a95f85b3235476286dfdb0eb7febdc354337fb9d36ed7d7d64373c260e296"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "1429d8a55e29af409d598f69f074890bac76a0cec9456e6e207cb6eb89857c83"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/tao.webp",
+   "sha256": "c4686c96332186c906d5788da7753d80fdb634852832e0f73d74addd143b7f84",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тао Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tao"
+    ],
+    "4-players": [
+     "tao"
+    ],
+    "5-players": [
+     "tao"
+    ],
+    "6-players": [
+     "tao"
+    ],
+    "7-players": [
+     "tao"
+    ]
+   },
+   "file": "tao.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/mira.webp",
+   "sha256": "031bd3f66475332b57da6191dc9a81a0a88e9375b3c41a3d1b7b33e1b05f725a",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira"
+    ],
+    "4-players": [
+     "mira"
+    ],
+    "5-players": [
+     "mira"
+    ],
+    "6-players": [
+     "mira"
+    ],
+    "7-players": [
+     "mira"
+    ]
+   },
+   "file": "mira.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/oren.webp",
+   "sha256": "f88aae391f40af7c41b3592c7e65de725dae63e61d78b53a278a1150cbe96391",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орен Берег",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oren"
+    ],
+    "4-players": [
+     "oren"
+    ],
+    "5-players": [
+     "oren"
+    ],
+    "6-players": [
+     "oren"
+    ],
+    "7-players": [
+     "oren"
+    ]
+   },
+   "file": "oren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/seya.webp",
+   "sha256": "201774ba93f9a92309ca5528026a514e67e3d9d34a941264c51f562f99ed2b77",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сэя Пятно",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "seya"
+    ],
+    "5-players": [
+     "seya"
+    ],
+    "6-players": [
+     "seya"
+    ],
+    "7-players": [
+     "seya"
+    ]
+   },
+   "file": "seya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/ryu.webp",
+   "sha256": "84b0dcc49f048ab707cee46594617e62b568dc3d1f512695266eebda43a997ff",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рю Тёплый Ветер",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "ryu"
+    ],
+    "6-players": [
+     "ryu"
+    ],
+    "7-players": [
+     "ryu"
+    ]
+   },
+   "file": "ryu.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/nala.webp",
+   "sha256": "1e3c65a46db80a850892ba9bb04d673aef3de9a2ce5e8a706c15412347a9adfe",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нала Тихий Колокольчик",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "nala"
+    ],
+    "7-players": [
+     "nala"
+    ]
+   },
+   "file": "nala.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/eido.webp",
+   "sha256": "1fbb7bf3906720d82ba08b17f0a09a866685200d079ebde453d8025a2070096f",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйдо Медный Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "eido"
+    ]
+   },
+   "file": "eido.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/travel-kit.webp",
+   "sha256": "fff90a28e1153d2a4744bf513eaf0b236f71031bcb5b536d116d0b92224eff4d",
+   "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-travel-kit",
+     "oren-travel-kit",
+     "tao-travel-kit"
+    ],
+    "4-players": [
+     "mira-travel-kit",
+     "oren-travel-kit",
+     "seya-travel-kit",
+     "tao-travel-kit"
+    ],
+    "5-players": [
+     "mira-travel-kit",
+     "oren-travel-kit",
+     "ryu-travel-kit",
+     "seya-travel-kit",
+     "tao-travel-kit"
+    ],
+    "6-players": [
+     "mira-travel-kit",
+     "nala-travel-kit",
+     "oren-travel-kit",
+     "ryu-travel-kit",
+     "seya-travel-kit",
+     "tao-travel-kit"
+    ],
+    "7-players": [
+     "eido-travel-kit",
+     "mira-travel-kit",
+     "nala-travel-kit",
+     "oren-travel-kit",
+     "ryu-travel-kit",
+     "seya-travel-kit",
+     "tao-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/iva.webp",
+   "sha256": "2456256b3705f8097b5146b9a68803bdf2d163f055d8647a346acc7f35fdb48c",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Утренний Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iva"
+    ],
+    "4-players": [
+     "iva"
+    ],
+    "5-players": [
+     "iva"
+    ],
+    "6-players": [
+     "iva"
+    ],
+    "7-players": [
+     "iva"
+    ]
+   },
+   "file": "iva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/judge-rue.webp",
+   "sha256": "ced36e65fbf0d9a8c0512d4176402fb87194d1820810471c5a3e14467475f46d",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руэ Ровная Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "judge-rue"
+    ],
+    "4-players": [
+     "judge-rue"
+    ],
+    "5-players": [
+     "judge-rue"
+    ],
+    "6-players": [
+     "judge-rue"
+    ],
+    "7-players": [
+     "judge-rue"
+    ]
+   },
+   "file": "judge-rue.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/sen.webp",
+   "sha256": "548aa74dd12a98e6059745951703bf6c355f57e95ee66e710c19460e763fec0a",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сэн Квадратный Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sen"
+    ],
+    "4-players": [
+     "sen"
+    ],
+    "5-players": [
+     "sen"
+    ],
+    "6-players": [
+     "sen"
+    ],
+    "7-players": [
+     "sen"
+    ]
+   },
+   "file": "sen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/daro.webp",
+   "sha256": "05c63ff8abef2aea3f3234f28e2243b117f78fc33083c1ce3ade4fccfd0bc5be",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даро Летящая Скоба",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "daro"
+    ],
+    "4-players": [
+     "daro"
+    ],
+    "5-players": [
+     "daro"
+    ],
+    "6-players": [
+     "daro"
+    ],
+    "7-players": [
+     "daro"
+    ]
+   },
+   "file": "daro.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/ami.webp",
+   "sha256": "5ba4ca02d054dfb9b6eb2d8ef81faa8bb91a719e737f48020ef4a04abd4a618b",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ами Белый Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ami"
+    ],
+    "4-players": [
+     "ami"
+    ],
+    "5-players": [
+     "ami"
+    ],
+    "6-players": [
+     "ami"
+    ],
+    "7-players": [
+     "ami"
+    ]
+   },
+   "file": "ami.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/fen.webp",
+   "sha256": "b9ce20b27a641163b2148284c9218678424b33e7970fa8190470ee0f8144db63",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фэн Короткая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fen"
+    ],
+    "4-players": [
+     "fen"
+    ],
+    "5-players": [
+     "fen"
+    ],
+    "6-players": [
+     "fen"
+    ],
+    "7-players": [
+     "fen"
+    ]
+   },
+   "file": "fen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/neo.webp",
+   "sha256": "f951d5a9facab2d8f1005b5622e18fc627a741052bb03b781c55e8216f784a57",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нэо Медный Узел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "neo"
+    ],
+    "4-players": [
+     "neo"
+    ],
+    "5-players": [
+     "neo"
+    ],
+    "6-players": [
+     "neo"
+    ],
+    "7-players": [
+     "neo"
+    ]
+   },
+   "file": "neo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/una.webp",
+   "sha256": "9fac64332eb58e54e14f23531fbffb773c119e467f70729c9cb63b827041cbe7",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Уна Чайный Круг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "una"
+    ],
+    "4-players": [
+     "una"
+    ],
+    "5-players": [
+     "una"
+    ],
+    "6-players": [
+     "una"
+    ],
+    "7-players": [
+     "una"
+    ]
+   },
+   "file": "una.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/cards/pao.webp",
+   "sha256": "3f43e1ba58d0ca11d6452c70ee1b7d56355a4e7dae0fb94d56565af0ebc2f972",
+   "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пао Чистое Поле",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pao"
+    ],
+    "4-players": [
+     "pao"
+    ],
+    "5-players": [
+     "pao"
+    ],
+    "6-players": [
+     "pao"
+    ],
+    "7-players": [
+     "pao"
+    ]
+   },
+   "file": "pao.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-tao.webp",
+   "sha256": "136c38c7863caadd15653fbe127af087fc90138658a5f2f3586d35e7e8d3117a",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тао Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tao"
+    ],
+    "4-players": [
+     "tao"
+    ],
+    "5-players": [
+     "tao"
+    ],
+    "6-players": [
+     "tao"
+    ],
+    "7-players": [
+     "tao"
+    ]
+   },
+   "file": "tao--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tao.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-mira.webp",
+   "sha256": "d560fb8e8a6a00fe986354133067c5d1789b47123da9ae37f7c2ee6a77120062",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira"
+    ],
+    "4-players": [
+     "mira"
+    ],
+    "5-players": [
+     "mira"
+    ],
+    "6-players": [
+     "mira"
+    ],
+    "7-players": [
+     "mira"
+    ]
+   },
+   "file": "mira--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-oren.webp",
+   "sha256": "2d25f80ba4d4eb75e172ab784f9194ccbf806c4415896b0e9d9dd8490974a3a8",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орен Берег",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oren"
+    ],
+    "4-players": [
+     "oren"
+    ],
+    "5-players": [
+     "oren"
+    ],
+    "6-players": [
+     "oren"
+    ],
+    "7-players": [
+     "oren"
+    ]
+   },
+   "file": "oren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oren.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-seya.webp",
+   "sha256": "98a8b67f2932d8e652a7ba4cc40b82744596208723162b98eb90de7c06f409a2",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сэя Пятно",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "seya"
+    ],
+    "5-players": [
+     "seya"
+    ],
+    "6-players": [
+     "seya"
+    ],
+    "7-players": [
+     "seya"
+    ]
+   },
+   "file": "seya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "seya.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-ryu.webp",
+   "sha256": "6a8e761dad41cada0ab1f5928ef77fc072e2f12a6e96039010e35dca077cdccb",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рю Тёплый Ветер",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "ryu"
+    ],
+    "6-players": [
+     "ryu"
+    ],
+    "7-players": [
+     "ryu"
+    ]
+   },
+   "file": "ryu--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ryu.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-nala.webp",
+   "sha256": "28713ee39b37054b7bd9ac589f58c4d357679a11147fb21121e7e766d6d2ef9d",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нала Тихий Колокольчик",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "nala"
+    ],
+    "7-players": [
+     "nala"
+    ]
+   },
+   "file": "nala--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nala.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/heroes-eido.webp",
+   "sha256": "aa79dfadc830cc6457013e9f9ee437b79517fc083770ace11f2400062f320147",
+   "originalSha256": "05b537b9933a87e9f708760c42ff352d17ec84373adc722551bfea6e7db66fcd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйдо Медный Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "eido"
+    ]
+   },
+   "file": "eido--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eido.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-bridge-yard.webp",
+   "sha256": "fff6b08893ccd706dc4928831f2ce27c2688207b1152c92c8d8832b6ba702f78",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мостовой Двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bridge-yard"
+    ],
+    "4-players": [
+     "bridge-yard"
+    ],
+    "5-players": [
+     "bridge-yard"
+    ],
+    "6-players": [
+     "bridge-yard"
+    ],
+    "7-players": [
+     "bridge-yard"
+    ]
+   },
+   "file": "bridge-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-ribbon-gate.webp",
+   "sha256": "484d514dc952c035abf5c99d3285dbaf1278f67e838d1e772ba47342d0d23795",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ворота Четырёх Лент",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-gate"
+    ],
+    "4-players": [
+     "ribbon-gate"
+    ],
+    "5-players": [
+     "ribbon-gate"
+    ],
+    "6-players": [
+     "ribbon-gate"
+    ],
+    "7-players": [
+     "ribbon-gate"
+    ]
+   },
+   "file": "ribbon-gate.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-moon-ring.webp",
+   "sha256": "24a647b3d5de37a774220a12815fb1e3b9d7d6feb9f7cba7c85eef3b57d64d0f",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лунный Круг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "moon-ring"
+    ],
+    "4-players": [
+     "moon-ring"
+    ],
+    "5-players": [
+     "moon-ring"
+    ],
+    "6-players": [
+     "moon-ring"
+    ],
+    "7-players": [
+     "moon-ring"
+    ]
+   },
+   "file": "moon-ring.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-stone-yard.webp",
+   "sha256": "b28ca205d808db5e15ca8e54a80e0f7f385f8209bacb38dd6a05005a9e66fc18",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор Тихого Камня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-yard"
+    ],
+    "4-players": [
+     "stone-yard"
+    ],
+    "5-players": [
+     "stone-yard"
+    ],
+    "6-players": [
+     "stone-yard"
+    ],
+    "7-players": [
+     "stone-yard"
+    ]
+   },
+   "file": "stone-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-wind-gallery.webp",
+   "sha256": "fbe8a45635b10a8bb2a5620840a35cd3975922ef556f115fbafc1d948eab1bd8",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галерея Летящей Ленты",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wind-gallery"
+    ],
+    "4-players": [
+     "wind-gallery"
+    ],
+    "5-players": [
+     "wind-gallery"
+    ],
+    "6-players": [
+     "wind-gallery"
+    ],
+    "7-players": [
+     "wind-gallery"
+    ]
+   },
+   "file": "wind-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-bowl-court.webp",
+   "sha256": "a506f5399f36442aab51b5861cb3aa12fd6beabdb4fd17b61f88441beb93c850",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор Пустой Чаши",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bowl-court"
+    ],
+    "4-players": [
+     "bowl-court"
+    ],
+    "5-players": [
+     "bowl-court"
+    ],
+    "6-players": [
+     "bowl-court"
+    ],
+    "7-players": [
+     "bowl-court"
+    ]
+   },
+   "file": "bowl-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-cedar-tea.webp",
+   "sha256": "19c95d8339a91b970a25cb77750f435b6336ed7ee4c774dc864ea2d1a0deba14",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чайная Под Корнями",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cedar-tea"
+    ],
+    "4-players": [
+     "cedar-tea"
+    ],
+    "5-players": [
+     "cedar-tea"
+    ],
+    "6-players": [
+     "cedar-tea"
+    ],
+    "7-players": [
+     "cedar-tea"
+    ]
+   },
+   "file": "cedar-tea.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-practice-steps.webp",
+   "sha256": "008ce3d9d08cc3a86946ee756c752e0169cd2259295e4f638d79a082ecc6fff8",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ступени Тренировки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "practice-steps"
+    ],
+    "4-players": [
+     "practice-steps"
+    ],
+    "5-players": [
+     "practice-steps"
+    ],
+    "6-players": [
+     "practice-steps"
+    ],
+    "7-players": [
+     "practice-steps"
+    ]
+   },
+   "file": "practice-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/places-lantern-room.webp",
+   "sha256": "093963aa6bead5020a2b1fd0d5c63a263571bcb6194a67485c7719cbb9db0c1c",
+   "originalSha256": "a9c3d887d47db8c3f76b784f446d86981d993c1856f8c513230bad9b6a278e00",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комната Фонарей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lantern-room"
+    ],
+    "4-players": [
+     "lantern-room"
+    ],
+    "5-players": [
+     "lantern-room"
+    ],
+    "6-players": [
+     "lantern-room"
+    ],
+    "7-players": [
+     "lantern-room"
+    ]
+   },
+   "file": "lantern-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/foes-foe-c96a39b454.webp",
+   "sha256": "327803726d5b38cc04b9bdd8118682b8d82f8025d43142c993916fdb94a5c44e",
+   "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ученик Камня с мягким знаком",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2"
+    ],
+    "4-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3"
+    ],
+    "5-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3"
+    ],
+    "6-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3",
+     "stone-circle-foe-4"
+    ],
+    "7-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3",
+     "stone-circle-foe-4",
+     "stone-circle-foe-5"
+    ]
+   },
+   "file": "foe-c96a39b454.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/foes-foe-c96a39b454.webp",
+   "sha256": "327803726d5b38cc04b9bdd8118682b8d82f8025d43142c993916fdb94a5c44e",
+   "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ученик Камня с мягким знаком",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2"
+    ],
+    "4-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3"
+    ],
+    "5-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3"
+    ],
+    "6-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3",
+     "stone-circle-foe-4"
+    ],
+    "7-players": [
+     "stone-circle-foe-1",
+     "stone-circle-foe-2",
+     "stone-circle-foe-3",
+     "stone-circle-foe-4",
+     "stone-circle-foe-5"
+    ]
+   },
+   "file": "foe-c96a39b454--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-c96a39b454.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/foes-foe-a4b4befcc8.webp",
+   "sha256": "069b2b9f6e44026b92821fb6751fc142ade187d0954b78ec1584acefa2a4e4a5",
+   "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ученик Ленты с мягкой кистью",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2"
+    ],
+    "4-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3"
+    ],
+    "5-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3"
+    ],
+    "6-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3",
+     "ribbon-arc-foe-4"
+    ],
+    "7-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3",
+     "ribbon-arc-foe-4",
+     "ribbon-arc-foe-5"
+    ]
+   },
+   "file": "foe-a4b4befcc8.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/foes-foe-a4b4befcc8.webp",
+   "sha256": "069b2b9f6e44026b92821fb6751fc142ade187d0954b78ec1584acefa2a4e4a5",
+   "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ученик Ленты с мягкой кистью",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2"
+    ],
+    "4-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3"
+    ],
+    "5-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3"
+    ],
+    "6-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3",
+     "ribbon-arc-foe-4"
+    ],
+    "7-players": [
+     "ribbon-arc-foe-1",
+     "ribbon-arc-foe-2",
+     "ribbon-arc-foe-3",
+     "ribbon-arc-foe-4",
+     "ribbon-arc-foe-5"
+    ]
+   },
+   "file": "foe-a4b4befcc8--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-a4b4befcc8.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/foes-foe-9e6764de02.webp",
+   "sha256": "da481a0366bbcb1d1c565594d08cd7120731b7d1d5f78884ecc73b38f482cf7f",
+   "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ученик Чаши с мягкой лентой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2"
+    ],
+    "4-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3"
+    ],
+    "5-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3"
+    ],
+    "6-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3",
+     "bowl-cross-foe-4"
+    ],
+    "7-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3",
+     "bowl-cross-foe-4",
+     "bowl-cross-foe-5"
+    ]
+   },
+   "file": "foe-9e6764de02.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/foes-foe-9e6764de02.webp",
+   "sha256": "da481a0366bbcb1d1c565594d08cd7120731b7d1d5f78884ecc73b38f482cf7f",
+   "originalSha256": "79512f6d32281f1dfa90f8f85696cfdcc5070b0947da541114ca5cf984ca9ad5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ученик Чаши с мягкой лентой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2"
+    ],
+    "4-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3"
+    ],
+    "5-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3"
+    ],
+    "6-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3",
+     "bowl-cross-foe-4"
+    ],
+    "7-players": [
+     "bowl-cross-foe-1",
+     "bowl-cross-foe-2",
+     "bowl-cross-foe-3",
+     "bowl-cross-foe-4",
+     "bowl-cross-foe-5"
+    ]
+   },
+   "file": "foe-9e6764de02--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9e6764de02.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-iva.webp",
+   "sha256": "eb22fe3f829deea729b42699c89e82d6539581535fa6f10a0f6a06304dd4da0c",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Утренний Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iva"
+    ],
+    "4-players": [
+     "iva"
+    ],
+    "5-players": [
+     "iva"
+    ],
+    "6-players": [
+     "iva"
+    ],
+    "7-players": [
+     "iva"
+    ]
+   },
+   "file": "iva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iva.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-judge-rue.webp",
+   "sha256": "cac4215ba8fd2989403397501a0e98d67faf53af7db91c9e98f01281f2f16165",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руэ Ровная Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "judge-rue"
+    ],
+    "4-players": [
+     "judge-rue"
+    ],
+    "5-players": [
+     "judge-rue"
+    ],
+    "6-players": [
+     "judge-rue"
+    ],
+    "7-players": [
+     "judge-rue"
+    ]
+   },
+   "file": "judge-rue--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "judge-rue.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-sen.webp",
+   "sha256": "2ae12608d27b79179358d0e9d45abb21c3c9a4bb9e57a9608f7a6b1193cc6cfc",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сэн Квадратный Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sen"
+    ],
+    "4-players": [
+     "sen"
+    ],
+    "5-players": [
+     "sen"
+    ],
+    "6-players": [
+     "sen"
+    ],
+    "7-players": [
+     "sen"
+    ]
+   },
+   "file": "sen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sen.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-daro.webp",
+   "sha256": "a63c7d58fe6a997d943d456247e7cf481394f00c7857b17dace46cde5ae7bbdf",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даро Летящая Скоба",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "daro"
+    ],
+    "4-players": [
+     "daro"
+    ],
+    "5-players": [
+     "daro"
+    ],
+    "6-players": [
+     "daro"
+    ],
+    "7-players": [
+     "daro"
+    ]
+   },
+   "file": "daro--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "daro.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-ami.webp",
+   "sha256": "223a4f723c0f9488bd71fe0742e11686f47cdd40427fa4e6a8f30e4af37af2f7",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ами Белый Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ami"
+    ],
+    "4-players": [
+     "ami"
+    ],
+    "5-players": [
+     "ami"
+    ],
+    "6-players": [
+     "ami"
+    ],
+    "7-players": [
+     "ami"
+    ]
+   },
+   "file": "ami--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ami.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-fen.webp",
+   "sha256": "a036729afd4fb358d9dd9fdd003372590207d42b6037ccd1a7d2ca0566e6a213",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фэн Короткая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fen"
+    ],
+    "4-players": [
+     "fen"
+    ],
+    "5-players": [
+     "fen"
+    ],
+    "6-players": [
+     "fen"
+    ],
+    "7-players": [
+     "fen"
+    ]
+   },
+   "file": "fen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fen.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-neo.webp",
+   "sha256": "125837cbd3ff729ef3330c9d17d28dc74cd76d200b3f6532327dfdc5f47f1381",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нэо Медный Узел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "neo"
+    ],
+    "4-players": [
+     "neo"
+    ],
+    "5-players": [
+     "neo"
+    ],
+    "6-players": [
+     "neo"
+    ],
+    "7-players": [
+     "neo"
+    ]
+   },
+   "file": "neo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "neo.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-una.webp",
+   "sha256": "6bf3c104df3a6087cc856d62dc44aa190d51548c511f56ac54377899ee1aff88",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Уна Чайный Круг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "una"
+    ],
+    "4-players": [
+     "una"
+    ],
+    "5-players": [
+     "una"
+    ],
+    "6-players": [
+     "una"
+    ],
+    "7-players": [
+     "una"
+    ]
+   },
+   "file": "una--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "una.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/table/npcs-pao.webp",
+   "sha256": "df607b8585c5e84904a602108a535143ff1c194329f9a21a67fff947faf3be97",
+   "originalSha256": "b9ce10b2e6abdaec719434385968515275e57c4b8bb64eb396b3c85ca856ab10",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пао Чистое Поле",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pao"
+    ],
+    "4-players": [
+     "pao"
+    ],
+    "5-players": [
+     "pao"
+    ],
+    "6-players": [
+     "pao"
+    ],
+    "7-players": [
+     "pao"
+    ]
+   },
+   "file": "pao--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pao.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/illustrations/opening.webp",
+   "sha256": "db462653171b16fbe7e52ae84233a3c0c31b13d6f22a8e36d9efcaf6df3312ac",
+   "originalSha256": "ef85ba6f9795eed6d1231b950caf3cf95e125f2983908c8aa62edd7f67ad9de6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мостовой Двор — Турнир под Кедровой Луной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cedar-valley"
+    ],
+    "4-players": [
+     "cedar-valley"
+    ],
+    "5-players": [
+     "cedar-valley"
+    ],
+    "6-players": [
+     "cedar-valley"
+    ],
+    "7-players": [
+     "cedar-valley"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "stone-yard--map.webp",
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/battle-maps/stone-yard.webp",
+   "sha256": "7219c1b8340cea4f7e31f8de3188fbc37d39a95b85c171980b86916ce666cdba",
+   "originalSha256": "4718c5020ee2531ac282b4d474bad3dc357a4bf5c24ad750953bef7468bcdc68",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор Тихого Камня. Visible scenery: Светлый двор с ровными рядами подушек. На стене висят разные варианты одного общего упражнения.. World style: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "stone-yard.webp",
+   "subjects": {
+    "3-players": [
+     "stone-yard"
+    ],
+    "4-players": [
+     "stone-yard"
+    ],
+    "5-players": [
+     "stone-yard"
+    ],
+    "6-players": [
+     "stone-yard"
+    ],
+    "7-players": [
+     "stone-yard"
+    ]
+   }
+  },
+  {
+   "file": "wind-gallery--map.webp",
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/battle-maps/wind-gallery.webp",
+   "sha256": "2cc945288c982f50f907323eaf573c9352245aff0a64464b73d29a3d7eb769f7",
+   "originalSha256": "eb5a549598e89a7cd7fddf8f0b53f898d0da6f4135901ba954da60fceb0e5bad",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея Летящей Ленты. Visible scenery: Открытая галерея, где тканевые дорожки меняют цвет на ветру, а скамейки можно переставлять для зрителей.. World style: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "wind-gallery.webp",
+   "subjects": {
+    "3-players": [
+     "wind-gallery"
+    ],
+    "4-players": [
+     "wind-gallery"
+    ],
+    "5-players": [
+     "wind-gallery"
+    ],
+    "6-players": [
+     "wind-gallery"
+    ],
+    "7-players": [
+     "wind-gallery"
+    ]
+   }
+  },
+  {
+   "file": "bowl-court--map.webp",
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/battle-maps/bowl-court.webp",
+   "sha256": "6152d0afa1f8e9484778aa324953421164486768ab76107d3542d9cdbca3f40d",
+   "originalSha256": "4db20b823fdb4a7c6a1480e25016f77e8141f7d4383eaf6cd33a1b4c3599bbf5",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор Пустой Чаши. Visible scenery: Круглая площадка с расписанными чашами у края. У каждого места есть карточка для письменного ответа.. World style: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "bowl-court.webp",
+   "subjects": {
+    "3-players": [
+     "bowl-court"
+    ],
+    "4-players": [
+     "bowl-court"
+    ],
+    "5-players": [
+     "bowl-court"
+    ],
+    "6-players": [
+     "bowl-court"
+    ],
+    "7-players": [
+     "bowl-court"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/cedar-tournament/assets/world-map/world-map.webp",
+   "sha256": "32c29b1076da6a89b960dfd53fc990768f3815eccb079f12e18200931984c451",
+   "originalSha256": "9c5e181abc37b73204b1abec7c330ad2c993c9fa72857b0a0e5652f24bde5bac",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Долина Лунного Кедра. Style Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Мостовой Двор; 0.367,0.177 Ворота Четырёх Лент; 0.623,0.15 Лунный Круг; 0.88,0.177 Двор Тихого Камня; 0.905,0.517 Галерея Летящей Ленты; 0.648,0.49 Двор Пустой Чаши; 0.392,0.517 Чайная Под Корнями; 0.135,0.49 Ступени Тренировки; 0.11,0.83 Комната Фонарей. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

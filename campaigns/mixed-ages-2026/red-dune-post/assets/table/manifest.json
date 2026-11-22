@@ -1,0 +1,688 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "red-dune-post-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-45d70963-1947-43fe-93af-821790944180.png",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Cell 1. Ася Круг. Янтарная куртка с нашивками маршрутов, короткие тёмные волосы и складной фантастический световой щит.\nCell 2. Тим Неро. Синяя безрукавка, карандаши за обоими ушами и дорожная сумка, в которой любой клочок бумаги имеет карман.\nCell 3. Рада Вей. Зелёный платок, прозрачная коробочка с засушенным листом и мягкие перчатки, расписанные детьми всего купола.\nCell 4. Мир Соль. Круглые очки, жилет с цветными стёклышками и блокнот с большими полями для чужих замечаний.\nCell 5. Ника Отт. Серебряная коса, яркая грузовая рама и фартук, на котором нарисованы семь совершенно разных кружек.\nCell 6. Федя Лан. Лиловый комбинезон, цветные напёрстки и набор бумажных ярлыков в форме маленьких планет.\nCell 7. Леви Ар. Шарф в узкую полоску, карманный вымышленный звуковой кристалл и привычка записывать мелодии точками.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/asya-krug.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/tim-nero.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/rada-vey.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/mir-sol.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/nika-ott.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/fedya-lan.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/levi-ar.webp"
+      ]
+    },
+    {
+      "id": "red-dune-post-places-0",
+      "originalFile": "exec-b773c8f2-82cf-49ed-9535-bd848b59a6f0.png",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Cell 1. Красная Дюна. Поселение террасных домов вокруг старого посадочного круга. На каждой двери есть маленький ящик для писем и большой для неожиданных гостей.\nCell 2. Почтовый дом. Общая почта Красной Дюны с разновысокими прилавками, настенной картой и чайником, который свистит мелодию прибытия рейса.\nCell 3. Стеклянная Развилка. Крытый почтовый узел над развилкой дорог. За прозрачными стенками лежат старые таблички адресов и аккуратно припаркованные тележки.\nCell 4. Тихие Ступени. Небольшой купол на широких каменных ступенях; жители рисуют погоду на общей стене, а школьный двор похож на выставку разноцветных лент.\nCell 5. Архив Отзвука. Прохладное помещение с бумажными копиями писем и старых дорожных записей. Полки подписаны словами «доставлено», «ждёт ответа» и «уточнить адрес».\nCell 6. Оранжерея Четвёртый Рассвет. Закрытая оранжерея с четырьмя серебряными лепестками крыши. Сквозь матовое стекло видны столы и мягкое голубое свечение.\nCell 7. Поющие соляные террасы. Широкие уступы молочной соли с тонкими цветными кольцами. Ветер извлекает из каменных арок негромкие, никогда не одинаковые ноты.\nCell 8. Ветряная Гавань. Грузовой купол с просторной площадью и рядами складов. Скамьи собраний стоят кругами; самой высокой трибуны здесь нет.\nCell 9. Подвесной тракт. Защищённый переход через неглубокий разлом. Под прозрачным настилом медленно движутся ленты красной пыли.\nCell 10. Приёмный сад. Павильон старой цветочной выставки между дорогами трёх поселений. Теперь здесь финиш почтового Круга: пустые витрины, длинный стол и место для каждого ответного письма.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "red-dune-post-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-51620639-ee40-4333-aaec-b6a108261ad1.png",
+      "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Cell 1. Тележка-сортировщик. Фантастический почтовый автомат с мягкими бортами и огромным бумажным бантом. Обычная атака описывается как толчок бортом; никаких новых состояний или реальных инструкций по технике.\nCell 2. Лепестковый билетёр. Выставочный автомат с бумажным воротником и округлыми фантастическими манипуляторами. Его обычные атаки выглядят как неуклюжие попытки вернуть посетителя в очередь.\nCell 3. Флажковый бегун. Низкая платформа с нарисованными кроссовками и ворохом цветных флажков. Фантастический автомат путает любой груз с реквизитом парада.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "red-dune-post-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-6d1e34dd-cedb-47e9-a67c-0383edf43fee.png",
+      "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Почта Красной Дюны. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Мира Тесс. Рыжая чёлка, чернильное пятно на манжете и печать в форме открытой ладони.\nCell 2. Орен Пак. Усы в форме двух стрелок, оранжевые нарукавники и коллекция смешных табличек «сюда».\nCell 3. Сева Рилл. Волосы собраны красной лентой, рукава в следах мела, в кармане складная линейка с нарисованными облаками.\nCell 4. Леон Вад. Мягкая серая шапка, большие очки и деревянная закладка в форме лестницы.\nCell 5. Эльда Венн. Белые волосы, две разные серьги-листочка и пальто с аккуратно зашитым локтем.",
+      "references": [
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/mira-tess.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/oren-pak.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/seva-rill.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/leon-vad.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/elda-venn.webp"
+      ]
+    },
+    {
+      "id": "red-dune-post-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-bc748124-0a19-4bdc-a429-54b651c508cd.png",
+      "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Почта Красной Дюны. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Искра-9. Невысокий робот на круглых опорах, прозрачная грудная панель и нарисованное от руки солнце.\nCell 2. Тая Мерк. Песочный плащ, серьги из гладких камней и альбом, который всегда открывается плоско.\nCell 3. Борис Хэй. Полосатая рабочая рубашка, широкий пояс с мелками и улыбка, которая исчезает, когда начинают округлять цифры.\nCell 4. Лея Тэн. Тёмная куртка с нарисованной лестницей и папка с ответами жителей, перевязанная обычной бечёвкой.\nCell 5. Эн Ноа. Две тёмные косы, жилет с отражающими лунами и термос в форме почтового столба.",
+      "references": [
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/iskra-nine.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/taya-merk.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/boris-hey.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/leya-ten.webp",
+        "campaigns/mixed-ages-2026/red-dune-post/illustrations/cards/en-noa.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "asya-krug",
+      "title": "Ася Круг",
+      "kind": "hero",
+      "subjects": [
+        "asya-krug"
+      ],
+      "file": "heroes-asya-krug.webp",
+      "sha256": "83c976407149f0948537bf13a98fc726480e27f0b8725383684f56ffdc88cd2a",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 106,
+        "top": 10,
+        "width": 231,
+        "height": 420
+      }
+    },
+    {
+      "key": "tim-nero",
+      "title": "Тим Неро",
+      "kind": "hero",
+      "subjects": [
+        "tim-nero"
+      ],
+      "file": "heroes-tim-nero.webp",
+      "sha256": "45f1d79d127a93f610c156c00764931e03b0307daf31e980f0de57cd6f797df1",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 550,
+        "top": 9,
+        "width": 247,
+        "height": 421
+      }
+    },
+    {
+      "key": "rada-vey",
+      "title": "Рада Вей",
+      "kind": "hero",
+      "subjects": [
+        "rada-vey"
+      ],
+      "file": "heroes-rada-vey.webp",
+      "sha256": "8db604a796dd57a56856d6ba2551c28215d7617338bf2f50e77f8b6c55feec31",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 993,
+        "top": 13,
+        "width": 231,
+        "height": 417
+      }
+    },
+    {
+      "key": "mir-sol",
+      "title": "Мир Соль",
+      "kind": "hero",
+      "subjects": [
+        "mir-sol"
+      ],
+      "file": "heroes-mir-sol.webp",
+      "sha256": "ccde94b8fd71622df193b6d329a5a0bb9c8b5b447e88eb1c0a265cd420fe3388",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1437,
+        "top": 8,
+        "width": 233,
+        "height": 422
+      }
+    },
+    {
+      "key": "nika-ott",
+      "title": "Ника Отт",
+      "kind": "hero",
+      "subjects": [
+        "nika-ott"
+      ],
+      "file": "heroes-nika-ott.webp",
+      "sha256": "bbd4b73c767a00f664fd5bbb855edcabe5e2c8ac9f3e0957280fd9eaddc61cbd",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 106,
+        "top": 449,
+        "width": 231,
+        "height": 425
+      }
+    },
+    {
+      "key": "fedya-lan",
+      "title": "Федя Лан",
+      "kind": "hero",
+      "subjects": [
+        "fedya-lan"
+      ],
+      "file": "heroes-fedya-lan.webp",
+      "sha256": "d665bd97bb59a592954fb487a4dca49c1559906e8772b064fe78ae877359aea1",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 545,
+        "top": 446,
+        "width": 235,
+        "height": 428
+      }
+    },
+    {
+      "key": "levi-ar",
+      "title": "Леви Ар",
+      "kind": "hero",
+      "subjects": [
+        "levi-ar"
+      ],
+      "file": "heroes-levi-ar.webp",
+      "sha256": "6968b94fc09ee057a1a3162f1e6dd56ce453282b4b1e15f7ee5fe8f706a97089",
+      "originalSha256": "6cc3efbf3b3c274128ef56296cbb964cf8ec5b1e17720c96793c26660141c03b",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 983,
+        "top": 447,
+        "width": 241,
+        "height": 427
+      }
+    },
+    {
+      "key": "red-dune",
+      "title": "Красная Дюна",
+      "kind": "place",
+      "subjects": [
+        "red-dune"
+      ],
+      "file": "places-red-dune.webp",
+      "sha256": "6c295ce95c4b2f0fba6bc571a12f2a3daac35fba684aca7abbbb5218430c6e07",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "post-house",
+      "title": "Почтовый дом",
+      "kind": "place",
+      "subjects": [
+        "post-house"
+      ],
+      "file": "places-post-house.webp",
+      "sha256": "6cfb42d8d152a1d9f6e11991233d2c20e0d9e5fc1ceacb594e812ef8c9e2e15f",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "glass-switch",
+      "title": "Стеклянная Развилка",
+      "kind": "place",
+      "subjects": [
+        "glass-switch"
+      ],
+      "file": "places-glass-switch.webp",
+      "sha256": "68edb4f2fbe8eb498a8b116408275170b4e00dba615594af9f73124bfe48578d",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "quiet-steps",
+      "title": "Тихие Ступени",
+      "kind": "place",
+      "subjects": [
+        "quiet-steps"
+      ],
+      "file": "places-quiet-steps.webp",
+      "sha256": "e0eb409d1d731cef84bd0eafdfdc8186b77a7120fe58c4e0e2b6000de102bdc6",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "echo-archive",
+      "title": "Архив Отзвука",
+      "kind": "place",
+      "subjects": [
+        "echo-archive"
+      ],
+      "file": "places-echo-archive.webp",
+      "sha256": "8f2047b067879c95e38f3b4644d38ba1bfbbac30c54fc4e10c0a4cc56d924f0c",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "fourth-dawn",
+      "title": "Оранжерея Четвёртый Рассвет",
+      "kind": "place",
+      "subjects": [
+        "fourth-dawn"
+      ],
+      "file": "places-fourth-dawn.webp",
+      "sha256": "cd3bffc6b25ef134063fe6f41cced61dac2b89f59846d16720bdf2a3ab6758fe",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "salt-terraces",
+      "title": "Поющие соляные террасы",
+      "kind": "place",
+      "subjects": [
+        "salt-terraces"
+      ],
+      "file": "places-salt-terraces.webp",
+      "sha256": "bf57427e38b82c01d0e3b28d921bf9ebd1160d11f7988479dd8e388fc085e299",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "wind-harbor",
+      "title": "Ветряная Гавань",
+      "kind": "place",
+      "subjects": [
+        "wind-harbor"
+      ],
+      "file": "places-wind-harbor.webp",
+      "sha256": "d2e7190279507eb6ee9706b09d680b3dce6d0beccec6b8fdf92b4298483c4298",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "hanging-road",
+      "title": "Подвесной тракт",
+      "kind": "place",
+      "subjects": [
+        "hanging-road"
+      ],
+      "file": "places-hanging-road.webp",
+      "sha256": "4d2103427d0b4beae65f2b381483e48f4fa6457abe290933a84a24c8417ad81a",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "receiving-garden",
+      "title": "Приёмный сад",
+      "kind": "place",
+      "subjects": [
+        "receiving-garden"
+      ],
+      "file": "places-receiving-garden.webp",
+      "sha256": "4545212b9dd24357bde27da92b8fd3491353e16fb8fa00d0c7135c3a2a94691d",
+      "originalSha256": "75ee594149b4fb0c7d3f05c4bd12c3bf2a435f82f8c93310b27e115f3287ed8c",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-5137c30bb7",
+      "title": "Тележка-сортировщик",
+      "kind": "foe",
+      "subjects": [
+        "parcel-parade-foe-1",
+        "parcel-parade-foe-2",
+        "parcel-parade-foe-3",
+        "parcel-parade-foe-4",
+        "parcel-parade-foe-5"
+      ],
+      "file": "foes-foe-5137c30bb7.webp",
+      "sha256": "70dce873610385a0d0de91dd8cba36928832fd5a00ce2d625cd6d36b5178b2f5",
+      "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 55,
+        "top": 18,
+        "width": 576,
+        "height": 675
+      }
+    },
+    {
+      "key": "foe-1d90e79079",
+      "title": "Лепестковый билетёр",
+      "kind": "foe",
+      "subjects": [
+        "petal-ushers-foe-1",
+        "petal-ushers-foe-2",
+        "petal-ushers-foe-3",
+        "petal-ushers-foe-4",
+        "petal-ushers-foe-5"
+      ],
+      "file": "foes-foe-1d90e79079.webp",
+      "sha256": "8f088b21e1481d31ef592383273e2585028850c1ca515d159f5a6db3b574997e",
+      "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 826,
+        "top": 17,
+        "width": 562,
+        "height": 676
+      }
+    },
+    {
+      "key": "foe-badea26f19",
+      "title": "Флажковый бегун",
+      "kind": "foe",
+      "subjects": [
+        "banner-runners-foe-1",
+        "banner-runners-foe-2",
+        "banner-runners-foe-3",
+        "banner-runners-foe-4",
+        "banner-runners-foe-5"
+      ],
+      "file": "foes-foe-badea26f19.webp",
+      "sha256": "73e63b5238b32a48431ba71c1a5467779c7b57595cfc922365225de96d628998",
+      "originalSha256": "51de304129e6ebfe4699eab6dc8d7e109deb02e750f3c9f2b6a67679f69fbd65",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1514,
+        "top": 23,
+        "width": 578,
+        "height": 672
+      }
+    },
+    {
+      "key": "mira-tess",
+      "title": "Мира Тесс",
+      "kind": "npc",
+      "subjects": [
+        "mira-tess"
+      ],
+      "file": "npcs-mira-tess.webp",
+      "sha256": "50688961eb086309ab553e5798582a7ddefa6708f1dadb04975883e4c0739beb",
+      "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 126,
+        "top": 13,
+        "width": 262,
+        "height": 487
+      }
+    },
+    {
+      "key": "oren-pak",
+      "title": "Орен Пак",
+      "kind": "npc",
+      "subjects": [
+        "oren-pak"
+      ],
+      "file": "npcs-oren-pak.webp",
+      "sha256": "eae165c4eacf6ba9fdfb50d8edd4d3c5c05db05145f394e132e61e6a851b2a24",
+      "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 624,
+        "top": 13,
+        "width": 284,
+        "height": 484
+      }
+    },
+    {
+      "key": "seva-rill",
+      "title": "Сева Рилл",
+      "kind": "npc",
+      "subjects": [
+        "seva-rill"
+      ],
+      "file": "npcs-seva-rill.webp",
+      "sha256": "a239e239c1b69a153eb645a717386990c0db49038f8c8e36ef471431e852738c",
+      "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1153,
+        "top": 14,
+        "width": 255,
+        "height": 486
+      }
+    },
+    {
+      "key": "leon-vad",
+      "title": "Леон Вад",
+      "kind": "npc",
+      "subjects": [
+        "leon-vad"
+      ],
+      "file": "npcs-leon-vad.webp",
+      "sha256": "77e721b48dd4a32b0261102d767e56817f29625048db425605ca7a6ddd2102c5",
+      "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 124,
+        "top": 522,
+        "width": 266,
+        "height": 491
+      }
+    },
+    {
+      "key": "elda-venn",
+      "title": "Эльда Венн",
+      "kind": "npc",
+      "subjects": [
+        "elda-venn"
+      ],
+      "file": "npcs-elda-venn.webp",
+      "sha256": "f78a80627c26b23ba2e6973d1a0d9cefcadec8c275a1ad89f91dab05bad2de26",
+      "originalSha256": "cd75065fdd02b00f1b0dc58e3a8ac2afb9ff066de40978d79cdf2910293900e8",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 631,
+        "top": 521,
+        "width": 273,
+        "height": 492
+      }
+    },
+    {
+      "key": "iskra-nine",
+      "title": "Искра-9",
+      "kind": "npc",
+      "subjects": [
+        "iskra-nine"
+      ],
+      "file": "npcs-iskra-nine.webp",
+      "sha256": "ffa2040d21263a88e9f8b33b315a087b3fbf0e5c77c7d783784782e5977afcf7",
+      "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 111,
+        "top": 37,
+        "width": 320,
+        "height": 444
+      }
+    },
+    {
+      "key": "taya-merk",
+      "title": "Тая Мерк",
+      "kind": "npc",
+      "subjects": [
+        "taya-merk"
+      ],
+      "file": "npcs-taya-merk.webp",
+      "sha256": "a7ed1b90f12e325d0a7417a362baff308bf9170389ef51f7b6173a326a10a46a",
+      "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 611,
+        "top": 16,
+        "width": 299,
+        "height": 469
+      }
+    },
+    {
+      "key": "boris-hey",
+      "title": "Борис Хэй",
+      "kind": "npc",
+      "subjects": [
+        "boris-hey"
+      ],
+      "file": "npcs-boris-hey.webp",
+      "sha256": "b3b04ce786da340eff4f63068aef748644dc16351ef661001c37c8d14e159fc0",
+      "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1114,
+        "top": 17,
+        "width": 303,
+        "height": 467
+      }
+    },
+    {
+      "key": "leya-ten",
+      "title": "Лея Тэн",
+      "kind": "npc",
+      "subjects": [
+        "leya-ten"
+      ],
+      "file": "npcs-leya-ten.webp",
+      "sha256": "2cfce4db4bfbb313af56d9e5bb19f365d7ad2bf3f9864ee2763aab79a7d52728",
+      "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 109,
+        "top": 525,
+        "width": 308,
+        "height": 486
+      }
+    },
+    {
+      "key": "en-noa",
+      "title": "Эн Ноа",
+      "kind": "npc",
+      "subjects": [
+        "en-noa"
+      ],
+      "file": "npcs-en-noa.webp",
+      "sha256": "c30433b8d51d3769e3ab7fe1cdccb23fc0c90fa861809836aa93e3b90e529d63",
+      "originalSha256": "f6429b76e3f4857565a6f4ac436d92f1d7d3089c0c2f2f4262864afd4dfad8b5",
+      "generated": "2026-11-22",
+      "sheet": "red-dune-post-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 605,
+        "top": 526,
+        "width": 312,
+        "height": 485
+      }
+    }
+  ]
+}

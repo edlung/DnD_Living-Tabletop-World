@@ -1,0 +1,365 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "salt-widows-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-e9b05aa6-3754-4972-83cd-2fcb14fa749f.png",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Соль Отлива · Salt-crazed navy leather, knots of fishing line and pale encrusted boat ribs. Cell 1. Дерва Клин. Тёмный плащ, защитная маска из синего стекла, вытертый медный ободок на руке; на ладонях соль въелась в трещины.\nCell 2. Тарон Веха. Пятнистый шарф, связка плоских каменных меток со стрелками и сапоги с разноцветными заплатами.\nCell 3. Сельма Ров. Серые волосы, собранные соляной нитью; на поясе моток соляной нити, обломок старого гарпунного зуба и мешочек крупной серой соли.\nCell 4. Эйран Лист. Пыльные очки, перчатки разных цветов и деревянный футляр с обычными камнями; на манжетах следы соли и угля.\nCell 5. Ната Уголь. Короткая стрижка, щит со стёртым знаком артели и тщательно сложенные рукавицы; на плечах следы лямок.\nCell 6. Воск Рез. Аккуратная куртка поверх дорожной пыли и пустое кольцо для дорогого трофея; соль на манжетах стёрта до блеска.\nCell 7. Рива Ночь. Тёмная коса с белыми прядями и полотняная сумка с вышитыми именами; иголка воткнута в рукав.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/derva-klin.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/taron-vekha.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/selma-rov.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/eyran-list.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/nata-ugol.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/vosk-rez.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/riva-noch.webp"
+      ]
+    },
+    {
+      "id": "salt-widows-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-38a83f69-d490-4b43-981c-b79e625dec0e.png",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Вдовы соляного моря. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Оксинья Брусова. Чёрный вдовий платок с белой каймой соли, широкие ладони, медная мерка для воды на шнурке; привычка оставлять собеседнику последний глоток.\nCell 2. Гордея Вар. Квадратные стеклянные очки, чёрный плащ в заплатах, на плече связка бусин ночного стекла; голос ровный, почти будничный.\nCell 3. Радан Косой. Потрёпанный белый капюшон, кривая застёжка; усмешка, когда больно или злится. У его костра лежит обломок мачты с линём на пятке.\nCell 4. Лута Сенн. Короткий плащ, затёртые наушники без магии и палочка, которой она отмечает край борозды.\nCell 5. Ива Бессонная. Заштопанный фартук поверх дорожной одежды, вдовий платок, повязанный по-мужски; на важном слове стучит костяшкой по древку старого гарпуна. На стене доска со счётом.\nCell 6. Демид Край. Повязка на плече, длинный жилет и маленькая складная табуретка; сидит на верхнем уступе и не машет.\nCell 7. Нена Соль. Медные мерки на поясе, белые от соли брови и ножницы для обрезания долговых шнурков.\nCell 8. Острем Карт. Голова набок, полотняный жилет, угольные пальцы; у двери связка старых мерных вешек с железными пятками.\nCell 9. Верек Тихий. Широкоплечий, в аккуратно подогнанной старой куртке брата; на поясе неиспользованный знак капитанской доли.",
+      "references": [
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/mara-ivna.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/yasna-var.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/radan-kosoi.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/luta-senn.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/iva-bessonnaya.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/demid-krai.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/nena-sol.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/ostrem-kart.webp",
+        "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/verek-tikhiy.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "derva-klin",
+      "title": "Дерва Клин",
+      "kind": "hero",
+      "subjects": [
+        "derva-klin"
+      ],
+      "file": "heroes-derva-klin.webp",
+      "sha256": "e35bd1bb434e46661be233acbf465d05d6ec4b68e2d34d2a21cba0b20d0296c2",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 104,
+        "top": 12,
+        "width": 243,
+        "height": 416
+      }
+    },
+    {
+      "key": "taron-vekha",
+      "title": "Тарон Веха",
+      "kind": "hero",
+      "subjects": [
+        "taron-vekha"
+      ],
+      "file": "heroes-taron-vekha.webp",
+      "sha256": "a1610cdf5ea9221edfbb43631440f72455f53e011965f6ca45d947afe5190645",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 531,
+        "top": 13,
+        "width": 249,
+        "height": 414
+      }
+    },
+    {
+      "key": "selma-rov",
+      "title": "Сельма Ров",
+      "kind": "hero",
+      "subjects": [
+        "selma-rov"
+      ],
+      "file": "heroes-selma-rov.webp",
+      "sha256": "1166ec4baff1171cbb1ac4b698339d60607563661184d59a3fa8a91c1c709248",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 970,
+        "top": 12,
+        "width": 256,
+        "height": 416
+      }
+    },
+    {
+      "key": "eyran-list",
+      "title": "Эйран Лист",
+      "kind": "hero",
+      "subjects": [
+        "eyran-list"
+      ],
+      "file": "heroes-eyran-list.webp",
+      "sha256": "093de2431809b1b622fd9a77c33d0af3f5d0521996290457e79bf8a46432b64e",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1408,
+        "top": 5,
+        "width": 275,
+        "height": 423
+      }
+    },
+    {
+      "key": "nata-ugol",
+      "title": "Ната Уголь",
+      "kind": "hero",
+      "subjects": [
+        "nata-ugol"
+      ],
+      "file": "heroes-nata-ugol.webp",
+      "sha256": "17b6bcd785d2547d5de0ec1a386ac044569b02d9eca1be137d662dd0bbd27f25",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 87,
+        "top": 456,
+        "width": 273,
+        "height": 419
+      }
+    },
+    {
+      "key": "vosk-rez",
+      "title": "Воск Рез",
+      "kind": "hero",
+      "subjects": [
+        "vosk-rez"
+      ],
+      "file": "heroes-vosk-rez.webp",
+      "sha256": "d3d7b097dfe12eb4ca4b34b5fab09c53917b5adf662f3a281704d22cd5894d69",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 526,
+        "top": 458,
+        "width": 266,
+        "height": 417
+      }
+    },
+    {
+      "key": "riva-noch",
+      "title": "Рива Ночь",
+      "kind": "hero",
+      "subjects": [
+        "riva-noch"
+      ],
+      "file": "heroes-riva-noch.webp",
+      "sha256": "a61417f5e246385e6ad627cc607b3263b7876f0d709174b97e06352b3d43c7b8",
+      "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 969,
+        "top": 450,
+        "width": 274,
+        "height": 425
+      }
+    },
+    {
+      "key": "mara-ivna",
+      "title": "Оксинья Брусова",
+      "kind": "npc",
+      "subjects": [
+        "mara-ivna"
+      ],
+      "file": "npcs-mara-ivna.webp",
+      "sha256": "f657daec7dd3f024ba48d2de63f2c451c9a3ed882fb784ec889b6358da671a32",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 82,
+        "top": 18,
+        "width": 241,
+        "height": 391
+      }
+    },
+    {
+      "key": "yasna-var",
+      "title": "Гордея Вар",
+      "kind": "npc",
+      "subjects": [
+        "yasna-var"
+      ],
+      "file": "npcs-yasna-var.webp",
+      "sha256": "af846b0215ff8085dcba53c6aff3cdad68e3b409f9532dc0eea19f7146e4dfad",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 468,
+        "top": 22,
+        "width": 240,
+        "height": 389
+      }
+    },
+    {
+      "key": "radan-kosoi",
+      "title": "Радан Косой",
+      "kind": "npc",
+      "subjects": [
+        "radan-kosoi"
+      ],
+      "file": "npcs-radan-kosoi.webp",
+      "sha256": "eccac7b781967cbcbd64c4978d0229d8fb304bc8f7d707eba88314599d6781ff",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 839,
+        "top": 32,
+        "width": 341,
+        "height": 377
+      }
+    },
+    {
+      "key": "luta-senn",
+      "title": "Лута Сенн",
+      "kind": "npc",
+      "subjects": [
+        "luta-senn"
+      ],
+      "file": "npcs-luta-senn.webp",
+      "sha256": "1a703175a4196812f21eead373bfec9355c9ad6e59af379390382d76bf3b5c0b",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 52,
+        "top": 466,
+        "width": 307,
+        "height": 339
+      }
+    },
+    {
+      "key": "iva-bessonnaya",
+      "title": "Ива Бессонная",
+      "kind": "npc",
+      "subjects": [
+        "iva-bessonnaya"
+      ],
+      "file": "npcs-iva-bessonnaya.webp",
+      "sha256": "7d91ed8f6f263d87ae1718d42588f71a1ecf5c719e670137ab4edec1fd337d0a",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 467,
+        "top": 448,
+        "width": 274,
+        "height": 364
+      }
+    },
+    {
+      "key": "demid-krai",
+      "title": "Демид Край",
+      "kind": "npc",
+      "subjects": [
+        "demid-krai"
+      ],
+      "file": "npcs-demid-krai.webp",
+      "sha256": "6e6519addd1c241bd315310676fef4221d46182bf79e9a8c738ff493ef8f8857",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 835,
+        "top": 444,
+        "width": 313,
+        "height": 367
+      }
+    },
+    {
+      "key": "nena-sol",
+      "title": "Нена Соль",
+      "kind": "npc",
+      "subjects": [
+        "nena-sol"
+      ],
+      "file": "npcs-nena-sol.webp",
+      "sha256": "fef62ca221f32bad9593707e58b4b9f62de65c0e8e09ae640210fff55a939694",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 66,
+        "top": 840,
+        "width": 289,
+        "height": 442
+      }
+    },
+    {
+      "key": "ostrem-kart",
+      "title": "Острем Карт",
+      "kind": "npc",
+      "subjects": [
+        "ostrem-kart"
+      ],
+      "file": "npcs-ostrem-kart.webp",
+      "sha256": "7f864f651ad52a7b20fce5518c127ea25239b24f5eed1f99d92f6bcfdf676348",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 433,
+        "top": 842,
+        "width": 306,
+        "height": 440
+      }
+    },
+    {
+      "key": "verek-tikhiy",
+      "title": "Верек Тихий",
+      "kind": "npc",
+      "subjects": [
+        "verek-tikhiy"
+      ],
+      "file": "npcs-verek-tikhiy.webp",
+      "sha256": "f8b26a7f561b418b36c9b048bccdec4a4d6526d7b713ce72acd506465aed100f",
+      "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+      "generated": "2026-11-22",
+      "sheet": "salt-widows-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 851,
+        "top": 839,
+        "width": 264,
+        "height": 443
+      }
+    }
+  ]
+}

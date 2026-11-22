@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-edeb329c-42f3-4842-a5bb-ae5a13deceb4.png",
+      "originalSha256": "f2c3b481856800a5889f751bfb2e0279a27827362971205d487dc56e2e3daa74",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Долина Лунного Кедра. Characters, in strict cell order:\n1. Тао Лист — Короткий зелёный жилет, лента с собственноручно вышитым неровным листом, серьёзная улыбка перед стартом. Age 16.\n2. Мира Нить — Синий шарф, цветные пуговицы на рукавах и маленький альбом неожиданных узоров. Age 28.\n3. Орен Берег — Светлая куртка с широкими карманами, деревянный значок чаши, мягкие дорожные туфли. Age 44.\n4. Сэя Пятно — Фиолетовые манжеты в чернильных точках, складная дощечка для рисунков, волосы под широким ободком. Age 17.\n5. Рю Тёплый Ветер — Тёмный пояс с давно выцветшим узором, аккуратно подшитые рукава, смешной круглый дорожный мешок. Age 34.\n6. Нала Тихий Колокольчик — Жёлтый воротник, тетрадь с широкими полями, крошечный колокольчик без язычка на шнурке. Age 15.\n7. Эйдо Медный Лист — Песочная жилетка, новые ещё жёсткие шнурки и значок с честной надписью «учусь». Age 58.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-d8e74a79-b8fe-4680-915f-f277c8a63ba3.png",
+      "originalSha256": "5d81fe9706e1e55f545d461ac6790bbef4b6bd776193cfcf7158e07c1aa9f599",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Долина Лунного Кедра. Characters, in strict cell order:\n1. Ива Утренний Шаг — Короткий серый плащ, медная чашка на поясе и привычка освобождать соседнее место на скамье. Age 39.\n2. Руэ Ровная Черта — Белая накидка с четырьмя одинаковыми узлами, толстый мел и дощечка для крупного счёта. Age 56.\n3. Сэн Квадратный Лист — Тёмно-зелёная лента, прямоугольная записная книжка и очень аккуратно сложенные запасные полотенца. Age 17.\n4. Даро Летящая Скоба — Оранжевая лента, разномастные мягкие туфли и карточки с короткими названиями упражнений. Age 32.\n5. Ами Белый Край — Светлая широкая рубаха, бирюзовая лента и чашка с нарисованным открытым окном. Age 24.\n6. Фэн Короткая Черта — Зелёные манжеты, короткий карандаш за ухом и веер из нескольких простых карточек. Age 14.\n7. Нэо Медный Узел — Песочный плащ с большими застёжками, ровная стопка одинаковых листов договора и сумка дорожных билетов. Age 41.\n8. Уна Чайный Круг — Тёмная косынка в белых точках, длинная ложечка и очки на пёстром шнуре. Age 67.\n9. Пао Чистое Поле — Светло-коричневая жилетка, два мела за ухом и складная дощечка с крупными цифрами. Age 19.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "tao",
+      "file": "cards/tao.webp",
+      "title": "Тао Лист",
+      "subjects": [
+        "tao"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c4686c96332186c906d5788da7753d80fdb634852832e0f73d74addd143b7f84"
+    },
+    {
+      "id": "mira",
+      "file": "cards/mira.webp",
+      "title": "Мира Нить",
+      "subjects": [
+        "mira"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "031bd3f66475332b57da6191dc9a81a0a88e9375b3c41a3d1b7b33e1b05f725a"
+    },
+    {
+      "id": "oren",
+      "file": "cards/oren.webp",
+      "title": "Орен Берег",
+      "subjects": [
+        "oren"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f88aae391f40af7c41b3592c7e65de725dae63e61d78b53a278a1150cbe96391"
+    },
+    {
+      "id": "seya",
+      "file": "cards/seya.webp",
+      "title": "Сэя Пятно",
+      "subjects": [
+        "seya"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "201774ba93f9a92309ca5528026a514e67e3d9d34a941264c51f562f99ed2b77"
+    },
+    {
+      "id": "ryu",
+      "file": "cards/ryu.webp",
+      "title": "Рю Тёплый Ветер",
+      "subjects": [
+        "ryu"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "84b0dcc49f048ab707cee46594617e62b568dc3d1f512695266eebda43a997ff"
+    },
+    {
+      "id": "nala",
+      "file": "cards/nala.webp",
+      "title": "Нала Тихий Колокольчик",
+      "subjects": [
+        "nala"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1e3c65a46db80a850892ba9bb04d673aef3de9a2ce5e8a706c15412347a9adfe"
+    },
+    {
+      "id": "eido",
+      "file": "cards/eido.webp",
+      "title": "Эйдо Медный Лист",
+      "subjects": [
+        "eido"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1fbb7bf3906720d82ba08b17f0a09a866685200d079ebde453d8025a2070096f"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "eido-travel-kit",
+        "mira-travel-kit",
+        "nala-travel-kit",
+        "oren-travel-kit",
+        "ryu-travel-kit",
+        "seya-travel-kit",
+        "tao-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fff90a28e1153d2a4744bf513eaf0b236f71031bcb5b536d116d0b92224eff4d"
+    },
+    {
+      "id": "iva",
+      "file": "cards/iva.webp",
+      "title": "Ива Утренний Шаг",
+      "subjects": [
+        "iva"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2456256b3705f8097b5146b9a68803bdf2d163f055d8647a346acc7f35fdb48c"
+    },
+    {
+      "id": "judge-rue",
+      "file": "cards/judge-rue.webp",
+      "title": "Руэ Ровная Черта",
+      "subjects": [
+        "judge-rue"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ced36e65fbf0d9a8c0512d4176402fb87194d1820810471c5a3e14467475f46d"
+    },
+    {
+      "id": "sen",
+      "file": "cards/sen.webp",
+      "title": "Сэн Квадратный Лист",
+      "subjects": [
+        "sen"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "548aa74dd12a98e6059745951703bf6c355f57e95ee66e710c19460e763fec0a"
+    },
+    {
+      "id": "daro",
+      "file": "cards/daro.webp",
+      "title": "Даро Летящая Скоба",
+      "subjects": [
+        "daro"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "05c63ff8abef2aea3f3234f28e2243b117f78fc33083c1ce3ade4fccfd0bc5be"
+    },
+    {
+      "id": "ami",
+      "file": "cards/ami.webp",
+      "title": "Ами Белый Край",
+      "subjects": [
+        "ami"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5ba4ca02d054dfb9b6eb2d8ef81faa8bb91a719e737f48020ef4a04abd4a618b"
+    },
+    {
+      "id": "fen",
+      "file": "cards/fen.webp",
+      "title": "Фэн Короткая Черта",
+      "subjects": [
+        "fen"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b9ce20b27a641163b2148284c9218678424b33e7970fa8190470ee0f8144db63"
+    },
+    {
+      "id": "neo",
+      "file": "cards/neo.webp",
+      "title": "Нэо Медный Узел",
+      "subjects": [
+        "neo"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f951d5a9facab2d8f1005b5622e18fc627a741052bb03b781c55e8216f784a57"
+    },
+    {
+      "id": "una",
+      "file": "cards/una.webp",
+      "title": "Уна Чайный Круг",
+      "subjects": [
+        "una"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9fac64332eb58e54e14f23531fbffb773c119e467f70729c9cb63b827041cbe7"
+    },
+    {
+      "id": "pao",
+      "file": "cards/pao.webp",
+      "title": "Пао Чистое Поле",
+      "subjects": [
+        "pao"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3f43e1ba58d0ca11d6452c70ee1b7d56355a4e7dae0fb94d56565af0ebc2f972"
+    }
+  ]
+}

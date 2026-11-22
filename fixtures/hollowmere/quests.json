@@ -6,20 +6,20 @@
       "title": "The Widow’s Wagon",
       "activation": {
         "subject": "brisk-cargo",
-        "summary": "Agna Brisk hired us to take her wagon to Hollowmere."
+        "summary": "Agna Brisk offered us work taking her wagon to Hollowmere."
       },
       "milestones": [
         {
-          "kind": "survived-fight-at",
-          "stage": "ford-crossed",
+          "kind": "reached",
+          "stage": "ford-visited",
           "locationId": "willow-ford",
-          "summary": "We fought our way across the Willow Ford."
+          "summary": "We reached the Willow Ford."
         },
         {
           "kind": "reached",
-          "stage": "wagon-delivered",
+          "stage": "village-visited",
           "locationId": "hollowmere",
-          "summary": "We brought the wagon to Hollowmere."
+          "summary": "Our party reached Hollowmere."
         },
         {
           "kind": "told-by",
@@ -55,13 +55,13 @@
           "kind": "survived-fight-at",
           "stage": "chapel-cleared",
           "locationId": "drowned-chapel",
-          "summary": "We faced the dead at the Drowned Chapel."
+          "summary": "We survived a confrontation in the chapel grounds or beneath them."
         },
         {
           "kind": "survived-fight-at",
           "stage": "mill-faced",
           "locationId": "sunken-mill",
-          "summary": "We faced the Reed Cloaks at the Sunken Mill."
+          "summary": "We survived a confrontation at the Sunken Mill."
         },
         {
           "kind": "reached",
@@ -70,17 +70,17 @@
           "summary": "We found the way down beneath the chapel."
         },
         {
-          "kind": "survived-fight-at",
-          "stage": "bell-silenced",
+          "kind": "reached",
+          "stage": "chamber-visited",
           "locationId": "location-c81f04da",
-          "summary": "We silenced the sunken bell."
+          "summary": "We reached the chamber of the sunken bell."
         },
         {
           "kind": "returned-to",
           "stage": "word-brought",
           "locationId": "hollowmere",
-          "after": "bell-silenced",
-          "summary": "We brought word back to Hollowmere."
+          "after": "chamber-visited",
+          "summary": "After visiting the bell chamber, we are back in Hollowmere."
         }
       ],
       "completion": "word-brought"
@@ -102,19 +102,19 @@
         },
         {
           "kind": "reached",
-          "stage": "matthis-found",
+          "stage": "crypt-visited",
           "locationId": "location-5b2e9c47",
-          "summary": "We found Old Matthis in the crypt."
+          "summary": "Our search took us to the crypt."
         },
         {
           "kind": "returned-to",
-          "stage": "matthis-home",
+          "stage": "return-from-search",
           "locationId": "hollowmere",
-          "after": "matthis-found",
-          "summary": "We brought Old Matthis home."
+          "after": "crypt-visited",
+          "summary": "We returned to the village after visiting the crypt."
         }
       ],
-      "completion": "matthis-home"
+      "completion": "return-from-search"
     }
   ]
 }

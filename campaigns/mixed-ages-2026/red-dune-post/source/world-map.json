@@ -1,0 +1,136 @@
+{
+  "region": "red-basin",
+  "name": "Карта · Марс, котловина Красной Дюны",
+  "description": "План местности «Марс, котловина Красной Дюны». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "red-dune",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "post-house",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "glass-switch",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "quiet-steps",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "echo-archive",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "fourth-dawn",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "salt-terraces",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "wind-harbor",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "hanging-road",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "receiving-garden",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [
+    {
+      "from": "post-house",
+      "to": "red-dune",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "red-dune",
+      "to": "glass-switch",
+      "miles": 4,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "glass-switch",
+      "to": "quiet-steps",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "quiet-steps",
+      "to": "echo-archive",
+      "miles": 2,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "echo-archive",
+      "to": "fourth-dawn",
+      "miles": 4,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "post-house",
+      "to": "salt-terraces",
+      "miles": 5,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "salt-terraces",
+      "to": "wind-harbor",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "wind-harbor",
+      "to": "hanging-road",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "hanging-road",
+      "to": "receiving-garden",
+      "miles": 2,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "receiving-garden",
+      "to": "fourth-dawn",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "glass-switch",
+      "to": "wind-harbor",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    }
+  ]
+}

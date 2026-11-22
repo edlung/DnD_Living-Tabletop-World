@@ -1,0 +1,708 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "silent-frequency-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-97138eec-5849-4e3f-8465-901eeda7e629.png",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Cell 1. Вера Немова. Короткая стрижка, полосатый шарф и простая тетрадь с крупными полями.\nCell 2. Данил Корин. Куртка с нашивками старых фестивалей, крепкие ботинки и складной стул через плечо.\nCell 3. Ася Мель. Очки в красной оправе, несколько цветных карандашей и рукав с пятном синей краски.\nCell 4. Тимур Рай. Седые кудри, вельветовый жилет и коробочка разноцветных карточек.\nCell 5. Нина Лиск. Зелёное пальто, широкие браслеты и папка с застёжкой в форме рыбы.\nCell 6. Илья Теш. Светлая рубашка под дождевиком, блокнот без обложки и вечная закладка из билета.\nCell 7. Майя Фень. Жёлтая шапка, тканевый ремень для камеры и карманы с подписанными конвертами.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/vera-nemova.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/danil-korin.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/asya-mel.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/timur-ray.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/nina-lisk.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/ilya-tesh.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/maya-fen.webp"
+      ]
+    },
+    {
+      "id": "silent-frequency-places-0",
+      "originalFile": "exec-45ff7be6-c610-41fc-8a6b-137d08f4b627.png",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Cell 1. Студия «Ноль». Комната над лавкой настольных игр: стол с микрофоном, стекло в соседнюю кабинку и широкая доска для входящих сообщений. Здесь начинается общая смена радиокоманды.\nCell 2. Синий док. Синий фасад бывшей лодочной мастерской виден между складскими крышами. На воротах висит расписание обычных работ, за окнами верхней комнаты стоят кружки.\nCell 3. Весовая галерея. Узкая галерея над закрытыми весами хранит рекламные зонты и старые театральные скамьи. Окна выходят на ступенчатую площадь.\nCell 4. Склад «Парус». Высокие полки с опечатанными тюками и большими адресными бирками. У конторского столика всегда лежат второй карандаш и чистая копия накладной.\nCell 5. Редакция «Второй голос». Стену маленькой редакции занимают свежие газетные полосы. Под настольной лампой оставлено место для гостевого стула и одного неотредактированного текста.\nCell 6. Кинотеатр «Терракота». Кинотеатр с тёплыми оранжевыми стенами показывает немые фильмы. Сегодня у кассы стоят мокрые зонты, а в фойе развешены подписанные пакеты вещей.\nCell 7. Трамвайный зал. Выставочный зал с неподвижным старым вагоном и удобными столами. Городские любители записывают здесь небольшие звуковые спектакли.\nCell 8. Стеклянный пассаж. Крытая улица с закрытыми витринами и столом справочной службы. Сквозь цветное стекло серый день выглядит розовым и зелёным.\nCell 9. Медная терраса. Небольшая площадка перед мастерской вывесок, защищённая высоким городским фасадом. Медные буквы под навесом звенят от ветра.\nCell 10. Внешний пост. Городской пункт за верхней грядой, откуда в хорошую погоду виден весь Леставель. Сейчас его присутствие обозначает только спокойный голос в эфире.\nCell 11. Соляной двор. Двор между конторами, где у каждой двери свой цветной навес. На стене сохранились афиши летних концертов и место для свежего объявления.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "silent-frequency-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b6a7f083-dee4-47e5-90d7-f3309f41629f.png",
+      "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Cell 1. Распорядитель подрядчика. Взрослый работник в одинаковом сером жилете, уверенный, что действует по обычной накладной. Описание не предполагает тайной жестокости или сверхспособностей.\nCell 2. Упрямый доброволец. Взрослый горожанин в плаще с нарисованной медной буквой. Он хочет защитить людей от съёмки, но пока не спросил их собственного мнения.\nCell 3. Служащий подрядчика. Взрослый служащий с папкой учётных бланков, считающий возвращение оригиналов обычным требованием начальства.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "silent-frequency-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-61cee25d-1005-4f0d-8219-3c038ec0f191.png",
+      "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Нулевая частота. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Нора Винтер. Красный кардиган, короткие рукава и страницы с заметными правками зелёным карандашом.\nCell 2. Юрий Тамень. Оранжевый вязаный жилет и круглая связка крупных декоративных ключей.\nCell 3. Тим Серев. Клетчатая кепка, рукава с нашивками и небольшой блокнот с театральными репликами.\nCell 4. Ада Орм. Серый плащ, белая прядь у виска и папка с прозрачными уголками.\nCell 5. Олег Брин. Серый жилет с широкими карманами, жёлтый дождевик на спинке стула и папка на шнурке.",
+      "references": [
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/nora-vinter.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/yuri-tamen.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/tim-serev.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/ada-orm.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/oleg-brin.webp"
+      ]
+    },
+    {
+      "id": "silent-frequency-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-86c60ea1-ecdb-46a5-9232-b914cfb9c78c.png",
+      "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Нулевая частота. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Марк Ровен. Тёмный плащ, сухой бумажный планшет и часы на слишком свободном ремешке.\nCell 2. Лида Горина. Клетчатая рубашка, собранные в узел волосы и чашка с нарисованной лестницей.\nCell 3. Сев Лунин. Вязаная синяя шапка, холщовый рюкзак и карандаш, привязанный к блокноту.\nCell 4. Эльза Пах. На вывешенной в студии фотографии — женщина с круглой оправой очков и узкой белой прядью.\nCell 5. Роза Пахт. Фиолетовый жилет, широкий карандаш за ухом и мягкие перчатки без пальцев.",
+      "references": [
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/mark-roven.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/lida-gorina.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/sev-lunin.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/elza-pakh.webp",
+        "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/roza-pakht.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "vera-nemova",
+      "title": "Вера Немова",
+      "kind": "hero",
+      "subjects": [
+        "vera-nemova"
+      ],
+      "file": "heroes-vera-nemova.webp",
+      "sha256": "9c8d2663b7872dadeae8501bbb05595c654b1d8c2720713f34142e25b8844546",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 119,
+        "top": 10,
+        "width": 209,
+        "height": 418
+      }
+    },
+    {
+      "key": "danil-korin",
+      "title": "Данил Корин",
+      "kind": "hero",
+      "subjects": [
+        "danil-korin"
+      ],
+      "file": "heroes-danil-korin.webp",
+      "sha256": "dfd0f2b00293699025f124e8da48bd3f2333550bd28bb3560e9095b02fecf7fb",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 561,
+        "top": 8,
+        "width": 211,
+        "height": 419
+      }
+    },
+    {
+      "key": "asya-mel",
+      "title": "Ася Мель",
+      "kind": "hero",
+      "subjects": [
+        "asya-mel"
+      ],
+      "file": "heroes-asya-mel.webp",
+      "sha256": "1a7c8859dab5d5cd0729a983b0cdbea78d868185951c65726c02c44d6bd3557e",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1005,
+        "top": 9,
+        "width": 210,
+        "height": 419
+      }
+    },
+    {
+      "key": "timur-ray",
+      "title": "Тимур Рай",
+      "kind": "hero",
+      "subjects": [
+        "timur-ray"
+      ],
+      "file": "heroes-timur-ray.webp",
+      "sha256": "a55df37c874a4313eb5bd2cf2ae6699d7fee25fe2863226a09350d7c4796dd4d",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1449,
+        "top": 9,
+        "width": 210,
+        "height": 418
+      }
+    },
+    {
+      "key": "nina-lisk",
+      "title": "Нина Лиск",
+      "kind": "hero",
+      "subjects": [
+        "nina-lisk"
+      ],
+      "file": "heroes-nina-lisk.webp",
+      "sha256": "7bd9ad35fb0d29b5c583df5368a19fc432340e197a6dec6504645a77ea8c007b",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 120,
+        "top": 451,
+        "width": 208,
+        "height": 421
+      }
+    },
+    {
+      "key": "ilya-tesh",
+      "title": "Илья Теш",
+      "kind": "hero",
+      "subjects": [
+        "ilya-tesh"
+      ],
+      "file": "heroes-ilya-tesh.webp",
+      "sha256": "0d64db826c319c1f853f6135ad9dba861b2c1fc782318b55451f5156109e1707",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 562,
+        "top": 451,
+        "width": 210,
+        "height": 420
+      }
+    },
+    {
+      "key": "maya-fen",
+      "title": "Майя Фень",
+      "kind": "hero",
+      "subjects": [
+        "maya-fen"
+      ],
+      "file": "heroes-maya-fen.webp",
+      "sha256": "3da33ffd2157bf8aa186b17b01ff9c0434c002a36645c08c49c8c9a53a2f9c52",
+      "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1005,
+        "top": 453,
+        "width": 210,
+        "height": 419
+      }
+    },
+    {
+      "key": "zero-studio",
+      "title": "Студия «Ноль»",
+      "kind": "place",
+      "subjects": [
+        "zero-studio"
+      ],
+      "file": "places-zero-studio.webp",
+      "sha256": "180d65dc6a14ee6f93f139ad1455c09aaa5e9c17f9d0701ce84370170b13c490",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "blue-dock",
+      "title": "Синий док",
+      "kind": "place",
+      "subjects": [
+        "blue-dock"
+      ],
+      "file": "places-blue-dock.webp",
+      "sha256": "1d355f1d8839ffca93d8a8db0831d0abb46406e15ca2c7c874ad79ef9e4ac81e",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "weigh-gallery",
+      "title": "Весовая галерея",
+      "kind": "place",
+      "subjects": [
+        "weigh-gallery"
+      ],
+      "file": "places-weigh-gallery.webp",
+      "sha256": "9ba564d5297690c8ad6b3ea31b98943b94780544b2ab3c55d5a06820f2ca276e",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "sail-store",
+      "title": "Склад «Парус»",
+      "kind": "place",
+      "subjects": [
+        "sail-store"
+      ],
+      "file": "places-sail-store.webp",
+      "sha256": "bea99b4be2ede4b44c0575763b9027b44d22552d7d409db7d11c7438b20da8fb",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "second-studio",
+      "title": "Редакция «Второй голос»",
+      "kind": "place",
+      "subjects": [
+        "second-studio"
+      ],
+      "file": "places-second-studio.webp",
+      "sha256": "3839832ac0842a906059bb40c3daba89a2337d53c6020502f4b2744dd754a844",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "terracotta-cinema",
+      "title": "Кинотеатр «Терракота»",
+      "kind": "place",
+      "subjects": [
+        "terracotta-cinema"
+      ],
+      "file": "places-terracotta-cinema.webp",
+      "sha256": "7c6406461ff3b2f44c113c0e5710fda462b70be88678da8414672c5ed32bb7f2",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "tram-hall",
+      "title": "Трамвайный зал",
+      "kind": "place",
+      "subjects": [
+        "tram-hall"
+      ],
+      "file": "places-tram-hall.webp",
+      "sha256": "2cc54ecd6edb51a1136a81f92c6d747972f11ebb625c42f03e9d2b64e17f3297",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "glass-arcade",
+      "title": "Стеклянный пассаж",
+      "kind": "place",
+      "subjects": [
+        "glass-arcade"
+      ],
+      "file": "places-glass-arcade.webp",
+      "sha256": "58ba73f234025f285f2d95a9d4ad2428fb5e37dc1d2e4cd33fee385149d47c58",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "copper-terrace",
+      "title": "Медная терраса",
+      "kind": "place",
+      "subjects": [
+        "copper-terrace"
+      ],
+      "file": "places-copper-terrace.webp",
+      "sha256": "d8af11b736b304d622211245cb997d2f7c6531f70d214f1629e6434c51efe431",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "outer-post",
+      "title": "Внешний пост",
+      "kind": "place",
+      "subjects": [
+        "outer-post"
+      ],
+      "file": "places-outer-post.webp",
+      "sha256": "08eeca05ec506cdd3a08538573b10f57c93ebd1bf3dda95ed7a0f435cd412c23",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "salt-court",
+      "title": "Соляной двор",
+      "kind": "place",
+      "subjects": [
+        "salt-court"
+      ],
+      "file": "places-salt-court.webp",
+      "sha256": "66600327244156cee9eb2dd53b0e4527b06bacef81baac821488b089b74cc23e",
+      "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-places-0",
+      "cell": 11,
+      "crop": {
+        "left": 484,
+        "top": 816,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "foe-257c104849",
+      "title": "Распорядитель подрядчика",
+      "kind": "foe",
+      "subjects": [
+        "crate-standoff-foe-1",
+        "crate-standoff-foe-2",
+        "crate-standoff-foe-3",
+        "crate-standoff-foe-4",
+        "crate-standoff-foe-5"
+      ],
+      "file": "foes-foe-257c104849.webp",
+      "sha256": "c0d7be119e08367a6e127df9bc0c4dbf77cccef307b67666b71f62a515aec39a",
+      "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 166,
+        "top": 13,
+        "width": 394,
+        "height": 698
+      }
+    },
+    {
+      "key": "foe-13de720e49",
+      "title": "Упрямый доброволец",
+      "kind": "foe",
+      "subjects": [
+        "terrace-standoff-foe-1",
+        "terrace-standoff-foe-2",
+        "terrace-standoff-foe-3",
+        "terrace-standoff-foe-4",
+        "terrace-standoff-foe-5"
+      ],
+      "file": "foes-foe-13de720e49.webp",
+      "sha256": "932dbd3a0381ba45ddf19a6a2c84899e835afebf17f5d59cdb782d2fc20c5f88",
+      "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 835,
+        "top": 13,
+        "width": 487,
+        "height": 698
+      }
+    },
+    {
+      "key": "foe-28ec8104ec",
+      "title": "Служащий подрядчика",
+      "kind": "foe",
+      "subjects": [
+        "papers-standoff-foe-1",
+        "papers-standoff-foe-2",
+        "papers-standoff-foe-3",
+        "papers-standoff-foe-4",
+        "papers-standoff-foe-5"
+      ],
+      "file": "foes-foe-28ec8104ec.webp",
+      "sha256": "6bf86c384b85b9135f0114938b3df0aa0a2b344e50e367665dc6a40a178223da",
+      "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1613,
+        "top": 17,
+        "width": 401,
+        "height": 694
+      }
+    },
+    {
+      "key": "nora-vinter",
+      "title": "Нора Винтер",
+      "kind": "npc",
+      "subjects": [
+        "nora-vinter"
+      ],
+      "file": "npcs-nora-vinter.webp",
+      "sha256": "a68226e1715845351ceed65dec50dd5cd2ccd8550d31f8bdc0443427a16ccbf6",
+      "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 119,
+        "top": 19,
+        "width": 270,
+        "height": 494
+      }
+    },
+    {
+      "key": "yuri-tamen",
+      "title": "Юрий Тамень",
+      "kind": "npc",
+      "subjects": [
+        "yuri-tamen"
+      ],
+      "file": "npcs-yuri-tamen.webp",
+      "sha256": "5238d5e175d2c97076f3089dc0e33ab87a694d9a9067dee4abb674630dc018e9",
+      "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 628,
+        "top": 15,
+        "width": 269,
+        "height": 498
+      }
+    },
+    {
+      "key": "tim-serev",
+      "title": "Тим Серев",
+      "kind": "npc",
+      "subjects": [
+        "tim-serev"
+      ],
+      "file": "npcs-tim-serev.webp",
+      "sha256": "52a2e5959ce9dcc1cd3f0b43e6ca4dba58d9a78ac1cf4d6e0054660dafabd6fb",
+      "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1137,
+        "top": 20,
+        "width": 267,
+        "height": 493
+      }
+    },
+    {
+      "key": "ada-orm",
+      "title": "Ада Орм",
+      "kind": "npc",
+      "subjects": [
+        "ada-orm"
+      ],
+      "file": "npcs-ada-orm.webp",
+      "sha256": "25bfc791783c805970416de90230d72355ade498a88bf43b77d844cb1969b5dd",
+      "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 118,
+        "top": 523,
+        "width": 271,
+        "height": 501
+      }
+    },
+    {
+      "key": "oleg-brin",
+      "title": "Олег Брин",
+      "kind": "npc",
+      "subjects": [
+        "oleg-brin"
+      ],
+      "file": "npcs-oleg-brin.webp",
+      "sha256": "1035acc3d157726005d4688ec674951927b42f84ca831b82db4ef6c5f55a6fe3",
+      "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 602,
+        "top": 522,
+        "width": 306,
+        "height": 502
+      }
+    },
+    {
+      "key": "mark-roven",
+      "title": "Марк Ровен",
+      "kind": "npc",
+      "subjects": [
+        "mark-roven"
+      ],
+      "file": "npcs-mark-roven.webp",
+      "sha256": "674a452aa011089a59eaf6406f24695db0a168dcd21e9c9b9c770456f48b23da",
+      "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 131,
+        "top": 11,
+        "width": 261,
+        "height": 494
+      }
+    },
+    {
+      "key": "lida-gorina",
+      "title": "Лида Горина",
+      "kind": "npc",
+      "subjects": [
+        "lida-gorina"
+      ],
+      "file": "npcs-lida-gorina.webp",
+      "sha256": "ca083c0413502a90168ea9aa1b591592d2c017b938a56e28334d1a7823148877",
+      "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 627,
+        "top": 17,
+        "width": 255,
+        "height": 487
+      }
+    },
+    {
+      "key": "sev-lunin",
+      "title": "Сев Лунин",
+      "kind": "npc",
+      "subjects": [
+        "sev-lunin"
+      ],
+      "file": "npcs-sev-lunin.webp",
+      "sha256": "7fdc169fd1d8f745d60857f697242745b19617d5e0868c612991e4f6e5d9b727",
+      "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1139,
+        "top": 17,
+        "width": 256,
+        "height": 487
+      }
+    },
+    {
+      "key": "elza-pakh",
+      "title": "Эльза Пах",
+      "kind": "npc",
+      "subjects": [
+        "elza-pakh"
+      ],
+      "file": "npcs-elza-pakh.webp",
+      "sha256": "f858f1d7c2a89d480b7ab4d7a2dbf8e2158bda3b36f213a18db16a93acd56415",
+      "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 134,
+        "top": 522,
+        "width": 269,
+        "height": 492
+      }
+    },
+    {
+      "key": "roza-pakht",
+      "title": "Роза Пахт",
+      "kind": "npc",
+      "subjects": [
+        "roza-pakht"
+      ],
+      "file": "npcs-roza-pakht.webp",
+      "sha256": "0921770f9ae15fc49c4d64803e1b950577d93435b0a44e48140fd8f83be7ec7c",
+      "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+      "generated": "2026-11-22",
+      "sheet": "silent-frequency-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 601,
+        "top": 531,
+        "width": 335,
+        "height": 481
+      }
+    }
+  ]
+}

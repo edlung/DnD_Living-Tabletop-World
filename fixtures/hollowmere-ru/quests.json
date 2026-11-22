@@ -6,20 +6,20 @@
       "title": "Повозка вдовы",
       "activation": {
         "subject": "brisk-cargo",
-        "summary": "Агна Бриск наняла нас отвезти её повозку в Холлоумир."
+        "summary": "Агна Бриск предложила нам отвезти её повозку в Холлоумир."
       },
       "milestones": [
         {
-          "kind": "survived-fight-at",
-          "stage": "ford-crossed",
+          "kind": "reached",
+          "stage": "ford-visited",
           "locationId": "willow-ford",
-          "summary": "Мы с боем прошли Ивовый брод."
+          "summary": "Мы добрались до Ивового брода."
         },
         {
           "kind": "reached",
-          "stage": "wagon-delivered",
+          "stage": "village-visited",
           "locationId": "hollowmere",
-          "summary": "Мы довезли повозку до Холлоумира."
+          "summary": "Наш отряд добрался до Холлоумира."
         },
         {
           "kind": "told-by",
@@ -55,13 +55,13 @@
           "kind": "survived-fight-at",
           "stage": "chapel-cleared",
           "locationId": "drowned-chapel",
-          "summary": "Мы сразились с мертвецами Затонувшей часовни."
+          "summary": "Мы пережили столкновение на территории Затонувшей часовни или под ней."
         },
         {
           "kind": "survived-fight-at",
           "stage": "mill-faced",
           "locationId": "sunken-mill",
-          "summary": "Мы сошлись с Тростниковыми плащами на Затопленной мельнице."
+          "summary": "Мы пережили столкновение на Затопленной мельнице."
         },
         {
           "kind": "reached",
@@ -70,17 +70,17 @@
           "summary": "Мы нашли путь вниз под часовней."
         },
         {
-          "kind": "survived-fight-at",
-          "stage": "bell-silenced",
+          "kind": "reached",
+          "stage": "chamber-visited",
           "locationId": "location-c81f04da",
-          "summary": "Мы заставили утонувший колокол умолкнуть."
+          "summary": "Мы добрались до зала утонувшего колокола."
         },
         {
           "kind": "returned-to",
           "stage": "word-brought",
           "locationId": "hollowmere",
-          "after": "bell-silenced",
-          "summary": "Мы вернулись в Холлоумир с вестями."
+          "after": "chamber-visited",
+          "summary": "После посещения зала колокола мы снова в Холлоумире."
         }
       ],
       "completion": "word-brought"
@@ -102,19 +102,19 @@
         },
         {
           "kind": "reached",
-          "stage": "matthis-found",
+          "stage": "crypt-visited",
           "locationId": "location-5b2e9c47",
-          "summary": "Старый Маттис нашёлся в склепе."
+          "summary": "Поиски привели нас в склеп."
         },
         {
           "kind": "returned-to",
-          "stage": "matthis-home",
+          "stage": "return-from-search",
           "locationId": "hollowmere",
-          "after": "matthis-found",
-          "summary": "Старый Маттис снова дома."
+          "after": "crypt-visited",
+          "summary": "После посещения склепа мы вернулись в деревню."
         }
       ],
-      "completion": "matthis-home"
+      "completion": "return-from-search"
     }
   ]
 }

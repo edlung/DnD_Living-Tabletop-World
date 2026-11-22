@@ -1,3 +1,4 @@
+import { campaignAppearance } from '../visual/campaign-themes/index.ts';
 import type {
   CastResponse,
   DisplaySessionResponse,
@@ -340,7 +341,11 @@ function DisplayScreen({
     live.refresh,
   );
   return (
-    <main className="display" data-cast={shown?.cast.kind ?? 'loading'}>
+    <main
+      className="display"
+      {...campaignAppearance(session.campaignName)}
+      data-cast={shown?.cast.kind ?? 'loading'}
+    >
       {shown !== null ? (
         <>
           {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}

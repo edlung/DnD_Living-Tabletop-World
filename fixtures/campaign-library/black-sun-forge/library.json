@@ -1,0 +1,1723 @@
+{
+ "id": "black-sun-forge",
+ "title": "Кузница чёрного солнца",
+ "genre": "Космическое тёмное фэнтези: экспедиция и причинная ловушка",
+ "audience": "18+",
+ "pitch": "В пустой глазнице мёртвой звезды снова стучат молоты. Экспедиция должна остановить ковку проклятия, способного обездвижить три приграничных города. Но на металле проступают следы ещё не нанесённых ударов — и один из них похож на ваш. Кузнечица ждёт именно тех, кто придёт уничтожить её работу.",
+ "tone": "Холодный звёздный ужас, вещественные загадки, опасное проникновение и деятельные противники. Странность проверяема; отвага не гарантирует правоту, однако решения действительно меняют исход.",
+ "duration": "8 сессий; 3 часа: 15 минут открытия или пересказа, три сцены по 45 минут, перерыв 15 минут, закрытие 15 минут.",
+ "cover": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "474a968aae60ed895598a3f713a95d7c0ecfecbe80b1f0f56af10010baf78971"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "f9f5737d4a3b757c4f2dcffb92d05186777b16eb76aae3b97fafd01ff168ccb6"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "2fc2814d91ccb647645ac9835e87b8718d7ae5c56c75c5f319ebcec8b93a3f88"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "3ea33e8875602bcfca567fbba9009fe6500c19df3b711af3693ae6947a332269"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "28b267b9e2d3e1d20cc75cee581ba8fa72eeee667bbeef9a31bd97910b1c77ec"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/rada-tes.webp",
+   "sha256": "d84643795114336c18c11d6502777cd625d8a69a49093c9de1a219b078f58643",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Тес",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-tes"
+    ],
+    "4-players": [
+     "rada-tes"
+    ],
+    "5-players": [
+     "rada-tes"
+    ],
+    "6-players": [
+     "rada-tes"
+    ],
+    "7-players": [
+     "rada-tes"
+    ]
+   },
+   "file": "rada-tes.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/leven-ker.webp",
+   "sha256": "323454ed6b1d4709dd56e2103d2dedcc1afe3cabf61ba587b1874afb4923b5a6",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Левен Кер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leven-ker"
+    ],
+    "4-players": [
+     "leven-ker"
+    ],
+    "5-players": [
+     "leven-ker"
+    ],
+    "6-players": [
+     "leven-ker"
+    ],
+    "7-players": [
+     "leven-ker"
+    ]
+   },
+   "file": "leven-ker.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/mara-il.webp",
+   "sha256": "64b3458d959d38b54b8df6d2965ef45933512bd27da153659afed76863085c54",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Иль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-il"
+    ],
+    "4-players": [
+     "mara-il"
+    ],
+    "5-players": [
+     "mara-il"
+    ],
+    "6-players": [
+     "mara-il"
+    ],
+    "7-players": [
+     "mara-il"
+    ]
+   },
+   "file": "mara-il.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/ennor-sai.webp",
+   "sha256": "a7d23e9ded8c30b9f22b9e275d2e754c641f6d13fa78934b088d80b00df18ab5",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эннор Сай",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "ennor-sai"
+    ],
+    "5-players": [
+     "ennor-sai"
+    ],
+    "6-players": [
+     "ennor-sai"
+    ],
+    "7-players": [
+     "ennor-sai"
+    ]
+   },
+   "file": "ennor-sai.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/tava-orn.webp",
+   "sha256": "2e64bc885231b26d24708ac9ad68d13283c0c4d8558fbf55353357d5d95f2c6d",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тава Орн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tava-orn"
+    ],
+    "6-players": [
+     "tava-orn"
+    ],
+    "7-players": [
+     "tava-orn"
+    ]
+   },
+   "file": "tava-orn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/darel-vey.webp",
+   "sha256": "e2fb243a57c3757b83a6d68af2cc3a9eff7c3f10f5f82a5bc8a09ccd3730b093",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дарель Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "darel-vey"
+    ],
+    "7-players": [
+     "darel-vey"
+    ]
+   },
+   "file": "darel-vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/sera-nem.webp",
+   "sha256": "625ba8db0dd786dbe7281f1788bad5d92ded51dcd75f3638fbe5d0a5bd5a7c52",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сера Нем",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "sera-nem"
+    ]
+   },
+   "file": "sera-nem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/travel-kit.webp",
+   "sha256": "453d65c7e1c7c2bd336a25e2566d86848801facbb26c05e4cec5e72d4e5daa38",
+   "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leven-ker-travel-kit",
+     "mara-il-travel-kit",
+     "rada-tes-travel-kit"
+    ],
+    "4-players": [
+     "ennor-sai-travel-kit",
+     "leven-ker-travel-kit",
+     "mara-il-travel-kit",
+     "rada-tes-travel-kit"
+    ],
+    "5-players": [
+     "ennor-sai-travel-kit",
+     "leven-ker-travel-kit",
+     "mara-il-travel-kit",
+     "rada-tes-travel-kit",
+     "tava-orn-travel-kit"
+    ],
+    "6-players": [
+     "darel-vey-travel-kit",
+     "ennor-sai-travel-kit",
+     "leven-ker-travel-kit",
+     "mara-il-travel-kit",
+     "rada-tes-travel-kit",
+     "tava-orn-travel-kit"
+    ],
+    "7-players": [
+     "darel-vey-travel-kit",
+     "ennor-sai-travel-kit",
+     "leven-ker-travel-kit",
+     "mara-il-travel-kit",
+     "rada-tes-travel-kit",
+     "sera-nem-travel-kit",
+     "tava-orn-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/veyra-dal.webp",
+   "sha256": "20419ff85369d9b4c8783d3e8123733fa51014999a5a09d4749af1144094de07",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вейра Даль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veyra-dal"
+    ],
+    "4-players": [
+     "veyra-dal"
+    ],
+    "5-players": [
+     "veyra-dal"
+    ],
+    "6-players": [
+     "veyra-dal"
+    ],
+    "7-players": [
+     "veyra-dal"
+    ]
+   },
+   "file": "veyra-dal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/sorren-vit.webp",
+   "sha256": "b5c2d3b4388c4f8234bf2e87d897cdf4b60fa4db669c52200583e088ac650c4a",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Соррен Вит",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sorren-vit"
+    ],
+    "4-players": [
+     "sorren-vit"
+    ],
+    "5-players": [
+     "sorren-vit"
+    ],
+    "6-players": [
+     "sorren-vit"
+    ],
+    "7-players": [
+     "sorren-vit"
+    ]
+   },
+   "file": "sorren-vit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/otta-rem.webp",
+   "sha256": "e9b30d50c2d3fa05aac46cb6d75dc92c035a107d5c02899e2a419b71b6b419f2",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Отта Рем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "otta-rem"
+    ],
+    "4-players": [
+     "otta-rem"
+    ],
+    "5-players": [
+     "otta-rem"
+    ],
+    "6-players": [
+     "otta-rem"
+    ],
+    "7-players": [
+     "otta-rem"
+    ]
+   },
+   "file": "otta-rem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/neda-tsar.webp",
+   "sha256": "8aaec95bc77aec19b70e3f920a5303adfb7acee6249afcebd008734eae465d91",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Неда Цар",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "neda-tsar"
+    ],
+    "4-players": [
+     "neda-tsar"
+    ],
+    "5-players": [
+     "neda-tsar"
+    ],
+    "6-players": [
+     "neda-tsar"
+    ],
+    "7-players": [
+     "neda-tsar"
+    ]
+   },
+   "file": "neda-tsar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/avar-len.webp",
+   "sha256": "fb464445800b2ce27e5f1012e91e16728b6fdf43cd37689ba620bbe4ae24fb11",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Авар Лен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "avar-len"
+    ],
+    "4-players": [
+     "avar-len"
+    ],
+    "5-players": [
+     "avar-len"
+    ],
+    "6-players": [
+     "avar-len"
+    ],
+    "7-players": [
+     "avar-len"
+    ]
+   },
+   "file": "avar-len.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/teyr-ust.webp",
+   "sha256": "fbbcd1f2032fad08e0049690587a4f7117a14a9204559e70ee218da8463eca45",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тейр Уст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "teyr-ust"
+    ],
+    "4-players": [
+     "teyr-ust"
+    ],
+    "5-players": [
+     "teyr-ust"
+    ],
+    "6-players": [
+     "teyr-ust"
+    ],
+    "7-players": [
+     "teyr-ust"
+    ]
+   },
+   "file": "teyr-ust.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/siva-kor.webp",
+   "sha256": "da67d8e8d9f6196f511e1cc73ae0cb6ca8fcd147c22ac9d3c877543daf15cffc",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сива Кор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "siva-kor"
+    ],
+    "4-players": [
+     "siva-kor"
+    ],
+    "5-players": [
+     "siva-kor"
+    ],
+    "6-players": [
+     "siva-kor"
+    ],
+    "7-players": [
+     "siva-kor"
+    ]
+   },
+   "file": "siva-kor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/runn-dey.webp",
+   "sha256": "22fb2dbcb0e15fb07a1ef46ee6f84920171efaccae1f606545bff2aace5367b1",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рунн Дей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runn-dey"
+    ],
+    "4-players": [
+     "runn-dey"
+    ],
+    "5-players": [
+     "runn-dey"
+    ],
+    "6-players": [
+     "runn-dey"
+    ],
+    "7-players": [
+     "runn-dey"
+    ]
+   },
+   "file": "runn-dey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/iven-mor.webp",
+   "sha256": "c1ef4afb469b918e8ba5c949bb5b8d8dcce1d12e86e923654d291a1bd8d998b1",
+   "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивен Мор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iven-mor"
+    ],
+    "4-players": [
+     "iven-mor"
+    ],
+    "5-players": [
+     "iven-mor"
+    ],
+    "6-players": [
+     "iven-mor"
+    ],
+    "7-players": [
+     "iven-mor"
+    ]
+   },
+   "file": "iven-mor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-tether-camp.webp",
+   "sha256": "a460f3bda13e7cc5ea1f7469540efbd63f47044b8460de816d14d66319054326",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лагерь у последней ступени",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tether-camp"
+    ],
+    "4-players": [
+     "tether-camp"
+    ],
+    "5-players": [
+     "tether-camp"
+    ],
+    "6-players": [
+     "tether-camp"
+    ],
+    "7-players": [
+     "tether-camp"
+    ]
+   },
+   "file": "tether-camp.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-clinker-span.webp",
+   "sha256": "fc19a21644d208f17e8e477f097ee38e7ae3f30cd788739808b04207861e9380",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шлаковый пролёт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "clinker-span"
+    ],
+    "4-players": [
+     "clinker-span"
+    ],
+    "5-players": [
+     "clinker-span"
+    ],
+    "6-players": [
+     "clinker-span"
+    ],
+    "7-players": [
+     "clinker-span"
+    ]
+   },
+   "file": "clinker-span.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-blind-jaw.webp",
+   "sha256": "f80bd9d3ce35a029e3a01ac020abb81c797314a2d18e87819b4c8defeefe71dd",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Слепая пасть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "blind-jaw"
+    ],
+    "4-players": [
+     "blind-jaw"
+    ],
+    "5-players": [
+     "blind-jaw"
+    ],
+    "6-players": [
+     "blind-jaw"
+    ],
+    "7-players": [
+     "blind-jaw"
+    ]
+   },
+   "file": "blind-jaw.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-witness-cistern.webp",
+   "sha256": "3b645961c3abe1c8bf38de120154806690228ec4cb8abfd2c5e7f30f0fb9d9a4",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Колодец свидетеля",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "witness-cistern"
+    ],
+    "4-players": [
+     "witness-cistern"
+    ],
+    "5-players": [
+     "witness-cistern"
+    ],
+    "6-players": [
+     "witness-cistern"
+    ],
+    "7-players": [
+     "witness-cistern"
+    ]
+   },
+   "file": "witness-cistern.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-return-gallery.webp",
+   "sha256": "8c0b7fa2da4ba04de6c072c312bfe911d99ad8c70c3654c8de1e7234cda58954",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галерея возврата",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "return-gallery"
+    ],
+    "4-players": [
+     "return-gallery"
+    ],
+    "5-players": [
+     "return-gallery"
+    ],
+    "6-players": [
+     "return-gallery"
+    ],
+    "7-players": [
+     "return-gallery"
+    ]
+   },
+   "file": "return-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-seal-yard.webp",
+   "sha256": "f8b21bd6250179836583b9f52ff17384f7c0017eb850271e86eaa5ff2d7ca1e1",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор печатей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seal-yard"
+    ],
+    "4-players": [
+     "seal-yard"
+    ],
+    "5-players": [
+     "seal-yard"
+    ],
+    "6-players": [
+     "seal-yard"
+    ],
+    "7-players": [
+     "seal-yard"
+    ]
+   },
+   "file": "seal-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-dead-angle.webp",
+   "sha256": "9b8330efcc587f38345f867be13ffd8f2507b54d50b7c90d1a6a46080bccecda",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мёртвый угол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dead-angle"
+    ],
+    "4-players": [
+     "dead-angle"
+    ],
+    "5-players": [
+     "dead-angle"
+    ],
+    "6-players": [
+     "dead-angle"
+    ],
+    "7-players": [
+     "dead-angle"
+    ]
+   },
+   "file": "dead-angle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-black-anvil.webp",
+   "sha256": "ba7329c5b316bafde7f60ab05aefc55d6cf77852c1c2dfdc1d72a7c50ddcc7ff",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Наковальня без полудня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "black-anvil"
+    ],
+    "4-players": [
+     "black-anvil"
+    ],
+    "5-players": [
+     "black-anvil"
+    ],
+    "6-players": [
+     "black-anvil"
+    ],
+    "7-players": [
+     "black-anvil"
+    ]
+   },
+   "file": "black-anvil.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-unlit-throat.webp",
+   "sha256": "f74a57e509b432f99bda8b7324d56d81fc759e87490fa76e9741be07acf44d60",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Безлучный зев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "unlit-throat"
+    ],
+    "4-players": [
+     "unlit-throat"
+    ],
+    "5-players": [
+     "unlit-throat"
+    ],
+    "6-players": [
+     "unlit-throat"
+    ],
+    "7-players": [
+     "unlit-throat"
+    ]
+   },
+   "file": "unlit-throat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/places-threshold-hall.webp",
+   "sha256": "66f38c98d44806cc0e6d68c226bacdba3223091f947c6b0024dbfe85c12e4409",
+   "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зал незамкнутого порога",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "threshold-hall"
+    ],
+    "4-players": [
+     "threshold-hall"
+    ],
+    "5-players": [
+     "threshold-hall"
+    ],
+    "6-players": [
+     "threshold-hall"
+    ],
+    "7-players": [
+     "threshold-hall"
+    ]
+   },
+   "file": "threshold-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-rada-tes.webp",
+   "sha256": "49b1252c3b510e031711cf33ed73e1798c130420facb8074ef1aee8aeee1debe",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Тес",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-tes"
+    ],
+    "4-players": [
+     "rada-tes"
+    ],
+    "5-players": [
+     "rada-tes"
+    ],
+    "6-players": [
+     "rada-tes"
+    ],
+    "7-players": [
+     "rada-tes"
+    ]
+   },
+   "file": "rada-tes--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-tes.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-leven-ker.webp",
+   "sha256": "caed09cd9252f62d87f9077d40977db1b4b9210f17a16ec30a6425125c85efd2",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Левен Кер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leven-ker"
+    ],
+    "4-players": [
+     "leven-ker"
+    ],
+    "5-players": [
+     "leven-ker"
+    ],
+    "6-players": [
+     "leven-ker"
+    ],
+    "7-players": [
+     "leven-ker"
+    ]
+   },
+   "file": "leven-ker--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leven-ker.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-mara-il.webp",
+   "sha256": "7a11c750afeb4a4cceef94aa939019594ee4bb34d87a6314bd3f99139317487c",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мара Иль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-il"
+    ],
+    "4-players": [
+     "mara-il"
+    ],
+    "5-players": [
+     "mara-il"
+    ],
+    "6-players": [
+     "mara-il"
+    ],
+    "7-players": [
+     "mara-il"
+    ]
+   },
+   "file": "mara-il--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mara-il.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-ennor-sai.webp",
+   "sha256": "98467dbe1312a2942b15982c881a1ce2839f8e8e11a5c67a764e3a9be86cffc4",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эннор Сай",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "ennor-sai"
+    ],
+    "5-players": [
+     "ennor-sai"
+    ],
+    "6-players": [
+     "ennor-sai"
+    ],
+    "7-players": [
+     "ennor-sai"
+    ]
+   },
+   "file": "ennor-sai--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ennor-sai.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-tava-orn.webp",
+   "sha256": "ceabde10081046f4502a2c34247216000293f7790fdf7d9e8abe6951406126ca",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тава Орн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tava-orn"
+    ],
+    "6-players": [
+     "tava-orn"
+    ],
+    "7-players": [
+     "tava-orn"
+    ]
+   },
+   "file": "tava-orn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tava-orn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-darel-vey.webp",
+   "sha256": "b0c864cde60e576ced7ef2d680645994f0d581e3e862d3a45a1bee76b9f162ef",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дарель Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "darel-vey"
+    ],
+    "7-players": [
+     "darel-vey"
+    ]
+   },
+   "file": "darel-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "darel-vey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/heroes-sera-nem.webp",
+   "sha256": "803454800312505f73cb527a8611b019d9352c0382b25a53dd91db4cdfe19faa",
+   "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сера Нем",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "sera-nem"
+    ]
+   },
+   "file": "sera-nem--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sera-nem.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/foes-foe-d86e44d8cd.webp",
+   "sha256": "46fa052e67f4dd20094822ad6a25c13b5b2dab8b9d5496abab2565d4fcae99fd",
+   "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Страж Вейры",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2"
+    ],
+    "4-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3"
+    ],
+    "5-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3"
+    ],
+    "6-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3",
+     "thread-watch-foe-4"
+    ],
+    "7-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3",
+     "thread-watch-foe-4",
+     "thread-watch-foe-5"
+    ]
+   },
+   "file": "foe-d86e44d8cd.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/foes-foe-d86e44d8cd.webp",
+   "sha256": "46fa052e67f4dd20094822ad6a25c13b5b2dab8b9d5496abab2565d4fcae99fd",
+   "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Страж Вейры",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2"
+    ],
+    "4-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3"
+    ],
+    "5-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3"
+    ],
+    "6-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3",
+     "thread-watch-foe-4"
+    ],
+    "7-players": [
+     "thread-watch-foe-1",
+     "thread-watch-foe-2",
+     "thread-watch-foe-3",
+     "thread-watch-foe-4",
+     "thread-watch-foe-5"
+    ]
+   },
+   "file": "foe-d86e44d8cd--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-d86e44d8cd.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/foes-foe-75b43de95f.webp",
+   "sha256": "65defb4719a02b10342e5399d0f84d75bf95e670cbb3894c5e9cb918c161a6c9",
+   "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сборщик стружки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2"
+    ],
+    "4-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3"
+    ],
+    "5-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3"
+    ],
+    "6-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3",
+     "clinker-collectors-foe-4"
+    ],
+    "7-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3",
+     "clinker-collectors-foe-4",
+     "clinker-collectors-foe-5"
+    ]
+   },
+   "file": "foe-75b43de95f.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/foes-foe-75b43de95f.webp",
+   "sha256": "65defb4719a02b10342e5399d0f84d75bf95e670cbb3894c5e9cb918c161a6c9",
+   "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сборщик стружки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2"
+    ],
+    "4-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3"
+    ],
+    "5-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3"
+    ],
+    "6-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3",
+     "clinker-collectors-foe-4"
+    ],
+    "7-players": [
+     "clinker-collectors-foe-1",
+     "clinker-collectors-foe-2",
+     "clinker-collectors-foe-3",
+     "clinker-collectors-foe-4",
+     "clinker-collectors-foe-5"
+    ]
+   },
+   "file": "foe-75b43de95f--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-75b43de95f.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/foes-foe-6be5e61e5b.webp",
+   "sha256": "230069ec4034615ceece752698dc02d2ca6cc8b6774764539cff326032b48550",
+   "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Носильщик печати",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2"
+    ],
+    "4-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3"
+    ],
+    "5-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3"
+    ],
+    "6-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3",
+     "seal-carriers-foe-4"
+    ],
+    "7-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3",
+     "seal-carriers-foe-4",
+     "seal-carriers-foe-5"
+    ]
+   },
+   "file": "foe-6be5e61e5b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/foes-foe-6be5e61e5b.webp",
+   "sha256": "230069ec4034615ceece752698dc02d2ca6cc8b6774764539cff326032b48550",
+   "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Носильщик печати",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2"
+    ],
+    "4-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3"
+    ],
+    "5-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3"
+    ],
+    "6-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3",
+     "seal-carriers-foe-4"
+    ],
+    "7-players": [
+     "seal-carriers-foe-1",
+     "seal-carriers-foe-2",
+     "seal-carriers-foe-3",
+     "seal-carriers-foe-4",
+     "seal-carriers-foe-5"
+    ]
+   },
+   "file": "foe-6be5e61e5b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-6be5e61e5b.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-veyra-dal.webp",
+   "sha256": "1521ad3a6f49c971c9ad2d2cc25d9e9754a5dfdc79f2b12e6ed028439f14314e",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вейра Даль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veyra-dal"
+    ],
+    "4-players": [
+     "veyra-dal"
+    ],
+    "5-players": [
+     "veyra-dal"
+    ],
+    "6-players": [
+     "veyra-dal"
+    ],
+    "7-players": [
+     "veyra-dal"
+    ]
+   },
+   "file": "veyra-dal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "veyra-dal.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-sorren-vit.webp",
+   "sha256": "1795d53b5fa8d212b3b2b4e1105bac814df550baa78cad18f49d8c6bd94efe4b",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Соррен Вит",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sorren-vit"
+    ],
+    "4-players": [
+     "sorren-vit"
+    ],
+    "5-players": [
+     "sorren-vit"
+    ],
+    "6-players": [
+     "sorren-vit"
+    ],
+    "7-players": [
+     "sorren-vit"
+    ]
+   },
+   "file": "sorren-vit--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sorren-vit.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-otta-rem.webp",
+   "sha256": "358d1ef1885610c5120d23a6c52089936cd9fcc390c20b52c2427b85d556aba0",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Отта Рем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "otta-rem"
+    ],
+    "4-players": [
+     "otta-rem"
+    ],
+    "5-players": [
+     "otta-rem"
+    ],
+    "6-players": [
+     "otta-rem"
+    ],
+    "7-players": [
+     "otta-rem"
+    ]
+   },
+   "file": "otta-rem--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "otta-rem.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-neda-tsar.webp",
+   "sha256": "9721a6fea67c0a2b7ce4d5d71b76c2d598f8531582ad8fec0600dba018177c66",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Неда Цар",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "neda-tsar"
+    ],
+    "4-players": [
+     "neda-tsar"
+    ],
+    "5-players": [
+     "neda-tsar"
+    ],
+    "6-players": [
+     "neda-tsar"
+    ],
+    "7-players": [
+     "neda-tsar"
+    ]
+   },
+   "file": "neda-tsar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "neda-tsar.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-avar-len.webp",
+   "sha256": "022d1f02cd8d85ef404a0d6d73e0864caff62350f3d408e1619bab6934964193",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Авар Лен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "avar-len"
+    ],
+    "4-players": [
+     "avar-len"
+    ],
+    "5-players": [
+     "avar-len"
+    ],
+    "6-players": [
+     "avar-len"
+    ],
+    "7-players": [
+     "avar-len"
+    ]
+   },
+   "file": "avar-len--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "avar-len.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-teyr-ust.webp",
+   "sha256": "54e2ab0cf2d6fe48f79572c4f1c8854be0e9999abfaf82093423f91c5e9d27ff",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тейр Уст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "teyr-ust"
+    ],
+    "4-players": [
+     "teyr-ust"
+    ],
+    "5-players": [
+     "teyr-ust"
+    ],
+    "6-players": [
+     "teyr-ust"
+    ],
+    "7-players": [
+     "teyr-ust"
+    ]
+   },
+   "file": "teyr-ust--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teyr-ust.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-siva-kor.webp",
+   "sha256": "5854ee839a3e86afb68cef32cb82067358331de4e35063ce956bb5a5b809f8e4",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сива Кор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "siva-kor"
+    ],
+    "4-players": [
+     "siva-kor"
+    ],
+    "5-players": [
+     "siva-kor"
+    ],
+    "6-players": [
+     "siva-kor"
+    ],
+    "7-players": [
+     "siva-kor"
+    ]
+   },
+   "file": "siva-kor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "siva-kor.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-runn-dey.webp",
+   "sha256": "6f1277eae44c20dffab8ff124511f0626a881d0a2c4073b0c0d3f16eaa3f2c3e",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рунн Дей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runn-dey"
+    ],
+    "4-players": [
+     "runn-dey"
+    ],
+    "5-players": [
+     "runn-dey"
+    ],
+    "6-players": [
+     "runn-dey"
+    ],
+    "7-players": [
+     "runn-dey"
+    ]
+   },
+   "file": "runn-dey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runn-dey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/table/npcs-iven-mor.webp",
+   "sha256": "757e163482cbd7fdf2be3b94747a04b5ff86dd0c010c669270af886c343721c6",
+   "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивен Мор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iven-mor"
+    ],
+    "4-players": [
+     "iven-mor"
+    ],
+    "5-players": [
+     "iven-mor"
+    ],
+    "6-players": [
+     "iven-mor"
+    ],
+    "7-players": [
+     "iven-mor"
+    ]
+   },
+   "file": "iven-mor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iven-mor.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/opening.webp",
+   "sha256": "d2a18358c94ee457346591b6cb3b3242b046505dddf5ddf6cf05a3b2f280da2f",
+   "originalSha256": "005dd7f1f9b2045673a76054f7ade420ad28fdbaa581d748c638b0cf8b075ba8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лагерь у последней ступени — Кузница чёрного солнца",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hollow-orbit"
+    ],
+    "4-players": [
+     "hollow-orbit"
+    ],
+    "5-players": [
+     "hollow-orbit"
+    ],
+    "6-players": [
+     "hollow-orbit"
+    ],
+    "7-players": [
+     "hollow-orbit"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "clinker-span--map.webp",
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/battle-maps/clinker-span.webp",
+   "sha256": "83cd5763ceb7b16a4f69886dce6cfc90b7e0dc432dda0731ff9c01b8eb199717",
+   "originalSha256": "570f7473cdf4823f435976a73d125ce359fab373db01c6c76b3e25c55d8defb2",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Шлаковый пролёт. Visible scenery: Мост из матовых плит идёт между пустыми формами огромных ладоней. В его решётке блестят тонкие металлические полосы.. World style: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "clinker-span.webp",
+   "subjects": {
+    "3-players": [
+     "clinker-span"
+    ],
+    "4-players": [
+     "clinker-span"
+    ],
+    "5-players": [
+     "clinker-span"
+    ],
+    "6-players": [
+     "clinker-span"
+    ],
+    "7-players": [
+     "clinker-span"
+    ]
+   }
+  },
+  {
+   "file": "blind-jaw--map.webp",
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/battle-maps/blind-jaw.webp",
+   "sha256": "1b7dd4cfa0466e5057dfece3163b776b9fab0937793130ff4c12c59a1ad1451f",
+   "originalSha256": "3a11b8bdbd60060be9f82d364394398b591cafe239f0fe567a6dcabf349b539f",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Слепая пасть. Visible scenery: Две низкие чаши стоят под закрытым каменным веком. Рядом лежат щипцы, бруски глины и шесть пустых песочных горлышек.. World style: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "blind-jaw.webp",
+   "subjects": {
+    "3-players": [
+     "blind-jaw"
+    ],
+    "4-players": [
+     "blind-jaw"
+    ],
+    "5-players": [
+     "blind-jaw"
+    ],
+    "6-players": [
+     "blind-jaw"
+    ],
+    "7-players": [
+     "blind-jaw"
+    ]
+   }
+  },
+  {
+   "file": "threshold-hall--map.webp",
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/battle-maps/threshold-hall.webp",
+   "sha256": "fe0c8023eafc12797089615c5bb39c54aca81212965b0b7090610612e38d8631",
+   "originalSha256": "a25ac87978321066a31bb719078a97f109f6ee80751993be02af434a1ca4fd95",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зал незамкнутого порога. Visible scenery: Две створки ворот не касаются друг друга. Между ними стоят пустые носилки, ручной ворот и каменная чаша размером с походный стол.. World style: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "threshold-hall.webp",
+   "subjects": {
+    "3-players": [
+     "threshold-hall"
+    ],
+    "4-players": [
+     "threshold-hall"
+    ],
+    "5-players": [
+     "threshold-hall"
+    ],
+    "6-players": [
+     "threshold-hall"
+    ],
+    "7-players": [
+     "threshold-hall"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/black-sun-forge/assets/world-map/world-map.webp",
+   "sha256": "88ead7199798a7f2830e5d3a7b10340c79e7445274000be36696c62da6f31bc7",
+   "originalSha256": "09b88dbae6b70a3dbe01bd4fadc59647c85d70ee8861638c2b39387db6e622b2",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Аш-Кер над пределом Ирд. Style Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Лагерь у последней ступени; 0.367,0.177 Шлаковый пролёт; 0.623,0.15 Слепая пасть; 0.88,0.177 Колодец свидетеля; 0.905,0.517 Галерея возврата; 0.648,0.49 Двор печатей; 0.392,0.517 Мёртвый угол; 0.135,0.49 Наковальня без полудня; 0.11,0.83 Безлучный зев; 0.367,0.857 Зал незамкнутого порога. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "props-yard.webp",
+      "sha256": "337cc49736eda62cb3423a5f6b50e81b18a257a143818a7a9c85553ea57c3377",
+      "originalSha256": "65c07b7f4e9f2c0c722e2a5f7c15c7c47091e7e0d9231a376811fa82c76c3d13",
+      "originalFile": "exec-b4b45997-987b-4262-b672-301dc1641976.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор реквизита. Visible scenery: Под навесом стоят тележки, строительные детали и учебные манекены. Каждый предмет получает бирку прежде, чем отправиться в павильон.. World style: Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "props-yard",
+      "encounter": "yard-cart",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "studio-gate.webp",
+      "sha256": "86d496fea937037ff58e533e7abcdb1a0bed77615ed96646dea1b63b869816ba",
+      "originalSha256": "33a66de1bc3184f413f33ab1123a5389d6957c247c6fd35ac3552f738bcebba4",
+      "originalFile": "exec-5b648c09-b0ab-49c9-9b1b-921fb5fc66cf.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Проходная «Кромки». Visible scenery: Окошко сторожа смотрит на турникет и мокрый двор. Пропуска лежат в деревянной кассе с пронумерованными ячейками.. World style: Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "studio-gate",
+      "encounter": "gate-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "stage-seven.webp",
+      "sha256": "01dbbf27b9038dc8b773af034a8a890a4e963d659337b776bd1fa0be5ef7991b",
+      "originalSha256": "94843f7848147ba5fe29a7c6b5374bf95974ed1f40e49c0f794287a6b517df13",
+      "originalFile": "exec-c8e8d0e4-4a66-4cac-9677-152ea919f9dd.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Седьмой павильон. Visible scenery: Картонные фасады окружают невысокую учебную башню. Над полом висят рабочие лампы, а у стены стоит доска номеров дублей.. World style: Гранов и студия «Кромка» · Silver gelatin film-grain texture and staggered film sprocket holes on charcoal acetate. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "stage-seven",
+      "encounter": "closed-set-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "d5b1f1abb53f1ab3ed314dc425806a3b35b58db168ab0d1a6cb1ec4f9c3eb7d9",
+    "originalSha256": "8cf5a9f0dbb01aeba60b1b3eeac3ea8a28a837a42bdd8c240fdf48978ce54095",
+    "originalFile": "exec-de574505-74fc-4477-88d4-7e1fe19b137c.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Вересковый Порог. Style Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Двор паломников; 0.367,0.177 Нижние Ступени; 0.623,0.15 Подвесная водосборня; 0.88,0.177 Поворачивающийся клуатр; 0.905,0.517 Скрипторий дождевых страниц; 0.648,0.49 Дом чужой весны; 0.392,0.517 Сад непринятых даров; 0.135,0.49 Галерея последней стражи; 0.11,0.83 Корневая часовня. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "ribbon-yard.webp",
+      "sha256": "1377191118b38f93e0db0eba0245c8306752a3849b295ef22f0e298093e73b65",
+      "originalSha256": "1c2da75ed16e02a964a7b884e00e5e342c295918eb65f3e3d51fa0eea190cc4a",
+      "originalFile": "exec-e988a726-3ac5-4bdb-845a-9c4a154385e8.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор обрезков. Visible scenery: Корзины разноцветных тканей и пустых деревянных рам стоят под сетчатым навесом. На каждой корзине крупно нарисовано назначение материала.. World style: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "ribbon-yard",
+      "encounter": "unasked-brushes",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "quarter-shop.webp",
+      "sha256": "ba0b74943e7c21fbb7b1c9c0262b8b3f42f49d810b4d94165942023aea43a278",
+      "originalSha256": "42d6149642395cb280b07bee874ad5edfd028f7a85756fabf6d0ac170017ea1a",
+      "originalFile": "exec-682ce261-028c-4e58-bc25-e8e3970dd2cd.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мастерская Севры Четверть. Visible scenery: По белым шарфам бегут нарисованные рыбы, звери и буквы. Над прилавком висит честная надпись: «Сегодня танцует, завтра чисто». Рядом можно испытать пробный узор.. World style: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "quarter-shop",
+      "encounter": "paper-dandies",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "gust-terrace.webp",
+      "sha256": "79383a307cdaa38b8c89d9ec7ac7b89abfb8cac973419910db0982e649f8886d",
+      "originalSha256": "7d52b7996e8182045ed9acdc895c7e99c149c09f64524140caca650825f03fe2",
+      "originalFile": "exec-f2636489-c147-4a35-93ad-89c672ffe21c.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Терраса косых порывов. Visible scenery: На открытом помосте висят широкие полоски ткани. Двери в волшебные земли иногда выпускают короткий ветер; за защитными ширмами можно сушить отпечатки.. World style: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "gust-terrace",
+      "encounter": "crosswind-curls",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

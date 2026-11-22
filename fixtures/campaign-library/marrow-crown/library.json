@@ -14,35 +14,35 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "d0bcc9ee36ed4c851e0cab0626542a5df625746995ad12932cd3cdefaeebfb4f"
+   "digest": "15e381093c49fdace6031a12152899782b701c93a41323f1b3a5c766d756dc5b"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "581f6d24267ce8501b9d0f9a9177108cf50527b1f0f6f5af3734620b45d2caf8"
+   "digest": "3820832b61021e1ed09bab4ef30c86bdc903b934b977f1b650c24a18162ee3b4"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "944281157d1904806b0cd4a93da3d56e1f11be1a1956d9aecc01e60b0740a428"
+   "digest": "cfdb372311f7b3575ecb3427119529cf4f93d8d51418442efb2b4eb3973e1237"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "afacaf5a56ce6e3c9565442d568eb51786f658fe4d935a811d8d86ea4155c3e8"
+   "digest": "4bada581b6268868b24016d553105d2a9bec2498cca65a68363c7b123fcaf9dc"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "4671bf4d6b139bac6b36da840ded5838e42c302d0d0c6eb473a74c363f0830e5"
+   "digest": "85d69ef4793de36633226c1185ae040799f9229c8a428f243d117af20f395698"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1617,6 +1617,516 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-nest.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/illustrations/cards/travel-kit.webp",
+   "sha256": "1cdec259f689c9f77784441b561e27a83c8bd056e58a34c250e17215446097ce",
+   "originalSha256": "1c5fed6e5d5d2cc69194748a9512235f948510eb43460efc08913440e296c4d1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fedor-nev-travel-kit",
+     "irma-skol-travel-kit",
+     "lada-vey-travel-kit"
+    ],
+    "4-players": [
+     "fedor-nev-travel-kit",
+     "irma-skol-travel-kit",
+     "lada-vey-travel-kit",
+     "nika-torn-travel-kit"
+    ],
+    "5-players": [
+     "fedor-nev-travel-kit",
+     "irma-skol-travel-kit",
+     "lada-vey-travel-kit",
+     "nika-torn-travel-kit",
+     "yar-osok-travel-kit"
+    ],
+    "6-players": [
+     "fedor-nev-travel-kit",
+     "irma-skol-travel-kit",
+     "lada-vey-travel-kit",
+     "nika-torn-travel-kit",
+     "sana-mel-travel-kit",
+     "yar-osok-travel-kit"
+    ],
+    "7-players": [
+     "fedor-nev-travel-kit",
+     "irma-skol-travel-kit",
+     "lada-vey-travel-kit",
+     "nika-torn-travel-kit",
+     "oles-kray-travel-kit",
+     "sana-mel-travel-kit",
+     "yar-osok-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-irma-skol.webp",
+   "sha256": "a4b902d90e99d8d4ad32c6a2f0977b8daa81720b3d22575225c5ede7b9a35044",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ирма Скол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "irma-skol"
+    ],
+    "4-players": [
+     "irma-skol"
+    ],
+    "5-players": [
+     "irma-skol"
+    ],
+    "6-players": [
+     "irma-skol"
+    ],
+    "7-players": [
+     "irma-skol"
+    ]
+   },
+   "file": "irma-skol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "irma-skol.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-fedor-nev.webp",
+   "sha256": "988112efaae052efb05fe47d817dfc9ebf137f3dc201c50f6eb1bbb6bb3ffa46",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Федор Нев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fedor-nev"
+    ],
+    "4-players": [
+     "fedor-nev"
+    ],
+    "5-players": [
+     "fedor-nev"
+    ],
+    "6-players": [
+     "fedor-nev"
+    ],
+    "7-players": [
+     "fedor-nev"
+    ]
+   },
+   "file": "fedor-nev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fedor-nev.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-lada-vey.webp",
+   "sha256": "8ac6802761c2308d6ca05b79a11c1e839fd936ea9c24d377c92840c68c1a1f3a",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Янина Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-vey"
+    ],
+    "4-players": [
+     "lada-vey"
+    ],
+    "5-players": [
+     "lada-vey"
+    ],
+    "6-players": [
+     "lada-vey"
+    ],
+    "7-players": [
+     "lada-vey"
+    ]
+   },
+   "file": "lada-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lada-vey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-nika-torn.webp",
+   "sha256": "716b26c7d47e9149489b81846fb7c7785594ccc42200a08eb8f240161207453b",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ксана Торн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nika-torn"
+    ],
+    "5-players": [
+     "nika-torn"
+    ],
+    "6-players": [
+     "nika-torn"
+    ],
+    "7-players": [
+     "nika-torn"
+    ]
+   },
+   "file": "nika-torn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nika-torn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-yar-osok.webp",
+   "sha256": "8d8d03a1ed92b9b94315ae2ea36e48819a89697d619c746b9cf267b50dcbd528",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яр Осок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "yar-osok"
+    ],
+    "6-players": [
+     "yar-osok"
+    ],
+    "7-players": [
+     "yar-osok"
+    ]
+   },
+   "file": "yar-osok--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yar-osok.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-sana-mel.webp",
+   "sha256": "324b07c2e5c17e5deb05eb7b604a2680db2ac885d10c7e226959d3bcffe5b457",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Мель",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "sana-mel"
+    ],
+    "7-players": [
+     "sana-mel"
+    ]
+   },
+   "file": "sana-mel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sana-mel.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/heroes-oles-kray.webp",
+   "sha256": "1a70576bd042fbfeee3e8c8f6344c76d2a6bc802ff96c180778f400eb6d8bfcd",
+   "originalSha256": "f2b38650d759d004c736aed9e2794f01531adebf8af3827231fc4dbf9861af2f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олесь Край",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "oles-kray"
+    ]
+   },
+   "file": "oles-kray--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oles-kray.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-dara-vey.webp",
+   "sha256": "8bfae013fa7fceceb337357abfca61036e9bf8c942b7e86073808adee2299e28",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dara-vey"
+    ],
+    "4-players": [
+     "dara-vey"
+    ],
+    "5-players": [
+     "dara-vey"
+    ],
+    "6-players": [
+     "dara-vey"
+    ],
+    "7-players": [
+     "dara-vey"
+    ]
+   },
+   "file": "dara-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dara-vey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-osvin-glod.webp",
+   "sha256": "c6a65732226b03cd1ac89c2806143ccedc9418b843a84653bf1ca68cbc4a9b11",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Освин Глод",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "osvin-glod"
+    ],
+    "4-players": [
+     "osvin-glod"
+    ],
+    "5-players": [
+     "osvin-glod"
+    ],
+    "6-players": [
+     "osvin-glod"
+    ],
+    "7-players": [
+     "osvin-glod"
+    ]
+   },
+   "file": "osvin-glod--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "osvin-glod.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-ista-ruchey.webp",
+   "sha256": "631de2ba792b163e9ad6d2421606b89e09014dda87f3de1e5b1af79e37d913f3",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иста Ручей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ista-ruchey"
+    ],
+    "4-players": [
+     "ista-ruchey"
+    ],
+    "5-players": [
+     "ista-ruchey"
+    ],
+    "6-players": [
+     "ista-ruchey"
+    ],
+    "7-players": [
+     "ista-ruchey"
+    ]
+   },
+   "file": "ista-ruchey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ista-ruchey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-mark-lnik.webp",
+   "sha256": "37200678363e9c42ee0325a57c5aca100c925e4be2e2426713e548698cf4cb29",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Льник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-lnik"
+    ],
+    "4-players": [
+     "mark-lnik"
+    ],
+    "5-players": [
+     "mark-lnik"
+    ],
+    "6-players": [
+     "mark-lnik"
+    ],
+    "7-players": [
+     "mark-lnik"
+    ]
+   },
+   "file": "mark-lnik--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mark-lnik.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-tikhon-kern.webp",
+   "sha256": "8d0250d1169583b78184caafb81358af1bdf9af708d6f528291c67a813700d84",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихон Керн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tikhon-kern"
+    ],
+    "4-players": [
+     "tikhon-kern"
+    ],
+    "5-players": [
+     "tikhon-kern"
+    ],
+    "6-players": [
+     "tikhon-kern"
+    ],
+    "7-players": [
+     "tikhon-kern"
+    ]
+   },
+   "file": "tikhon-kern--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tikhon-kern.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-runa-ast.webp",
+   "sha256": "3b5d6cfe4cb829e3d13d5e96f878be75500c2868bdc5e92a95351832ac811625",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Устина Аст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runa-ast"
+    ],
+    "4-players": [
+     "runa-ast"
+    ],
+    "5-players": [
+     "runa-ast"
+    ],
+    "6-players": [
+     "runa-ast"
+    ],
+    "7-players": [
+     "runa-ast"
+    ]
+   },
+   "file": "runa-ast--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runa-ast.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-erna-vey.webp",
+   "sha256": "8f240ea9ee04a352b2b5cfc04ef05026e6a0ef099612e3501c8cf617976e63d7",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эрна Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "erna-vey"
+    ],
+    "4-players": [
+     "erna-vey"
+    ],
+    "5-players": [
+     "erna-vey"
+    ],
+    "6-players": [
+     "erna-vey"
+    ],
+    "7-players": [
+     "erna-vey"
+    ]
+   },
+   "file": "erna-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "erna-vey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-veda-sot.webp",
+   "sha256": "27030ef44fd59e41385310271b902cfc365f01f6c39a0acad85dbe7d4ee284c7",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веда Соть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veda-sot"
+    ],
+    "4-players": [
+     "veda-sot"
+    ],
+    "5-players": [
+     "veda-sot"
+    ],
+    "6-players": [
+     "veda-sot"
+    ],
+    "7-players": [
+     "veda-sot"
+    ]
+   },
+   "file": "veda-sot--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "veda-sot.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/table/npcs-stas-rebets.webp",
+   "sha256": "9209da1a0bd92e877ff95baaa8cf5c7e0d5a7be5ef254ce141a429c6bd92cb49",
+   "originalSha256": "8222ff758fd82a178a992e98c5134412fe57f44c4694b731b9829b9a9f7cd0e6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стась Ребец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stas-rebets"
+    ],
+    "4-players": [
+     "stas-rebets"
+    ],
+    "5-players": [
+     "stas-rebets"
+    ],
+    "6-players": [
+     "stas-rebets"
+    ],
+    "7-players": [
+     "stas-rebets"
+    ]
+   },
+   "file": "stas-rebets--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "stas-rebets.webp"
   },
   {
    "file": "hanging-teeth--map.webp",

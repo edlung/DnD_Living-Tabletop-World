@@ -1,0 +1,688 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "moth-court-places-0",
+      "originalFile": "exec-098458b3-eb48-4b6b-9241-069fa1b512e0.png",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Cell 1. Дом поротых швов. Мастерская с длинным столом, печкой и окном, закрытым лоскутами; здесь чинят одежду тех, кому неудобно идти в большой магазин.\nCell 2. Кружевные ворота. Въезд во дворец разделён на проход гостей и дорожку тележек. Над обеими арками висят одинаковые медные колокольчики.\nCell 3. Мойка белого шёлка. Тёплое помещение с выжимными валами, корзинами и широкой платформой подъемника. На стене сохнут рабочие фартуки.\nCell 4. Зеркальная галерея. Узкий зал с зеркалами в дымчатых рамах; между ними стоят небольшие примерочные с занавесями из чёрного газа.\nCell 5. Зал последнего вылета. Светлые мотыльки кружат над закрытыми лампами. Гости в масках выбирают между танцевальной площадкой и столиками у стен.\nCell 6. Колодец гирь. В каменном дворе стоят грузовые весы и ограждённый колодец старого подъемника. Вниз вдоль его стены уходит служебная лестница.\nCell 7. Изнаночная. Комната ухода за дорогими праздничными вещами, с мягкими рабочими столами, латунными стойками и дверьми для грузовых тележек.\nCell 8. Ночная оранжерея. Под чёрными стёклами растут бесцветные цитрусы; по широким плитам между кадками легко катить тележку.\nCell 9. Каретный двор. Площадка между конюшней и воротами на боковую улицу. У стены ждут ручные повозки, крытая карета и пустые транспортные ящики.\nCell 10. Тихие бани. Небольшая закрытая купальня с отдельными кабинками, чистыми тканями и тихим двором. Здесь можно встретиться без толпы зрителей.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "moth-court-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c6dcfbd7-1895-4af2-bf8a-06a86136cd63.png",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Cell 1. Агния Вет. Короткие седые виски, тёмный праздничный сюртук и аккуратно починенные перчатки.\nCell 2. Борей Нить. Пальцы в следах синей краски, мягкие сапоги и жилет с разными пуговицами.\nCell 3. Сава Рем. Тёплый серый плащ, потёртый дорожный символ и спокойный голос без торжественности.\nCell 4. Лета Ольс. Квадратные очки в роговой оправе, светлая коса и карманный блокнот с пятнами воска.\nCell 5. Фадей Кел. Широкий пояс, аккуратные усы и парадные туфли, явно надетые впервые за несколько лет.\nCell 6. Мирра Сток. Зелёный шейный платок, гладко зачёсанные волосы и нитяной браслет с маленькими узелками.\nCell 7. Юст Верн. Тёмная кожа, серебряные серьги и потрёпанная сумка с чашкой, полотенцем и запасными рукавицами.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/agnia-vet.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/borey-nit.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/sava-rem.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/leta-ols.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/fadey-kel.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/mirra-stok.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/yust-vern.webp"
+      ]
+    },
+    {
+      "id": "moth-court-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-a33906ef-2d8f-4579-97f2-3657e0b6c11d.png",
+      "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Cell 1. Взрослый дворцовый сторож. Совершеннолетние наёмные сторожа в белых рабочих перчатках и одинаковых коротких плащах. Они защищают проход, не являются сверхъестественными копиями.\nCell 2. Взрослый хранитель прохода. Совершеннолетние служащие внутренней охраны с простыми масками и короткими охранными жезлами. Сейр и Корд не добавляются как неописанные боевые противники.\nCell 3. Взрослый сторож каретного двора. Совершеннолетние дворцовые наёмники в дождевых плащах, с фонарями и короткими дубинками. Лошади и повозки не являются отдельными боевыми единицами.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "moth-court-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c3f1c190-1353-4f5e-91c8-16a96bd404eb.png",
+      "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Двор мотыльковых масок. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Эда Рук. Плотная тёмная вуаль, дорожный костюм и ладони, испачканные меловой пылью.\nCell 2. Велена Сейр. Высокая дама в платье цвета старого янтаря; на левой перчатке два ряда серебряных пуговиц.\nCell 3. Орт Дагрен. Человек с выбритой головой, широкими рукавами и маленьким медным жетоном на цепочке.\nCell 4. Демра Шов. Крупная женщина в белом фартуке, с медной меркой на шее и коротко остриженными ногтями.\nCell 5. Нера Таль. Строгий жилет, плотная дымчатая маска и связка мерных лент вместо украшений.",
+      "references": [
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/eda-ruk.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/velena-seyr.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/ort-dagren.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/demra-shov.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/nera-tal.webp"
+      ]
+    },
+    {
+      "id": "moth-court-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-0ac39794-20a1-4134-a70b-02046028226d.png",
+      "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Двор мотыльковых масок. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Радий Олов. Сутулый мужчина с весовыми гирьками в поясе и квадратным фонарём из слюды.\nCell 2. Тея Морг. Синяя накидка, обычная кружевная полумаска и стеклянные флаконы на широком браслете.\nCell 3. Ивар Соль. Пожилой человек в чистом полотняном халате, с мягкой кистью за ухом.\nCell 4. Улла Жем. Шерстяная куртка поверх праздничной рубашки, короткие волосы и широкополая промокшая шляпа.\nCell 5. Корд Лисс. Узкий чёрный сюртук, светлая праздничная маска и чистые хлопковые перчатки.",
+      "references": [
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/radiy-olov.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/teya-morg.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/ivar-sol.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/ulla-zhem.webp",
+        "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/kord-liss.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "seam-house",
+      "title": "Дом поротых швов",
+      "kind": "place",
+      "subjects": [
+        "seam-house"
+      ],
+      "file": "places-seam-house.webp",
+      "sha256": "adfb6ee14bb22009e45f3abe4a6bc49de801895a549799c05d11fea79a0c0c9e",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "palace-gate",
+      "title": "Кружевные ворота",
+      "kind": "place",
+      "subjects": [
+        "palace-gate"
+      ],
+      "file": "places-palace-gate.webp",
+      "sha256": "55904f46fa4f232f06f4cb1c20d3f87e00374e6b47b281a0239541fff31376b0",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "wash-house",
+      "title": "Мойка белого шёлка",
+      "kind": "place",
+      "subjects": [
+        "wash-house"
+      ],
+      "file": "places-wash-house.webp",
+      "sha256": "69565c6e3e03c96be3531dc137e14ad6476b83a167027254dbe9501fccb5ec3f",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "mirror-gallery",
+      "title": "Зеркальная галерея",
+      "kind": "place",
+      "subjects": [
+        "mirror-gallery"
+      ],
+      "file": "places-mirror-gallery.webp",
+      "sha256": "5234056d0a6dd955d97991a2955315f03e2bcae80761049f605f966fc80c6eaf",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "moth-ballroom",
+      "title": "Зал последнего вылета",
+      "kind": "place",
+      "subjects": [
+        "moth-ballroom"
+      ],
+      "file": "places-moth-ballroom.webp",
+      "sha256": "a63a6c98d2f1aad642629b69da69596a352d59d2fef26113cc91a32f0453f0b6",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "counterweight-well",
+      "title": "Колодец гирь",
+      "kind": "place",
+      "subjects": [
+        "counterweight-well"
+      ],
+      "file": "places-counterweight-well.webp",
+      "sha256": "1bb53542832f648653328b82b53c8b48e1db87cb09b22c4845fb2a743039779f",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "reverse-room",
+      "title": "Изнаночная",
+      "kind": "place",
+      "subjects": [
+        "reverse-room"
+      ],
+      "file": "places-reverse-room.webp",
+      "sha256": "a834167e8ba6bc402b64b56ca85a8f689e1219bf569aea689b1e16611479b227",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "night-orangery",
+      "title": "Ночная оранжерея",
+      "kind": "place",
+      "subjects": [
+        "night-orangery"
+      ],
+      "file": "places-night-orangery.webp",
+      "sha256": "5096d585a56aa3471eccc52fe915a0549aa5502ec7999926366e594bab1914fe",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "coach-yard",
+      "title": "Каретный двор",
+      "kind": "place",
+      "subjects": [
+        "coach-yard"
+      ],
+      "file": "places-coach-yard.webp",
+      "sha256": "a706a470e0fa87f1dc671c04be41481786c044eab8e4580b80333b546d8d5827",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "quiet-baths",
+      "title": "Тихие бани",
+      "kind": "place",
+      "subjects": [
+        "quiet-baths"
+      ],
+      "file": "places-quiet-baths.webp",
+      "sha256": "ec8ea3ac888e78390d5e1c6e9c6cde6288daffc5a41725db47c44df9c0c083fe",
+      "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "agnia-vet",
+      "title": "Агния Вет",
+      "kind": "hero",
+      "subjects": [
+        "agnia-vet"
+      ],
+      "file": "heroes-agnia-vet.webp",
+      "sha256": "df0a395ec0f32fcea5df858edb5af9a1fd8fa15ca0764de69ca754c44b6789ad",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 7,
+        "width": 205,
+        "height": 425
+      }
+    },
+    {
+      "key": "borey-nit",
+      "title": "Борей Нить",
+      "kind": "hero",
+      "subjects": [
+        "borey-nit"
+      ],
+      "file": "heroes-borey-nit.webp",
+      "sha256": "3a4cdac826794a17fe47a9ec7613aab6e8fcf00ca6c3f453e06b7da31b0292ed",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 560,
+        "top": 6,
+        "width": 203,
+        "height": 426
+      }
+    },
+    {
+      "key": "sava-rem",
+      "title": "Сава Рем",
+      "kind": "hero",
+      "subjects": [
+        "sava-rem"
+      ],
+      "file": "heroes-sava-rem.webp",
+      "sha256": "5f38e58d88d717d61ec306558836ec895dbfbe0efe3e34521ea118a50749a802",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 987,
+        "top": 7,
+        "width": 231,
+        "height": 425
+      }
+    },
+    {
+      "key": "leta-ols",
+      "title": "Лета Ольс",
+      "kind": "hero",
+      "subjects": [
+        "leta-ols"
+      ],
+      "file": "heroes-leta-ols.webp",
+      "sha256": "85dd386244d941bbee484affd6f035d0dee69b00bc9e45cca677f31c87b24e3f",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1438,
+        "top": 8,
+        "width": 209,
+        "height": 424
+      }
+    },
+    {
+      "key": "fadey-kel",
+      "title": "Фадей Кел",
+      "kind": "hero",
+      "subjects": [
+        "fadey-kel"
+      ],
+      "file": "heroes-fadey-kel.webp",
+      "sha256": "cdf9933309fdd397d779e6980049af0a1c2e5e036635693951c96b2759393f75",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 125,
+        "top": 444,
+        "width": 208,
+        "height": 431
+      }
+    },
+    {
+      "key": "mirra-stok",
+      "title": "Мирра Сток",
+      "kind": "hero",
+      "subjects": [
+        "mirra-stok"
+      ],
+      "file": "heroes-mirra-stok.webp",
+      "sha256": "ad966f3fcc476bc10df90c5fad6fd21af440f1afa02ac951385e9e82ba1df846",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 563,
+        "top": 445,
+        "width": 204,
+        "height": 430
+      }
+    },
+    {
+      "key": "yust-vern",
+      "title": "Юст Верн",
+      "kind": "hero",
+      "subjects": [
+        "yust-vern"
+      ],
+      "file": "heroes-yust-vern.webp",
+      "sha256": "c7edf4525584f8775f4f939823525b60cd45a32516d5c7b5efbdd51e5f08a551",
+      "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 987,
+        "top": 444,
+        "width": 221,
+        "height": 431
+      }
+    },
+    {
+      "key": "foe-a27249a2a2",
+      "title": "Взрослый дворцовый сторож",
+      "kind": "foe",
+      "subjects": [
+        "wash-wardens-foe-1",
+        "wash-wardens-foe-2",
+        "wash-wardens-foe-3",
+        "wash-wardens-foe-4",
+        "wash-wardens-foe-5"
+      ],
+      "file": "foes-foe-a27249a2a2.webp",
+      "sha256": "02c47a8f3ee22536f67d692d4beff68956ddf77e61162ab11bac9b8788083585",
+      "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 197,
+        "top": 18,
+        "width": 324,
+        "height": 689
+      }
+    },
+    {
+      "key": "foe-b6fd8deda8",
+      "title": "Взрослый хранитель прохода",
+      "kind": "foe",
+      "subjects": [
+        "cabinet-guard-foe-1",
+        "cabinet-guard-foe-2",
+        "cabinet-guard-foe-3",
+        "cabinet-guard-foe-4",
+        "cabinet-guard-foe-5"
+      ],
+      "file": "foes-foe-b6fd8deda8.webp",
+      "sha256": "beb2c37e5b21985377925aa2e6a17648c98cc82c2995ad635946d3b6fe9d7029",
+      "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 913,
+        "top": 23,
+        "width": 331,
+        "height": 684
+      }
+    },
+    {
+      "key": "foe-4d5a4cb442",
+      "title": "Взрослый сторож каретного двора",
+      "kind": "foe",
+      "subjects": [
+        "yard-interception-foe-1",
+        "yard-interception-foe-2",
+        "yard-interception-foe-3",
+        "yard-interception-foe-4",
+        "yard-interception-foe-5"
+      ],
+      "file": "foes-foe-4d5a4cb442.webp",
+      "sha256": "a95051224748310a0785ac6563c1c964f2afbd4bb4da8ea3d12e181fb695c313",
+      "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1602,
+        "top": 19,
+        "width": 375,
+        "height": 688
+      }
+    },
+    {
+      "key": "eda-ruk",
+      "title": "Эда Рук",
+      "kind": "npc",
+      "subjects": [
+        "eda-ruk"
+      ],
+      "file": "npcs-eda-ruk.webp",
+      "sha256": "648f4143fca0b971159260a00e7bf6f7732ef4821f46d584208ca2bfeff1624b",
+      "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 137,
+        "top": 20,
+        "width": 251,
+        "height": 475
+      }
+    },
+    {
+      "key": "velena-seyr",
+      "title": "Велена Сейр",
+      "kind": "npc",
+      "subjects": [
+        "velena-seyr"
+      ],
+      "file": "npcs-velena-seyr.webp",
+      "sha256": "41da3b1b2121e4b1f183223cf1108569018477cc09d319d9a44f0df0751436e5",
+      "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 622,
+        "top": 18,
+        "width": 289,
+        "height": 476
+      }
+    },
+    {
+      "key": "ort-dagren",
+      "title": "Орт Дагрен",
+      "kind": "npc",
+      "subjects": [
+        "ort-dagren"
+      ],
+      "file": "npcs-ort-dagren.webp",
+      "sha256": "6986807e42314d70df2127857c24861718d2075f0609daab294b8f4ddaf588d3",
+      "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1139,
+        "top": 22,
+        "width": 300,
+        "height": 473
+      }
+    },
+    {
+      "key": "demra-shov",
+      "title": "Демра Шов",
+      "kind": "npc",
+      "subjects": [
+        "demra-shov"
+      ],
+      "file": "npcs-demra-shov.webp",
+      "sha256": "77a012b4b337e297b24a02e77b7f4acb26571a6d44c6e0c7590edc9b8b772ca1",
+      "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 133,
+        "top": 530,
+        "width": 273,
+        "height": 481
+      }
+    },
+    {
+      "key": "nera-tal",
+      "title": "Нера Таль",
+      "kind": "npc",
+      "subjects": [
+        "nera-tal"
+      ],
+      "file": "npcs-nera-tal.webp",
+      "sha256": "8a48cb2c79ab93b123e08f9d308043640b1e36f892c6d5b2725f6c8b47d1ce41",
+      "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 639,
+        "top": 528,
+        "width": 274,
+        "height": 482
+      }
+    },
+    {
+      "key": "radiy-olov",
+      "title": "Радий Олов",
+      "kind": "npc",
+      "subjects": [
+        "radiy-olov"
+      ],
+      "file": "npcs-radiy-olov.webp",
+      "sha256": "43a98df1e8b09c597ae3f521c831880e1b9d923890c09c6e419f83df6096d5c7",
+      "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 116,
+        "top": 15,
+        "width": 272,
+        "height": 484
+      }
+    },
+    {
+      "key": "teya-morg",
+      "title": "Тея Морг",
+      "kind": "npc",
+      "subjects": [
+        "teya-morg"
+      ],
+      "file": "npcs-teya-morg.webp",
+      "sha256": "ac80930e7456b94f09d0c7420348db9c58af6e760e379d8820a58bc734867126",
+      "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 618,
+        "top": 15,
+        "width": 285,
+        "height": 485
+      }
+    },
+    {
+      "key": "ivar-sol",
+      "title": "Ивар Соль",
+      "kind": "npc",
+      "subjects": [
+        "ivar-sol"
+      ],
+      "file": "npcs-ivar-sol.webp",
+      "sha256": "47c01bc42440626670d2ab008fc5906e6a73369ded1cffa71dd7cf1530038d57",
+      "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1143,
+        "top": 10,
+        "width": 287,
+        "height": 490
+      }
+    },
+    {
+      "key": "ulla-zhem",
+      "title": "Улла Жем",
+      "kind": "npc",
+      "subjects": [
+        "ulla-zhem"
+      ],
+      "file": "npcs-ulla-zhem.webp",
+      "sha256": "af86f0a794a142097a50767a6804187e0662e45009ad2437149c988a89878423",
+      "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 122,
+        "top": 524,
+        "width": 316,
+        "height": 492
+      }
+    },
+    {
+      "key": "kord-liss",
+      "title": "Корд Лисс",
+      "kind": "npc",
+      "subjects": [
+        "kord-liss"
+      ],
+      "file": "npcs-kord-liss.webp",
+      "sha256": "b6771917085a0f081bf7e6cd5acff87d1e22c923c0c0db9a41e7d132d317547d",
+      "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+      "generated": "2026-11-22",
+      "sheet": "moth-court-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 640,
+        "top": 521,
+        "width": 257,
+        "height": 494
+      }
+    }
+  ]
+}

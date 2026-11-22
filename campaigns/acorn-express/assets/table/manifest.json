@@ -1,0 +1,302 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "acorn-express-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-ef13b0c6-ae0b-4ec0-9df7-09b951c22808.png",
+      "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+      "columns": 4,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Янтарный лес · Acorn caps alternating with narrow railway sleepers, carved honey-oak marquetry. Cell 1. Борис Камнелист. Крепкий дварф с тёмными кудрями, короткой заплетённой бородой, рыжим рабочим пальто и зелёным шарфом. На деревянном щите нарисован лист.\nCell 2. Ника Вереск. Кудрявая полурослик с внимательными глазами, короткой красной курткой, почтовой сумкой и набором тонких инструментов. Рапира спокойно лежит в ножнах.\nCell 3. Яра Медуница. Путешественница с каштановой косой, зелёным пальто, льняной одеждой, сумкой трав и гладким посохом. На чашке в её руке виден красивый починенный шов.\nCell 4. Орен Искрин. Веснушчатый эльф с медными волосами, круглыми очками, зелёным дождевиком и красными носками. На посохе висит стеклянная капля.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/acorn-express/assets/runtime/boris.webp",
+        "campaigns/acorn-express/assets/runtime/nika.webp",
+        "campaigns/acorn-express/assets/runtime/yara.webp",
+        "campaigns/acorn-express/assets/runtime/oren.webp"
+      ]
+    },
+    {
+      "id": "acorn-express-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-7d7d2c8c-44c1-47b4-bc26-5200448c8e20.png",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Экспресс «Тысяча Желудей». Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Марфа Шов. Пожилая проводница с серебряным пучком, сливовым форменным пальто и блестящими билетными щипцами.\nCell 2. Ри, курьер ночной смены. Стройная куница с кремовым пятном на груди, рыжим шарфом и зелёной почтовой сумкой; одна лапа чуть пахнет вареньем.\nCell 3. Тош. Маленький четвероногий зверёк из тёплой коры и зелёного мха. На животе светится янтарное пятно, на веточках-рожках растут свежие листья.\nCell 4. Доктор Ива Рябина. Пожилая эльфийка с серебряной косой, очками, льняным фартуком поверх зелёного платья и красным карандашом за ухом.\nCell 5. Адриан Вельт. Усталый мужчина с серебром в тёмных волосах, короткими усами, дорогим бирюзовым пальто и простым шерстяным шарфом.\nCell 6. Бабушка Морошка. Пожилая кротиха в вязаном кардигане, кремовом фартуке и янтарных очках. На шляпе спокойно сидят две пчелы.\nCell 7. Капель. Выдра-мастер с закатанными рукавами, красным рабочим комбинезоном, измерительным шнуром и веслом в лапе.\nCell 8. Соль. Зелёный кузнечик-скрипач в тёмно-красном жилете и кремовом платке. Скрипка сделана из гладкой семенной коробочки.\nCell 9. Берест. Огромный олень-лесовик из коры, земли и мха. На спине растёт роща, а в глубине древесных глаз отражается утренний свет.",
+      "references": [
+        "campaigns/acorn-express/assets/runtime/marfa.webp",
+        "campaigns/acorn-express/assets/runtime/ri.webp",
+        "campaigns/acorn-express/assets/runtime/tosh.webp",
+        "campaigns/acorn-express/assets/runtime/iva.webp",
+        "campaigns/acorn-express/assets/runtime/velt.webp",
+        "campaigns/acorn-express/assets/runtime/moroshka.webp",
+        "campaigns/acorn-express/assets/runtime/kapel.webp",
+        "campaigns/acorn-express/assets/runtime/sol.webp",
+        "campaigns/acorn-express/assets/runtime/valley.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "boris",
+      "title": "Борис Камнелист",
+      "kind": "hero",
+      "subjects": [
+        "boris"
+      ],
+      "file": "heroes-boris.webp",
+      "sha256": "179b0256c826f2d88498fd50be676b3e96585055744a6f00821d4e92a4d7c2ef",
+      "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 98,
+        "top": 43,
+        "width": 366,
+        "height": 633
+      }
+    },
+    {
+      "key": "nika",
+      "title": "Ника Вереск",
+      "kind": "hero",
+      "subjects": [
+        "nika"
+      ],
+      "file": "heroes-nika.webp",
+      "sha256": "f87945d83a3bbf9b899c14f5f56f9c8f3cff8e61b4841159140f8468af409334",
+      "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 635,
+        "top": 46,
+        "width": 345,
+        "height": 630
+      }
+    },
+    {
+      "key": "yara",
+      "title": "Яра Медуница",
+      "kind": "hero",
+      "subjects": [
+        "yara"
+      ],
+      "file": "heroes-yara.webp",
+      "sha256": "6223e712b949293aca7f5129ad2bcfdea946a359d77529a6c175d918d7cd818a",
+      "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1183,
+        "top": 33,
+        "width": 340,
+        "height": 643
+      }
+    },
+    {
+      "key": "oren",
+      "title": "Орен Искрин",
+      "kind": "hero",
+      "subjects": [
+        "oren"
+      ],
+      "file": "heroes-oren.webp",
+      "sha256": "9bcf90f2a6cee4f7fd710300a4157bcec2325205e3bdb2be8a3d7c0da683dbf8",
+      "originalSha256": "cca41335ea8bea83f8cd4b908b668b84a3aacf1d5209726e197500eef28495a5",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1724,
+        "top": 27,
+        "width": 348,
+        "height": 649
+      }
+    },
+    {
+      "key": "marfa",
+      "title": "Марфа Шов",
+      "kind": "npc",
+      "subjects": [
+        "marfa"
+      ],
+      "file": "npcs-marfa.webp",
+      "sha256": "c57ac16597a5c11b11176d7e95b4ee9cd0dec3ee63742f9a020aa30e9f5871c2",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 105,
+        "top": 13,
+        "width": 217,
+        "height": 361
+      }
+    },
+    {
+      "key": "ri",
+      "title": "Ри, курьер ночной смены",
+      "kind": "npc",
+      "subjects": [
+        "ri"
+      ],
+      "file": "npcs-ri.webp",
+      "sha256": "5b96d94cde48d3a8582c29aae5828556794e31e0afcec360001fdd5c0974c5cf",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 506,
+        "top": 17,
+        "width": 251,
+        "height": 357
+      }
+    },
+    {
+      "key": "tosh",
+      "title": "Тош",
+      "kind": "npc",
+      "subjects": [
+        "tosh"
+      ],
+      "file": "npcs-tosh.webp",
+      "sha256": "185bf58c00cd06d62f86c95f3913c7e8ce748cd78a7654b220d84eb05aca20eb",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 920,
+        "top": 8,
+        "width": 285,
+        "height": 366
+      }
+    },
+    {
+      "key": "iva",
+      "title": "Доктор Ива Рябина",
+      "kind": "npc",
+      "subjects": [
+        "iva"
+      ],
+      "file": "npcs-iva.webp",
+      "sha256": "bb1190c3495e9ee812d045df1408a7927b0df9d88ea96f06382cd578466ef0b5",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 92,
+        "top": 395,
+        "width": 247,
+        "height": 397
+      }
+    },
+    {
+      "key": "velt",
+      "title": "Адриан Вельт",
+      "kind": "npc",
+      "subjects": [
+        "velt"
+      ],
+      "file": "npcs-velt.webp",
+      "sha256": "14c28944db2516caaab120e6208420f11074d7e432ae976ac753a4564de279db",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 509,
+        "top": 392,
+        "width": 230,
+        "height": 398
+      }
+    },
+    {
+      "key": "moroshka",
+      "title": "Бабушка Морошка",
+      "kind": "npc",
+      "subjects": [
+        "moroshka"
+      ],
+      "file": "npcs-moroshka.webp",
+      "sha256": "8e9cd7d41a26810c51a0ab77b0b2b8df2c70ddf40dc920ecbe81bdcfbd211514",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 922,
+        "top": 404,
+        "width": 270,
+        "height": 389
+      }
+    },
+    {
+      "key": "kapel",
+      "title": "Капель",
+      "kind": "npc",
+      "subjects": [
+        "kapel"
+      ],
+      "file": "npcs-kapel.webp",
+      "sha256": "e060853c80b073c124a2a2fd81189ef757f91ca44812eac3c1380c6b0cfc467f",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 86,
+        "top": 822,
+        "width": 272,
+        "height": 383
+      }
+    },
+    {
+      "key": "sol",
+      "title": "Соль",
+      "kind": "npc",
+      "subjects": [
+        "sol"
+      ],
+      "file": "npcs-sol.webp",
+      "sha256": "eb59f9641de57811198c40afd44969e2be016a42fcce888496bc4e9eb3bc49b4",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 486,
+        "top": 813,
+        "width": 268,
+        "height": 390
+      }
+    },
+    {
+      "key": "berest",
+      "title": "Берест",
+      "kind": "npc",
+      "subjects": [
+        "berest"
+      ],
+      "file": "npcs-berest.webp",
+      "sha256": "45b0d6960c457520794d10a4ce2829282cc8978ceabbf4e98fe65196f8111df7",
+      "originalSha256": "b44eae6a5014bce0b925ec98030d765fe61f56bc2624030ba8739cb0c3bca572",
+      "generated": "2026-11-22",
+      "sheet": "acorn-express-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 820,
+        "width": 384,
+        "height": 379
+      }
+    }
+  ]
+}

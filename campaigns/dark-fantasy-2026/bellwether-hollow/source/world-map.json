@@ -1,0 +1,124 @@
+{
+  "region": "quiet-copper-hollow",
+  "name": "Карта · Лощина Тихой Меди",
+  "description": "План местности «Лощина Тихой Меди». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "village-square",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "bell-house",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "flooded-mill",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "orchard-path",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "shepherd-shelter",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "mirror-ford",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "copper-quarry",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "last-belfry",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "stone-throat",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [
+    {
+      "from": "village-square",
+      "to": "bell-house",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "bell-house",
+      "to": "flooded-mill",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "flooded-mill",
+      "to": "mirror-ford",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "mirror-ford",
+      "to": "copper-quarry",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "copper-quarry",
+      "to": "stone-throat",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "village-square",
+      "to": "orchard-path",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "orchard-path",
+      "to": "shepherd-shelter",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "shepherd-shelter",
+      "to": "last-belfry",
+      "miles": 3,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "last-belfry",
+      "to": "stone-throat",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "shepherd-shelter",
+      "to": "mirror-ford",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    }
+  ]
+}

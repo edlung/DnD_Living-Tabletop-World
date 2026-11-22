@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "88ead7199798a7f2830e5d3a7b10340c79e7445274000be36696c62da6f31bc7",
+    "originalSha256": "09b88dbae6b70a3dbe01bd4fadc59647c85d70ee8861638c2b39387db6e622b2",
+    "originalFile": "exec-f2541406-057a-4a78-9314-854f24f6e79f.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Аш-Кер над пределом Ирд. Style Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Лагерь у последней ступени; 0.367,0.177 Шлаковый пролёт; 0.623,0.15 Слепая пасть; 0.88,0.177 Колодец свидетеля; 0.905,0.517 Галерея возврата; 0.648,0.49 Двор печатей; 0.392,0.517 Мёртвый угол; 0.135,0.49 Наковальня без полудня; 0.11,0.83 Безлучный зев; 0.367,0.857 Зал незамкнутого порога. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

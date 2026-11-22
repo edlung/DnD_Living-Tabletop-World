@@ -9,6 +9,7 @@ import { encounterFoes, buildEncounters } from './encounters.ts';
 import { verifySource } from './editorial.ts';
 import { heroSheet } from './sheets.ts';
 import type { Source } from './source.ts';
+import { aftermathNotes } from '../campaign-shared/aftermath-notes.ts';
 import { buildQuests } from '../campaign-shared/quests.ts';
 
 const placed = (
@@ -121,6 +122,7 @@ export function buildPackage(s: Source, size = s.world.defaultPlayers): Campaign
       },
       record(`${n.key}-direction`, { kind: 'DM' }, `${n.want} ${n.boundary} ${n.reveal}`, [n.key]),
     ]),
+    ...aftermathNotes(s.sessions),
     ...w.endings.flatMap((e, i) => [
       record(`ending-${i + 1}-condition`, { kind: 'DM' }, `${e.title}. Условия: ${e.requires}`),
       record(`ending-${i + 1}-outcome`, { kind: 'DM' }, `${e.outcome} Цена: ${e.cost}`),

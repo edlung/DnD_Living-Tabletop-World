@@ -1,0 +1,712 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "dungeon-sanctuary-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-1f50af89-4c9c-43da-9a7f-3fa705de75f0.png",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Cell 1. Дара Каменная Лента. Коренастая полурослица в жилете с карманами для мелков; на поясе мягкая мерная лента, на щите нарисована открытая ладонь.\nCell 2. Ильмар Тихий Шаг. Высокий человек с серебряной прядью, мягкими башмаками и коробочкой деревянных клиньев. Застёгивает плащ сбоку, чтобы пряжка не стучала о стол.\nCell 3. Сана Медная Кружка. Орчиха с коротко заплетёнными волосами, дорожной кружкой и льняным передником поверх доспеха. Её знак веры изображает свободное место у огня.\nCell 4. Эста Листок. Юная эльфийка с чернильными пальцами, широкополой шляпой и тетрадью, где растения зарисованы рядом с ошибками наблюдения.\nCell 5. Оррен Пятнистый Фартук. Дварф с седой бородой в кольцах из цветной нити. Носит лёгкий молоток, широкую шляпу и щит, на котором удобно закреплять бумагу.\nCell 6. Тива Неровный Такт. Гоблинка в разноцветных напульсниках; вместо громкого инструмента в дороге носит дощечку для ритма и кусок войлока.\nCell 7. Рен Четыре Кармана. Человек с крупными очками и четырьмя разноцветными карманами для записок. На трости закреплена маленькая дощечка, которую легко повернуть к собеседнику.\nCell 8. Фенна Дальний Стул. Полуэльфийка с веснушками, складным сиденьем за спиной и зелёным шарфом, который служит лентой для пометок на плане.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-dara.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-ilmar.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-sana.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-esta.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-orren.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-tiva.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-ren.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-fenna.webp"
+      ]
+    },
+    {
+      "id": "dungeon-sanctuary-places-0",
+      "originalFile": "exec-f4901f77-b412-48b7-8e9a-fa57101a06a4.png",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Cell 1. Широкий Порог. Входной зал бывшей каменоломни с широким столом для планов, тремя выходами в боковые галереи и аркой, которую легко заметить с луговой тропы. Здесь собираются первые устроители.\nCell 2. Тихая галерея. Сухой каменный коридор с неглубокими нишами. Шаги слышны далеко, зато плотные полотняные пологи превращают ниши в уютные уголки.\nCell 3. Папоротниковая комната. Нижняя комната с грунтовыми кадками, мелким жёлобом для воды и площадкой сухого камня у входа. Влажная земля пахнет лесом после дождя.\nCell 4. Солнечная полка. Широкий уступ над входом. Полдня солнце лежит на плоских плитах; рядом можно поставить навес, не закрывая обзор долины.\nCell 5. Верхний ход. Высокая галерея с балками, верёвочными поручнями и несколькими уровнями. По полу проходят люди, над ними удобно закреплять ткань и плетёные площадки.\nCell 6. Мастерская короткой смены. Столы с пробковыми образцами, шнурами и ручными инструментами. Свободная стена покрыта прямоугольниками комнат, пока нарисованными углём.\nCell 7. Гостевое крыльцо. Неглубокий навес перед аркой, две скамьи разной высоты и место для писем. Отсюда видно вход, но не жилые ниши.\nCell 8. Двор пологого склона. Пологий путь от луга к входу. У стены сложены деревянные щиты; повозка и пешеход пока с трудом расходятся на одном повороте.\nCell 9. Двор чаш. Открытый дворик с низким водосборником и переносными чашами. Вода поступает обычным самотёком из ключа; краны и пробки видны с дорожки.\nCell 10. Боковая площадка. Плоский участок вдоль склона соединяет верхний уступ с нижней дорожкой длинным обходом. Здесь растёт трава и удобно останавливаться, не загораживая вход.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "dungeon-sanctuary-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-1b06b931-13d6-4456-a8fc-2028a40334b4.png",
+      "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Cell 1. Меловая коза. Обычное упрямое животное с короткими рожками, серыми ушами и смешной полосой меловой пыли на носу. Не разумный тайный враг и не знак неблагодарности жителей.\nCell 2. Камышовый гусь. Крупная белая птица с зелёным отливом крыльев, уверенной походкой и звонким возмущённым гоготом. Защищает удобное место отдыха, не проявляет скрытой чудовищности.\nCell 3. Доброволец с мягким щитом. Совершеннолетний сосед в простой защитной одежде с тканевой ладонью на груди. Его участие явно добровольно; он не внедрённый враг и не судья достоинства жильцов.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "dungeon-sanctuary-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-fef3ec2f-dc0d-49a7-b1d5-e14407d07525.png",
+      "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Подземелье для тех, кто устал быть чудовищем. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Рута Папоротник. Широкоплечая тролль с мягким мхом на предплечьях, карманами для садовых черенков и коротким клетчатым шарфом.\nCell 2. Век Прямая Черта. Минотавр в длинном домашнем жилете; на концах рогов мягкие колпачки, в руке деревянная линейка с широкими делениями.\nCell 3. Глея Прозрачная. Разумная желейная жительница цвета чайного стекла сидит в неглубокой чаше на широких полозьях; слова выводит плавающими внутри буквами.\nCell 4. Лиска Первая Нота. Гарпия с рыжими перьями и поясом из тканых лент; носит лёгкую дощечку, на которой отбивает ритм когтем.\nCell 5. Таль Восьмая Петля. Разумная паучиха размером с кресло, в жилете со множеством катушек. Её глаза отражают маленькие яркие точки, а голос похож на шелест плотной бумаги.",
+      "references": [
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/ruta-troll.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/vek-minotaur.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/gleya-ooze.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/liska-harpy.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/tal-spider.webp"
+      ]
+    },
+    {
+      "id": "dungeon-sanctuary-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-25f2ef96-4485-4b02-9779-9d3ac29066aa.png",
+      "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Подземелье для тех, кто устал быть чудовищем. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Арк Тёплый Камень. Горгулья с округлыми крыльями и блестящими от долгого сидения ладонями. На коленях лежит деревянная коробка с солнечными часами.\nCell 2. Кед Короткая Смена. Кобольд в пыльной синей рубахе и мягкой рабочей шапке. Карманные часы постоянно переворачивает циферблатом внутрь.\nCell 3. Веста Медный Знак. Человек в дорожном плаще с простой медной застёжкой. Несёт папку, мягкую измерительную верёвку и собственную складную скамью.\nCell 4. Ланга Длинная Нить. Человеческая ткачиха с круглой дорожной сумкой и шерстяной лентой, завязанной на запястье. Ставит вещи аккуратно, но занимает скамью сразу целиком.\nCell 5. Минн Две Стрелки. Полурослик с длинным шарфом, сумкой меловых табличек и привычкой чертить стрелки в воздухе перед рассказом.",
+      "references": [
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/ark-gargoyle.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/ked-mason.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/vesta-inspector.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/langa-weaver.webp",
+        "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/minn-guide.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "hero-dara",
+      "title": "Дара Каменная Лента",
+      "kind": "hero",
+      "subjects": [
+        "hero-dara"
+      ],
+      "file": "heroes-hero-dara.webp",
+      "sha256": "a47cef1ee4bff3f79d9393c2fd976a34377fb0fa460be5c366913c1ed4654ca1",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 75,
+        "top": 22,
+        "width": 288,
+        "height": 400
+      }
+    },
+    {
+      "key": "hero-ilmar",
+      "title": "Ильмар Тихий Шаг",
+      "kind": "hero",
+      "subjects": [
+        "hero-ilmar"
+      ],
+      "file": "heroes-hero-ilmar.webp",
+      "sha256": "88777d5e2e5db5f76816460e908a1b74a96d238a8f1fd57dd44a54a3193318f8",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 505,
+        "top": 8,
+        "width": 292,
+        "height": 415
+      }
+    },
+    {
+      "key": "hero-sana",
+      "title": "Сана Медная Кружка",
+      "kind": "hero",
+      "subjects": [
+        "hero-sana"
+      ],
+      "file": "heroes-hero-sana.webp",
+      "sha256": "ac929fb0a9034555578f6c4fbc029cb979f7c9592211d04c0b168fac7ea2ee30",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 940,
+        "top": 16,
+        "width": 304,
+        "height": 406
+      }
+    },
+    {
+      "key": "hero-esta",
+      "title": "Эста Листок",
+      "kind": "hero",
+      "subjects": [
+        "hero-esta"
+      ],
+      "file": "heroes-hero-esta.webp",
+      "sha256": "d94413ee679d384df26d14e295ab51f6ae6792b24dd7052335d772e3b0d61f9f",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1393,
+        "top": 8,
+        "width": 302,
+        "height": 414
+      }
+    },
+    {
+      "key": "hero-orren",
+      "title": "Оррен Пятнистый Фартук",
+      "kind": "hero",
+      "subjects": [
+        "hero-orren"
+      ],
+      "file": "heroes-hero-orren.webp",
+      "sha256": "62e6fe019fb531edf1ffabc7f30e5c62e221ec5dfda30bc8c4cc683543516a87",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 57,
+        "top": 457,
+        "width": 311,
+        "height": 410
+      }
+    },
+    {
+      "key": "hero-tiva",
+      "title": "Тива Неровный Такт",
+      "kind": "hero",
+      "subjects": [
+        "hero-tiva"
+      ],
+      "file": "heroes-hero-tiva.webp",
+      "sha256": "ac8761ce47dd109185decebcec755da2f26dc126f88eb654199d2948847a5159",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 507,
+        "top": 451,
+        "width": 295,
+        "height": 416
+      }
+    },
+    {
+      "key": "hero-ren",
+      "title": "Рен Четыре Кармана",
+      "kind": "hero",
+      "subjects": [
+        "hero-ren"
+      ],
+      "file": "heroes-hero-ren.webp",
+      "sha256": "6bd3c26a394428a101f48238a94c581fb0e23f3cd5b809ef20a1c327b56f498b",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 944,
+        "top": 447,
+        "width": 302,
+        "height": 421
+      }
+    },
+    {
+      "key": "hero-fenna",
+      "title": "Фенна Дальний Стул",
+      "kind": "hero",
+      "subjects": [
+        "hero-fenna"
+      ],
+      "file": "heroes-hero-fenna.webp",
+      "sha256": "27df0ab14a9d3620014ef415434dddde0c9903db968101f02eacff1b3bef7f42",
+      "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1382,
+        "top": 452,
+        "width": 320,
+        "height": 417
+      }
+    },
+    {
+      "key": "broad-threshold",
+      "title": "Широкий Порог",
+      "kind": "place",
+      "subjects": [
+        "broad-threshold"
+      ],
+      "file": "places-broad-threshold.webp",
+      "sha256": "4ec17363218ed7e65ba066aad1ae2ac84b0f374c2464d6ff0286cf0b73f55ad0",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "dry-gallery",
+      "title": "Тихая галерея",
+      "kind": "place",
+      "subjects": [
+        "dry-gallery"
+      ],
+      "file": "places-dry-gallery.webp",
+      "sha256": "20b0a9d5af06ac9c9a0eea450f6d9a4de05e3201e3f7c37021eaf621afdc8810",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "wet-gallery",
+      "title": "Папоротниковая комната",
+      "kind": "place",
+      "subjects": [
+        "wet-gallery"
+      ],
+      "file": "places-wet-gallery.webp",
+      "sha256": "b8849e9ff3453153c9d4fabc4e69b4881febbd811f077f8b218fb668987226c1",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "sun-shelf",
+      "title": "Солнечная полка",
+      "kind": "place",
+      "subjects": [
+        "sun-shelf"
+      ],
+      "file": "places-sun-shelf.webp",
+      "sha256": "e497df35cb8e0b782caf731950573a463a985883bac7e901b71738b59ea7c26e",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "hanging-walk",
+      "title": "Верхний ход",
+      "kind": "place",
+      "subjects": [
+        "hanging-walk"
+      ],
+      "file": "places-hanging-walk.webp",
+      "sha256": "35545e67805d7ffc269615a342ec117aace8278f6b67fc9b1a52c4c973992c52",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "tool-room",
+      "title": "Мастерская короткой смены",
+      "kind": "place",
+      "subjects": [
+        "tool-room"
+      ],
+      "file": "places-tool-room.webp",
+      "sha256": "4dfa361fe9007d04e2b908ec965caac42b5448c3ca7e50af66a2a723e4326f27",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "guest-porch",
+      "title": "Гостевое крыльцо",
+      "kind": "place",
+      "subjects": [
+        "guest-porch"
+      ],
+      "file": "places-guest-porch.webp",
+      "sha256": "32adc5a37d3f426b65151c91c40be71fcf774a8af46e72b7fc12a81ee1f13449",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "ramp-yard",
+      "title": "Двор пологого склона",
+      "kind": "place",
+      "subjects": [
+        "ramp-yard"
+      ],
+      "file": "places-ramp-yard.webp",
+      "sha256": "70bca51f1bb39b405d70fe490c577576dcf2d08d5e10183f83b2d67725874c86",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "common-basin",
+      "title": "Двор чаш",
+      "kind": "place",
+      "subjects": [
+        "common-basin"
+      ],
+      "file": "places-common-basin.webp",
+      "sha256": "c980ef7226138fba3607e3772dad349e11889710cf45de86d20064919af09674",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "side-terrace",
+      "title": "Боковая площадка",
+      "kind": "place",
+      "subjects": [
+        "side-terrace"
+      ],
+      "file": "places-side-terrace.webp",
+      "sha256": "d468b871ffea463c30ff8c66f2b7fe4669965d8f477ef1251ee8597029f97160",
+      "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "foe-7171879953",
+      "title": "Меловая коза",
+      "kind": "foe",
+      "subjects": [
+        "chalk-goats-foe-1",
+        "chalk-goats-foe-2",
+        "chalk-goats-foe-3",
+        "chalk-goats-foe-4",
+        "chalk-goats-foe-5",
+        "chalk-goats-foe-6"
+      ],
+      "file": "foes-foe-7171879953.webp",
+      "sha256": "d4983b6b600d7e65da862c91cda64fd0eec8d0b18458194b6557c1e9a687207f",
+      "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 109,
+        "top": 61,
+        "width": 506,
+        "height": 602
+      }
+    },
+    {
+      "key": "foe-1d827f2298",
+      "title": "Камышовый гусь",
+      "kind": "foe",
+      "subjects": [
+        "reed-geese-foe-1",
+        "reed-geese-foe-2",
+        "reed-geese-foe-3",
+        "reed-geese-foe-4",
+        "reed-geese-foe-5",
+        "reed-geese-foe-6"
+      ],
+      "file": "foes-foe-1d827f2298.webp",
+      "sha256": "f7a768e37435d52441910b2c9f494dde0db81e04e6feee3d6835c0b630a07767",
+      "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 828,
+        "top": 44,
+        "width": 482,
+        "height": 618
+      }
+    },
+    {
+      "key": "foe-27d205550b",
+      "title": "Доброволец с мягким щитом",
+      "kind": "foe",
+      "subjects": [
+        "courtesy-drill-foe-1",
+        "courtesy-drill-foe-2",
+        "courtesy-drill-foe-3",
+        "courtesy-drill-foe-4",
+        "courtesy-drill-foe-5",
+        "courtesy-drill-foe-6"
+      ],
+      "file": "foes-foe-27d205550b.webp",
+      "sha256": "63ab7b708ce5b7e2180623716420abf4cc2a6584458dff88431a69d115d0e982",
+      "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1602,
+        "top": 19,
+        "width": 421,
+        "height": 651
+      }
+    },
+    {
+      "key": "ruta-troll",
+      "title": "Рута Папоротник",
+      "kind": "npc",
+      "subjects": [
+        "ruta-troll"
+      ],
+      "file": "npcs-ruta-troll.webp",
+      "sha256": "e91d4a067860b7a8e5aa606933944944934c681cc2893e76326812f14177bcf2",
+      "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 110,
+        "top": 18,
+        "width": 309,
+        "height": 467
+      }
+    },
+    {
+      "key": "vek-minotaur",
+      "title": "Век Прямая Черта",
+      "kind": "npc",
+      "subjects": [
+        "vek-minotaur"
+      ],
+      "file": "npcs-vek-minotaur.webp",
+      "sha256": "18779231c7da55f59004c02aa283f60281dfc1fd12d4fbe7b24212d7db39bb5e",
+      "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 608,
+        "top": 21,
+        "width": 308,
+        "height": 462
+      }
+    },
+    {
+      "key": "gleya-ooze",
+      "title": "Глея Прозрачная",
+      "kind": "npc",
+      "subjects": [
+        "gleya-ooze"
+      ],
+      "file": "npcs-gleya-ooze.webp",
+      "sha256": "fe990addf012650bbb789429ea3411399ec954ca2416c3ff533d1da5f04c2c57",
+      "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1085,
+        "top": 45,
+        "width": 376,
+        "height": 429
+      }
+    },
+    {
+      "key": "liska-harpy",
+      "title": "Лиска Первая Нота",
+      "kind": "npc",
+      "subjects": [
+        "liska-harpy"
+      ],
+      "file": "npcs-liska-harpy.webp",
+      "sha256": "6524bddbf6cc99555ea3badb3224ce060dce7a6dc1ea82c9f33d96f61875ab15",
+      "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 60,
+        "top": 526,
+        "width": 392,
+        "height": 474
+      }
+    },
+    {
+      "key": "tal-spider",
+      "title": "Таль Восьмая Петля",
+      "kind": "npc",
+      "subjects": [
+        "tal-spider"
+      ],
+      "file": "npcs-tal-spider.webp",
+      "sha256": "124f9437de3d9938df622fc69561f83a31aca8ac0c0615b7dfc75837d87899df",
+      "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 559,
+        "top": 552,
+        "width": 418,
+        "height": 434
+      }
+    },
+    {
+      "key": "ark-gargoyle",
+      "title": "Арк Тёплый Камень",
+      "kind": "npc",
+      "subjects": [
+        "ark-gargoyle"
+      ],
+      "file": "npcs-ark-gargoyle.webp",
+      "sha256": "c50df05088ea04c3b586f97adc6ee5efd1441f0f787ac03566f86fe4477e0bf2",
+      "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 72,
+        "top": 27,
+        "width": 370,
+        "height": 462
+      }
+    },
+    {
+      "key": "ked-mason",
+      "title": "Кед Короткая Смена",
+      "kind": "npc",
+      "subjects": [
+        "ked-mason"
+      ],
+      "file": "npcs-ked-mason.webp",
+      "sha256": "31322c5d6379590ebcb983799f07ebb12deb6bbd350b8f25c7c3f46e06c02b16",
+      "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 597,
+        "top": 34,
+        "width": 343,
+        "height": 453
+      }
+    },
+    {
+      "key": "vesta-inspector",
+      "title": "Веста Медный Знак",
+      "kind": "npc",
+      "subjects": [
+        "vesta-inspector"
+      ],
+      "file": "npcs-vesta-inspector.webp",
+      "sha256": "d164d44cf3a518aafa73831e1a0a240280ebb88cdbd58184acbc2760f3632ca8",
+      "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1126,
+        "top": 20,
+        "width": 307,
+        "height": 478
+      }
+    },
+    {
+      "key": "langa-weaver",
+      "title": "Ланга Длинная Нить",
+      "kind": "npc",
+      "subjects": [
+        "langa-weaver"
+      ],
+      "file": "npcs-langa-weaver.webp",
+      "sha256": "4e13e7648f29cd71946f4f85e593bcfc52591ad0bc239e5907e7dfe6ecff080f",
+      "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 51,
+        "top": 529,
+        "width": 410,
+        "height": 474
+      }
+    },
+    {
+      "key": "minn-guide",
+      "title": "Минн Две Стрелки",
+      "kind": "npc",
+      "subjects": [
+        "minn-guide"
+      ],
+      "file": "npcs-minn-guide.webp",
+      "sha256": "b0145ae5a6d63458ce2552a5d0cbd8c86aab07d2776e551f2af0b26227528d4e",
+      "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+      "generated": "2026-11-22",
+      "sheet": "dungeon-sanctuary-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 576,
+        "top": 532,
+        "width": 372,
+        "height": 467
+      }
+    }
+  ]
+}

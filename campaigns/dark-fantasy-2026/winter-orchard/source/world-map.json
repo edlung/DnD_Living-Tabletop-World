@@ -1,0 +1,136 @@
+{
+  "region": "quiet-basin",
+  "name": "Карта · Тихая Чаша",
+  "description": "План местности «Тихая Чаша». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "lantern-house",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "brindle-market",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "winter-garden",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "graft-shed",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "mirror-cut",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "moss-well",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "silk-attic",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "empty-mill",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "sheltered-steps",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "white-ward",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [
+    {
+      "from": "lantern-house",
+      "to": "brindle-market",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "brindle-market",
+      "to": "winter-garden",
+      "miles": 1,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "winter-garden",
+      "to": "graft-shed",
+      "miles": 1,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "graft-shed",
+      "to": "mirror-cut",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "lantern-house",
+      "to": "moss-well",
+      "miles": 3,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "moss-well",
+      "to": "silk-attic",
+      "miles": 1,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "silk-attic",
+      "to": "empty-mill",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "empty-mill",
+      "to": "sheltered-steps",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "sheltered-steps",
+      "to": "white-ward",
+      "miles": 1,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "graft-shed",
+      "to": "empty-mill",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "mirror-cut",
+      "to": "white-ward",
+      "miles": 2,
+      "terrain": "hill",
+      "road": true
+    }
+  ]
+}

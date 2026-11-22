@@ -1,0 +1,59 @@
+{
+  "region": "sivern",
+  "name": "Карта · Сиверн под белым дождём",
+  "description": "План местности «Сиверн под белым дождём». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "seam-house",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "palace-gate",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "wash-house",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "mirror-gallery",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "moth-ballroom",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "counterweight-well",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "reverse-room",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "night-orangery",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "coach-yard",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "quiet-baths",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

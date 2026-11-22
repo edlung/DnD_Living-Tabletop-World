@@ -346,15 +346,19 @@
     grid-column: 2;
   }
 }
-/*
- * The smallest phones: four tabs share the row by their words, which a quarter each did not hold
- * in Russian ("Заклинания", "Снаряжение" ran into each other at 320 px).
- */
-@media (max-width: 359px) {
+/* Give long Russian labels their own touch area, including the fifth tab for the hero's story. */
+@media (max-width: 420px) {
+  .hero-tabs {
+    flex-wrap: wrap;
+  }
   .hero-tab {
-    flex: 1 1 auto;
-    padding: 8px 2px;
-    font-size: 0.9rem;
+    flex: 1 0 28%;
+    min-height: 44px;
+    padding: 6px 4px;
+    font-size: 1rem;
+  }
+  .hero-tabs:has(.hero-tab:nth-child(4):last-child) .hero-tab {
+    flex-basis: 45%;
   }
 }
 

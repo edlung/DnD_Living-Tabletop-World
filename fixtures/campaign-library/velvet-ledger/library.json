@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "f2779082d5cfda23968fa43799c04e903cd567c28bc8dde7662781670504007c"
+   "digest": "34b7cc92769bb16488f34c2214be3ff17eca7b8ce7feea69cbc0c942228246a4"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "6ae02268a3f74e93bd5125e4bc9e097e37ce811be02b03cb989a08f3fc36b05c"
+   "digest": "008abbfbcd6612e2f6fc7711d899ce74759005b8d50fde84adbf29755acb05f9"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "87d6a1fac5df4e1d3305b81c6ac2ceeab3f5691860095cf4f862eea26edc32bc"
+   "digest": "2aab9ebf53058d622e15b84de1244140f5411cd7a5f4b86216ea25526655fbe5"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1538,6 +1538,408 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "eva-tarn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/illustrations/cards/travel-kit.webp",
+   "sha256": "71eb4a87ac68af0c0cb063f13dc714809778608a200b092b9bcf91c1a0c9d4a0",
+   "originalSha256": "54921a3da93da464353361189553c512ec15b7f7608b60d85e60a573be2ee2aa",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "daniil-kest-travel-kit",
+     "lev-sorin-travel-kit",
+     "mira-lenn-travel-kit",
+     "rada-ven-travel-kit",
+     "vera-shtal-travel-kit",
+     "yan-otek-travel-kit"
+    ],
+    "7-players": [
+     "daniil-kest-travel-kit",
+     "lev-sorin-travel-kit",
+     "mira-lenn-travel-kit",
+     "rada-ven-travel-kit",
+     "sev-erda-travel-kit",
+     "vera-shtal-travel-kit",
+     "yan-otek-travel-kit"
+    ],
+    "8-players": [
+     "daniil-kest-travel-kit",
+     "eva-tarn-travel-kit",
+     "lev-sorin-travel-kit",
+     "mira-lenn-travel-kit",
+     "rada-ven-travel-kit",
+     "sev-erda-travel-kit",
+     "vera-shtal-travel-kit",
+     "yan-otek-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-levna-nor.webp",
+   "sha256": "6c263f3564600f644fca63cf995753bb1d54422afac5fd1f136dfbe3c09ad5dc",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Левна Нор",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "levna-nor"
+    ],
+    "7-players": [
+     "levna-nor"
+    ],
+    "8-players": [
+     "levna-nor"
+    ]
+   },
+   "file": "levna-nor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "levna-nor.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-marena-voss.webp",
+   "sha256": "a1bc2cd0a1f6999dd452cfa55f5b81db5b1f47e33ed18c1bd4889351cc4a5f59",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аделаида Восс",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "marena-voss"
+    ],
+    "7-players": [
+     "marena-voss"
+    ],
+    "8-players": [
+     "marena-voss"
+    ]
+   },
+   "file": "marena-voss--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marena-voss.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-savel-ark.webp",
+   "sha256": "a6005b8ed0ab5fc7109629597bbf26262ab61ea17590e9acbdd57184fb4aba48",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орест Вальм",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "savel-ark"
+    ],
+    "7-players": [
+     "savel-ark"
+    ],
+    "8-players": [
+     "savel-ark"
+    ]
+   },
+   "file": "savel-ark--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "savel-ark.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-inga-reil.webp",
+   "sha256": "b0df90434ded3bde55799ca8a0bce443ba44ebc10d298b69fd5f3242bf37c8bd",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Инга Рейл",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "inga-reil"
+    ],
+    "7-players": [
+     "inga-reil"
+    ],
+    "8-players": [
+     "inga-reil"
+    ]
+   },
+   "file": "inga-reil--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "inga-reil.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-timon-lest.webp",
+   "sha256": "e49ec0bd5051d6537cef3c223b386f1caf1b93465b449d8de9bbee153ae1a803",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вацлав Лест",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "timon-lest"
+    ],
+    "7-players": [
+     "timon-lest"
+    ],
+    "8-players": [
+     "timon-lest"
+    ]
+   },
+   "file": "timon-lest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "timon-lest.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-dara-ves.webp",
+   "sha256": "7d3808bda2b1214e991d7c978144c3071283614c9c342adf8f95a3a459b8a62a",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Софья Вес",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "dara-ves"
+    ],
+    "7-players": [
+     "dara-ves"
+    ],
+    "8-players": [
+     "dara-ves"
+    ]
+   },
+   "file": "dara-ves--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dara-ves.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-askar-mel.webp",
+   "sha256": "aea7757017aa57cea908cf42590eb1044712593e23ba16772f04f9d17e67137d",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аскар Мель",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "askar-mel"
+    ],
+    "7-players": [
+     "askar-mel"
+    ],
+    "8-players": [
+     "askar-mel"
+    ]
+   },
+   "file": "askar-mel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "askar-mel.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-naya-oren.webp",
+   "sha256": "f3ff4f69273493c4f574162df40e1599920f84c105d2c5a08723b9b54f7f6908",
+   "originalSha256": "04be3fa6ee16279f9418ac80020d9c502a06049f3d69e4f281c4d81c34ce2da6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ная Орен",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "naya-oren"
+    ],
+    "7-players": [
+     "naya-oren"
+    ],
+    "8-players": [
+     "naya-oren"
+    ]
+   },
+   "file": "naya-oren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "naya-oren.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-gaspar-til.webp",
+   "sha256": "022662f8fc5cf8f455691e16364d0edbcb878645ff18ac451a74cc1e588accee",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бальтазар Тиль",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "gaspar-til"
+    ],
+    "7-players": [
+     "gaspar-til"
+    ],
+    "8-players": [
+     "gaspar-til"
+    ]
+   },
+   "file": "gaspar-til--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gaspar-til.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-kornel-shay.webp",
+   "sha256": "abe22a45ac42515cb3a14d2e9c19451edc5509321375d8645340d4824ac61c25",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Корнель Шай",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "kornel-shay"
+    ],
+    "7-players": [
+     "kornel-shay"
+    ],
+    "8-players": [
+     "kornel-shay"
+    ]
+   },
+   "file": "kornel-shay--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kornel-shay.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-viktor-dorn.webp",
+   "sha256": "9ded7ecfb8c093fff97acee1433dbfa43813e6f7dc2b393988ed535c8e4dd553",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Виктор Дорн",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "viktor-dorn"
+    ],
+    "7-players": [
+     "viktor-dorn"
+    ],
+    "8-players": [
+     "viktor-dorn"
+    ]
+   },
+   "file": "viktor-dorn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "viktor-dorn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-tadeush-krin.webp",
+   "sha256": "c22141fe25f98951887322fe97371a3a07a0cae572882d746f9d62dd332f96d8",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лукаш Крин",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "tadeush-krin"
+    ],
+    "7-players": [
+     "tadeush-krin"
+    ],
+    "8-players": [
+     "tadeush-krin"
+    ]
+   },
+   "file": "tadeush-krin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tadeush-krin.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-luiza-tamm.webp",
+   "sha256": "0bdb0e82a77eff1a64149866a7e34112d15719a498961c7fdaf406c955bdc4af",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Луиза Тамм",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "luiza-tamm"
+    ],
+    "7-players": [
+     "luiza-tamm"
+    ],
+    "8-players": [
+     "luiza-tamm"
+    ]
+   },
+   "file": "luiza-tamm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "luiza-tamm.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-efimiya-surma.webp",
+   "sha256": "912d6ff4bc1ffc489043c90d2e01483d32445081412c93fab40229bc8f955eda",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ефимия Сурьма",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "efimiya-surma"
+    ],
+    "7-players": [
+     "efimiya-surma"
+    ],
+    "8-players": [
+     "efimiya-surma"
+    ]
+   },
+   "file": "efimiya-surma--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "efimiya-surma.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/table/npcs-kvasci-envoy.webp",
+   "sha256": "2f42e11a4cb56c3cc14d6b9a3c897797cacab37411ba80b12ecffe46c3404d6b",
+   "originalSha256": "77dda9607c4b0167c6e4cef583347da249d197b430cfcbc51f55b5d8ef9cb6bb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оттокар Бриг",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "kvasci-envoy"
+    ],
+    "7-players": [
+     "kvasci-envoy"
+    ],
+    "8-players": [
+     "kvasci-envoy"
+    ]
+   },
+   "file": "kvasci-envoy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kvasci-envoy.webp"
   },
   {
    "file": "velvet-hall--map.webp",

@@ -1,0 +1,734 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "white-ash-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-35862cd6-e961-479d-976c-e8a86713431a.png",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Cell 1. Лидия Орлова. Тёмное пальто с заменённой пуговицей, аккуратные поля в любом блокноте.\nCell 2. Тимур Савин. Хорошо выстиранный жилет, мягкая папка вместо врачебного саквояжа.\nCell 3. Марта Кедрова. Широкий шарф, рабочие руки, привычка оставлять проход к двери свободным.\nCell 4. Олег Берест. Очки в потёртой оправе и короткий карандаш, который всегда заточен с одной стороны.\nCell 5. Адина Горина. Складная камера в холщовом футляре, рукава всегда закатаны на одинаковую высоту.\nCell 6. Роман Седов. Высокие ботинки, пустая сумка через плечо, привычка повторять имя адресата вслух.\nCell 7. Зоя Крестова. Серое платье, несколько простых карандашей для тех, кто предпочитает написать ответ.\nCell 8. Ян Лужин. Тубус с чистыми листами, чернильное пятно на внутренней стороне ладони.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/white-ash/illustrations/cards/lidia-orlova.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/timur-savin.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/marta-kedrova.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/oleg-berest.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/adina-gorina.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/roman-sedov.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/zoya-krestova.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/yan-luzhin.webp"
+      ]
+    },
+    {
+      "id": "white-ash-places-0",
+      "originalFile": "exec-70245bf0-b050-4f7e-997b-74ced14c2331.png",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Cell 1. Комната взаимопомощи. Нанятая взрослыми работниками комната над переплётной мастерской: большой стол, чайник и доска для объявлений. Здесь можно встречаться без заводского пропуска.\nCell 2. Участок П-17 завода «Белая линия». Закрытый производственный зал с высоким остеклением, проходной и отдельной комнатой сменных записей. Посетителей сопровождают по разрешённой галерее.\nCell 3. Опечатанная лаборатория. Невысокий корпус с закопчённым окном и муниципальной пломбой. Временный стол приёма имущества стоит снаружи под навесом.\nCell 4. Амбулатория на Кленовой. Вестибюль с номерками, закрытый архив и отдельная комната бесед. По коридору катят тележку с картами в картонных обложках.\nCell 5. Дом сменных собраний. Бывшая столовая, которую взрослые работники снимают для собраний. На стене остался деревянный щит с крючками для жетонов.\nCell 6. Контора регистрации отправлений. Городская контора, где письма и посылки получают номер, дату и подпись получателя. За стойкой стоят тяжёлые переплетённые реестры.\nCell 7. Независимая пробная палата. Маленькая договорная лаборатория с приёмным окном и комнатой свидетелей. Посетителям выдают письменные заключения без доступа к рабочим процедурам.\nCell 8. Дирекция «Белой линии». Тихий административный корпус рядом с заводом. На столе секретаря часы с недельным календарём, на стене — образцы готовых пластин.\nCell 9. Зал городской трудовой комиссии. Зал с длинными скамьями, столом регистратора и боковой комнатой для закрытых свидетельств. Порядок выступлений вывешивают у двери.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "white-ash-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-4adc45cc-fc9c-4a1c-af82-6c24dab36baa.png",
+      "originalSha256": "af1a0001117258da12d2c436d890a3df7ddf9ce7067e71c2547a1d0e9c1088e4",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Cell 1. Заводской сторож, взрослый 35 лет. Взрослый сотрудник охраны в обычном заводском пальто. Каноническая ближняя атака — условность настольного столкновения без специальных приёмов; заявленное намерение сторон нелетальное.\nCell 2. Заводской сопровождающий, взрослый 39 лет. Взрослый сотрудник административной службы с заявкой на имущество. Его игровой жетон использует ту же условную нелетальную ближнюю атаку; оружие и профессиональная тактика не моделируются.\nCell 3. Наёмный сопровождающий, взрослый 42 лет. Взрослый человек, нанятый для давления присутствием и шума. Его механический профиль — абстрактная ближняя нелетальная помеха; сцена не содержит инструкций реального насилия или использования оружия.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "white-ash-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-e706ec3f-be2a-447f-80d8-b4cc70de722e.png",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Белый пепел на манжетах. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Нелли Векшина. Льняная манжета под тёмным рукавом, ровный голос и заранее записанные вопросы.\nCell 2. Вера Невская. Короткая стрижка, папка чертежей и значок допуска на простом шнурке.\nCell 3. Инга Сурина. Тонкая цепочка для ключа архива, синие полосы копировальной бумаги на пальцах.\nCell 4. Даниил Росанов. Усталое лицо, чистый воротник, очки на открытой карте при каждом разговоре.\nCell 5. Варвара Золина. Тёмный костюм без украшений, расписание приёмов и стакан остывшей воды.\nCell 6. Павел Рутков. Заводское пальто, отметки мелом на дощечке смен и привычка проверять часы собеседника.",
+      "references": [
+        "campaigns/noir-2026/white-ash/illustrations/cards/nelli-vekshina.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/vera-nevskaya.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/inga-surina.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/daniil-rosanov.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/varvara-zolina.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/pavel-rutkov.webp"
+      ]
+    },
+    {
+      "id": "white-ash-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d2f66ca0-ebad-4afd-93dd-84fdbe0c3e4d.png",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Белый пепел на манжетах. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Григорий Устов. Нарукавники, квадратная лупа и совершенно сухая промокательная бумага.\nCell 2. Сара Лем. Простой халат без знаков завода, журнал приёма с широкими полями.\nCell 3. Леонид Караев. Куртка переплётчика, маленькая коробка для возвращаемых вещей и красные от недосыпа глаза.\nCell 4. Антон Белов. Вязаный жилет под рабочим пиджаком, карманная книжка с продавленной обложкой.\nCell 5. Тамара Сольт. Городской служебный жакет, папка с пустыми бланками и негромкая манера говорить.\nCell 6. Северьян Караев. На прижизненном служебном портрете — взрослый мужчина в лабораторном халате и круглых очках.",
+      "references": [
+        "campaigns/noir-2026/white-ash/illustrations/cards/grigory-ustov.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/sara-lem.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/leonid-karaev.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/anton-belov.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/tamara-solt.webp",
+        "campaigns/noir-2026/white-ash/illustrations/cards/severyan-karaev.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "lidia-orlova",
+      "title": "Лидия Орлова",
+      "kind": "hero",
+      "subjects": [
+        "lidia-orlova"
+      ],
+      "file": "heroes-lidia-orlova.webp",
+      "sha256": "63fc790c4873a09019565d3b948d12cbf719572fffdb06d01be0d95ebbfa4a7d",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 17,
+        "width": 203,
+        "height": 414
+      }
+    },
+    {
+      "key": "timur-savin",
+      "title": "Тимур Савин",
+      "kind": "hero",
+      "subjects": [
+        "timur-savin"
+      ],
+      "file": "heroes-timur-savin.webp",
+      "sha256": "16fc40aa58bb7d84d9ce9da4e8deaa5c0237fb5a30342fafbbc97e7824cc20aa",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 558,
+        "top": 14,
+        "width": 210,
+        "height": 417
+      }
+    },
+    {
+      "key": "marta-kedrova",
+      "title": "Марта Кедрова",
+      "kind": "hero",
+      "subjects": [
+        "marta-kedrova"
+      ],
+      "file": "heroes-marta-kedrova.webp",
+      "sha256": "65d208365ac53b73f6b60936e4ea84bcacea556821ef7e9b8c54391f6098fd13",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1004,
+        "top": 16,
+        "width": 208,
+        "height": 415
+      }
+    },
+    {
+      "key": "oleg-berest",
+      "title": "Олег Берест",
+      "kind": "hero",
+      "subjects": [
+        "oleg-berest"
+      ],
+      "file": "heroes-oleg-berest.webp",
+      "sha256": "236ed5e4eacc89f1f0ead42743e2db55e12062bbd08fc1fe582469f4671b2d75",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1444,
+        "top": 13,
+        "width": 208,
+        "height": 418
+      }
+    },
+    {
+      "key": "adina-gorina",
+      "title": "Адина Горина",
+      "kind": "hero",
+      "subjects": [
+        "adina-gorina"
+      ],
+      "file": "heroes-adina-gorina.webp",
+      "sha256": "35cbdec877e7b98a4fa60ee75b82392cb3b34593e94a31091bb75df019265687",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 123,
+        "top": 454,
+        "width": 204,
+        "height": 420
+      }
+    },
+    {
+      "key": "roman-sedov",
+      "title": "Роман Седов",
+      "kind": "hero",
+      "subjects": [
+        "roman-sedov"
+      ],
+      "file": "heroes-roman-sedov.webp",
+      "sha256": "faf41c00eb634ca10a10ec957f536b247918cd09d156c74ab295c6ea1c98c7db",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 557,
+        "top": 453,
+        "width": 207,
+        "height": 421
+      }
+    },
+    {
+      "key": "zoya-krestova",
+      "title": "Зоя Крестова",
+      "kind": "hero",
+      "subjects": [
+        "zoya-krestova"
+      ],
+      "file": "heroes-zoya-krestova.webp",
+      "sha256": "1887ca569c0022f4b425db31d8893683dd20df64b59b2cf07a9587853561a168",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1004,
+        "top": 455,
+        "width": 209,
+        "height": 419
+      }
+    },
+    {
+      "key": "yan-luzhin",
+      "title": "Ян Лужин",
+      "kind": "hero",
+      "subjects": [
+        "yan-luzhin"
+      ],
+      "file": "heroes-yan-luzhin.webp",
+      "sha256": "61aa0982f9b5fae4ed871d427e8115553f0f5030242f584773ff4e2e4b14eab3",
+      "originalSha256": "f376eb635a6b3c6b5641a35ed1f51b59ee297eba95d5fd3730c413bc783ca356",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1444,
+        "top": 454,
+        "width": 210,
+        "height": 420
+      }
+    },
+    {
+      "key": "union-room",
+      "title": "Комната взаимопомощи",
+      "kind": "place",
+      "subjects": [
+        "union-room"
+      ],
+      "file": "places-union-room.webp",
+      "sha256": "938c248109426f06f45ee6f11a369ff6682ef404d8b1a0c99f06027b0658e8ff",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "white-line",
+      "title": "Участок П-17 завода «Белая линия»",
+      "kind": "place",
+      "subjects": [
+        "white-line"
+      ],
+      "file": "places-white-line.webp",
+      "sha256": "39e14466b308ae9d4a9ead3736620530b5e7e7b3e67898398abe0d24a499c8a9",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "burned-lab",
+      "title": "Опечатанная лаборатория",
+      "kind": "place",
+      "subjects": [
+        "burned-lab"
+      ],
+      "file": "places-burned-lab.webp",
+      "sha256": "5f29b0b3dde102537c55447b089ebd3fc715502243ad59664367251ecb5c84ad",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "clinic",
+      "title": "Амбулатория на Кленовой",
+      "kind": "place",
+      "subjects": [
+        "clinic"
+      ],
+      "file": "places-clinic.webp",
+      "sha256": "390f430c1f4873d00c3a44b0151bc55f9ebbb6a34d2e96891e6aa1a3a966f42c",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "shift-house",
+      "title": "Дом сменных собраний",
+      "kind": "place",
+      "subjects": [
+        "shift-house"
+      ],
+      "file": "places-shift-house.webp",
+      "sha256": "a98c0ae341a1600d1da1c8f265c313ea0eb8e87731b1ea975a7821143fc9a074",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "dispatch-office",
+      "title": "Контора регистрации отправлений",
+      "kind": "place",
+      "subjects": [
+        "dispatch-office"
+      ],
+      "file": "places-dispatch-office.webp",
+      "sha256": "b31959ea18952d04dba9afabf152b4bb7ca3ca89de12fdf49e5d78be383fce6f",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "independent-room",
+      "title": "Независимая пробная палата",
+      "kind": "place",
+      "subjects": [
+        "independent-room"
+      ],
+      "file": "places-independent-room.webp",
+      "sha256": "de400e9a004134a8969d0e288734d944827da8306aaf535d2b5923d22d458442",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "director-office",
+      "title": "Дирекция «Белой линии»",
+      "kind": "place",
+      "subjects": [
+        "director-office"
+      ],
+      "file": "places-director-office.webp",
+      "sha256": "53ce4bd9e7de3c2427b99272e81272399e655f2e069120146b84014a0282ad7f",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "commission-hall",
+      "title": "Зал городской трудовой комиссии",
+      "kind": "place",
+      "subjects": [
+        "commission-hall"
+      ],
+      "file": "places-commission-hall.webp",
+      "sha256": "d842668332606a6bea89bcd84ae380d54aaa4cf7da66e96acfea1f048f7965f8",
+      "originalSha256": "39c373a951a6316dfa460e3bb901223043f839aecb405bfca83a68c1b980bffa",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 1025,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-82a068a527",
+      "title": "Заводской сторож, взрослый 35 лет",
+      "kind": "foe",
+      "subjects": [
+        "threshold-keepers-foe-1",
+        "threshold-keepers-foe-2",
+        "threshold-keepers-foe-3",
+        "threshold-keepers-foe-4",
+        "threshold-keepers-foe-5",
+        "threshold-keepers-foe-6"
+      ],
+      "file": "foes-foe-82a068a527.webp",
+      "sha256": "045997a1cf17887c7ae4af0de69f4d6d8dcedbee8a0156e466fc196b8bb9b18d",
+      "originalSha256": "af1a0001117258da12d2c436d890a3df7ddf9ce7067e71c2547a1d0e9c1088e4",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 197,
+        "top": 8,
+        "width": 363,
+        "height": 703
+      }
+    },
+    {
+      "key": "foe-a640efcdab",
+      "title": "Заводской сопровождающий, взрослый 39 лет",
+      "kind": "foe",
+      "subjects": [
+        "custody-pressure-foe-1",
+        "custody-pressure-foe-2",
+        "custody-pressure-foe-3",
+        "custody-pressure-foe-4",
+        "custody-pressure-foe-5",
+        "custody-pressure-foe-6"
+      ],
+      "file": "foes-foe-a640efcdab.webp",
+      "sha256": "c589788d88a1f0970352a155c4696b1cc682a4940b512fcee7fe9cbd7438e272",
+      "originalSha256": "af1a0001117258da12d2c436d890a3df7ddf9ce7067e71c2547a1d0e9c1088e4",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 887,
+        "top": 8,
+        "width": 367,
+        "height": 703
+      }
+    },
+    {
+      "key": "foe-8867e38e45",
+      "title": "Наёмный сопровождающий, взрослый 42 лет",
+      "kind": "foe",
+      "subjects": [
+        "gallery-pressure-foe-1",
+        "gallery-pressure-foe-2",
+        "gallery-pressure-foe-3",
+        "gallery-pressure-foe-4",
+        "gallery-pressure-foe-5",
+        "gallery-pressure-foe-6"
+      ],
+      "file": "foes-foe-8867e38e45.webp",
+      "sha256": "4f2842c5e2b198721ce59feefd5a5570e4d5b0f1cfc3b0c37c6574693b4cd9ed",
+      "originalSha256": "af1a0001117258da12d2c436d890a3df7ddf9ce7067e71c2547a1d0e9c1088e4",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1598,
+        "top": 8,
+        "width": 384,
+        "height": 703
+      }
+    },
+    {
+      "key": "nelli-vekshina",
+      "title": "Нелли Векшина",
+      "kind": "npc",
+      "subjects": [
+        "nelli-vekshina"
+      ],
+      "file": "npcs-nelli-vekshina.webp",
+      "sha256": "0d7f209a6895ac98334562f9b852feec6d500b10fc49c4e21b01837539a88401",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 142,
+        "top": 44,
+        "width": 287,
+        "height": 446
+      }
+    },
+    {
+      "key": "vera-nevskaya",
+      "title": "Вера Невская",
+      "kind": "npc",
+      "subjects": [
+        "vera-nevskaya"
+      ],
+      "file": "npcs-vera-nevskaya.webp",
+      "sha256": "da8e5f7337c8a247932f60f4dd1f59732e7a5cf443944181c79acc613acb0299",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 637,
+        "top": 32,
+        "width": 257,
+        "height": 460
+      }
+    },
+    {
+      "key": "inga-surina",
+      "title": "Инга Сурина",
+      "kind": "npc",
+      "subjects": [
+        "inga-surina"
+      ],
+      "file": "npcs-inga-surina.webp",
+      "sha256": "5adb16aeae02746b696401c345f556d9fd9d2c89bd2bbd585b34c8a2f9558b55",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1121,
+        "top": 40,
+        "width": 285,
+        "height": 448
+      }
+    },
+    {
+      "key": "daniil-rosanov",
+      "title": "Даниил Росанов",
+      "kind": "npc",
+      "subjects": [
+        "daniil-rosanov"
+      ],
+      "file": "npcs-daniil-rosanov.webp",
+      "sha256": "6c99e9ef456a292ffcd68e4b1aae383bb3579dea699809fcd889f814198c1f2b",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 131,
+        "top": 547,
+        "width": 316,
+        "height": 446
+      }
+    },
+    {
+      "key": "varvara-zolina",
+      "title": "Варвара Золина",
+      "kind": "npc",
+      "subjects": [
+        "varvara-zolina"
+      ],
+      "file": "npcs-varvara-zolina.webp",
+      "sha256": "4d652b13564b530327517e62ee84980375dc04f20ed44d879c21e426ac1c3326",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 613,
+        "top": 533,
+        "width": 297,
+        "height": 458
+      }
+    },
+    {
+      "key": "pavel-rutkov",
+      "title": "Павел Рутков",
+      "kind": "npc",
+      "subjects": [
+        "pavel-rutkov"
+      ],
+      "file": "npcs-pavel-rutkov.webp",
+      "sha256": "b8d1b7c7a49273cdfb9a538318e3af6816fd8b4e6d4f6d6b78e1af95ab314263",
+      "originalSha256": "9a1eebdc65258b7d35a938ad322672e4701d8d8c3decc8cbd7e90d0ab83a1569",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 1072,
+        "top": 534,
+        "width": 349,
+        "height": 458
+      }
+    },
+    {
+      "key": "grigory-ustov",
+      "title": "Григорий Устов",
+      "kind": "npc",
+      "subjects": [
+        "grigory-ustov"
+      ],
+      "file": "npcs-grigory-ustov.webp",
+      "sha256": "aeb496ced74feab859fe6fc751db7247b94293fcc924966d9c850689e3aad66a",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 139,
+        "top": 19,
+        "width": 237,
+        "height": 480
+      }
+    },
+    {
+      "key": "sara-lem",
+      "title": "Сара Лем",
+      "kind": "npc",
+      "subjects": [
+        "sara-lem"
+      ],
+      "file": "npcs-sara-lem.webp",
+      "sha256": "99a0d6e89d7387d3c62e8e8d23a4e54ca9e0e27b7d8df0431d0f831e7f884419",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 641,
+        "top": 24,
+        "width": 261,
+        "height": 474
+      }
+    },
+    {
+      "key": "leonid-karaev",
+      "title": "Леонид Караев",
+      "kind": "npc",
+      "subjects": [
+        "leonid-karaev"
+      ],
+      "file": "npcs-leonid-karaev.webp",
+      "sha256": "5ffb85e715cdb5d96390af3d7cea465a19b0837b4cd7923bb739a5b154202f13",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1153,
+        "top": 16,
+        "width": 248,
+        "height": 483
+      }
+    },
+    {
+      "key": "anton-belov",
+      "title": "Антон Белов",
+      "kind": "npc",
+      "subjects": [
+        "anton-belov"
+      ],
+      "file": "npcs-anton-belov.webp",
+      "sha256": "5583e0f800d41b9dbc654106f1002f2c4aff9b39618f74ba3c9edf5ea1b9247f",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 142,
+        "top": 523,
+        "width": 241,
+        "height": 489
+      }
+    },
+    {
+      "key": "tamara-solt",
+      "title": "Тамара Сольт",
+      "kind": "npc",
+      "subjects": [
+        "tamara-solt"
+      ],
+      "file": "npcs-tamara-solt.webp",
+      "sha256": "b138c146f60992675e7ea4ae0f2ddf28111ede79c7be93b1dc1cf5ef8fad5460",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 647,
+        "top": 526,
+        "width": 249,
+        "height": 487
+      }
+    },
+    {
+      "key": "severyan-karaev",
+      "title": "Северьян Караев",
+      "kind": "npc",
+      "subjects": [
+        "severyan-karaev"
+      ],
+      "file": "npcs-severyan-karaev.webp",
+      "sha256": "023a8bddb5673f934699ec57508eeb838590b6eab4d85d490f303dce366146d3",
+      "originalSha256": "d9badaccafc6d5cbc1944577bdb456fa6a1e68a7bbbbdba8665869fbfd7eaf67",
+      "generated": "2026-11-22",
+      "sheet": "white-ash-npcs-1",
+      "cell": 6,
+      "crop": {
+        "left": 1163,
+        "top": 525,
+        "width": 245,
+        "height": 487
+      }
+    }
+  ]
+}

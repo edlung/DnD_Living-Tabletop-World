@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "stone-yard.webp",
+      "sha256": "7219c1b8340cea4f7e31f8de3188fbc37d39a95b85c171980b86916ce666cdba",
+      "originalSha256": "4718c5020ee2531ac282b4d474bad3dc357a4bf5c24ad750953bef7468bcdc68",
+      "originalFile": "exec-e25cb11b-ca08-4031-a825-a1046f9e189d.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор Тихого Камня. Visible scenery: Светлый двор с ровными рядами подушек. На стене висят разные варианты одного общего упражнения.. World style: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "stone-yard",
+      "encounter": "stone-circle",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "wind-gallery.webp",
+      "sha256": "2cc945288c982f50f907323eaf573c9352245aff0a64464b73d29a3d7eb769f7",
+      "originalSha256": "eb5a549598e89a7cd7fddf8f0b53f898d0da6f4135901ba954da60fceb0e5bad",
+      "originalFile": "exec-36aef555-c828-407b-9648-5777783647e0.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея Летящей Ленты. Visible scenery: Открытая галерея, где тканевые дорожки меняют цвет на ветру, а скамейки можно переставлять для зрителей.. World style: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "wind-gallery",
+      "encounter": "ribbon-arc",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "bowl-court.webp",
+      "sha256": "6152d0afa1f8e9484778aa324953421164486768ab76107d3542d9cdbca3f40d",
+      "originalSha256": "4db20b823fdb4a7c6a1480e25016f77e8141f7d4383eaf6cd33a1b4c3599bbf5",
+      "originalFile": "exec-572d3482-354c-4465-9110-bbd20aa44bec.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор Пустой Чаши. Visible scenery: Круглая площадка с расписанными чашами у края. У каждого места есть карточка для письменного ответа.. World style: Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "bowl-court",
+      "encounter": "bowl-cross",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

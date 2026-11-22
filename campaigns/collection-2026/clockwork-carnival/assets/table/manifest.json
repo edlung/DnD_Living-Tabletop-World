@@ -1,0 +1,418 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "clockwork-carnival-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-ba5153fd-7a59-486c-80cf-f3e574959029.png",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Тракт Жестяного Полдня · Interlocking fan-shaped brass escapements and harlequin diamonds in wine-red enamel. Cell 1. Злата Две Пряжки. Безукоризненный жакет, тяжёлые ботинки и пояс с двумя пряжками, которые никак не могут между собой договориться.\nCell 2. Миро Фанфарон. Короткий плащ, дюжина ненастоящих орденов и синяя лента победителя с вышитой трубой с бантом. Улыбка человека, которого уже представили трижды.\nCell 3. Ясна Напёрсток. Тёплый жилет, серебряный напёрсток на шнурке и записная книжка с большими полями.\nCell 4. Борис Складень. Очки с разными дужками, мел на манжетах и бумажная бабочка, изображающая важного секретаря. Под мышкой блокнот в клетку с гусиным пером на обложке.\nCell 5. Полина Шаг-в-Шаг. Полосатые рукава, мягкие сапоги, длинная лента для обозначения места встречи и лента победителя со следами в полоску.\nCell 6. Тим Кружевник. Кружевные перчатки без пальцев и коллекция смешных подписей на собственных визитках.\nCell 7. Эльда Бубенчик. Широкая шляпа с единственным тихим бубенчиком и карманы для чужих потерянных мелочей.\nCell 8. Глеб Кармашек. Короткая мантия с огромными обычными карманами и шёлковый цветок, который цветёт от смущения.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/vera-buckles.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/miro-fanfare.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/yasna-thimble.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/boris-fold.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/polina-step.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/tim-lace.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/elda-bell.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/gleb-pocket.webp"
+      ]
+    },
+    {
+      "id": "clockwork-carnival-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-9e6fea47-56c4-4873-b1b4-848e5b35f3c8.png",
+      "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Карнавал Заводных Масок. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Октавиан Блям. Золотистый фрак, усы в форме скобок и трость с крошечным аплодирующим кулачком.\nCell 2. Биби Счёткина. Сиреневые нарукавники, серьги из счётных костяшек и очень аккуратная чашка чая. На цепочке у неё медный ключ в форме гусиного клюва.\nCell 3. Серафима Фальшбантик. Зелёный бант, дорожный плащ и корзинка одинаковых огурцов из папье-маше.\nCell 4. Бронк Пуговица. Высокий привратник в крошечной фуражке; запасная пуговица на цепочке.\nCell 5. Теша Иголкина. Пояс с цветными нитками, защитные очки и шляпа с прищепками вместо перьев.",
+      "references": [
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/octavian-blam.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/bibi-count.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/serafima-bant.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/bronk-button.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/tesha-needle.webp"
+      ]
+    },
+    {
+      "id": "clockwork-carnival-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-8e61385b-f1ee-4dbb-a045-34434e70c82f.png",
+      "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Карнавал Заводных Масок. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Пафнутий Петля. Квадратная бородка, складная указка, сюртук цвета старого зеркала.\nCell 2. Марта Дуга. Шарф с рисунком облаков, очки на лбу и всегда сухие рукавицы.\nCell 3. Феликс Перескок. Синяя лента победителя с вышитым зайцем, прыгающим через забор, на простом пальто; плоская призовая коробка под мышкой.\nCell 4. Агриппина Сачок. Высокая дама в пробковом шлеме с вуалью; на поясе латунные бирки «экземпляр №…», сачок с медным ободом, за спиной сетемёт.\nCell 5. Груша Мельникова. Мука на носу, лента победителя с вышитой мельницей и корзина пирожков.",
+      "references": [
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/pafnuty-loop.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/marta-arc.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/felix-skip.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/agrippina-net.webp",
+        "campaigns/collection-2026/clockwork-carnival/assets/runtime/grusha-mill.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "vera-buckles",
+      "title": "Злата Две Пряжки",
+      "kind": "hero",
+      "subjects": [
+        "vera-buckles"
+      ],
+      "file": "heroes-vera-buckles.webp",
+      "sha256": "8874f4a418494cacb0fa737abe8245f27051c663704394c827e82a67cfb633ce",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 113,
+        "top": 14,
+        "width": 223,
+        "height": 412
+      }
+    },
+    {
+      "key": "miro-fanfare",
+      "title": "Миро Фанфарон",
+      "kind": "hero",
+      "subjects": [
+        "miro-fanfare"
+      ],
+      "file": "heroes-miro-fanfare.webp",
+      "sha256": "875a769394d8123911cd13354fde52f48c42ab157473faa5632ce59ddb271038",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 530,
+        "top": 13,
+        "width": 256,
+        "height": 412
+      }
+    },
+    {
+      "key": "yasna-thimble",
+      "title": "Ясна Напёрсток",
+      "kind": "hero",
+      "subjects": [
+        "yasna-thimble"
+      ],
+      "file": "heroes-yasna-thimble.webp",
+      "sha256": "f4c4f94197889b11e11f8e6079e5ec6dfcb50ac3ce01b7c522291c473d050597",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 985,
+        "top": 13,
+        "width": 241,
+        "height": 412
+      }
+    },
+    {
+      "key": "boris-fold",
+      "title": "Борис Складень",
+      "kind": "hero",
+      "subjects": [
+        "boris-fold"
+      ],
+      "file": "heroes-boris-fold.webp",
+      "sha256": "cb6afd3cd0c38f2aefeee7498e78fe6d924fcd0586d556dcdda76478cb5181bc",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1417,
+        "top": 12,
+        "width": 244,
+        "height": 413
+      }
+    },
+    {
+      "key": "polina-step",
+      "title": "Полина Шаг-в-Шаг",
+      "kind": "hero",
+      "subjects": [
+        "polina-step"
+      ],
+      "file": "heroes-polina-step.webp",
+      "sha256": "a36cfeaed2373b38a4830bd1c9f23fbbb0c417df439e1c82d0deec28afe7f936",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 71,
+        "top": 447,
+        "width": 262,
+        "height": 424
+      }
+    },
+    {
+      "key": "tim-lace",
+      "title": "Тим Кружевник",
+      "kind": "hero",
+      "subjects": [
+        "tim-lace"
+      ],
+      "file": "heroes-tim-lace.webp",
+      "sha256": "406f0f26778aa62aa0ffdc28dfd355236eeca5f67a9fd235f475e08f1863b997",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 525,
+        "top": 452,
+        "width": 251,
+        "height": 419
+      }
+    },
+    {
+      "key": "elda-bell",
+      "title": "Эльда Бубенчик",
+      "kind": "hero",
+      "subjects": [
+        "elda-bell"
+      ],
+      "file": "heroes-elda-bell.webp",
+      "sha256": "4ef84ea528ecc40c026f55655b719c1af6f6fd54bf276adf0ca92141475e23db",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 965,
+        "top": 447,
+        "width": 257,
+        "height": 424
+      }
+    },
+    {
+      "key": "gleb-pocket",
+      "title": "Глеб Кармашек",
+      "kind": "hero",
+      "subjects": [
+        "gleb-pocket"
+      ],
+      "file": "heroes-gleb-pocket.webp",
+      "sha256": "35e39fa63775c6d85eb60952bf31094ce6e92533a321e2f5d0cc53417c0cdde7",
+      "originalSha256": "ef275735dff9ba7229c2e68f1f58d4e005e9e6051486a67b5983bd7c9c9f406f",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1440,
+        "top": 452,
+        "width": 221,
+        "height": 419
+      }
+    },
+    {
+      "key": "octavian-blam",
+      "title": "Октавиан Блям",
+      "kind": "npc",
+      "subjects": [
+        "octavian-blam"
+      ],
+      "file": "npcs-octavian-blam.webp",
+      "sha256": "3520fc25b7b9ffeb6d41ff6a3e4193138323a4d2e861ea5cf124cf5b02f4f5c7",
+      "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 122,
+        "top": 23,
+        "width": 269,
+        "height": 474
+      }
+    },
+    {
+      "key": "bibi-count",
+      "title": "Биби Счёткина",
+      "kind": "npc",
+      "subjects": [
+        "bibi-count"
+      ],
+      "file": "npcs-bibi-count.webp",
+      "sha256": "790c10a9e185ecc13f5671f1a19dfb5c5e39077e716a893a810f2c6876228b54",
+      "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 637,
+        "top": 25,
+        "width": 256,
+        "height": 471
+      }
+    },
+    {
+      "key": "serafima-bant",
+      "title": "Серафима Фальшбантик",
+      "kind": "npc",
+      "subjects": [
+        "serafima-bant"
+      ],
+      "file": "npcs-serafima-bant.webp",
+      "sha256": "00df7af33eb905bf006d0fb4d4bd8a23b858303d7d6f1271913081eaedc76b79",
+      "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1149,
+        "top": 15,
+        "width": 263,
+        "height": 486
+      }
+    },
+    {
+      "key": "bronk-button",
+      "title": "Бронк Пуговица",
+      "kind": "npc",
+      "subjects": [
+        "bronk-button"
+      ],
+      "file": "npcs-bronk-button.webp",
+      "sha256": "0f209e3809824f4edbcaecfb68b757c76ab05cfad4f0bc1baa94d67e81d8d4fb",
+      "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 120,
+        "top": 526,
+        "width": 273,
+        "height": 480
+      }
+    },
+    {
+      "key": "tesha-needle",
+      "title": "Теша Иголкина",
+      "kind": "npc",
+      "subjects": [
+        "tesha-needle"
+      ],
+      "file": "npcs-tesha-needle.webp",
+      "sha256": "0fc5cc278cc125d86e1ea059ed00a5a9aab5c8a17c3d74005d728d13dc8d2770",
+      "originalSha256": "4607c30c199d789b5417e225ecc0760597e8a80f19dc04dab586cf7325c6b7ef",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 637,
+        "top": 526,
+        "width": 261,
+        "height": 481
+      }
+    },
+    {
+      "key": "pafnuty-loop",
+      "title": "Пафнутий Петля",
+      "kind": "npc",
+      "subjects": [
+        "pafnuty-loop"
+      ],
+      "file": "npcs-pafnuty-loop.webp",
+      "sha256": "2eb57ca844ad1ce399c00c10d35cb301cfbad8f0db16573db7e0e2e7bf7ed793",
+      "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 131,
+        "top": 21,
+        "width": 246,
+        "height": 478
+      }
+    },
+    {
+      "key": "marta-arc",
+      "title": "Марта Дуга",
+      "kind": "npc",
+      "subjects": [
+        "marta-arc"
+      ],
+      "file": "npcs-marta-arc.webp",
+      "sha256": "d38e15ce526e24c0d399a77c5f4cd7894b09a643db1ce7adb1509ef3800384c1",
+      "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 647,
+        "top": 19,
+        "width": 239,
+        "height": 479
+      }
+    },
+    {
+      "key": "felix-skip",
+      "title": "Феликс Перескок",
+      "kind": "npc",
+      "subjects": [
+        "felix-skip"
+      ],
+      "file": "npcs-felix-skip.webp",
+      "sha256": "adb1792e92017c5df43c8ceeaf99fd0aab462731fb89111b3be831d80615b267",
+      "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1151,
+        "top": 18,
+        "width": 239,
+        "height": 481
+      }
+    },
+    {
+      "key": "agrippina-net",
+      "title": "Агриппина Сачок",
+      "kind": "npc",
+      "subjects": [
+        "agrippina-net"
+      ],
+      "file": "npcs-agrippina-net.webp",
+      "sha256": "fcd0fa1b0c33a19befc666655df620596bcca5244ff3702434a4018a684b6ba8",
+      "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 126,
+        "top": 526,
+        "width": 265,
+        "height": 484
+      }
+    },
+    {
+      "key": "grusha-mill",
+      "title": "Груша Мельникова",
+      "kind": "npc",
+      "subjects": [
+        "grusha-mill"
+      ],
+      "file": "npcs-grusha-mill.webp",
+      "sha256": "a8fcacf0a85d2b94734ef6fdbde097151f0e60972c42ff0290d7e29179930dd1",
+      "originalSha256": "667b05de16a673cecb3438ff8ef40d2926f7c8ad67aae6801bbb39fc74b74990",
+      "generated": "2026-11-22",
+      "sheet": "clockwork-carnival-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 644,
+        "top": 528,
+        "width": 245,
+        "height": 482
+      }
+    }
+  ]
+}

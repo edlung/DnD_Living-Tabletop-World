@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "495624c812b742dbc201de68c98be9d7ea9da61cc9f5ba53ab78193d333402e0",
+    "originalSha256": "c0ba4d87b8e0f7a748edcbf46b9352ab8b0e9e45280dd6422c1fac7144f07780",
+    "originalFile": "exec-19d99056-0d98-4c8c-aee4-a39d4a33ac70.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Ярмарка Складок. Style Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Прилавок с пустой вывеской; 0.367,0.177 Лавка внутренних сторон; 0.623,0.15 Переулок примерок; 0.88,0.177 Мастерская Севры Четверть; 0.905,0.517 Открытый верстак; 0.648,0.49 Двор обрезков; 0.392,0.517 Лавка выворачиваемых сумок; 0.135,0.49 Мастерская двух узоров; 0.11,0.83 Терраса косых порывов; 0.367,0.857 Стол первой работы. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

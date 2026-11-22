@@ -1,0 +1,1813 @@
+{
+ "id": "ash-tithe",
+ "title": "Десятина пепельных рыцарей",
+ "genre": "Тёмное фэнтези о деревенском сопротивлении и цене убежища",
+ "audience": "18+",
+ "pitch": "Пепельные рыцари требуют от Низины трёх меж больше тепла, чем могут дать её очаги. Семеро соседей способны укрыть дворы, вывести пленников и соединить разобщённые ячейки сопротивления. До Сведения очагов остаётся восемь игровых встреч: удастся ли деревням сохранить хотя бы одну свободную зиму?",
+ "tone": "Тяжесть оккупации, осторожная близость, упрямое гостеприимство. Насилие показывается через утраты и решения, без натуралистических подробностей. Победа измеряется живыми людьми и сохранёнными домами.",
+ "duration": "8 сессий; 150 минут: вступление и повтор 10, три сцены по 35, перерыв 10, завершение и последствия 25. При тяжёлой теме пауза заменяет часть сцены, а не продлевает встречу.",
+ "cover": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "ec7f1bbbe91e162106fd232666835b5288ad31f479be1634a1f47d5ba40f6869"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "f372407558ffe05a329b954094d9d6ac3f1be20e35d96d8c565f8c0a4ba4e640"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "6a7cae755e829e3561124d69142a8949ba98b84c9c5f571c8566f85e2bca3e77"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "0685e6de3d24008c12eb9cdfe01764c25f8fd3cf3c850b712cf3157a8a5ad3d7"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "6347bf7ff8c06f7ea6fe7893f50e648482185a122161287d2095094e937ffd91"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/lada-mezen.webp",
+   "sha256": "04d68ef697ef7e873d8e536212425d3ccb30d26e5018837db421f0424854900f",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Мезень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-mezen"
+    ],
+    "4-players": [
+     "lada-mezen"
+    ],
+    "5-players": [
+     "lada-mezen"
+    ],
+    "6-players": [
+     "lada-mezen"
+    ],
+    "7-players": [
+     "lada-mezen"
+    ]
+   },
+   "file": "lada-mezen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/il-vyaz.webp",
+   "sha256": "6e530ca1f9a33e950ead9d6e321c677cbc9bac59de4757c4dd930c5df0231b26",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иль Вяз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "il-vyaz"
+    ],
+    "4-players": [
+     "il-vyaz"
+    ],
+    "5-players": [
+     "il-vyaz"
+    ],
+    "6-players": [
+     "il-vyaz"
+    ],
+    "7-players": [
+     "il-vyaz"
+    ]
+   },
+   "file": "il-vyaz.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/marta-quietleaf.webp",
+   "sha256": "b50b214dd5c66c32063255219b3858eb264727bd42cfed49884ae0f9032dbd5c",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Тихолист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marta-quietleaf"
+    ],
+    "4-players": [
+     "marta-quietleaf"
+    ],
+    "5-players": [
+     "marta-quietleaf"
+    ],
+    "6-players": [
+     "marta-quietleaf"
+    ],
+    "7-players": [
+     "marta-quietleaf"
+    ]
+   },
+   "file": "marta-quietleaf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/teren-wedge.webp",
+   "sha256": "d8ca657e872cb858e69753b217497db0b00da964abb514d3b218844a89789646",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терен Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "teren-wedge"
+    ],
+    "5-players": [
+     "teren-wedge"
+    ],
+    "6-players": [
+     "teren-wedge"
+    ],
+    "7-players": [
+     "teren-wedge"
+    ]
+   },
+   "file": "teren-wedge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/zorna-steep.webp",
+   "sha256": "e71e2e4bddb6c68a2bae92ea65515d61fe55d60e917861962bb8dca0d4dcc89f",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зорна Круча",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "zorna-steep"
+    ],
+    "6-players": [
+     "zorna-steep"
+    ],
+    "7-players": [
+     "zorna-steep"
+    ]
+   },
+   "file": "zorna-steep.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/ost-bast.webp",
+   "sha256": "e407e85bac1ef8912cb24f8212958fcff01bc07da958b30f64a2da3f86bff8a3",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ост Лыко",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ost-bast"
+    ],
+    "7-players": [
+     "ost-bast"
+    ]
+   },
+   "file": "ost-bast.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/danya-lion.webp",
+   "sha256": "da35b71d678e2215b81b37922a1128343d86ebc175f15f3abe20684a68c3142f",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даня Лев",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "danya-lion"
+    ]
+   },
+   "file": "danya-lion.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/travel-kit.webp",
+   "sha256": "f4f8bf6ce48f5b866f5d9976285fcc2e16480364015c566631692b32647101f0",
+   "originalSha256": "2503ab6f8d69b704d4a24e84537947923145bf2bcab8dc90239f3e46a06c1439",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "il-vyaz-travel-kit",
+     "lada-mezen-travel-kit",
+     "marta-quietleaf-travel-kit"
+    ],
+    "4-players": [
+     "il-vyaz-travel-kit",
+     "lada-mezen-travel-kit",
+     "marta-quietleaf-travel-kit",
+     "teren-wedge-travel-kit"
+    ],
+    "5-players": [
+     "il-vyaz-travel-kit",
+     "lada-mezen-travel-kit",
+     "marta-quietleaf-travel-kit",
+     "teren-wedge-travel-kit",
+     "zorna-steep-travel-kit"
+    ],
+    "6-players": [
+     "il-vyaz-travel-kit",
+     "lada-mezen-travel-kit",
+     "marta-quietleaf-travel-kit",
+     "ost-bast-travel-kit",
+     "teren-wedge-travel-kit",
+     "zorna-steep-travel-kit"
+    ],
+    "7-players": [
+     "danya-lion-travel-kit",
+     "il-vyaz-travel-kit",
+     "lada-mezen-travel-kit",
+     "marta-quietleaf-travel-kit",
+     "ost-bast-travel-kit",
+     "teren-wedge-travel-kit",
+     "zorna-steep-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/yarina-north.webp",
+   "sha256": "0c8ee78598a9dbf064232249e8b17c21d1796a9830e51690cadbeedceac15f6d",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ярина Северь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yarina-north"
+    ],
+    "4-players": [
+     "yarina-north"
+    ],
+    "5-players": [
+     "yarina-north"
+    ],
+    "6-players": [
+     "yarina-north"
+    ],
+    "7-players": [
+     "yarina-north"
+    ]
+   },
+   "file": "yarina-north.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/sava-turn.webp",
+   "sha256": "b51a2a13b6a18d4781672782d45e56774dc42128bcf011a2fc482b9e76d63b7d",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Крута",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sava-turn"
+    ],
+    "4-players": [
+     "sava-turn"
+    ],
+    "5-players": [
+     "sava-turn"
+    ],
+    "6-players": [
+     "sava-turn"
+    ],
+    "7-players": [
+     "sava-turn"
+    ]
+   },
+   "file": "sava-turn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/mirtha-ridge.webp",
+   "sha256": "d5c2fe96a73343c4053268984fad5658b641ddd49d45b2e423e389f97f568e30",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирта Круч",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirtha-ridge"
+    ],
+    "4-players": [
+     "mirtha-ridge"
+    ],
+    "5-players": [
+     "mirtha-ridge"
+    ],
+    "6-players": [
+     "mirtha-ridge"
+    ],
+    "7-players": [
+     "mirtha-ridge"
+    ]
+   },
+   "file": "mirtha-ridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/tara-mark.webp",
+   "sha256": "7b3b6bc623a3d878668e124dd2debfa5418d8e6341188ef7020922ece512536e",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тара Веха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tara-mark"
+    ],
+    "4-players": [
+     "tara-mark"
+    ],
+    "5-players": [
+     "tara-mark"
+    ],
+    "6-players": [
+     "tara-mark"
+    ],
+    "7-players": [
+     "tara-mark"
+    ]
+   },
+   "file": "tara-mark.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/fena-knot.webp",
+   "sha256": "ed49b5b52ff1857a0f51ec903a43728f0612e3c47a852e188d492a934a8cf9d0",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фена Узел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fena-knot"
+    ],
+    "4-players": [
+     "fena-knot"
+    ],
+    "5-players": [
+     "fena-knot"
+    ],
+    "6-players": [
+     "fena-knot"
+    ],
+    "7-players": [
+     "fena-knot"
+    ]
+   },
+   "file": "fena-knot.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/borivey-horn.webp",
+   "sha256": "06cd9954b5e9e18359d9e17baefb480a0d57920537b2bf43fda92bbfafcd13d5",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Боривей Рог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borivey-horn"
+    ],
+    "4-players": [
+     "borivey-horn"
+    ],
+    "5-players": [
+     "borivey-horn"
+    ],
+    "6-players": [
+     "borivey-horn"
+    ],
+    "7-players": [
+     "borivey-horn"
+    ]
+   },
+   "file": "borivey-horn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/radom-low.webp",
+   "sha256": "7dfa0ef3c778eb814f043d586d0ef24eed6d4313f53945a6e471db676282943f",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Радом Низкий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "radom-low"
+    ],
+    "4-players": [
+     "radom-low"
+    ],
+    "5-players": [
+     "radom-low"
+    ],
+    "6-players": [
+     "radom-low"
+    ],
+    "7-players": [
+     "radom-low"
+    ]
+   },
+   "file": "radom-low.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/verall-kel.webp",
+   "sha256": "9596686e474dd4912251fca033fcfc9b32670d91a7f2deeee0caa878281180ee",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Верал Кел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "verall-kel"
+    ],
+    "4-players": [
+     "verall-kel"
+    ],
+    "5-players": [
+     "verall-kel"
+    ],
+    "6-players": [
+     "verall-kel"
+    ],
+    "7-players": [
+     "verall-kel"
+    ]
+   },
+   "file": "verall-kel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/olh-dan.webp",
+   "sha256": "0124f39135c056163934219895ae5b98b5247fb4ef18edcf89f8dc27b068314e",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольх Дан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olh-dan"
+    ],
+    "4-players": [
+     "olh-dan"
+    ],
+    "5-players": [
+     "olh-dan"
+    ],
+    "6-players": [
+     "olh-dan"
+    ],
+    "7-players": [
+     "olh-dan"
+    ]
+   },
+   "file": "olh-dan.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/cards/lut-blacksoil.webp",
+   "sha256": "59c30390855db57344c1e61785ce0e07bad3d40da56634111de1429a2006c416",
+   "originalSha256": "a1507dd7d2bfb5cda534ca45d91b7446e212a264e33763df2676eda42fe42c8b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лут Чернозём",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lut-blacksoil"
+    ],
+    "4-players": [
+     "lut-blacksoil"
+    ],
+    "5-players": [
+     "lut-blacksoil"
+    ],
+    "6-players": [
+     "lut-blacksoil"
+    ],
+    "7-players": [
+     "lut-blacksoil"
+    ]
+   },
+   "file": "lut-blacksoil.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-fox-ford.webp",
+   "sha256": "56574e40ee65400ae560e620410f5895dbc2439110fa964db780e8fda824f796",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисий Брод",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fox-ford"
+    ],
+    "4-players": [
+     "fox-ford"
+    ],
+    "5-players": [
+     "fox-ford"
+    ],
+    "6-players": [
+     "fox-ford"
+    ],
+    "7-players": [
+     "fox-ford"
+    ]
+   },
+   "file": "fox-ford.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-crooked-stacks.webp",
+   "sha256": "d057623ab3f5f8a8f35da1c38ead9225daf648626dcde548b8a9880abe71ca92",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кривые Стога",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crooked-stacks"
+    ],
+    "4-players": [
+     "crooked-stacks"
+    ],
+    "5-players": [
+     "crooked-stacks"
+    ],
+    "6-players": [
+     "crooked-stacks"
+    ],
+    "7-players": [
+     "crooked-stacks"
+    ]
+   },
+   "file": "crooked-stacks.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-chalk-homes.webp",
+   "sha256": "55cbfaba1431bd480c23b08a7103a2aa5fc010647987ef6012ae05c888011572",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Меловицы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "chalk-homes"
+    ],
+    "4-players": [
+     "chalk-homes"
+    ],
+    "5-players": [
+     "chalk-homes"
+    ],
+    "6-players": [
+     "chalk-homes"
+    ],
+    "7-players": [
+     "chalk-homes"
+    ]
+   },
+   "file": "chalk-homes.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-exchange-mill.webp",
+   "sha256": "68069f29b857a3fdda4ae60142100c81b3cc94ab8d4925cf6ab08aa553491950",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Меновая мельница",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "exchange-mill"
+    ],
+    "4-players": [
+     "exchange-mill"
+    ],
+    "5-players": [
+     "exchange-mill"
+    ],
+    "6-players": [
+     "exchange-mill"
+    ],
+    "7-players": [
+     "exchange-mill"
+    ]
+   },
+   "file": "exchange-mill.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-cold-shed.webp",
+   "sha256": "415f149ad656b5ce7c88ee4cfa4051c28a5e610a3ef0178054e0c4f5ad8e5dbb",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Холодный навес",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cold-shed"
+    ],
+    "4-players": [
+     "cold-shed"
+    ],
+    "5-players": [
+     "cold-shed"
+    ],
+    "6-players": [
+     "cold-shed"
+    ],
+    "7-players": [
+     "cold-shed"
+    ]
+   },
+   "file": "cold-shed.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-white-kiln.webp",
+   "sha256": "2ff4b9e04ebd84ff2678810f6223d8afedcd4788b61d2fd0c6f8636f15efa579",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Белая печь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-kiln"
+    ],
+    "4-players": [
+     "white-kiln"
+    ],
+    "5-players": [
+     "white-kiln"
+    ],
+    "6-players": [
+     "white-kiln"
+    ],
+    "7-players": [
+     "white-kiln"
+    ]
+   },
+   "file": "white-kiln.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-thorn-close.webp",
+   "sha256": "eef9a1b4003b8108b32487df0c01395b1e1927159717644603314436818c89b8",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терновый затвор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "thorn-close"
+    ],
+    "4-players": [
+     "thorn-close"
+    ],
+    "5-players": [
+     "thorn-close"
+    ],
+    "6-players": [
+     "thorn-close"
+    ],
+    "7-players": [
+     "thorn-close"
+    ]
+   },
+   "file": "thorn-close.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-split-chapel.webp",
+   "sha256": "24899215596e79edbf07b7522dd073d1764d709ea62d1527ed30fd25fa396e94",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Расколотая часовня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "split-chapel"
+    ],
+    "4-players": [
+     "split-chapel"
+    ],
+    "5-players": [
+     "split-chapel"
+    ],
+    "6-players": [
+     "split-chapel"
+    ],
+    "7-players": [
+     "split-chapel"
+    ]
+   },
+   "file": "split-chapel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-long-field.webp",
+   "sha256": "7a3bef7943a9ed9514e7809c3ef49dfaa68fcc7ac98bc04548fafbc69f7fdec8",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чёрная борозда",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "long-field"
+    ],
+    "4-players": [
+     "long-field"
+    ],
+    "5-players": [
+     "long-field"
+    ],
+    "6-players": [
+     "long-field"
+    ],
+    "7-players": [
+     "long-field"
+    ]
+   },
+   "file": "long-field.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-charred-crossing.webp",
+   "sha256": "81533688731bdac948ba5643d9d78505c183cc09390fecf7204e803a694daff3",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Обугленный перелаз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "charred-crossing"
+    ],
+    "4-players": [
+     "charred-crossing"
+    ],
+    "5-players": [
+     "charred-crossing"
+    ],
+    "6-players": [
+     "charred-crossing"
+    ],
+    "7-players": [
+     "charred-crossing"
+    ]
+   },
+   "file": "charred-crossing.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/places-ash-yard.webp",
+   "sha256": "4e542fb013a8cd676588b9e0aff75fb3b60bd4301f6f018cece2b12007dea05a",
+   "originalSha256": "9abd3dadf1289634fd1b9caa65495d79b34dd8bae45f6d8a692d5ea27a5b68af",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пепельный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ash-yard"
+    ],
+    "4-players": [
+     "ash-yard"
+    ],
+    "5-players": [
+     "ash-yard"
+    ],
+    "6-players": [
+     "ash-yard"
+    ],
+    "7-players": [
+     "ash-yard"
+    ]
+   },
+   "file": "ash-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-lada-mezen.webp",
+   "sha256": "3ecea779741a9ab2914a353690c1ff07bfa465a1ed1840af06c048a851dab53c",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Мезень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-mezen"
+    ],
+    "4-players": [
+     "lada-mezen"
+    ],
+    "5-players": [
+     "lada-mezen"
+    ],
+    "6-players": [
+     "lada-mezen"
+    ],
+    "7-players": [
+     "lada-mezen"
+    ]
+   },
+   "file": "lada-mezen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lada-mezen.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-il-vyaz.webp",
+   "sha256": "7d86324824780f542da1d3dd26df52193647af6019adb9938f3eb59dc1bda5aa",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иль Вяз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "il-vyaz"
+    ],
+    "4-players": [
+     "il-vyaz"
+    ],
+    "5-players": [
+     "il-vyaz"
+    ],
+    "6-players": [
+     "il-vyaz"
+    ],
+    "7-players": [
+     "il-vyaz"
+    ]
+   },
+   "file": "il-vyaz--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "il-vyaz.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-marta-quietleaf.webp",
+   "sha256": "00d49b236f609b9022979c9743424e8aae7919c57754eb4c5bb22aefa8ae96c1",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Тихолист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marta-quietleaf"
+    ],
+    "4-players": [
+     "marta-quietleaf"
+    ],
+    "5-players": [
+     "marta-quietleaf"
+    ],
+    "6-players": [
+     "marta-quietleaf"
+    ],
+    "7-players": [
+     "marta-quietleaf"
+    ]
+   },
+   "file": "marta-quietleaf--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marta-quietleaf.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-teren-wedge.webp",
+   "sha256": "5da584bb755e28a1d9bc065e8b2b5c04efb7013ded774fd67ecdc1d6deca5527",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терен Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "teren-wedge"
+    ],
+    "5-players": [
+     "teren-wedge"
+    ],
+    "6-players": [
+     "teren-wedge"
+    ],
+    "7-players": [
+     "teren-wedge"
+    ]
+   },
+   "file": "teren-wedge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teren-wedge.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-zorna-steep.webp",
+   "sha256": "fde6e92859549a8681e30a1bdb14f0cfd141208b98f05b681a8ddd7a20356a6d",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зорна Круча",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "zorna-steep"
+    ],
+    "6-players": [
+     "zorna-steep"
+    ],
+    "7-players": [
+     "zorna-steep"
+    ]
+   },
+   "file": "zorna-steep--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zorna-steep.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-ost-bast.webp",
+   "sha256": "95167147de297ba9cbb596b860bda9f2318bd14b3d28b17f5e14380656b6d639",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ост Лыко",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ost-bast"
+    ],
+    "7-players": [
+     "ost-bast"
+    ]
+   },
+   "file": "ost-bast--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ost-bast.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/heroes-danya-lion.webp",
+   "sha256": "7f8732b360795e3d28d32b2f84e2ba8d517ac5c121b2e82747dc79515ec989a6",
+   "originalSha256": "f2ee1ecc28f8963ea156e7dbdab45acba5b7edf580fef3973795f106797d7987",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даня Лев",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "danya-lion"
+    ]
+   },
+   "file": "danya-lion--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "danya-lion.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/foes-foe-1e6d33502b.webp",
+   "sha256": "a693e8375c9e9868f3061b5f401f365729940854ef5c469776f323d6e90fb8f2",
+   "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пепельный сборщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2"
+    ],
+    "4-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3"
+    ],
+    "5-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3"
+    ],
+    "6-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3",
+     "tithe-collectors-foe-4"
+    ],
+    "7-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3",
+     "tithe-collectors-foe-4",
+     "tithe-collectors-foe-5"
+    ]
+   },
+   "file": "foe-1e6d33502b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/foes-foe-1e6d33502b.webp",
+   "sha256": "a693e8375c9e9868f3061b5f401f365729940854ef5c469776f323d6e90fb8f2",
+   "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пепельный сборщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2"
+    ],
+    "4-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3"
+    ],
+    "5-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3"
+    ],
+    "6-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3",
+     "tithe-collectors-foe-4"
+    ],
+    "7-players": [
+     "tithe-collectors-foe-1",
+     "tithe-collectors-foe-2",
+     "tithe-collectors-foe-3",
+     "tithe-collectors-foe-4",
+     "tithe-collectors-foe-5"
+    ]
+   },
+   "file": "foe-1e6d33502b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-1e6d33502b.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/foes-foe-6aa1993841.webp",
+   "sha256": "60085b41abee6af36c450e194f2d7febfebbffa3f0a86ec9f508f4be58c7925a",
+   "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зольный ловчий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2"
+    ],
+    "4-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3"
+    ],
+    "5-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3"
+    ],
+    "6-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3",
+     "cinder-hunt-foe-4"
+    ],
+    "7-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3",
+     "cinder-hunt-foe-4",
+     "cinder-hunt-foe-5"
+    ]
+   },
+   "file": "foe-6aa1993841.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/foes-foe-6aa1993841.webp",
+   "sha256": "60085b41abee6af36c450e194f2d7febfebbffa3f0a86ec9f508f4be58c7925a",
+   "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зольный ловчий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2"
+    ],
+    "4-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3"
+    ],
+    "5-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3"
+    ],
+    "6-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3",
+     "cinder-hunt-foe-4"
+    ],
+    "7-players": [
+     "cinder-hunt-foe-1",
+     "cinder-hunt-foe-2",
+     "cinder-hunt-foe-3",
+     "cinder-hunt-foe-4",
+     "cinder-hunt-foe-5"
+    ]
+   },
+   "file": "foe-6aa1993841--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-6aa1993841.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/foes-foe-b89fca207d.webp",
+   "sha256": "4103d7dc57f7173e963467bf6af00120e456bd8e44ac7f8b6c1b5a68040f931d",
+   "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Страж жаровни",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2"
+    ],
+    "4-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3"
+    ],
+    "5-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3"
+    ],
+    "6-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3",
+     "brazier-wardens-foe-4"
+    ],
+    "7-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3",
+     "brazier-wardens-foe-4",
+     "brazier-wardens-foe-5"
+    ]
+   },
+   "file": "foe-b89fca207d.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/foes-foe-b89fca207d.webp",
+   "sha256": "4103d7dc57f7173e963467bf6af00120e456bd8e44ac7f8b6c1b5a68040f931d",
+   "originalSha256": "b41c9141d353c769828fb80e7dd37c4d8a01aa0decbdd85c804efddba0c50de4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Страж жаровни",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2"
+    ],
+    "4-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3"
+    ],
+    "5-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3"
+    ],
+    "6-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3",
+     "brazier-wardens-foe-4"
+    ],
+    "7-players": [
+     "brazier-wardens-foe-1",
+     "brazier-wardens-foe-2",
+     "brazier-wardens-foe-3",
+     "brazier-wardens-foe-4",
+     "brazier-wardens-foe-5"
+    ]
+   },
+   "file": "foe-b89fca207d--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-b89fca207d.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-yarina-north.webp",
+   "sha256": "ba4b1e98f347e370b77c57720dafafcf31ae7b132355116bb92de4b791f99bbc",
+   "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ярина Северь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yarina-north"
+    ],
+    "4-players": [
+     "yarina-north"
+    ],
+    "5-players": [
+     "yarina-north"
+    ],
+    "6-players": [
+     "yarina-north"
+    ],
+    "7-players": [
+     "yarina-north"
+    ]
+   },
+   "file": "yarina-north--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yarina-north.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-sava-turn.webp",
+   "sha256": "aa7249289187bca012ee50cdddd5f16fc10bd3d819c7e729f6af2c82165c5727",
+   "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Крута",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sava-turn"
+    ],
+    "4-players": [
+     "sava-turn"
+    ],
+    "5-players": [
+     "sava-turn"
+    ],
+    "6-players": [
+     "sava-turn"
+    ],
+    "7-players": [
+     "sava-turn"
+    ]
+   },
+   "file": "sava-turn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sava-turn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-mirtha-ridge.webp",
+   "sha256": "c1e6141b5923d95f975891a6c953de74068c13c7b440fc9537a4e08755d3ec05",
+   "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирта Круч",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirtha-ridge"
+    ],
+    "4-players": [
+     "mirtha-ridge"
+    ],
+    "5-players": [
+     "mirtha-ridge"
+    ],
+    "6-players": [
+     "mirtha-ridge"
+    ],
+    "7-players": [
+     "mirtha-ridge"
+    ]
+   },
+   "file": "mirtha-ridge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mirtha-ridge.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-tara-mark.webp",
+   "sha256": "7fbd0c61f1678348805e0471ba65767393d78d1592660f37105811b106f968c5",
+   "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тара Веха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tara-mark"
+    ],
+    "4-players": [
+     "tara-mark"
+    ],
+    "5-players": [
+     "tara-mark"
+    ],
+    "6-players": [
+     "tara-mark"
+    ],
+    "7-players": [
+     "tara-mark"
+    ]
+   },
+   "file": "tara-mark--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tara-mark.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-fena-knot.webp",
+   "sha256": "58ae510e3e28091767d2c968b419562c8d428833a903918ca563052410a43487",
+   "originalSha256": "3d71a9cf2a20fdc7a89b0cb05533e2653af8e41e08fab88ef4930392dae5ca0d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фена Узел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fena-knot"
+    ],
+    "4-players": [
+     "fena-knot"
+    ],
+    "5-players": [
+     "fena-knot"
+    ],
+    "6-players": [
+     "fena-knot"
+    ],
+    "7-players": [
+     "fena-knot"
+    ]
+   },
+   "file": "fena-knot--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fena-knot.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-borivey-horn.webp",
+   "sha256": "f2a2bb340e2e5c138d5f231dc7ea6bf5f5f26ec582bf65d912e7f363079e9823",
+   "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Боривей Рог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borivey-horn"
+    ],
+    "4-players": [
+     "borivey-horn"
+    ],
+    "5-players": [
+     "borivey-horn"
+    ],
+    "6-players": [
+     "borivey-horn"
+    ],
+    "7-players": [
+     "borivey-horn"
+    ]
+   },
+   "file": "borivey-horn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "borivey-horn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-radom-low.webp",
+   "sha256": "7df54f4d799bcd092c80fd7389a204b9211cca1029a86bdb5044c76fff2c7452",
+   "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Радом Низкий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "radom-low"
+    ],
+    "4-players": [
+     "radom-low"
+    ],
+    "5-players": [
+     "radom-low"
+    ],
+    "6-players": [
+     "radom-low"
+    ],
+    "7-players": [
+     "radom-low"
+    ]
+   },
+   "file": "radom-low--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "radom-low.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-verall-kel.webp",
+   "sha256": "555853f0611d1693fafea6dd8011788fcae8ea7e47471e74f097e5f6604d8c54",
+   "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Верал Кел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "verall-kel"
+    ],
+    "4-players": [
+     "verall-kel"
+    ],
+    "5-players": [
+     "verall-kel"
+    ],
+    "6-players": [
+     "verall-kel"
+    ],
+    "7-players": [
+     "verall-kel"
+    ]
+   },
+   "file": "verall-kel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "verall-kel.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-olh-dan.webp",
+   "sha256": "2be84baaae2385a282cf27b82be014ef37ab3dbd74ded2ac131ee8f090734eb2",
+   "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольх Дан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olh-dan"
+    ],
+    "4-players": [
+     "olh-dan"
+    ],
+    "5-players": [
+     "olh-dan"
+    ],
+    "6-players": [
+     "olh-dan"
+    ],
+    "7-players": [
+     "olh-dan"
+    ]
+   },
+   "file": "olh-dan--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olh-dan.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/table/npcs-lut-blacksoil.webp",
+   "sha256": "794e6df8c483ebb736b02f4d20e9a6446fab2b16f7934b9095d329005b4e425e",
+   "originalSha256": "cc12ca44e05c4fe527096eb49f551c118470811443da66b6adae8a329b15c00e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лут Чернозём",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lut-blacksoil"
+    ],
+    "4-players": [
+     "lut-blacksoil"
+    ],
+    "5-players": [
+     "lut-blacksoil"
+    ],
+    "6-players": [
+     "lut-blacksoil"
+    ],
+    "7-players": [
+     "lut-blacksoil"
+    ]
+   },
+   "file": "lut-blacksoil--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lut-blacksoil.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/illustrations/opening.webp",
+   "sha256": "1deaf187a1c67597377482f1f2e79767cc5fbda5bb16d320fc41cfe278964a68",
+   "originalSha256": "ed74a9c9b75545b4b0c6bde14c192a65cce2c50ace7dd232188e3e8e0c99f1a3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисий Брод — Десятина пепельных рыцарей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "three-bounds"
+    ],
+    "4-players": [
+     "three-bounds"
+    ],
+    "5-players": [
+     "three-bounds"
+    ],
+    "6-players": [
+     "three-bounds"
+    ],
+    "7-players": [
+     "three-bounds"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "fox-ford--map.webp",
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/battle-maps/fox-ford.webp",
+   "sha256": "ff11c2da7da73428fc92c37ebd8da08843fd13598a02feaa654a2873228dbe89",
+   "originalSha256": "9e753785edaa8eaf4b5c7e2dab42617238cc14af3a06a57ec41fb9d0b59aa4a5",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Лисий Брод. Visible scenery: Низкие дома окружают общий хлебный двор. На мостках у каждой двери лежит горсть остывшего пепла.. World style: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "fox-ford.webp",
+   "subjects": {
+    "3-players": [
+     "fox-ford"
+    ],
+    "4-players": [
+     "fox-ford"
+    ],
+    "5-players": [
+     "fox-ford"
+    ],
+    "6-players": [
+     "fox-ford"
+    ],
+    "7-players": [
+     "fox-ford"
+    ]
+   }
+  },
+  {
+   "file": "charred-crossing--map.webp",
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/battle-maps/charred-crossing.webp",
+   "sha256": "c9f7ba96d655c067dd6c5864aed667f3c3cde70ac7bf00c10f959d1695da6b53",
+   "originalSha256": "96e8bdc1cccbfea80218f91268f96f9529343f503efc3bb552988ae86291d3a1",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Обугленный перелаз. Visible scenery: Старый перелаз пересекает ложбину. По одну сторону тянется терновник, по другую стоят пустые известковые тележки.. World style: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "charred-crossing.webp",
+   "subjects": {
+    "3-players": [
+     "charred-crossing"
+    ],
+    "4-players": [
+     "charred-crossing"
+    ],
+    "5-players": [
+     "charred-crossing"
+    ],
+    "6-players": [
+     "charred-crossing"
+    ],
+    "7-players": [
+     "charred-crossing"
+    ]
+   }
+  },
+  {
+   "file": "long-field--map.webp",
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/battle-maps/long-field.webp",
+   "sha256": "727c049e128daf75742cd1e2527d9bde9d1056a27b8168f0ab898f7c3fb4f7ca",
+   "originalSha256": "2bb2aafe6e6079c848ca2ec891d3a9b68d89bd947b0a3f4a2cd2d00f5969e752",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Чёрная борозда. Visible scenery: На длинном поле стоят три круглые жаровни и деревянные рабочие помосты. Земля между ними всегда тёплая.. World style: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "long-field.webp",
+   "subjects": {
+    "3-players": [
+     "long-field"
+    ],
+    "4-players": [
+     "long-field"
+    ],
+    "5-players": [
+     "long-field"
+    ],
+    "6-players": [
+     "long-field"
+    ],
+    "7-players": [
+     "long-field"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/ash-tithe/assets/world-map/world-map.webp",
+   "sha256": "1c969e45375e11c8e6cf5258933502452cc9f96c03226cc6903398dce068a66f",
+   "originalSha256": "8b8cf3a05bc94e78029591bc349b1de07909a5cca917fc5ab6c43cc8f9460d06",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Низина трёх меж. Style Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Лисий Брод; 0.367,0.177 Кривые Стога; 0.623,0.15 Меловицы; 0.88,0.177 Меновая мельница; 0.905,0.517 Холодный навес; 0.648,0.49 Белая печь; 0.392,0.517 Терновый затвор; 0.135,0.49 Расколотая часовня; 0.11,0.83 Чёрная борозда; 0.367,0.857 Обугленный перелаз; 0.623,0.83 Пепельный двор. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

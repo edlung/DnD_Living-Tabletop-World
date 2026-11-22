@@ -1,0 +1,692 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "three-magicless-days-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-6c96fda9-8488-44dd-b0fd-1d142a1fd4ec.png",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Cell 1. Марта Широкий Шаг. Короткая куртка, красные шнурки, деревянная пуговица размером с сливу.\nCell 2. Сава Петелькин. Жилет с множеством видимых карманов, тонкий шнурок с номерком, мягкая шляпа.\nCell 3. Ольна Светлая Ладонь. Простой дорожный плащ, медный знак раскрытой ладони, термос обычного чая.\nCell 4. Вет Фонарный. Синий шарф с нарисованными звёздами, аккуратный футляр для мела, круглые очки.\nCell 5. Рема Три Хлопка. Зелёный пояс, рукава до локтя, маленькая деревянная хлопушка для репетиций.\nCell 6. Дин Красный Бант. Белая жилетка, потёртая сумка, красный бант на рукояти обычной трости.\nCell 7. Илва Медная Пуговица. Жёлтая накидка, блокнот на верёвочке, разные по цвету перчатки.\nCell 8. Тео Косой Полдень. Широкополая шляпа, песочного цвета плащ и обычная складная линейка.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-marta.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-sava.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-olna.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-vet.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-rema.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-din.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-ilva.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-teo.webp"
+      ]
+    },
+    {
+      "id": "three-magicless-days-places-0",
+      "originalFile": "exec-d6960362-9f43-46be-bfde-bdbc5fabaf92.png",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Cell 1. Крыльцо дежурных. Широкое крыльцо с доской объявлений, мелом и столом для возвращённых вещей. Отсюда видны три соседние улицы.\nCell 2. Площадь Медного носа. Обычная ручная помпа стоит в круглой чаше, похожей на огромный нос. Рядом скамейки, открытое солнце и широкая боковая дорожка.\nCell 3. Двор длинных простыней. Между низкими домами висят верёвки для белья. Под ними сохнут разноцветные дорожки и блестят лужицы.\nCell 4. Зал забытых плащей. Общественная вешалка с длинной стойкой, жетонами и крытой галереей; боковая дверь ведёт прямо на улицу.\nCell 5. Калитка приезжих. Широкий пеший вход в город; рядом лавка, тумба со старой программой и место для мирно ожидающих групп.\nCell 6. Переплётный двор. Под открытым навесом лежат чистые карточки, тетради и деревянные прищепки. Здесь удобно писать сидя или стоя.\nCell 7. Сад тихих качелей. Невысокие деревья затеняют обычные качели и неподвижные скамьи. Рядом лежат пледы и табличка с нарисованным ухом.\nCell 8. Лужайка выходного дня. На траве отдыхают светящиеся чары в полосатых панамах. Рядом с ними можно играть, болтать и просто лежать.\nCell 9. Двор первого поклона. Просторный двор с низкими ступенями, широкими воротами и небольшим помостом для приветствий и любительских представлений.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "three-magicless-days-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c27acddd-b54e-4bd9-8a3f-2b4bba3aed96.png",
+      "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Cell 1. Любопытная дворовая коза. Обычная ухоженная коза с мягкой лентой у ошейника; ей интересны болтающиеся банты, а не герои сами по себе. Подача нелетальная, без ранений животных крупным планом.\nCell 2. Ленточный ветрошмыг. Небольшое природное существо, похожее на прозрачный клубочек с глазами и хвостом из завитого воздуха; оно играет, не понимая назначения украшений.\nCell 3. Картонный рыцарь любительской сцены. Взрослый горожанин в смешном картонном нагруднике поверх обычной одежды. Игровые HP описывают сценическую выносливость; исчезновение запаса означает выход из номера без подробностей травмы.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "three-magicless-days-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f818ebd3-cbb1-448b-9421-3b45ba172148.png",
+      "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Выходные у заклинаний. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Рада Два Мелка. Рукава в белой пыли, косичка с двумя мелками, широкий непарадный фартук.\nCell 2. Тилло Круглый Номерок. Полосатый жилет, связанные попарно карандаши, очки на длинной цепочке.\nCell 3. Нерпа Сухой Рукав. Короткие сапоги, зелёная косынка, прищепки на поясе вместо украшений.\nCell 4. Вея Книжный Угол. Серебряные волосы, широкие очки, раскрытая тетрадь на деревянной подставке.\nCell 5. Фенк Семь Приветствий. Высокая шапка, ленточка с нарисованной ладонью, разные носки.",
+      "references": [
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/rada.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/tillo.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/nerpa.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/veya.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/fenk.webp"
+      ]
+    },
+    {
+      "id": "three-magicless-days-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-1ba5f1f9-0817-4cda-bb7e-e038bb280118.png",
+      "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Выходные у заклинаний. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Бума Поставьте Локти. Широкий соломенный козырёк, простая кружка и рукава, закатанные на разную высоту.\nCell 2. Порог Первый После Вас. Невысокая золотистая фигура в панаме, опирающаяся на медную дверную ручку как на трость.\nCell 3. Отжим Брызга. Светящийся бирюзовый завиток с совершенно сухим полотенцем и смешными солнечными очками.\nCell 4. Сима Три Остановки. Сиреневый дорожный платок, невысокая трость и свёрток с обычной настольной игрой.\nCell 5. Колет Капитан Шум. Пиджак с тремя пустыми карманами, мягкая треуголка и свисток, которым он пользуется только с разрешения.",
+      "references": [
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/buma.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/porog.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/otzhim.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/sima.webp",
+        "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/kolet.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "hero-marta",
+      "title": "Марта Широкий Шаг",
+      "kind": "hero",
+      "subjects": [
+        "hero-marta"
+      ],
+      "file": "heroes-hero-marta.webp",
+      "sha256": "46adafa953c16d4ad83e2c17a9254b4af00f48c8bf9bcaad2f90a990d9af4298",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 116,
+        "top": 12,
+        "width": 212,
+        "height": 420
+      }
+    },
+    {
+      "key": "hero-sava",
+      "title": "Сава Петелькин",
+      "kind": "hero",
+      "subjects": [
+        "hero-sava"
+      ],
+      "file": "heroes-hero-sava.webp",
+      "sha256": "256fc7dbb45ef590f43dab886e8fc758859e35cd72577567d307f0eec1e68ef2",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 558,
+        "top": 10,
+        "width": 214,
+        "height": 423
+      }
+    },
+    {
+      "key": "hero-olna",
+      "title": "Ольна Светлая Ладонь",
+      "kind": "hero",
+      "subjects": [
+        "hero-olna"
+      ],
+      "file": "heroes-hero-olna.webp",
+      "sha256": "c1fe3789b5f3db2367b91a253b3160b274980bc23bcf58dce5b1513e7dfd8312",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 992,
+        "top": 14,
+        "width": 225,
+        "height": 419
+      }
+    },
+    {
+      "key": "hero-vet",
+      "title": "Вет Фонарный",
+      "kind": "hero",
+      "subjects": [
+        "hero-vet"
+      ],
+      "file": "heroes-hero-vet.webp",
+      "sha256": "1b4d5e61bec8dd0482ffd7ee1abc756eda8e60388dfad411adbe7d4310e0dd30",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1445,
+        "top": 9,
+        "width": 214,
+        "height": 424
+      }
+    },
+    {
+      "key": "hero-rema",
+      "title": "Рема Три Хлопка",
+      "kind": "hero",
+      "subjects": [
+        "hero-rema"
+      ],
+      "file": "heroes-hero-rema.webp",
+      "sha256": "5798608ffbf23dd082320100be8be05049287af6e80ba48498e3f79ba95f6b1d",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 111,
+        "top": 457,
+        "width": 218,
+        "height": 419
+      }
+    },
+    {
+      "key": "hero-din",
+      "title": "Дин Красный Бант",
+      "kind": "hero",
+      "subjects": [
+        "hero-din"
+      ],
+      "file": "heroes-hero-din.webp",
+      "sha256": "fb7b89954d369592bf8152073a3533a79ded63e99c91bbff942e0ecf428c6b9d",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 558,
+        "top": 453,
+        "width": 217,
+        "height": 422
+      }
+    },
+    {
+      "key": "hero-ilva",
+      "title": "Илва Медная Пуговица",
+      "kind": "hero",
+      "subjects": [
+        "hero-ilva"
+      ],
+      "file": "heroes-hero-ilva.webp",
+      "sha256": "6d0ecacc648caf6a116327575591f115c283d1283763e84abe82edd3b1855893",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 992,
+        "top": 455,
+        "width": 225,
+        "height": 421
+      }
+    },
+    {
+      "key": "hero-teo",
+      "title": "Тео Косой Полдень",
+      "kind": "hero",
+      "subjects": [
+        "hero-teo"
+      ],
+      "file": "heroes-hero-teo.webp",
+      "sha256": "0a552fa3dd758d19fbe503f6479c42348dae210fd089ae1becb89894902ea189",
+      "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1442,
+        "top": 449,
+        "width": 218,
+        "height": 427
+      }
+    },
+    {
+      "key": "duty-porch",
+      "title": "Крыльцо дежурных",
+      "kind": "place",
+      "subjects": [
+        "duty-porch"
+      ],
+      "file": "places-duty-porch.webp",
+      "sha256": "a1d3b1cc0553d279c2f159f21d114a3f1cf405aeaac61f20549233f14481358a",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "pump-square",
+      "title": "Площадь Медного носа",
+      "kind": "place",
+      "subjects": [
+        "pump-square"
+      ],
+      "file": "places-pump-square.webp",
+      "sha256": "09cf3cb21e26a99b45ca55808ee3c76d3ecb9d37283b80a37318aa4635e39eac",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "linen-yard",
+      "title": "Двор длинных простыней",
+      "kind": "place",
+      "subjects": [
+        "linen-yard"
+      ],
+      "file": "places-linen-yard.webp",
+      "sha256": "280bd69c7288e9cba246c27ba4ce07c8b0794b623579c434dc2dce13075a972a",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "cloak-hall",
+      "title": "Зал забытых плащей",
+      "kind": "place",
+      "subjects": [
+        "cloak-hall"
+      ],
+      "file": "places-cloak-hall.webp",
+      "sha256": "de5edc4d46777bb9d1cd809ea212c5c0db52d6f05958abad50025fa422293ad5",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "visitor-gate",
+      "title": "Калитка приезжих",
+      "kind": "place",
+      "subjects": [
+        "visitor-gate"
+      ],
+      "file": "places-visitor-gate.webp",
+      "sha256": "237432046d9aac0d230f58e8a252cb67dafe903b8dd2031a91d835d97fd30be4",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "bookbinder-yard",
+      "title": "Переплётный двор",
+      "kind": "place",
+      "subjects": [
+        "bookbinder-yard"
+      ],
+      "file": "places-bookbinder-yard.webp",
+      "sha256": "8c6548d15c1da44bef5e993dded21d5c64ec4956c98fe5c62fcaa31714dc1757",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "quiet-garden",
+      "title": "Сад тихих качелей",
+      "kind": "place",
+      "subjects": [
+        "quiet-garden"
+      ],
+      "file": "places-quiet-garden.webp",
+      "sha256": "9e35d5cebd84c535874980cd9216c110bde681b8516a10e46927ef11e00d04cd",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "holiday-lawn",
+      "title": "Лужайка выходного дня",
+      "kind": "place",
+      "subjects": [
+        "holiday-lawn"
+      ],
+      "file": "places-holiday-lawn.webp",
+      "sha256": "2bb051a6a5ba44150626c9bfe116ebfcd321c9a2705d278f5c89508186bbe31d",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "open-court",
+      "title": "Двор первого поклона",
+      "kind": "place",
+      "subjects": [
+        "open-court"
+      ],
+      "file": "places-open-court.webp",
+      "sha256": "52204e8300cbd0726c4ff8d2bbedb7bb14f3872edc7300d34ab0799d03f779b6",
+      "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-38890e33cc",
+      "title": "Любопытная дворовая коза",
+      "kind": "foe",
+      "subjects": [
+        "ribbon-goats-foe-1",
+        "ribbon-goats-foe-2",
+        "ribbon-goats-foe-3",
+        "ribbon-goats-foe-4",
+        "ribbon-goats-foe-5",
+        "ribbon-goats-foe-6"
+      ],
+      "file": "foes-foe-38890e33cc.webp",
+      "sha256": "1c775896842f6f6d63671daadfb123c2dafb779b8b1c5a1a8dfb515e1ec85b03",
+      "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 65,
+        "top": 3,
+        "width": 598,
+        "height": 696
+      }
+    },
+    {
+      "key": "foe-872e1eb50d",
+      "title": "Ленточный ветрошмыг",
+      "kind": "foe",
+      "subjects": [
+        "ribbon-whirlers-foe-1",
+        "ribbon-whirlers-foe-2",
+        "ribbon-whirlers-foe-3",
+        "ribbon-whirlers-foe-4",
+        "ribbon-whirlers-foe-5",
+        "ribbon-whirlers-foe-6"
+      ],
+      "file": "foes-foe-872e1eb50d.webp",
+      "sha256": "9922267501169173a660c9fae3c6e0cd83791c8c6b99ea91b879d567be6affc6",
+      "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 780,
+        "top": 83,
+        "width": 568,
+        "height": 615
+      }
+    },
+    {
+      "key": "foe-c419e75bca",
+      "title": "Картонный рыцарь любительской сцены",
+      "kind": "foe",
+      "subjects": [
+        "cardboard-knights-foe-1",
+        "cardboard-knights-foe-2",
+        "cardboard-knights-foe-3",
+        "cardboard-knights-foe-4",
+        "cardboard-knights-foe-5",
+        "cardboard-knights-foe-6"
+      ],
+      "file": "foes-foe-c419e75bca.webp",
+      "sha256": "a372a0bbe60af13642010ec7feeceef218cb338950801fb867db482465106060",
+      "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1534,
+        "top": 16,
+        "width": 528,
+        "height": 686
+      }
+    },
+    {
+      "key": "rada",
+      "title": "Рада Два Мелка",
+      "kind": "npc",
+      "subjects": [
+        "rada"
+      ],
+      "file": "npcs-rada.webp",
+      "sha256": "0edad30e45db6a39056b11a8c044630015349e73871cac0558737575196e4c3e",
+      "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 122,
+        "top": 0,
+        "width": 270,
+        "height": 498
+      }
+    },
+    {
+      "key": "tillo",
+      "title": "Тилло Круглый Номерок",
+      "kind": "npc",
+      "subjects": [
+        "tillo"
+      ],
+      "file": "npcs-tillo.webp",
+      "sha256": "5c280fc0956f03a722dd94a4b24f7d79c204f3337d26920478da79c9bee61175",
+      "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 634,
+        "top": 12,
+        "width": 261,
+        "height": 486
+      }
+    },
+    {
+      "key": "nerpa",
+      "title": "Нерпа Сухой Рукав",
+      "kind": "npc",
+      "subjects": [
+        "nerpa"
+      ],
+      "file": "npcs-nerpa.webp",
+      "sha256": "e7b763bdccec6e1f4029648d0f213cd23598f0b754e56368048e6c7ff1d3e44d",
+      "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1093,
+        "top": 0,
+        "width": 352,
+        "height": 508
+      }
+    },
+    {
+      "key": "veya",
+      "title": "Вея Книжный Угол",
+      "kind": "npc",
+      "subjects": [
+        "veya"
+      ],
+      "file": "npcs-veya.webp",
+      "sha256": "ec5225c76b8422edef9fa14c02bd71791253035fd73134742435b8a6a23ea9b7",
+      "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 82,
+        "top": 528,
+        "width": 348,
+        "height": 477
+      }
+    },
+    {
+      "key": "fenk",
+      "title": "Фенк Семь Приветствий",
+      "kind": "npc",
+      "subjects": [
+        "fenk"
+      ],
+      "file": "npcs-fenk.webp",
+      "sha256": "0cf5aa656ed42f221ce13d77ca73428db52ab825378c6cf64e6672f6a0cef153",
+      "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 609,
+        "top": 516,
+        "width": 335,
+        "height": 487
+      }
+    },
+    {
+      "key": "buma",
+      "title": "Бума Поставьте Локти",
+      "kind": "npc",
+      "subjects": [
+        "buma"
+      ],
+      "file": "npcs-buma.webp",
+      "sha256": "0a5687ddf5b5eb1684636f58abdd3c6477da45dd5f4ce6ea9d513b7cc317491b",
+      "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 74,
+        "top": 16,
+        "width": 351,
+        "height": 469
+      }
+    },
+    {
+      "key": "porog",
+      "title": "Порог Первый После Вас",
+      "kind": "npc",
+      "subjects": [
+        "porog"
+      ],
+      "file": "npcs-porog.webp",
+      "sha256": "afbe4a50131784028b557f6ad3bb7ef2bf76be83b9a438cfae4e5ac0ce1ae02e",
+      "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 586,
+        "top": 12,
+        "width": 338,
+        "height": 467
+      }
+    },
+    {
+      "key": "otzhim",
+      "title": "Отжим Брызга",
+      "kind": "npc",
+      "subjects": [
+        "otzhim"
+      ],
+      "file": "npcs-otzhim.webp",
+      "sha256": "a14d1176c54d222713acb691ec859ad9086d89569ed55a29413987bff2cb057f",
+      "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1102,
+        "top": 21,
+        "width": 355,
+        "height": 458
+      }
+    },
+    {
+      "key": "sima",
+      "title": "Сима Три Остановки",
+      "kind": "npc",
+      "subjects": [
+        "sima"
+      ],
+      "file": "npcs-sima.webp",
+      "sha256": "730b9863c2bc5f25e1bd1827102e865235aae461029efd3ad919fba739cfde35",
+      "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 68,
+        "top": 524,
+        "width": 394,
+        "height": 488
+      }
+    },
+    {
+      "key": "kolet",
+      "title": "Колет Капитан Шум",
+      "kind": "npc",
+      "subjects": [
+        "kolet"
+      ],
+      "file": "npcs-kolet.webp",
+      "sha256": "e8b220aecdd0a3802e1240d080c7c5f841773ffc5e61cf8779dd9eef413b12b1",
+      "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+      "generated": "2026-11-22",
+      "sheet": "three-magicless-days-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 588,
+        "top": 521,
+        "width": 358,
+        "height": 489
+      }
+    }
+  ]
+}

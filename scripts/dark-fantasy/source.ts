@@ -99,6 +99,7 @@ export interface Scene {
   choices: string[];
   check: string;
   failForward: string;
+  dmAftermath?: boolean;
 }
 export interface Session {
   number: number;

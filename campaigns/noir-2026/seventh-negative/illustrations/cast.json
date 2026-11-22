@@ -1,0 +1,435 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-41a69d40-99d0-4fc4-b01e-f2981b947c58.png",
+      "originalSha256": "3460ab917b25e284f5c3448015afb1ecf6074dda4636fae7cc1f3225776644e4",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Гранов и студия «Кромка». Characters, in strict cell order:\n1. Ника Орл — Пальто с заменённой подкладкой, небольшой блокнот и привычка садиться так, чтобы видеть собеседника, а не выход. Age 35.\n2. Тимур Клен — Короткая рабочая куртка, очки в жестяном футляре, карандаш за правым ухом. Age 39.\n3. Софья Лан — Тёмный жилет, мягкая папка с двумя отделениями и тщательно подрезанный простой карандаш. Age 45.\n4. Яна Брук — Светлый шарф, застёгнутый дорожный саквояж и спокойный голос без привычки командовать. Age 33.\n5. Аркадий Рёс — Вытертый галстук, аккуратно причёсанные седые волосы и карманное зеркало с треснувшей крышкой. Age 52.\n6. Мила Арж — Рукава, стянутые лентой, мягкая щётка в футляре и очки, которые она снимает во время разговора. Age 28.\n7. Денис Вель — Тёплая кепка, сумка с чистыми бланками и записная книжка, в которой адреса закрыты отдельным клапаном. Age 41.\n8. Эстер Фон — Плотные перчатки на ремне, высокая шнуровка ботинок и мел на наружном кармане. Age 37.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-b440e187-5a2f-4f55-8cd8-acb20becdd1f.png",
+      "originalSha256": "52ef8eb1df5ccd9fc9736da27118724fa246ac0519d8222692ee75f6a5134dd3",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Гранов и студия «Кромка». Characters, in strict cell order:\n1. Вера Корс — Строгий костюм, узкая брошь и металлическая ручная пломба на короткой цепочке у жилета. Age 49.\n2. Антон Лис — Вязаный шарф поверх пиджака, папка с мизансценами и усталые глаза. Age 46.\n3. Дина Рез — Клетчатая рубашка, два карандаша разной длины и белые полоски бумаги на рукаве. Age 32.\n4. Илья Яр — Круглые очки, серый халат и перчатки для работы с плёнкой. Age 55.\n5. Раиса Вет — Брезентовый фартук, связка карточек на кольце и маленькая кружка, висящая на крючке. Age 44.\n6. Павел Устен — Наушники на шее, короткие волосы и бумажные метки на ремне сумки. Age 27.\n7. Елена Бор — Тёмное платье, простая брошь и очки на шнурке. Age 61.\n8. Лидия Крут — Тёплая кофта поверх блузки и серебряная заколка без украшений. Age 38.\n9. Марина Дол — Потёртая шерстяная юбка, крупные пуговицы и пачка чистой бумаги под рукой. Age 42.\n10. Григорий Таль — Форменная куртка без погон, слуховая трубка телефона и аккуратная седая щетина. Age 58.\n11. Лев Ратин — На разрешённой семьёй фотографии — человек в простой рабочей куртке с широким горизонтальным швом на спине. Age 34.\n12. Олег Линн — Простой костюм, папка городского бюро и сухие чернила на среднем пальце. Age 47.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "nika-orl",
+      "file": "cards/nika-orl.webp",
+      "title": "Ника Орл",
+      "subjects": [
+        "nika-orl"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2f8326ae15030d5d3cdaed1432440c6f142fe048832fe3f70319ab25517bab43"
+    },
+    {
+      "id": "timur-klen",
+      "file": "cards/timur-klen.webp",
+      "title": "Тимур Клен",
+      "subjects": [
+        "timur-klen"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dcd56c8cc0ea5171b572631683fdafb244a1530fdbade6aac3f872e920e9356c"
+    },
+    {
+      "id": "sofya-lan",
+      "file": "cards/sofya-lan.webp",
+      "title": "Софья Лан",
+      "subjects": [
+        "sofya-lan"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a8ae46bde6b1d9c678ad8938504fb739115d05d6a702d5b6c92fc1f7cf5ddd78"
+    },
+    {
+      "id": "yana-bruk",
+      "file": "cards/yana-bruk.webp",
+      "title": "Яна Брук",
+      "subjects": [
+        "yana-bruk"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8eb8e6d7aaa34e523d4a2db28413dfdbd698164ac0c7bc34d9f8c48146b28cad"
+    },
+    {
+      "id": "arkady-res",
+      "file": "cards/arkady-res.webp",
+      "title": "Аркадий Рёс",
+      "subjects": [
+        "arkady-res"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5e59c609966367b405e8bf897e3df14665d84cedc91549b2f3edf350d4d08f55"
+    },
+    {
+      "id": "mila-arzh",
+      "file": "cards/mila-arzh.webp",
+      "title": "Мила Арж",
+      "subjects": [
+        "mila-arzh"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "17ab896f1993aa6c260e43278508d8fec2cd6d375fdef6a8597c246887613e34"
+    },
+    {
+      "id": "denis-vel",
+      "file": "cards/denis-vel.webp",
+      "title": "Денис Вель",
+      "subjects": [
+        "denis-vel"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6c2193a6ff6c77bf846037d4dd3d3e2ea2aafacd5d82eb152e564118a78d5e52"
+    },
+    {
+      "id": "ester-fon",
+      "file": "cards/ester-fon.webp",
+      "title": "Эстер Фон",
+      "subjects": [
+        "ester-fon"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8a89dd1c278bbc660797cbd06faf21e0fd83bbdac0718f83c5842ebbfb4b8e48"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "arkady-res-travel-kit",
+        "denis-vel-travel-kit",
+        "ester-fon-travel-kit",
+        "mila-arzh-travel-kit",
+        "nika-orl-travel-kit",
+        "sofya-lan-travel-kit",
+        "timur-klen-travel-kit",
+        "yana-bruk-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "639092aeb26a9024ca536cce54f702ac4c1070ca1c7d28977fde6d534b29b615"
+    },
+    {
+      "id": "vera-kors",
+      "file": "cards/vera-kors.webp",
+      "title": "Вера Корс",
+      "subjects": [
+        "vera-kors"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5d7335cf6a0f9ce7024f7b44cda3de4cc4c092dcaef1e524bb14f569d5494e67"
+    },
+    {
+      "id": "anton-lis",
+      "file": "cards/anton-lis.webp",
+      "title": "Антон Лис",
+      "subjects": [
+        "anton-lis"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "35cf93602f5c6885af2d88cc5c961892a5bc79f7ba1b4ed2734fb92e43b383b7"
+    },
+    {
+      "id": "dina-rez",
+      "file": "cards/dina-rez.webp",
+      "title": "Дина Рез",
+      "subjects": [
+        "dina-rez"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6549ec62a3da961615d845da38c5a43f56e4ea4f0870566625d7d6afe04ce7ab"
+    },
+    {
+      "id": "ilya-yar",
+      "file": "cards/ilya-yar.webp",
+      "title": "Илья Яр",
+      "subjects": [
+        "ilya-yar"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "42322a775e82c8b42dbff9ee09fac4df9b9e9089267700bff7901b50723cd48b"
+    },
+    {
+      "id": "raisa-vet",
+      "file": "cards/raisa-vet.webp",
+      "title": "Раиса Вет",
+      "subjects": [
+        "raisa-vet"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a367aeec86d9f7c3969c23bd7f444280cb26541be756e44cda8ace623dd2f80e"
+    },
+    {
+      "id": "pavel-usten",
+      "file": "cards/pavel-usten.webp",
+      "title": "Павел Устен",
+      "subjects": [
+        "pavel-usten"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5eeec791482857a3a37d59eb974eedb69658d54086af035cdd9f02d408c37b61"
+    },
+    {
+      "id": "elena-bor",
+      "file": "cards/elena-bor.webp",
+      "title": "Елена Бор",
+      "subjects": [
+        "elena-bor"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fdda050566b4f6e6ef8477fd319965aa32db34bb93b262772f92719c86a37f5b"
+    },
+    {
+      "id": "lidia-krut",
+      "file": "cards/lidia-krut.webp",
+      "title": "Лидия Крут",
+      "subjects": [
+        "lidia-krut"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f545bb622c0305bd492fea9a571c528a5f316221578b88d58984f7d395287fcb"
+    },
+    {
+      "id": "marina-dol",
+      "file": "cards/marina-dol.webp",
+      "title": "Марина Дол",
+      "subjects": [
+        "marina-dol"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b8d547e03517171f5c1470c43b07f27a2c958467e9a5d4349055802a2e701af4"
+    },
+    {
+      "id": "grigory-tal",
+      "file": "cards/grigory-tal.webp",
+      "title": "Григорий Таль",
+      "subjects": [
+        "grigory-tal"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3c6e361cacdd7e13411100f5f5e5e623b3414d1bd019ac5d977d3329169b0079"
+    },
+    {
+      "id": "lev-ratin",
+      "file": "cards/lev-ratin.webp",
+      "title": "Лев Ратин",
+      "subjects": [
+        "lev-ratin"
+      ],
+      "sheet": "npcs",
+      "cell": 11,
+      "crop": {
+        "left": 371,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "efe41c12e87d70c6ad85ccdf8d79d67bfb6b0c33de6d5bd2ae5c34282861ff19"
+    },
+    {
+      "id": "oleg-linn",
+      "file": "cards/oleg-linn.webp",
+      "title": "Олег Линн",
+      "subjects": [
+        "oleg-linn"
+      ],
+      "sheet": "npcs",
+      "cell": 12,
+      "crop": {
+        "left": 733,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "276fdc6777d8447d02a9f6a417d39a9d2d84902bdd09c47dc6dc3e33c9465815"
+    }
+  ]
+}

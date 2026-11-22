@@ -1,0 +1,619 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "quiet-exchange-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-83bc6334-a799-48df-8b3b-ec3a0e4fbe57.png",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Cell 1. Анна Руднева. Тёмный плащ, мягкий карандаш, маленький блокнот без фамилий на обложке.\nCell 2. Илья Мелов. Короткий жилет, чернильное пятно на манжете, складная доска для заметок.\nCell 3. Кира Осокина. Рабочее пальто, аккуратно зашитая перчатка, крепкая трость.\nCell 4. Лев Нарец. Потёртый счётный футляр, чистые рукава, смешная слишком большая шляпа.\nCell 5. Тамара Зорн. Серебряная заколка, шерстяной жакет, спокойные руки.\nCell 6. Семён Ворот. Карандаши разной длины, широкие брюки, пятно охры на ботинке.\nCell 7. Нина Кольт. Плотное пальто, бумажный список заказов, ключи на короткой ленте.\nCell 8. Виктор Леск. Два блокнота с разными застёжками, круглые очки, шарф цвета мокрой меди.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/anna-rudneva.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/ilya-melov.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/kira-osokina.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/lev-narets.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/tamara-zorn.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/semen-vorot.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/nina-kolt.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/viktor-lesk.webp"
+      ]
+    },
+    {
+      "id": "quiet-exchange-places-0",
+      "originalFile": "exec-d4f6b2de-cb6a-4524-a2a4-c03cb593bacb.png",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Cell 1. Кафе «Поздняя чашка». Несколько столиков, ширма у обычного телефона и отдельная полка для закрытых конвертов. Хозяйка спрашивает, кому можно слышать разговор.\nCell 2. Коммутаторная соседского круга. Дежурные соединяют добровольные поручения. На доске написано: «Помочь связаться — не значит разрешить пересказ».\nCell 3. Переплётная «Лист и корешок». Небольшие тиски, пресс и книжные обрезки. Между рабочими местами проходит узкая дорожка к задней двери.\nCell 4. Прачечная с тёплой галереей. Над сушильным двором тянется крытая галерея. Здесь можно разговаривать, не приглашая собеседника домой.\nCell 5. Конечная под железным навесом. Ряды скамеек, киоск сменных расписаний и телефон для служебных и разрешённых личных звонков.\nCell 6. Стол согласованных доставок. Пакеты хранятся в пронумерованных ячейках. Получатель может отказаться от встречи и оставить конверт закрытым.\nCell 7. Касса взаимных расчётов. За невысокой стойкой выдают именные квитанции и копии собственных операций; посетители ждут под сухим козырьком.\nCell 8. Крытый сад над кафе. Скамьи между ящиками с зеленью и небольшой павильон с обычным телефоном. Дверь во двор остаётся свободной для ухода.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "quiet-exchange-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5213f792-ce07-4112-a3ff-1f3e573be8aa.png",
+      "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Cell 1. Взыскатель мастерской. Взрослые работники от 30 до 55 лет в рабочих куртках; раздражены задержкой оплаты, не знают тайн или планов расследователей. Условные средства ближнего боя не моделируют реальные приёмы насилия.\nCell 2. Помощник доставки. Взрослые сортировщики от 26 до 60 лет; защищают обычный порядок хранения, а не шантажистку. Знают лишь условия своей текущей работы.\nCell 3. Навязчивый посетитель. Взрослые знакомые круга от 24 до 58 лет, считающие чужую историю общим делом. Они знают только публично объявленное героями и не обладают скрытыми документами.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "quiet-exchange-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-ff624bd2-1e00-45a4-862c-7ddb254488de.png",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Тихая коммутаторная. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Таисия Коршун. Светлая блуза, небольшие часы, папка с закруглёнными уголками.\nCell 2. Вера Ланская. Чернильные пальцы, вытертая на локтях куртка, бережно сложенная бумага.\nCell 3. Лидия Радова. Фартук поверх городского платья, сумка с образцами ткани, коротко подстриженные волосы.\nCell 4. Роман Бережный. Старый форменный плащ, аккуратные числовые заметки, термос без крышки.\nCell 5. Марта Осеева. Тёмное платье, связка служебных ярлыков, усталые внимательные глаза.\nCell 6. Павел Ремиз. Прорезиненный плащ, сумка с плоским дном, красная лента для запечатанных ячеек.\nCell 7. Даниил Устин. Нарукавники, маленькая линейка, постоянно сдвигающийся воротник.\nCell 8. Ева Нестер. Чистый передник, тёплая кофта, ключ от ширмы на шнурке.",
+      "references": [
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/taisiya-korshun.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/vera-lanskaya.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/lidia-radova.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/roman-berezhny.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/marta-oseeva.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/pavel-remiz.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/daniil-ustin.webp",
+        "campaigns/noir-2026/quiet-exchange/illustrations/cards/eva-nester.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "anna-rudneva",
+      "title": "Анна Руднева",
+      "kind": "hero",
+      "subjects": [
+        "anna-rudneva"
+      ],
+      "file": "heroes-anna-rudneva.webp",
+      "sha256": "38d48db488bbfc920f836c75a9226fc5c6c7dbcf04f9c28e64b123281fd0df4e",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 128,
+        "top": 12,
+        "width": 195,
+        "height": 423
+      }
+    },
+    {
+      "key": "ilya-melov",
+      "title": "Илья Мелов",
+      "kind": "hero",
+      "subjects": [
+        "ilya-melov"
+      ],
+      "file": "heroes-ilya-melov.webp",
+      "sha256": "a390c51ebf5dfe8a9fb2f8a2ac18c65f5cad226e266a057735ff24abc66449bd",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 571,
+        "top": 10,
+        "width": 189,
+        "height": 425
+      }
+    },
+    {
+      "key": "kira-osokina",
+      "title": "Кира Осокина",
+      "kind": "hero",
+      "subjects": [
+        "kira-osokina"
+      ],
+      "file": "heroes-kira-osokina.webp",
+      "sha256": "50fe628dc27875a24a1f095a6c2b49d8c05dda73a6cc1e7c8b1d4462686a2cc2",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1015,
+        "top": 16,
+        "width": 189,
+        "height": 419
+      }
+    },
+    {
+      "key": "lev-narets",
+      "title": "Лев Нарец",
+      "kind": "hero",
+      "subjects": [
+        "lev-narets"
+      ],
+      "file": "heroes-lev-narets.webp",
+      "sha256": "2641c7252f4f47e4fb11aeb85e32ae48d628b0c709b253ef10cba260be947001",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1458,
+        "top": 9,
+        "width": 189,
+        "height": 426
+      }
+    },
+    {
+      "key": "tamara-zorn",
+      "title": "Тамара Зорн",
+      "kind": "hero",
+      "subjects": [
+        "tamara-zorn"
+      ],
+      "file": "heroes-tamara-zorn.webp",
+      "sha256": "4fba6f9b316379b4ff25501fa1793aaa9b9d9310c989ed01f56fdd8a527012ce",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 128,
+        "top": 451,
+        "width": 190,
+        "height": 426
+      }
+    },
+    {
+      "key": "semen-vorot",
+      "title": "Семён Ворот",
+      "kind": "hero",
+      "subjects": [
+        "semen-vorot"
+      ],
+      "file": "heroes-semen-vorot.webp",
+      "sha256": "b8ae6860298c3a87e55dbc76b309da0cc946f6cdc05a5ea999bbd454afd8941d",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 564,
+        "top": 455,
+        "width": 216,
+        "height": 422
+      }
+    },
+    {
+      "key": "nina-kolt",
+      "title": "Нина Кольт",
+      "kind": "hero",
+      "subjects": [
+        "nina-kolt"
+      ],
+      "file": "heroes-nina-kolt.webp",
+      "sha256": "f996f5a2b2bde7e53a041a83187047092fb4bac696ccee135ae1752f76667595",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1014,
+        "top": 450,
+        "width": 190,
+        "height": 427
+      }
+    },
+    {
+      "key": "viktor-lesk",
+      "title": "Виктор Леск",
+      "kind": "hero",
+      "subjects": [
+        "viktor-lesk"
+      ],
+      "file": "heroes-viktor-lesk.webp",
+      "sha256": "3c737dfcdd09d2ba5023812cb7e063a438cd8f32c75252d9dcfabe39df88bf21",
+      "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1458,
+        "top": 450,
+        "width": 192,
+        "height": 427
+      }
+    },
+    {
+      "key": "night-cafe",
+      "title": "Кафе «Поздняя чашка»",
+      "kind": "place",
+      "subjects": [
+        "night-cafe"
+      ],
+      "file": "places-night-cafe.webp",
+      "sha256": "36a294ee1cac66926b5497fe5b44c433123652e82b39c736b0243de7edf2a8a7",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "exchange-hall",
+      "title": "Коммутаторная соседского круга",
+      "kind": "place",
+      "subjects": [
+        "exchange-hall"
+      ],
+      "file": "places-exchange-hall.webp",
+      "sha256": "3ae90d9e89a2a3f14cda30bdc5dbd5b42f21f1ebc91f473899860be73c19f665",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "binding-shop",
+      "title": "Переплётная «Лист и корешок»",
+      "kind": "place",
+      "subjects": [
+        "binding-shop"
+      ],
+      "file": "places-binding-shop.webp",
+      "sha256": "6d2137e1b2a06a6fe4ecab944927a6a4922e1fde5e006821f0d59b90e31a44ae",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "washhouse",
+      "title": "Прачечная с тёплой галереей",
+      "kind": "place",
+      "subjects": [
+        "washhouse"
+      ],
+      "file": "places-washhouse.webp",
+      "sha256": "0b4465555dba2c543ce099dffe25f0f2357265bc636dfd2990be7baf11a05e52",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "tram-shelter",
+      "title": "Конечная под железным навесом",
+      "kind": "place",
+      "subjects": [
+        "tram-shelter"
+      ],
+      "file": "places-tram-shelter.webp",
+      "sha256": "1c6e38234c6c6d32329423b8f4d406d49ad514caa21b61684e3c658df9902976",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "parcel-counter",
+      "title": "Стол согласованных доставок",
+      "kind": "place",
+      "subjects": [
+        "parcel-counter"
+      ],
+      "file": "places-parcel-counter.webp",
+      "sha256": "89f055c49e7e953c0f20d6b8a6c2a0d8da27ceb1b44f17051f5f1bf45ff64993",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "ticket-office",
+      "title": "Касса взаимных расчётов",
+      "kind": "place",
+      "subjects": [
+        "ticket-office"
+      ],
+      "file": "places-ticket-office.webp",
+      "sha256": "1290368202b3856faf43b27fa0db4d3c91970e703f3e3849d362bd9df8015349",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "roof-garden",
+      "title": "Крытый сад над кафе",
+      "kind": "place",
+      "subjects": [
+        "roof-garden"
+      ],
+      "file": "places-roof-garden.webp",
+      "sha256": "55c80ecb5235370fd3074d4c7de557b66bae689dc68200e89eb948444dea30a4",
+      "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-64916bc070",
+      "title": "Взыскатель мастерской",
+      "kind": "foe",
+      "subjects": [
+        "narrow-aisle-foe-1",
+        "narrow-aisle-foe-2",
+        "narrow-aisle-foe-3",
+        "narrow-aisle-foe-4",
+        "narrow-aisle-foe-5",
+        "narrow-aisle-foe-6"
+      ],
+      "file": "foes-foe-64916bc070.webp",
+      "sha256": "946946d0634c7208d8f8802f612680afd47c484ae8a24193394935a34f79fef8",
+      "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 152,
+        "top": 6,
+        "width": 491,
+        "height": 707
+      }
+    },
+    {
+      "key": "foe-d5e7ad6ee5",
+      "title": "Помощник доставки",
+      "kind": "foe",
+      "subjects": [
+        "held-parcel-foe-1",
+        "held-parcel-foe-2",
+        "held-parcel-foe-3",
+        "held-parcel-foe-4",
+        "held-parcel-foe-5",
+        "held-parcel-foe-6"
+      ],
+      "file": "foes-foe-d5e7ad6ee5.webp",
+      "sha256": "fd0d5b27793434d9d8c3c3fc2205365e02e6ff60ae56838df9d6df825bb5178f",
+      "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 877,
+        "top": 14,
+        "width": 375,
+        "height": 699
+      }
+    },
+    {
+      "key": "foe-9da886c42d",
+      "title": "Навязчивый посетитель",
+      "kind": "foe",
+      "subjects": [
+        "uninvited-listeners-foe-1",
+        "uninvited-listeners-foe-2",
+        "uninvited-listeners-foe-3",
+        "uninvited-listeners-foe-4",
+        "uninvited-listeners-foe-5",
+        "uninvited-listeners-foe-6"
+      ],
+      "file": "foes-foe-9da886c42d.webp",
+      "sha256": "267546a2b7aa6c60c037e48a78f64328c14402d7d8e9b04ad16201e361b14675",
+      "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1597,
+        "top": 5,
+        "width": 430,
+        "height": 708
+      }
+    },
+    {
+      "key": "taisiya-korshun",
+      "title": "Таисия Коршун",
+      "kind": "npc",
+      "subjects": [
+        "taisiya-korshun"
+      ],
+      "file": "npcs-taisiya-korshun.webp",
+      "sha256": "30d4f5c7bd50610b83ab0943d5178b435fb5bf93c7904e3084b0364441d8985e",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 113,
+        "top": 17,
+        "width": 207,
+        "height": 413
+      }
+    },
+    {
+      "key": "vera-lanskaya",
+      "title": "Вера Ланская",
+      "kind": "npc",
+      "subjects": [
+        "vera-lanskaya"
+      ],
+      "file": "npcs-vera-lanskaya.webp",
+      "sha256": "54ab7525d9060dc04b770ee99c13dc7b0cea392106e689330e54990c14a9923e",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 483,
+        "top": 17,
+        "width": 197,
+        "height": 413
+      }
+    },
+    {
+      "key": "lidia-radova",
+      "title": "Лидия Радова",
+      "kind": "npc",
+      "subjects": [
+        "lidia-radova"
+      ],
+      "file": "npcs-lidia-radova.webp",
+      "sha256": "43c135cf43677be3dfc505b4ec9b1dffa20c4dab9121ee45b3011336c0b9931c",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 867,
+        "top": 17,
+        "width": 218,
+        "height": 412
+      }
+    },
+    {
+      "key": "roman-berezhny",
+      "title": "Роман Бережный",
+      "kind": "npc",
+      "subjects": [
+        "roman-berezhny"
+      ],
+      "file": "npcs-roman-berezhny.webp",
+      "sha256": "5aa4b59b9a24397ff0b8427e7ea9d1a43a595fbe7a4d568b0dd3d0b0473beab8",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 88,
+        "top": 445,
+        "width": 225,
+        "height": 422
+      }
+    },
+    {
+      "key": "marta-oseeva",
+      "title": "Марта Осеева",
+      "kind": "npc",
+      "subjects": [
+        "marta-oseeva"
+      ],
+      "file": "npcs-marta-oseeva.webp",
+      "sha256": "2cdecc3cceb91479f3421eb521c0f420c44d84e4cb7ca4b026802145250a3de3",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 480,
+        "top": 445,
+        "width": 203,
+        "height": 422
+      }
+    },
+    {
+      "key": "pavel-remiz",
+      "title": "Павел Ремиз",
+      "kind": "npc",
+      "subjects": [
+        "pavel-remiz"
+      ],
+      "file": "npcs-pavel-remiz.webp",
+      "sha256": "2c5fd53c72d2d8e2b1b1da6d1a416caa9ac88068b0b8081c2bd4fe069e03cebb",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 861,
+        "top": 445,
+        "width": 227,
+        "height": 421
+      }
+    },
+    {
+      "key": "daniil-ustin",
+      "title": "Даниил Устин",
+      "kind": "npc",
+      "subjects": [
+        "daniil-ustin"
+      ],
+      "file": "npcs-daniil-ustin.webp",
+      "sha256": "d3519c66f43b636de89b2b9d6b10b766d8ebd0fd1fc8dfc69fc01d9aa45c261f",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 101,
+        "top": 882,
+        "width": 202,
+        "height": 420
+      }
+    },
+    {
+      "key": "eva-nester",
+      "title": "Ева Нестер",
+      "kind": "npc",
+      "subjects": [
+        "eva-nester"
+      ],
+      "file": "npcs-eva-nester.webp",
+      "sha256": "659d6751477231576ece936c5d4516964e19410a6cce54632f85de5d2865c69c",
+      "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+      "generated": "2026-11-22",
+      "sheet": "quiet-exchange-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 479,
+        "top": 885,
+        "width": 205,
+        "height": 416
+      }
+    }
+  ]
+}

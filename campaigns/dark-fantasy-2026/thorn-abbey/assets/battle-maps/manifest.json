@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "mill-cistern.webp",
+      "sha256": "660c36f267c6245dff75aa7fd7e77c23c7d3010b4b25f9894e2f70a64d91a3ea",
+      "originalSha256": "b03c937c4d71918f93571e9c0f1f8a423c97da3b5358324f84e59be9e40968a4",
+      "originalFile": "exec-56d0fb38-22f3-4ce3-ad1e-2effb269f21a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Подвесная водосборня. Visible scenery: Зал старой мельницы, где влажные корни держат чаши над головой. Под ними проходит низкая каменная галерея с боковыми нишами.. World style: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "mill-cistern",
+      "encounter": "root-waterbearers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "cloister.webp",
+      "sha256": "cb176834f6240f931ec3bb486443466705471ec6775c7fb6aac43a77dd4d075d",
+      "originalSha256": "3571c856d526227a4db3aac64344df9af3a3cdb95967dc614e9a2fea51632215",
+      "originalFile": "exec-71a7be8c-a45c-452a-947d-7426d06556c7.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Поворачивающийся клуатр. Visible scenery: Крытые дорожки огибают газон с мраморными стульями. У одинаковых арок разные сколы; на ветру шуршат подвешенные деревянные ложки.. World style: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "cloister",
+      "encounter": "empty-cloaks",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "watch-gallery.webp",
+      "sha256": "050d5c3c164e5d83954c0873cb17fcd67e812859824f23bed65b54acc229fd43",
+      "originalSha256": "aeffd8fb0902f95e29901275c59dfd04e7baecff9c8283924a2f3831503160ba",
+      "originalFile": "exec-ce3671aa-bb12-4059-9a85-3c655daa54ac.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея последней стражи. Visible scenery: Длинный переход под открытым небом, с каменными щитами от ветра. Отсюда видны источник, внешняя тропа и скальный навес.. World style: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "watch-gallery",
+      "encounter": "briar-shields",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

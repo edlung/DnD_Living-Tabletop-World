@@ -50,6 +50,11 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
 
   // Rain check, for the smallest party it offers.
   const card = cards.filter({ has: dm.getByRole('button', { name: /^Start «/ }) }).first();
+  const theme = await card.getAttribute('data-campaign-theme');
+  expect(theme).toBeTruthy();
+  const material = await dm.request.get(`/table-materials/${theme}.webp`);
+  expect(material.status()).toBe(200);
+  expect(material.headers()['content-type']).toMatch(/image\/webp/);
   const title = (await card.getByRole('heading', { level: 4 }).textContent()) ?? '';
   const players = card.getByLabel('Players', { exact: true });
   const first = await players.locator('option').first().getAttribute('value');
@@ -61,6 +66,7 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
   // The library's campaigns are written in Russian: the world speaks it. The hub now lists the
   // campaign, with the login as its DM.
   await expect(dm.getByRole('combobox', { name: 'Вид', exact: true })).toHaveValue(/.+/);
+  await expect(dm.locator('.session-shell')).toHaveAttribute('data-campaign-theme', theme ?? '');
   await dm.getByRole('button', { name: 'Мои кампании', exact: true }).click();
   const yours = dm
     .getByRole('region', { name: 'Your campaigns', exact: true })

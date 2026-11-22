@@ -1,0 +1,1693 @@
+{
+ "id": "dream-orchestra",
+ "title": "Оркестр невозможного сна",
+ "genre": "Сюрреалистическое музыкальное приключение о создании нового спектакля",
+ "audience": "12+",
+ "pitch": "В добровольном общем сне звуки становятся лестницами, парусами и цветными поверхностями. Ваша новая труппа ставит «Изнанку горизонта»: огромное синее кольцо с золотой внутренней стороной должно вывернуться через собственный пустой центр над сценой-морем. Готового произведения нет. Вы придумаете его характер, добудете собственный звук приключением, соберёте невозможную декорацию и проведёте настоящую премьеру. Восхищение публики не обещано; один красивый замысел неизбежно потребует отказаться от другого.",
+ "tone": "Осязаемое чудо, смешные трудности репетиции и серьёзное право выбрать несовершенный замысел. Опасности сна выразительны, но без жестокости и принудительного исповедания.",
+ "duration": "8 сессий; 180 минут: открытие и воспоминание о прошлом вечере 10; сцены 45 + 45 + 55; перерыв после второй сцены 10; завершение и запись решений 15. Перерыв можно перенести без сюжетной цены.",
+ "cover": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "e55fc2da9573379bee6c104384a839a7d8adf40fc480428417c3e30acfb7c049"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "1b6a1695a6612273dd96eedfeda2094731dc3e0ec256f5d041c03d819c0d1153"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "ea98d829cfbc82f0f2d9a575f600fb1a81d93d9992f18bbf2e77980353c13da8"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "0735d67ac653ed77bfa2f5c3b8d1369d97d8c638bf2ad4cc83ca03a65550edf5"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "5bcd713d33fafbeee9d1d6a039bcee6089dd650144915d0d9c3dbdc2823903a5"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/toma-ritm.webp",
+   "sha256": "3212a09e1fc8417c8e27491f5cc4622e01d8d6635bfe6fa6455006df94e7d67a",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тома Ритм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "toma-ritm"
+    ],
+    "4-players": [
+     "toma-ritm"
+    ],
+    "5-players": [
+     "toma-ritm"
+    ],
+    "6-players": [
+     "toma-ritm"
+    ],
+    "7-players": [
+     "toma-ritm"
+    ]
+   },
+   "file": "toma-ritm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/nil-loop.webp",
+   "sha256": "8f844d76d1b420c552cee9bedefd07ebc7ad23c6ce22d7c73edf827b1473cbb0",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ниль Петля",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nil-loop"
+    ],
+    "4-players": [
+     "nil-loop"
+    ],
+    "5-players": [
+     "nil-loop"
+    ],
+    "6-players": [
+     "nil-loop"
+    ],
+    "7-players": [
+     "nil-loop"
+    ]
+   },
+   "file": "nil-loop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/vesna-pause.webp",
+   "sha256": "43a99946c128c06616869fd7cc6fb10f9da23fdffbdeb41c7cdfa789525d37e7",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Весна Пауза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesna-pause"
+    ],
+    "4-players": [
+     "vesna-pause"
+    ],
+    "5-players": [
+     "vesna-pause"
+    ],
+    "6-players": [
+     "vesna-pause"
+    ],
+    "7-players": [
+     "vesna-pause"
+    ]
+   },
+   "file": "vesna-pause.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/kira-lines.webp",
+   "sha256": "29f3f04cbe4e826f4d35a15d73413eea60ed756477a7ad68b51f8a94f5a35a50",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кира Линии",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "kira-lines"
+    ],
+    "5-players": [
+     "kira-lines"
+    ],
+    "6-players": [
+     "kira-lines"
+    ],
+    "7-players": [
+     "kira-lines"
+    ]
+   },
+   "file": "kira-lines.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/rak-knot.webp",
+   "sha256": "4e3384477b0a0b19a722255101592a86e0319db0346b9f362fa256ac59dc0a1f",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рак Узел",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "rak-knot"
+    ],
+    "6-players": [
+     "rak-knot"
+    ],
+    "7-players": [
+     "rak-knot"
+    ]
+   },
+   "file": "rak-knot.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/sona-glass.webp",
+   "sha256": "004d0753f76068f31108446f75f9aea8cf60d07da40f27b8c97e671ab4cc79f4",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сона Стекло",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "sona-glass"
+    ],
+    "7-players": [
+     "sona-glass"
+    ]
+   },
+   "file": "sona-glass.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/eli-step.webp",
+   "sha256": "b6812752a326ffea28693f46b53d2ae7eee76b4869ba8ed5f537a0ea7b00b2d1",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эли Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "eli-step"
+    ]
+   },
+   "file": "eli-step.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/travel-kit.webp",
+   "sha256": "1558c81d664246d3c9121ce963559b39e0b6976d9ed2ef3226dae5033fcb400d",
+   "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nil-loop-travel-kit",
+     "toma-ritm-travel-kit",
+     "vesna-pause-travel-kit"
+    ],
+    "4-players": [
+     "kira-lines-travel-kit",
+     "nil-loop-travel-kit",
+     "toma-ritm-travel-kit",
+     "vesna-pause-travel-kit"
+    ],
+    "5-players": [
+     "kira-lines-travel-kit",
+     "nil-loop-travel-kit",
+     "rak-knot-travel-kit",
+     "toma-ritm-travel-kit",
+     "vesna-pause-travel-kit"
+    ],
+    "6-players": [
+     "kira-lines-travel-kit",
+     "nil-loop-travel-kit",
+     "rak-knot-travel-kit",
+     "sona-glass-travel-kit",
+     "toma-ritm-travel-kit",
+     "vesna-pause-travel-kit"
+    ],
+    "7-players": [
+     "eli-step-travel-kit",
+     "kira-lines-travel-kit",
+     "nil-loop-travel-kit",
+     "rak-knot-travel-kit",
+     "sona-glass-travel-kit",
+     "toma-ritm-travel-kit",
+     "vesna-pause-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/mira-ramp.webp",
+   "sha256": "fdf0ff2ffbb1f2a8ca189a52775d2ec20096648f60224ec3d1157941a6004dc6",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Рампа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-ramp"
+    ],
+    "4-players": [
+     "mira-ramp"
+    ],
+    "5-players": [
+     "mira-ramp"
+    ],
+    "6-players": [
+     "mira-ramp"
+    ],
+    "7-players": [
+     "mira-ramp"
+    ]
+   },
+   "file": "mira-ramp.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/levon-stone.webp",
+   "sha256": "39b82a0792674c5a1206582a06c56ac442f48aec01745d4ef2dbd1bf71572f6d",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Левон Грань",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "levon-stone"
+    ],
+    "4-players": [
+     "levon-stone"
+    ],
+    "5-players": [
+     "levon-stone"
+    ],
+    "6-players": [
+     "levon-stone"
+    ],
+    "7-players": [
+     "levon-stone"
+    ]
+   },
+   "file": "levon-stone.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/asya-cut.webp",
+   "sha256": "4af392114f28bad1d363b91a61f1d45db8847cd558d8439e471b62e61fe7d172",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Прорезь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-cut"
+    ],
+    "4-players": [
+     "asya-cut"
+    ],
+    "5-players": [
+     "asya-cut"
+    ],
+    "6-players": [
+     "asya-cut"
+    ],
+    "7-players": [
+     "asya-cut"
+    ]
+   },
+   "file": "asya-cut.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/dori-tide.webp",
+   "sha256": "fba936ff6a4aa64661c0131dc4225b8f91ead3b7f3d20e92f08a8c6d45fc6d9c",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дори Прибой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dori-tide"
+    ],
+    "4-players": [
+     "dori-tide"
+    ],
+    "5-players": [
+     "dori-tide"
+    ],
+    "6-players": [
+     "dori-tide"
+    ],
+    "7-players": [
+     "dori-tide"
+    ]
+   },
+   "file": "dori-tide.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/yen-echo.webp",
+   "sha256": "2478d8a813446b11a6a4be54b6401a467ade885be2d645b965f848bec7e9598f",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ен Завиток",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yen-echo"
+    ],
+    "4-players": [
+     "yen-echo"
+    ],
+    "5-players": [
+     "yen-echo"
+    ],
+    "6-players": [
+     "yen-echo"
+    ],
+    "7-players": [
+     "yen-echo"
+    ]
+   },
+   "file": "yen-echo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/osta-light.webp",
+   "sha256": "c01e930a8d9e4bfbca144ca143e1b5bd5470f0c4bb8c0859179cc54e62a6c7fa",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оста Свет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "osta-light"
+    ],
+    "4-players": [
+     "osta-light"
+    ],
+    "5-players": [
+     "osta-light"
+    ],
+    "6-players": [
+     "osta-light"
+    ],
+    "7-players": [
+     "osta-light"
+    ]
+   },
+   "file": "osta-light.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/bela-round.webp",
+   "sha256": "77bf9dc75de0f5cb48cb06ec24c112ef7e3398964aaa6ee789a85b48b134c28a",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бела Обод",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bela-round"
+    ],
+    "4-players": [
+     "bela-round"
+    ],
+    "5-players": [
+     "bela-round"
+    ],
+    "6-players": [
+     "bela-round"
+    ],
+    "7-players": [
+     "bela-round"
+    ]
+   },
+   "file": "bela-round.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/ram-steps.webp",
+   "sha256": "dc3f43d05e82fe366903a2c04f82daeb20334edbc88a7278c2d19cb7f003cde7",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рам Шаги",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ram-steps"
+    ],
+    "4-players": [
+     "ram-steps"
+    ],
+    "5-players": [
+     "ram-steps"
+    ],
+    "6-players": [
+     "ram-steps"
+    ],
+    "7-players": [
+     "ram-steps"
+    ]
+   },
+   "file": "ram-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/cards/tesa-front.webp",
+   "sha256": "b797f67d366749783dfa0e8292df8cecd361e529975100fce30596a74cf3f29a",
+   "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Теса Первый Ряд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tesa-front"
+    ],
+    "4-players": [
+     "tesa-front"
+    ],
+    "5-players": [
+     "tesa-front"
+    ],
+    "6-players": [
+     "tesa-front"
+    ],
+    "7-players": [
+     "tesa-front"
+    ]
+   },
+   "file": "tesa-front.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-toma-ritm.webp",
+   "sha256": "1b856c9f0abe66ab258bd294ba4f959b77852e78114dd5e45b5a3ba73a171300",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тома Ритм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "toma-ritm"
+    ],
+    "4-players": [
+     "toma-ritm"
+    ],
+    "5-players": [
+     "toma-ritm"
+    ],
+    "6-players": [
+     "toma-ritm"
+    ],
+    "7-players": [
+     "toma-ritm"
+    ]
+   },
+   "file": "toma-ritm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "toma-ritm.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-nil-loop.webp",
+   "sha256": "9d23c8840d7adfb6e7328383b831d32a173a8109ed5dcf605d3b47e37c2edd5d",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ниль Петля",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nil-loop"
+    ],
+    "4-players": [
+     "nil-loop"
+    ],
+    "5-players": [
+     "nil-loop"
+    ],
+    "6-players": [
+     "nil-loop"
+    ],
+    "7-players": [
+     "nil-loop"
+    ]
+   },
+   "file": "nil-loop--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nil-loop.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-vesna-pause.webp",
+   "sha256": "ba244fb3fd53aacdd512a585cadd9290bdd7399317ef6e290e0f466d21b5e7c6",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Весна Пауза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesna-pause"
+    ],
+    "4-players": [
+     "vesna-pause"
+    ],
+    "5-players": [
+     "vesna-pause"
+    ],
+    "6-players": [
+     "vesna-pause"
+    ],
+    "7-players": [
+     "vesna-pause"
+    ]
+   },
+   "file": "vesna-pause--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesna-pause.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-kira-lines.webp",
+   "sha256": "0999015a9405425f843acb36a5302732300a9bc4659cc253ed090b895a9e0bb9",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кира Линии",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "kira-lines"
+    ],
+    "5-players": [
+     "kira-lines"
+    ],
+    "6-players": [
+     "kira-lines"
+    ],
+    "7-players": [
+     "kira-lines"
+    ]
+   },
+   "file": "kira-lines--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kira-lines.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-rak-knot.webp",
+   "sha256": "9c3d25b8b0a20fcdd617ddcda47af904f39da6ad242f95f8096f6bfa4fb8d101",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рак Узел",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "rak-knot"
+    ],
+    "6-players": [
+     "rak-knot"
+    ],
+    "7-players": [
+     "rak-knot"
+    ]
+   },
+   "file": "rak-knot--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rak-knot.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-sona-glass.webp",
+   "sha256": "87c9cc5b685e888652b63f20e99ec020aa587f02338f89d9ef2de5e85e1bc4d5",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сона Стекло",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "sona-glass"
+    ],
+    "7-players": [
+     "sona-glass"
+    ]
+   },
+   "file": "sona-glass--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sona-glass.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/heroes-eli-step.webp",
+   "sha256": "a2eaf76e3c4af092493942c3f830b53811ac7e2f71d4f2833fae795358b1c29f",
+   "originalSha256": "52319568e534badf761587350817d6512a9f9d32d5a533faa3f44390752273f6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эли Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "eli-step"
+    ]
+   },
+   "file": "eli-step--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eli-step.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-blank-proscenium.webp",
+   "sha256": "067328c5dcf03dd4fd011d9c3a37a49a0e91edd9c041118a89dbfaa5102fe99b",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустой просцениум",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "blank-proscenium"
+    ],
+    "4-players": [
+     "blank-proscenium"
+    ],
+    "5-players": [
+     "blank-proscenium"
+    ],
+    "6-players": [
+     "blank-proscenium"
+    ],
+    "7-players": [
+     "blank-proscenium"
+    ]
+   },
+   "file": "blank-proscenium.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-beat-span.webp",
+   "sha256": "740df571308c6d3beee971844cebc5b1cbf3f98e7d5d6e29eb1fb3517096136a",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мост повторённых шагов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "beat-span"
+    ],
+    "4-players": [
+     "beat-span"
+    ],
+    "5-players": [
+     "beat-span"
+    ],
+    "6-players": [
+     "beat-span"
+    ],
+    "7-players": [
+     "beat-span"
+    ]
+   },
+   "file": "beat-span.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-ringing-quarry.webp",
+   "sha256": "a7953c25c6c6f2059b2d639fb8e497724b53ba1d6bf1b96b63b4416a04552411",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Карьер звучащих граней",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ringing-quarry"
+    ],
+    "4-players": [
+     "ringing-quarry"
+    ],
+    "5-players": [
+     "ringing-quarry"
+    ],
+    "6-players": [
+     "ringing-quarry"
+    ],
+    "7-players": [
+     "ringing-quarry"
+    ]
+   },
+   "file": "ringing-quarry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-upright-sea.webp",
+   "sha256": "a55a92aa53dcaee4d87d90ea94053ae3fbde0655571902977aca8285c5544f5f",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Море, вставшее на ребро",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "upright-sea"
+    ],
+    "4-players": [
+     "upright-sea"
+    ],
+    "5-players": [
+     "upright-sea"
+    ],
+    "6-players": [
+     "upright-sea"
+    ],
+    "7-players": [
+     "upright-sea"
+    ]
+   },
+   "file": "upright-sea.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-silence-loft.webp",
+   "sha256": "1c96895860784f102d1b9c8154e0f6444498a91a5111236ad348bcbb23455c85",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чердак вырезанной тишины",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "silence-loft"
+    ],
+    "4-players": [
+     "silence-loft"
+    ],
+    "5-players": [
+     "silence-loft"
+    ],
+    "6-players": [
+     "silence-loft"
+    ],
+    "7-players": [
+     "silence-loft"
+    ]
+   },
+   "file": "silence-loft.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-echo-yard.webp",
+   "sha256": "26797e547750ad044ce8d0e8a75bbbc7bcef4ddc8178c95060ebe0f8d95fcbd1",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор выпуклого эха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "echo-yard"
+    ],
+    "4-players": [
+     "echo-yard"
+    ],
+    "5-players": [
+     "echo-yard"
+    ],
+    "6-players": [
+     "echo-yard"
+    ],
+    "7-players": [
+     "echo-yard"
+    ]
+   },
+   "file": "echo-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-angle-balcony.webp",
+   "sha256": "5e7f3ac1ae7dbaeda051d12ccdc9a9a451a5be641a27311930326640e90c06a2",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Балкон косого взгляда",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "angle-balcony"
+    ],
+    "4-players": [
+     "angle-balcony"
+    ],
+    "5-players": [
+     "angle-balcony"
+    ],
+    "6-players": [
+     "angle-balcony"
+    ],
+    "7-players": [
+     "angle-balcony"
+    ]
+   },
+   "file": "angle-balcony.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-seam-workshop.webp",
+   "sha256": "93204f1181bb2318201f51ce618d8e59a3581ed59af37dc8b5d3a7676bfe86eb",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская больших швов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seam-workshop"
+    ],
+    "4-players": [
+     "seam-workshop"
+    ],
+    "5-players": [
+     "seam-workshop"
+    ],
+    "6-players": [
+     "seam-workshop"
+    ],
+    "7-players": [
+     "seam-workshop"
+    ]
+   },
+   "file": "seam-workshop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/places-premiere-shore.webp",
+   "sha256": "2922d8c254f0b9e17921e3915bb092223e09fcb0135843d89d7e9605de9320d1",
+   "originalSha256": "4d4c602bd8154b1d649dd0ebc451668d6b9a381888a5f4804e6ce56e92be4e58",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берег премьеры",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "premiere-shore"
+    ],
+    "4-players": [
+     "premiere-shore"
+    ],
+    "5-players": [
+     "premiere-shore"
+    ],
+    "6-players": [
+     "premiere-shore"
+    ],
+    "7-players": [
+     "premiere-shore"
+    ]
+   },
+   "file": "premiere-shore.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/foes-foe-cd85772e81.webp",
+   "sha256": "fcf7c8119061118feab2e54b0c6e27c38234df2931748693ee6bf20b8bf8ff46",
+   "originalSha256": "4568095624190b5ff2c260503f14deed98dac3b2d13ec903cc6580945a994648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Звучащий осколок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2"
+    ],
+    "4-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3"
+    ],
+    "5-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3"
+    ],
+    "6-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3",
+     "quarry-echoes-foe-4"
+    ],
+    "7-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3",
+     "quarry-echoes-foe-4",
+     "quarry-echoes-foe-5"
+    ]
+   },
+   "file": "foe-cd85772e81.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/foes-foe-cd85772e81.webp",
+   "sha256": "fcf7c8119061118feab2e54b0c6e27c38234df2931748693ee6bf20b8bf8ff46",
+   "originalSha256": "4568095624190b5ff2c260503f14deed98dac3b2d13ec903cc6580945a994648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Звучащий осколок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2"
+    ],
+    "4-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3"
+    ],
+    "5-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3"
+    ],
+    "6-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3",
+     "quarry-echoes-foe-4"
+    ],
+    "7-players": [
+     "quarry-echoes-foe-1",
+     "quarry-echoes-foe-2",
+     "quarry-echoes-foe-3",
+     "quarry-echoes-foe-4",
+     "quarry-echoes-foe-5"
+    ]
+   },
+   "file": "foe-cd85772e81--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-cd85772e81.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/foes-foe-676c5659b7.webp",
+   "sha256": "7353164cf8f5e2311ab1b0baafe8b85c17d4715e8c913bc1909fe535ebe4152f",
+   "originalSha256": "4568095624190b5ff2c260503f14deed98dac3b2d13ec903cc6580945a994648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Выпуклая брызга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2"
+    ],
+    "4-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3"
+    ],
+    "5-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3"
+    ],
+    "6-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3",
+     "tide-splashes-foe-4"
+    ],
+    "7-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3",
+     "tide-splashes-foe-4",
+     "tide-splashes-foe-5"
+    ]
+   },
+   "file": "foe-676c5659b7.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/foes-foe-676c5659b7.webp",
+   "sha256": "7353164cf8f5e2311ab1b0baafe8b85c17d4715e8c913bc1909fe535ebe4152f",
+   "originalSha256": "4568095624190b5ff2c260503f14deed98dac3b2d13ec903cc6580945a994648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Выпуклая брызга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2"
+    ],
+    "4-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3"
+    ],
+    "5-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3"
+    ],
+    "6-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3",
+     "tide-splashes-foe-4"
+    ],
+    "7-players": [
+     "tide-splashes-foe-1",
+     "tide-splashes-foe-2",
+     "tide-splashes-foe-3",
+     "tide-splashes-foe-4",
+     "tide-splashes-foe-5"
+    ]
+   },
+   "file": "foe-676c5659b7--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-676c5659b7.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/foes-foe-8836f83178.webp",
+   "sha256": "a9acd2a4a599da6b337328ca0a0f3409787302d99219a38a607950ce8d6fc6cd",
+   "originalSha256": "4568095624190b5ff2c260503f14deed98dac3b2d13ec903cc6580945a994648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямая дуга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2"
+    ],
+    "4-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3"
+    ],
+    "5-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3"
+    ],
+    "6-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3",
+     "reprise-arcs-foe-4"
+    ],
+    "7-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3",
+     "reprise-arcs-foe-4",
+     "reprise-arcs-foe-5"
+    ]
+   },
+   "file": "foe-8836f83178.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/foes-foe-8836f83178.webp",
+   "sha256": "a9acd2a4a599da6b337328ca0a0f3409787302d99219a38a607950ce8d6fc6cd",
+   "originalSha256": "4568095624190b5ff2c260503f14deed98dac3b2d13ec903cc6580945a994648",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямая дуга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2"
+    ],
+    "4-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3"
+    ],
+    "5-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3"
+    ],
+    "6-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3",
+     "reprise-arcs-foe-4"
+    ],
+    "7-players": [
+     "reprise-arcs-foe-1",
+     "reprise-arcs-foe-2",
+     "reprise-arcs-foe-3",
+     "reprise-arcs-foe-4",
+     "reprise-arcs-foe-5"
+    ]
+   },
+   "file": "foe-8836f83178--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-8836f83178.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-mira-ramp.webp",
+   "sha256": "6be2985f1fbec58cffbad99515e0cd34b6fd628e387c20090cc34513fbd5f10b",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Рампа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-ramp"
+    ],
+    "4-players": [
+     "mira-ramp"
+    ],
+    "5-players": [
+     "mira-ramp"
+    ],
+    "6-players": [
+     "mira-ramp"
+    ],
+    "7-players": [
+     "mira-ramp"
+    ]
+   },
+   "file": "mira-ramp--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-ramp.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-levon-stone.webp",
+   "sha256": "90e5894ba0104a08f730c2e154aceff31d35fb0a500d2abdf9bfd41222a8eb55",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Левон Грань",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "levon-stone"
+    ],
+    "4-players": [
+     "levon-stone"
+    ],
+    "5-players": [
+     "levon-stone"
+    ],
+    "6-players": [
+     "levon-stone"
+    ],
+    "7-players": [
+     "levon-stone"
+    ]
+   },
+   "file": "levon-stone--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "levon-stone.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-asya-cut.webp",
+   "sha256": "ed43d61a35ae8e99fa952efdd324a6ef4d0aaff5b06990f53027c0fee92d3d26",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Прорезь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-cut"
+    ],
+    "4-players": [
+     "asya-cut"
+    ],
+    "5-players": [
+     "asya-cut"
+    ],
+    "6-players": [
+     "asya-cut"
+    ],
+    "7-players": [
+     "asya-cut"
+    ]
+   },
+   "file": "asya-cut--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "asya-cut.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-dori-tide.webp",
+   "sha256": "e3988d2a98df2273abceb26178ce6026285ea5f910b52d8b6a6be070cbc945fb",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дори Прибой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dori-tide"
+    ],
+    "4-players": [
+     "dori-tide"
+    ],
+    "5-players": [
+     "dori-tide"
+    ],
+    "6-players": [
+     "dori-tide"
+    ],
+    "7-players": [
+     "dori-tide"
+    ]
+   },
+   "file": "dori-tide--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dori-tide.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-yen-echo.webp",
+   "sha256": "d9e1af1362bdeff5e14f2cb575005eaa5ed2ce0dd8a0e58daca5da9d0114a06c",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ен Завиток",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yen-echo"
+    ],
+    "4-players": [
+     "yen-echo"
+    ],
+    "5-players": [
+     "yen-echo"
+    ],
+    "6-players": [
+     "yen-echo"
+    ],
+    "7-players": [
+     "yen-echo"
+    ]
+   },
+   "file": "yen-echo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yen-echo.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-osta-light.webp",
+   "sha256": "5e81069683e0cc5ee2c8be0699002e8e11cf12f68b9cddae590ad4c20bc75fa0",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оста Свет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "osta-light"
+    ],
+    "4-players": [
+     "osta-light"
+    ],
+    "5-players": [
+     "osta-light"
+    ],
+    "6-players": [
+     "osta-light"
+    ],
+    "7-players": [
+     "osta-light"
+    ]
+   },
+   "file": "osta-light--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "osta-light.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-bela-round.webp",
+   "sha256": "e39935107aa2aab7694cd8e3f3b9765e725c72be1c630c07bf378f2f2d2f0142",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бела Обод",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bela-round"
+    ],
+    "4-players": [
+     "bela-round"
+    ],
+    "5-players": [
+     "bela-round"
+    ],
+    "6-players": [
+     "bela-round"
+    ],
+    "7-players": [
+     "bela-round"
+    ]
+   },
+   "file": "bela-round--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bela-round.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-ram-steps.webp",
+   "sha256": "5d3972ff1c2a679bcd943321b6065d6e097b6ca99e129b024ba39c12bd9c68fb",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рам Шаги",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ram-steps"
+    ],
+    "4-players": [
+     "ram-steps"
+    ],
+    "5-players": [
+     "ram-steps"
+    ],
+    "6-players": [
+     "ram-steps"
+    ],
+    "7-players": [
+     "ram-steps"
+    ]
+   },
+   "file": "ram-steps--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ram-steps.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/table/npcs-tesa-front.webp",
+   "sha256": "e1eda20a662908c161ee450616c58720247cb19f8079f4c9d0882720babddca0",
+   "originalSha256": "97e190e9a079d88d2b4d974a9da769c9180b2b2b763ea77743b35d28fc31774e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Теса Первый Ряд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tesa-front"
+    ],
+    "4-players": [
+     "tesa-front"
+    ],
+    "5-players": [
+     "tesa-front"
+    ],
+    "6-players": [
+     "tesa-front"
+    ],
+    "7-players": [
+     "tesa-front"
+    ]
+   },
+   "file": "tesa-front--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tesa-front.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/illustrations/opening.webp",
+   "sha256": "0f23af07fd85e6c1a4a7c24f65d4d80cdbfb9f0d33ab5590a08b45511646aef7",
+   "originalSha256": "12ebf01f5662ed8a1b69ca0296236e00961f553f864887c1bae974dacfbbcfc8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустой просцениум — Оркестр невозможного сна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dream-bend"
+    ],
+    "4-players": [
+     "dream-bend"
+    ],
+    "5-players": [
+     "dream-bend"
+    ],
+    "6-players": [
+     "dream-bend"
+    ],
+    "7-players": [
+     "dream-bend"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "ringing-quarry--map.webp",
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/battle-maps/ringing-quarry.webp",
+   "sha256": "2fa8576d36c97877022aead581926c54b674fbff60523f2b3f211f09b55bfdf4",
+   "originalSha256": "a12feae6b3c97294daee2de945a8e7db7e8a3f1204449b592a0356d67988bc4c",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Карьер звучащих граней. Visible scenery: Высокие пластины похожи одновременно на лёд и медь. Внутри каждой видны широкие полые проходы и цветные канаты.. World style: Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "ringing-quarry.webp",
+   "subjects": {
+    "3-players": [
+     "ringing-quarry"
+    ],
+    "4-players": [
+     "ringing-quarry"
+    ],
+    "5-players": [
+     "ringing-quarry"
+    ],
+    "6-players": [
+     "ringing-quarry"
+    ],
+    "7-players": [
+     "ringing-quarry"
+    ]
+   }
+  },
+  {
+   "file": "upright-sea--map.webp",
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/battle-maps/upright-sea.webp",
+   "sha256": "bbfdeec469a1d28d620292b59611b496c612e79c86f5cfc588574ee904023925",
+   "originalSha256": "1d8588f08481fa908b4000359b59c944861387c8e31d735295064fd0dac0fd96",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Море, вставшее на ребро. Visible scenery: Вертикальная плоскость воды стоит над ровной белой площадкой. Лодки скользят по её поверхности, а брызги выглядят бумажными запятыми.. World style: Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "upright-sea.webp",
+   "subjects": {
+    "3-players": [
+     "upright-sea"
+    ],
+    "4-players": [
+     "upright-sea"
+    ],
+    "5-players": [
+     "upright-sea"
+    ],
+    "6-players": [
+     "upright-sea"
+    ],
+    "7-players": [
+     "upright-sea"
+    ]
+   }
+  },
+  {
+   "file": "echo-yard--map.webp",
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/battle-maps/echo-yard.webp",
+   "sha256": "9c6fd6dd84b2a0729fc41c930c1355a57683c0ce1ec9e644ba86df224cca177c",
+   "originalSha256": "94ae02a5cb7d1a0e5010ae527c009ebcb10d64ed987fc3872e4dba6f5c85a520",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор выпуклого эха. Visible scenery: Круглый двор с цветными желобами. Над ними перекатываются блестящие дуги, оставляя в воздухе следы как от кисти.. World style: Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "echo-yard.webp",
+   "subjects": {
+    "3-players": [
+     "echo-yard"
+    ],
+    "4-players": [
+     "echo-yard"
+    ],
+    "5-players": [
+     "echo-yard"
+    ],
+    "6-players": [
+     "echo-yard"
+    ],
+    "7-players": [
+     "echo-yard"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/dream-orchestra/assets/world-map/world-map.webp",
+   "sha256": "c9e0bb09f87b4a0bca07667f4f7bcfd8a02affbb5658c882f35a1db6d9c51c04",
+   "originalSha256": "cda14407865fa713cbf4caeb3c69edeee5ffeae133eb14f9cc326e48f34066d1",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Излучина звучащих форм. Style Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Пустой просцениум; 0.367,0.177 Мост повторённых шагов; 0.623,0.15 Карьер звучащих граней; 0.88,0.177 Море, вставшее на ребро; 0.905,0.517 Чердак вырезанной тишины; 0.648,0.49 Двор выпуклого эха; 0.392,0.517 Балкон косого взгляда; 0.135,0.49 Мастерская больших швов; 0.11,0.83 Берег премьеры. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

@@ -1,3 +1,4 @@
+import { withBookTableLinks } from '../campaign-shared/book-table-links.ts';
 import { copyFile, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { COLLECTION_ROOT, SLUGS, loadSource } from './source.ts';
 import { verifySource } from './editorial.ts';
@@ -17,7 +18,8 @@ for (const slug of selected.length ? selected : SLUGS) {
   const root = new URL(`${slug}/`, COLLECTION_ROOT);
   await mkdir(new URL('handouts/', root), { recursive: true });
   await mkdir(new URL('maps/', root), { recursive: true });
-  const write = (path: string, text: string) => writeFile(new URL(path, root), text);
+  const write = (path: string, text: string) =>
+    writeFile(new URL(path, root), withBookTableLinks(root, path, text));
   await write(
     'handouts/AGENTS.md',
     '# Released handouts\n\nGenerated from source/handouts.json. Give a player only the specific handout whose release condition has occurred. No DM navigation or release conditions belong in these HTML pages.\n',

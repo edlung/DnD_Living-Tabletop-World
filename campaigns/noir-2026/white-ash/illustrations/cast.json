@@ -1,0 +1,435 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-527e47a2-25cd-464a-96fc-81b1babd61e8.png",
+      "originalSha256": "8f25fcf1e4851b6d1e7b9b8e63dd06fe4060551108d1a54ef80d5fe669a32d16",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Гальмер. Characters, in strict cell order:\n1. Лидия Орлова — Тёмное пальто с заменённой пуговицей, аккуратные поля в любом блокноте. Age 38.\n2. Тимур Савин — Хорошо выстиранный жилет, мягкая папка вместо врачебного саквояжа. Age 35.\n3. Марта Кедрова — Широкий шарф, рабочие руки, привычка оставлять проход к двери свободным. Age 44.\n4. Олег Берест — Очки в потёртой оправе и короткий карандаш, который всегда заточен с одной стороны. Age 51.\n5. Адина Горина — Складная камера в холщовом футляре, рукава всегда закатаны на одинаковую высоту. Age 29.\n6. Роман Седов — Высокие ботинки, пустая сумка через плечо, привычка повторять имя адресата вслух. Age 47.\n7. Зоя Крестова — Серое платье, несколько простых карандашей для тех, кто предпочитает написать ответ. Age 56.\n8. Ян Лужин — Тубус с чистыми листами, чернильное пятно на внутренней стороне ладони. Age 32.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-53929777-c867-4de3-9c4a-146fa66abcf8.png",
+      "originalSha256": "f0cb21940a4956d04daceb282bee9e90de1c4db3c97e37390264e0629c3f3694",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Гальмер. Characters, in strict cell order:\n1. Нелли Векшина — Льняная манжета под тёмным рукавом, ровный голос и заранее записанные вопросы. Age 42.\n2. Вера Невская — Короткая стрижка, папка чертежей и значок допуска на простом шнурке. Age 39.\n3. Инга Сурина — Тонкая цепочка для ключа архива, синие полосы копировальной бумаги на пальцах. Age 34.\n4. Даниил Росанов — Усталое лицо, чистый воротник, очки на открытой карте при каждом разговоре. Age 58.\n5. Варвара Золина — Тёмный костюм без украшений, расписание приёмов и стакан остывшей воды. Age 53.\n6. Павел Рутков — Заводское пальто, отметки мелом на дощечке смен и привычка проверять часы собеседника. Age 45.\n7. Григорий Устов — Нарукавники, квадратная лупа и совершенно сухая промокательная бумага. Age 61.\n8. Сара Лем — Простой халат без знаков завода, журнал приёма с широкими полями. Age 48.\n9. Леонид Караев — Куртка переплётчика, маленькая коробка для возвращаемых вещей и красные от недосыпа глаза. Age 41.\n10. Антон Белов — Вязаный жилет под рабочим пиджаком, карманная книжка с продавленной обложкой. Age 36.\n11. Тамара Сольт — Городской служебный жакет, папка с пустыми бланками и негромкая манера говорить. Age 57.\n12. Северьян Караев — На прижизненном служебном портрете — взрослый мужчина в лабораторном халате и круглых очках. Age 46.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "lidia-orlova",
+      "file": "cards/lidia-orlova.webp",
+      "title": "Лидия Орлова",
+      "subjects": [
+        "lidia-orlova"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ea7407407fc6b6e26b013a4b882d40676398a237244faf0f0f9020a023f26c3f"
+    },
+    {
+      "id": "timur-savin",
+      "file": "cards/timur-savin.webp",
+      "title": "Тимур Савин",
+      "subjects": [
+        "timur-savin"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e92248d64eb2cdadd85c62e9b2350456f6f123a5b05e6d3029365b684585a78e"
+    },
+    {
+      "id": "marta-kedrova",
+      "file": "cards/marta-kedrova.webp",
+      "title": "Марта Кедрова",
+      "subjects": [
+        "marta-kedrova"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "31cc042146101ae845642bcf1662123dc941905ac5d03c820b92fa42c23d8993"
+    },
+    {
+      "id": "oleg-berest",
+      "file": "cards/oleg-berest.webp",
+      "title": "Олег Берест",
+      "subjects": [
+        "oleg-berest"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f8e34231e89aff4ec9076e40de77624a1c92e813674e9104e85b5ff1cab04f44"
+    },
+    {
+      "id": "adina-gorina",
+      "file": "cards/adina-gorina.webp",
+      "title": "Адина Горина",
+      "subjects": [
+        "adina-gorina"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cfbc03ee6297a870eab48e35c22837f78788de765dd9c7e56dad69b0c6890751"
+    },
+    {
+      "id": "roman-sedov",
+      "file": "cards/roman-sedov.webp",
+      "title": "Роман Седов",
+      "subjects": [
+        "roman-sedov"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ed0231090e00c9cceb2009b1949e1a6c07e8359ba58da0e061ad618adfe4468e"
+    },
+    {
+      "id": "zoya-krestova",
+      "file": "cards/zoya-krestova.webp",
+      "title": "Зоя Крестова",
+      "subjects": [
+        "zoya-krestova"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d6fb45cea14448ac6cfcbde485687140bbe374efb2e863372b7f2c82bb35db8f"
+    },
+    {
+      "id": "yan-luzhin",
+      "file": "cards/yan-luzhin.webp",
+      "title": "Ян Лужин",
+      "subjects": [
+        "yan-luzhin"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4000fec6907c7412223e3504ecd4716482a89f67539b62b401bad9d4f5739d3d"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "adina-gorina-travel-kit",
+        "lidia-orlova-travel-kit",
+        "marta-kedrova-travel-kit",
+        "oleg-berest-travel-kit",
+        "roman-sedov-travel-kit",
+        "timur-savin-travel-kit",
+        "yan-luzhin-travel-kit",
+        "zoya-krestova-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ddbfa0c6bd3b2fbcacab9917a593339bdc7fe0039a1f0542b54ea0c6583d7aed"
+    },
+    {
+      "id": "nelli-vekshina",
+      "file": "cards/nelli-vekshina.webp",
+      "title": "Нелли Векшина",
+      "subjects": [
+        "nelli-vekshina"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a275dfad100e8b150ba41c6391a02ea216b2a6369bb38d51d9467d59ad12cd4f"
+    },
+    {
+      "id": "vera-nevskaya",
+      "file": "cards/vera-nevskaya.webp",
+      "title": "Вера Невская",
+      "subjects": [
+        "vera-nevskaya"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "85e113c2b9921569682f6c198bb74acc34154316a6b6fd4db70a853062bee7e6"
+    },
+    {
+      "id": "inga-surina",
+      "file": "cards/inga-surina.webp",
+      "title": "Инга Сурина",
+      "subjects": [
+        "inga-surina"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "92bff42ce7f4a2baba63db3333af34af853e3a87a32b01e940bbedca82e9c05a"
+    },
+    {
+      "id": "daniil-rosanov",
+      "file": "cards/daniil-rosanov.webp",
+      "title": "Даниил Росанов",
+      "subjects": [
+        "daniil-rosanov"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1ce783a1a752f257f6260a3e8019b190b7088b67c3e355ffad97abeaa23484db"
+    },
+    {
+      "id": "varvara-zolina",
+      "file": "cards/varvara-zolina.webp",
+      "title": "Варвара Золина",
+      "subjects": [
+        "varvara-zolina"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e4087f9f694b74eb6e95159710f70dc153bae598b98f838a9fbf39deadcd6db1"
+    },
+    {
+      "id": "pavel-rutkov",
+      "file": "cards/pavel-rutkov.webp",
+      "title": "Павел Рутков",
+      "subjects": [
+        "pavel-rutkov"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9c611e012552c8fcebedf034e5453cdc19c6245ed26bccf066a0579066a5222b"
+    },
+    {
+      "id": "grigory-ustov",
+      "file": "cards/grigory-ustov.webp",
+      "title": "Григорий Устов",
+      "subjects": [
+        "grigory-ustov"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "75de4c8ff4d09393ac4d1af134ed477d938e794660eb7b70c2632d06e045144f"
+    },
+    {
+      "id": "sara-lem",
+      "file": "cards/sara-lem.webp",
+      "title": "Сара Лем",
+      "subjects": [
+        "sara-lem"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "febb10da53fffa977e65e9ee27a0645150c73183ea5e90d55a34b83dea62112d"
+    },
+    {
+      "id": "leonid-karaev",
+      "file": "cards/leonid-karaev.webp",
+      "title": "Леонид Караев",
+      "subjects": [
+        "leonid-karaev"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f3a365b4900404af3c3edc89bda21b491ccb8edfcd55effe339d6964aed24bbd"
+    },
+    {
+      "id": "anton-belov",
+      "file": "cards/anton-belov.webp",
+      "title": "Антон Белов",
+      "subjects": [
+        "anton-belov"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "367220d5edb40a6a4635feed672ce2ff8065dfe91ccf1dd03b2858967696a7f8"
+    },
+    {
+      "id": "tamara-solt",
+      "file": "cards/tamara-solt.webp",
+      "title": "Тамара Сольт",
+      "subjects": [
+        "tamara-solt"
+      ],
+      "sheet": "npcs",
+      "cell": 11,
+      "crop": {
+        "left": 371,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4bf25e5c1a8c35a839fc15ab1dbf9aef1394123d005f25b818c9d97d0994868f"
+    },
+    {
+      "id": "severyan-karaev",
+      "file": "cards/severyan-karaev.webp",
+      "title": "Северьян Караев",
+      "subjects": [
+        "severyan-karaev"
+      ],
+      "sheet": "npcs",
+      "cell": 12,
+      "crop": {
+        "left": 733,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dd4d73cf4f850eb723f24e434d10f8cb0ebb5c62ee0611cda3eeb78824cf81b8"
+    }
+  ]
+}

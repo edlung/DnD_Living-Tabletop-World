@@ -1,0 +1,1813 @@
+{
+ "id": "silent-frequency",
+ "title": "Нулевая частота",
+ "genre": "Радиотриллер бедствия: человеческая ложь, неполные сообщения и адресная помощь",
+ "audience": "14+",
+ "pitch": "Во время шторма «Оловянный» маленькое радио Леставеля принимает две настоящие просьбы под одним адресом. В бумагах ящик помощи уже получен работниками; сами работники говорят, что его взял другой человек. Вашей команде предстоит найти настоящий груз, восстановить живой контакт с получателями и решить, что передать дальше, когда уверенности всё ещё недостаточно.",
+ "tone": "Напряжённый, человечный, предметный: мокрая бумага, обрывки голоса, упрямство и право изменить своё решение. Нет сверхъестественной угрозы, графического насилия и гарантированного героического финала.",
+ "duration": "8 сессий; 180 минут: 10 минут вступления или пересказа, три сцены по 45 минут, 15 минут перерыва после второй сцены, 20 минут завершения. Необязательная схватка заменяет часть своей сцены. Восемь игровых вечеров описывают примерно полтора вымышленных штормовых дня.",
+ "cover": "campaigns/mixed-ages-2026/silent-frequency/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "2ee3321a680f381295158f10232c58a176fe5e56e3d851ce7df8f81a44b9f91e"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "588176e59f5aead8062ded43fb17171660a83c46e9fba356e809cc77ba8ba731"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "ee8e2a14d62b9914d39f89892693437544855035878d525465a5d09a65009f63"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "83881e56b5cdd3d73cd4c71a1129254952385f21c4a20ae3dc85ade6514cd3b2"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "df16545d6b6aedf86cc1cf7b55a6ea5a44eddfe39442ff606ff1253a55647f7f"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/vera-nemova.webp",
+   "sha256": "6eba4d70a2a54fc37364d3a1b21fa1ccf82cfc85bfea007ff233df8e8b872602",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Немова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-nemova"
+    ],
+    "4-players": [
+     "vera-nemova"
+    ],
+    "5-players": [
+     "vera-nemova"
+    ],
+    "6-players": [
+     "vera-nemova"
+    ],
+    "7-players": [
+     "vera-nemova"
+    ]
+   },
+   "file": "vera-nemova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/danil-korin.webp",
+   "sha256": "b36d9137bb913611eb2406e2bb536e0c1deaae9c0bccaf28c8b995afdfabab62",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Данил Корин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "danil-korin"
+    ],
+    "4-players": [
+     "danil-korin"
+    ],
+    "5-players": [
+     "danil-korin"
+    ],
+    "6-players": [
+     "danil-korin"
+    ],
+    "7-players": [
+     "danil-korin"
+    ]
+   },
+   "file": "danil-korin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/asya-mel.webp",
+   "sha256": "59ccfce84b6dc7282d71bc7fb3039ae24faf0853b5c5ec9c421f13177f86c410",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Мель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-mel"
+    ],
+    "4-players": [
+     "asya-mel"
+    ],
+    "5-players": [
+     "asya-mel"
+    ],
+    "6-players": [
+     "asya-mel"
+    ],
+    "7-players": [
+     "asya-mel"
+    ]
+   },
+   "file": "asya-mel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/timur-ray.webp",
+   "sha256": "230bdc0129033a171a667724177d32a0d2ef1d9e032ed7a26bf95fdf92052d1c",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимур Рай",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "timur-ray"
+    ],
+    "5-players": [
+     "timur-ray"
+    ],
+    "6-players": [
+     "timur-ray"
+    ],
+    "7-players": [
+     "timur-ray"
+    ]
+   },
+   "file": "timur-ray.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/nina-lisk.webp",
+   "sha256": "4cdeb4281a8fbd9c5d2458bd641e9f9bbdc0ae4ddcb4cfb661e10f1d2dfc7c23",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Лиск",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nina-lisk"
+    ],
+    "6-players": [
+     "nina-lisk"
+    ],
+    "7-players": [
+     "nina-lisk"
+    ]
+   },
+   "file": "nina-lisk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/ilya-tesh.webp",
+   "sha256": "3e90f82be5f9196101637a5040739b13ec4a24038720dc81afa13abd4ec908e8",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илья Теш",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ilya-tesh"
+    ],
+    "7-players": [
+     "ilya-tesh"
+    ]
+   },
+   "file": "ilya-tesh.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/maya-fen.webp",
+   "sha256": "4f8776c6c4e415b640ab27e9ac468bd1de8e89497ddb9c9408b8bdfe188e2d03",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Майя Фень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "maya-fen"
+    ]
+   },
+   "file": "maya-fen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/travel-kit.webp",
+   "sha256": "e0e28b4b1ffde1f4e113c859df461e90f1df5e5520559d2ea83c434454c4bd64",
+   "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-mel-travel-kit",
+     "danil-korin-travel-kit",
+     "vera-nemova-travel-kit"
+    ],
+    "4-players": [
+     "asya-mel-travel-kit",
+     "danil-korin-travel-kit",
+     "timur-ray-travel-kit",
+     "vera-nemova-travel-kit"
+    ],
+    "5-players": [
+     "asya-mel-travel-kit",
+     "danil-korin-travel-kit",
+     "nina-lisk-travel-kit",
+     "timur-ray-travel-kit",
+     "vera-nemova-travel-kit"
+    ],
+    "6-players": [
+     "asya-mel-travel-kit",
+     "danil-korin-travel-kit",
+     "ilya-tesh-travel-kit",
+     "nina-lisk-travel-kit",
+     "timur-ray-travel-kit",
+     "vera-nemova-travel-kit"
+    ],
+    "7-players": [
+     "asya-mel-travel-kit",
+     "danil-korin-travel-kit",
+     "ilya-tesh-travel-kit",
+     "maya-fen-travel-kit",
+     "nina-lisk-travel-kit",
+     "timur-ray-travel-kit",
+     "vera-nemova-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/mark-roven.webp",
+   "sha256": "54e6b7c136b0f67ea3ae1de3a75cfb73babbca49705f70d68c85b7f717a97e6d",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Ровен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-roven"
+    ],
+    "4-players": [
+     "mark-roven"
+    ],
+    "5-players": [
+     "mark-roven"
+    ],
+    "6-players": [
+     "mark-roven"
+    ],
+    "7-players": [
+     "mark-roven"
+    ]
+   },
+   "file": "mark-roven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/lida-gorina.webp",
+   "sha256": "8b48f17dbf3a29b19d7de2c60326dcc21decc8634d40ad799e450feae9adcd1d",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лида Горина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lida-gorina"
+    ],
+    "4-players": [
+     "lida-gorina"
+    ],
+    "5-players": [
+     "lida-gorina"
+    ],
+    "6-players": [
+     "lida-gorina"
+    ],
+    "7-players": [
+     "lida-gorina"
+    ]
+   },
+   "file": "lida-gorina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/sev-lunin.webp",
+   "sha256": "dbddd324b398ff5e2a4394671a8a861588df62c49d0c1038a1fc8262e3333364",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сев Лунин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sev-lunin"
+    ],
+    "4-players": [
+     "sev-lunin"
+    ],
+    "5-players": [
+     "sev-lunin"
+    ],
+    "6-players": [
+     "sev-lunin"
+    ],
+    "7-players": [
+     "sev-lunin"
+    ]
+   },
+   "file": "sev-lunin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/elza-pakh.webp",
+   "sha256": "03ab50df88a87fbe7d67fc0d10908a6ebc07af7fb8123a9d0ab64187fd6c49c9",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльза Пах",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elza-pakh"
+    ],
+    "4-players": [
+     "elza-pakh"
+    ],
+    "5-players": [
+     "elza-pakh"
+    ],
+    "6-players": [
+     "elza-pakh"
+    ],
+    "7-players": [
+     "elza-pakh"
+    ]
+   },
+   "file": "elza-pakh.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/roza-pakht.webp",
+   "sha256": "cd265e5d4d4f5b395a7f1abb193b8d14be3a4b808f4f0043abc1cf41578156b3",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роза Пахт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roza-pakht"
+    ],
+    "4-players": [
+     "roza-pakht"
+    ],
+    "5-players": [
+     "roza-pakht"
+    ],
+    "6-players": [
+     "roza-pakht"
+    ],
+    "7-players": [
+     "roza-pakht"
+    ]
+   },
+   "file": "roza-pakht.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/nora-vinter.webp",
+   "sha256": "b66c42159ff7d8aad32784c3b23fae933271a34e3b5fe47801b66d23366916bc",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нора Винтер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nora-vinter"
+    ],
+    "4-players": [
+     "nora-vinter"
+    ],
+    "5-players": [
+     "nora-vinter"
+    ],
+    "6-players": [
+     "nora-vinter"
+    ],
+    "7-players": [
+     "nora-vinter"
+    ]
+   },
+   "file": "nora-vinter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/yuri-tamen.webp",
+   "sha256": "394f441a5211c710e1e9e6314745ca875ba1328b5b0dc06295dcd072a08ec08a",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юрий Тамень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yuri-tamen"
+    ],
+    "4-players": [
+     "yuri-tamen"
+    ],
+    "5-players": [
+     "yuri-tamen"
+    ],
+    "6-players": [
+     "yuri-tamen"
+    ],
+    "7-players": [
+     "yuri-tamen"
+    ]
+   },
+   "file": "yuri-tamen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/tim-serev.webp",
+   "sha256": "4e8d16c459c22d73eee24b981ed7fe30d88395395128ef1031f63fe21f463043",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Серев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-serev"
+    ],
+    "4-players": [
+     "tim-serev"
+    ],
+    "5-players": [
+     "tim-serev"
+    ],
+    "6-players": [
+     "tim-serev"
+    ],
+    "7-players": [
+     "tim-serev"
+    ]
+   },
+   "file": "tim-serev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/ada-orm.webp",
+   "sha256": "f13b4f2e5ee03707ed3a1472d546860791be916f965395d0c8e639ce8277e4bd",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ада Орм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ada-orm"
+    ],
+    "4-players": [
+     "ada-orm"
+    ],
+    "5-players": [
+     "ada-orm"
+    ],
+    "6-players": [
+     "ada-orm"
+    ],
+    "7-players": [
+     "ada-orm"
+    ]
+   },
+   "file": "ada-orm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/cards/oleg-brin.webp",
+   "sha256": "2ef26aa34a96d930e17b61a2463ebfaf087a8475f691ee367644b544c5d4af29",
+   "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олег Брин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oleg-brin"
+    ],
+    "4-players": [
+     "oleg-brin"
+    ],
+    "5-players": [
+     "oleg-brin"
+    ],
+    "6-players": [
+     "oleg-brin"
+    ],
+    "7-players": [
+     "oleg-brin"
+    ]
+   },
+   "file": "oleg-brin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-vera-nemova.webp",
+   "sha256": "9c8d2663b7872dadeae8501bbb05595c654b1d8c2720713f34142e25b8844546",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Немова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-nemova"
+    ],
+    "4-players": [
+     "vera-nemova"
+    ],
+    "5-players": [
+     "vera-nemova"
+    ],
+    "6-players": [
+     "vera-nemova"
+    ],
+    "7-players": [
+     "vera-nemova"
+    ]
+   },
+   "file": "vera-nemova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-nemova.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-danil-korin.webp",
+   "sha256": "dfd0f2b00293699025f124e8da48bd3f2333550bd28bb3560e9095b02fecf7fb",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Данил Корин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "danil-korin"
+    ],
+    "4-players": [
+     "danil-korin"
+    ],
+    "5-players": [
+     "danil-korin"
+    ],
+    "6-players": [
+     "danil-korin"
+    ],
+    "7-players": [
+     "danil-korin"
+    ]
+   },
+   "file": "danil-korin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "danil-korin.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-asya-mel.webp",
+   "sha256": "1a7c8859dab5d5cd0729a983b0cdbea78d868185951c65726c02c44d6bd3557e",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Мель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-mel"
+    ],
+    "4-players": [
+     "asya-mel"
+    ],
+    "5-players": [
+     "asya-mel"
+    ],
+    "6-players": [
+     "asya-mel"
+    ],
+    "7-players": [
+     "asya-mel"
+    ]
+   },
+   "file": "asya-mel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "asya-mel.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-timur-ray.webp",
+   "sha256": "a55df37c874a4313eb5bd2cf2ae6699d7fee25fe2863226a09350d7c4796dd4d",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимур Рай",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "timur-ray"
+    ],
+    "5-players": [
+     "timur-ray"
+    ],
+    "6-players": [
+     "timur-ray"
+    ],
+    "7-players": [
+     "timur-ray"
+    ]
+   },
+   "file": "timur-ray--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "timur-ray.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-nina-lisk.webp",
+   "sha256": "7bd9ad35fb0d29b5c583df5368a19fc432340e197a6dec6504645a77ea8c007b",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Лиск",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nina-lisk"
+    ],
+    "6-players": [
+     "nina-lisk"
+    ],
+    "7-players": [
+     "nina-lisk"
+    ]
+   },
+   "file": "nina-lisk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-lisk.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-ilya-tesh.webp",
+   "sha256": "0d64db826c319c1f853f6135ad9dba861b2c1fc782318b55451f5156109e1707",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илья Теш",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ilya-tesh"
+    ],
+    "7-players": [
+     "ilya-tesh"
+    ]
+   },
+   "file": "ilya-tesh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilya-tesh.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/heroes-maya-fen.webp",
+   "sha256": "3da33ffd2157bf8aa186b17b01ff9c0434c002a36645c08c49c8c9a53a2f9c52",
+   "originalSha256": "d178bb056c5f7d317ea9b748668a625c8f96d88ecac8b8062db3a786c0ec54f7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Майя Фень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "maya-fen"
+    ]
+   },
+   "file": "maya-fen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "maya-fen.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-zero-studio.webp",
+   "sha256": "180d65dc6a14ee6f93f139ad1455c09aaa5e9c17f9d0701ce84370170b13c490",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Студия «Ноль»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zero-studio"
+    ],
+    "4-players": [
+     "zero-studio"
+    ],
+    "5-players": [
+     "zero-studio"
+    ],
+    "6-players": [
+     "zero-studio"
+    ],
+    "7-players": [
+     "zero-studio"
+    ]
+   },
+   "file": "zero-studio.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-blue-dock.webp",
+   "sha256": "1d355f1d8839ffca93d8a8db0831d0abb46406e15ca2c7c874ad79ef9e4ac81e",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Синий док",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "blue-dock"
+    ],
+    "4-players": [
+     "blue-dock"
+    ],
+    "5-players": [
+     "blue-dock"
+    ],
+    "6-players": [
+     "blue-dock"
+    ],
+    "7-players": [
+     "blue-dock"
+    ]
+   },
+   "file": "blue-dock.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-weigh-gallery.webp",
+   "sha256": "9ba564d5297690c8ad6b3ea31b98943b94780544b2ab3c55d5a06820f2ca276e",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Весовая галерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "weigh-gallery"
+    ],
+    "4-players": [
+     "weigh-gallery"
+    ],
+    "5-players": [
+     "weigh-gallery"
+    ],
+    "6-players": [
+     "weigh-gallery"
+    ],
+    "7-players": [
+     "weigh-gallery"
+    ]
+   },
+   "file": "weigh-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-sail-store.webp",
+   "sha256": "bea99b4be2ede4b44c0575763b9027b44d22552d7d409db7d11c7438b20da8fb",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Склад «Парус»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sail-store"
+    ],
+    "4-players": [
+     "sail-store"
+    ],
+    "5-players": [
+     "sail-store"
+    ],
+    "6-players": [
+     "sail-store"
+    ],
+    "7-players": [
+     "sail-store"
+    ]
+   },
+   "file": "sail-store.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-second-studio.webp",
+   "sha256": "3839832ac0842a906059bb40c3daba89a2337d53c6020502f4b2744dd754a844",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Редакция «Второй голос»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "second-studio"
+    ],
+    "4-players": [
+     "second-studio"
+    ],
+    "5-players": [
+     "second-studio"
+    ],
+    "6-players": [
+     "second-studio"
+    ],
+    "7-players": [
+     "second-studio"
+    ]
+   },
+   "file": "second-studio.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-terracotta-cinema.webp",
+   "sha256": "7c6406461ff3b2f44c113c0e5710fda462b70be88678da8414672c5ed32bb7f2",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кинотеатр «Терракота»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "terracotta-cinema"
+    ],
+    "4-players": [
+     "terracotta-cinema"
+    ],
+    "5-players": [
+     "terracotta-cinema"
+    ],
+    "6-players": [
+     "terracotta-cinema"
+    ],
+    "7-players": [
+     "terracotta-cinema"
+    ]
+   },
+   "file": "terracotta-cinema.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-tram-hall.webp",
+   "sha256": "2cc54ecd6edb51a1136a81f92c6d747972f11ebb625c42f03e9d2b64e17f3297",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Трамвайный зал",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tram-hall"
+    ],
+    "4-players": [
+     "tram-hall"
+    ],
+    "5-players": [
+     "tram-hall"
+    ],
+    "6-players": [
+     "tram-hall"
+    ],
+    "7-players": [
+     "tram-hall"
+    ]
+   },
+   "file": "tram-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-glass-arcade.webp",
+   "sha256": "58ba73f234025f285f2d95a9d4ad2428fb5e37dc1d2e4cd33fee385149d47c58",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стеклянный пассаж",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "glass-arcade"
+    ],
+    "4-players": [
+     "glass-arcade"
+    ],
+    "5-players": [
+     "glass-arcade"
+    ],
+    "6-players": [
+     "glass-arcade"
+    ],
+    "7-players": [
+     "glass-arcade"
+    ]
+   },
+   "file": "glass-arcade.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-copper-terrace.webp",
+   "sha256": "d8af11b736b304d622211245cb997d2f7c6531f70d214f1629e6434c51efe431",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Медная терраса",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "copper-terrace"
+    ],
+    "4-players": [
+     "copper-terrace"
+    ],
+    "5-players": [
+     "copper-terrace"
+    ],
+    "6-players": [
+     "copper-terrace"
+    ],
+    "7-players": [
+     "copper-terrace"
+    ]
+   },
+   "file": "copper-terrace.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-outer-post.webp",
+   "sha256": "08eeca05ec506cdd3a08538573b10f57c93ebd1bf3dda95ed7a0f435cd412c23",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Внешний пост",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "outer-post"
+    ],
+    "4-players": [
+     "outer-post"
+    ],
+    "5-players": [
+     "outer-post"
+    ],
+    "6-players": [
+     "outer-post"
+    ],
+    "7-players": [
+     "outer-post"
+    ]
+   },
+   "file": "outer-post.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/places-salt-court.webp",
+   "sha256": "66600327244156cee9eb2dd53b0e4527b06bacef81baac821488b089b74cc23e",
+   "originalSha256": "d59628f82aacf88e013f0a637a999e1388704b6729e0592e04846e26e3190630",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Соляной двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "salt-court"
+    ],
+    "4-players": [
+     "salt-court"
+    ],
+    "5-players": [
+     "salt-court"
+    ],
+    "6-players": [
+     "salt-court"
+    ],
+    "7-players": [
+     "salt-court"
+    ]
+   },
+   "file": "salt-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/foes-foe-257c104849.webp",
+   "sha256": "c0d7be119e08367a6e127df9bc0c4dbf77cccef307b67666b71f62a515aec39a",
+   "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Распорядитель подрядчика",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2"
+    ],
+    "4-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3"
+    ],
+    "5-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3"
+    ],
+    "6-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3",
+     "crate-standoff-foe-4"
+    ],
+    "7-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3",
+     "crate-standoff-foe-4",
+     "crate-standoff-foe-5"
+    ]
+   },
+   "file": "foe-257c104849.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/foes-foe-257c104849.webp",
+   "sha256": "c0d7be119e08367a6e127df9bc0c4dbf77cccef307b67666b71f62a515aec39a",
+   "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Распорядитель подрядчика",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2"
+    ],
+    "4-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3"
+    ],
+    "5-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3"
+    ],
+    "6-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3",
+     "crate-standoff-foe-4"
+    ],
+    "7-players": [
+     "crate-standoff-foe-1",
+     "crate-standoff-foe-2",
+     "crate-standoff-foe-3",
+     "crate-standoff-foe-4",
+     "crate-standoff-foe-5"
+    ]
+   },
+   "file": "foe-257c104849--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-257c104849.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/foes-foe-13de720e49.webp",
+   "sha256": "932dbd3a0381ba45ddf19a6a2c84899e835afebf17f5d59cdb782d2fc20c5f88",
+   "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямый доброволец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2"
+    ],
+    "4-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3"
+    ],
+    "5-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3"
+    ],
+    "6-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3",
+     "terrace-standoff-foe-4"
+    ],
+    "7-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3",
+     "terrace-standoff-foe-4",
+     "terrace-standoff-foe-5"
+    ]
+   },
+   "file": "foe-13de720e49.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/foes-foe-13de720e49.webp",
+   "sha256": "932dbd3a0381ba45ddf19a6a2c84899e835afebf17f5d59cdb782d2fc20c5f88",
+   "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямый доброволец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2"
+    ],
+    "4-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3"
+    ],
+    "5-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3"
+    ],
+    "6-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3",
+     "terrace-standoff-foe-4"
+    ],
+    "7-players": [
+     "terrace-standoff-foe-1",
+     "terrace-standoff-foe-2",
+     "terrace-standoff-foe-3",
+     "terrace-standoff-foe-4",
+     "terrace-standoff-foe-5"
+    ]
+   },
+   "file": "foe-13de720e49--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-13de720e49.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/foes-foe-28ec8104ec.webp",
+   "sha256": "6bf86c384b85b9135f0114938b3df0aa0a2b344e50e367665dc6a40a178223da",
+   "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Служащий подрядчика",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2"
+    ],
+    "4-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3"
+    ],
+    "5-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3"
+    ],
+    "6-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3",
+     "papers-standoff-foe-4"
+    ],
+    "7-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3",
+     "papers-standoff-foe-4",
+     "papers-standoff-foe-5"
+    ]
+   },
+   "file": "foe-28ec8104ec.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/foes-foe-28ec8104ec.webp",
+   "sha256": "6bf86c384b85b9135f0114938b3df0aa0a2b344e50e367665dc6a40a178223da",
+   "originalSha256": "c0552a7c33c67cf719858fba8beb752b70934ec2b618ebb93ab3028cd0f6ec77",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Служащий подрядчика",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2"
+    ],
+    "4-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3"
+    ],
+    "5-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3"
+    ],
+    "6-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3",
+     "papers-standoff-foe-4"
+    ],
+    "7-players": [
+     "papers-standoff-foe-1",
+     "papers-standoff-foe-2",
+     "papers-standoff-foe-3",
+     "papers-standoff-foe-4",
+     "papers-standoff-foe-5"
+    ]
+   },
+   "file": "foe-28ec8104ec--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-28ec8104ec.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-nora-vinter.webp",
+   "sha256": "a68226e1715845351ceed65dec50dd5cd2ccd8550d31f8bdc0443427a16ccbf6",
+   "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нора Винтер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nora-vinter"
+    ],
+    "4-players": [
+     "nora-vinter"
+    ],
+    "5-players": [
+     "nora-vinter"
+    ],
+    "6-players": [
+     "nora-vinter"
+    ],
+    "7-players": [
+     "nora-vinter"
+    ]
+   },
+   "file": "nora-vinter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nora-vinter.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-yuri-tamen.webp",
+   "sha256": "5238d5e175d2c97076f3089dc0e33ab87a694d9a9067dee4abb674630dc018e9",
+   "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юрий Тамень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yuri-tamen"
+    ],
+    "4-players": [
+     "yuri-tamen"
+    ],
+    "5-players": [
+     "yuri-tamen"
+    ],
+    "6-players": [
+     "yuri-tamen"
+    ],
+    "7-players": [
+     "yuri-tamen"
+    ]
+   },
+   "file": "yuri-tamen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yuri-tamen.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-tim-serev.webp",
+   "sha256": "52a2e5959ce9dcc1cd3f0b43e6ca4dba58d9a78ac1cf4d6e0054660dafabd6fb",
+   "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Серев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-serev"
+    ],
+    "4-players": [
+     "tim-serev"
+    ],
+    "5-players": [
+     "tim-serev"
+    ],
+    "6-players": [
+     "tim-serev"
+    ],
+    "7-players": [
+     "tim-serev"
+    ]
+   },
+   "file": "tim-serev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tim-serev.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-ada-orm.webp",
+   "sha256": "25bfc791783c805970416de90230d72355ade498a88bf43b77d844cb1969b5dd",
+   "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ада Орм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ada-orm"
+    ],
+    "4-players": [
+     "ada-orm"
+    ],
+    "5-players": [
+     "ada-orm"
+    ],
+    "6-players": [
+     "ada-orm"
+    ],
+    "7-players": [
+     "ada-orm"
+    ]
+   },
+   "file": "ada-orm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ada-orm.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-oleg-brin.webp",
+   "sha256": "1035acc3d157726005d4688ec674951927b42f84ca831b82db4ef6c5f55a6fe3",
+   "originalSha256": "05e33920788f11bb7ce15c977b74d797bdb531e1342bd248dbabdd6e3e611757",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олег Брин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oleg-brin"
+    ],
+    "4-players": [
+     "oleg-brin"
+    ],
+    "5-players": [
+     "oleg-brin"
+    ],
+    "6-players": [
+     "oleg-brin"
+    ],
+    "7-players": [
+     "oleg-brin"
+    ]
+   },
+   "file": "oleg-brin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oleg-brin.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-mark-roven.webp",
+   "sha256": "674a452aa011089a59eaf6406f24695db0a168dcd21e9c9b9c770456f48b23da",
+   "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Ровен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-roven"
+    ],
+    "4-players": [
+     "mark-roven"
+    ],
+    "5-players": [
+     "mark-roven"
+    ],
+    "6-players": [
+     "mark-roven"
+    ],
+    "7-players": [
+     "mark-roven"
+    ]
+   },
+   "file": "mark-roven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mark-roven.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-lida-gorina.webp",
+   "sha256": "ca083c0413502a90168ea9aa1b591592d2c017b938a56e28334d1a7823148877",
+   "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лида Горина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lida-gorina"
+    ],
+    "4-players": [
+     "lida-gorina"
+    ],
+    "5-players": [
+     "lida-gorina"
+    ],
+    "6-players": [
+     "lida-gorina"
+    ],
+    "7-players": [
+     "lida-gorina"
+    ]
+   },
+   "file": "lida-gorina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lida-gorina.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-sev-lunin.webp",
+   "sha256": "7fdc169fd1d8f745d60857f697242745b19617d5e0868c612991e4f6e5d9b727",
+   "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сев Лунин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sev-lunin"
+    ],
+    "4-players": [
+     "sev-lunin"
+    ],
+    "5-players": [
+     "sev-lunin"
+    ],
+    "6-players": [
+     "sev-lunin"
+    ],
+    "7-players": [
+     "sev-lunin"
+    ]
+   },
+   "file": "sev-lunin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sev-lunin.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-elza-pakh.webp",
+   "sha256": "f858f1d7c2a89d480b7ab4d7a2dbf8e2158bda3b36f213a18db16a93acd56415",
+   "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльза Пах",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elza-pakh"
+    ],
+    "4-players": [
+     "elza-pakh"
+    ],
+    "5-players": [
+     "elza-pakh"
+    ],
+    "6-players": [
+     "elza-pakh"
+    ],
+    "7-players": [
+     "elza-pakh"
+    ]
+   },
+   "file": "elza-pakh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elza-pakh.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/table/npcs-roza-pakht.webp",
+   "sha256": "0921770f9ae15fc49c4d64803e1b950577d93435b0a44e48140fd8f83be7ec7c",
+   "originalSha256": "e85ab0a623cdcb919a49b351a13939db98140ca322da3f6b1761562cf3f1fae0",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роза Пахт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roza-pakht"
+    ],
+    "4-players": [
+     "roza-pakht"
+    ],
+    "5-players": [
+     "roza-pakht"
+    ],
+    "6-players": [
+     "roza-pakht"
+    ],
+    "7-players": [
+     "roza-pakht"
+    ]
+   },
+   "file": "roza-pakht--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "roza-pakht.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/silent-frequency/illustrations/opening.webp",
+   "sha256": "28b65f751ef85cdfc03438461a304c0a8efb6890b55434a0d856c26962e396ab",
+   "originalSha256": "413310cd0568900d1174bdfea94c50c94c9a3a9e111547d4381e452301fd4582",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Студия «Ноль» — Нулевая частота",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lestavel"
+    ],
+    "4-players": [
+     "lestavel"
+    ],
+    "5-players": [
+     "lestavel"
+    ],
+    "6-players": [
+     "lestavel"
+    ],
+    "7-players": [
+     "lestavel"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "sail-store--map.webp",
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/battle-maps/sail-store.webp",
+   "sha256": "77c155386e2122ae5e2e24c37eb30c500bdd9ec74b92fd5902ca2ff2f73cb58a",
+   "originalSha256": "d37eb30c0a17a080327e9c01764660d553090eb670cc7183ace22297c476ba47",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Склад «Парус». Visible scenery: Высокие полки с опечатанными тюками и большими адресными бирками. У конторского столика всегда лежат второй карандаш и чистая копия накладной.. World style: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "sail-store.webp",
+   "subjects": {
+    "3-players": [
+     "sail-store"
+    ],
+    "4-players": [
+     "sail-store"
+    ],
+    "5-players": [
+     "sail-store"
+    ],
+    "6-players": [
+     "sail-store"
+    ],
+    "7-players": [
+     "sail-store"
+    ]
+   }
+  },
+  {
+   "file": "copper-terrace--map.webp",
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/battle-maps/copper-terrace.webp",
+   "sha256": "9a8c3f6bd5962ef3a170f5ab18816a5f4ef1cc9be0ee879992eee51e4f52bd42",
+   "originalSha256": "6e39a1330671794b8f68b00a09f1f59f21c8ea8776fd1757a48224d68ced7248",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Медная терраса. Visible scenery: Небольшая площадка перед мастерской вывесок, защищённая высоким городским фасадом. Медные буквы под навесом звенят от ветра.. World style: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "copper-terrace.webp",
+   "subjects": {
+    "3-players": [
+     "copper-terrace"
+    ],
+    "4-players": [
+     "copper-terrace"
+    ],
+    "5-players": [
+     "copper-terrace"
+    ],
+    "6-players": [
+     "copper-terrace"
+    ],
+    "7-players": [
+     "copper-terrace"
+    ]
+   }
+  },
+  {
+   "file": "glass-arcade--map.webp",
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/battle-maps/glass-arcade.webp",
+   "sha256": "71ac189378b9a1313e21a66de6fde45f6aafaa5669e546aaa789f9442c56f2a8",
+   "originalSha256": "c043ffc7232c295d448d491bdccf04925a41c22fdebea9156a8103906c9252e7",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стеклянный пассаж. Visible scenery: Крытая улица с закрытыми витринами и столом справочной службы. Сквозь цветное стекло серый день выглядит розовым и зелёным.. World style: Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "glass-arcade.webp",
+   "subjects": {
+    "3-players": [
+     "glass-arcade"
+    ],
+    "4-players": [
+     "glass-arcade"
+    ],
+    "5-players": [
+     "glass-arcade"
+    ],
+    "6-players": [
+     "glass-arcade"
+    ],
+    "7-players": [
+     "glass-arcade"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/silent-frequency/assets/world-map/world-map.webp",
+   "sha256": "e7ceef2345b90ea01b7df1014cbd515000f66078ae2a012157f162e7b82cecda",
+   "originalSha256": "6bd1d295393e8b66a3325bbf530d8b62854aacdb0bea39225d2ad85938c5c9ce",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Леставель во время Оловянного шторма. Style Леставель во время Оловянного шторма · Brushed blue radio casing with fine concentric dial grooves and amber waveform lines. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Студия «Ноль»; 0.367,0.177 Синий док; 0.623,0.15 Весовая галерея; 0.88,0.177 Склад «Парус»; 0.905,0.517 Редакция «Второй голос»; 0.648,0.49 Кинотеатр «Терракота»; 0.392,0.517 Трамвайный зал; 0.135,0.49 Стеклянный пассаж; 0.11,0.83 Медная терраса; 0.367,0.857 Внешний пост; 0.623,0.83 Соляной двор. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

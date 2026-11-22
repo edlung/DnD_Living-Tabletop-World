@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "c4a26628ff6f2eda5f594d4b86e3ef5b6b45e2f5faec148e61deb995de618a0c",
+    "originalSha256": "2732cb0c937428f78eeb5d106d5181a2a7fb6f49b7f9c7f70e14c66e50d691a2",
+    "originalFile": "exec-09f51a51-a15d-4f67-adb9-22348c1a9cc1.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Мержа, Канатный квартал. Style Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Столовая «После звонка»; 0.367,0.177 Канатный двор; 0.623,0.15 Кабинет восстановления; 0.88,0.177 Прачечная при бане; 0.905,0.857 Мастерская Бека; 0.648,0.83 Трамвайное депо «Речной тупик»; 0.392,0.857 Дом самостоятельных комнат; 0.135,0.83 Крытый речной павильон. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

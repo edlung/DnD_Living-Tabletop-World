@@ -1,0 +1,1843 @@
+{
+ "id": "quiet-exchange",
+ "title": "Тихая коммутаторная",
+ "genre": "Детективный нуар о телефонном шантаже и пределах доверия",
+ "audience": "21+",
+ "pitch": "В дождливом Равеле телефонный круг соседской помощи превращает частные просьбы в угрозы. Переплётчица приносит записку: за молчание требуют денег и ещё одного чужого секрета. Расследователям предстоит выяснить, кто вправе передавать звонки, кому люди разрешали знать правду и где помощь стала принуждением.",
+ "tone": "Мокрое стекло, остывший чай, деликатность, которая бывает заботой и инструментом власти. Люди способны возместить вред, но доверие не возвращается одним разоблачением.",
+ "duration": "8 сессий; 180 минут: вступление и повторение 15, три сцены по 45, перерыв 15, завершение 15; длительность включает все части встречи.",
+ "cover": "campaigns/noir-2026/quiet-exchange/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "9da8da023440e5f06216d89bdb9469eb065d5f4d23223190b99eb71358687181"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "508e4d3e3400a15215f064f0d81415f771d6bf0d89d6f35853a9cdc3012e957d"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "eb5f3866efcffe06982786a49748740bb9fb8c897dd5ce6612dc9eb044fbdf02"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "cdb3c149e6dfd6ffbf26b929eb001c24c2f43dd1314199726818f5c2087ae287"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "a94ddcb548e8567829d7407c6ee67ea73ae544752775fd331de177af9e0cf6d2"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "da5e535f09a1712e667ba204c200e86b6d7c42453c9315d861900eff8b3a46fb"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/anna-rudneva.webp",
+   "sha256": "e6d35b2cdbf3996a62ee8747145e79c8b971e50c12b387a07e44cb22e8369ab3",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Анна Руднева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "anna-rudneva"
+    ],
+    "4-players": [
+     "anna-rudneva"
+    ],
+    "5-players": [
+     "anna-rudneva"
+    ],
+    "6-players": [
+     "anna-rudneva"
+    ],
+    "7-players": [
+     "anna-rudneva"
+    ],
+    "8-players": [
+     "anna-rudneva"
+    ]
+   },
+   "file": "anna-rudneva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/ilya-melov.webp",
+   "sha256": "b3a4fd6285ee95154790e674a7f62158cabb68455ecf63366bffb975bb1c624d",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илья Мелов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilya-melov"
+    ],
+    "4-players": [
+     "ilya-melov"
+    ],
+    "5-players": [
+     "ilya-melov"
+    ],
+    "6-players": [
+     "ilya-melov"
+    ],
+    "7-players": [
+     "ilya-melov"
+    ],
+    "8-players": [
+     "ilya-melov"
+    ]
+   },
+   "file": "ilya-melov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/kira-osokina.webp",
+   "sha256": "07eb550983b5904cf8be1ee8aa024a863f9a209f68723daec7001b9265134a2e",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кира Осокина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kira-osokina"
+    ],
+    "4-players": [
+     "kira-osokina"
+    ],
+    "5-players": [
+     "kira-osokina"
+    ],
+    "6-players": [
+     "kira-osokina"
+    ],
+    "7-players": [
+     "kira-osokina"
+    ],
+    "8-players": [
+     "kira-osokina"
+    ]
+   },
+   "file": "kira-osokina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/lev-narets.webp",
+   "sha256": "543bc39d1b7f8c67ff189a26a0c66189f2605a48bd321e621121184012788814",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Нарец",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "lev-narets"
+    ],
+    "5-players": [
+     "lev-narets"
+    ],
+    "6-players": [
+     "lev-narets"
+    ],
+    "7-players": [
+     "lev-narets"
+    ],
+    "8-players": [
+     "lev-narets"
+    ]
+   },
+   "file": "lev-narets.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/tamara-zorn.webp",
+   "sha256": "1c2d7c0c53f430b2e2ccc0569a67c98937fd79ce7eb94fb28de0368a241a500f",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Зорн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tamara-zorn"
+    ],
+    "6-players": [
+     "tamara-zorn"
+    ],
+    "7-players": [
+     "tamara-zorn"
+    ],
+    "8-players": [
+     "tamara-zorn"
+    ]
+   },
+   "file": "tamara-zorn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/semen-vorot.webp",
+   "sha256": "2b1dd2d49a07e4459c61bfcc564393496213433978772b271d86480042a13c03",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Ворот",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "semen-vorot"
+    ],
+    "7-players": [
+     "semen-vorot"
+    ],
+    "8-players": [
+     "semen-vorot"
+    ]
+   },
+   "file": "semen-vorot.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/nina-kolt.webp",
+   "sha256": "7abe99def3660b3fa5cd831f3c20132406ce5b6ee8b841f87ec1b27e9c518a8f",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Кольт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "nina-kolt"
+    ],
+    "8-players": [
+     "nina-kolt"
+    ]
+   },
+   "file": "nina-kolt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/viktor-lesk.webp",
+   "sha256": "85d061babf8459aa03e4ef7b8a79284689491dc8cbb295ab553c7b260058e76d",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Виктор Леск",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "viktor-lesk"
+    ]
+   },
+   "file": "viktor-lesk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/travel-kit.webp",
+   "sha256": "a568c08c67eefb7c347956202f8c004c2958fb800784fd9f7ba8ab72738548f8",
+   "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "anna-rudneva-travel-kit",
+     "ilya-melov-travel-kit",
+     "kira-osokina-travel-kit"
+    ],
+    "4-players": [
+     "anna-rudneva-travel-kit",
+     "ilya-melov-travel-kit",
+     "kira-osokina-travel-kit",
+     "lev-narets-travel-kit"
+    ],
+    "5-players": [
+     "anna-rudneva-travel-kit",
+     "ilya-melov-travel-kit",
+     "kira-osokina-travel-kit",
+     "lev-narets-travel-kit",
+     "tamara-zorn-travel-kit"
+    ],
+    "6-players": [
+     "anna-rudneva-travel-kit",
+     "ilya-melov-travel-kit",
+     "kira-osokina-travel-kit",
+     "lev-narets-travel-kit",
+     "semen-vorot-travel-kit",
+     "tamara-zorn-travel-kit"
+    ],
+    "7-players": [
+     "anna-rudneva-travel-kit",
+     "ilya-melov-travel-kit",
+     "kira-osokina-travel-kit",
+     "lev-narets-travel-kit",
+     "nina-kolt-travel-kit",
+     "semen-vorot-travel-kit",
+     "tamara-zorn-travel-kit"
+    ],
+    "8-players": [
+     "anna-rudneva-travel-kit",
+     "ilya-melov-travel-kit",
+     "kira-osokina-travel-kit",
+     "lev-narets-travel-kit",
+     "nina-kolt-travel-kit",
+     "semen-vorot-travel-kit",
+     "tamara-zorn-travel-kit",
+     "viktor-lesk-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/taisiya-korshun.webp",
+   "sha256": "17d13317bdff9b72e139fe11deeb0fd16baa23e470b0d1440ad0803991acc640",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Таисия Коршун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taisiya-korshun"
+    ],
+    "4-players": [
+     "taisiya-korshun"
+    ],
+    "5-players": [
+     "taisiya-korshun"
+    ],
+    "6-players": [
+     "taisiya-korshun"
+    ],
+    "7-players": [
+     "taisiya-korshun"
+    ],
+    "8-players": [
+     "taisiya-korshun"
+    ]
+   },
+   "file": "taisiya-korshun.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/vera-lanskaya.webp",
+   "sha256": "94c7a113421531d53e603a2dcf47df61fdbcc29af3b8f33500171d98c3e3c233",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Ланская",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-lanskaya"
+    ],
+    "4-players": [
+     "vera-lanskaya"
+    ],
+    "5-players": [
+     "vera-lanskaya"
+    ],
+    "6-players": [
+     "vera-lanskaya"
+    ],
+    "7-players": [
+     "vera-lanskaya"
+    ],
+    "8-players": [
+     "vera-lanskaya"
+    ]
+   },
+   "file": "vera-lanskaya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/lidia-radova.webp",
+   "sha256": "189654da31f9243dc4432d64f4852754a1167122e73fe37da309154da9eee987",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лидия Радова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lidia-radova"
+    ],
+    "4-players": [
+     "lidia-radova"
+    ],
+    "5-players": [
+     "lidia-radova"
+    ],
+    "6-players": [
+     "lidia-radova"
+    ],
+    "7-players": [
+     "lidia-radova"
+    ],
+    "8-players": [
+     "lidia-radova"
+    ]
+   },
+   "file": "lidia-radova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/roman-berezhny.webp",
+   "sha256": "d44987557349e91cd944c9e4a9be0136688f4ed7bea56857d77d912cafb00b51",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роман Бережный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roman-berezhny"
+    ],
+    "4-players": [
+     "roman-berezhny"
+    ],
+    "5-players": [
+     "roman-berezhny"
+    ],
+    "6-players": [
+     "roman-berezhny"
+    ],
+    "7-players": [
+     "roman-berezhny"
+    ],
+    "8-players": [
+     "roman-berezhny"
+    ]
+   },
+   "file": "roman-berezhny.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/marta-oseeva.webp",
+   "sha256": "7758d68a27a93b57c7eaafb7f6f99b425d9f4790d1535aa218ab4f526f77a68d",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Осеева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marta-oseeva"
+    ],
+    "4-players": [
+     "marta-oseeva"
+    ],
+    "5-players": [
+     "marta-oseeva"
+    ],
+    "6-players": [
+     "marta-oseeva"
+    ],
+    "7-players": [
+     "marta-oseeva"
+    ],
+    "8-players": [
+     "marta-oseeva"
+    ]
+   },
+   "file": "marta-oseeva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/pavel-remiz.webp",
+   "sha256": "83a7737494e8b05a43bca5ea3c45dac8a6aeed8109f8acdeedc822ff844dde67",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Ремиз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-remiz"
+    ],
+    "4-players": [
+     "pavel-remiz"
+    ],
+    "5-players": [
+     "pavel-remiz"
+    ],
+    "6-players": [
+     "pavel-remiz"
+    ],
+    "7-players": [
+     "pavel-remiz"
+    ],
+    "8-players": [
+     "pavel-remiz"
+    ]
+   },
+   "file": "pavel-remiz.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/daniil-ustin.webp",
+   "sha256": "5e74c089236cd8f4b016c6c37d9d9233501e0b7ff9f4461b0e057b041bfc4057",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даниил Устин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "daniil-ustin"
+    ],
+    "4-players": [
+     "daniil-ustin"
+    ],
+    "5-players": [
+     "daniil-ustin"
+    ],
+    "6-players": [
+     "daniil-ustin"
+    ],
+    "7-players": [
+     "daniil-ustin"
+    ],
+    "8-players": [
+     "daniil-ustin"
+    ]
+   },
+   "file": "daniil-ustin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/cards/eva-nester.webp",
+   "sha256": "a85220b3e04fec7cdd3c78b4ef8e07738bd6cd519bd195a06ed7eb758487e247",
+   "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ева Нестер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eva-nester"
+    ],
+    "4-players": [
+     "eva-nester"
+    ],
+    "5-players": [
+     "eva-nester"
+    ],
+    "6-players": [
+     "eva-nester"
+    ],
+    "7-players": [
+     "eva-nester"
+    ],
+    "8-players": [
+     "eva-nester"
+    ]
+   },
+   "file": "eva-nester.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-anna-rudneva.webp",
+   "sha256": "38d48db488bbfc920f836c75a9226fc5c6c7dbcf04f9c28e64b123281fd0df4e",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Анна Руднева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "anna-rudneva"
+    ],
+    "4-players": [
+     "anna-rudneva"
+    ],
+    "5-players": [
+     "anna-rudneva"
+    ],
+    "6-players": [
+     "anna-rudneva"
+    ],
+    "7-players": [
+     "anna-rudneva"
+    ],
+    "8-players": [
+     "anna-rudneva"
+    ]
+   },
+   "file": "anna-rudneva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "anna-rudneva.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-ilya-melov.webp",
+   "sha256": "a390c51ebf5dfe8a9fb2f8a2ac18c65f5cad226e266a057735ff24abc66449bd",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илья Мелов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilya-melov"
+    ],
+    "4-players": [
+     "ilya-melov"
+    ],
+    "5-players": [
+     "ilya-melov"
+    ],
+    "6-players": [
+     "ilya-melov"
+    ],
+    "7-players": [
+     "ilya-melov"
+    ],
+    "8-players": [
+     "ilya-melov"
+    ]
+   },
+   "file": "ilya-melov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilya-melov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-kira-osokina.webp",
+   "sha256": "50fe628dc27875a24a1f095a6c2b49d8c05dda73a6cc1e7c8b1d4462686a2cc2",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кира Осокина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kira-osokina"
+    ],
+    "4-players": [
+     "kira-osokina"
+    ],
+    "5-players": [
+     "kira-osokina"
+    ],
+    "6-players": [
+     "kira-osokina"
+    ],
+    "7-players": [
+     "kira-osokina"
+    ],
+    "8-players": [
+     "kira-osokina"
+    ]
+   },
+   "file": "kira-osokina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kira-osokina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-lev-narets.webp",
+   "sha256": "2641c7252f4f47e4fb11aeb85e32ae48d628b0c709b253ef10cba260be947001",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Нарец",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "lev-narets"
+    ],
+    "5-players": [
+     "lev-narets"
+    ],
+    "6-players": [
+     "lev-narets"
+    ],
+    "7-players": [
+     "lev-narets"
+    ],
+    "8-players": [
+     "lev-narets"
+    ]
+   },
+   "file": "lev-narets--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lev-narets.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-tamara-zorn.webp",
+   "sha256": "4fba6f9b316379b4ff25501fa1793aaa9b9d9310c989ed01f56fdd8a527012ce",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Зорн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tamara-zorn"
+    ],
+    "6-players": [
+     "tamara-zorn"
+    ],
+    "7-players": [
+     "tamara-zorn"
+    ],
+    "8-players": [
+     "tamara-zorn"
+    ]
+   },
+   "file": "tamara-zorn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tamara-zorn.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-semen-vorot.webp",
+   "sha256": "b8ae6860298c3a87e55dbc76b309da0cc946f6cdc05a5ea999bbd454afd8941d",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Ворот",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "semen-vorot"
+    ],
+    "7-players": [
+     "semen-vorot"
+    ],
+    "8-players": [
+     "semen-vorot"
+    ]
+   },
+   "file": "semen-vorot--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "semen-vorot.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-nina-kolt.webp",
+   "sha256": "f996f5a2b2bde7e53a041a83187047092fb4bac696ccee135ae1752f76667595",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Кольт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "nina-kolt"
+    ],
+    "8-players": [
+     "nina-kolt"
+    ]
+   },
+   "file": "nina-kolt--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-kolt.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/heroes-viktor-lesk.webp",
+   "sha256": "3c737dfcdd09d2ba5023812cb7e063a438cd8f32c75252d9dcfabe39df88bf21",
+   "originalSha256": "1ba83639e712a40affde24f40f3a426f584abbc3b03e767f7868db4f3cb49837",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Виктор Леск",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "viktor-lesk"
+    ]
+   },
+   "file": "viktor-lesk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "viktor-lesk.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-night-cafe.webp",
+   "sha256": "36a294ee1cac66926b5497fe5b44c433123652e82b39c736b0243de7edf2a8a7",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кафе «Поздняя чашка»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "night-cafe"
+    ],
+    "4-players": [
+     "night-cafe"
+    ],
+    "5-players": [
+     "night-cafe"
+    ],
+    "6-players": [
+     "night-cafe"
+    ],
+    "7-players": [
+     "night-cafe"
+    ],
+    "8-players": [
+     "night-cafe"
+    ]
+   },
+   "file": "night-cafe.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-exchange-hall.webp",
+   "sha256": "3ae90d9e89a2a3f14cda30bdc5dbd5b42f21f1ebc91f473899860be73c19f665",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Коммутаторная соседского круга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "exchange-hall"
+    ],
+    "4-players": [
+     "exchange-hall"
+    ],
+    "5-players": [
+     "exchange-hall"
+    ],
+    "6-players": [
+     "exchange-hall"
+    ],
+    "7-players": [
+     "exchange-hall"
+    ],
+    "8-players": [
+     "exchange-hall"
+    ]
+   },
+   "file": "exchange-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-binding-shop.webp",
+   "sha256": "6d2137e1b2a06a6fe4ecab944927a6a4922e1fde5e006821f0d59b90e31a44ae",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Переплётная «Лист и корешок»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "binding-shop"
+    ],
+    "4-players": [
+     "binding-shop"
+    ],
+    "5-players": [
+     "binding-shop"
+    ],
+    "6-players": [
+     "binding-shop"
+    ],
+    "7-players": [
+     "binding-shop"
+    ],
+    "8-players": [
+     "binding-shop"
+    ]
+   },
+   "file": "binding-shop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-washhouse.webp",
+   "sha256": "0b4465555dba2c543ce099dffe25f0f2357265bc636dfd2990be7baf11a05e52",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Прачечная с тёплой галереей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "washhouse"
+    ],
+    "4-players": [
+     "washhouse"
+    ],
+    "5-players": [
+     "washhouse"
+    ],
+    "6-players": [
+     "washhouse"
+    ],
+    "7-players": [
+     "washhouse"
+    ],
+    "8-players": [
+     "washhouse"
+    ]
+   },
+   "file": "washhouse.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-tram-shelter.webp",
+   "sha256": "1c6e38234c6c6d32329423b8f4d406d49ad514caa21b61684e3c658df9902976",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Конечная под железным навесом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tram-shelter"
+    ],
+    "4-players": [
+     "tram-shelter"
+    ],
+    "5-players": [
+     "tram-shelter"
+    ],
+    "6-players": [
+     "tram-shelter"
+    ],
+    "7-players": [
+     "tram-shelter"
+    ],
+    "8-players": [
+     "tram-shelter"
+    ]
+   },
+   "file": "tram-shelter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-parcel-counter.webp",
+   "sha256": "89f055c49e7e953c0f20d6b8a6c2a0d8da27ceb1b44f17051f5f1bf45ff64993",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стол согласованных доставок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "parcel-counter"
+    ],
+    "4-players": [
+     "parcel-counter"
+    ],
+    "5-players": [
+     "parcel-counter"
+    ],
+    "6-players": [
+     "parcel-counter"
+    ],
+    "7-players": [
+     "parcel-counter"
+    ],
+    "8-players": [
+     "parcel-counter"
+    ]
+   },
+   "file": "parcel-counter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-ticket-office.webp",
+   "sha256": "1290368202b3856faf43b27fa0db4d3c91970e703f3e3849d362bd9df8015349",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Касса взаимных расчётов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ticket-office"
+    ],
+    "4-players": [
+     "ticket-office"
+    ],
+    "5-players": [
+     "ticket-office"
+    ],
+    "6-players": [
+     "ticket-office"
+    ],
+    "7-players": [
+     "ticket-office"
+    ],
+    "8-players": [
+     "ticket-office"
+    ]
+   },
+   "file": "ticket-office.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/places-roof-garden.webp",
+   "sha256": "55c80ecb5235370fd3074d4c7de557b66bae689dc68200e89eb948444dea30a4",
+   "originalSha256": "9dfeebbf47d0b4ef66f43101f2912c6d5fa55079c196b3fd1b63076208969f4b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крытый сад над кафе",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roof-garden"
+    ],
+    "4-players": [
+     "roof-garden"
+    ],
+    "5-players": [
+     "roof-garden"
+    ],
+    "6-players": [
+     "roof-garden"
+    ],
+    "7-players": [
+     "roof-garden"
+    ],
+    "8-players": [
+     "roof-garden"
+    ]
+   },
+   "file": "roof-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/foes-foe-64916bc070.webp",
+   "sha256": "946946d0634c7208d8f8802f612680afd47c484ae8a24193394935a34f79fef8",
+   "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взыскатель мастерской",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2"
+    ],
+    "4-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3"
+    ],
+    "5-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3"
+    ],
+    "6-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3",
+     "narrow-aisle-foe-4"
+    ],
+    "7-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3",
+     "narrow-aisle-foe-4",
+     "narrow-aisle-foe-5"
+    ],
+    "8-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3",
+     "narrow-aisle-foe-4",
+     "narrow-aisle-foe-5",
+     "narrow-aisle-foe-6"
+    ]
+   },
+   "file": "foe-64916bc070.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/foes-foe-64916bc070.webp",
+   "sha256": "946946d0634c7208d8f8802f612680afd47c484ae8a24193394935a34f79fef8",
+   "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взыскатель мастерской",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2"
+    ],
+    "4-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3"
+    ],
+    "5-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3"
+    ],
+    "6-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3",
+     "narrow-aisle-foe-4"
+    ],
+    "7-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3",
+     "narrow-aisle-foe-4",
+     "narrow-aisle-foe-5"
+    ],
+    "8-players": [
+     "narrow-aisle-foe-1",
+     "narrow-aisle-foe-2",
+     "narrow-aisle-foe-3",
+     "narrow-aisle-foe-4",
+     "narrow-aisle-foe-5",
+     "narrow-aisle-foe-6"
+    ]
+   },
+   "file": "foe-64916bc070--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-64916bc070.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/foes-foe-d5e7ad6ee5.webp",
+   "sha256": "fd0d5b27793434d9d8c3c3fc2205365e02e6ff60ae56838df9d6df825bb5178f",
+   "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Помощник доставки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2"
+    ],
+    "4-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3"
+    ],
+    "5-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3"
+    ],
+    "6-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3",
+     "held-parcel-foe-4"
+    ],
+    "7-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3",
+     "held-parcel-foe-4",
+     "held-parcel-foe-5"
+    ],
+    "8-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3",
+     "held-parcel-foe-4",
+     "held-parcel-foe-5",
+     "held-parcel-foe-6"
+    ]
+   },
+   "file": "foe-d5e7ad6ee5.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/foes-foe-d5e7ad6ee5.webp",
+   "sha256": "fd0d5b27793434d9d8c3c3fc2205365e02e6ff60ae56838df9d6df825bb5178f",
+   "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Помощник доставки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2"
+    ],
+    "4-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3"
+    ],
+    "5-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3"
+    ],
+    "6-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3",
+     "held-parcel-foe-4"
+    ],
+    "7-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3",
+     "held-parcel-foe-4",
+     "held-parcel-foe-5"
+    ],
+    "8-players": [
+     "held-parcel-foe-1",
+     "held-parcel-foe-2",
+     "held-parcel-foe-3",
+     "held-parcel-foe-4",
+     "held-parcel-foe-5",
+     "held-parcel-foe-6"
+    ]
+   },
+   "file": "foe-d5e7ad6ee5--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-d5e7ad6ee5.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/foes-foe-9da886c42d.webp",
+   "sha256": "267546a2b7aa6c60c037e48a78f64328c14402d7d8e9b04ad16201e361b14675",
+   "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Навязчивый посетитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2"
+    ],
+    "4-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3"
+    ],
+    "5-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3"
+    ],
+    "6-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3",
+     "uninvited-listeners-foe-4"
+    ],
+    "7-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3",
+     "uninvited-listeners-foe-4",
+     "uninvited-listeners-foe-5"
+    ],
+    "8-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3",
+     "uninvited-listeners-foe-4",
+     "uninvited-listeners-foe-5",
+     "uninvited-listeners-foe-6"
+    ]
+   },
+   "file": "foe-9da886c42d.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/foes-foe-9da886c42d.webp",
+   "sha256": "267546a2b7aa6c60c037e48a78f64328c14402d7d8e9b04ad16201e361b14675",
+   "originalSha256": "e44eaa04aaae9a1cd0d9afc5684b236575a987954e96c4962dbea7c60c283730",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Навязчивый посетитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2"
+    ],
+    "4-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3"
+    ],
+    "5-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3"
+    ],
+    "6-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3",
+     "uninvited-listeners-foe-4"
+    ],
+    "7-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3",
+     "uninvited-listeners-foe-4",
+     "uninvited-listeners-foe-5"
+    ],
+    "8-players": [
+     "uninvited-listeners-foe-1",
+     "uninvited-listeners-foe-2",
+     "uninvited-listeners-foe-3",
+     "uninvited-listeners-foe-4",
+     "uninvited-listeners-foe-5",
+     "uninvited-listeners-foe-6"
+    ]
+   },
+   "file": "foe-9da886c42d--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9da886c42d.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-taisiya-korshun.webp",
+   "sha256": "30d4f5c7bd50610b83ab0943d5178b435fb5bf93c7904e3084b0364441d8985e",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Таисия Коршун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taisiya-korshun"
+    ],
+    "4-players": [
+     "taisiya-korshun"
+    ],
+    "5-players": [
+     "taisiya-korshun"
+    ],
+    "6-players": [
+     "taisiya-korshun"
+    ],
+    "7-players": [
+     "taisiya-korshun"
+    ],
+    "8-players": [
+     "taisiya-korshun"
+    ]
+   },
+   "file": "taisiya-korshun--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taisiya-korshun.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-vera-lanskaya.webp",
+   "sha256": "54ab7525d9060dc04b770ee99c13dc7b0cea392106e689330e54990c14a9923e",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Ланская",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-lanskaya"
+    ],
+    "4-players": [
+     "vera-lanskaya"
+    ],
+    "5-players": [
+     "vera-lanskaya"
+    ],
+    "6-players": [
+     "vera-lanskaya"
+    ],
+    "7-players": [
+     "vera-lanskaya"
+    ],
+    "8-players": [
+     "vera-lanskaya"
+    ]
+   },
+   "file": "vera-lanskaya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-lanskaya.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-lidia-radova.webp",
+   "sha256": "43c135cf43677be3dfc505b4ec9b1dffa20c4dab9121ee45b3011336c0b9931c",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лидия Радова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lidia-radova"
+    ],
+    "4-players": [
+     "lidia-radova"
+    ],
+    "5-players": [
+     "lidia-radova"
+    ],
+    "6-players": [
+     "lidia-radova"
+    ],
+    "7-players": [
+     "lidia-radova"
+    ],
+    "8-players": [
+     "lidia-radova"
+    ]
+   },
+   "file": "lidia-radova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lidia-radova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-roman-berezhny.webp",
+   "sha256": "5aa4b59b9a24397ff0b8427e7ea9d1a43a595fbe7a4d568b0dd3d0b0473beab8",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роман Бережный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roman-berezhny"
+    ],
+    "4-players": [
+     "roman-berezhny"
+    ],
+    "5-players": [
+     "roman-berezhny"
+    ],
+    "6-players": [
+     "roman-berezhny"
+    ],
+    "7-players": [
+     "roman-berezhny"
+    ],
+    "8-players": [
+     "roman-berezhny"
+    ]
+   },
+   "file": "roman-berezhny--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "roman-berezhny.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-marta-oseeva.webp",
+   "sha256": "2cdecc3cceb91479f3421eb521c0f420c44d84e4cb7ca4b026802145250a3de3",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Осеева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marta-oseeva"
+    ],
+    "4-players": [
+     "marta-oseeva"
+    ],
+    "5-players": [
+     "marta-oseeva"
+    ],
+    "6-players": [
+     "marta-oseeva"
+    ],
+    "7-players": [
+     "marta-oseeva"
+    ],
+    "8-players": [
+     "marta-oseeva"
+    ]
+   },
+   "file": "marta-oseeva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marta-oseeva.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-pavel-remiz.webp",
+   "sha256": "2c5fd53c72d2d8e2b1b1da6d1a416caa9ac88068b0b8081c2bd4fe069e03cebb",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Ремиз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-remiz"
+    ],
+    "4-players": [
+     "pavel-remiz"
+    ],
+    "5-players": [
+     "pavel-remiz"
+    ],
+    "6-players": [
+     "pavel-remiz"
+    ],
+    "7-players": [
+     "pavel-remiz"
+    ],
+    "8-players": [
+     "pavel-remiz"
+    ]
+   },
+   "file": "pavel-remiz--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pavel-remiz.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-daniil-ustin.webp",
+   "sha256": "d3519c66f43b636de89b2b9d6b10b766d8ebd0fd1fc8dfc69fc01d9aa45c261f",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даниил Устин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "daniil-ustin"
+    ],
+    "4-players": [
+     "daniil-ustin"
+    ],
+    "5-players": [
+     "daniil-ustin"
+    ],
+    "6-players": [
+     "daniil-ustin"
+    ],
+    "7-players": [
+     "daniil-ustin"
+    ],
+    "8-players": [
+     "daniil-ustin"
+    ]
+   },
+   "file": "daniil-ustin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "daniil-ustin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/assets/table/npcs-eva-nester.webp",
+   "sha256": "659d6751477231576ece936c5d4516964e19410a6cce54632f85de5d2865c69c",
+   "originalSha256": "40663882848a3491615894a676f272c6dac0b57acd4f67a8a918890ed797f2ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ева Нестер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eva-nester"
+    ],
+    "4-players": [
+     "eva-nester"
+    ],
+    "5-players": [
+     "eva-nester"
+    ],
+    "6-players": [
+     "eva-nester"
+    ],
+    "7-players": [
+     "eva-nester"
+    ],
+    "8-players": [
+     "eva-nester"
+    ]
+   },
+   "file": "eva-nester--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eva-nester.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/quiet-exchange/illustrations/opening.webp",
+   "sha256": "0d3173c65a684525b202db7c193fdcad7b91267b33837a5b731bc31747d9886a",
+   "originalSha256": "4d1139fe901c2007cc3bc6c1ebed308d278c678788591cb99df5ac0acd23f862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кафе «Поздняя чашка» — Тихая коммутаторная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ravel-district"
+    ],
+    "4-players": [
+     "ravel-district"
+    ],
+    "5-players": [
+     "ravel-district"
+    ],
+    "6-players": [
+     "ravel-district"
+    ],
+    "7-players": [
+     "ravel-district"
+    ],
+    "8-players": [
+     "ravel-district"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "binding-shop--map.webp",
+   "source": "campaigns/noir-2026/quiet-exchange/assets/battle-maps/binding-shop.webp",
+   "sha256": "fc197c0f170ccfbf4678ebecb15cd03eb50f81034c7171f0ea4c0dc5b8ffd25f",
+   "originalSha256": "ecb1916d4a1384231863beaeb58eec9db98a67da0311422e1b2af2fd401ba530",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Переплётная «Лист и корешок». Visible scenery: Небольшие тиски, пресс и книжные обрезки. Между рабочими местами проходит узкая дорожка к задней двери.. World style: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "binding-shop.webp",
+   "subjects": {
+    "3-players": [
+     "binding-shop"
+    ],
+    "4-players": [
+     "binding-shop"
+    ],
+    "5-players": [
+     "binding-shop"
+    ],
+    "6-players": [
+     "binding-shop"
+    ],
+    "7-players": [
+     "binding-shop"
+    ],
+    "8-players": [
+     "binding-shop"
+    ]
+   }
+  },
+  {
+   "file": "parcel-counter--map.webp",
+   "source": "campaigns/noir-2026/quiet-exchange/assets/battle-maps/parcel-counter.webp",
+   "sha256": "8878cf4bacffb3e26952f2d8c3df01fbf97073005ebc794fc911fa1099d944f0",
+   "originalSha256": "25deae72630df144b2bcdb3f30f791bcfacd1cdfa37fc0a2a3f682383a4ebdd1",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стол согласованных доставок. Visible scenery: Пакеты хранятся в пронумерованных ячейках. Получатель может отказаться от встречи и оставить конверт закрытым.. World style: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "parcel-counter.webp",
+   "subjects": {
+    "3-players": [
+     "parcel-counter"
+    ],
+    "4-players": [
+     "parcel-counter"
+    ],
+    "5-players": [
+     "parcel-counter"
+    ],
+    "6-players": [
+     "parcel-counter"
+    ],
+    "7-players": [
+     "parcel-counter"
+    ],
+    "8-players": [
+     "parcel-counter"
+    ]
+   }
+  },
+  {
+   "file": "roof-garden--map.webp",
+   "source": "campaigns/noir-2026/quiet-exchange/assets/battle-maps/roof-garden.webp",
+   "sha256": "4d3e2dd203b0b2e19ce3fab0452ba468bfd93a7a186642f27883ecfa8fd1a5f4",
+   "originalSha256": "809ed68f3dadc6ddec4ffda2ed391fde78992ea0f58c10e6626e38a48c477c61",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Крытый сад над кафе. Visible scenery: Скамьи между ящиками с зеленью и небольшой павильон с обычным телефоном. Дверь во двор остаётся свободной для ухода.. World style: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "roof-garden.webp",
+   "subjects": {
+    "3-players": [
+     "roof-garden"
+    ],
+    "4-players": [
+     "roof-garden"
+    ],
+    "5-players": [
+     "roof-garden"
+    ],
+    "6-players": [
+     "roof-garden"
+    ],
+    "7-players": [
+     "roof-garden"
+    ],
+    "8-players": [
+     "roof-garden"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/quiet-exchange/assets/world-map/world-map.webp",
+   "sha256": "041f41ffac2423eeb51d91e43054ba2b1aceacd3f83ca51029c3e6bcb99e37f8",
+   "originalSha256": "4f966c947e1d406e38f7490e26c250f1555d19a1916c5e479856fef8037e6e21",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Равель, Оловянный склон. Style Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Кафе «Поздняя чашка»; 0.367,0.177 Коммутаторная соседского круга; 0.623,0.15 Переплётная «Лист и корешок»; 0.88,0.177 Прачечная с тёплой галереей; 0.905,0.857 Конечная под железным навесом; 0.648,0.83 Стол согласованных доставок; 0.392,0.857 Касса взаимных расчётов; 0.135,0.83 Крытый сад над кафе. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

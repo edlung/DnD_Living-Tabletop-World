@@ -1,3 +1,4 @@
+import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
 import { artOf, figure } from '../campaign-shared/campaign-art.ts';
 import { COLLECTION_ROOT, type Source, type Session } from './source.ts';
 import { box, esc, list, nav, p, page } from './render-common.ts';
@@ -37,7 +38,10 @@ export function renderSession(s: Source, session: Session): string {
   return page(
     `${session.number}. ${session.title}`,
     `${s.world.title} · Только ведущему`,
-    `${figure(art, session.location, '', 'art cover')}<div class="lead">${p(session.goal)}</div>${faces ? `<div class="faces">${faces}</div>` : ''}<div class="read-aloud">${p(session.readAloud)}</div>` +
+    `${figure(art, session.location, '', 'art cover')}<div class="lead">${p(session.goal)}</div>${faces ? `<div class="faces">${faces}</div>` : ''}` +
+      (session.number === 1 ? openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) : '') +
+      tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT), session.number) +
+      `<div class="read-aloud">${p(session.readAloud)}</div>` +
       box('Подготовка и роли', p(session.dmNote) + list(session.spotlight)) +
       `<section class="panel">${scenes}</section>` +
       (clues ? `<div class="grid">${clues}</div>` : '') +

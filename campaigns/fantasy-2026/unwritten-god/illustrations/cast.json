@@ -1,0 +1,378 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-b26f8938-526f-43c3-869a-d1b9bb8ad2d4.png",
+      "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Белокамье и Тихий Зев. Characters, in strict cell order:\n1. Лада Край — Короткая коса, пыльные плечи, жёлтая стропа поперёк обычного дорожного доспеха. Age 29.\n2. Тим Рен — Куртка с пришитыми лоскутами, мел за ухом, мягкие сапоги с прочной шнуровкой. Age 17.\n3. Сана Стропа — Тёмно-синяя накидка, деревянная чашка у пояса, обычный дорожный посох. Age 43.\n4. Илия Тон — Стёкла в деревянной оправе, полосатый шарф, карманная тетрадь с рисунками простых опытов. Age 21.\n5. Бор Парус — Бритая голова, крепкие перчатки, рулон ткани за плечом. Age 36.\n6. Мира Ясенка — Зелёные манжеты в пятнах краски, плетёная сумка, морская галька в застёжке. Age 19.\n7. Ост Люмен — Серебристая борода, простая латунная лампа, поношенная куртка с множеством заплат. Age 58.\n8. Вера Чаша — Круглая шляпа, деревянная колотушка, пояс с маленькими звенящими чашами. Age 32.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-87132e40-4d7d-431e-b9c6-24f92b8159fa.png",
+      "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Белокамье и Тихий Зев. Characters, in strict cell order:\n1. Нев — Человеческая фигура из белой глины, размером со взрослого; на ладонях остаются тонкие линии, как следы мокрой кисти.\n2. Руна Скол — Медные пряди волос, каменная пыль в швах куртки, деревянный измеритель на шнурке. Age 47.\n3. Орсат — Круглое лицо, белый платок на шее, рабочая рукавица с недавно зашитой дырой. Age 38.\n4. Хела Блик — Короткие тёмные волосы, прожжённый кожаный фартук, складное зеркальце на цепочке. Age 34.\n5. Марен Косой Луч — Длинная белая рубаха, широкополая шляпа, потемневший от солнца нос. Age 61.\n6. Келя Низкий Голос — Длинный жилет, ремень с деревянными колотушками, тяжёлая чаша на тележке. Age 26.\n7. Севр Синелист — Синие ладони, соломенная шляпа, одежда с аккуратно нашитыми прямоугольными заплатами. Age 52.\n8. Тура Глубина — Мокрые волосы стянуты красным шнурком, на поясе деревянный лот и гладкие каменные грузики. Age 31.\n9. Алум, Белый Кит — Огромное белое тело с недорезанными звёздами, широкими плавниками и медленно раскрывающимся дыхательным желобом.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "lada-kray",
+      "file": "cards/lada-kray.webp",
+      "title": "Лада Край",
+      "subjects": [
+        "lada-kray"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "61a6b927c8421450c083c51b4c1103ab7ef6b745a333db30c6f67ef3d7128f01"
+    },
+    {
+      "id": "tim-ren",
+      "file": "cards/tim-ren.webp",
+      "title": "Тим Рен",
+      "subjects": [
+        "tim-ren"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7638a75b82b7afbdba1cbd276264d7e3cd4d5d09236d5bb272e40f95be04ed61"
+    },
+    {
+      "id": "sana-sling",
+      "file": "cards/sana-sling.webp",
+      "title": "Сана Стропа",
+      "subjects": [
+        "sana-sling"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a3a09e520513b7ab9e2743238b6f24d48ba554947e98bab9d3fee5a320e860d2"
+    },
+    {
+      "id": "ilia-ton",
+      "file": "cards/ilia-ton.webp",
+      "title": "Илия Тон",
+      "subjects": [
+        "ilia-ton"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "328873e50fe8a618403d04f931c2cc58545e43c4837bd9b01bb53f9444683f51"
+    },
+    {
+      "id": "bor-sail",
+      "file": "cards/bor-sail.webp",
+      "title": "Бор Парус",
+      "subjects": [
+        "bor-sail"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "288205ef7b81406fa973a0e5cbfc637fbfcb00d2423f5bdd82ebdf24fc160e1f"
+    },
+    {
+      "id": "mira-ash",
+      "file": "cards/mira-ash.webp",
+      "title": "Мира Ясенка",
+      "subjects": [
+        "mira-ash"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e62528541cd0990608023f32602dd21bc3680f4c27082f504be9c4c87f77e9fd"
+    },
+    {
+      "id": "ost-lumen",
+      "file": "cards/ost-lumen.webp",
+      "title": "Ост Люмен",
+      "subjects": [
+        "ost-lumen"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4e4ab35c3449c8e1fbc099d7ceab80ba264dd0f99d798e42268e7aaf56225fbb"
+    },
+    {
+      "id": "vera-cup",
+      "file": "cards/vera-cup.webp",
+      "title": "Вера Чаша",
+      "subjects": [
+        "vera-cup"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a3a6862fb95b4d6d152fad9849443e4ba7bbc65bf88df8352e3922c5b9e959bc"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "bor-sail-travel-kit",
+        "ilia-ton-travel-kit",
+        "lada-kray-travel-kit",
+        "mira-ash-travel-kit",
+        "ost-lumen-travel-kit",
+        "sana-sling-travel-kit",
+        "tim-ren-travel-kit",
+        "vera-cup-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c47d881efe11966f32a3f7ed299ec3ac5ab7fdf3b8de7c0a92c860f4b4da8e1c"
+    },
+    {
+      "id": "nev",
+      "file": "cards/nev.webp",
+      "title": "Нев",
+      "subjects": [
+        "nev"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8ed059ecb1d1e9b15e287a1ed9d033e3e5f3a57d5797f5ece056ad435b5e1c6f"
+    },
+    {
+      "id": "runa-skol",
+      "file": "cards/runa-skol.webp",
+      "title": "Руна Скол",
+      "subjects": [
+        "runa-skol"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d7bd1abb2e9e41675eab67d50ec386e18eb2180fec9697ef1a93f9f2ead31336"
+    },
+    {
+      "id": "orsat",
+      "file": "cards/orsat.webp",
+      "title": "Орсат",
+      "subjects": [
+        "orsat"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4f1d93538786533b316fd213374c5978c6c3e46984ce0526b79ab1e7a7a9bd0d"
+    },
+    {
+      "id": "hela-glint",
+      "file": "cards/hela-glint.webp",
+      "title": "Хела Блик",
+      "subjects": [
+        "hela-glint"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "23ea1cd54033822a29d00264788d6544d6433a8ede75487e55ca626618ddb253"
+    },
+    {
+      "id": "maren-eye",
+      "file": "cards/maren-eye.webp",
+      "title": "Марен Косой Луч",
+      "subjects": [
+        "maren-eye"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3964d47db8e3ed67b11cc7d13afda54b34951a1f103e604e528e24ab7d2874d7"
+    },
+    {
+      "id": "kelya-low",
+      "file": "cards/kelya-low.webp",
+      "title": "Келя Низкий Голос",
+      "subjects": [
+        "kelya-low"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6ea73b09ab691b3f81202dd6794a7cf5f1f9b7ad2ff5d870a04b2fc7877ac380"
+    },
+    {
+      "id": "sevr-dye",
+      "file": "cards/sevr-dye.webp",
+      "title": "Севр Синелист",
+      "subjects": [
+        "sevr-dye"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "339f16134183cb5eeac27892b37f1924b48accc3016a657bdb4a171e64b4db33"
+    },
+    {
+      "id": "tura-deep",
+      "file": "cards/tura-deep.webp",
+      "title": "Тура Глубина",
+      "subjects": [
+        "tura-deep"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e09b154d72491943a791227400c8c88c7b020ef14a4cedb9f1cd45541737fd9d"
+    },
+    {
+      "id": "alum-whale",
+      "file": "cards/alum-whale.webp",
+      "title": "Алум, Белый Кит",
+      "subjects": [
+        "alum-whale"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e72c73042c9952c0898f29ab21c5007875fc0b429e454b01abe6207c682386b2"
+    }
+  ]
+}

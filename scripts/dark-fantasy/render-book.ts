@@ -1,3 +1,5 @@
+import { castCards } from '../campaign-shared/cast-cards.ts';
+import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
 import { artOf, figure } from '../campaign-shared/campaign-art.ts';
 import { COLLECTION_ROOT, type Source } from './source.ts';
 import { box, esc, heroCard, list, nav, p, page } from './render-common.ts';
@@ -5,6 +7,7 @@ import { box, esc, heroCard, list, nav, p, page } from './render-common.ts';
 export function renderBook(s: Source): string {
   const w = s.world;
   const art = artOf(new URL(`${w.slug}/`, COLLECTION_ROOT));
+  const portrait = castCards(new URL(`${w.slug}/`, COLLECTION_ROOT));
   const sessions = s.sessions
     .map(
       (session) =>
@@ -20,7 +23,7 @@ export function renderBook(s: Source): string {
   const npcs = s.cast.npcs
     .map(
       (n) =>
-        `<details><summary>${esc(n.name)} · ${n.age} лет</summary><div>${figure(art, n.key)}${p(n.look)}${p(n.public)}<h3>Чего хочет</h3>${p(n.want)}<h3>Знает только это</h3>${list(n.knows)}<h3>Личное скрытое знание</h3>${p(n.secret)}<h3>Граница и раскрытие</h3>${p(n.boundary)}${p(n.reveal)}</div></details>`,
+        `<details><summary>${esc(n.name)} · ${n.age} лет</summary><div>${figure(art, n.key) || portrait(n.key)}${p(n.look)}${p(n.public)}<h3>Чего хочет</h3>${p(n.want)}<h3>Знает только это</h3>${list(n.knows)}<h3>Личное скрытое знание</h3>${p(n.secret)}<h3>Граница и раскрытие</h3>${p(n.boundary)}${p(n.reveal)}</div></details>`,
     )
     .join('');
   const locations = w.locations
@@ -46,6 +49,8 @@ export function renderBook(s: Source): string {
     w.title,
     `${w.genre} · ${w.audience} · ${w.minPlayers}–${w.maxPlayers} игроков + ведущий`,
     `${figure(art, 'cover', '', 'art cover')}<div class="lead">${p(w.pitch)}</div><div class="ribbon">Только ведущему: ниже находятся тайны и возможные финалы. Страницу «Игрокам» можно передавать отдельно.</div>` +
+      openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
+      tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
       box(
         'Начать игру',
         p(
@@ -71,7 +76,7 @@ export function renderBook(s: Source): string {
       box(
         'Честный статус',
         p(
-          `Авторская подготовка и техническая проверка не заменяют живую игру. Длительность, сложность и эмоциональное восприятие пока не проверены группой. ${art.size ? `Иллюстрации (${art.size}) созданы генерацией изображений OpenAI в одном стиле; тактические схемы построены из данных встреч.` : 'Иллюстраций в этой коллекции нет; тактические схемы построены из данных встреч.'} Полный каталог содержит материалы ведущего — публиковать его целиком для игроков нельзя.`,
+          `Авторская подготовка и техническая проверка не заменяют живую игру. Длительность, сложность и эмоциональное восприятие пока не проверены группой. ${art.size ? `Иллюстрации (${art.size}) созданы генерацией изображений OpenAI в одном стиле; тактические схемы построены из данных встреч.` : 'Картину первой встречи можно открыть отдельно. Тактические схемы построены из данных встреч.'} Полный каталог содержит материалы ведущего — публиковать его целиком для игроков нельзя.`,
         ),
       ),
     nav(s),
@@ -80,6 +85,7 @@ export function renderBook(s: Source): string {
 export function renderPlayers(s: Source): string {
   const w = s.world;
   const art = artOf(new URL(`${w.slug}/`, COLLECTION_ROOT));
+  const portrait = castCards(new URL(`${w.slug}/`, COLLECTION_ROOT));
   return page(
     `${w.title} — игрокам`,
     `${w.genre} · ${w.audience} · ${w.minPlayers}–${w.maxPlayers} игроков`,
@@ -96,7 +102,7 @@ export function renderPlayers(s: Source): string {
           list(w.themes) +
           list(w.boundaries),
       ) +
-      `<div class="grid">${s.cast.heroes.map((h) => heroCard(h, figure(art, h.key))).join('')}</div>`,
+      `<div class="grid">${s.cast.heroes.map((h) => heroCard(h, figure(art, h.key) || portrait(h.key, true))).join('')}</div>`,
   );
 }
 export function renderCatalog(sources: Source[]): string {

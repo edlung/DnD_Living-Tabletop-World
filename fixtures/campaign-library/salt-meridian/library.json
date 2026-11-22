@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "f9f1db5ba82508fd3c716e4cfd5c62cd5a7d317e25f65ad79a6331b4c6cfd1d1"
+   "digest": "4e8991fbef78aeb89cc26ad73890afd39177a501f23ac5ceca9eb730d971da12"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "cb041784dbda3cf876b6c1472e3f78365e491d4fb8c260fc4c7e7fd4e38cdc9f"
+   "digest": "d50b50e252adf434ab9cd3bc8f34474783f641a7f2827caff236281d9bbbc6dd"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "d2af502a560390562d5521ea36264e4c4afc079e7f47f9a2f4156e67f2f4984a"
+   "digest": "daca3422170d3f340a979a7907d2621e89174d1961b765030abd85c1e21f9294"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "cb2e3cfff77002e4b10803b5ac5274d033ce3c056044637aab6f6f3f81350762"
+   "digest": "d0ea3fdac02f7266c137408948f5f82c13666c898399440cd91c618a4042dd66"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1742,6 +1742,298 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "denis-vetr.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/illustrations/cards/travel-kit.webp",
+   "sha256": "e9b587af90758d65ee80f8c870eaad5aba60fd0210acdc7d5b82f8e0e5a36553",
+   "originalSha256": "19091702c8d2705054d39bfd8de85579d7e677ad98836124ea0bead2ffcd3e0e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "egor-fal-travel-kit",
+     "lada-kelp-travel-kit",
+     "miren-list-travel-kit",
+     "rusya-vyaz-travel-kit",
+     "sana-poloz-travel-kit"
+    ],
+    "6-players": [
+     "egor-fal-travel-kit",
+     "lada-kelp-travel-kit",
+     "miren-list-travel-kit",
+     "nik-utok-travel-kit",
+     "rusya-vyaz-travel-kit",
+     "sana-poloz-travel-kit"
+    ],
+    "7-players": [
+     "asya-kapel-travel-kit",
+     "egor-fal-travel-kit",
+     "lada-kelp-travel-kit",
+     "miren-list-travel-kit",
+     "nik-utok-travel-kit",
+     "rusya-vyaz-travel-kit",
+     "sana-poloz-travel-kit"
+    ],
+    "8-players": [
+     "asya-kapel-travel-kit",
+     "denis-vetr-travel-kit",
+     "egor-fal-travel-kit",
+     "lada-kelp-travel-kit",
+     "miren-list-travel-kit",
+     "nik-utok-travel-kit",
+     "rusya-vyaz-travel-kit",
+     "sana-poloz-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-rada-vesh.webp",
+   "sha256": "cf692928c69c8b18b2bbc4c5f844e89ad649d865888fbc0df3b373d081c9d5d5",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Евдокия Веш",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "rada-vesh"
+    ],
+    "6-players": [
+     "rada-vesh"
+    ],
+    "7-players": [
+     "rada-vesh"
+    ],
+    "8-players": [
+     "rada-vesh"
+    ]
+   },
+   "file": "rada-vesh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-vesh.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-olger-talen.webp",
+   "sha256": "8377e23f88006e6b302af22692064c1df0927f999d1e1ef0f25324db3f60a3e2",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольгер Тален",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "olger-talen"
+    ],
+    "6-players": [
+     "olger-talen"
+    ],
+    "7-players": [
+     "olger-talen"
+    ],
+    "8-players": [
+     "olger-talen"
+    ]
+   },
+   "file": "olger-talen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olger-talen.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-nera-losk.webp",
+   "sha256": "f1e60260d7f5b0ba3183b8543770852bbda6759e3c8a727e89022b71844a0383",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нэра Лоск",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "nera-losk"
+    ],
+    "6-players": [
+     "nera-losk"
+    ],
+    "7-players": [
+     "nera-losk"
+    ],
+    "8-players": [
+     "nera-losk"
+    ]
+   },
+   "file": "nera-losk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nera-losk.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-zoya-ryab.webp",
+   "sha256": "4fa64636eb276eb2c6f9ba1865295b3a28783bc59a9158386d50232a1ba12a35",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фаина Клёст",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "zoya-ryab"
+    ],
+    "6-players": [
+     "zoya-ryab"
+    ],
+    "7-players": [
+     "zoya-ryab"
+    ],
+    "8-players": [
+     "zoya-ryab"
+    ]
+   },
+   "file": "zoya-ryab--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zoya-ryab.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-damir-skat.webp",
+   "sha256": "1f47f525d66fa07f98b9e8c392f92fc8871accfe6aedac786f1e45fd2f30b232",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Филат Обруч",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "damir-skat"
+    ],
+    "6-players": [
+     "damir-skat"
+    ],
+    "7-players": [
+     "damir-skat"
+    ],
+    "8-players": [
+     "damir-skat"
+    ]
+   },
+   "file": "damir-skat--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "damir-skat.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-teya-run.webp",
+   "sha256": "2ba0062b7af8d898171ec28952ef5862277467f57fa5483c153f2d9eb57e57e3",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Варвара Зыбь",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "teya-run"
+    ],
+    "6-players": [
+     "teya-run"
+    ],
+    "7-players": [
+     "teya-run"
+    ],
+    "8-players": [
+     "teya-run"
+    ]
+   },
+   "file": "teya-run--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teya-run.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-inna-solve.webp",
+   "sha256": "b8928223b260564e9e1d0cf05dc3a246e234a601c0b6f2a807c6ce434a746145",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Инна Сольве",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "inna-solve"
+    ],
+    "6-players": [
+     "inna-solve"
+    ],
+    "7-players": [
+     "inna-solve"
+    ],
+    "8-players": [
+     "inna-solve"
+    ]
+   },
+   "file": "inna-solve--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "inna-solve.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-tar-kill.webp",
+   "sha256": "236a99a915699abf36fc7c8fe49a70bde7efcd063f264dfd3951771d1cd111a8",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тар Килль",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "tar-kill"
+    ],
+    "6-players": [
+     "tar-kill"
+    ],
+    "7-players": [
+     "tar-kill"
+    ],
+    "8-players": [
+     "tar-kill"
+    ]
+   },
+   "file": "tar-kill--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tar-kill.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/salt-meridian/assets/table/npcs-arvid-krechet.webp",
+   "sha256": "645d2decb4493a0d5230bbf0b66a8c52c3e9f7d24076daea7420fc7f4673f1a7",
+   "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арвид Кречет",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "arvid-krechet"
+    ],
+    "6-players": [
+     "arvid-krechet"
+    ],
+    "7-players": [
+     "arvid-krechet"
+    ],
+    "8-players": [
+     "arvid-krechet"
+    ]
+   },
+   "file": "arvid-krechet--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arvid-krechet.webp"
   },
   {
    "file": "knot-port--map.webp",

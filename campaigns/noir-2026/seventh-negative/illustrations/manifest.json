@@ -1,0 +1,12 @@
+{
+  "file": "opening.webp",
+  "location": "guild-room",
+  "reveal": "opening",
+  "generator": "OpenAI imagegen (Codex)",
+  "generatedOn": "2026-11-22",
+  "original": "exec-f864479f-e57b-4378-813e-d082f675d074.png",
+  "originalSha256": "5efc94de5f18e0b32f73cc0982f02fd711089aebda251289e131c15b8493aec7",
+  "sha256": "275f8cf94bc7ed419bb577df45e5c19a9014fc8be2d5aa445a414f26fe391726",
+  "prompt": "Landscape 3:2 text-free book illustration for the opening of a tabletop roleplaying adventure. moody film-noir gouache, evocative reflected light, muted graphite and amber. Convey the specific premise through one striking, visually coherent scene in the opening location. Use only public observations, leave every mystery unresolved. Exclude text, captions, letters, logos, gore, grids, borders, diagrams and spoilers. Story title for context only: Седьмой негатив. Public premise: На студии «Кромка» погиб каскадёр Лев Ратин. Камера видела падение, десятки людей слышали команду «Мотор», однако каждый цех помнит другой порядок дня. Артель приглашает независимую группу установить, что произошло, пока официальный рассказ о несчастном случае не превратился в единственную доступную версию. Opening setting: Комната артели. Две сдвинутые парты, печь и доска с именами дежурных. Здесь можно спокойно сравнить записи и согласовать помощь.",
+  "alt": "Комната артели — Седьмой негатив"
+}

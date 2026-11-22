@@ -14,42 +14,42 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "d64ccf876b98ce6a46a698f2f783772fd1c161e05aeb0ba7f30e424758a26b55"
+   "digest": "2470240bf0402af03ad40f215fd457860a12cb43b2fef8873db4342b472ec989"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "a851268be1afa7739999119d0ce962ebdb791b17ba3772974f0595bf6eb43fe6"
+   "digest": "f6c05e1b12d03774d7ee01f18ec1d02286d0be73f322f07f1eba886acc3bae5d"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "5e0718e40e1c8b9da8cf057b0d14f56b91ea8fe8d9eb11a1335da73b1fe392be"
+   "digest": "5ad9993f9e99842edc4a647705d5f1bf6179044297f557b0cfdba068c1cc2382"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "48984143efdf1c75e81673cad9c9d33639851c41ce7cd55b60256ce685fb776e"
+   "digest": "7e1b1432d0f1062657bd64dffb8857371a6544beb591bd3df763ff6d23f54944"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "ef95355f65134410375323e3544a07cc692d14c3537082ba200604a1b1c2d7f9"
+   "digest": "649d0b961f9a752b84aa1dd5499d230bf5f9a5a70800135295a79a04d856e857"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "f24ff189a4477436a7419dd1c14ed627972852cf13e474f5cb91d0bee4862f61"
+   "digest": "5f7a033cfcc1a87c72476413379bb56f7608244398749ded6bf4d19400259289"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1726,6 +1726,597 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-loman-top.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/illustrations/cards/travel-kit.webp",
+   "sha256": "864fe254688789ada0919f520500cd8247b09033cafbe88dd6122aa061df6449",
+   "originalSha256": "bdaf0bf726e4e38d71d6b51c35752e8185112133fa813b23882ad081d355316d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-travel-kit",
+     "seva-travel-kit",
+     "yar-travel-kit"
+    ],
+    "4-players": [
+     "lina-travel-kit",
+     "mira-travel-kit",
+     "seva-travel-kit",
+     "yar-travel-kit"
+    ],
+    "5-players": [
+     "borin-travel-kit",
+     "lina-travel-kit",
+     "mira-travel-kit",
+     "seva-travel-kit",
+     "yar-travel-kit"
+    ],
+    "6-players": [
+     "borin-travel-kit",
+     "lina-travel-kit",
+     "mira-travel-kit",
+     "seva-travel-kit",
+     "tessa-travel-kit",
+     "yar-travel-kit"
+    ],
+    "7-players": [
+     "borin-travel-kit",
+     "lina-travel-kit",
+     "mira-travel-kit",
+     "odar-travel-kit",
+     "seva-travel-kit",
+     "tessa-travel-kit",
+     "yar-travel-kit"
+    ],
+    "8-players": [
+     "borin-travel-kit",
+     "lina-travel-kit",
+     "mira-travel-kit",
+     "niva-travel-kit",
+     "odar-travel-kit",
+     "seva-travel-kit",
+     "tessa-travel-kit",
+     "yar-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-mira.webp",
+   "sha256": "7c48a5e6c95b3ba3296bd2213d1f7714dd514754cf80a9aa56e5d34ffb2ee3df",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Огняна Широкий Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira"
+    ],
+    "4-players": [
+     "mira"
+    ],
+    "5-players": [
+     "mira"
+    ],
+    "6-players": [
+     "mira"
+    ],
+    "7-players": [
+     "mira"
+    ],
+    "8-players": [
+     "mira"
+    ]
+   },
+   "file": "mira--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-yar.webp",
+   "sha256": "e28890372ba8d44d48052068ecce25612f13a99c6fd49e0e920f7621354a2aa6",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яр Листомер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yar"
+    ],
+    "4-players": [
+     "yar"
+    ],
+    "5-players": [
+     "yar"
+    ],
+    "6-players": [
+     "yar"
+    ],
+    "7-players": [
+     "yar"
+    ],
+    "8-players": [
+     "yar"
+    ]
+   },
+   "file": "yar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yar.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-seva.webp",
+   "sha256": "5035ac36ae332a377ff2456e918342a8aa95cb412220570e5b75c57d7a6eef19",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сева Ясная Ладонь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seva"
+    ],
+    "4-players": [
+     "seva"
+    ],
+    "5-players": [
+     "seva"
+    ],
+    "6-players": [
+     "seva"
+    ],
+    "7-players": [
+     "seva"
+    ],
+    "8-players": [
+     "seva"
+    ]
+   },
+   "file": "seva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "seva.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-lina.webp",
+   "sha256": "f20f1d5dcf67db36e67139bdb1995f156195dbd82f634d6eb00fb5a33ba57d13",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лина Кварцевый Мел",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "lina"
+    ],
+    "5-players": [
+     "lina"
+    ],
+    "6-players": [
+     "lina"
+    ],
+    "7-players": [
+     "lina"
+    ],
+    "8-players": [
+     "lina"
+    ]
+   },
+   "file": "lina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lina.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-borin.webp",
+   "sha256": "8e8db9085f0fa595052c0492a44fab9c1f5cb5aff14f11f9e04422ce044fe321",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борин Тихий Утёс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "borin"
+    ],
+    "6-players": [
+     "borin"
+    ],
+    "7-players": [
+     "borin"
+    ],
+    "8-players": [
+     "borin"
+    ]
+   },
+   "file": "borin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "borin.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-tessa.webp",
+   "sha256": "e8cff48fb32aa23af8d0727fe869437821ef1b1d17c54f8ca4c950df4d53ef94",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тесса Ласточкин Поворот",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "tessa"
+    ],
+    "7-players": [
+     "tessa"
+    ],
+    "8-players": [
+     "tessa"
+    ]
+   },
+   "file": "tessa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tessa.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-odar.webp",
+   "sha256": "306d6e8d6bdb7a8b0e47766df305aa81a7d5dba8f629e11d0471a6aec73a9bb5",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Одар Тёплый Камень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "odar"
+    ],
+    "8-players": [
+     "odar"
+    ]
+   },
+   "file": "odar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "odar.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/heroes-niva.webp",
+   "sha256": "445ab8d958b8dae01c5753ad15c39863aa4bd033f9510c18c288098649bb1255",
+   "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нива Седьмая Линия",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "niva"
+    ]
+   },
+   "file": "niva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "niva.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-arema.webp",
+   "sha256": "440aceef956d1e510699adc94c8785a262a3d140a6be8f39bb8462eeb7e32cc5",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арема",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arema"
+    ],
+    "4-players": [
+     "arema"
+    ],
+    "5-players": [
+     "arema"
+    ],
+    "6-players": [
+     "arema"
+    ],
+    "7-players": [
+     "arema"
+    ],
+    "8-players": [
+     "arema"
+    ]
+   },
+   "file": "arema--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arema.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-torven.webp",
+   "sha256": "7c66571e4b46cdcf2a86e539aa77548225eef7b4f456cdc849732e1da166b9d8",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Торвен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "torven"
+    ],
+    "4-players": [
+     "torven"
+    ],
+    "5-players": [
+     "torven"
+    ],
+    "6-players": [
+     "torven"
+    ],
+    "7-players": [
+     "torven"
+    ],
+    "8-players": [
+     "torven"
+    ]
+   },
+   "file": "torven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "torven.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-loman.webp",
+   "sha256": "39c08db56f7b037f1417ee5548ed0d146b2256016e6a5b473d224fc540338116",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ломан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "loman"
+    ],
+    "4-players": [
+     "loman"
+    ],
+    "5-players": [
+     "loman"
+    ],
+    "6-players": [
+     "loman"
+    ],
+    "7-players": [
+     "loman"
+    ],
+    "8-players": [
+     "loman"
+    ]
+   },
+   "file": "loman--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "loman.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-esha.webp",
+   "sha256": "d5988d634dde735304ac74122a34139d6f8c91eb94035ef804eafbfef2bef160",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эша Рваный Ритм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "esha"
+    ],
+    "4-players": [
+     "esha"
+    ],
+    "5-players": [
+     "esha"
+    ],
+    "6-players": [
+     "esha"
+    ],
+    "7-players": [
+     "esha"
+    ],
+    "8-players": [
+     "esha"
+    ]
+   },
+   "file": "esha--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "esha.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-irdo.webp",
+   "sha256": "e70488c7aac9d861e6634be045594aa5b56f7e3c44bd6c6d1ca1695a1501f101",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ирдо Две Петли",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "irdo"
+    ],
+    "4-players": [
+     "irdo"
+    ],
+    "5-players": [
+     "irdo"
+    ],
+    "6-players": [
+     "irdo"
+    ],
+    "7-players": [
+     "irdo"
+    ],
+    "8-players": [
+     "irdo"
+    ]
+   },
+   "file": "irdo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "irdo.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-nemi.webp",
+   "sha256": "e5f97a8bef082fb89a45ab6400e4545968f936c714cdc7f697926a9423298ce7",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Неми Длинная Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nemi"
+    ],
+    "4-players": [
+     "nemi"
+    ],
+    "5-players": [
+     "nemi"
+    ],
+    "6-players": [
+     "nemi"
+    ],
+    "7-players": [
+     "nemi"
+    ],
+    "8-players": [
+     "nemi"
+    ]
+   },
+   "file": "nemi--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nemi.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-saff.webp",
+   "sha256": "c5512a3b8eb4d30e75224753989b73ba0d9de06224acfa8c852776368621df52",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сафф Полосатый Рукав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "saff"
+    ],
+    "4-players": [
+     "saff"
+    ],
+    "5-players": [
+     "saff"
+    ],
+    "6-players": [
+     "saff"
+    ],
+    "7-players": [
+     "saff"
+    ],
+    "8-players": [
+     "saff"
+    ]
+   },
+   "file": "saff--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "saff.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-vek.webp",
+   "sha256": "8a5113bc3dc2ba762b1a3f92eadd2982ccec295e95bb9463d3d742291390083c",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Век Плоский",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vek"
+    ],
+    "4-players": [
+     "vek"
+    ],
+    "5-players": [
+     "vek"
+    ],
+    "6-players": [
+     "vek"
+    ],
+    "7-players": [
+     "vek"
+    ],
+    "8-players": [
+     "vek"
+    ]
+   },
+   "file": "vek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vek.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/table/npcs-runa.webp",
+   "sha256": "505ff2961365bd56efc51c97b8e465e925f95d65f7987bfad332d4da1bf7cc22",
+   "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руна Сторона Света",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runa"
+    ],
+    "4-players": [
+     "runa"
+    ],
+    "5-players": [
+     "runa"
+    ],
+    "6-players": [
+     "runa"
+    ],
+    "7-players": [
+     "runa"
+    ],
+    "8-players": [
+     "runa"
+    ]
+   },
+   "file": "runa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runa.webp"
   },
   {
    "file": "dry-throat--map.webp",

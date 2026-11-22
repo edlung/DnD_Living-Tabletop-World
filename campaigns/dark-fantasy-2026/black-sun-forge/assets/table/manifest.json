@@ -1,0 +1,656 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "black-sun-forge-places-0",
+      "originalFile": "exec-e5fc7dfe-e4e9-48f3-940b-90842e93c851.png",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Cell 1. Лагерь у последней ступени. Навесы экспедиции стоят на узкой террасе. Ящики привязаны к скале, на столе лежит обломок молота, а над лестницей колышутся серые флаги.\nCell 2. Шлаковый пролёт. Мост из матовых плит идёт между пустыми формами огромных ладоней. В его решётке блестят тонкие металлические полосы.\nCell 3. Слепая пасть. Две низкие чаши стоят под закрытым каменным веком. Рядом лежат щипцы, бруски глины и шесть пустых песочных горлышек.\nCell 4. Колодец свидетеля. Сухой колодец окружён галереей лежанок. Свет каждого фонаря заканчивается на стене ровной полосой, словно его обрезали ножницами.\nCell 5. Галерея возврата. Серебристая нить толщиной с палец проходит через каменные дужки. По обе стороны идут узкие дорожки с местами для отдыха.\nCell 6. Двор печатей. Под открытым сводом расставлены переносные формы, защитные экраны и стойки для длинных инструментов. Пол усыпан чёрной стружкой.\nCell 7. Мёртвый угол. Уступ скрыт от всех внутренних огней выпуклой стеной. Здесь удобно разложить груз, но проход наружу виден лишь с самого края.\nCell 8. Наковальня без полудня. Чёрный диск стоит ребром в раздвоенной наковальне. На полу отражаются чужие созвездия, а наверху неподвижно висит рабочий молот.\nCell 9. Безлучный зев. Длинный спуск пересекает сухую шахту с глиняными стенами. Узкая пешеходная тропа уходит к нижним ступеням лестницы.\nCell 10. Зал незамкнутого порога. Две створки ворот не касаются друг друга. Между ними стоят пустые носилки, ручной ворот и каменная чаша размером с походный стол.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "black-sun-forge-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-86bc8501-4e0c-4f1f-a47b-5ffdafef9531.png",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Cell 1. Рада Тес. Коротко стриженные волосы, потёртый плащ и щит с незакрашенной трещиной.\nCell 2. Левен Кер. Латунная бусина в ухе, серые перчатки, складная линейка на ремне.\nCell 3. Мара Иль. Белая нить вокруг запястья, тёмная дорожная одежда, маленький дорожный алтарь.\nCell 4. Эннор Сай. Очки с разными стёклами и дорожная книга, прошитая чёрной бечевой.\nCell 5. Тава Орн. Рукава с цветными заплатами, широкий пояс и два простых походных молотка.\nCell 6. Дарель Вей. Застёгнутый высокий ворот, мягкая походная обувь, немятая лента на рюкзаке.\nCell 7. Сера Нем. Фонарь на коротком шесте, спокойный голос и шрам на деревянной накладке щита.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/rada-tes.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/leven-ker.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/mara-il.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/ennor-sai.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/tava-orn.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/darel-vey.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/sera-nem.webp"
+      ]
+    },
+    {
+      "id": "black-sun-forge-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f2afa4f7-25d1-41b0-a0bf-df52d177ed03.png",
+      "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Cell 1. Страж Вейры. Наёмник с коротким тупоконечным древком и матовым нагрудником; способен услышать предложение отхода.\nCell 2. Сборщик стружки. Малая ходячая железная форма с двумя захватами; это фантазийный облик обычного противника без особых иммунитетов.\nCell 3. Носильщик печати. Взрослый наёмник в рабочем шлеме с короткой рукоятью вместо оружейного клинка.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "black-sun-forge-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f834450c-5378-4434-b860-e6d8f28119cb.png",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Кузница чёрного солнца. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Вейра Даль. Высокая женщина в гладком фартуке, с чёрными кольцами на рукояти молота.\nCell 2. Соррен Вит. Медный знак экспедиции, седая прядь и тщательно починенный походный плащ.\nCell 3. Отта Рем. Седая женщина с рабочими очками; тень её левой перчатки короче правой.\nCell 4. Неда Цар. Пыльная куртка, связка глиняных колец и тряпица на ремне.\nCell 5. Авар Лен. Худой человек с измерительной тростью и медленной осторожной походкой.\nCell 6. Тейр Уст. Короткая копейная рукоять, тусклый нагрудник и белая лента на локте.\nCell 7. Сива Кор. Зелёный шарф поверх дорожной брони, две белые отметки на фонаре.\nCell 8. Рунн Дей. Широкоплечий смотритель с резным посохом и глиняной пылью в волосах.\nCell 9. Ивен Мор. Изношенная дорожная рубаха, обмотанная тканью ладонь, прямая осанка.",
+      "references": [
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/veyra-dal.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/sorren-vit.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/otta-rem.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/neda-tsar.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/avar-len.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/teyr-ust.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/siva-kor.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/runn-dey.webp",
+        "campaigns/dark-fantasy-2026/black-sun-forge/illustrations/cards/iven-mor.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "tether-camp",
+      "title": "Лагерь у последней ступени",
+      "kind": "place",
+      "subjects": [
+        "tether-camp"
+      ],
+      "file": "places-tether-camp.webp",
+      "sha256": "a460f3bda13e7cc5ea1f7469540efbd63f47044b8460de816d14d66319054326",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "clinker-span",
+      "title": "Шлаковый пролёт",
+      "kind": "place",
+      "subjects": [
+        "clinker-span"
+      ],
+      "file": "places-clinker-span.webp",
+      "sha256": "fc19a21644d208f17e8e477f097ee38e7ae3f30cd788739808b04207861e9380",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "blind-jaw",
+      "title": "Слепая пасть",
+      "kind": "place",
+      "subjects": [
+        "blind-jaw"
+      ],
+      "file": "places-blind-jaw.webp",
+      "sha256": "f80bd9d3ce35a029e3a01ac020abb81c797314a2d18e87819b4c8defeefe71dd",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "witness-cistern",
+      "title": "Колодец свидетеля",
+      "kind": "place",
+      "subjects": [
+        "witness-cistern"
+      ],
+      "file": "places-witness-cistern.webp",
+      "sha256": "3b645961c3abe1c8bf38de120154806690228ec4cb8abfd2c5e7f30f0fb9d9a4",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "return-gallery",
+      "title": "Галерея возврата",
+      "kind": "place",
+      "subjects": [
+        "return-gallery"
+      ],
+      "file": "places-return-gallery.webp",
+      "sha256": "8c0b7fa2da4ba04de6c072c312bfe911d99ad8c70c3654c8de1e7234cda58954",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "seal-yard",
+      "title": "Двор печатей",
+      "kind": "place",
+      "subjects": [
+        "seal-yard"
+      ],
+      "file": "places-seal-yard.webp",
+      "sha256": "f8b21bd6250179836583b9f52ff17384f7c0017eb850271e86eaa5ff2d7ca1e1",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "dead-angle",
+      "title": "Мёртвый угол",
+      "kind": "place",
+      "subjects": [
+        "dead-angle"
+      ],
+      "file": "places-dead-angle.webp",
+      "sha256": "9b8330efcc587f38345f867be13ffd8f2507b54d50b7c90d1a6a46080bccecda",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "black-anvil",
+      "title": "Наковальня без полудня",
+      "kind": "place",
+      "subjects": [
+        "black-anvil"
+      ],
+      "file": "places-black-anvil.webp",
+      "sha256": "ba7329c5b316bafde7f60ab05aefc55d6cf77852c1c2dfdc1d72a7c50ddcc7ff",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "unlit-throat",
+      "title": "Безлучный зев",
+      "kind": "place",
+      "subjects": [
+        "unlit-throat"
+      ],
+      "file": "places-unlit-throat.webp",
+      "sha256": "f74a57e509b432f99bda8b7324d56d81fc759e87490fa76e9741be07acf44d60",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "threshold-hall",
+      "title": "Зал незамкнутого порога",
+      "kind": "place",
+      "subjects": [
+        "threshold-hall"
+      ],
+      "file": "places-threshold-hall.webp",
+      "sha256": "66f38c98d44806cc0e6d68c226bacdba3223091f947c6b0024dbfe85c12e4409",
+      "originalSha256": "2f42354c6b76ccad09b40b77b56f94e21e26d74bb29fe58121ff6570cfd8f73d",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "rada-tes",
+      "title": "Рада Тес",
+      "kind": "hero",
+      "subjects": [
+        "rada-tes"
+      ],
+      "file": "heroes-rada-tes.webp",
+      "sha256": "49b1252c3b510e031711cf33ed73e1798c130420facb8074ef1aee8aeee1debe",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 92,
+        "top": 15,
+        "width": 248,
+        "height": 415
+      }
+    },
+    {
+      "key": "leven-ker",
+      "title": "Левен Кер",
+      "kind": "hero",
+      "subjects": [
+        "leven-ker"
+      ],
+      "file": "heroes-leven-ker.webp",
+      "sha256": "caed09cd9252f62d87f9077d40977db1b4b9210f17a16ec30a6425125c85efd2",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 558,
+        "top": 14,
+        "width": 215,
+        "height": 416
+      }
+    },
+    {
+      "key": "mara-il",
+      "title": "Мара Иль",
+      "kind": "hero",
+      "subjects": [
+        "mara-il"
+      ],
+      "file": "heroes-mara-il.webp",
+      "sha256": "7a11c750afeb4a4cceef94aa939019594ee4bb34d87a6314bd3f99139317487c",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1004,
+        "top": 17,
+        "width": 216,
+        "height": 413
+      }
+    },
+    {
+      "key": "ennor-sai",
+      "title": "Эннор Сай",
+      "kind": "hero",
+      "subjects": [
+        "ennor-sai"
+      ],
+      "file": "heroes-ennor-sai.webp",
+      "sha256": "98467dbe1312a2942b15982c881a1ce2839f8e8e11a5c67a764e3a9be86cffc4",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1435,
+        "top": 14,
+        "width": 232,
+        "height": 416
+      }
+    },
+    {
+      "key": "tava-orn",
+      "title": "Тава Орн",
+      "kind": "hero",
+      "subjects": [
+        "tava-orn"
+      ],
+      "file": "heroes-tava-orn.webp",
+      "sha256": "ceabde10081046f4502a2c34247216000293f7790fdf7d9e8abe6951406126ca",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 115,
+        "top": 457,
+        "width": 214,
+        "height": 416
+      }
+    },
+    {
+      "key": "darel-vey",
+      "title": "Дарель Вей",
+      "kind": "hero",
+      "subjects": [
+        "darel-vey"
+      ],
+      "file": "heroes-darel-vey.webp",
+      "sha256": "b0c864cde60e576ced7ef2d680645994f0d581e3e862d3a45a1bee76b9f162ef",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 558,
+        "top": 455,
+        "width": 216,
+        "height": 418
+      }
+    },
+    {
+      "key": "sera-nem",
+      "title": "Сера Нем",
+      "kind": "hero",
+      "subjects": [
+        "sera-nem"
+      ],
+      "file": "heroes-sera-nem.webp",
+      "sha256": "803454800312505f73cb527a8611b019d9352c0382b25a53dd91db4cdfe19faa",
+      "originalSha256": "27ef647c2c2c492d67e1e79cb9e7e168ef59649625f800a9ff809fa6e48e5ec7",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1001,
+        "top": 453,
+        "width": 243,
+        "height": 420
+      }
+    },
+    {
+      "key": "foe-d86e44d8cd",
+      "title": "Страж Вейры",
+      "kind": "foe",
+      "subjects": [
+        "thread-watch-foe-1",
+        "thread-watch-foe-2",
+        "thread-watch-foe-3",
+        "thread-watch-foe-4",
+        "thread-watch-foe-5"
+      ],
+      "file": "foes-foe-d86e44d8cd.webp",
+      "sha256": "46fa052e67f4dd20094822ad6a25c13b5b2dab8b9d5496abab2565d4fcae99fd",
+      "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 122,
+        "top": 15,
+        "width": 479,
+        "height": 697
+      }
+    },
+    {
+      "key": "foe-75b43de95f",
+      "title": "Сборщик стружки",
+      "kind": "foe",
+      "subjects": [
+        "clinker-collectors-foe-1",
+        "clinker-collectors-foe-2",
+        "clinker-collectors-foe-3",
+        "clinker-collectors-foe-4",
+        "clinker-collectors-foe-5"
+      ],
+      "file": "foes-foe-75b43de95f.webp",
+      "sha256": "65defb4719a02b10342e5399d0f84d75bf95e670cbb3894c5e9cb918c161a6c9",
+      "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 811,
+        "top": 161,
+        "width": 548,
+        "height": 549
+      }
+    },
+    {
+      "key": "foe-6be5e61e5b",
+      "title": "Носильщик печати",
+      "kind": "foe",
+      "subjects": [
+        "seal-carriers-foe-1",
+        "seal-carriers-foe-2",
+        "seal-carriers-foe-3",
+        "seal-carriers-foe-4",
+        "seal-carriers-foe-5"
+      ],
+      "file": "foes-foe-6be5e61e5b.webp",
+      "sha256": "230069ec4034615ceece752698dc02d2ca6cc8b6774764539cff326032b48550",
+      "originalSha256": "f9c516a11b2782a3efd9906dfb3e1b8c09f69441b8dd63207c69fde25bba8679",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1615,
+        "top": 15,
+        "width": 401,
+        "height": 696
+      }
+    },
+    {
+      "key": "veyra-dal",
+      "title": "Вейра Даль",
+      "kind": "npc",
+      "subjects": [
+        "veyra-dal"
+      ],
+      "file": "npcs-veyra-dal.webp",
+      "sha256": "1521ad3a6f49c971c9ad2d2cc25d9e9754a5dfdc79f2b12e6ed028439f14314e",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 113,
+        "top": 15,
+        "width": 217,
+        "height": 379
+      }
+    },
+    {
+      "key": "sorren-vit",
+      "title": "Соррен Вит",
+      "kind": "npc",
+      "subjects": [
+        "sorren-vit"
+      ],
+      "file": "npcs-sorren-vit.webp",
+      "sha256": "1795d53b5fa8d212b3b2b4e1105bac814df550baa78cad18f49d8c6bd94efe4b",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 516,
+        "top": 15,
+        "width": 217,
+        "height": 377
+      }
+    },
+    {
+      "key": "otta-rem",
+      "title": "Отта Рем",
+      "kind": "npc",
+      "subjects": [
+        "otta-rem"
+      ],
+      "file": "npcs-otta-rem.webp",
+      "sha256": "358d1ef1885610c5120d23a6c52089936cd9fcc390c20b52c2427b85d556aba0",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 935,
+        "top": 14,
+        "width": 217,
+        "height": 379
+      }
+    },
+    {
+      "key": "neda-tsar",
+      "title": "Неда Цар",
+      "kind": "npc",
+      "subjects": [
+        "neda-tsar"
+      ],
+      "file": "npcs-neda-tsar.webp",
+      "sha256": "9721a6fea67c0a2b7ce4d5d71b76c2d598f8531582ad8fec0600dba018177c66",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 112,
+        "top": 417,
+        "width": 219,
+        "height": 381
+      }
+    },
+    {
+      "key": "avar-len",
+      "title": "Авар Лен",
+      "kind": "npc",
+      "subjects": [
+        "avar-len"
+      ],
+      "file": "npcs-avar-len.webp",
+      "sha256": "022d1f02cd8d85ef404a0d6d73e0864caff62350f3d408e1619bab6934964193",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 507,
+        "top": 412,
+        "width": 232,
+        "height": 386
+      }
+    },
+    {
+      "key": "teyr-ust",
+      "title": "Тейр Уст",
+      "kind": "npc",
+      "subjects": [
+        "teyr-ust"
+      ],
+      "file": "npcs-teyr-ust.webp",
+      "sha256": "54e2ab0cf2d6fe48f79572c4f1c8854be0e9999abfaf82093423f91c5e9d27ff",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 930,
+        "top": 413,
+        "width": 226,
+        "height": 384
+      }
+    },
+    {
+      "key": "siva-kor",
+      "title": "Сива Кор",
+      "kind": "npc",
+      "subjects": [
+        "siva-kor"
+      ],
+      "file": "npcs-siva-kor.webp",
+      "sha256": "5854ee839a3e86afb68cef32cb82067358331de4e35063ce956bb5a5b809f8e4",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 113,
+        "top": 821,
+        "width": 219,
+        "height": 408
+      }
+    },
+    {
+      "key": "runn-dey",
+      "title": "Рунн Дей",
+      "kind": "npc",
+      "subjects": [
+        "runn-dey"
+      ],
+      "file": "npcs-runn-dey.webp",
+      "sha256": "6f1277eae44c20dffab8ff124511f0626a881d0a2c4073b0c0d3f16eaa3f2c3e",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 502,
+        "top": 820,
+        "width": 247,
+        "height": 410
+      }
+    },
+    {
+      "key": "iven-mor",
+      "title": "Ивен Мор",
+      "kind": "npc",
+      "subjects": [
+        "iven-mor"
+      ],
+      "file": "npcs-iven-mor.webp",
+      "sha256": "757e163482cbd7fdf2be3b94747a04b5ff86dd0c010c669270af886c343721c6",
+      "originalSha256": "a44c07a3fb2412276c67ab56a2c13ec07b5c9222755116e9688b722394ff9662",
+      "generated": "2026-11-22",
+      "sheet": "black-sun-forge-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 926,
+        "top": 818,
+        "width": 235,
+        "height": 412
+      }
+    }
+  ]
+}

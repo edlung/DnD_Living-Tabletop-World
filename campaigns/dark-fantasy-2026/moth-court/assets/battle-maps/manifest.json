@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "reverse-room.webp",
+      "sha256": "fa7710563697b1df63836c95cc66c41ad83ad2a5b769ffbd08f899175f81dfde",
+      "originalSha256": "2a9816c35b7216e3a4f19d48ce023c48cb2b41174cce2b58781a2806b218c5ec",
+      "originalFile": "exec-0c4d0467-b452-40fb-b632-f80b2f95c7dd.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Изнаночная. Visible scenery: Комната ухода за дорогими праздничными вещами, с мягкими рабочими столами, латунными стойками и дверьми для грузовых тележек.. World style: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "reverse-room",
+      "encounter": "cabinet-guard",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "wash-house.webp",
+      "sha256": "bcdb80fdaaf2962ebba518aed437480e9753b543fbe49932e93b1cfae144f5cc",
+      "originalSha256": "63eeb8087d4fb501b4707b49c2fbcc950de043cd8814f88c0b7859b9a7a5107d",
+      "originalFile": "exec-ad6fef8b-b7ee-461d-945c-0127b1a8a902.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мойка белого шёлка. Visible scenery: Тёплое помещение с выжимными валами, корзинами и широкой платформой подъемника. На стене сохнут рабочие фартуки.. World style: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "wash-house",
+      "encounter": "wash-wardens",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "coach-yard.webp",
+      "sha256": "bf44fe92245a664a6a1b8cfd04afd3999c31b1a0be19960c97b35d28a8c8fadf",
+      "originalSha256": "4dcf6633604f875b165b7e59e853a075be3d4b32c87e5621e15d498e9581fd97",
+      "originalFile": "exec-e4077d97-4329-46b0-9340-a99dbab41ce4.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Каретный двор. Visible scenery: Площадка между конюшней и воротами на боковую улицу. У стены ждут ручные повозки, крытая карета и пустые транспортные ящики.. World style: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "coach-yard",
+      "encounter": "yard-interception",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

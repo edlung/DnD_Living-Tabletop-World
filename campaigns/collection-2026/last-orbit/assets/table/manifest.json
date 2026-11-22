@@ -1,0 +1,460 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "last-orbit-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d93ce84b-13b0-4c75-8982-d297bcea070d.png",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Орбита Кордеи · Anodized gunmetal spacecraft plate, orbital arcs and small countersunk brass rivets. Cell 1. Севра Дан. Коротко остриженные седые виски, на робе свежий трафарет Т-20-01 и привычка проверять, всем ли хватило места в строю.\nCell 2. Мир Авель. Неровная чёлка, разноцветные шнурки, номер Т-20-02 на робе и записная книжка, где вместо номеров нарисованы лица.\nCell 3. Нара Вель. Мягкий голос, прозрачный браслет с засушенным лепестком, номер Т-20-03 на робе и рукава, аккуратно подвёрнутые перед любой работой.\nCell 4. Илай Рош. Длинные пальцы, веснушки, номер Т-20-04 на робе и два рисунка звёзд на воротнике; при волнении объясняет сложное с помощью кружек.\nCell 5. Бор Камен. Широкие плечи, номер Т-20-05 на робе, аккуратно заштопанный карман и деревянная пуговица, которую он хранит как семейную вещь.\nCell 6. Агата Лун. Косая улыбка, яркая нитка в манжете, номер Т-20-06 на робе и привычка оставлять последнюю ложку каши на общей тарелке.\nCell 7. Юна Ис. Тёмные волосы собраны широким кольцом, на робе Т-20-07; на ладони нарисована маленькая дверь, которую она обновляет каждое утро.\nCell 8. Дамир Олль. Крупные очки, залатанный локоть, номер Т-20-08 на робе и манера оставлять рядом с точным фактом место для чужого комментария.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/collection-2026/last-orbit/assets/runtime/sevra-dan.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/mir-avel.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/nara-vel.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/ilay-rosh.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/bor-kamen.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/tessa-lun.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/yuna-is.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/damir-oll.webp"
+      ]
+    },
+    {
+      "id": "last-orbit-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-9e0b46c5-36cb-4d38-8fde-50d7b8876b95.png",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Последняя Орбита. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Ансель Брам. Серая форма без единой складки, очки без оправы, папка под мышкой; читает, не поднимая глаз.\nCell 2. Кая Штерн. Стёртые манжеты формы, светлые ресницы, лист переклички на дощечке и карандаш за ухом.\nCell 3. Адель Мерц. Чернила на пальцах, разглаженная роба заключённой с номером Б-031, очки на шнурке.\nCell 4. Сор Дар. Серебряная прядь, лёгкая хромота, поднос с насечками и половина ломтя хлеба, которую он протягивает первой.\nCell 5. Хана Ферст. Синие рукава, короткие ногти и маленький чайник, который она выключает перед серьёзным разговором.\nCell 6. Арон Тей. Потёртая куртка внешнего флота, круглая заколка и два одинаковых термоса.",
+      "references": [
+        "campaigns/collection-2026/last-orbit/assets/runtime/oryn-vey.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/vesta-rin.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/mira-ker.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/sor-dar.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/lida-senn.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/aron-tey.webp"
+      ]
+    },
+    {
+      "id": "last-orbit-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-0daba75b-80ad-46d7-980d-149898a96808.png",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Последняя Орбита. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Илона Марч. Белая дорожная куртка, тяжёлая папка с бумажной печатью; сначала спрашивает, как человека записать.\nCell 2. Эш Лар. Рыжие брови, спортивная повязка, роба с номером Т-20-00; на пустых упаковках рисует созвездия.\nCell 3. Оскар Вельд. Широкие ладони, выцветшая лента смены; смотрит на обшивку за стеклом чаще, чем на людей.\nCell 4. Петра Лоус. Коротко стриженная, считает шаги губами и ходит чуть быстрее напарника.\nCell 5. Яков Стрель. Седые усы, широкие мозолистые пальцы, номер А-114; постукивает костяшкой по столу, как по обшивке.\nCell 6. Роза Минт. Тёмные кудри под платком, номер А-117, быстрая улыбка.",
+      "references": [
+        "campaigns/collection-2026/last-orbit/assets/runtime/nika-sol.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/esh-lar.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/oskar-veld.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/petra-lous.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/yakov-strel.webp",
+        "campaigns/collection-2026/last-orbit/assets/runtime/roza-mint.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "sevra-dan",
+      "title": "Севра Дан",
+      "kind": "hero",
+      "subjects": [
+        "sevra-dan"
+      ],
+      "file": "heroes-sevra-dan.webp",
+      "sha256": "6238ce213c974458bb0dc9c0c869147d4652755a5f510fcd99732df22d8ae71e",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 444,
+        "height": 444
+      }
+    },
+    {
+      "key": "mir-avel",
+      "title": "Мир Авель",
+      "kind": "hero",
+      "subjects": [
+        "mir-avel"
+      ],
+      "file": "heroes-mir-avel.webp",
+      "sha256": "c199a9442a8814f07dd0de1a84fa95948852c5f5fae48e92849dd610b34c483c",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 444,
+        "top": 0,
+        "width": 443,
+        "height": 444
+      }
+    },
+    {
+      "key": "nara-vel",
+      "title": "Нара Вель",
+      "kind": "hero",
+      "subjects": [
+        "nara-vel"
+      ],
+      "file": "heroes-nara-vel.webp",
+      "sha256": "c66e403638996b680b146c022810f8e03b12fda82bee26e5f54704be9084925c",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 887,
+        "top": 0,
+        "width": 444,
+        "height": 444
+      }
+    },
+    {
+      "key": "ilay-rosh",
+      "title": "Илай Рош",
+      "kind": "hero",
+      "subjects": [
+        "ilay-rosh"
+      ],
+      "file": "heroes-ilay-rosh.webp",
+      "sha256": "99cfa9da5c3470896bd2dc09f1a0c26d89da9c4ae9107bdd40f1789dff76df89",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1331,
+        "top": 0,
+        "width": 443,
+        "height": 444
+      }
+    },
+    {
+      "key": "bor-kamen",
+      "title": "Бор Камен",
+      "kind": "hero",
+      "subjects": [
+        "bor-kamen"
+      ],
+      "file": "heroes-bor-kamen.webp",
+      "sha256": "34c17c315520be43168f326484d1fc400003002bcb7f0f0e186490d6c29dbd45",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 0,
+        "top": 444,
+        "width": 444,
+        "height": 443
+      }
+    },
+    {
+      "key": "tessa-lun",
+      "title": "Агата Лун",
+      "kind": "hero",
+      "subjects": [
+        "tessa-lun"
+      ],
+      "file": "heroes-tessa-lun.webp",
+      "sha256": "8380ae6c5b21ac357e2b62b28ce52ab5ef1be8f71f26a969921ea4005482b755",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 444,
+        "top": 444,
+        "width": 443,
+        "height": 443
+      }
+    },
+    {
+      "key": "yuna-is",
+      "title": "Юна Ис",
+      "kind": "hero",
+      "subjects": [
+        "yuna-is"
+      ],
+      "file": "heroes-yuna-is.webp",
+      "sha256": "c02e523d85c3857139a4cdcc010f48b8b7621e91d68f1331a132813a846d2299",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 887,
+        "top": 444,
+        "width": 444,
+        "height": 443
+      }
+    },
+    {
+      "key": "damir-oll",
+      "title": "Дамир Олль",
+      "kind": "hero",
+      "subjects": [
+        "damir-oll"
+      ],
+      "file": "heroes-damir-oll.webp",
+      "sha256": "71235f3815b7dbc4adc855905abee37cefcbdc6f35de7580e06ada85aa275a1d",
+      "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1331,
+        "top": 444,
+        "width": 443,
+        "height": 443
+      }
+    },
+    {
+      "key": "oryn-vey",
+      "title": "Ансель Брам",
+      "kind": "npc",
+      "subjects": [
+        "oryn-vey"
+      ],
+      "file": "npcs-oryn-vey.webp",
+      "sha256": "6a5686a44f8d4281d70134dbdbe1b88ad8e6f14796d69ab8e3c86db0884ce084",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 150,
+        "top": 21,
+        "width": 227,
+        "height": 477
+      }
+    },
+    {
+      "key": "vesta-rin",
+      "title": "Кая Штерн",
+      "kind": "npc",
+      "subjects": [
+        "vesta-rin"
+      ],
+      "file": "npcs-vesta-rin.webp",
+      "sha256": "b516cfdc9c9e81458c919682ff77611d1a29be34c7be1580150d3c9da5bff146",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 631,
+        "top": 25,
+        "width": 240,
+        "height": 474
+      }
+    },
+    {
+      "key": "mira-ker",
+      "title": "Адель Мерц",
+      "kind": "npc",
+      "subjects": [
+        "mira-ker"
+      ],
+      "file": "npcs-mira-ker.webp",
+      "sha256": "331ef9e22d61d559791d978d3fca74cddd779047de4df0c42211e1f829ab5bbe",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1141,
+        "top": 23,
+        "width": 225,
+        "height": 475
+      }
+    },
+    {
+      "key": "sor-dar",
+      "title": "Сор Дар",
+      "kind": "npc",
+      "subjects": [
+        "sor-dar"
+      ],
+      "file": "npcs-sor-dar.webp",
+      "sha256": "288ba10f45bdf77f273673efc47d4062d97ff945f7fd3d5d06321eb03118de3d",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 143,
+        "top": 515,
+        "width": 245,
+        "height": 491
+      }
+    },
+    {
+      "key": "lida-senn",
+      "title": "Хана Ферст",
+      "kind": "npc",
+      "subjects": [
+        "lida-senn"
+      ],
+      "file": "npcs-lida-senn.webp",
+      "sha256": "efdb89e752e0970e7e9d92624baf6145f89f3c08825bc82da6f11a1cf6c0149c",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 587,
+        "top": 521,
+        "width": 285,
+        "height": 484
+      }
+    },
+    {
+      "key": "aron-tey",
+      "title": "Арон Тей",
+      "kind": "npc",
+      "subjects": [
+        "aron-tey"
+      ],
+      "file": "npcs-aron-tey.webp",
+      "sha256": "0d7c820d08fce6979b1b5af211b66eb06cda5646bf64b6a5f7f835fe8091ce98",
+      "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 1123,
+        "top": 516,
+        "width": 252,
+        "height": 491
+      }
+    },
+    {
+      "key": "nika-sol",
+      "title": "Илона Марч",
+      "kind": "npc",
+      "subjects": [
+        "nika-sol"
+      ],
+      "file": "npcs-nika-sol.webp",
+      "sha256": "d5b895f93d73cd6c892425f2c3fdbc27198370ad87794f6c706d9fa79fc5ee1a",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 111,
+        "top": 21,
+        "width": 276,
+        "height": 466
+      }
+    },
+    {
+      "key": "esh-lar",
+      "title": "Эш Лар",
+      "kind": "npc",
+      "subjects": [
+        "esh-lar"
+      ],
+      "file": "npcs-esh-lar.webp",
+      "sha256": "a16508fad17354ecbd303b7cb093dd126a16c5dad0ba473b48cb5fd16c594eaa",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 610,
+        "top": 18,
+        "width": 308,
+        "height": 469
+      }
+    },
+    {
+      "key": "oskar-veld",
+      "title": "Оскар Вельд",
+      "kind": "npc",
+      "subjects": [
+        "oskar-veld"
+      ],
+      "file": "npcs-oskar-veld.webp",
+      "sha256": "87b7cb0b4b910d311515f037c123adfcbafdf63f6f5cf6744fabc86769f62ff3",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1137,
+        "top": 19,
+        "width": 289,
+        "height": 468
+      }
+    },
+    {
+      "key": "petra-lous",
+      "title": "Петра Лоус",
+      "kind": "npc",
+      "subjects": [
+        "petra-lous"
+      ],
+      "file": "npcs-petra-lous.webp",
+      "sha256": "d7d311dd74dcba50d3612608b692553c59a31fb4bf8548efae39b9bd5b0fe05b",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 113,
+        "top": 532,
+        "width": 289,
+        "height": 469
+      }
+    },
+    {
+      "key": "yakov-strel",
+      "title": "Яков Стрель",
+      "kind": "npc",
+      "subjects": [
+        "yakov-strel"
+      ],
+      "file": "npcs-yakov-strel.webp",
+      "sha256": "48a4622fa2ffd1b4a0ac9682e2e28afab099eda76d48b676d4f1c9f3f2abfb2a",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 591,
+        "top": 530,
+        "width": 331,
+        "height": 473
+      }
+    },
+    {
+      "key": "roza-mint",
+      "title": "Роза Минт",
+      "kind": "npc",
+      "subjects": [
+        "roza-mint"
+      ],
+      "file": "npcs-roza-mint.webp",
+      "sha256": "07a47c858873faa59bf92aedf665926ad1755056a3031d671f54262eeabf9fd1",
+      "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+      "generated": "2026-11-22",
+      "sheet": "last-orbit-npcs-1",
+      "cell": 6,
+      "crop": {
+        "left": 1124,
+        "top": 523,
+        "width": 304,
+        "height": 479
+      }
+    }
+  ]
+}

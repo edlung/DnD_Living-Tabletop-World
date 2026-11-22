@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-246f64a4-ec22-4a82-bbb0-02681260f71a.png",
+      "originalSha256": "27c86dab2c6e294ba10c95d479a146d90551d5c589b83ca0c8fc70725bda91b0",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Излучина звучащих форм. Characters, in strict cell order:\n1. Тома Ритм — Жёлтая куртка с широкими карманами, мягкие рабочие перчатки, синяя прядь над бровью. Age 16.\n2. Ниль Петля — Короткий плащ из сетчатой ткани, цветные зажимы на поясе, записная книжка с круглыми полями. Age 24.\n3. Весна Пауза — Серебристый шарф, тяжёлые удобные ботинки, маленькие белые карточки вместо украшений. Age 43.\n4. Кира Линии — Пятнистый комбинезон и карандаш за каждым ухом; манжеты исписаны простыми геометрическими знаками. Age 15.\n5. Рак Узел — Зелёный жилет, седая коса и складная линейка, которой он чаще рисует, чем измеряет. Age 61.\n6. Сона Стекло — Тёмная накидка с янтарной подкладкой, прозрачные браслеты и очень серьёзные разноцветные носки. Age 30.\n7. Эли Шаг — Длинный синий пояс, широкие рукава с золотыми заплатами, мел в нагрудном кармане. Age 17.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-1cc1a716-274a-46d1-937e-27e576ca2a41.png",
+      "originalSha256": "c382d27a37a52484481bb928d42d2f62e505889c514809c77e2f46ba17375dc4",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Излучина звучащих форм. Characters, in strict cell order:\n1. Мира Рампа — Охристый пиджак с белыми локтями, карандаш на шнурке, пустой конверт для будущей афиши. Age 38.\n2. Левон Грань — Высокий человек в медном фартуке; на ладонях лежат безопасно округлённые цветные пластины. Age 55.\n3. Ася Прорезь — Широкие белые рукава, чёрная лента в волосах и большие ножницы с тупыми круглыми концами. Age 17.\n4. Дори Прибой — Короткий бирюзовый плащ и лодка, привязанная к запястью длинной широкой лентой. Age 29.\n5. Ен Завиток — Оранжевый капюшон, длинная мягкая сеть и серьёзная табличка «Я могу показать, но решайте сами». Age 14.\n6. Оста Свет — Фиолетовый жилет, широкополая шляпа и набор матовых цветных рамок. Age 67.\n7. Бела Обод — Тёмно-синий костюм с одним большим золотым кругом на спине и ровно сложенный плащ. Age 22.\n8. Рам Шаги — Песочный комбинезон, лента с простыми стрелками и заплатка в форме открытой дуги. Age 46.\n9. Теса Первый Ряд — Клетчатая накидка, блокнот с широкими клетками и простая карточка с нарисованным глазом. Age 16.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "toma-ritm",
+      "file": "cards/toma-ritm.webp",
+      "title": "Тома Ритм",
+      "subjects": [
+        "toma-ritm"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3212a09e1fc8417c8e27491f5cc4622e01d8d6635bfe6fa6455006df94e7d67a"
+    },
+    {
+      "id": "nil-loop",
+      "file": "cards/nil-loop.webp",
+      "title": "Ниль Петля",
+      "subjects": [
+        "nil-loop"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8f844d76d1b420c552cee9bedefd07ebc7ad23c6ce22d7c73edf827b1473cbb0"
+    },
+    {
+      "id": "vesna-pause",
+      "file": "cards/vesna-pause.webp",
+      "title": "Весна Пауза",
+      "subjects": [
+        "vesna-pause"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "43a99946c128c06616869fd7cc6fb10f9da23fdffbdeb41c7cdfa789525d37e7"
+    },
+    {
+      "id": "kira-lines",
+      "file": "cards/kira-lines.webp",
+      "title": "Кира Линии",
+      "subjects": [
+        "kira-lines"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "29f3f04cbe4e826f4d35a15d73413eea60ed756477a7ad68b51f8a94f5a35a50"
+    },
+    {
+      "id": "rak-knot",
+      "file": "cards/rak-knot.webp",
+      "title": "Рак Узел",
+      "subjects": [
+        "rak-knot"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4e3384477b0a0b19a722255101592a86e0319db0346b9f362fa256ac59dc0a1f"
+    },
+    {
+      "id": "sona-glass",
+      "file": "cards/sona-glass.webp",
+      "title": "Сона Стекло",
+      "subjects": [
+        "sona-glass"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "004d0753f76068f31108446f75f9aea8cf60d07da40f27b8c97e671ab4cc79f4"
+    },
+    {
+      "id": "eli-step",
+      "file": "cards/eli-step.webp",
+      "title": "Эли Шаг",
+      "subjects": [
+        "eli-step"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b6812752a326ffea28693f46b53d2ae7eee76b4869ba8ed5f537a0ea7b00b2d1"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "eli-step-travel-kit",
+        "kira-lines-travel-kit",
+        "nil-loop-travel-kit",
+        "rak-knot-travel-kit",
+        "sona-glass-travel-kit",
+        "toma-ritm-travel-kit",
+        "vesna-pause-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1558c81d664246d3c9121ce963559b39e0b6976d9ed2ef3226dae5033fcb400d"
+    },
+    {
+      "id": "mira-ramp",
+      "file": "cards/mira-ramp.webp",
+      "title": "Мира Рампа",
+      "subjects": [
+        "mira-ramp"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fdf0ff2ffbb1f2a8ca189a52775d2ec20096648f60224ec3d1157941a6004dc6"
+    },
+    {
+      "id": "levon-stone",
+      "file": "cards/levon-stone.webp",
+      "title": "Левон Грань",
+      "subjects": [
+        "levon-stone"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "39b82a0792674c5a1206582a06c56ac442f48aec01745d4ef2dbd1bf71572f6d"
+    },
+    {
+      "id": "asya-cut",
+      "file": "cards/asya-cut.webp",
+      "title": "Ася Прорезь",
+      "subjects": [
+        "asya-cut"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4af392114f28bad1d363b91a61f1d45db8847cd558d8439e471b62e61fe7d172"
+    },
+    {
+      "id": "dori-tide",
+      "file": "cards/dori-tide.webp",
+      "title": "Дори Прибой",
+      "subjects": [
+        "dori-tide"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fba936ff6a4aa64661c0131dc4225b8f91ead3b7f3d20e92f08a8c6d45fc6d9c"
+    },
+    {
+      "id": "yen-echo",
+      "file": "cards/yen-echo.webp",
+      "title": "Ен Завиток",
+      "subjects": [
+        "yen-echo"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2478d8a813446b11a6a4be54b6401a467ade885be2d645b965f848bec7e9598f"
+    },
+    {
+      "id": "osta-light",
+      "file": "cards/osta-light.webp",
+      "title": "Оста Свет",
+      "subjects": [
+        "osta-light"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c01e930a8d9e4bfbca144ca143e1b5bd5470f0c4bb8c0859179cc54e62a6c7fa"
+    },
+    {
+      "id": "bela-round",
+      "file": "cards/bela-round.webp",
+      "title": "Бела Обод",
+      "subjects": [
+        "bela-round"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "77bf9dc75de0f5cb48cb06ec24c112ef7e3398964aaa6ee789a85b48b134c28a"
+    },
+    {
+      "id": "ram-steps",
+      "file": "cards/ram-steps.webp",
+      "title": "Рам Шаги",
+      "subjects": [
+        "ram-steps"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dc3f43d05e82fe366903a2c04f82daeb20334edbc88a7278c2d19cb7f003cde7"
+    },
+    {
+      "id": "tesa-front",
+      "file": "cards/tesa-front.webp",
+      "title": "Теса Первый Ряд",
+      "subjects": [
+        "tesa-front"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b797f67d366749783dfa0e8292df8cecd361e529975100fce30596a74cf3f29a"
+    }
+  ]
+}

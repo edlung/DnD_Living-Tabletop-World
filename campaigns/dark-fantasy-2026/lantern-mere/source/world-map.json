@@ -1,0 +1,59 @@
+{
+  "region": "mere-reach",
+  "name": "Карта · Велинь и Сумеречная заводь",
+  "description": "План местности «Велинь и Сумеречная заводь». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "bell-quay",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "raftward",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "inverted-court",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "hanging-garden",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "ferry-choir",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "return-house",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "mirror-square",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "roof-bridge",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "quiet-harbor",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "dawn-bank",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

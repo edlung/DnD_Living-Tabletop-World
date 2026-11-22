@@ -1,0 +1,377 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-93bef40a-d787-4477-a9e1-5c54c26d96e4.png",
+      "originalSha256": "fc9b7a73b56fa1a31c5edb54883058828304876be076df84d50c975a12c9703d",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Велинь и Сумеречная заводь. Characters, in strict cell order:\n1. Лада Ровень — Синий плащ, широкие рукавицы и дорожный щит с рисунком волны. Age 17.\n2. Ярин Таль — Песочный шарф, сумка с карандашами и записная книжка в непромокаемой обложке. Age 24.\n3. Мерет Иль — Серое платье под дорожной кольчугой и матовый фонарь на медной цепочке. Age 36.\n4. Оден Соль — Потёртое пальто, круглые очки и короткий отвес в кожаном футляре. Age 62.\n5. Эста Нив — Тёмный жилет, пояс с мелом и каменной пылью, простой щит без герба. Age 28.\n6. Рина Тесс — Зелёный шарф, металлический рожок и тетрадь с условными значками звуков. Age 16.\n7. Корвин Лугов — Непромокаемый плащ, несколько кружек и ложка в мягком чехле. Age 44.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-1afc6c1c-8200-471d-8b7d-8954c795f50a.png",
+      "originalSha256": "abfc959f523868e2b9d1a1838dd4912c76edafecccdc2b7fc24536d370c13e07",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Велинь и Сумеречная заводь. Characters, in strict cell order:\n1. Мара Веснь — Высокая женщина в плаще с белой каймой; в руках короткое весло. Age 48.\n2. Элина Орст — Тёмное пальто, красная лента на рукаве и две небольшие чашки. Age 61.\n3. Тимур Шев — Короткая куртка со стружкой на рукавах и карандаш за ухом. Age 29.\n4. Алден Вей — Серый сюртук, короткий отвес и мел в кармане. Age 53.\n5. Ильда Север — Фартук с семенами, деревянные бусы и горшок с неровным листом. Age 45.\n6. Нела Руд — Зелёная куртка, тетрадь наблюдений и короб с обычными листьями. Age 17.\n7. Брен Толль — Прозрачный пожилой перевозчик в сером пальто; фонарь сливового цвета отражается у весла. Age 72.\n8. Сена Лир — Прозрачная женщина с тёмной косой; возле неё стоят две чашки и висит синий зонт. Age 38.\n9. Смотритель Рувель — Призрачный мужчина с белой лентой на рукаве и пачкой пустых дощечек. Age 57.\n10. Демир Таль — Светлый плащ, обычная записная книжка и чашка с косой ручкой. Age 32.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "lada-roven",
+      "file": "cards/lada-roven.webp",
+      "title": "Лада Ровень",
+      "subjects": [
+        "lada-roven"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "36947b8bc9cbe5ff94a6f7c978fb824a21d157cf3a31e9e581e6fae41ef160db"
+    },
+    {
+      "id": "yarin-tale",
+      "file": "cards/yarin-tale.webp",
+      "title": "Ярин Таль",
+      "subjects": [
+        "yarin-tale"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4b61aabe55d8ba52b1175d1fa17ee975dc8f7fa2f4a2902073240e241014ed33"
+    },
+    {
+      "id": "meret-il",
+      "file": "cards/meret-il.webp",
+      "title": "Мерет Иль",
+      "subjects": [
+        "meret-il"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f1faca32abc62698d2dc75c33fa1d65b2ae35957622cc2a2c5c091e8c1fffe72"
+    },
+    {
+      "id": "oden-sol",
+      "file": "cards/oden-sol.webp",
+      "title": "Оден Соль",
+      "subjects": [
+        "oden-sol"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0783daa01b651fd015c830a952bcfc76a728ec53c558d317446d09e8ba26e950"
+    },
+    {
+      "id": "esta-niv",
+      "file": "cards/esta-niv.webp",
+      "title": "Эста Нив",
+      "subjects": [
+        "esta-niv"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2c3e8142b16a0aa48cab937cbf60dfe52793988e465bef33a1eec137c3605f38"
+    },
+    {
+      "id": "rina-tess",
+      "file": "cards/rina-tess.webp",
+      "title": "Рина Тесс",
+      "subjects": [
+        "rina-tess"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fc89170890a7e9b80330ecb300f0c0431ab8005fd6d31fdb23ec6bcb835f2ab7"
+    },
+    {
+      "id": "korvin-lugov",
+      "file": "cards/korvin-lugov.webp",
+      "title": "Корвин Лугов",
+      "subjects": [
+        "korvin-lugov"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1910ac8ced7213d9c56fa96b659a65d111e2bfb8f9eb82949f600e4c9800863d"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "esta-niv-travel-kit",
+        "korvin-lugov-travel-kit",
+        "lada-roven-travel-kit",
+        "meret-il-travel-kit",
+        "oden-sol-travel-kit",
+        "rina-tess-travel-kit",
+        "yarin-tale-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a29a8dc1ae50fd92cf153fed9347f7349bb9ce558cdc1bfc554fbdb69ed952d9"
+    },
+    {
+      "id": "mara-vesn",
+      "file": "cards/mara-vesn.webp",
+      "title": "Мара Веснь",
+      "subjects": [
+        "mara-vesn"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "19c69eeb9366b3605d42441663c653fc1bcff824a6a1c9e09d74b75b8187fbcd"
+    },
+    {
+      "id": "elina-orst",
+      "file": "cards/elina-orst.webp",
+      "title": "Элина Орст",
+      "subjects": [
+        "elina-orst"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "545e20929724227c7c0c0ac158ce61a810162f74fcdb10e85299ae2cb06febe7"
+    },
+    {
+      "id": "timur-shev",
+      "file": "cards/timur-shev.webp",
+      "title": "Тимур Шев",
+      "subjects": [
+        "timur-shev"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6a3fd774d9d2db728f3046c94d7bf1c6cbf45a60fb55e1896936516962e4dad4"
+    },
+    {
+      "id": "alden-vey",
+      "file": "cards/alden-vey.webp",
+      "title": "Алден Вей",
+      "subjects": [
+        "alden-vey"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "280b56c14c79f538548a066bf5240bcf5684b6ce1fd9319345a12a3fd1430260"
+    },
+    {
+      "id": "ilda-sever",
+      "file": "cards/ilda-sever.webp",
+      "title": "Ильда Север",
+      "subjects": [
+        "ilda-sever"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "312330f400379f91f51a09263ec408be5392c1120532bf6f7c59c2a0b5a7bc7e"
+    },
+    {
+      "id": "nela-rud",
+      "file": "cards/nela-rud.webp",
+      "title": "Нела Руд",
+      "subjects": [
+        "nela-rud"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7f271ad1b254187ec47e715e4f711f7f640612898c209c071312f8ac0e06a41b"
+    },
+    {
+      "id": "bren-toll",
+      "file": "cards/bren-toll.webp",
+      "title": "Брен Толль",
+      "subjects": [
+        "bren-toll"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "64b6475d1b59810454d79e8fe2c2cb40da85270b97e6bfaa45506088d97771a5"
+    },
+    {
+      "id": "sena-lir",
+      "file": "cards/sena-lir.webp",
+      "title": "Сена Лир",
+      "subjects": [
+        "sena-lir"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b45879349e3404ae97ef3b415f4c4fb26473a3ae48a0022c5c5b872a0ef1934d"
+    },
+    {
+      "id": "ruvel-ash",
+      "file": "cards/ruvel-ash.webp",
+      "title": "Смотритель Рувель",
+      "subjects": [
+        "ruvel-ash"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "116382d9096abf31f53cf23802a145ad55f73c08f58f40de7960f8df6045f5c0"
+    },
+    {
+      "id": "demir-tal",
+      "file": "cards/demir-tal.webp",
+      "title": "Демир Таль",
+      "subjects": [
+        "demir-tal"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6d055b158189339b462eb05e638f5f6936456cb4b28ba425e2af53fa5615e667"
+    }
+  ]
+}

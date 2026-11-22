@@ -1,0 +1,615 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "thorn-abbey-places-0",
+      "originalFile": "exec-e5598f81-3a0e-435c-a5cd-915c0a82d494.png",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Cell 1. Двор паломников. Ряды пустых скамей и стол с тёплой кружкой. Внешняя калитка видна от любой скамьи; рядом лежат шесты для проверки дорожки.\nCell 2. Нижние Ступени. Небольшое селение на каменных уступах. Перед каждым домом стоит пустая поливочная чаша, а на общей площадке сушатся плащи.\nCell 3. Подвесная водосборня. Зал старой мельницы, где влажные корни держат чаши над головой. Под ними проходит низкая каменная галерея с боковыми нишами.\nCell 4. Поворачивающийся клуатр. Крытые дорожки огибают газон с мраморными стульями. У одинаковых арок разные сколы; на ветру шуршат подвешенные деревянные ложки.\nCell 5. Скрипторий дождевых страниц. Полки пусты, но на стене сохранились цветные изображения путников. Низкие окна выходят на сад; у двери стоят деревянные щиты для переноски вещей.\nCell 6. Дом чужой весны. В комнатах цветут ветви в простых кувшинах. На столах стоят разные кружки, а вдоль стены тянется полка для обуви.\nCell 7. Сад непринятых даров. Тропы из белого песка проходят между тёмными арками. На низком столике лежат фонарь, глиняные миски и садовые рукавицы.\nCell 8. Галерея последней стражи. Длинный переход под открытым небом, с каменными щитами от ветра. Отсюда видны источник, внешняя тропа и скальный навес.\nCell 9. Корневая часовня. Под бывшей часовней корни образовали высокий свод. Посреди сухого пола стоят три обычные скамьи; свет пробивается через пустую нишу окна.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "thorn-abbey-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-20a0bc0b-078e-4447-b468-36f92bb4ad7d.png",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Cell 1. Арина Клен. Короткий синий плащ, мел на перчатке и щит с нарисованной лестницей.\nCell 2. Яр Глен. Кожаный тубус, разноцветные шнурки на рукаве и привычка рисовать пальцем в воздухе.\nCell 3. Мира Сив. Медный значок открытой ладони, тёплый шарф и маленькая жестяная чашка на поясе.\nCell 4. Ольта Ренн. Серое дорожное платье, квадратные очки и блокнот с рисунками листьев вместо заклинательных печатей.\nCell 5. Сава Тес. Стёганая куртка, перевязанный ремешком посох и две разные варежки.\nCell 6. Ника Орс. Короткие косы, пояс с деревянными фишками и плащ цвета мокрой хвои.\nCell 7. Терен Ясен. Плащ с широкими карманами, седая борода и нитка на запястье, которой он отмечает нужную страницу.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/arina-klen.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/yar-glen.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/mira-siv.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/olta-renn.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/sava-tes.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/nika-ors.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/teren-yasen.webp"
+      ]
+    },
+    {
+      "id": "thorn-abbey-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-25fb462e-29fe-47f1-86a1-d9db88dbd50b.png",
+      "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Cell 1. Плетёный водонос. Пустая корзина на тонких ветвях, несущая воду к стене. Она не содержит живого существа или души.\nCell 2. Пустой дорожный плащ. Старая ткань на гибком каркасе из лозы. Внутри виден воздух; это повтор движения заботливой руки, а не призрак человека.\nCell 3. Терновый щитоносец. Плетёный щит на двух корневых опорах; между ветвями просвечивает галерея.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "thorn-abbey-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-7d894ee2-fa17-4fe9-a105-72d23da577cb.png",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Аббатство спящих шипов. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Рада Лис. Женщина в плаще с аккуратно заштопанными локтями; на ремне висит деревянный половник.\nCell 2. Нерин Сор. Худощавый человек с белой глиной на сапогах и складной чашей за поясом.\nCell 3. Сив Орвен. Садовник с поседевшими висками и перчатками, на которых вышиты разные листья.\nCell 4. Илла Дальм. Швея с серебряным напёрстком на цепочке и дорожной сумкой из разноцветных лоскутов.\nCell 5. Торв Эсна. Каменщик с низким голосом, в коротком фартуке и с деревянной мерной рейкой.\nCell 6. Дея Верес. Переписчица в тёмно-жёлтом капюшоне, с дощечкой и мелом вместо дорогих чернил.\nCell 7. Эльсена Вей. Рыцарь в потемневшем доспехе, с веточками на наплечниках и длинным серым полотнищем вместо герба.\nCell 8. Тихий Садовник. Высокая деревянная фигура с гладкой садовой маской; на ладонях лежат сухие семена.",
+      "references": [
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/rada-lis.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/nerin-sor.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/siv-orven.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/illa-dalm.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/torv-esna.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/deya-veres.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/elsen-vey.webp",
+        "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/quiet-gardener.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "pilgrim-yard",
+      "title": "Двор паломников",
+      "kind": "place",
+      "subjects": [
+        "pilgrim-yard"
+      ],
+      "file": "places-pilgrim-yard.webp",
+      "sha256": "35f85ca3d0def4ec5621fdf5c4254bc2aa231f8d5b45238d78ee1c2fe2460a08",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "lower-village",
+      "title": "Нижние Ступени",
+      "kind": "place",
+      "subjects": [
+        "lower-village"
+      ],
+      "file": "places-lower-village.webp",
+      "sha256": "268778af15a8673a6d6915de2699ace8329648d7fd5c56c6efc03f6a95d6571e",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "mill-cistern",
+      "title": "Подвесная водосборня",
+      "kind": "place",
+      "subjects": [
+        "mill-cistern"
+      ],
+      "file": "places-mill-cistern.webp",
+      "sha256": "a30d8d0bfa9fd5b64ce49b4632f50eacb1ef2ac9d4cf57868bd2044f531a85c6",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "cloister",
+      "title": "Поворачивающийся клуатр",
+      "kind": "place",
+      "subjects": [
+        "cloister"
+      ],
+      "file": "places-cloister.webp",
+      "sha256": "e1f6771d2310f568c9100c2f2ed7cb9f8be4e0b698ee37d57a92b92a12cc7511",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "scriptorium",
+      "title": "Скрипторий дождевых страниц",
+      "kind": "place",
+      "subjects": [
+        "scriptorium"
+      ],
+      "file": "places-scriptorium.webp",
+      "sha256": "79a0a7d69176e537fbaf48a157c2607100909b927c56b0c74919e96f4e7797ff",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "guest-house",
+      "title": "Дом чужой весны",
+      "kind": "place",
+      "subjects": [
+        "guest-house"
+      ],
+      "file": "places-guest-house.webp",
+      "sha256": "f19b6ea2bfaa154677e10bce05c24a4e211f803adb0eb150d259f5683822ace1",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "briar-garden",
+      "title": "Сад непринятых даров",
+      "kind": "place",
+      "subjects": [
+        "briar-garden"
+      ],
+      "file": "places-briar-garden.webp",
+      "sha256": "b737e0e8ce07de84c5c4d4d8144cebe4f9b02ec0bea8631d5431152234104729",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "watch-gallery",
+      "title": "Галерея последней стражи",
+      "kind": "place",
+      "subjects": [
+        "watch-gallery"
+      ],
+      "file": "places-watch-gallery.webp",
+      "sha256": "561f37e33b8c0a1714f0847ac0a38792bc53ffc24464961590def753e489f29f",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "root-crypt",
+      "title": "Корневая часовня",
+      "kind": "place",
+      "subjects": [
+        "root-crypt"
+      ],
+      "file": "places-root-crypt.webp",
+      "sha256": "30f11c0da11c4c2a06b9d8aedee7b420449b8899700fbc7a3d61d8b9238ec588",
+      "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "arina-klen",
+      "title": "Арина Клен",
+      "kind": "hero",
+      "subjects": [
+        "arina-klen"
+      ],
+      "file": "heroes-arina-klen.webp",
+      "sha256": "b4a3c34d93b1db52ba3b5c0840187511475676ae77634afb87aff9fc2b85e615",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 110,
+        "top": 12,
+        "width": 231,
+        "height": 421
+      }
+    },
+    {
+      "key": "yar-glen",
+      "title": "Яр Глен",
+      "kind": "hero",
+      "subjects": [
+        "yar-glen"
+      ],
+      "file": "heroes-yar-glen.webp",
+      "sha256": "e995cd1d9e1974d772d21a97557a1631809b883665e22d7b00509497d889ba4a",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 553,
+        "top": 2,
+        "width": 225,
+        "height": 432
+      }
+    },
+    {
+      "key": "mira-siv",
+      "title": "Мира Сив",
+      "kind": "hero",
+      "subjects": [
+        "mira-siv"
+      ],
+      "file": "heroes-mira-siv.webp",
+      "sha256": "7d3c3c2af52e1fc116c595ea7acc84b1c5d4b15da6b861242ba2240cb1f02117",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 997,
+        "top": 10,
+        "width": 224,
+        "height": 423
+      }
+    },
+    {
+      "key": "olta-renn",
+      "title": "Ольта Ренн",
+      "kind": "hero",
+      "subjects": [
+        "olta-renn"
+      ],
+      "file": "heroes-olta-renn.webp",
+      "sha256": "e491b6d2517fb0675f87e193305e981a9d8c4c8755ce8bf99d8249a1a8387f8e",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1442,
+        "top": 9,
+        "width": 223,
+        "height": 423
+      }
+    },
+    {
+      "key": "sava-tes",
+      "title": "Сава Тес",
+      "kind": "hero",
+      "subjects": [
+        "sava-tes"
+      ],
+      "file": "heroes-sava-tes.webp",
+      "sha256": "8cf404673ceacf3a6c76632f99ff7ce57c910d9af2979f56d08da8c9b5abab5f",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 109,
+        "top": 455,
+        "width": 228,
+        "height": 421
+      }
+    },
+    {
+      "key": "nika-ors",
+      "title": "Ника Орс",
+      "kind": "hero",
+      "subjects": [
+        "nika-ors"
+      ],
+      "file": "heroes-nika-ors.webp",
+      "sha256": "26bb83beca425bf7e945880e9cf000893eb82c4bcfc4d96bc62ba355d69c24e6",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 549,
+        "top": 450,
+        "width": 232,
+        "height": 426
+      }
+    },
+    {
+      "key": "teren-yasen",
+      "title": "Терен Ясен",
+      "kind": "hero",
+      "subjects": [
+        "teren-yasen"
+      ],
+      "file": "heroes-teren-yasen.webp",
+      "sha256": "f4dd1e06cbad0b1166aac40635417e2a3943645660c99b1a3b6cbb1c9873c16d",
+      "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 995,
+        "top": 448,
+        "width": 227,
+        "height": 428
+      }
+    },
+    {
+      "key": "foe-9e7bd4c840",
+      "title": "Плетёный водонос",
+      "kind": "foe",
+      "subjects": [
+        "root-waterbearers-foe-1",
+        "root-waterbearers-foe-2",
+        "root-waterbearers-foe-3",
+        "root-waterbearers-foe-4",
+        "root-waterbearers-foe-5"
+      ],
+      "file": "foes-foe-9e7bd4c840.webp",
+      "sha256": "79128894216908eef8613a100bcf9e72a3449b4e5170e268a5671080972238e8",
+      "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 117,
+        "top": 30,
+        "width": 496,
+        "height": 676
+      }
+    },
+    {
+      "key": "foe-dc61f733cb",
+      "title": "Пустой дорожный плащ",
+      "kind": "foe",
+      "subjects": [
+        "empty-cloaks-foe-1",
+        "empty-cloaks-foe-2",
+        "empty-cloaks-foe-3",
+        "empty-cloaks-foe-4",
+        "empty-cloaks-foe-5"
+      ],
+      "file": "foes-foe-dc61f733cb.webp",
+      "sha256": "34f763495274999ab9086956769b0b49acec8fd9cfcdc183a495855e515e26f6",
+      "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 840,
+        "top": 31,
+        "width": 447,
+        "height": 676
+      }
+    },
+    {
+      "key": "foe-73dd84cc7c",
+      "title": "Терновый щитоносец",
+      "kind": "foe",
+      "subjects": [
+        "briar-shields-foe-1",
+        "briar-shields-foe-2",
+        "briar-shields-foe-3",
+        "briar-shields-foe-4",
+        "briar-shields-foe-5"
+      ],
+      "file": "foes-foe-73dd84cc7c.webp",
+      "sha256": "d3120d8ca3cee5e5e3f30a6ba6971d3c8daa9fb6a14bb0606549dca7b035334d",
+      "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1572,
+        "top": 17,
+        "width": 508,
+        "height": 689
+      }
+    },
+    {
+      "key": "rada-lis",
+      "title": "Рада Лис",
+      "kind": "npc",
+      "subjects": [
+        "rada-lis"
+      ],
+      "file": "npcs-rada-lis.webp",
+      "sha256": "650e85fc270109a7460117d49b263a47ca70a21327bbead2a7cd3bfbada7b0dd",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 80,
+        "top": 19,
+        "width": 238,
+        "height": 400
+      }
+    },
+    {
+      "key": "nerin-sor",
+      "title": "Нерин Сор",
+      "kind": "npc",
+      "subjects": [
+        "nerin-sor"
+      ],
+      "file": "npcs-nerin-sor.webp",
+      "sha256": "7564a2c41dccaeb75be29f0b58bc9aaaa224aed24aaa8d1272c8d2db9a5dcaa6",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 474,
+        "top": 17,
+        "width": 244,
+        "height": 402
+      }
+    },
+    {
+      "key": "siv-orven",
+      "title": "Сив Орвен",
+      "kind": "npc",
+      "subjects": [
+        "siv-orven"
+      ],
+      "file": "npcs-siv-orven.webp",
+      "sha256": "58af5c39767ce70016161f133fcfe343257f124254d7655a264557cda34ad747",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 873,
+        "top": 16,
+        "width": 249,
+        "height": 403
+      }
+    },
+    {
+      "key": "illa-dalm",
+      "title": "Илла Дальм",
+      "kind": "npc",
+      "subjects": [
+        "illa-dalm"
+      ],
+      "file": "npcs-illa-dalm.webp",
+      "sha256": "5d5407e0dd8d16622193d517662f270484f3ca7c9ce5ab5859fb6c0d518f84d0",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 78,
+        "top": 448,
+        "width": 248,
+        "height": 407
+      }
+    },
+    {
+      "key": "torv-esna",
+      "title": "Торв Эсна",
+      "kind": "npc",
+      "subjects": [
+        "torv-esna"
+      ],
+      "file": "npcs-torv-esna.webp",
+      "sha256": "95964578763fb9157168ef9387bc7eb5f65ee32fe36a9fce5024635dcaea732c",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 468,
+        "top": 447,
+        "width": 263,
+        "height": 407
+      }
+    },
+    {
+      "key": "deya-veres",
+      "title": "Дея Верес",
+      "kind": "npc",
+      "subjects": [
+        "deya-veres"
+      ],
+      "file": "npcs-deya-veres.webp",
+      "sha256": "374defeee5dae0cc8f4785089b9423a6451c7067d2b30478ed87514fa32afb5a",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 867,
+        "top": 447,
+        "width": 256,
+        "height": 408
+      }
+    },
+    {
+      "key": "elsen-vey",
+      "title": "Эльсена Вей",
+      "kind": "npc",
+      "subjects": [
+        "elsen-vey"
+      ],
+      "file": "npcs-elsen-vey.webp",
+      "sha256": "70bc47f0bc5e91999f3ef75c69fdba7dcb557fea82bfc1e28b21c6ceda15ae56",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 78,
+        "top": 887,
+        "width": 249,
+        "height": 408
+      }
+    },
+    {
+      "key": "quiet-gardener",
+      "title": "Тихий Садовник",
+      "kind": "npc",
+      "subjects": [
+        "quiet-gardener"
+      ],
+      "file": "npcs-quiet-gardener.webp",
+      "sha256": "9f6cee706cb5238c6799989cefc7276a5b05a4e62ee8bc8d9bc88c258b0ffed2",
+      "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+      "generated": "2026-11-22",
+      "sheet": "thorn-abbey-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 468,
+        "top": 885,
+        "width": 260,
+        "height": 410
+      }
+    }
+  ]
+}

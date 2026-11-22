@@ -1,0 +1,124 @@
+{
+  "region": "crooked-valley",
+  "name": "Карта · Косая долина",
+  "description": "План местности «Косая долина». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "second-wing-yard",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "wind-attic",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "bristled-slope",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "white-burrow",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "three-ledges",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "thread-ravine",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "shed-gallery",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "hollow-meadow",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "split-rock",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [
+    {
+      "from": "second-wing-yard",
+      "to": "wind-attic",
+      "miles": 1,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "wind-attic",
+      "to": "bristled-slope",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "bristled-slope",
+      "to": "white-burrow",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "white-burrow",
+      "to": "three-ledges",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "second-wing-yard",
+      "to": "shed-gallery",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "shed-gallery",
+      "to": "hollow-meadow",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "hollow-meadow",
+      "to": "split-rock",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "split-rock",
+      "to": "thread-ravine",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "thread-ravine",
+      "to": "three-ledges",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    },
+    {
+      "from": "white-burrow",
+      "to": "hollow-meadow",
+      "miles": 2,
+      "terrain": "forest",
+      "road": false
+    }
+  ]
+}

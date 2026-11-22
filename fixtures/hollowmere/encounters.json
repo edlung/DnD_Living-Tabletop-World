@@ -4,7 +4,7 @@
     {
       "encounterId": "willow-ford-ambush",
       "title": "Ambush at the Willow Ford",
-      "summary": "Four goblin raiders leap from the willows as the wagon fords the brook. For a party of four at level 1.",
+      "summary": "At level 1 there are four raiders, or three for three heroes. At half strength they flee. At the end of round 3 they leave with one crate. Yield it earlier to save the wounded. Sixteen miles on, Hobb offers a night’s rest before the cellar.",
       "locationId": "willow-ford",
       "battlefield": {
         "width": 14,
@@ -41,7 +41,7 @@
         { "entityId": "creature-a8fb7496", "position": { "x": 10, "y": 2 } },
         { "entityId": "creature-876f6386", "position": { "x": 12, "y": 4 } },
         { "entityId": "creature-f98219c2", "position": { "x": 11, "y": 6 } },
-        { "entityId": "creature-adc15fea", "position": { "x": 9, "y": 8 } }
+        { "entityId": "creature-adc15fea", "position": { "x": 9, "y": 8 }, "minPartySize": 4 }
       ],
       "partyStart": [
         { "x": 2, "y": 4 },
@@ -53,7 +53,7 @@
     {
       "encounterId": "cellar-rats",
       "title": "Rats in the Reeve’s Cellar",
-      "summary": "Giant rats and a boiling swarm pour from the gnawed floor among the barrels. For a party of four at level 1.",
+      "summary": "Four level-1 heroes face four giant rats and a swarm. Three face two rats and the swarm. Plug the breach with a cask at G4 in two adjacent actions or help Hobb seal the cellar from above, sacrificing the salt. Either earns the milestone.",
       "locationId": "reeves-cellar",
       "battlefield": {
         "width": 10,
@@ -70,8 +70,8 @@
       "foes": [
         { "entityId": "creature-e7c74248", "position": { "x": 7, "y": 1 } },
         { "entityId": "creature-6d886ec8", "position": { "x": 7, "y": 6 } },
-        { "entityId": "creature-10068970", "position": { "x": 6, "y": 3 } },
-        { "entityId": "creature-35d694bd", "position": { "x": 6, "y": 5 } },
+        { "entityId": "creature-10068970", "position": { "x": 6, "y": 3 }, "minPartySize": 4 },
+        { "entityId": "creature-35d694bd", "position": { "x": 6, "y": 5 }, "minPartySize": 4 },
         { "entityId": "creature-74212878", "position": { "x": 8, "y": 5 } }
       ],
       "partyStart": [
@@ -84,7 +84,7 @@
     {
       "encounterId": "drowned-chapel",
       "title": "The Dead of the Drowned Chapel",
-      "summary": "Drowned villagers rise from the flooded nave while two old guards stand by the altar. For a party of four at level 2.",
+      "summary": "Drowned villagers rise from the flooded nave while two old guards stand by the altar. For a party of four at level 2. The inscription on the porch marks the way below. Heroes who pull their wounded back to the boat can copy it from the landing and earn the chapel milestone. The dead stay in the nave. The dry porch or the boat in the reeds gives the party an hour before it enters the marsh.",
       "locationId": "drowned-chapel",
       "battlefield": {
         "width": 14,
@@ -158,7 +158,7 @@
     {
       "encounterId": "marsh-lights",
       "title": "Lights on the Marsh",
-      "summary": "A marsh light lures the party off the channel while giant frogs wait in the reeds. For a party of four at level 2.",
+      "summary": "A marsh light lures the party off the channel while giant frogs wait in the reeds. For a party of four at level 2. The frogs stay in the reeds. The party can retreat along its pole marks as soon as it has enough hands to pull the wounded aboard. It loses daylight and returns by the long channel.",
       "locationId": "fogmarsh",
       "battlefield": {
         "width": 16,
@@ -230,7 +230,7 @@
     {
       "encounterId": "sunken-mill",
       "title": "The Reed Cloaks at the Sunken Mill",
-      "summary": "Kerra Reed and her smugglers hold the mill floor, with lookouts in the beams above the wheel. For a party of four at level 3.",
+      "summary": "At level 3 Kerra has two smugglers and a lookout. With three heroes only one smuggler fights beside her. Below half HP she offers the passage and one healing potion for her crew’s safe exit. After a retreat the ledger can still be reached through the loading hatch.",
       "locationId": "sunken-mill",
       "battlefield": {
         "width": 16,
@@ -283,12 +283,8 @@
       "foes": [
         { "entityId": "kerra-reed", "position": { "x": 11, "y": 6 } },
         { "entityId": "creature-e97ea2ef", "position": { "x": 9, "y": 3 } },
-        { "entityId": "creature-123fadb5", "position": { "x": 10, "y": 8 } },
-        { "entityId": "creature-079ed2de", "position": { "x": 8, "y": 5 } },
-        { "entityId": "creature-a5d6d9a5", "position": { "x": 11, "y": 3 } },
-        { "entityId": "creature-31b25550", "position": { "x": 11, "y": 9 } },
-        { "entityId": "creature-f44353f4", "position": { "x": 14, "y": 1 } },
-        { "entityId": "creature-c086c930", "position": { "x": 14, "y": 10 } }
+        { "entityId": "creature-123fadb5", "position": { "x": 10, "y": 8 }, "minPartySize": 4 },
+        { "entityId": "creature-f44353f4", "position": { "x": 14, "y": 1 }, "minPartySize": 4 }
       ],
       "partyStart": [
         { "x": 1, "y": 5 },
@@ -300,7 +296,7 @@
     {
       "encounterId": "flooded-stair",
       "title": "The Flooded Stair",
-      "summary": "Ghouls crouch in the black water of the crypt while two ash-marked acolytes keep the way to the chamber below. For a party of four at level 4.",
+      "summary": "Ghouls and two acolytes guard the flooded stair at level 4. Two actions at E5 shut the sluice grate. The side sacristy offers one hour behind a bar, at the cost of the last smuggling boat. Its service door leads to the bell.",
       "locationId": "location-5b2e9c47",
       "battlefield": {
         "width": 12,
@@ -359,7 +355,7 @@
     {
       "encounterId": "sunken-bell",
       "title": "The Chamber of the Sunken Bell",
-      "summary": "The hooded lantern-bearer rings the sunken bell, and the drowned knight rises from the pool with two acolytes beside him. For a party of four at level 4.",
+      "summary": "Four level-4 heroes face the knight, lantern-bearer and two acolytes. For three heroes the knight and one acolyte guard the pool while the others hold the ropes. An action at G5 to slacken the rope and one at I6 to bind the clapper silence the bell. Rescuing the prisoners is a separate choice.",
       "locationId": "location-c81f04da",
       "battlefield": {
         "width": 14,
@@ -388,8 +384,8 @@
       "foes": [
         { "entityId": "creature-2e3554f3", "position": { "x": 8, "y": 6 } },
         { "entityId": "creature-883736e6", "position": { "x": 10, "y": 8 } },
-        { "entityId": "creature-c0e1d9b6", "position": { "x": 10, "y": 4 } },
-        { "entityId": "npc-7c3e91a2", "position": { "x": 12, "y": 6 } }
+        { "entityId": "creature-c0e1d9b6", "position": { "x": 10, "y": 4 }, "minPartySize": 4 },
+        { "entityId": "npc-7c3e91a2", "position": { "x": 12, "y": 6 }, "minPartySize": 4 }
       ],
       "partyStart": [
         { "x": 1, "y": 5 },

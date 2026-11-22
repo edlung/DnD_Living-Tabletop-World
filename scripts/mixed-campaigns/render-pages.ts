@@ -1,5 +1,7 @@
+import { castCards } from '../campaign-shared/cast-cards.ts';
+import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
 import { heroSheet } from './sheets.ts';
-import type { Source } from './source.ts';
+import { COLLECTION_ROOT, type Source } from './source.ts';
 import { box, esc, heroCard, list, nav, p, page } from './render-common.ts';
 
 const sizes = (s: Source) =>
@@ -12,6 +14,7 @@ const sizes = (s: Source) =>
 
 export function renderDm(s: Source): string {
   const { world: w, cast } = s;
+  const portrait = castCards(new URL(`${w.slug}/`, COLLECTION_ROOT));
   const sessions = s.sessions
     .map(
       (session) =>
@@ -22,7 +25,8 @@ export function renderDm(s: Source): string {
     .map((n) =>
       box(
         n.name,
-        p(`${n.age} лет. ${n.look} ${n.public}`) +
+        portrait(n.key) +
+          p(`${n.age} лет. ${n.look} ${n.public}`) +
           p(`Место: ${w.locations.find((l) => l.key === n.location)?.name ?? n.location}`) +
           '<h3>Намерение</h3>' +
           p(n.want) +
@@ -40,6 +44,8 @@ export function renderDm(s: Source): string {
     w.title,
     `Книга ведущего · ${w.genre} · ${w.audience} · 3–7 игроков + ведущий`,
     `<div class="lead">${p(w.pitch)}</div>` +
+      openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
+      tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
       box(
         'За десять минут до первой игры',
         list([
@@ -47,7 +53,7 @@ export function renderDm(s: Source): string {
           'Выберите пакет под фактическое число игроков. Первые три героя — готовое ядро; остальные добавляются по порядку. Возраст игрока не определяет героя.',
           'Согласуйте темы, длительность и сигнал паузы. Передайте игрокам только players.html; раздатки выдавайте по отдельности после указанного открытия.',
           'Откройте Мастерскую проекта, создайте личный черновик и импортируйте выбранный JSON через загрузку пакета. Проверьте состав и начало в предпросмотре. Запуск кампании подтверждает ведущий штатным действием.',
-          'При текстовом запуске используйте штатный режим без изображений. Здесь есть тактические схемы, но нет сгенерированных иллюстраций.',
+          'Откройте иллюстрацию завязки отдельно. Портреты героев входят в файл для игроков, портреты встречных — в книгу ведущего. Тактические схемы доступны в разделе карт.',
         ]) + `<div class="actions">${sizes(s)}</div>`,
       ) +
       box(
@@ -100,6 +106,7 @@ export function renderDm(s: Source): string {
 
 export function renderPlayers(s: Source, css: string): string {
   const { world: w } = s;
+  const portrait = castCards(new URL(`${w.slug}/`, COLLECTION_ROOT));
   const sheets = s.cast.heroes
     .map((h, i) => {
       const sheet = heroSheet(h.archetype);
@@ -117,7 +124,7 @@ export function renderPlayers(s: Source, css: string): string {
           : h.archetype === 'rogue'
             ? 'Рапира, короткий лук'
             : 'Боевой посох';
-      return `<div>${heroCard(h)}<section class="panel sheet"><h3>${i < 3 ? 'Основное трио' : `Место ${i + 1}`}</h3>${p(`Здоровье ${sheet.hitPoints.max}; защита ${sheet.armorClass}; скорость 30 футов; одна атака за действие.`)}${p(numbers)}${p(`Оружие: ${weapons}. Заклинания: ${spells}.`)}${p(sheet.spellcasting.length ? 'Ячейки: четыре первого круга и две второго. Расход и восстановление — по правилам приложения.' : 'Приёмы и проверки — по правилам приложения.')}${p('Образ героя свободно меняется вместе с ведущим. Числа соответствуют готовому листу уровня 3. Художественное устройство или талант не даёт дополнительных автоматических способностей.')}</section></div>`;
+      return `<div>${heroCard(h, portrait(h.key, true))}<section class="panel sheet"><h3>${i < 3 ? 'Основное трио' : `Место ${i + 1}`}</h3>${p(`Здоровье ${sheet.hitPoints.max}; защита ${sheet.armorClass}; скорость 30 футов; одна атака за действие.`)}${p(numbers)}${p(`Оружие: ${weapons}. Заклинания: ${spells}.`)}${p(sheet.spellcasting.length ? 'Ячейки: четыре первого круга и две второго. Расход и восстановление — по правилам приложения.' : 'Приёмы и проверки — по правилам приложения.')}${p('Образ героя свободно меняется вместе с ведущим. Числа соответствуют готовому листу уровня 3. Художественное устройство или талант не даёт дополнительных автоматических способностей.')}</section></div>`;
     })
     .join('');
   return standalone(

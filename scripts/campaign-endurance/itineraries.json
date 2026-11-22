@@ -1,0 +1,864 @@
+{
+  "absent-voters": {
+    "chapters": {
+      "courtyard-obstruction": 4,
+      "hall-dispute": 6,
+      "crossing-crowd": 7
+    },
+    "rests": [
+      {
+        "after": 5,
+        "kind": "short",
+        "reason": "Встречи второго дня заканчиваются в 14:00 и начинаются в 16:00."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Ночь между вечерним собранием второго дня и утром третьего."
+      }
+    ]
+  },
+  "acorn-express": {
+    "chapters": {
+      "baggage-gardeners": 1,
+      "glass-gardeners": 6,
+      "bridge-repairers": 10
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "short",
+        "reason": "В главе разрешён короткий отдых после учебного боя."
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Ночлег в поезде или в гостевых комнатах, затем полноценный отдых после Почты."
+      },
+      {
+        "after": 7,
+        "kind": "long",
+        "reason": "Ночлег в поезде или в гостевых комнатах, затем полноценный отдых после Почты."
+      }
+    ]
+  },
+  "ash-testament": {
+    "chapters": {
+      "ash-patrol": 1,
+      "ferry-cable": 2,
+      "burnt-grove": 6,
+      "long-planks-ambush": 8
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Отрыв и дальний флаг дают ночь у мачты. При нулевом отрыве вместе с колонной доступен только короткий отдых.",
+        "history": "careful"
+      },
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Средний маршрут чередует ночь вдали от колонны и общий огонь, где действует закон мачты.",
+        "history": "middle"
+      },
+      {
+        "after": 1,
+        "kind": "short",
+        "reason": "Отряд не отрывается от флага колонны. По закону мачты у общего костра доступен лишь короткий отдых.",
+        "history": "hurried"
+      },
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Отрыв и дальний флаг дают ночь у мачты. При нулевом отрыве вместе с колонной доступен только короткий отдых.",
+        "history": "careful"
+      },
+      {
+        "after": 2,
+        "kind": "short",
+        "reason": "Средний маршрут чередует ночь вдали от колонны и общий огонь, где действует закон мачты.",
+        "history": "middle"
+      },
+      {
+        "after": 2,
+        "kind": "short",
+        "reason": "Отряд не отрывается от флага колонны. По закону мачты у общего костра доступен лишь короткий отдых.",
+        "history": "hurried"
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Отрыв и дальний флаг дают ночь у мачты. При нулевом отрыве вместе с колонной доступен только короткий отдых.",
+        "history": "careful"
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Средний маршрут чередует ночь вдали от колонны и общий огонь, где действует закон мачты.",
+        "history": "middle"
+      },
+      {
+        "after": 5,
+        "kind": "short",
+        "reason": "Отряд не отрывается от флага колонны. По закону мачты у общего костра доступен лишь короткий отдых.",
+        "history": "hurried"
+      },
+      {
+        "after": 7,
+        "kind": "long",
+        "reason": "Отрыв и дальний флаг дают ночь у мачты. При нулевом отрыве вместе с колонной доступен только короткий отдых.",
+        "history": "careful"
+      },
+      {
+        "after": 7,
+        "kind": "short",
+        "reason": "Средний маршрут чередует ночь вдали от колонны и общий огонь, где действует закон мачты.",
+        "history": "middle"
+      },
+      {
+        "after": 7,
+        "kind": "short",
+        "reason": "Отряд не отрывается от флага колонны. По закону мачты у общего костра доступен лишь короткий отдых.",
+        "history": "hurried"
+      }
+    ]
+  },
+  "ash-tithe": {
+    "chapters": {
+      "tithe-collectors": 1,
+      "cinder-hunt": 5,
+      "brazier-wardens": 7
+    },
+    "rests": [
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Принимаем предложение Фены о месте ночёвки после перевозки чаши."
+      }
+    ]
+  },
+  "basalt-bloom": {
+    "chapters": {
+      "bank-skippers": 2,
+      "draft-moths": 3,
+      "mica-springers": 5
+    },
+    "rests": []
+  },
+  "bellwether-hollow": {
+    "chapters": {
+      "orchard-folds": 2,
+      "mill-hushers": 3,
+      "belfry-shards": 8
+    },
+    "rests": []
+  },
+  "black-sun-forge": {
+    "chapters": {
+      "thread-watch": 1,
+      "clinker-collectors": 2,
+      "seal-carriers": 8
+    },
+    "rests": []
+  },
+  "cedar-tournament": {
+    "chapters": {
+      "stone-circle": 2,
+      "ribbon-arc": 3,
+      "bowl-cross": 6
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "short",
+        "reason": "У доски отдыха между турами группа берёт час до следующей добровольной пробы."
+      }
+    ]
+  },
+  "clockwork-carnival": {
+    "chapters": {
+      "wound-ushers": 2,
+      "shin-nets": 6,
+      "rubezh-step": 8
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "Ночью после торгов отряд остаётся в жилой части до следующего выхода."
+      }
+    ]
+  },
+  "copper-canyon": {
+    "chapters": {
+      "plush-summit": 2,
+      "ring-bearer-dance": 4,
+      "goose-guard": 7
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "Вера предлагает открыть чемодан на следующий день. Ночь проводим в доме."
+      }
+    ]
+  },
+  "counterfeit-spring": {
+    "chapters": {
+      "crowded-doorway": 5,
+      "frame-passage": 6,
+      "closed-curtain": 8
+    },
+    "rests": [
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Показы и встречи идут в разные календарные дни апреля. Ночуем между назначенными визитами."
+      },
+      {
+        "after": 7,
+        "kind": "long",
+        "reason": "Показы и встречи идут в разные календарные дни апреля. Ночуем между назначенными визитами."
+      }
+    ]
+  },
+  "dragon-retirement": {
+    "chapters": {
+      "scree-grabbers": 2,
+      "yellow-cloak-toll": 3,
+      "applause-stewards": 7
+    },
+    "rests": []
+  },
+  "dream-orchestra": {
+    "chapters": {
+      "quarry-echoes": 2,
+      "tide-splashes": 3,
+      "reprise-arcs": 5
+    },
+    "rests": []
+  },
+  "dungeon-sanctuary": {
+    "chapters": {
+      "chalk-goats": 4,
+      "reed-geese": 5,
+      "courtesy-drill": 6
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "short",
+        "reason": "Между примеркой и переноской у безопасного жилья отводим час отдыха."
+      }
+    ]
+  },
+  "ember-crown": {
+    "chapters": {
+      "first-ladders": 1,
+      "catapult-sortie": 2,
+      "water-tower-night": 3,
+      "coal-tower-breach": 4,
+      "forge-passage": 6,
+      "battle-for-the-gate": 8
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Ночуем за стенами между утрами осады в дни без назначенного ночного выхода."
+      },
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Ночуем за стенами между утрами осады в дни без назначенного ночного выхода."
+      },
+      {
+        "after": 3,
+        "kind": "short",
+        "reason": "После ночной обороны водокачки до утренней бреши успеваем только перевязать раненых."
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Ночуем за стенами между утрами осады в дни без назначенного ночного выхода."
+      },
+      {
+        "after": 7,
+        "kind": "long",
+        "reason": "Ночуем за стенами между утрами осады в дни без назначенного ночного выхода."
+      }
+    ]
+  },
+  "false-verdict": {
+    "chapters": {
+      "yard-passage": 3,
+      "archive-frame": 5,
+      "hall-door": 8
+    },
+    "rests": []
+  },
+  "familiar-school": {
+    "chapters": {
+      "yard-wardens": 1,
+      "canvas-wardens": 5,
+      "gate-wardens": 8
+    },
+    "rests": []
+  },
+  "glass-republic": {
+    "chapters": {
+      "copper-steps-snatch": 3,
+      "white-thread-cordon": 6,
+      "banner-hall-list": 8
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "После вечерней смены Дома складок отряд ночует до репетиции следующих дней. Перед ночным голосованием восемь свободных часов не выделяем."
+      }
+    ]
+  },
+  "hollow-choir": {
+    "chapters": {
+      "first-supper": 2,
+      "niche-guards": 4,
+      "garden-glass": 5,
+      "six-strokes": 6
+    },
+    "rests": []
+  },
+  "impossible-fair": {
+    "chapters": {
+      "unasked-brushes": 2,
+      "paper-dandies": 5,
+      "crosswind-curls": 6
+    },
+    "rests": []
+  },
+  "lantern-court": {
+    "chapters": {
+      "coal-pickets": 3,
+      "glass-moths": 4,
+      "wax-arguments": 5
+    },
+    "rests": []
+  },
+  "lantern-mere": {
+    "chapters": {
+      "porcelain-repeats": 2,
+      "rain-steps": 6,
+      "ink-shapes": 7
+    },
+    "rests": []
+  },
+  "last-ferryman": {
+    "chapters": {
+      "held-slip": 5,
+      "river-interception": 6,
+      "landing-cordon": 7
+    },
+    "rests": []
+  },
+  "last-orbit": {
+    "chapters": {
+      "block-search": 2,
+      "line-one": 5,
+      "locker-three": 6,
+      "hull-walk": 8
+    },
+    "rests": [
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Расписание переводов ведётся по дням. Ночные часы в блоке между сменами свободны у выбранной группы."
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Расписание переводов ведётся по дням. Ночные часы в блоке между сменами свободны у выбранной группы."
+      },
+      {
+        "after": 7,
+        "kind": "long",
+        "reason": "Расписание переводов ведётся по дням. Ночные часы в блоке между сменами свободны у выбранной группы."
+      }
+    ]
+  },
+  "last-round": {
+    "chapters": {
+      "yard-pressure": 5,
+      "repair-dispute": 2,
+      "pavilion-push": 7
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "Осмотр назначен на утро второго дня, встреча в павильоне — на третий день."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Осмотр назначен на утро второго дня, встреча в павильоне — на третий день."
+      }
+    ]
+  },
+  "lighthouse": {
+    "chapters": {
+      "dock-keepers": 1,
+      "workshop-repairer": 6,
+      "last-guardian": 11
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Каюта корабля и спокойные ночи прямо описаны в разделе об отдыхе."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Каюта корабля и спокойные ночи прямо описаны в разделе об отдыхе."
+      },
+      {
+        "after": 9,
+        "kind": "long",
+        "reason": "Каюта корабля и спокойные ночи прямо описаны в разделе об отдыхе."
+      }
+    ]
+  },
+  "marrow-crown": {
+    "chapters": {
+      "teeth-hollowed": 1,
+      "camp-spinners": 3,
+      "forest-hollowed": 4,
+      "throat-follower": 6,
+      "fissure-spinners": 7,
+      "seam-nest": 8
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      },
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      },
+      {
+        "after": 3,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      },
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      },
+      {
+        "after": 7,
+        "kind": "long",
+        "reason": "Привал в четвёртой сцене по листу глубины. При пустом запасе разрешён только короткий отдых."
+      }
+    ]
+  },
+  "moon-pearl": {
+    "chapters": {
+      "paper-reception": 6,
+      "quay-chase": 9,
+      "auction-hall": 11
+    },
+    "rests": [
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Лодка служит жильём между городскими днями, перед залом отводим час в безопасном месте."
+      },
+      {
+        "after": 8,
+        "kind": "long",
+        "reason": "Лодка служит жильём между городскими днями, перед залом отводим час в безопасном месте."
+      },
+      {
+        "after": 10,
+        "kind": "short",
+        "reason": "Лодка служит жильём между городскими днями, перед залом отводим час в безопасном месте."
+      }
+    ]
+  },
+  "moth-court": {
+    "chapters": {
+      "wash-wardens": 2,
+      "cabinet-guard": 5,
+      "yard-interception": 7
+    },
+    "rests": []
+  },
+  "mountain-wedding": {
+    "chapters": {
+      "throat-dust": 2,
+      "bridge-chips": 5,
+      "shoulder-wind": 7,
+      "last-touch": 8
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "До рассвета у Коленного амфитеатра ходоки ночуют на устойчивой площадке. Последние два подъёма играются подряд."
+      }
+    ]
+  },
+  "museum-midnight": {
+    "chapters": {
+      "paper-ushers": 3,
+      "perfect-actors": 5,
+      "brass-movers": 7
+    },
+    "rests": []
+  },
+  "paper-sea": {
+    "chapters": {
+      "epic-folds": 3,
+      "comic-folds": 4,
+      "final-folds": 6
+    },
+    "rests": []
+  },
+  "quiet-exchange": {
+    "chapters": {
+      "narrow-aisle": 3,
+      "held-parcel": 5,
+      "uninvited-listeners": 7
+    },
+    "rests": []
+  },
+  "rain-bureau": {
+    "chapters": {
+      "cloak-guards": 2,
+      "frame-doubles": 4,
+      "umbrella-extras": 8
+    },
+    "rests": []
+  },
+  "rain-check": {
+    "chapters": {
+      "dock-catchers": 2,
+      "market-scouts": 3,
+      "depot-shot": 7,
+      "roof-duel": 8
+    },
+    "rests": [
+      {
+        "after": 3,
+        "kind": "long",
+        "reason": "После рынка у команды есть ночлег до встречи у «Ожидания». Депо и крыша идут подряд."
+      }
+    ]
+  },
+  "red-dune-post": {
+    "chapters": {
+      "parcel-parade": 2,
+      "petal-ushers": 4,
+      "banner-runners": 7
+    },
+    "rests": []
+  },
+  "room-608": {
+    "chapters": {
+      "linen-dispute": 2,
+      "cabinet-pressure": 5,
+      "audience-exit": 7
+    },
+    "rests": []
+  },
+  "root-city": {
+    "chapters": {
+      "screen-match": 4,
+      "support-trial": 6,
+      "deck-rehearsal": 7
+    },
+    "rests": []
+  },
+  "salt-meridian": {
+    "chapters": {
+      "knot-pier": 1,
+      "reef-lanterns": 2,
+      "laska-boarding": 4,
+      "pennants-alongside": 5,
+      "chain-rock-battle": 8
+    },
+    "rests": [
+      {
+        "after": 3,
+        "kind": "long",
+        "reason": "Между ночным выходом к рифу и абордажем есть судовая стоянка. Перед ночным прорывом группа готовит корабли."
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Абордаж датирован седьмым днём, следующая стоянка девятым. В лодках людей подбирает экипаж «Ласки», на глубокой воде есть ночь под вахтой."
+      }
+    ]
+  },
+  "salt-widows": {
+    "chapters": {
+      "brine-break": 2,
+      "net-deck": 3,
+      "night-boarders": 6,
+      "radan-in-brine": 7,
+      "widows-line-hunt": 8
+    },
+    "rests": [
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Выбираем ночную стоянку с водой после корки и перед последующим выходом."
+      },
+      {
+        "after": 5,
+        "kind": "long",
+        "reason": "Выбираем ночную стоянку с водой после корки и перед последующим выходом."
+      },
+      {
+        "after": 7,
+        "kind": "short",
+        "reason": "На последнем участке остаётся час сна под вахтой, лодка готовится к охоте."
+      }
+    ]
+  },
+  "seventh-negative": {
+    "chapters": {
+      "yard-cart": 3,
+      "gate-pressure": 7,
+      "closed-set-pressure": 8
+    },
+    "rests": []
+  },
+  "silent-frequency": {
+    "chapters": {
+      "crate-standoff": 4,
+      "terrace-standoff": 5,
+      "papers-standoff": 6
+    },
+    "rests": []
+  },
+  "sky-archipelago": {
+    "chapters": {
+      "eagle-aerie": 2,
+      "white-gyrfalcon-boarding": 4,
+      "barge-boarding": 6
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "short",
+        "reason": "У Школы ветров все экипажи час проходят один и тот же обязательный техосмотр. Пока механики работают, герои отдыхают."
+      }
+    ],
+    "fieldCards": ["white-gyrfalcon-boarding", "barge-boarding"]
+  },
+  "small-banner": {
+    "chapters": {
+      "ribbon-holders": 2,
+      "lid-dispute": 3,
+      "paper-crabs": 7
+    },
+    "rests": []
+  },
+  "storm-kitchen": {
+    "chapters": {
+      "shelf-clickers": 2,
+      "fold-nibblers": 5,
+      "gust-knots": 3
+    },
+    "rests": []
+  },
+  "strike-fund": {
+    "chapters": {
+      "yard-pressure": 2,
+      "press-doorway": 6,
+      "store-exit": 8
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "Встречи со вторника до четверга разделены ночами."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Встречи со вторника до четверга разделены ночами."
+      }
+    ]
+  },
+  "thorn-abbey": {
+    "chapters": {
+      "root-waterbearers": 2,
+      "empty-cloaks": 3,
+      "briar-shields": 7
+    },
+    "rests": [
+      {
+        "after": 3,
+        "kind": "short",
+        "reason": "После осмотра группа выбирает сухую скамью и час отдыха из книги."
+      }
+    ]
+  },
+  "three-magicless-days": {
+    "chapters": {
+      "ribbon-goats": 2,
+      "ribbon-whirlers": 7,
+      "cardboard-knights": 6
+    },
+    "rests": [
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Между вечерним поклоном и утренним обходом лент группа ночует."
+      }
+    ]
+  },
+  "unwritten-god": {
+    "chapters": {
+      "ledge-swallows": 2,
+      "quarry-watch": 7,
+      "reef-claws": 8
+    },
+    "rests": []
+  },
+  "velvet-ledger": {
+    "chapters": {
+      "velvet-waltz": 4,
+      "bank-doors": 6,
+      "cord-row-night": 7
+    },
+    "rests": [
+      {
+        "after": 4,
+        "kind": "long",
+        "reason": "Торговые дни и рассветы разделены ночью дома перед следующими назначениями."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Торговые дни и рассветы разделены ночью дома перед следующими назначениями."
+      }
+    ]
+  },
+  "white-ash": {
+    "chapters": {
+      "threshold-keepers": 3,
+      "custody-pressure": 6,
+      "gallery-pressure": 8
+    },
+    "rests": []
+  },
+  "winter-caravan": {
+    "chapters": {
+      "pack-on-the-ford": 2,
+      "strange-burrow": 4,
+      "fire-on-the-tarn": 5,
+      "white-at-the-ledge": 8
+    },
+    "rests": [
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Крыша и очаг на переходе позволяют выспаться. После шурфа группа тратит час на передышку у груза."
+      },
+      {
+        "after": 4,
+        "kind": "short",
+        "reason": "Крыша и очаг на переходе позволяют выспаться. После шурфа группа тратит час на передышку у груза."
+      },
+      {
+        "after": 6,
+        "kind": "long",
+        "reason": "Крыша и очаг на переходе позволяют выспаться. После шурфа группа тратит час на передышку у груза."
+      }
+    ]
+  },
+  "winter-orchard": {
+    "chapters": {
+      "mirror-echoes": 3,
+      "lamp-wickers": 4,
+      "white-ushers": 8
+    },
+    "rests": []
+  },
+  "hollowmere": {
+    "chapters": {
+      "willow-ford-ambush": 1,
+      "cellar-rats": 1,
+      "drowned-chapel": 2,
+      "marsh-lights": 2,
+      "sunken-mill": 3,
+      "flooded-stair": 4,
+      "sunken-bell": 4
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Отряд возвращается к старосте в Холлоумир после погреба и вылазки на болото. Оба раза остаётся в деревне на ночь."
+      },
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Отряд возвращается к старосте в Холлоумир после погреба и вылазки на болото. Оба раза остаётся в деревне на ночь."
+      },
+      {
+        "after": 3,
+        "kind": "long",
+        "reason": "После мельницы отряд возвращается на три мили в деревню перед спуском в склеп. На лестнице у колокола ночлега нет."
+      },
+      {
+        "key": "willow-ford-ambush",
+        "kind": "long",
+        "reason": "Шестнадцать миль на повозке до деревни. Хобб запирает погреб и предлагает постели до утра."
+      },
+      {
+        "key": "drowned-chapel",
+        "kind": "short",
+        "reason": "Сухая паперть над водой, час перед выходом к топи. При отходе лодка укрыта за камышами."
+      },
+      {
+        "key": "flooded-stair",
+        "kind": "short",
+        "reason": "Засов в боковой ризнице держит час. Фонарщик успеет снять одну лодку с причала."
+      }
+    ],
+    "fieldCards": [
+      "willow-ford-ambush",
+      "cellar-rats",
+      "drowned-chapel",
+      "marsh-lights",
+      "sunken-mill",
+      "flooded-stair",
+      "sunken-bell"
+    ]
+  },
+  "ravenford": {
+    "chapters": {
+      "road-ambush": 1
+    },
+    "rests": []
+  }
+}

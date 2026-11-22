@@ -1,0 +1,1723 @@
+{
+ "id": "root-city",
+ "title": "Город на спине Сада",
+ "genre": "Соларпанк и первый контакт",
+ "audience": "12+",
+ "pitch": "К солнечным террасам города Листовой Мост подходит самостоятельный движущийся Сад. Его ветви отвечают на тени, но одинаковый изгиб бывает вопросом, приглашением или ещё не оконченным словом. Вам предстоит выработать первый проверенный разговор, узнать, кто именно говорит, и решить, хотите ли вы стать гостями на чьей-то живой спине.",
+ "tone": "Удивление, осторожный юмор, исследовательская смелость и уважение к собеседнику, который вправе остаться непонятным.",
+ "duration": "8 сессий; 180 минут: 15 минут начала и воспоминаний, три сцены по 45 минут, перерыв 15 минут после второй сцены, 15 минут завершения.",
+ "cover": "campaigns/mixed-ages-2026/root-city/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "1ef724b4887f6773f7ce02c21f6939abe180fecabdc8e9bd7d7bf47e0daf13af"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "69b739f3e17ba2a2bf72d4db093e71395f9fba2357cbc8efac3c44a894627edc"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "aa723e20349a60f37c58baf34f59690c2a402a0ba4fe32cef060983d6538736c"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "b9924c810f27a9713955fa6d31df716c6cb3dc5c8dd6bb3b100e8ed5c15b541c"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "b87c84f33f6d30e14eba7d610fe0996bf877caf00a0ebd69b83f4efb99d297da"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/naya-vek.webp",
+   "sha256": "72a06be1b37de21585aa9fa46326762b20adccbfbb911007ebc42761e3c906c9",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ная Век",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "naya-vek"
+    ],
+    "4-players": [
+     "naya-vek"
+    ],
+    "5-players": [
+     "naya-vek"
+    ],
+    "6-players": [
+     "naya-vek"
+    ],
+    "7-players": [
+     "naya-vek"
+    ]
+   },
+   "file": "naya-vek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/mark-ru.webp",
+   "sha256": "b6cf2bc5d550ac4faa43a22b35725f8161c6cf216979ee6e7c424cfb94fc6bb8",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Ру",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-ru"
+    ],
+    "4-players": [
+     "mark-ru"
+    ],
+    "5-players": [
+     "mark-ru"
+    ],
+    "6-players": [
+     "mark-ru"
+    ],
+    "7-players": [
+     "mark-ru"
+    ]
+   },
+   "file": "mark-ru.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/eli-den.webp",
+   "sha256": "1abcec7a8cd8ff3cac4dc9509e209a7d4b265903c2b2494600ea5c4e0c15fc74",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эли Ден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eli-den"
+    ],
+    "4-players": [
+     "eli-den"
+    ],
+    "5-players": [
+     "eli-den"
+    ],
+    "6-players": [
+     "eli-den"
+    ],
+    "7-players": [
+     "eli-den"
+    ]
+   },
+   "file": "eli-den.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/sana-lis.webp",
+   "sha256": "3945c71755ffab071f0a46bf279d848c32c1467fc8579e063ce13c4e6150c1fd",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Лис",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "sana-lis"
+    ],
+    "5-players": [
+     "sana-lis"
+    ],
+    "6-players": [
+     "sana-lis"
+    ],
+    "7-players": [
+     "sana-lis"
+    ]
+   },
+   "file": "sana-lis.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/vets-om.webp",
+   "sha256": "1b970f63bbd90d09198dece102fc0560f16c6566b7b708d9e0eb413af243e3eb",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вец Ом",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "vets-om"
+    ],
+    "6-players": [
+     "vets-om"
+    ],
+    "7-players": [
+     "vets-om"
+    ]
+   },
+   "file": "vets-om.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/ora-tal.webp",
+   "sha256": "e2c792c9bee79f35bbb30fc3cdaa0979872bfae9f2fc34ece07420216b14ab31",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ора Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ora-tal"
+    ],
+    "7-players": [
+     "ora-tal"
+    ]
+   },
+   "file": "ora-tal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/gero-is.webp",
+   "sha256": "8b7739b95de90eeae61ecd75b33d47f805c4a3c8e3400954cd73fcbc2a14d930",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Геро Ис",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "gero-is"
+    ]
+   },
+   "file": "gero-is.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/travel-kit.webp",
+   "sha256": "b41df1f6c5d06cdaf2fde9b194a8b37bfd7a425ea8ca166d90cc7bdb790cf932",
+   "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eli-den-travel-kit",
+     "mark-ru-travel-kit",
+     "naya-vek-travel-kit"
+    ],
+    "4-players": [
+     "eli-den-travel-kit",
+     "mark-ru-travel-kit",
+     "naya-vek-travel-kit",
+     "sana-lis-travel-kit"
+    ],
+    "5-players": [
+     "eli-den-travel-kit",
+     "mark-ru-travel-kit",
+     "naya-vek-travel-kit",
+     "sana-lis-travel-kit",
+     "vets-om-travel-kit"
+    ],
+    "6-players": [
+     "eli-den-travel-kit",
+     "mark-ru-travel-kit",
+     "naya-vek-travel-kit",
+     "ora-tal-travel-kit",
+     "sana-lis-travel-kit",
+     "vets-om-travel-kit"
+    ],
+    "7-players": [
+     "eli-den-travel-kit",
+     "gero-is-travel-kit",
+     "mark-ru-travel-kit",
+     "naya-vek-travel-kit",
+     "ora-tal-travel-kit",
+     "sana-lis-travel-kit",
+     "vets-om-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/ira-fen.webp",
+   "sha256": "b5fdadf97307616a9ca4f3b1d3fe30801626dd9c88f2c5b54ce710dc2353e4b2",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ира Фен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ira-fen"
+    ],
+    "4-players": [
+     "ira-fen"
+    ],
+    "5-players": [
+     "ira-fen"
+    ],
+    "6-players": [
+     "ira-fen"
+    ],
+    "7-players": [
+     "ira-fen"
+    ]
+   },
+   "file": "ira-fen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/dina-ro.webp",
+   "sha256": "d957a8a524161586a08bb2be2f4cae50a2bfdd22de9fa1e16717d952fa856f1c",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Ро",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dina-ro"
+    ],
+    "4-players": [
+     "dina-ro"
+    ],
+    "5-players": [
+     "dina-ro"
+    ],
+    "6-players": [
+     "dina-ro"
+    ],
+    "7-players": [
+     "dina-ro"
+    ]
+   },
+   "file": "dina-ro.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/tim-osh.webp",
+   "sha256": "ec2ef4ea97e8700cfff86b5b14c254e697c444d3f0d82c38ea612b9ae33e7f28",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Ош",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-osh"
+    ],
+    "4-players": [
+     "tim-osh"
+    ],
+    "5-players": [
+     "tim-osh"
+    ],
+    "6-players": [
+     "tim-osh"
+    ],
+    "7-players": [
+     "tim-osh"
+    ]
+   },
+   "file": "tim-osh.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/leon-ki.webp",
+   "sha256": "e9bee33e97855492375ba06688d26d35916b5abe9050206943b23a3bea8f0216",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Леон Ки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leon-ki"
+    ],
+    "4-players": [
+     "leon-ki"
+    ],
+    "5-players": [
+     "leon-ki"
+    ],
+    "6-players": [
+     "leon-ki"
+    ],
+    "7-players": [
+     "leon-ki"
+    ]
+   },
+   "file": "leon-ki.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/rin-va.webp",
+   "sha256": "efb76c72d5cc5cdca9eb9eadb103967b946545c8c1520862264c1909bab773f8",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рин Ва",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rin-va"
+    ],
+    "4-players": [
+     "rin-va"
+    ],
+    "5-players": [
+     "rin-va"
+    ],
+    "6-players": [
+     "rin-va"
+    ],
+    "7-players": [
+     "rin-va"
+    ]
+   },
+   "file": "rin-va.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/fold.webp",
+   "sha256": "e45492df7c89e9f2600c156106372188f8a894a06aeef821d3a06071226cf2f3",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Склад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fold"
+    ],
+    "4-players": [
+     "fold"
+    ],
+    "5-players": [
+     "fold"
+    ],
+    "6-players": [
+     "fold"
+    ],
+    "7-players": [
+     "fold"
+    ]
+   },
+   "file": "fold.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/edge.webp",
+   "sha256": "7bc0a2460a58e43b713b5a2cfe756c07358a9e72ebea28877848959ed75c37d1",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "edge"
+    ],
+    "4-players": [
+     "edge"
+    ],
+    "5-players": [
+     "edge"
+    ],
+    "6-players": [
+     "edge"
+    ],
+    "7-players": [
+     "edge"
+    ]
+   },
+   "file": "edge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/side.webp",
+   "sha256": "fe7930449c37e30c89b328ef8fa91b7eadb48480ebb4884f306f62565957d3ac",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "side"
+    ],
+    "4-players": [
+     "side"
+    ],
+    "5-players": [
+     "side"
+    ],
+    "6-players": [
+     "side"
+    ],
+    "7-players": [
+     "side"
+    ]
+   },
+   "file": "side.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/cards/runner.webp",
+   "sha256": "de42968d79397b287f80a9bff6b05a0e0b51421282f128ec69800b02c8c8b05e",
+   "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бегущий Стебель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runner"
+    ],
+    "4-players": [
+     "runner"
+    ],
+    "5-players": [
+     "runner"
+    ],
+    "6-players": [
+     "runner"
+    ],
+    "7-players": [
+     "runner"
+    ]
+   },
+   "file": "runner.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-naya-vek.webp",
+   "sha256": "1c8503944cfda881dd45dfec68b447a35916ea50d18296a6e8de81a5b93820d3",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ная Век",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "naya-vek"
+    ],
+    "4-players": [
+     "naya-vek"
+    ],
+    "5-players": [
+     "naya-vek"
+    ],
+    "6-players": [
+     "naya-vek"
+    ],
+    "7-players": [
+     "naya-vek"
+    ]
+   },
+   "file": "naya-vek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "naya-vek.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-mark-ru.webp",
+   "sha256": "3596f92e3cee2fa0b28d780cb9d5a9b9f3cf93b616513c24fb37846c0c43b29c",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Ру",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-ru"
+    ],
+    "4-players": [
+     "mark-ru"
+    ],
+    "5-players": [
+     "mark-ru"
+    ],
+    "6-players": [
+     "mark-ru"
+    ],
+    "7-players": [
+     "mark-ru"
+    ]
+   },
+   "file": "mark-ru--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mark-ru.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-eli-den.webp",
+   "sha256": "d0b6ba969245f09251db253eebb510bda6451c34a5e9f7be751a248bd447febd",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эли Ден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eli-den"
+    ],
+    "4-players": [
+     "eli-den"
+    ],
+    "5-players": [
+     "eli-den"
+    ],
+    "6-players": [
+     "eli-den"
+    ],
+    "7-players": [
+     "eli-den"
+    ]
+   },
+   "file": "eli-den--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eli-den.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-sana-lis.webp",
+   "sha256": "44244f1b0a4a561641bc21ffdcc4769e201c503fa3e08d7e8bef7004e34bd4c2",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Лис",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "sana-lis"
+    ],
+    "5-players": [
+     "sana-lis"
+    ],
+    "6-players": [
+     "sana-lis"
+    ],
+    "7-players": [
+     "sana-lis"
+    ]
+   },
+   "file": "sana-lis--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sana-lis.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-vets-om.webp",
+   "sha256": "fd7a90284985b1536677c74510a941d2cd5ac9026fce88829892ceb0868c840c",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вец Ом",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "vets-om"
+    ],
+    "6-players": [
+     "vets-om"
+    ],
+    "7-players": [
+     "vets-om"
+    ]
+   },
+   "file": "vets-om--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vets-om.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-ora-tal.webp",
+   "sha256": "dc7c15149e3085243468685f84d2391513694cefdfca911beeced40a209cd4d1",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ора Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ora-tal"
+    ],
+    "7-players": [
+     "ora-tal"
+    ]
+   },
+   "file": "ora-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ora-tal.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/heroes-gero-is.webp",
+   "sha256": "b1ff3dfe355b17a51e8d69969a1a7983de0797ea454d18d47a2a241185ed095d",
+   "originalSha256": "79f3a84ed92ba961e8a8149edeb62573314e3901a951abea5397a96db97d242b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Геро Ис",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "gero-is"
+    ]
+   },
+   "file": "gero-is--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gero-is.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-leaf-bridge.webp",
+   "sha256": "e81b8886c167fbcd5559ab1f58c36a8c3d1bea28517d6732be9f757deb3db022",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Листовой Мост",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leaf-bridge"
+    ],
+    "4-players": [
+     "leaf-bridge"
+    ],
+    "5-players": [
+     "leaf-bridge"
+    ],
+    "6-players": [
+     "leaf-bridge"
+    ],
+    "7-players": [
+     "leaf-bridge"
+    ]
+   },
+   "file": "leaf-bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-sun-square.webp",
+   "sha256": "a0d984ee4fb01de76603a2831c5bf13570d14cf74365c5af030438529409417e",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Солнечная площадь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sun-square"
+    ],
+    "4-players": [
+     "sun-square"
+    ],
+    "5-players": [
+     "sun-square"
+    ],
+    "6-players": [
+     "sun-square"
+    ],
+    "7-players": [
+     "sun-square"
+    ]
+   },
+   "file": "sun-square.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-shade-rail.webp",
+   "sha256": "d351c5e1b7d71c145f360e4bdf5e39b870878dd0df3be940b31a53a22d5241e8",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Теневая ограда",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shade-rail"
+    ],
+    "4-players": [
+     "shade-rail"
+    ],
+    "5-players": [
+     "shade-rail"
+    ],
+    "6-players": [
+     "shade-rail"
+    ],
+    "7-players": [
+     "shade-rail"
+    ]
+   },
+   "file": "shade-rail.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-join-grove.webp",
+   "sha256": "40ac33d9b7c563b1e47550a11b587ced747b5874a1b6d6e009628e6c47e3dbe1",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роща стыков",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "join-grove"
+    ],
+    "4-players": [
+     "join-grove"
+    ],
+    "5-players": [
+     "join-grove"
+    ],
+    "6-players": [
+     "join-grove"
+    ],
+    "7-players": [
+     "join-grove"
+    ]
+   },
+   "file": "join-grove.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-leaf-clock.webp",
+   "sha256": "78897fda19b14202ab79811da9727ec87946903166076c4b6bfa7bafce0b46a8",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Балкон одного листа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leaf-clock"
+    ],
+    "4-players": [
+     "leaf-clock"
+    ],
+    "5-players": [
+     "leaf-clock"
+    ],
+    "6-players": [
+     "leaf-clock"
+    ],
+    "7-players": [
+     "leaf-clock"
+    ]
+   },
+   "file": "leaf-clock.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-gift-house.webp",
+   "sha256": "aa7d4f71dfe03fcc2f856630f2a2f5ac133b4487cfec7c25d35219675b470f22",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом пробных даров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gift-house"
+    ],
+    "4-players": [
+     "gift-house"
+    ],
+    "5-players": [
+     "gift-house"
+    ],
+    "6-players": [
+     "gift-house"
+    ],
+    "7-players": [
+     "gift-house"
+    ]
+   },
+   "file": "gift-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-split-crown.webp",
+   "sha256": "9c53d805b3e96ed8e9c40588ac92898b0e892316425ee59ebb2390ad69ecb4ff",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раздельная крона",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "split-crown"
+    ],
+    "4-players": [
+     "split-crown"
+    ],
+    "5-players": [
+     "split-crown"
+    ],
+    "6-players": [
+     "split-crown"
+    ],
+    "7-players": [
+     "split-crown"
+    ]
+   },
+   "file": "split-crown.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-white-gallery.webp",
+   "sha256": "f023fd82d88d00ada11c6fac07284d60bef9fe0467ede53a3aaef92418c3f191",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Белая галерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-gallery"
+    ],
+    "4-players": [
+     "white-gallery"
+    ],
+    "5-players": [
+     "white-gallery"
+    ],
+    "6-players": [
+     "white-gallery"
+    ],
+    "7-players": [
+     "white-gallery"
+    ]
+   },
+   "file": "white-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-low-deck.webp",
+   "sha256": "7456d98fed021e958fd788974c75f1c2bd091620c8093ac2d6d23bfe05a8285c",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Низкая пристань",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "low-deck"
+    ],
+    "4-players": [
+     "low-deck"
+    ],
+    "5-players": [
+     "low-deck"
+    ],
+    "6-players": [
+     "low-deck"
+    ],
+    "7-players": [
+     "low-deck"
+    ]
+   },
+   "file": "low-deck.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/places-meeting-glade.webp",
+   "sha256": "0ebf70c9a7004930534fe899691ca4fa5a3571d78feeaec7bf1d313a682b3361",
+   "originalSha256": "d4a2ab699dd73ee1b8dca91b5c83e1b5e1218f1a86e33ac33f3989f1db8a9f5f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Поляна ответа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "meeting-glade"
+    ],
+    "4-players": [
+     "meeting-glade"
+    ],
+    "5-players": [
+     "meeting-glade"
+    ],
+    "6-players": [
+     "meeting-glade"
+    ],
+    "7-players": [
+     "meeting-glade"
+    ]
+   },
+   "file": "meeting-glade.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/foes-foe-abc4bac753.webp",
+   "sha256": "513aa23bdf2c771a5949f4f87053f1daa5facde02688bcacfd7bbcb40190af87",
+   "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шагающая учебная ширма",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2"
+    ],
+    "4-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3"
+    ],
+    "5-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3"
+    ],
+    "6-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3",
+     "screen-match-foe-4"
+    ],
+    "7-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3",
+     "screen-match-foe-4",
+     "screen-match-foe-5"
+    ]
+   },
+   "file": "foe-abc4bac753.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/foes-foe-abc4bac753.webp",
+   "sha256": "513aa23bdf2c771a5949f4f87053f1daa5facde02688bcacfd7bbcb40190af87",
+   "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шагающая учебная ширма",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2"
+    ],
+    "4-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3"
+    ],
+    "5-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3"
+    ],
+    "6-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3",
+     "screen-match-foe-4"
+    ],
+    "7-players": [
+     "screen-match-foe-1",
+     "screen-match-foe-2",
+     "screen-match-foe-3",
+     "screen-match-foe-4",
+     "screen-match-foe-5"
+    ]
+   },
+   "file": "foe-abc4bac753--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-abc4bac753.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/foes-foe-d277c1fc8a.webp",
+   "sha256": "fadb17298b557fde61f43a11a10c42cb9d17c46ab9cb65481164922b3879f272",
+   "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Учебная гибкая опора",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2"
+    ],
+    "4-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3"
+    ],
+    "5-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3"
+    ],
+    "6-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3",
+     "support-trial-foe-4"
+    ],
+    "7-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3",
+     "support-trial-foe-4",
+     "support-trial-foe-5"
+    ]
+   },
+   "file": "foe-d277c1fc8a.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/foes-foe-d277c1fc8a.webp",
+   "sha256": "fadb17298b557fde61f43a11a10c42cb9d17c46ab9cb65481164922b3879f272",
+   "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Учебная гибкая опора",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2"
+    ],
+    "4-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3"
+    ],
+    "5-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3"
+    ],
+    "6-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3",
+     "support-trial-foe-4"
+    ],
+    "7-players": [
+     "support-trial-foe-1",
+     "support-trial-foe-2",
+     "support-trial-foe-3",
+     "support-trial-foe-4",
+     "support-trial-foe-5"
+    ]
+   },
+   "file": "foe-d277c1fc8a--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-d277c1fc8a.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/foes-foe-79b2dd8c63.webp",
+   "sha256": "be939338b3d2dfb29e35ae02822b664173fc5443a987e056c4c1e66c8f9efd3f",
+   "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пружинный испытатель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2"
+    ],
+    "4-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3"
+    ],
+    "5-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3"
+    ],
+    "6-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3",
+     "deck-rehearsal-foe-4"
+    ],
+    "7-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3",
+     "deck-rehearsal-foe-4",
+     "deck-rehearsal-foe-5"
+    ]
+   },
+   "file": "foe-79b2dd8c63.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/foes-foe-79b2dd8c63.webp",
+   "sha256": "be939338b3d2dfb29e35ae02822b664173fc5443a987e056c4c1e66c8f9efd3f",
+   "originalSha256": "38a91390b7f2964442eec78d075450042546693bbfe1b69fa6324b489c809f92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пружинный испытатель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2"
+    ],
+    "4-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3"
+    ],
+    "5-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3"
+    ],
+    "6-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3",
+     "deck-rehearsal-foe-4"
+    ],
+    "7-players": [
+     "deck-rehearsal-foe-1",
+     "deck-rehearsal-foe-2",
+     "deck-rehearsal-foe-3",
+     "deck-rehearsal-foe-4",
+     "deck-rehearsal-foe-5"
+    ]
+   },
+   "file": "foe-79b2dd8c63--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-79b2dd8c63.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-ira-fen.webp",
+   "sha256": "9a3e57b6ff120b9d10b2dba3e42c023ce9242d3e7b44af3a0d214516166e8a69",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ира Фен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ira-fen"
+    ],
+    "4-players": [
+     "ira-fen"
+    ],
+    "5-players": [
+     "ira-fen"
+    ],
+    "6-players": [
+     "ira-fen"
+    ],
+    "7-players": [
+     "ira-fen"
+    ]
+   },
+   "file": "ira-fen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ira-fen.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-dina-ro.webp",
+   "sha256": "462c25adc47ad570529ab64cab51d3847f3d49085fd08a74559fc4ba018b7da0",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Ро",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dina-ro"
+    ],
+    "4-players": [
+     "dina-ro"
+    ],
+    "5-players": [
+     "dina-ro"
+    ],
+    "6-players": [
+     "dina-ro"
+    ],
+    "7-players": [
+     "dina-ro"
+    ]
+   },
+   "file": "dina-ro--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dina-ro.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-tim-osh.webp",
+   "sha256": "5db3bf2eff959d8b184615a6af380baa81efc8c0b3758dc5c7a03d0a77219d65",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Ош",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-osh"
+    ],
+    "4-players": [
+     "tim-osh"
+    ],
+    "5-players": [
+     "tim-osh"
+    ],
+    "6-players": [
+     "tim-osh"
+    ],
+    "7-players": [
+     "tim-osh"
+    ]
+   },
+   "file": "tim-osh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tim-osh.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-leon-ki.webp",
+   "sha256": "1530243afca2cff0e782997b820f0e631200ada17a896f488189c576732d133e",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Леон Ки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "leon-ki"
+    ],
+    "4-players": [
+     "leon-ki"
+    ],
+    "5-players": [
+     "leon-ki"
+    ],
+    "6-players": [
+     "leon-ki"
+    ],
+    "7-players": [
+     "leon-ki"
+    ]
+   },
+   "file": "leon-ki--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leon-ki.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-rin-va.webp",
+   "sha256": "37e5f989f785a1e4dcdd6fc6d4a1405282526507e85e394c1a9a9f1d331c9f12",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рин Ва",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rin-va"
+    ],
+    "4-players": [
+     "rin-va"
+    ],
+    "5-players": [
+     "rin-va"
+    ],
+    "6-players": [
+     "rin-va"
+    ],
+    "7-players": [
+     "rin-va"
+    ]
+   },
+   "file": "rin-va--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rin-va.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-fold.webp",
+   "sha256": "098dea2e8c16ae07ad9f32e5bac5d4e953bbe70a3bc39e4217465ff952ce9050",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Склад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fold"
+    ],
+    "4-players": [
+     "fold"
+    ],
+    "5-players": [
+     "fold"
+    ],
+    "6-players": [
+     "fold"
+    ],
+    "7-players": [
+     "fold"
+    ]
+   },
+   "file": "fold--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fold.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-edge.webp",
+   "sha256": "078e1760a988e81b1af9cf2dda0f62ca9549845f75d11ea99fcfa5b9834a959d",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "edge"
+    ],
+    "4-players": [
+     "edge"
+    ],
+    "5-players": [
+     "edge"
+    ],
+    "6-players": [
+     "edge"
+    ],
+    "7-players": [
+     "edge"
+    ]
+   },
+   "file": "edge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "edge.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-side.webp",
+   "sha256": "9a18e317319ff6cc8a5c15aa63c4558ed65c8e24a329c7d0be2fcfbda0b3376c",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "side"
+    ],
+    "4-players": [
+     "side"
+    ],
+    "5-players": [
+     "side"
+    ],
+    "6-players": [
+     "side"
+    ],
+    "7-players": [
+     "side"
+    ]
+   },
+   "file": "side--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "side.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/assets/table/npcs-runner.webp",
+   "sha256": "8b0e54eee766e752d698b93d1a4a79d5180b8bdb02ee80d191aefc93b3f4eb38",
+   "originalSha256": "fd9f91fd8b54a84185c544358e0830a2320ab1210387f114146b2b8d58dbc60d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бегущий Стебель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runner"
+    ],
+    "4-players": [
+     "runner"
+    ],
+    "5-players": [
+     "runner"
+    ],
+    "6-players": [
+     "runner"
+    ],
+    "7-players": [
+     "runner"
+    ]
+   },
+   "file": "runner--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runner.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/root-city/illustrations/opening.webp",
+   "sha256": "8db2dec913c775660e38a6ef8b3b8bedcaab6adb478012d3cca336f44baf8bd3",
+   "originalSha256": "c6ef1338d3761d3aa20ddd8e9e3ebf6dd9b58bb2b84108aeb60685f315c94adc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Солнечная площадь — Город на спине Сада",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "long-light"
+    ],
+    "4-players": [
+     "long-light"
+    ],
+    "5-players": [
+     "long-light"
+    ],
+    "6-players": [
+     "long-light"
+    ],
+    "7-players": [
+     "long-light"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "shade-rail--map.webp",
+   "source": "campaigns/mixed-ages-2026/root-city/assets/battle-maps/shade-rail.webp",
+   "sha256": "c13bdf905087046d5b032f126a129e2b2a8128c232ebf3bdd33927758d013abe",
+   "originalSha256": "500cc1e7138d3aad9e1c54650ae07c8c405d7234183a807f39b8edf88d5067ef",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Теневая ограда. Visible scenery: Низкая ограда перед широким лугом. В её просветах хорошо видны отдельные ветви подошедшего Сада.. World style: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "shade-rail.webp",
+   "subjects": {
+    "3-players": [
+     "shade-rail"
+    ],
+    "4-players": [
+     "shade-rail"
+    ],
+    "5-players": [
+     "shade-rail"
+    ],
+    "6-players": [
+     "shade-rail"
+    ],
+    "7-players": [
+     "shade-rail"
+    ]
+   }
+  },
+  {
+   "file": "join-grove--map.webp",
+   "source": "campaigns/mixed-ages-2026/root-city/assets/battle-maps/join-grove.webp",
+   "sha256": "b3312b12601ca68f3a118d2baefef1a5b16faf8c4e0043e98827df2077fe7376",
+   "originalSha256": "19656a4d498b8be22f49f8b8d8a3e6b0e53928ed84eb37de0e401e3816dfebb2",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Роща стыков. Visible scenery: Открытый участок на краю Сада; гибкие стебли здесь сходятся и расходятся над гладкими камнями.. World style: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "join-grove.webp",
+   "subjects": {
+    "3-players": [
+     "join-grove"
+    ],
+    "4-players": [
+     "join-grove"
+    ],
+    "5-players": [
+     "join-grove"
+    ],
+    "6-players": [
+     "join-grove"
+    ],
+    "7-players": [
+     "join-grove"
+    ]
+   }
+  },
+  {
+   "file": "low-deck--map.webp",
+   "source": "campaigns/mixed-ages-2026/root-city/assets/battle-maps/low-deck.webp",
+   "sha256": "142eec331f8b3569933e5d1ea779c5a2bd7a9ce117b9c46cdecc49941d703e35",
+   "originalSha256": "9c91c76c70f801c9c8428597669073b21dce7f12bdac67d281128df96f86c2b4",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Низкая пристань. Visible scenery: Съёмная площадка у земли, подготовленная для осмотра. Пока никто не подтвердил приглашение, она остаётся на городских подпорках.. World style: Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "low-deck.webp",
+   "subjects": {
+    "3-players": [
+     "low-deck"
+    ],
+    "4-players": [
+     "low-deck"
+    ],
+    "5-players": [
+     "low-deck"
+    ],
+    "6-players": [
+     "low-deck"
+    ],
+    "7-players": [
+     "low-deck"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/root-city/assets/world-map/world-map.webp",
+   "sha256": "e1bc057e29ed3e6ef7413ee2b715decffaafd76db74e384aacac043291667115",
+   "originalSha256": "0c7880c865684e3c82f6666e23799476d5da5f22dafd3b7bfce64ca295bda983",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Долина длинного света. Style Долина длинного света · Interlocking leaf veins and root-shaped street lines in jade marquetry. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Листовой Мост; 0.367,0.177 Солнечная площадь; 0.623,0.15 Теневая ограда; 0.88,0.177 Роща стыков; 0.905,0.517 Балкон одного листа; 0.648,0.49 Дом пробных даров; 0.392,0.517 Раздельная крона; 0.135,0.49 Белая галерея; 0.11,0.83 Низкая пристань; 0.367,0.857 Поляна ответа. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

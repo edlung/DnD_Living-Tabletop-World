@@ -1,0 +1,35 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-ec943255-f194-428c-8444-50601f75e9c9.png",
+      "originalSha256": "eb231fa9c8f34cc403865c66150b5c5a66166881be2d002f97b1102d5f7d6a21",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Атлас Небесных Островов. Art direction: match the following very specific material as a very subtle detail on the case: Aeronautical brass wind vanes and gauzy contour lines stamped on sky-blue linen. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "hero-alta-travel-kit",
+        "hero-brin-travel-kit",
+        "hero-iskra-travel-kit",
+        "hero-lis-travel-kit",
+        "hero-meya-travel-kit",
+        "hero-ruta-travel-kit",
+        "hero-sev-travel-kit",
+        "hero-yara-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "6ea0ee2e2f641d6c6f6f8e502cff2f0d2becd26e034df8583b939bfe564b1b42"
+    }
+  ]
+}

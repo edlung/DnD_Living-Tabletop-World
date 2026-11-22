@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "fa52c66d04a09f70fda2d4c0e4e541b1dfbffaf3bcf38d25731a15f733bc971a",
+    "originalSha256": "ccdd50ecc10cade25f20e17b5ef9d9ea0172335b2516289a4426cac1da3a6a31",
+    "originalFile": "exec-576ed32c-e4fe-4505-85bc-49d6f5d80dce.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Мерров. Style Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Чайная под навесом; 0.367,0.177 Шнуровый двор; 0.623,0.15 Мастерская литер; 0.88,0.177 Комната сверки; 0.905,0.857 Крытая лестница; 0.648,0.83 Дом собраний; 0.392,0.857 Каменный переход; 0.135,0.83 Участок при прачечной. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

@@ -9,6 +9,8 @@ per-encounter battlefields; `maps.ts` draws them. No network, provider or databa
 project's Anthropic adapter and catalog pricing (streamed, effort high, ledger and ceiling per
 campaign; key only from the process environment). Run it only after the owner's decision.
 
+Prepared starts from a campaign's encounter card pass through `formation.ts`, which reserves all squares occupied by a large creature. `foe-blocks.ts` applies the book's size, attack list and attacks per action to its base block. The corresponding dice rehearsal is under `scripts/campaign-balance/`.
+
 Reworked campaigns of any registered series (`series.ts`: `collection-2026`, `fantasy-2026`,
 `dark-fantasy-2026`, `noir-2026`; add a series once its tools load `items.json`) share these entry
 points, addressed as `<series>/<slug>`. For `noir-2026` the writer also has a `case` job

@@ -14,28 +14,35 @@
    "players": 4,
    "label": "4 игрока",
    "file": "packages/four-players.json",
-   "digest": "c4c2c2f1a7724d40330faef21da0339f4242b1fe6f35396c630f44073d825db5"
+   "digest": "dcc4e3279ccff320fc1a556782ed789e137954c322c2b6eac4e4f123ed1b2cb5"
+  },
+  {
+   "id": "original-party",
+   "players": 3,
+   "label": "3 игрока · основной состав",
+   "file": "packages/original-party.json",
+   "digest": "5d09414b20534330a35a2adc9a762d833e04badac5774152570f66cd16b75a4a"
   },
   {
    "id": "without-toren",
    "players": 3,
    "label": "3 игрока, без героя «Торен Риф»",
    "file": "packages/without-toren.json",
-   "digest": "d17ba8f63408a77be8607e9f219fb6ee4f68240f83142d968408008b98ccf63a"
+   "digest": "29773905c4b9b2e5953b8a9ef37b13120c23f6b24f3587ad86c0fa540ce7e93f"
   },
   {
    "id": "without-leya",
    "players": 3,
    "label": "3 игрока, без героя «Лея Скат»",
    "file": "packages/without-leya.json",
-   "digest": "4db3d44dadabc5bfd06e286358c1f892dc0c28ffb74e59ff03a03cb9f7d994f6"
+   "digest": "4654c419ce444c4c44f719cb9e92e7d6661f4006d378606e090935561a6aa73d"
   },
   {
    "id": "without-amalia",
    "players": 3,
    "label": "3 игрока, без героя «Амалия Морева»",
    "file": "packages/without-amalia.json",
-   "digest": "9831669437cf15592d7385b7bb12f742c87deb99189b0687f0f5fb7fa0ada353"
+   "digest": "4edf3437a103df4dd59037b84135265a739971dda5459ccef089b713435ec78c"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -49,6 +56,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "sea"
+    ],
+    "original-party": [
      "sea"
     ],
     "without-toren": [
@@ -78,6 +88,9 @@
     "four-players": [
      "museum"
     ],
+    "original-party": [
+     "museum"
+    ],
     "without-toren": [
      "museum"
     ],
@@ -103,6 +116,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "quay"
+    ],
+    "original-party": [
      "quay"
     ],
     "without-toren": [
@@ -132,6 +148,9 @@
     "four-players": [
      "boat"
     ],
+    "original-party": [
+     "boat"
+    ],
     "without-toren": [
      "boat"
     ],
@@ -157,6 +176,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "market"
+    ],
+    "original-party": [
      "market"
     ],
     "without-toren": [
@@ -186,6 +208,9 @@
     "four-players": [
      "reef"
     ],
+    "original-party": [
+     "reef"
+    ],
     "without-toren": [
      "reef"
     ],
@@ -211,6 +236,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "theatre"
+    ],
+    "original-party": [
      "theatre"
     ],
     "without-toren": [
@@ -240,6 +268,9 @@
     "four-players": [
      "glass"
     ],
+    "original-party": [
+     "glass"
+    ],
     "without-toren": [
      "glass"
     ],
@@ -265,6 +296,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "archive"
+    ],
+    "original-party": [
      "archive"
     ],
     "without-toren": [
@@ -296,6 +330,9 @@
     "four-players": [
      "wreck"
     ],
+    "original-party": [
+     "wreck"
+    ],
     "without-toren": [
      "wreck"
     ],
@@ -321,6 +358,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "nautilus"
+    ],
+    "original-party": [
      "nautilus"
     ],
     "without-toren": [
@@ -350,6 +390,9 @@
     "four-players": [
      "passage"
     ],
+    "original-party": [
+     "passage"
+    ],
     "without-toren": [
      "passage"
     ],
@@ -375,6 +418,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "commons"
+    ],
+    "original-party": [
      "commons"
     ],
     "without-toren": [
@@ -404,6 +450,9 @@
     "four-players": [
      "toren"
     ],
+    "original-party": [
+     "toren"
+    ],
     "without-toren": [],
     "without-leya": [
      "toren"
@@ -427,6 +476,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "leya"
+    ],
+    "original-party": [
      "leya"
     ],
     "without-toren": [
@@ -454,6 +506,9 @@
     "four-players": [
      "amalia"
     ],
+    "original-party": [
+     "amalia"
+    ],
     "without-toren": [
      "amalia"
     ],
@@ -479,6 +534,7 @@
     "four-players": [
      "emil"
     ],
+    "original-party": [],
     "without-toren": [
      "emil"
     ],
@@ -504,6 +560,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "nora"
+    ],
+    "original-party": [
      "nora"
     ],
     "without-toren": [
@@ -533,6 +592,9 @@
     "four-players": [
      "elma"
     ],
+    "original-party": [
+     "elma"
+    ],
     "without-toren": [
      "elma"
     ],
@@ -558,6 +620,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "lucien"
+    ],
+    "original-party": [
      "lucien"
     ],
     "without-toren": [
@@ -587,6 +652,9 @@
     "four-players": [
      "bubo"
     ],
+    "original-party": [
+     "bubo"
+    ],
     "without-toren": [
      "bubo"
     ],
@@ -604,33 +672,6 @@
    "derivedFrom": null
   },
   {
-   "source": "campaigns/moon-pearl/assets/runtime/bubo.webp",
-   "sha256": "da6cf7fd14d3960dc76754afa35dfefa48c8516f7974855c13380615027201be",
-   "originalSha256": "21a03603a0a16b71786c90cf531a4a53a74ab52c28b61e8733a0fc133e3aec37",
-   "generated": "2026-11-08",
-   "prompt": "Use case: illustration-story. Asset: isolated complete friendly crab character cutout, square canvas, truly transparent background, no ground plane, no cast shadow, all legs and pincers inside frame. Character: Бубо. Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
-   "references": [],
-   "subjects": {
-    "four-players": [
-     "bubo"
-    ],
-    "without-toren": [
-     "bubo"
-    ],
-    "without-leya": [
-     "bubo"
-    ],
-    "without-amalia": [
-     "bubo"
-    ]
-   },
-   "file": "bubo--figure.webp",
-   "variant": "derived",
-   "label": "figure",
-   "purpose": "figure",
-   "derivedFrom": "bubo.webp"
-  },
-  {
    "source": "campaigns/moon-pearl/assets/runtime/dora.webp",
    "sha256": "28202c0e87c9bbd4a497e2e1539620459b7132952e6b2baba4016173f38c1303",
    "originalSha256": "b36fb30e025e26c606ccb9f5b73a5428b5943ba9ead23bb6998cf01f67f4508e",
@@ -639,6 +680,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "dora"
+    ],
+    "original-party": [
      "dora"
     ],
     "without-toren": [
@@ -668,6 +712,9 @@
     "four-players": [
      "ostin"
     ],
+    "original-party": [
+     "ostin"
+    ],
     "without-toren": [
      "ostin"
     ],
@@ -693,6 +740,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "vella"
+    ],
+    "original-party": [
      "vella"
     ],
     "without-toren": [
@@ -722,6 +772,9 @@
     "four-players": [
      "ur"
     ],
+    "original-party": [
+     "ur"
+    ],
     "without-toren": [
      "ur"
     ],
@@ -747,6 +800,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "iris"
+    ],
+    "original-party": [
      "iris"
     ],
     "without-toren": [
@@ -781,6 +837,16 @@
      "quay-chase-foe-3",
      "quay-chase-foe-4",
      "quay-chase-foe-5",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "original-party": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
      "auction-hall-foe-1",
      "auction-hall-foe-2"
     ],
@@ -840,6 +906,16 @@
      "auction-hall-foe-1",
      "auction-hall-foe-2"
     ],
+    "original-party": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
     "without-toren": [
      "paper-reception-foe-1",
      "paper-reception-foe-2",
@@ -888,6 +964,9 @@
     "four-players": [
      "pass"
     ],
+    "original-party": [
+     "pass"
+    ],
     "without-toren": [
      "pass"
     ],
@@ -913,6 +992,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "lens"
+    ],
+    "original-party": [
      "lens"
     ],
     "without-toren": [
@@ -942,6 +1024,9 @@
     "four-players": [
      "chime"
     ],
+    "original-party": [
+     "chime"
+    ],
     "without-toren": [
      "chime"
     ],
@@ -967,6 +1052,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "case"
+    ],
+    "original-party": [
      "case"
     ],
     "without-toren": [
@@ -996,6 +1084,9 @@
     "four-players": [
      "ribbon"
     ],
+    "original-party": [
+     "ribbon"
+    ],
     "without-toren": [
      "ribbon"
     ],
@@ -1021,6 +1112,9 @@
    "references": [],
    "subjects": {
     "four-players": [
+     "pearl"
+    ],
+    "original-party": [
      "pearl"
     ],
     "without-toren": [
@@ -1053,6 +1147,9 @@
     "four-players": [
      "glass-copy"
     ],
+    "original-party": [
+     "glass-copy"
+    ],
     "without-toren": [
      "glass-copy"
     ],
@@ -1081,6 +1178,9 @@
    ],
    "subjects": {
     "four-players": [
+     "tide-calendar"
+    ],
+    "original-party": [
      "tide-calendar"
     ],
     "without-toren": [
@@ -1113,6 +1213,9 @@
     "four-players": [
      "courier-tag"
     ],
+    "original-party": [
+     "courier-tag"
+    ],
     "without-toren": [
      "courier-tag"
     ],
@@ -1142,6 +1245,9 @@
     "four-players": [
      "auction-hall-boss"
     ],
+    "original-party": [
+     "auction-hall-boss"
+    ],
     "without-toren": [
      "auction-hall-boss"
     ],
@@ -1169,6 +1275,9 @@
    ],
    "subjects": {
     "four-players": [
+     "auction-hall-boss"
+    ],
+    "original-party": [
      "auction-hall-boss"
     ],
     "without-toren": [
@@ -1201,6 +1310,9 @@
     "four-players": [
      "pinna"
     ],
+    "original-party": [
+     "pinna"
+    ],
     "without-toren": [
      "pinna"
     ],
@@ -1231,6 +1343,9 @@
     "four-players": [
      "timokha"
     ],
+    "original-party": [
+     "timokha"
+    ],
     "without-toren": [
      "timokha"
     ],
@@ -1246,6 +1361,448 @@
    "label": null,
    "purpose": "image",
    "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/heroes-toren.webp",
+   "sha256": "f95993eaa03a44da2c98d908c5f7c1674ff75854b8177b7763687fe676f6a464",
+   "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Торен Риф",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "toren"
+    ],
+    "original-party": [
+     "toren"
+    ],
+    "without-toren": [],
+    "without-leya": [
+     "toren"
+    ],
+    "without-amalia": [
+     "toren"
+    ]
+   },
+   "file": "toren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "toren.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/heroes-leya.webp",
+   "sha256": "0064b9af3f572e97f9c2d249eeeaa30d96dea8daf1126a47dd559b20c3123b74",
+   "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Скат",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "leya"
+    ],
+    "original-party": [
+     "leya"
+    ],
+    "without-toren": [
+     "leya"
+    ],
+    "without-leya": [],
+    "without-amalia": [
+     "leya"
+    ]
+   },
+   "file": "leya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leya.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/heroes-amalia.webp",
+   "sha256": "25d651e0a2fc38ce0ff7aed548e57e0aaf4a07723e5a71c9c5f7d7f67c7a20d2",
+   "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Амалия Морева",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "amalia"
+    ],
+    "original-party": [
+     "amalia"
+    ],
+    "without-toren": [
+     "amalia"
+    ],
+    "without-leya": [
+     "amalia"
+    ],
+    "without-amalia": []
+   },
+   "file": "amalia--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "amalia.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/heroes-emil.webp",
+   "sha256": "1c5194aa76203f5e9de0c15f7d99521c9a1a879357de1bd56c8af3caa07280a2",
+   "originalSha256": "1b3edb8ccf573388baa9b38a2c13188d3fc33d98e552e91969079eb99f431abb",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эмиль Стеклосвет",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "emil"
+    ],
+    "original-party": [],
+    "without-toren": [
+     "emil"
+    ],
+    "without-leya": [
+     "emil"
+    ],
+    "without-amalia": [
+     "emil"
+    ]
+   },
+   "file": "emil--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "emil.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-nora.webp",
+   "sha256": "7f961ad7fceb9ab575f4a858d4fcdc89213fd741196b739581b6e1282368114f",
+   "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Капитан Нора Волнорез",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "nora"
+    ],
+    "original-party": [
+     "nora"
+    ],
+    "without-toren": [
+     "nora"
+    ],
+    "without-leya": [
+     "nora"
+    ],
+    "without-amalia": [
+     "nora"
+    ]
+   },
+   "file": "nora--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nora.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-elma.webp",
+   "sha256": "2c8c89f54dfe617cbef5bb7c8df4b338a2a944a97f24564c2d5034c523a465c2",
+   "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльма Ракит",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "elma"
+    ],
+    "original-party": [
+     "elma"
+    ],
+    "without-toren": [
+     "elma"
+    ],
+    "without-leya": [
+     "elma"
+    ],
+    "without-amalia": [
+     "elma"
+    ]
+   },
+   "file": "elma--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elma.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-lucien.webp",
+   "sha256": "abac4d77951c3e9327de82aef820fea7c8e1837501de077c1097e7f055388bce",
+   "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Люсьен Коралл",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "lucien"
+    ],
+    "original-party": [
+     "lucien"
+    ],
+    "without-toren": [
+     "lucien"
+    ],
+    "without-leya": [
+     "lucien"
+    ],
+    "without-amalia": [
+     "lucien"
+    ]
+   },
+   "file": "lucien--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lucien.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-bubo.webp",
+   "sha256": "8129d8b642401d2400bf284d38680a760bb1b844bc676e3d9c2e133839ad6fa6",
+   "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бубо",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "bubo"
+    ],
+    "original-party": [
+     "bubo"
+    ],
+    "without-toren": [
+     "bubo"
+    ],
+    "without-leya": [
+     "bubo"
+    ],
+    "without-amalia": [
+     "bubo"
+    ]
+   },
+   "file": "bubo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bubo.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-dora.webp",
+   "sha256": "4bc46c88c70233f6802c5ea0c00eca59f694ebfb32160e8b51b8949b99145429",
+   "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дора Стеклянница",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "dora"
+    ],
+    "original-party": [
+     "dora"
+    ],
+    "without-toren": [
+     "dora"
+    ],
+    "without-leya": [
+     "dora"
+    ],
+    "without-amalia": [
+     "dora"
+    ]
+   },
+   "file": "dora--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dora.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-ostin.webp",
+   "sha256": "49264b40784fc73e7c615c96a3dd4a05ba7e3b27c105a08bd606145bc51ae49a",
+   "originalSha256": "65ebe6cef5b99ab3554e8ef790d7174cb30e6c37e8430eaf8eb2f5ad26ca80c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Остин Восемь-Пауз",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ostin"
+    ],
+    "original-party": [
+     "ostin"
+    ],
+    "without-toren": [
+     "ostin"
+    ],
+    "without-leya": [
+     "ostin"
+    ],
+    "without-amalia": [
+     "ostin"
+    ]
+   },
+   "file": "ostin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ostin.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-vella.webp",
+   "sha256": "2e43a995026d8573ddd01fb485021b365fa0472a2228b7784a53b512110ef931",
+   "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Велла Листоплав",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "vella"
+    ],
+    "original-party": [
+     "vella"
+    ],
+    "without-toren": [
+     "vella"
+    ],
+    "without-leya": [
+     "vella"
+    ],
+    "without-amalia": [
+     "vella"
+    ]
+   },
+   "file": "vella--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vella.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-ur.webp",
+   "sha256": "7a6825492ba0a27bcac6cfed4ac8611c3e4c41b025e7af9e5e3666d7be54ddaa",
+   "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Архивариус Ур",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ur"
+    ],
+    "original-party": [
+     "ur"
+    ],
+    "without-toren": [
+     "ur"
+    ],
+    "without-leya": [
+     "ur"
+    ],
+    "without-amalia": [
+     "ur"
+    ]
+   },
+   "file": "ur--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ur.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-iris.webp",
+   "sha256": "cdb5b6f8d9bd43497531fc83df5534a601788d2c205116cd467f2bff098a2743",
+   "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ирис Береговая",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "iris"
+    ],
+    "original-party": [
+     "iris"
+    ],
+    "without-toren": [
+     "iris"
+    ],
+    "without-leya": [
+     "iris"
+    ],
+    "without-amalia": [
+     "iris"
+    ]
+   },
+   "file": "iris--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iris.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-pinna.webp",
+   "sha256": "da28a5663de26ce7a7164b2ca60ba6a83ed6eb1c1e31e225de7e03f04a11213c",
+   "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Служитель Пинна",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "pinna"
+    ],
+    "original-party": [
+     "pinna"
+    ],
+    "without-toren": [
+     "pinna"
+    ],
+    "without-leya": [
+     "pinna"
+    ],
+    "without-amalia": [
+     "pinna"
+    ]
+   },
+   "file": "pinna--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pinna.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/table/npcs-timokha.webp",
+   "sha256": "6c96aa61abc5098d29bf5a93b2333ca6ae653ae4faae2cb1c083d2776ac76e58",
+   "originalSha256": "0e07bf36c9d1c19412caa8c8cae7979bc77f7857f4385a2fcc46e4aaf8e25d71",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимоха Окунь",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "timokha"
+    ],
+    "original-party": [
+     "timokha"
+    ],
+    "without-toren": [
+     "timokha"
+    ],
+    "without-leya": [
+     "timokha"
+    ],
+    "without-amalia": [
+     "timokha"
+    ]
+   },
+   "file": "timokha--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "timokha.webp"
   },
   {
    "file": "glass--map.webp",
@@ -1264,6 +1821,9 @@
    "derivedFrom": "glass.webp",
    "subjects": {
     "four-players": [
+     "glass"
+    ],
+    "original-party": [
      "glass"
     ],
     "without-toren": [
@@ -1296,6 +1856,9 @@
     "four-players": [
      "quay"
     ],
+    "original-party": [
+     "quay"
+    ],
     "without-toren": [
      "quay"
     ],
@@ -1326,6 +1889,9 @@
     "four-players": [
      "nautilus"
     ],
+    "original-party": [
+     "nautilus"
+    ],
     "without-toren": [
      "nautilus"
     ],
@@ -1353,6 +1919,9 @@
    "derivedFrom": null,
    "subjects": {
     "four-players": [
+     "world-map"
+    ],
+    "original-party": [
      "world-map"
     ],
     "without-toren": [
