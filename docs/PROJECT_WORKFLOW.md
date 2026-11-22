@@ -10,13 +10,22 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Scope and limits: `work-orders/FULLSCREEN_SECTIONS_2026-11-21.md`. Client only: the sheet's
   frame (`styles/sheet.css`), each section's layout (`styles/sheet-layouts.css`), the Journal's
   panes and its find-and-kind filter, a journey of its own (`tests/e2e/section-screens.spec.ts`).
-- Status: on branch `claude/fullscreen-sections`; the owner asked on 2026-11-22 to commit and
-  deploy it («Да зафиксируй все и выкати»). Checked locally on 2026-11-22: format, lint,
-  typecheck, context budget, unit 4864; the Chromium journeys 379 of 380 (the one red, `party-known.spec.ts:48`, runs its worker out of memory on
-  `main` too, with none of these changes); every section looked at and measured at 1920, 1440,
-  1280, 1024, 768, 390 and 320 px and at 844×390, and through the layout audit. Not run: the
-  iPad and WebKit journeys (WebKit is not installed on this machine), integration and the
-  deployment's journeys (nothing they cover changed).
+- Status: merged and deployed on 2026-11-22 on the owner's word («Да зафиксируй все и выкати»,
+  then «Проверь и выкати»). PR 69 merged on green CI as `main` 28869cab (its tree is the tested
+  commit 3c885650). CI's third journeys shard first ran out of its 25 minutes on a slow runner
+  with no journey failed (135 of 137 run) and passed when run again; the iPad and WebKit
+  journeys ran there for the first time. Checked locally before: format, lint, typecheck,
+  context budget, unit 4864; the Chromium journeys 379 of 380 (the one red,
+  `party-known.spec.ts:48`, ran its worker out of memory on `main` too; its cause, a page that
+  read without end, is fixed on `claude/known-read-storm`, not merged); every section looked at
+  and measured at 1920, 1440, 1280, 1024, 768, 390 and 320 px and at 844×390, in English and in
+  Russian, and through the layout audit.
+- Deployed to the VPS on 2026-11-22: git bundle `1df18e1d..28869cab`, tag `28869cab3a7a`
+  (previous `1df18e1dc0e3`), protected dump `ltw-predeploy-20261122T075406Z.dump`, no
+  migrations; every service healthy, `readyz` 200, no errors in the logs, the site serves the
+  bundle built from the same commit and its sign-in page opens. Not checked signed in on the
+  live site (that needs the owner's sign-in); the Players and Table screen sections were not
+  looked at by eye.
 - Remaining scroll of a section's body at 1440×900 / 1024×768, DM: Party 723 / 1525 px, Session
   527 / 890 px, Dice 0 / 210 px, Time 0 / 39 px; every other section 0 (Places and the Journal
   scroll inside their panes). Before, at 1440×900: Party 3118, Session 2115, Journal 2167, Dice
