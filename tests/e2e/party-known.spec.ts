@@ -3,6 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import boundary from '../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
+import { expectReadsSettle } from './support/live.ts';
 import { closePages, freshPage } from './support/pages.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openChronicle } from './support/shell.ts';
@@ -70,6 +71,8 @@ test('what the party knows is one page, the same for the DM and a player', async
   await expect(people.getByRole('heading', { level: 4, name: 'Mira Vale' })).toBeVisible(WAIT);
   const places = mine.known.getByRole('region', { name: /^Places/ });
   await expect(places.getByRole('heading', { level: 4, name: 'Market Square' })).toBeVisible();
+  // Shown, the page has read what it shows and reads no more until the world changes.
+  await expectReadsSettle([player]);
   // What the party knows of someone is under their name.
   const mira = people.locator('.known-entry').filter({
     has: player.getByRole('heading', { level: 4, name: 'Mira Vale' }),
@@ -98,6 +101,8 @@ test('what the party knows is one page, the same for the DM and a player', async
   const names = async (page: Page) =>
     page.locator('dialog.chronicle-dialog .known-entry h4').allTextContents();
   expect(await names(dm)).toEqual(await names(player));
+  // Read once more, and quiet again: all the DM's page was sent is in hand below.
+  await expectReadsSettle([dm, player]);
   const shown = await theirs.known.innerHTML();
   const sent = await dmReads();
   expect(sent.length).toBeGreaterThan(0);
