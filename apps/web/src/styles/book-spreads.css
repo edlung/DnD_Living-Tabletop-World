@@ -1,0 +1,93 @@
+/*
+ * The parts' pages as spreads (docs/adr/0075-book-interface.md §7). A page of the book is one
+ * sheet of paper; where it holds two things side by side, they are its two pages with the fold
+ * between them.
+ */
+
+/*
+ * The hero's sheet: the card (portrait, name, class, hit points and the four figures) is the left
+ * page, the sheet's tabs the right. On the book's paper the card takes the page's ground instead of
+ * the campaign's dark binding, which its ink could not be read on.
+ */
+.hero-dialog[data-surface='paper'] .hero-card {
+  border-right: 0;
+  border-color: var(--line);
+  background: linear-gradient(to left, rgb(43 32 21 / 0.22), transparent 28px);
+  color: var(--page-ink);
+}
+.hero-dialog[data-surface='paper'] .hero-name {
+  color: var(--rubric);
+}
+.hero-dialog[data-surface='paper'] .hero-level {
+  background: var(--page);
+  box-shadow: 0 0 0 3px rgb(43 32 21 / 0.18);
+}
+@media (min-width: 900px) {
+  .hero-dialog[data-surface='paper'] .hero-frame {
+    grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.4fr);
+  }
+  .hero-dialog[data-surface='paper'] .hero-main {
+    background: linear-gradient(to right, rgb(43 32 21 / 0.16), transparent 28px);
+  }
+}
+
+/*
+ * A phone's Scene is one page of the book: its picture at the head, the place's words, who and
+ * what is here and the ways beyond on the book's paper under it, inside the binding's margins.
+ * The scene is a column item there, so the book's page inset is the stage's margin, not an offset.
+ */
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
+  .world-main[data-book] > .stage:not(.stage--battle) {
+    margin: var(--pages-h) var(--parts-w) 10px 10px;
+    border-radius: 8px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+  }
+  .world-main[data-book] > .stage:not(.stage--battle) > .scene {
+    inset: auto;
+  }
+  /* What lies on the picture — the place's name, who is at the table — is a label of paper on it. */
+  .world-main[data-book]
+    .scene[data-surface='paper']:not([data-spread])
+    :is(.cartouche, .rail-dm, .rail-member) {
+    background: var(--page);
+    backdrop-filter: none;
+  }
+  /* The quiet row stands over the page's foot: its buttons keep a ground of their own. */
+  .world-main[data-book]:has(> .stage:not(.stage--battle)) :is(.hint-button, .pause-ask-button) {
+    background-color: var(--ink-900);
+  }
+}
+@media (max-width: 700px) {
+  .world-main[data-book] > .stage:not(.stage--battle) {
+    margin: var(--pages-h) 6px 64px;
+  }
+}
+
+/*
+ * A section of two things side by side is a spread: the World's places (the map on the left page,
+ * the choice of place and the ways on the right), the blank pages of "Add to the world" (the words
+ * for the AI and the editors by hand) and the Encounter (the fights ready to start and a fight
+ * with who is here). Its two pages are equal, the fold in the gutter between them.
+ */
+@media (min-width: 1000px) and (min-height: 600px) {
+  .world-main[data-book] .sheet--places .places:has(.map-canvas),
+  .world-main[data-book] .sheet--add .sheet-body,
+  .world-main[data-book] .dm-combat:has(> .encounter-start) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 64px;
+  }
+  .world-main[data-book]
+    :is(.sheet--places:has(.map-canvas), .sheet--add, .sheet--encounter)
+    > .sheet-body {
+    background: linear-gradient(
+      to right,
+      transparent calc(50% - 26px),
+      rgb(43 32 21 / 0.08) calc(50% - 2px),
+      rgb(43 32 21 / 0.22) 50%,
+      rgb(255 250 238 / 0.3) calc(50% + 2px),
+      transparent calc(50% + 26px)
+    );
+  }
+}

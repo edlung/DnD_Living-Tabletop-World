@@ -9,7 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
-- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign); Stage 1060 §6 (the fight as a fold-out).
+- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign); Stage 1060 §6 (the fight as a fold-out); Stage 1070 §7 (the parts' pages as spreads).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -161,6 +161,22 @@
 3. **Nothing of the fight changes**: its commands, its rules, the board's drawing, the battle maps
    and the figures stay as they are (ADR 0035, 0045, 0057); a player's bookmarks still run along
    the bottom of a fight (§4).
+
+### 7. The parts' pages as spreads (Stage 1070)
+
+1. **The hero's sheet is a spread**: the card (portrait, name, class, hit points and the four
+   figures) the left page, the sheet's tabs the right, the fold between, on the book's paper — the
+   campaign's dark binding no longer lies under the card's ink.
+2. **A section of two things side by side is a spread**: the World's places (the map and the
+   choice of place), the blank pages of "Add to the world" (the words for the AI and the editors by
+   hand) and the Encounter (the fights ready and a fight with who is here): two equal pages, the
+   fold in the gutter. Sections of one thing or of many cards stay one wide page.
+3. **A phone's Scene is one page of the book**: its picture at the head and the place's words, who
+   and what is here and the ways beyond on the book's paper under it (§5.2).
+4. (S) Deferred, each to the stage of its part's rebuild: the party's own page beside a hero's
+   spread, pictures on their plates, the time and weather in a running head, handouts and asks as
+   slips, the Chronicle inside the book, the world map as a fold-out. The sections keep their
+   forms and controls meanwhile; nothing a DM or a player can do changes.
 
 ## Consequences
 
