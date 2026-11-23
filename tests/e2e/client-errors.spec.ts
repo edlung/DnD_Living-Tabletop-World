@@ -145,7 +145,7 @@ test('a player’s screen breaks: they load the game again, and the DM alone rea
   await player.getByLabel('Access token', { exact: true }).fill(TOKENS.player);
   await player.getByLabel('Campaign', { exact: true }).fill(campaign);
   await player.getByRole('button', { name: 'Enter world', exact: true }).click();
-  await expect(player.locator('nav.dock')).toBeVisible(WAIT);
+  await expect(player.locator('nav.book-parts')).toBeVisible(WAIT);
   // A player has no such notice, broken screen or not.
   await expect(player.locator('.trouble-notice')).toHaveCount(0);
 

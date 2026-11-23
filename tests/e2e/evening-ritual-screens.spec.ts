@@ -70,7 +70,7 @@ test('the next evening opens with “Previously…” on the TV and an online pl
   const link = await invite(dm, 'Elowen Starwhisper');
   const player = await freshPage(browser);
   await openInvitation(player, link);
-  await expect(player.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(player.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // The DM closes the evening with a line of their own and keeps the TV paired.
   await openSheet(dm, 'Session');

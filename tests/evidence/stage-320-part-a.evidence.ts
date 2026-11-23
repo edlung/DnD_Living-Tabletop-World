@@ -96,7 +96,7 @@ async function signIn(page: Page, words: Words, token: string, campaign: string)
   await page.getByLabel(words.campaign, { exact: true }).fill(campaign);
   await page.getByLabel(words.token, { exact: true }).fill(token);
   await page.getByRole('button', { name: words.enter, exact: true }).click();
-  await expect(page.locator('nav.dock')).toBeVisible();
+  await expect(page.locator('nav.book-parts')).toBeVisible();
 }
 
 for (const [lang, words] of Object.entries(LANGUAGES)) {

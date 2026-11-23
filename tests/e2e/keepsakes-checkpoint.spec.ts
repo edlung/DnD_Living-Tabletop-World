@@ -97,8 +97,8 @@ test('a last evening, the campaign’s end and its book, on every screen', async
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);
   await openInvitation(brann, await field.inputValue());
-  await expect(elowen.locator('nav.dock')).toBeVisible(LIVE);
-  await expect(brann.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(elowen.locator('nav.book-parts')).toBeVisible(LIVE);
+  await expect(brann.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // 1. Small comforts in play. Brann applauds: the TV, the DM and Elowen see whose it is.
   await openSheet(brann, 'Dice');

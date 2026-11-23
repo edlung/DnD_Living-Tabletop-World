@@ -159,7 +159,9 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
 
   // Nothing the player received over the network ever named the discarded candidate.
   await received.assertPlayerBoundary([first.contentHash, first.assetId, `${TOMAS}#`]);
-  await expect(player.locator('nav.dock').getByRole('button', { name: 'Images' })).toHaveCount(0);
+  await expect(
+    player.locator('nav.book-pages').getByRole('button', { name: 'Images', includeHidden: true }),
+  ).toHaveCount(0);
 });
 
 test('a failed request says why and is tried again from the Images sheet', async ({ page }) => {

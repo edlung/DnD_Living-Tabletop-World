@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
-import { dockButton, openCharacter } from './support/shell.ts';
+import { bookPart, openCharacter } from './support/shell.ts';
 
 /**
  * The character dialog (Stage 500, work-orders/STAGE_500.md): the acting character's card and the
@@ -40,10 +40,10 @@ test('the dock opens the character: card, abilities, attacks, skills and spells'
   await expect(spells.locator('.slot-row')).toHaveCount(6);
   await expectPlayerBoundary(page);
 
-  // Escape closes it, and focus returns to the dock's button.
+  // Escape closes it, and focus returns to the Hero's bookmark that opened it.
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
-  await expect(dockButton(page, 'Character')).toBeFocused();
+  await expect(bookPart(page, 'Hero')).toBeFocused();
 });
 
 test('a Russian character reads only Russian', async ({ page }) => {

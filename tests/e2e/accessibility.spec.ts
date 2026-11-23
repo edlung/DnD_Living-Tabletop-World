@@ -5,7 +5,7 @@ import { dmRequest, TOMAS_REQUEST } from './support/authoring.ts';
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { battlefield, clickSquare, square, turnTray } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { closeSheet, dockButton, openSheet, revealDockButton } from './support/shell.ts';
+import { bookPart, closeSheet, openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * Accessibility at the three widths (docs/STAGE_320_DESIGN.md §6–7): automated axe scans of
@@ -166,8 +166,8 @@ test('the Russian scene with a selection passes axe at phone width', async ({ pa
 
 test('Escape closes the topmost sheet, panel or book and returns focus', async ({ page }) => {
   await enterWorld(page);
-  const places = dockButton(page, 'Places');
-  await places.focus();
+  // The World's bookmark opens its first page, Places (docs/adr/0075-book-interface.md §4).
+  await bookPart(page, 'World').focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#sheet-places')).toBeFocused();
   // The selection opened after the sheet is the topmost: Escape closes it first.
@@ -182,9 +182,9 @@ test('Escape closes the topmost sheet, panel or book and returns focus', async (
   await expect(page.locator('#sheet-places')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#sheet-places')).toBeHidden();
-  await expect(places).toBeFocused();
-  // The Chronicle is a modal book: Escape closes it and focus returns to the dock.
-  const chronicle = dockButton(page, 'Chronicle');
+  await expect(bookPart(page, 'Scene')).toBeFocused();
+  // The Chronicle is a modal book: Escape closes it and focus returns to its tab.
+  const chronicle = await revealDockButton(page, 'Chronicle');
   await chronicle.click();
   await expect(page.getByRole('dialog', { name: 'Chronicle' })).toBeVisible();
   await page.keyboard.press('Escape');

@@ -100,8 +100,8 @@ test('one evening from the agreement to “Previously…”, on every screen', a
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);
   await openInvitation(brann, await field.inputValue());
-  await expect(elowen.locator('nav.dock')).toBeVisible(LIVE);
-  await expect(brann.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(elowen.locator('nav.book-parts')).toBeVisible(LIVE);
+  await expect(brann.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // 1. The agreement: written, shown on the TV, read and understood by both players.
   await openSheet(dm, 'Session');

@@ -127,6 +127,8 @@ registerRussian({
   World: 'Мир',
   'Pages of this part': 'Страницы части',
   'Parts of the book': 'Части книги',
+  // A hero's book (Stage 1040)
+  Hero: 'Герой',
   'Take the ribbon back': 'Вернуть закладку',
   'The right page': 'Правая страница',
   'Part {number} of {parts}': 'Часть {number} из {parts}',
