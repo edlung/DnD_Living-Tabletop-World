@@ -9,7 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
-- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign); Stage 1060 §6 (the fight as a fold-out); Stage 1070 §7 (the parts' pages as spreads).
+- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign); Stage 1060 §6 (the fight as a fold-out); Stage 1070 §7 (the parts' pages as spreads); Stage 1080 §8 (the dice at the foot of every page).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -177,6 +177,19 @@
    spread, pictures on their plates, the time and weather in a running head, handouts and asks as
    slips, the Chronicle inside the book, the world map as a fold-out. The sections keep their
    forms and controls meanwhile; nothing a DM or a player can do changes.
+
+### 8. The dice at the foot of every page (Stage 1080)
+
+1. **Every page of both books has the dice at its foot**: a tray across the binding's lower edge
+   under the page with the seven dice, the last roll the table saw and "More dice" to the Dice
+   page. One press rolls one die for the table: the server rolls it and the dice fly for everyone
+   who may see them, as a free roll of the Dice page does (Stage 510); nothing new is sent.
+2. On a phone the tray lies above the bookmarks along the bottom with the three dice a table
+   reaches for most (d20, d6, d8); what kept clear of the dock keeps clear of it.
+3. In a fight the turn tray is the page's foot and the dice tray steps aside.
+4. (S) The Table's and the Rules' pages keep their sections as Stage 1030 put them in the book;
+   the meeting as a page with "Previously…", sound and music, and the rules as an appendix opened
+   from a rule's word are deferred with the parts of §7.4.
 
 ## Consequences
 

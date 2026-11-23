@@ -13,8 +13,9 @@ import { bookPart, dockButton, expectOnTop, openSheet } from './support/shell.ts
 const sheetOf = (page: Page, id: string) => page.locator(`#sheet-${id}`);
 
 /**
- * How far the section's edges are from the book's page: from the tabs' foot to the binding's
- * edge below, from the binding's edge on the left to the bookmarks (10 px of binding each side).
+ * How far the section's edges are from the book's page: from the tabs' foot to the dice at the
+ * page's foot (10 px of binding above them), from the binding's edge on the left to the bookmarks
+ * (10 px of binding).
  */
 async function offPage(page: Page, id: string): Promise<number> {
   return sheetOf(page, id).evaluate((sheet) => {
@@ -24,11 +25,13 @@ async function offPage(page: Page, id: string): Promise<number> {
     if (!stage || !tabs || !parts) return Number.POSITIVE_INFINITY;
     const a = sheet.getBoundingClientRect();
     const b = stage.getBoundingClientRect();
+    const main = sheet.closest('.world-main');
+    const foot = main ? Number.parseFloat(getComputedStyle(main).getPropertyValue('--foot-h')) : 0;
     return Math.max(
       Math.abs(a.left - (b.left + 10)),
       Math.abs(a.top - tabs.getBoundingClientRect().bottom),
       Math.abs(a.right - parts.getBoundingClientRect().left),
-      Math.abs(a.bottom - (b.bottom - 10)),
+      Math.abs(a.bottom - (b.bottom - 10 - foot)),
     );
   });
 }

@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 
 import { PartIcon } from '../book-kit/kit.tsx';
 import type { BookPart } from '../book-kit/materials.ts';
+import { BookFoot } from '../dice/book-foot.tsx';
 import { useDiceTable } from '../dice/table.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -374,5 +375,10 @@ export function WorldBookParts({
           shell.openHero(heroId);
         },
   );
-  return <BookParts shell={shell} parts={isDm ? dm : hero} />;
+  return (
+    <>
+      <BookParts shell={shell} parts={isDm ? dm : hero} />
+      <BookFoot shell={shell} />
+    </>
+  );
 }
