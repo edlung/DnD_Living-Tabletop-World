@@ -299,11 +299,15 @@ function EditorContent({
           {t('Save, retry or explicitly discard the pending edit before leaving this scenario.')}
         </p>
       )}
+      {/* The scenario is the manuscript read on its pages (ADR 0075 §11); the other sections come
+          to the book in Stage 1130. */}
       <div
         id="workshop-editor-panel"
         role="tabpanel"
         aria-labelledby={`workshop-tab-${tab}`}
         tabIndex={0}
+        className={tab === 'scenario' ? 'workshop-manuscript-page' : undefined}
+        data-surface={tab === 'scenario' ? 'paper' : undefined}
       >
         {tab === 'scenario' ? (
           <>

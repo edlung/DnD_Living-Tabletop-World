@@ -175,7 +175,7 @@ export function World({
   });
 
   const directory = data?.directory.entities ?? [];
-  // The authoring session outlives each refresh, so it keeps the last directory meanwhile.
+  // Authoring and an open hero's sheet outlive a refresh: they keep the last directory meanwhile.
   const knownDirectory = useRef<readonly EntityRef[]>([]);
   if (data) knownDirectory.current = data.directory.entities;
   const locations = directory.filter((entity) => entity.kind === 'location');
@@ -436,7 +436,7 @@ export function World({
               revision={revision}
               isDm={isDm}
               ready={data !== null}
-              directory={directory}
+              directory={data?.directory.entities ?? knownDirectory.current}
               scenePlaceId={data?.directory.scenePlaceId ?? null}
               actorId={actorId}
               canAct={canAct || standIn !== null}

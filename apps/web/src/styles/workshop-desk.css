@@ -1,0 +1,208 @@
+/*
+ * The manuscript, first part (docs/adr/0075-book-interface.md §11): the workshop's home is the
+ * writer's desk — a blank sheet for a new draft, each draft a manuscript of loose pages, each
+ * confirmed campaign a bound book in its own binding (the shelf's book, `styles/shelf.css`); a
+ * draft's scenario is read as the manuscript, its contents on the left page and the page itself on
+ * the right; a comparison of revisions is two proofs side by side. Paper is the token scope and
+ * the product's paper (`--book-paper` of the `ltw` set); nothing is drawn but the layout.
+ */
+
+/* A sheet on the desk: the new draft's blank page and every manuscript. */
+.workshop-sheet,
+.workshop-manuscript,
+.workshop-manuscript-page {
+  border: 0;
+  border-radius: 3px;
+  background: var(--book-paper) center / 512px;
+  background-color: #efe5cc;
+  box-shadow: 0 14px 28px -12px rgb(0 0 0 / 0.85);
+}
+
+/* The drafts lie on the desk itself: their heading over the blotter, each a manuscript. */
+.workshop-manuscripts {
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.workshop-manuscripts h2,
+.workshop-owned-campaigns h2 {
+  color: var(--gold-bright);
+}
+.workshop-manuscripts .workshop-draft-list {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  max-height: none;
+  overflow: visible;
+}
+.workshop-draft-list > .workshop-manuscript {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-height: 9rem;
+  padding: 20px 20px 16px;
+  border-top: 0;
+  /* A stack of loose pages: two edges peeking out under the top one. */
+  box-shadow:
+    4px 4px 0 -1px #e2d5b6,
+    8px 8px 0 -2px #d6c7a4,
+    0 16px 28px -12px rgb(0 0 0 / 0.85);
+}
+.workshop-manuscript h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+.workshop-manuscript h3 a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--text);
+}
+
+/* The confirmed campaigns: bound books lying on the desk in their own bindings. */
+.workshop-owned-campaigns {
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.workshop-campaign-list.shelf-row > .shelf-item {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.workshop-campaign-list .shelf-stand {
+  padding-bottom: 0;
+  background: none;
+}
+.workshop-campaign-list .shelf-label h3 {
+  font-size: 1.05rem;
+}
+.workshop-campaign-list .shelf-label a {
+  color: var(--teal);
+}
+
+/* The draft: its title over the desk, the sections as bookmarks on the page's top edge. */
+.workshop-editor-heading h2 {
+  color: var(--text);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+.workshop-tabs {
+  gap: 8px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.workshop-tabs [role='tab'] {
+  border-bottom-width: 0;
+  border-radius: 8px 8px 0 0;
+}
+.workshop-tabs [role='tab'][aria-selected='true'] {
+  border-color: transparent;
+  background: var(--book-paper) center / 512px;
+  background-color: #efe5cc;
+  color: #2b2015;
+}
+.workshop-manuscript-page {
+  margin-top: calc(-1 * var(--gutter));
+  padding: clamp(16px, 2.4vw, 32px);
+  border-radius: 0 4px 4px 4px;
+}
+
+/* Reading the manuscript: its contents on the left page, the page itself on the right. */
+.workshop-manuscript-page .scenario-layout {
+  gap: 0;
+}
+.workshop-manuscript-page .scenario-overview,
+.workshop-manuscript-page .scenario-inspector {
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.workshop-manuscript-page .scenario-overview {
+  padding: 4px 24px 4px 0;
+  box-shadow: inset -1px 0 0 var(--line-strong);
+  background: linear-gradient(to left, rgb(43 32 21 / 0.1), transparent 24px);
+}
+.workshop-manuscript-page .scenario-inspector {
+  padding: 4px 0 4px 32px;
+}
+.workshop-manuscript-page .scenario-inspector h3 {
+  font-size: 1.75rem;
+}
+
+/*
+ * A new manuscript from the library: each campaign's card in its own paper under its cover. A
+ * campaign's theme dresses dark furniture and lightens the gold for a dark ground; on the page the
+ * page's ink stays.
+ */
+.workshop-manuscript-page [data-campaign-theme] {
+  --gold: #6a4400;
+  --gold-bright: #5e3c00;
+}
+.workshop-manuscript-page [data-campaign-theme] .campaign-library-body {
+  border: 0;
+  background: var(--book-paper) center / 512px;
+  background-color: #f6efdf;
+}
+.workshop-manuscript-page .campaign-library-card {
+  border: 0;
+  box-shadow: 0 10px 20px -10px rgb(0 0 0 / 0.7);
+}
+.workshop-manuscript-page .campaign-library-meta {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+/* Two proofs side by side: the revision before on the left, after on the right; on a phone one
+   above the other. */
+.workshop-manuscript-page .campaign-change-list > li {
+  background: none;
+}
+.workshop-manuscript-page .campaign-diff-sides {
+  gap: 12px;
+}
+.workshop-manuscript-page .campaign-diff-value {
+  border-radius: 0;
+  background: var(--book-paper) center / 512px;
+  background-color: #f6efdf;
+  box-shadow: 0 6px 12px -8px rgb(0 0 0 / 0.6);
+}
+.workshop-manuscript-page .campaign-diff-value h4 {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Narrower than a spread the contents stand above the page (as workshop-scenario.css stacks them). */
+@media (max-width: 1099px) {
+  .workshop-manuscript-page .scenario-overview {
+    padding: 0 0 16px;
+    box-shadow: inset 0 -1px 0 var(--line-strong);
+    background: none;
+  }
+  .workshop-manuscript-page .scenario-inspector {
+    padding: 16px 0 0;
+  }
+}
+/* On a phone the four bookmarks keep to one row. */
+@media (max-width: 600px) {
+  .workshop-tabs {
+    flex-wrap: nowrap;
+  }
+  .workshop-tabs [role='tab'] {
+    flex: 1 1 auto;
+    padding-inline: 8px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+}
+/* Narrower still, the row of bookmarks scrolls, its far edge fading where more waits. */
+@media (max-width: 359px) {
+  .workshop-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+  }
+  .workshop-tabs [role='tab'] {
+    flex: 0 0 auto;
+  }
+}

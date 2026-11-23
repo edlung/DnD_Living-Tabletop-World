@@ -233,6 +233,23 @@
 7. (S) Deferred: the ready adventures have no cover picture of their own on their books; the
    shelf's own books are not ordered or grouped by the account.
 
+### 11. The manuscript: the desk and the pages (Stage 1110)
+
+1. **The workshop's home is the writer's desk** (the `ltw` set's desk, a Codex CLI picture): a new
+   draft is a blank sheet; each draft a manuscript of loose pages; each confirmed campaign a bound
+   book in its own binding, the shelf's book with its label (enter it, open its source draft).
+   The way into the workshop and its sign-in lie on the same desk.
+2. **A draft's scenario is the manuscript read on its pages**: the sections are bookmarks on the
+   page's top edge; the scenario on the book's paper; its contents on the left page and the page of
+   the object read on the right, with the fold between; below 1100 px the contents stand above.
+3. **A new manuscript from the library**: each campaign's card in its own paper under its cover.
+4. **Revisions compared are two proofs side by side** — before on the left, after on the right — on
+   a phone one above the other.
+5. Nothing of the workshop's contract changes: the owner's boundary, the requests and their nonces,
+   locks and conflicts stay as they are (`workshop/AGENTS.md`). Editing in place is Stage 1120; the
+   co-author, plates, proof copies and binding — Generation, World preview and Activation — come to
+   the book in Stage 1130, and until then keep their glass.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

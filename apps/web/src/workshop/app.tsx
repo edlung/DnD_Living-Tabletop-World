@@ -4,7 +4,7 @@ import { flushSync } from 'react-dom';
 
 import { nativeShell } from '../native/shell.ts';
 import type { InvitationHolder } from '../session/invitation-link.ts';
-import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
+import { ornamentUrl } from '../visual/ui-kit.ts';
 import { WorkshopAccess, type AccessKind } from './access.tsx';
 import { DeferredWorkshopPrivate } from './deferred-private.tsx';
 import type { WorkshopStart } from './start.ts';
@@ -149,7 +149,8 @@ function WorkshopPage({
   };
   return (
     <main className="workshop">
-      <img className="workshop-art" src={textureUrl('brand-keyart')} alt="" />
+      {/* The writer's desk of the product's book (docs/adr/0075-book-interface.md §11). */}
+      <div className="workshop-art workshop-desk" aria-hidden="true" />
       <div className="workshop-scrim" aria-hidden="true" />
       <div className="workshop-content">
         {!restricted && (
