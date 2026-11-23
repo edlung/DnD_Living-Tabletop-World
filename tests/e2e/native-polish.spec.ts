@@ -58,7 +58,9 @@ const sounds = async (page: Page) =>
 test("LTW DM sets its TV's sound; the TV's window plays without a press", async ({ browser }) => {
   test.setTimeout(90_000);
   const dm = await withShell(browser, { app: 'dm', features: ['tv', 'tv-sound'] });
-  await joinAsDm(dm, SIGN_IN_CAMPAIGNS.native, 2);
+  // A campaign of its own: the TV it pairs stayed on `native-shell.spec.ts`'s list of paired
+  // screens when the two ran on one server ("Paired screens: 2 of 4", CI 2026-11-23).
+  await joinAsDm(dm, SIGN_IN_CAMPAIGNS.nativePolish, 0);
   // A TV that comes hears the DM's choice at once: on, at the default volume.
   await tell(dm, { type: 'tv', state: 'connected' });
   await expect.poll(() => sounds(dm), LIVE).toEqual([{ type: 'tv-sound', on: true, volume: 70 }]);
