@@ -15,30 +15,30 @@ export function Pocket({ pocket }: { readonly pocket: CampaignBookPocket }) {
     <details className="dmb-secret">
       <summary>{t('The DM’s pocket')}</summary>
       <h4>{t('Rumours')}</h4>
-      <ul>
+      <div>
         {pocket.rumours.map((rumour) => (
-          <li key={rumour.text}>
+          <p key={rumour.text}>
             {rumour.text} <strong>{t(TRUTH[rumour.truth])}.</strong> {rumour.note}
-          </li>
+          </p>
         ))}
-      </ul>
+      </div>
       <h4>{t('Places off the road')}</h4>
-      <ul>
+      <div>
         {pocket.places.map((place) => (
-          <li key={place.name}>
+          <p key={place.name}>
             <strong>{place.name}.</strong> {place.text}
-          </li>
+          </p>
         ))}
-      </ul>
+      </div>
       <h4>{t('Passers-by')}</h4>
-      <ul>
+      <div>
         {pocket.people.map((person) => (
-          <li key={person.name}>
+          <p key={person.name}>
             <strong>{person.name}.</strong> {person.look} {person.line} <em>{t('Can tell:')}</em>{' '}
             {person.knows}
-          </li>
+          </p>
         ))}
-      </ul>
+      </div>
     </details>
   );
 }
