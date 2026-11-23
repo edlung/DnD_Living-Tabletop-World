@@ -48,19 +48,33 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
   for (const src of covers.slice(0, 3)) expect((await dm.request.get(src)).status()).toBe(200);
   await expectAccessible(dm, 'the hub with the campaign library');
 
-  // Rain check, for the smallest party it offers.
-  const card = cards.filter({ has: dm.getByRole('button', { name: /^Start «/ }) }).first();
+  // A campaign is a book on the shelf; "Look inside the book" opens its first page, where the
+  // smallest party it offers starts it.
+  const card = cards
+    .filter({ has: dm.getByRole('button', { name: /^Look inside the book «/ }) })
+    .first();
   const theme = await card.getAttribute('data-campaign-theme');
   expect(theme).toBeTruthy();
   const material = await dm.request.get(`/table-materials/${theme}.webp`);
   expect(material.status()).toBe(200);
   expect(material.headers()['content-type']).toMatch(/image\/webp/);
   const title = (await card.getByRole('heading', { level: 4 }).textContent()) ?? '';
-  const players = card.getByLabel('Players', { exact: true });
+  await card.getByRole('button', { name: `Look inside the book «${title}»`, exact: true }).click();
+  const look = dm.getByRole('dialog', { name: title, exact: true });
+  await expect(look).toBeVisible();
+  await expectAccessible(dm, 'a library book looked inside');
+  // Escape puts the book back and returns to its label; it opens again.
+  await dm.keyboard.press('Escape');
+  await expect(look).toBeHidden();
+  await expect(
+    card.getByRole('button', { name: `Look inside the book «${title}»`, exact: true }),
+  ).toBeFocused();
+  await card.getByRole('button', { name: `Look inside the book «${title}»`, exact: true }).click();
+  const players = look.getByLabel('Players', { exact: true });
   const first = await players.locator('option').first().getAttribute('value');
   await players.selectOption(first ?? '');
-  await card.getByRole('button', { name: `Start «${title}»`, exact: true }).click();
-  await expect(card.getByRole('status')).toContainText('up to a minute or two');
+  await look.getByRole('button', { name: `Start «${title}»`, exact: true }).click();
+  await expect(look.getByRole('status')).toContainText('up to a minute or two');
   await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // The library's campaigns are written in Russian: the world speaks it. The hub now lists the

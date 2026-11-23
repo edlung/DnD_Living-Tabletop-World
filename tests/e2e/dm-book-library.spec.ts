@@ -28,9 +28,17 @@ const LIVE = { timeout: 90_000 };
 async function startFromLibrary(dm: Page, title: string) {
   await dm.getByRole('button', { name: /^(My campaigns|Мои кампании)$/ }).click();
   const library = dm.getByRole('region', { name: 'Campaigns from the library', exact: true });
-  const start = library.getByRole('button', { name: `Start «${title}»`, exact: true });
-  await expect(start).toBeVisible(LIVE);
-  await start.click();
+  // Each campaign is a book on the shelf: its first page opens with "Look inside the book".
+  const look = library.getByRole('button', {
+    name: `Look inside the book «${title}»`,
+    exact: true,
+  });
+  await expect(look).toBeVisible(LIVE);
+  await look.click();
+  await dm
+    .getByRole('dialog', { name: title, exact: true })
+    .getByRole('button', { name: `Start «${title}»`, exact: true })
+    .click();
   await expect(dm.locator('.session-shell h1')).toHaveText(title, LIVE);
   await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 }

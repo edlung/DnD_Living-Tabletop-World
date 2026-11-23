@@ -92,8 +92,11 @@ registerRussian({
   '{language}: {adventure}': '{language}: {adventure}',
   'Preparing the adventure…': 'Готовим приключение…',
   'Campaigns from the library': 'Кампании из библиотеки',
-  'Written campaigns with their own pictures, figures and battle maps. Pick the number of players; the campaign starts as written, with you as its DM.':
-    'Готовые кампании со своими картинами, фигурками и картами боёв. Выберите число игроков: кампания начнётся как написана, а мастером будете вы.',
+  'Written campaigns with their own pictures, figures and battle maps. Look inside one, pick the number of players; the campaign starts as written, with you as its DM.':
+    'Готовые кампании со своими картинами, фигурками и картами боёв. Загляните в книгу и выберите число игроков: кампания начнётся как написана, а мастером будете вы.',
+  'Look inside the book': 'Заглянуть в книгу',
+  'Look inside the book «{title}»': 'Заглянуть в книгу «{title}»',
+  'The party is in {place}': 'Отряд сейчас: {place}',
   'Start «{title}»': 'Начать «{title}»',
   'Loading the library…': 'Загружаем библиотеку…',
   'Preparing the campaign…': 'Готовим кампанию…',

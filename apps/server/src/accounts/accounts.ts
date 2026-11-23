@@ -19,6 +19,7 @@ import {
 } from '@ltw/domain';
 
 import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
+import { partyPlace } from '../display/display-routes.ts';
 import type { CredentialStore } from '../auth/credential-store.ts';
 import type { EndingStore } from '../ending/ending-store.ts';
 import { iso, type AuthClock } from '../auth/session-authenticator.ts';
@@ -132,10 +133,23 @@ export async function campaignsOf(
       // The party's chapters: every member may read them (ADR 0071 §1), so every seat may count them.
       chapters: [...state.chronicles.values()].filter((chapter) => chapter.perspective === 'PARTY')
         .length,
+      place: placeOf(state, actor),
       finished: ending === null ? null : await finishedOf(state, actor, ending, seat.campaignId),
     });
   }
   return listed;
+}
+
+/**
+ * Where the party is, as its shelf names it (ADR 0075 §10): the place the table's screen would
+ * show, by its name, only when the party knows it — the same test the screen's cast passes.
+ */
+export function placeOf(state: WorldState, actor: Actor): string | null {
+  const locationId = partyPlace(state);
+  if (locationId === null) return null;
+  const party = resolvePerspective(state, actor, { kind: 'PARTY' });
+  if (!party.ok || !knownEntityIds(state, party.perspective).has(locationId)) return null;
+  return state.entities.get(locationId)?.name ?? null;
 }
 
 /** The characters the party knows, as a member reading the party's view is shown them. */

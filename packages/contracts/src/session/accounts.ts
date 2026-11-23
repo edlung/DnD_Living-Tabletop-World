@@ -111,6 +111,12 @@ export interface AccountCampaign {
    */
   readonly chapters: number;
   /**
+   * Where the party is, by the name the party knows it by: the place its first placed character
+   * stands in, else the running scene's (docs/adr/0075-book-interface.md §10). Null when the party
+   * stands nowhere it knows, and on a server from before the shelf.
+   */
+  readonly place?: string | null;
+  /**
    * The adventure is over (docs/adr/0072-keepsakes.md §2): when its DM finished it, the days it
    * was played, its heroes and what each keeps, as the whole table reads them. Null while it is
    * played.

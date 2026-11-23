@@ -12,7 +12,7 @@ export function PrivacyPage({ language: initial }: { readonly language: Language
   const [language, setLanguage] = useState<Language>(initial);
   return (
     <LanguageProvider language={language}>
-      <main className="sign-in hub-page privacy-page" lang={language}>
+      <main className="sign-in privacy-page" lang={language}>
         <img className="sign-in-art" src={textureUrl('brand-keyart')} alt="" />
         <div className="sign-in-scrim" aria-hidden="true" />
         <PrivacyNotice language={language} onLanguage={setLanguage} />
@@ -71,7 +71,11 @@ function PrivacyNotice({
 }) {
   const t = useT();
   return (
-    <section className="sign-in-panel hub-panel privacy-panel" aria-labelledby="privacy-title">
+    <section
+      className="sign-in-panel privacy-panel"
+      aria-labelledby="privacy-title"
+      data-surface="paper"
+    >
       <div className="privacy-head">
         <p className="sign-in-brand">
           <img src={ornamentUrl('emblem')} alt="" />

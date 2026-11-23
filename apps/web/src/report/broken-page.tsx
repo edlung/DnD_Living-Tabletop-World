@@ -68,7 +68,7 @@ export function BrokenPage({
   }, [selfReload]);
   return (
     <main className="broken-page" lang={language}>
-      <div className="broken-panel">
+      <div className="broken-panel" data-surface="paper">
         <h1 ref={heading} tabIndex={-1}>
           {t('Something went wrong')}
         </h1>
