@@ -9,7 +9,18 @@ import act3 from '../../campaigns/acorn-express/source/act-3.json' with { type: 
 import act4 from '../../campaigns/acorn-express/source/act-4.json' with { type: 'json' };
 
 export { world, cast, clues, items, handouts };
-export type Chapter = (typeof act1)[number] & {
+/** A scene; `readAloud` is what the DM reads as it begins (docs/CAMPAIGN_TEXT_STANDARD.md §5). */
+export interface Scene {
+  title: string;
+  minutes: number;
+  readAloud?: string;
+  play: string;
+  choices: string[];
+  check: string;
+  failForward: string;
+}
+export type Chapter = Omit<(typeof act1)[number], 'scenes'> & {
+  scenes: Scene[];
   projects?: {
     title: string;
     needs: string;

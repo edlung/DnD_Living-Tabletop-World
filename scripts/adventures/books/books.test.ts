@@ -36,6 +36,14 @@ describe('the books of the built-in adventures', () => {
     },
   );
 
+  it.each(adventures)(
+    '%s: the DM’s pocket beside the pages is the book’s as written',
+    (adventure) => {
+      const file = new URL(`${adventure}-pocket.json`, import.meta.url);
+      expect(builtInBook(adventure).pocket).toEqual(JSON.parse(readFileSync(file, 'utf8')));
+    },
+  );
+
   it('Hollowmere: eight spreads of the concept under the four chapters of the DM notes', () => {
     const book = builtInBook('hollowmere');
     expect(book.chapters.map((c) => [c.title, c.pages.length])).toEqual([

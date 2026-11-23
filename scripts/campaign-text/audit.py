@@ -123,10 +123,13 @@ def collect_keys(obj, acc: set[str]):
 
 EXCEPTIONS = json.loads((Path(__file__).parent / 'exceptions.json').read_text('utf-8'))
 
+import depth  # noqa: E402  (its rules use the regexes above)
+
 
 def audit(filter_: str | None = None, samples: int = 3):
     hits: dict[str, Counter] = defaultdict(Counter)
     examples: dict[str, list] = defaultdict(list)
+    narrative: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for camp, d in sources():
         if filter_ and filter_ not in camp:
             continue
@@ -178,6 +181,10 @@ def audit(filter_: str | None = None, samples: int = 3):
                     minimum = 30
                 if p.name.startswith('handouts') and field == 'text':
                     minimum = 60
+                if field == 'readAloud' and '.scenes[' in path:
+                    minimum = None  # a scene's read-aloud has its own bounds (depth.py)
+                if field in depth.NARRATIVE:
+                    narrative[camp].append((f'{p.name}{path}', s))
                 excepted = f'{p.name}{path}' in allowed
                 if minimum and not excepted and p.name != 'table-routes.json' and words(s) < minimum:
                     hits[camp][f'short-{field}'] += 1
@@ -196,7 +203,55 @@ def audit(filter_: str | None = None, samples: int = 3):
                     m = AGENCY.search(unquoted)
                     if m:
                         add('player-agency', p, path, s, m)
+
+        def deep(rule, p, path, detail):
+            if f'{p.name}{path}' in allowed and rule in allowed.get('$depth', []):
+                return
+            hits[camp][rule] += 1
+            if len(examples[rule]) < samples * 40:
+                examples[rule].append((camp, f'{p.name}{path}', detail))
+
+        by_name = {p: v for p, v in data.items() if p.parent == d}
+        if not camp.startswith('builtin/'):
+            for finding in depth.scene_findings(by_name):
+                deep(*finding)
+            for finding in depth.formula_findings(by_name):
+                deep(*finding)
+        for finding in depth.pocket_findings(camp, d, by_name):
+            deep(*finding)
+        pocket = depth.pocket_file(camp, d)
+        if camp.startswith('builtin/') and pocket.exists():
+            for path, field, s in strings(json.loads(pocket.read_text('utf-8'))):
+                if field in depth.NARRATIVE:
+                    narrative[camp].append((f'{pocket.name}{path}', s))
+    for camp, where, detail in depth.cross_campaign_findings(narrative):
+        hits[camp]['cross-campaign-12-words'] += 1
+        if len(examples['cross-campaign-12-words']) < samples * 40:
+            examples['cross-campaign-12-words'].append((camp, where, detail))
     return hits, examples
+
+
+def depth_summary(filter_: str | None = None) -> str:
+    """Scene read-alouds written, in the target length, and pockets present (information only)."""
+    scenes = written = target = pockets = camps = 0
+    for camp, d in sources():
+        if filter_ and filter_ not in camp:
+            continue
+        camps += 1
+        pockets += depth.pocket_file(camp, d).exists()
+        if camp.startswith('builtin/'):
+            continue
+        data = {p: json.loads(p.read_text('utf-8')) for p in d.glob('*.json')}
+        for _, _, evening in depth.evenings(data):
+            for scene in evening.get('scenes', []):
+                scenes += 1
+                text = scene.get('readAloud')
+                if isinstance(text, str) and text.strip():
+                    written += 1
+                    lo, hi = depth.SCENE_TARGET
+                    target += lo <= depth.words(text) <= hi
+    return (f'scene read-alouds: {written} of {scenes} scenes, {target} within '
+            f'{depth.SCENE_TARGET[0]}–{depth.SCENE_TARGET[1]} words; pockets: {pockets} of {camps}')
 
 
 def main():
@@ -217,6 +272,7 @@ def main():
     print('\nper campaign (top rules):')
     for camp in sorted(hits):
         print(f'  {camp}: ' + ', '.join(f'{r}={n}' for r, n in hits[camp].most_common(6)))
+    print('\n' + depth_summary(args[0] if args else None))
     if out:
         Path(out).write_text(json.dumps({'hits': hits, 'examples': examples}, ensure_ascii=False,
                                         indent=1), 'utf-8')

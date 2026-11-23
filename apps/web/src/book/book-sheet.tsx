@@ -211,7 +211,10 @@ function OpenBook({
     setMoment(null);
   };
   const passages: Passage[] = leaf.page
-    ? [{ aloud: leaf.page.voice === 'players', text: leaf.page.text }]
+    ? [
+        ...(leaf.page.readAloud === undefined ? [] : [{ aloud: true, text: leaf.page.readAloud }]),
+        { aloud: leaf.page.voice === 'players', text: leaf.page.text },
+      ]
     : [{ aloud: true, text: leaf.chapter.readAloud }];
   const lines = momentsOf(content, leaf, (key) => encounterBy(key)?.title ?? t('Fight'));
   const trail = `${t('Chapter {number}', { number: leaf.chapter.number })} · ${leaf.chapter.title}`;
@@ -295,7 +298,9 @@ function OpenBook({
                   ? t('Read aloud')
                   : leaf.page.voice === 'players'
                     ? t('Can be read aloud')
-                    : t('For the DM: tell it in your own words')}
+                    : leaf.page.readAloud === undefined
+                      ? t('For the DM: tell it in your own words')
+                      : t('Read the quotation aloud; the rest is for the DM')}
                 {leaf.page?.aftermath === true && ` · ${t('The DM’s notes after the scene')}`}
                 {content.assembled === true && ` · ${t('Assembled from the campaign itself')}`}
               </p>

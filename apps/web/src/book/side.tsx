@@ -8,6 +8,7 @@ import { AskRoll } from './actions.tsx';
 import { CheckLines, kindWord, type CardContent } from './cards.tsx';
 import { minutesOf, type Leaf } from './model.ts';
 import { MOMENT_KINDS, momentId, type Moment, type MomentLine } from './moments.ts';
+import { Pocket } from './pocket.tsx';
 
 /**
  * The right page under the picture (docs/adr/0074-dm-book.md §3.2): the brief of the spread —
@@ -217,6 +218,7 @@ export function Brief({
             {chapter.rest !== undefined && <p>{chapter.rest}</p>}
           </details>
         )}
+        {book.pocket && <Pocket pocket={book.pocket} />}
         <h4>
           <label htmlFor={`${ids}-note`}>{t('Your note on this page')}</label>
         </h4>

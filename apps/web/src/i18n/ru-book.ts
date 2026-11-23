@@ -28,6 +28,8 @@ registerRussian({
   'Read aloud': 'Прочитайте вслух',
   'Can be read aloud': 'Можно читать вслух',
   'For the DM: tell it in your own words': 'Для мастера: расскажите своими словами',
+  'Read the quotation aloud; the rest is for the DM':
+    'Цитату прочитайте вслух, остальное — для мастера',
   'The DM’s notes after the scene': 'Заметки мастера после сцены',
   'The party is here': 'Отряд здесь',
   'The ribbon: {title}': 'Закладка: {title}',
@@ -71,6 +73,15 @@ registerRussian({
   'Moments of this page': 'Люди и события',
   'How the chapter ends': 'Чем может закончиться глава',
   'Your note on this page': 'Ваша заметка к этой странице',
+  // The DM's pocket (docs/CAMPAIGN_TEXT_STANDARD.md §7)
+  'The DM’s pocket': 'Карман мастера',
+  Rumours: 'Слухи',
+  True: 'Правда',
+  'Not true': 'Неправда',
+  'Partly true': 'Отчасти правда',
+  'Places off the road': 'Места в стороне',
+  'Passers-by': 'Прохожие',
+  'Can tell:': 'Может рассказать:',
   'Only you see it': 'Её видите только вы',
   'Fights the campaign prepared without naming a chapter: {count}. They are in the Encounter section.':
     'Бои без своей главы: {count}. Они в разделе «Схватка».',

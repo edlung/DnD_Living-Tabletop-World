@@ -95,6 +95,8 @@ export interface Handout {
 export interface Scene {
   title: string;
   minutes: number;
+  /** What the DM reads aloud as the scene begins (docs/CAMPAIGN_TEXT_STANDARD.md §5); never in a package. */
+  readAloud?: string;
   play: string;
   choices: string[];
   check: string;

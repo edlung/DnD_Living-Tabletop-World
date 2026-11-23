@@ -14,40 +14,40 @@
    "players": 4,
    "label": "4 игрока",
    "file": "packages/four-players.json",
-   "digest": "232de1b98435c3fec39ac0a2b1e5102a4d5f3f4abd7c3fbdcd5da604b8c6e6cd"
+   "digest": "04d59ac8ce2f0ab1cab0d624d715922e15e5397784bba330d22eb647bc341c7d"
   },
   {
    "id": "original-party",
    "players": 3,
    "label": "3 игрока · основной состав",
    "file": "packages/original-party.json",
-   "digest": "ac6cdfe822ccf0925a04b5b46eab830b4a890dad4085e00f6657d0aa2dda2f85"
+   "digest": "ec160cd89d3f43371051bda9a398098d4d6c0ff033f14732cfbe38d31887586d"
   },
   {
    "id": "without-toren",
    "players": 3,
    "label": "3 игрока, без героя «Торен Риф»",
    "file": "packages/without-toren.json",
-   "digest": "dbd9f0e9d6f56aca150c3677c730f24af001bd07754ac0f3d6006928d3197247"
+   "digest": "34fee3dadc939d8a3e22400e5bf10ac2eb69116ab93b237f0098c35a0d8aaeef"
   },
   {
    "id": "without-leya",
    "players": 3,
    "label": "3 игрока, без героя «Лея Скат»",
    "file": "packages/without-leya.json",
-   "digest": "375da255c4652d83735db2c111e6f50b5973893cf5c813e1458b3d64f54c42d3"
+   "digest": "fae1ac6d74e530b285ff4724db0ac44bf6a0c1363e16f1a8c949e7d59bae266a"
   },
   {
    "id": "without-amalia",
    "players": 3,
    "label": "3 игрока, без героя «Амалия Морева»",
    "file": "packages/without-amalia.json",
-   "digest": "a8a27f5112985fccdb23b700046dae0e1f3498e7b89def738ea1ba34c725e5fb"
+   "digest": "0ce9186cb33f24ff91f584d30551f5dac51a2dccbc1958490f84458100b0cb19"
   }
  ],
  "book": {
   "file": "book.json",
-  "sha256": "d02b0b383e3a385e1acefcc0ef9dafd5172c0f5c39ac63676c5c616195667821"
+  "sha256": "e1ead1adb75f5ee825cf274049a5db8fbdfd7a7957ff2865b8f3a717747366bd"
  },
  "generator": "codex-cli imagegen",
  "pictures": [

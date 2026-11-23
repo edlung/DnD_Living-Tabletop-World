@@ -1,7 +1,7 @@
 {
   "modelRequested": "gpt-6-astra",
   "effortRequested": "max",
-  "sourceSha256": "b17386cd9c5b1051b174d4611d52e25d61fda624cf34ee02d1f7b141e9b7fe84",
+  "sourceSha256": "686786f1e0f5790d951d12a9c75dc46ae41b5d0d3afb18a10b97e22add60546e",
   "content": {
     "sessions": 8,
     "scenes": 24,
@@ -27,7 +27,7 @@
   "variants": [
     {
       "size": 3,
-      "sha256": "87029da38e436c19e3a835cc9e9034a8339a3f20a12db2700ed2d5e930eadb50",
+      "sha256": "cef788e56e335f14f89d62aaee00e0c06e5d09ff9fba9e44e0eebcbdfc70af5d",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -40,7 +40,7 @@
     },
     {
       "size": 4,
-      "sha256": "6d04287b6a4d6b7c01c5fdc3b10b064ee02478b8fe51f111875b11a355635123",
+      "sha256": "7efa2dc4cc2d2a23ac189e227e3cbfd3e1b3367dbfa303cd463912df3123c7d3",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -53,7 +53,7 @@
     },
     {
       "size": 5,
-      "sha256": "ac0d03958ebc5e6a3c8ee076fae90bde504b1a012f087be30731d98880bda2ee",
+      "sha256": "59466ea04bc20af6827dd1e23f689bd7bbf2b003f91763e5784a0d5f521b22c3",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -66,7 +66,7 @@
     },
     {
       "size": 6,
-      "sha256": "e8bfcfee97de91c10b29ac2b4709973bdf9647f20d0aa327a9afc6edc5e15677",
+      "sha256": "e5774dc8924baad545b8148ad449b3695ad36231c281089dbe82de0745f5f71a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -79,7 +79,7 @@
     },
     {
       "size": 7,
-      "sha256": "f0652ced90d6a35f4f86a8f50804fb52e05edaef5d8763a16b1b7618c3e753bb",
+      "sha256": "aa6d9cd3dd71f2283a81ed6302b6dc5d8f3e1eacd818e6ee5fbe68696d7d3281",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -92,7 +92,7 @@
     },
     {
       "size": 8,
-      "sha256": "9a32e182aea083ec304c280c92b18efcb5e8308df88956b1aa8a6ddaa93149f9",
+      "sha256": "26490de5d45b7e36937c097aa04ac5ceded3ee3e28e5572712b24a67fbecf15f",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
