@@ -9,7 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
-- Stage 1020 added §2 (the kit, paper, the books' materials).
+- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -83,6 +83,26 @@
    belong to, its moments the moment icons, its pages the book's paper, its spread the book's
    binding, the party's place the book's ribbon. Nothing else a user sees changes in this stage.
 6. **Journeys run in four shards** in CI.
+
+### 3. The DM's book is the DM's screen (Stage 1030)
+
+1. **Seven parts, no dock.** In the DM's perspective the dock is gone. The fore-edge holds seven
+   bookmarks — Book, Scene, Heroes, World, Journal, At the table, Rules — each in the campaign's
+   own icon; the open part's pages are tabs along the top of the page. Every section the dock held
+   is one page: Book (the DM's book); Scene (the stage itself, Encounter); Heroes (Party); World
+   (Places, Time and weather, Add to the world, Images); Journal (Journal, Notes, Chronicle,
+   History); At the table (Session, Chat, Table screen and Players where the table signs in by
+   invitation); Rules (Rules, Dice). A page's tab keeps the dock button's id, name and states; the
+   dock remains a player's until Stage 1040.
+2. **A part opens where it was left.** Choosing a part opens the page last read in it, the Scene
+   part's first page being the stage. Closing a page returns to the Scene, focus on its bookmark.
+3. **Everything on paper.** Every section in the DM's book is a page: the campaign's binding around
+   it, its paper under it, the paper scope of the tokens (§2.4) on it; the dark grounds of fields
+   and cards become lighter paper there. The stage keeps its picture inside the binding.
+4. **The book's own bookmarks** keep only its two views, the pages and the contents; the sections
+   they opened are parts and pages of the DM's book itself.
+5. **Not in this stage**: the running head (place, time, the meeting) stays the top bar; the dice
+   at the foot of every page, slips and the Scene as a spread come with Stages 1050 and 1080.
 
 ## Consequences
 

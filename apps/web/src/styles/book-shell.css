@@ -1,0 +1,263 @@
+/*
+ * The DM's book is the DM's screen (docs/adr/0075-book-interface.md §3): the stage and every
+ * section sit inside the campaign's binding; sections are pages on its paper; the parts are
+ * bookmarks at the fore-edge and the open part's pages are tabs at the top of the page.
+ */
+.world-main[data-book='dm'] {
+  --parts-w: 148px;
+  --pages-h: 52px;
+  background-color: var(--ink-900);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ink-950) 35%, transparent), transparent 40%),
+    var(--book-cover, var(--table-material, none));
+  background-size: auto, 320px;
+}
+.world-main[data-book='dm'] > .stage {
+  background-color: var(--ink-900);
+  background-image: var(--book-cover, var(--table-material, none));
+  background-size: 320px;
+}
+
+/* A section is a page of the book: the binding around, the paper under its words. */
+.world-main[data-book='dm'] .sheet {
+  inset: var(--pages-h) var(--parts-w) 10px 10px;
+  padding: 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(to right, rgb(43 32 21 / 0.16), transparent 18px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--page-ink);
+  animation: none;
+}
+.world-main[data-book='dm'] .sheet-header {
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+.world-main[data-book='dm'] .sheet-header > h2 {
+  color: var(--rubric);
+}
+.world-main[data-book='dm'] .sheet-glyph {
+  display: none;
+}
+
+/* The open part's pages: tabs along the top edge of the page. */
+.book-pages {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  right: var(--parts-w);
+  z-index: 46;
+  display: flex;
+  align-items: flex-end;
+  block-size: var(--pages-h);
+  padding-bottom: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.book-page-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.book-page-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: 8px 8px 0 0;
+  background: var(--ink-900);
+  color: var(--text);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  /* A tab is a page's edge, not a control that fades: its state shows at once. */
+  transition: none;
+}
+.book-page-tab > .glyph {
+  inline-size: 18px;
+  block-size: 18px;
+}
+.book-pages .book-page-tab:hover:enabled:not([aria-expanded='true'], [aria-pressed='true']) {
+  background: var(--ink-850);
+}
+/* Above the base button's hover (button:hover:enabled), which a tab just pressed is under. */
+.book-pages .book-page-tab[aria-expanded='true'],
+.book-pages .book-page-tab[aria-pressed='true'] {
+  border-color: var(--page-floor);
+  background: var(--page);
+  color: var(--page-ink);
+  font-weight: 600;
+}
+.book-page-tab > .dock-marker,
+.book-part > .dock-marker {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+/* The parts: bookmarks sticking out of the fore-edge, each with its own icon. */
+.book-parts {
+  position: absolute;
+  top: var(--pages-h);
+  right: 0;
+  z-index: 46;
+  inline-size: var(--parts-w);
+}
+.book-parts > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 0 0;
+  list-style: none;
+}
+.book-part {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  inline-size: calc(100% - 8px);
+  min-height: 48px;
+  padding: 4px 12px 4px 8px;
+  border: 0;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--page-floor) 88%, black),
+    var(--page-floor)
+  );
+  background-color: var(--page-floor);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  box-shadow: 2px 2px 6px rgb(0 0 0 / 0.4);
+  cursor: pointer;
+  transition: none;
+}
+.book-part > .bk-icon {
+  inline-size: 32px;
+  block-size: 32px;
+}
+.book-part > .glyph {
+  inline-size: 24px;
+  block-size: 24px;
+}
+.book-parts .book-part:hover:enabled:not([aria-current='page']) {
+  background: var(--page);
+}
+.book-parts .book-part[aria-current='page'] {
+  inline-size: 100%;
+  margin-left: -6px;
+  padding-left: 14px;
+  background: var(--page);
+  box-shadow:
+    inset 4px 0 0 var(--rubric),
+    4px 2px 10px rgb(0 0 0 / 0.5);
+}
+.book-part:focus-visible,
+.book-page-tab:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* A tablet: the bookmarks keep their icons and give up their words. */
+@media (max-width: 1100px) {
+  .world-main[data-book='dm'] {
+    --parts-w: 64px;
+  }
+  .book-part-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .book-part {
+    justify-content: center;
+    padding: 4px;
+  }
+  .book-part[aria-current='page'] {
+    padding-left: 8px;
+  }
+}
+
+/* A phone: the parts along the bottom, the pages along the top. */
+@media (max-width: 700px) {
+  .world-main[data-book='dm'] {
+    --parts-w: 0px;
+    --pages-h: 50px;
+  }
+  .world-main[data-book='dm'] .sheet {
+    inset: var(--pages-h) 6px 64px;
+  }
+  .book-pages {
+    left: 6px;
+    right: 6px;
+  }
+  .book-parts {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    inline-size: 100%;
+  }
+  .book-parts > ul {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 4px 4px env(safe-area-inset-bottom, 0px);
+  }
+  .book-part,
+  .book-part[aria-current='page'] {
+    inline-size: auto;
+    min-width: 44px;
+    margin: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.4);
+  }
+  .book-part[aria-current='page'] {
+    box-shadow: inset 0 3px 0 var(--rubric);
+  }
+}
+
+/* The Scene is a page too: the stage keeps clear of the tabs above and the bookmarks beside it. */
+.world-main[data-book='dm'] .scene,
+.world-main[data-book='dm'] .stage-backdrop,
+.world-main[data-book='dm'] .combat-stage,
+.world-main[data-book] .combat-panel {
+  inset: var(--pages-h) var(--parts-w) 10px 10px;
+}
+.world-main[data-book='dm'] .stage-backdrop {
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  .world-main[data-book='dm'] .scene,
+  .world-main[data-book='dm'] .stage-backdrop,
+  .world-main[data-book='dm'] .combat-stage,
+  .world-main[data-book] .combat-panel {
+    inset: var(--pages-h) 6px 64px;
+  }
+}
+
+/* A tablet: the selection's drawer lies on the page, never over the tabs or the bookmarks. */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .world-main[data-book='dm'] .detail-panel {
+    top: var(--pages-h);
+    right: var(--parts-w);
+    bottom: 10px;
+  }
+}
+/* A phone: the drawer ends above the bookmarks along the bottom. */
+@media (max-width: 767px) {
+  .world-main[data-book='dm'] .detail-panel {
+    top: var(--pages-h);
+    bottom: 64px;
+  }
+}

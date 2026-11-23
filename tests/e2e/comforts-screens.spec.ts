@@ -94,7 +94,7 @@ test('the TV shows the table’s cheers and the DM’s break', async ({ browser 
     [`ltw.break:${campaign}`, sessionId] as const,
   );
   await dm.reload();
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
   await openSheet(dm, 'Session');
   // The TV is told slowly, so the pause is read back before the break is kept: a resume from the
   // Session sheet ends that break all the same, at once.

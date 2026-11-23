@@ -50,7 +50,7 @@ test('picture activation adopts the exact chosen encoded bytes with honest prepa
   expect(activated.textOnly).toBe(false);
   expect(activated.manifestDigest).toBe(images.manifest.digest);
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const base = `/api/campaigns/${activated.campaignId}`;
   const lineageResponse = await page.request.get(`${base}/assets`);
   expect(lineageResponse.status()).toBe(200);

@@ -12,7 +12,7 @@ export const ADD_TO_THE_WORLD = 'Add to the world';
 
 export async function enterAsDm(page: Page, campaign: string): Promise<void> {
   await enterWorld(page, TOKENS.dm, campaign);
-  await expect(dockButton(page, ADD_TO_THE_WORLD)).toBeVisible();
+  await expect(dockButton(page, ADD_TO_THE_WORLD)).toBeAttached();
 }
 
 export const review = (page: Page) =>

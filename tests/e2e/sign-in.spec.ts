@@ -2,7 +2,7 @@ import { expect, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
 import { readsQuiet } from './support/live.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { bookPart, dockButton, openSheet } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -329,8 +329,10 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   await page.keyboard.press('Enter');
   await expect(accessState(page, words.none)).toBeVisible();
 
-  // The DM opens the Players sheet from the dock and creates a link without a pointer.
+  // The DM opens At the table, then its Players page, and creates a link without a pointer.
   await joinAsDm(page, SIGN_IN_CAMPAIGNS.keyboard);
+  await bookPart(page, 'At the table').focus();
+  await page.keyboard.press('Enter');
   const dock = dockButton(page, words.players);
   await dock.focus();
   await page.keyboard.press('Enter');
@@ -352,7 +354,9 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   await field.focus();
   await page.keyboard.press('Escape');
   await expect(sheet).toBeHidden();
-  await expect(dock).toBeFocused();
+  // Focus goes to the Scene's bookmark; At the table opens again at the page last read in it.
+  await expect(bookPart(page, 'Scene')).toBeFocused();
+  await bookPart(page, 'At the table').focus();
   await page.keyboard.press('Enter');
   await expect(field).toBeVisible();
 

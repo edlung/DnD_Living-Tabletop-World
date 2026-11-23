@@ -1,33 +1,39 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { enterWorld, TOKENS } from './support/session.ts';
-import { dockButton, expectOnTop, openSheet } from './support/shell.ts';
+import { bookPart, dockButton, expectOnTop, openSheet } from './support/shell.ts';
 
 /**
- * A dock section takes the whole stage (work-orders/FULLSCREEN_SECTIONS_2026-11-21.md): from under
- * the top bar to the window's foot, the dock in reach over it; it closes by its Close button, by
- * Escape and by its own dock button, and focus comes back to that button. Its content is laid
- * out across the width, so Places and the Journal need no scrolling of the section on a laptop.
+ * A section of the DM's book is a whole page (work-orders/FULLSCREEN_SECTIONS_2026-11-21.md,
+ * docs/adr/0075-book-interface.md §3): under the part's tabs, beside the bookmarks, inside the
+ * binding; it closes by its Close button, by Escape and by its own tab, and focus comes back to
+ * the Scene's bookmark. Its content is laid out across the width, so Places and the Journal need
+ * no scrolling of the section on a laptop.
  */
 const sheetOf = (page: Page, id: string) => page.locator(`#sheet-${id}`);
 
-/** How far the section's edges are from the stage's: nothing of the scene shows beside it. */
-async function offStage(page: Page, id: string): Promise<number> {
+/**
+ * How far the section's edges are from the book's page: from the tabs' foot to the binding's
+ * edge below, from the binding's edge on the left to the bookmarks (10 px of binding each side).
+ */
+async function offPage(page: Page, id: string): Promise<number> {
   return sheetOf(page, id).evaluate((sheet) => {
     const stage = sheet.closest('.stage');
-    if (!stage) return Number.POSITIVE_INFINITY;
+    const tabs = document.querySelector('nav.book-pages');
+    const parts = document.querySelector('nav.book-parts');
+    if (!stage || !tabs || !parts) return Number.POSITIVE_INFINITY;
     const a = sheet.getBoundingClientRect();
     const b = stage.getBoundingClientRect();
     return Math.max(
-      Math.abs(a.left - b.left),
-      Math.abs(a.top - b.top),
-      Math.abs(a.right - b.right),
-      Math.abs(a.bottom - b.bottom),
+      Math.abs(a.left - (b.left + 10)),
+      Math.abs(a.top - tabs.getBoundingClientRect().bottom),
+      Math.abs(a.right - parts.getBoundingClientRect().left),
+      Math.abs(a.bottom - (b.bottom - 10)),
     );
   });
 }
 
-test('a section takes the whole stage and closes three ways', async ({ page }) => {
+test('a section is a whole page of the DM’s book and closes three ways', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await enterWorld(page, TOKENS.dm);
   for (const [name, id] of [
@@ -39,28 +45,28 @@ test('a section takes the whole stage and closes three ways', async ({ page }) =
   ] as const) {
     await openSheet(page, name);
     // (Once it has risen: it opens with a short rise of a few pixels.)
-    await expect.poll(() => offStage(page, id), `${name} fills the stage`).toBeLessThanOrEqual(1);
-    // The dock stays in reach over the section, and the section's Close is never covered.
+    await expect.poll(() => offPage(page, id), `${name} fills the page`).toBeLessThanOrEqual(1);
+    // Its tab stays in reach over the section, and the section's Close is never covered.
     await expectOnTop(dockButton(page, name));
     const close = sheetOf(page, id).getByRole('button', { name: /^Close/ });
     await expectOnTop(close);
     await close.click();
     await expect(sheetOf(page, id)).toBeHidden();
-    await expect(dockButton(page, name)).toBeFocused();
+    await expect(bookPart(page, 'Scene')).toBeFocused();
   }
 
   await openSheet(page, 'Journal');
   await page.keyboard.press('Escape');
   await expect(sheetOf(page, 'journal')).toBeHidden();
-  await expect(dockButton(page, 'Journal')).toBeFocused();
+  await expect(bookPart(page, 'Scene')).toBeFocused();
 
   await openSheet(page, 'Places');
   await dockButton(page, 'Places').click();
   await expect(sheetOf(page, 'places')).toBeHidden();
 
-  // Scene, the dock's first item, is the way back from any section too.
+  // The Scene's bookmark is the way back from any section too.
   await openSheet(page, 'Dice');
-  await dockButton(page, 'Scene').click();
+  await bookPart(page, 'Scene').click();
   await expect(sheetOf(page, 'dice')).toBeHidden();
 });
 

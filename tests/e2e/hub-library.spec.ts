@@ -34,7 +34,7 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
   await invited.getByLabel('Login', { exact: true }).fill('mira-library');
   await invited.getByLabel('Password', { exact: true }).fill('a lantern in the rain');
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const library = dm.getByRole('region', { name: 'Campaigns from the library', exact: true });
@@ -61,7 +61,7 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
   await players.selectOption(first ?? '');
   await card.getByRole('button', { name: `Start «${title}»`, exact: true }).click();
   await expect(card.getByRole('status')).toContainText('up to a minute or two');
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // The library's campaigns are written in Russian: the world speaks it. The hub now lists the
   // campaign, with the login as its DM.

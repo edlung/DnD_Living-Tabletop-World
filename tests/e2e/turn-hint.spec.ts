@@ -147,7 +147,7 @@ test('outside a fight the hint names the place and leads to Places', async ({ br
   // The DM has no such button: the hint is a player's.
   const dm = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, UI_PARTY_CAMPAIGNS.hintScene);
-  await expect(dm.locator('nav.dock')).toBeVisible(WAIT);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(WAIT);
   await expect(hintButton(dm)).toHaveCount(0);
 });
 

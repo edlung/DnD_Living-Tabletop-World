@@ -42,7 +42,7 @@ test('a reload and a change of perspective keep the DM’s unfinished draft', as
   await expect(dockButton(page, ADD_TO_THE_WORLD)).toHaveAccessibleDescription(
     'An unfinished proposal is waiting',
   );
-  await expect(page.locator('nav.dock .dock-marker')).toBeVisible();
+  await expect(page.locator('nav.book-parts .dock-marker')).toBeVisible();
   await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('Create npc Tomas Reed at North Gate');
   await expect(review(page)).toContainText('A young guard with a scar over one eye.');
@@ -67,7 +67,7 @@ test('a reload and a change of perspective keep the DM’s unfinished draft', as
   // A cancel is the server's too: the discarded draft never returns.
   await review(page).getByRole('button', { name: 'Cancel proposal' }).click();
   await expect(review(page)).toHaveCount(0);
-  await expect(page.locator('nav.dock .dock-marker')).toHaveCount(0);
+  await expect(page.locator('nav.book-parts .dock-marker')).toHaveCount(0);
   await expect(dockButton(page, ADD_TO_THE_WORLD)).toHaveAccessibleDescription('');
   await page.reload();
   await enterAsDm(page, campaign);

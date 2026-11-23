@@ -122,6 +122,11 @@ registerRussian({
   'The ribbon moved here': 'Закладка перешла сюда',
   // The book kit (Stage 1020)
   Ribbon: 'Закладка',
+  // The DM's book is the DM's screen (Stage 1030)
+  'The heroes': 'Герои',
+  World: 'Мир',
+  'Pages of this part': 'Страницы части',
+  'Parts of the book': 'Части книги',
   'Take the ribbon back': 'Вернуть закладку',
   'The right page': 'Правая страница',
   'Part {number} of {parts}': 'Часть {number} из {parts}',
