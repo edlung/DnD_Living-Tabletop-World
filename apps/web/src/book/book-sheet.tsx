@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { Ribbon } from '../book-kit/kit.tsx';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -251,7 +252,7 @@ function OpenBook({
             }}
           />
         ) : (
-          <div className="dmb-spread">
+          <div className="dmb-spread" data-surface="paper">
             <article className="dmb-page dmb-left" aria-label={t('The story')}>
               <p className="dmb-eyebrow">
                 <span>{trail}</span>
@@ -303,7 +304,7 @@ function OpenBook({
                 {atRibbon ? (
                   <>
                     <span className="dmb-ribbon-here">
-                      <Glyph name="bookmark" />
+                      <Ribbon label={t('Ribbon')} />
                       {undo ? t('The ribbon moved here') : t('The party is here')}
                     </span>
                     {undo && (

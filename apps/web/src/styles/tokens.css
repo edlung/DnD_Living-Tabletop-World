@@ -1,6 +1,6 @@
 /*
  * Visual language tokens (docs/STAGE_320_DESIGN.md §3, ADR 0034). Components use only these.
- * Dark is the only theme; the Chronicle's pages are the one light surface.
+ * The dark glass is the ground; paper is the surface of a book's page (`data-surface="paper"`).
  */
 :root {
   color-scheme: dark;
@@ -117,4 +117,45 @@
   --dock-h: 64px;
   --panel-w: 400px;
   --gutter: 16px;
+}
+
+/*
+ * Paper (docs/adr/0075-book-interface.md §1.7): inside a book's page every component reads these
+ * values instead of the dark glass's, so a section shown on a page is dark ink on paper and the
+ * same section elsewhere is unchanged. Text and status inks read at 4.5:1 or better on
+ * --page-floor, a field's edge at 3:1 (tests/ui-kit/paper-tokens.test.ts measures them).
+ */
+[data-surface='paper'] {
+  color-scheme: light;
+  --text: var(--page-ink);
+  --text-muted: var(--page-ink-muted);
+  --line: rgb(43 32 21 / 0.2);
+  --line-strong: rgb(43 32 21 / 0.38);
+  --field-edge: rgb(43 32 21 / 0.66);
+  --glass: rgb(255 250 238 / 0.45);
+  --glass-raised: rgb(255 250 238 / 0.7);
+  --glass-soft: rgb(255 250 238 / 0.3);
+  --gold: #6a4400;
+  --gold-bright: #5e3c00;
+  --gold-deep: #7a5418;
+  --teal: #0c5263;
+  --teal-fill: #cfe3e6;
+  --teal-glow: rgb(12 82 99 / 0.35);
+  --side-party: #084a56;
+  --side-hostile: #8f2015;
+  --side-neutral: #5e440f;
+  --hp: #17502b;
+  --hp-low: #7a3f00;
+  --danger: #8f2015;
+  --magic: #55358f;
+  --fire: #873400;
+  --k-fact: var(--k-fact-ink);
+  --k-evidence: var(--k-evidence-ink);
+  --k-testimony: var(--k-testimony-ink);
+  --k-rumor: var(--k-rumor-ink);
+  --k-inference: var(--k-inference-ink);
+  --k-hypothesis: var(--k-hypothesis-ink);
+  --k-contradiction: var(--k-contradiction-ink);
+  --k-unknown: var(--k-unknown-ink);
+  --k-secret: var(--k-secret-ink);
 }

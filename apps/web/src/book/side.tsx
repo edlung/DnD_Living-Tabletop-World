@@ -2,6 +2,7 @@ import type { CampaignBook, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId } from 'react';
 
+import { MomentIcon } from '../book-kit/kit.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { AskRoll } from './actions.tsx';
 import { CheckLines, kindWord, type CardContent } from './cards.tsx';
@@ -65,7 +66,14 @@ function Moments({
                 onOpen(line.moment, event.currentTarget);
               }}
             >
-              <Glyph name={MOMENT_KINDS[line.kind]?.glyph ?? 'info'} />
+              {MOMENT_KINDS[line.kind]?.icon ? (
+                <MomentIcon
+                  moment={MOMENT_KINDS[line.kind]?.icon ?? 'talk'}
+                  glyph={MOMENT_KINDS[line.kind]?.glyph ?? 'info'}
+                />
+              ) : (
+                <Glyph name={MOMENT_KINDS[line.kind]?.glyph ?? 'info'} />
+              )}
               <span className="dmb-moment-name">{line.name}</span>
               <span className="dmb-moment-kind">{t(kindWord(line.kind))}</span>
             </button>

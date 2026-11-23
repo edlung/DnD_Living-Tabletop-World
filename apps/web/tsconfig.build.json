@@ -9,7 +9,12 @@
     "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/visual/campaign-themes/catalog.json"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/visual/campaign-themes/catalog.json",
+    "src/visual/book-materials/manifest.json"
+  ],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [
     { "path": "../../packages/contracts/tsconfig.build.json" },

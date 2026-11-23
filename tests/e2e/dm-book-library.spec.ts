@@ -85,6 +85,10 @@ test('a family campaign and a collection campaign of the library open as books',
   await expect(story).toContainText('Прочитайте вслух');
   await expect(side).toContainText('Зачем эта глава');
   await expectAccessible(dm, 'a library campaign’s book at its first chapter');
+  // The book is dressed in its own campaign's set (docs/adr/0075-book-interface.md §1.8).
+  await expect(
+    lighthouse.getByRole('button', { name: 'Страницы', exact: true }).locator('img'),
+  ).toHaveAttribute('src', '/book-materials/lighthouse/part-story.webp');
   // A campaign's handout is given from its card as any handout is: the players can read it.
   await side
     .getByRole('button', { name: /Материал$/ })

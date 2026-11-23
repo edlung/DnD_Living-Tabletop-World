@@ -1,4 +1,5 @@
-import { campaignAppearance } from '../visual/campaign-themes/index.ts';
+import { BookThemeContext } from '../book-kit/materials.ts';
+import { campaignAppearance, campaignTheme } from '../visual/campaign-themes/index.ts';
 import type { SessionResponse } from '@ltw/contracts';
 import { LanguageProvider, StatusPanel, useLanguage, useT, type Language } from '@ltw/ui';
 import {
@@ -395,36 +396,38 @@ function SessionShell({
       : null;
   return (
     <div className="session-shell" {...campaignAppearance(identity.campaign.name)}>
-      <a className="skip-link" href="#world-main">
-        {t('Skip to world')}
-      </a>
-      {/* The API for the rules' pages, and for the guide's "Our table" in the top bar. */}
-      <RulesApiContext.Provider value={api}>
-        <TopBar
-          campaignName={identity.campaign.name}
-          status={status}
-          perspective={perspective}
-          choices={perspectiveChoices}
-          dmView={effective === 'DM'}
-          dm={identity.role === 'DM'}
-          onPerspective={onPerspective}
-          onRefresh={() => {
-            setRevision((value) => value + 1);
-          }}
-          onLeave={onLeave}
-          sessionSlot={setSessionSlot}
-        />
-        {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
-        <World
-          key={`${perspective}:${String(revision)}`}
-          api={api}
-          effectivePerspective={effective}
-          canAct={identity.role === 'PLAYER' && own.has(effective)}
-          standIn={actingAs}
-          onActAs={onActAs}
-          sessionSlot={sessionSlot}
-        />
-      </RulesApiContext.Provider>
+      <BookThemeContext.Provider value={campaignTheme(identity.campaign.name)?.id ?? null}>
+        <a className="skip-link" href="#world-main">
+          {t('Skip to world')}
+        </a>
+        {/* The API for the rules' pages, and for the guide's "Our table" in the top bar. */}
+        <RulesApiContext.Provider value={api}>
+          <TopBar
+            campaignName={identity.campaign.name}
+            status={status}
+            perspective={perspective}
+            choices={perspectiveChoices}
+            dmView={effective === 'DM'}
+            dm={identity.role === 'DM'}
+            onPerspective={onPerspective}
+            onRefresh={() => {
+              setRevision((value) => value + 1);
+            }}
+            onLeave={onLeave}
+            sessionSlot={setSessionSlot}
+          />
+          {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
+          <World
+            key={`${perspective}:${String(revision)}`}
+            api={api}
+            effectivePerspective={effective}
+            canAct={identity.role === 'PLAYER' && own.has(effective)}
+            standIn={actingAs}
+            onActAs={onActAs}
+            sessionSlot={sessionSlot}
+          />
+        </RulesApiContext.Provider>
+      </BookThemeContext.Provider>
     </div>
   );
 }
