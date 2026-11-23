@@ -80,7 +80,7 @@ export function readSeed(directory: URL): AdventureSeed {
         discovery:
           c.dc === undefined
             ? (METHOD[c.method ?? ''] ?? '')
-            : `${METHOD[c.method ?? ''] ?? c.method ?? ''}, СЛ ${String(c.dc)}.`,
+            : `${METHOD[c.method ?? ''] ?? c.method ?? ''}, Сл ${String(c.dc)}.`,
       })),
   };
 }

@@ -14,40 +14,40 @@
    "players": 4,
    "label": "4 игрока",
    "file": "packages/four-players.json",
-   "digest": "e84c49865c5b536af129923611d015fe8e70021c8862844113654ede76fa9345"
+   "digest": "d04e480689357a044fca3764857ead46bf174b6897be01041bbbc1c14fdf221e"
   },
   {
    "id": "original-party",
    "players": 3,
    "label": "3 игрока · основной состав",
    "file": "packages/original-party.json",
-   "digest": "c8688a23681d2c6bbf9c36c72921965888e3dbf75b4d7caacff87c3a99dd5270"
+   "digest": "94b1e4e625ec8b559d5a34900b7f2011f879a25c6f07c785fc11854bdea84de6"
   },
   {
    "id": "without-finn",
    "players": 3,
    "label": "3 игрока, без героя «Финн Меднолист»",
    "file": "packages/without-finn.json",
-   "digest": "1f12a56470c8b46ee9d7f291728a07357871adc4e64088481ca0054ea0f537dc"
+   "digest": "f30311f61d758c9ae429ae1f257dd9d8c7b913ac64ffe94dff1f7faaacb8014e"
   },
   {
    "id": "without-tess",
    "players": 3,
    "label": "3 игрока, без героя «Тэс Быстрый Стежок»",
    "file": "packages/without-tess.json",
-   "digest": "a0eea9852d18ac0335ebaaec614337a0c6ed41547cf8cf2924dba3614ec86096"
+   "digest": "9e2d48faa9d09eab82d5155e1c29991e3b942dc4c190a44dfb51cf9e58b27027"
   },
   {
    "id": "without-asya",
    "players": 3,
    "label": "3 игрока, без героя «Ася Вереск»",
    "file": "packages/without-asya.json",
-   "digest": "5e3dc67aae9359ff931c965a4229dafbbda39520694f346067b4858be6154540"
+   "digest": "74d625fea02af537a6e7a04894303bb38ed83f3e388ff631260d02d172102af7"
   }
  ],
  "book": {
   "file": "book.json",
-  "sha256": "398ccd3e81f70e988ccb3a85415dc9fc08dfdea1b8fe2c23679cded082a2bc0c"
+  "sha256": "657fd0dfe926a1d530fdbc9a6476a869764a077b6193d9456a7d0acda09dbead"
  },
  "generator": "codex-cli imagegen",
  "pictures": [

@@ -12,8 +12,15 @@ it('accepts only package content, never server identities or provenance', () => 
   expect(parsePackageFile('{broken')).toBeNull();
 });
 it('limits UTF-8 bytes rather than JavaScript string length', () => {
-  expect(parsePackageFile(' '.repeat(512 * 1024 + 1))).toBeNull();
+  expect(parsePackageFile(' '.repeat(2 * 1024 * 1024 + 1))).toBeNull();
   expect(
     parsePackageFile(JSON.stringify({ ...bellCampaign(), extra: 'я'.repeat(270000) })),
   ).toBeNull();
+});
+it('measures the content the server receives, not the file’s indentation', () => {
+  const content = bellCampaign();
+  // A real authored package with long texts: pretty-printed over 512 KiB, compact under it.
+  const padded = `${JSON.stringify(content, null, 2)}${' '.repeat(600 * 1024)}`;
+  expect(new TextEncoder().encode(padded).byteLength).toBeGreaterThan(512 * 1024);
+  expect(parsePackageFile(padded)).toEqual(content);
 });

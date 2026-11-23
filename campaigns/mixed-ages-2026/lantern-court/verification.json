@@ -15,20 +15,20 @@
     "encounters": 3
   },
   "sourceHashes": {
-    "source/world.json": "641b9adce8887ba87a801a9b8b85d91cac1f8c1308252615f628870215ebb7ce",
-    "source/cast.json": "8f5e4c916af065bc5ffad05b76ce65c88bd23212e47d8f91db3f00d928a66e07",
-    "source/clues.json": "fce05fbc590c3927a3555181b7b78d142dcf881c4e4185b640facad94bd2e515",
-    "source/handouts.json": "96724684a81794596355b644198a606fe278f7b39f7918cfa50d1d1a104c4c79",
-    "source/encounters.json": "cc328245f7b03fea8b0572f15356527380924359ac757be8fecca3c1954e74c2",
-    "source/sessions-1.json": "ccac4b2b334012bb26237fe45283809ae753765814cdbce425f61f9312aeade0",
-    "source/sessions-2.json": "2cdd7e706147937a4f58f38b490b5f059020f1a75b71c6bdec37419c418e6554",
-    "source/sessions-3.json": "549d46f5618a242d3dbbb135704a36f73a9454dc7ff757523cf77ea377f7e9c8",
-    "source/sessions-4.json": "c425401212cf2cbfed81c2ba433e9d0172f2770bda4e5732fb49deeef381a2f0"
+    "source/world.json": "fe05b617049ba45136baaaed1610c5b328764ec824c31ac0b5b75ce285cf0be5",
+    "source/cast.json": "fa5ce3967d6750bdfa34255d4e0444f39b9a8310f59700dd4a75fef3f63954c8",
+    "source/clues.json": "6bf4e99a6616538de41db0aa5cc510943cdef437d9b4a8a7632f5d22894cf6d3",
+    "source/handouts.json": "7358f19bd392fe076c78110c68c90cdb0f938521d43dfacf0c332037ddaec761",
+    "source/encounters.json": "ecf0105f1d49263072209e62eb2667bd07eacdef26486e688fff67c058e5dd69",
+    "source/sessions-1.json": "ab839b2e3cbf872b37a361fe6977103062a25fb1cc32017d08ceaf260c2656c3",
+    "source/sessions-2.json": "f388148564b176e7ae8fc68043c22f263b0efa9815043fd0220c0131ac500edf",
+    "source/sessions-3.json": "2dded20733754d0de4245f47a18639c2ddbb5db5707c573ab7d3398e85a8eafe",
+    "source/sessions-4.json": "6bd1da2f8ec2b621f9bf24cc086d152340ab81184a0021c96c67adfc756b9183"
   },
   "variants": [
     {
       "size": 3,
-      "sha256": "4c000950ab3528c6ef85eb5361873f7c66ea546358bb86e27b75fb70560d8212",
+      "sha256": "2424c54ddf80d5e2daf4a3eb9cd8e0aa1bacf2cf2d0b00737b05e370f45fdaa0",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -41,7 +41,7 @@
     },
     {
       "size": 4,
-      "sha256": "f668076b00662a4efa44f61c41daec0c204f38b8a898d2aa5a048483cbc0d748",
+      "sha256": "8d5c7ead1feea55b7f6427f6a287e45f6bf2bbf8e04764018bebab9176a08e0f",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -54,7 +54,7 @@
     },
     {
       "size": 5,
-      "sha256": "a4f69552ac1898999ac2c543ffda1fae8d8b7a2c565e215f9e1d5fc29172bc9c",
+      "sha256": "86dbebcb8d385de7068943e19c6c949898f9ccdd36e3914f25194434c5228ade",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -67,7 +67,7 @@
     },
     {
       "size": 6,
-      "sha256": "55bbb567471765d4292742d1c3ca4d814e80d001c19abfa93d72b2c82f5d6398",
+      "sha256": "c7867b80b95ed08896b6601dadc58704ac93a183d153ea0c5e9db90a8bef3bce",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -80,7 +80,7 @@
     },
     {
       "size": 7,
-      "sha256": "c5b1f9c596a91ccf93f75639ef9edd4287c40c44dee8c8620846d7a4a1dc1bda",
+      "sha256": "8c7c80fa249b4f92fe412be82c1ab4011bf0911df98ad564583ba700c222b685",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],

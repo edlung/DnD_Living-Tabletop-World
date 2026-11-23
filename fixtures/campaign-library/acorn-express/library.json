@@ -14,40 +14,40 @@
    "players": 4,
    "label": "4 игрока",
    "file": "packages/four-players.json",
-   "digest": "455ca3d0d5f2ac845847bfe9339b82eadc9b902faee20f23ad03577bf6977502"
+   "digest": "f1953689fedfddcaa22efa3a5c1b67cc5e109ecffceef862f5365a11936864a2"
   },
   {
    "id": "original-party",
    "players": 3,
    "label": "3 игрока · основной состав",
    "file": "packages/original-party.json",
-   "digest": "4fa90ce6fb1d7000b1f410bf92fe5633b202e02a5c4db1b0bbb4ad4eab789dcc"
+   "digest": "3f164b3233cea4b53b31dfb07bc8bfc5bbdbac1849269ac8c831341b6f4bde02"
   },
   {
    "id": "without-boris",
    "players": 3,
    "label": "3 игрока, без героя «Борис Камнелист»",
    "file": "packages/without-boris.json",
-   "digest": "0558d237d63519b15de1244153e6b8c22049f33d045e237a77647ca9e830a38c"
+   "digest": "57b1f98401f3fa35f8fbf5158b2c49cc436f120039498c29583459efaa3a8fe4"
   },
   {
    "id": "without-nika",
    "players": 3,
    "label": "3 игрока, без героя «Ника Вереск»",
    "file": "packages/without-nika.json",
-   "digest": "1392b476cc2816f3a0a59d9db6bb8fa8d124d7db091d25286413db43eea97e0d"
+   "digest": "1f00438ef393d8b4c431a09e2fd15fc44ecb1c2d51234e15a6f773c36b8186d9"
   },
   {
    "id": "without-yara",
    "players": 3,
    "label": "3 игрока, без героя «Яра Медуница»",
    "file": "packages/without-yara.json",
-   "digest": "5ca04fcc835ddcbb8de541db383e611740cb807506b7858470eb9018904a363c"
+   "digest": "2e4189c7890d0f23315cdf4344fee50538b5bf587d5bc56b7c1f9033e0916376"
   }
  ],
  "book": {
   "file": "book.json",
-  "sha256": "3fd46f394182ed420b3e7b69953c36e5fed8a1aa0b3abb8a553c89f6355ab634"
+  "sha256": "01ca24aa4c3be357824c59885bb5672b45762bcf44d4544e4b10380d87bb8a25"
  },
  "generator": "codex-cli imagegen",
  "pictures": [

@@ -85,7 +85,7 @@ export async function renderMaps() {
                   `${a.name} ${a.bonus >= 0 ? '+' : ''}${a.bonus}, ${a.damage.count}к${a.damage.sides}${a.damage.bonus ? ` + ${a.damage.bonus}` : ''}`,
               )
               .join('; ');
-            return `${f?.name.replace(/ \d+$/, '')}: ${block?.hitPoints.max} HP, защита ${block?.armorClass}, скорость ${block?.speedFt} футов, ${attacks}`;
+            return `${f?.name.replace(/ \d+$/, '')}: хиты ${block?.hitPoints.max}, КД ${block?.armorClass}, скорость ${block?.speedFt} футов, ${attacks}`;
           })
           .join('. '),
       )}${p(definition?.objective ?? '')}${p(`Без боя: ${definition?.peaceful ?? ''}`)}${p(definition?.tactics ?? '')}${p(definition?.scaling ?? '')}${p(definition?.terrain ?? '')}</section>`;

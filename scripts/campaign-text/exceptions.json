@@ -1,0 +1,60 @@
+{
+  "acorn-express": {
+    "handouts.json[16].panels[0].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[16].panels[1].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[16].panels[2].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[17].panels[0].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[17].panels[1].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[17].panels[2].text": "a form, chart, tag or picture-card caption whose layout is the content"
+  },
+  "collection-2026/ash-testament": {
+    "handouts.json[6].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[8].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "sessions-4.json[1].scenes[0].play": "a battle or procedure setup scene; its lines are the rules the DM reads out"
+  },
+  "collection-2026/ember-crown": {
+    "handouts.json[0].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[1].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[3].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[4].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[5].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[6].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "sessions-4.json[1].scenes[1].play": "a battle or procedure setup scene; its lines are the rules the DM reads out"
+  },
+  "collection-2026/glass-republic": {
+    "handouts.json[2].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[3].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[4].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns"
+  },
+  "collection-2026/hollow-choir": {
+    "handouts.json[1].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns",
+    "handouts.json[4].text": "a form, chart, tag or picture-card caption whose layout is the content"
+  },
+  "collection-2026/salt-meridian": {
+    "handouts.json[3].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[6].text": "a laid-out handout (map, schedule, form) whose spacing aligns its columns"
+  },
+  "collection-2026/velvet-ledger": {
+    "handouts.json[3].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[4].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[5].text": "a form, chart, tag or picture-card caption whose layout is the content"
+  },
+  "dark-fantasy-2026/marrow-crown": {
+    "sessions-1.json[1].scenes[2].play": "a battle or procedure setup scene; its lines are the rules the DM reads out"
+  },
+  "moon-pearl": {
+    "handouts.json[13].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[14].panels[0].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[14].panels[1].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[14].panels[2].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[14].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[15].panels[0].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[15].panels[1].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[15].panels[2].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[15].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[17].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[3].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[4].text": "a form, chart, tag or picture-card caption whose layout is the content",
+    "handouts.json[8].text": "a form, chart, tag or picture-card caption whose layout is the content"
+  }
+}

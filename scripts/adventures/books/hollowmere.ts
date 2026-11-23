@@ -13,10 +13,14 @@ import { readSeed } from './seed.ts';
  * The Bells of Hollowmere as a book (docs/adr/0074-dm-book.md §2.8): the eight spreads of the
  * concept in `docs/design/dm-book/story.js`, as written there, put under the adventure's four
  * chapters. The chapters' titles, decisions and consequences are the table of
- * `docs/BUILTIN_ADVENTURES_DM_RU.md`. The tables below only say which seed ID a spread's short
- * name means; no sentence is written here.
+ * `docs/BUILTIN_ADVENTURES_DM_RU.md`; each chapter's words to read aloud and its ending are in
+ * `hollowmere-chapters.json` (docs/CAMPAIGN_TEXT_STANDARD.md). The tables below only say which
+ * seed ID a spread's short name means; no sentence is written here.
  */
 const ROOT = new URL('../../../', import.meta.url);
+const CHAPTER_TEXT = JSON.parse(
+  readFileSync(new URL('hollowmere-chapters.json', import.meta.url), 'utf8'),
+) as readonly { readAloud: string; ending: string }[];
 const PLACE: Readonly<Record<string, string>> = {
   gate: 'north-gate',
   ford: 'willow-ford',
@@ -49,8 +53,8 @@ const CLUE: Readonly<Record<string, string>> = {
   ledger: 'clue-ledger',
 };
 const SKILL: Readonly<Record<string, Skill>> = {
-  Восприятие: 'perception',
-  Расследование: 'investigation',
+  Внимательность: 'perception',
+  Анализ: 'investigation',
 };
 
 interface Cue {
@@ -111,7 +115,7 @@ export function hollowmereBook(): CampaignBook {
       title: row.title,
       place: PLACE[first.place] ?? '',
       goal: row.goal,
-      readAloud: '',
+      readAloud: CHAPTER_TEXT[index]?.readAloud ?? '',
       dmNote: row.dmNote,
       people: mapped(PERSON),
       clues: mapped(CLUE),
@@ -119,7 +123,7 @@ export function hollowmereBook(): CampaignBook {
       encounters: mapped(ENCOUNTER),
       spotlight: [],
       reward: [],
-      ending: '',
+      ending: CHAPTER_TEXT[index]?.ending ?? '',
       consequences: [],
       guide: [],
       pages: own.map((spread) => {
@@ -164,7 +168,7 @@ export function hollowmereBook(): CampaignBook {
               ...(cue.test !== undefined && cue.dc !== undefined
                 ? {
                     check: {
-                      line: `${cue.test}, СЛ ${String(cue.dc)}`,
+                      line: `${cue.test}, Сл ${String(cue.dc)}`,
                       roll: skill ? ('asked' as const) : ('unread' as const),
                       options: skill
                         ? [{ check: { kind: 'skill' as const, skill }, dc: cue.dc }]

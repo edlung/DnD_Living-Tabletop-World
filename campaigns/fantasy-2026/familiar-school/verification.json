@@ -1,7 +1,7 @@
 {
   "modelRequested": "gpt-6-astra",
   "effortRequested": "max",
-  "sourceSha256": "fc650644fbc4dbd3b8ff69d9a50acd783869a51cecd716fa95d33395ecd8f2a9",
+  "sourceSha256": "6d2a4ca67db31ca6d2f25a53e9dc07e2ab485c1a982e6cb93fffd69aa6aae885",
   "content": {
     "sessions": 8,
     "scenes": 24,
@@ -27,7 +27,7 @@
   "variants": [
     {
       "size": 3,
-      "sha256": "4fbeda62513a3cd04b4e87e9e62abe5b1ea42609e0ec9c0ab87c3cae90057e8a",
+      "sha256": "b3d803d696878adecd61daf99bd33762a3fe7b5225ca991544b2b63e97a40d6d",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -40,7 +40,7 @@
     },
     {
       "size": 4,
-      "sha256": "6488a3052e0bc8edd4d4c1d60d44ed203b848abde9349205d4afeb9a93bdc8cd",
+      "sha256": "9bb75aa5f0249623a054ae49912ed1b8db2fcaca332e76d89844049f75b4eb81",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -53,7 +53,7 @@
     },
     {
       "size": 5,
-      "sha256": "78b47bf134793f61b24959bac93a28778071dcbc445bb7d63fbeaeb90e8c61d1",
+      "sha256": "4ca0377a98f368acdbcb5ef5974aef526bd7abba766de5a2220f1856321ede7f",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -66,7 +66,7 @@
     },
     {
       "size": 6,
-      "sha256": "46bf6fd0078f9ea311408017ac3ec40447a583fa38c7929fa166edc275107bcd",
+      "sha256": "fa91c2254aab714924c8c7f8fa00d8b9dc9e363d9262dec1571333ed8394ca11",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -79,7 +79,7 @@
     },
     {
       "size": 7,
-      "sha256": "f2f697e0bc233ebc8f2438197956f34f1ac719b4442cb802f7b08f0bf010af69",
+      "sha256": "944a3aed539c4ff3360097c19897b482ee54880e6327b5640debdf2cc18769d6",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -92,7 +92,7 @@
     },
     {
       "size": 8,
-      "sha256": "6312f93234f4cb484668f9e3688bf3dabc58071d6a380e9b002362387337cdff",
+      "sha256": "902f1910f96d2d0772f2b5d270c9f869a3653cde9d9a9e7f44fc709e7192c1ec",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
