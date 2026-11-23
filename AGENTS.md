@@ -8,6 +8,12 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner request 2026-11-23 (`reviews/OWNER_BOOK_INTERFACE_2026-11-23.json`): the whole interface as
+a book (`docs/BOOK_INTERFACE_PLAN.md`, ADR 0075, acceptance map `docs/BOOK_INTERFACE_MAP.md`);
+Stages 1000 and 1010 authorized, 1010 (the demo of all the books) ends with a hard stop for his
+acceptance; replaced at once, the workshop fully as a manuscript; book pictures by Codex CLI; no
+product code before the demo is accepted; merges and deployment stay the owner's.
+
 Owner request 2026-11-22 (`reviews/OWNER_DM_BOOK_2026-11-22.json`): the DM's book — a campaign's
 story as a book on the DM's screen, for all 55 campaigns (Stages 900–930, `docs/DM_BOOK_PLAN.md`,
 ADR 0074), each stage in its own pull request, without stops between them, a report at the end of
