@@ -6,11 +6,13 @@ a card the same day, he chose: the present interface is **replaced at once** as 
 a book («Заменять сразу»), the program **starts with a demo of all the books** («Сначала демо всех
 книг»), and the campaign workshop is rebuilt **fully as a manuscript** («Полностью как рукопись»).
 
-**Authorized: Stages 1000 and 1010** — the owner's «Да, открываем. Для генераций красивых книжных
-ассетов интерфейса обращаемся к Codex CLI.» (2026-11-23; record
-`reviews/OWNER_BOOK_INTERFACE_2026-11-23.json`, ADR 0075 §1, work orders `work-orders/STAGE_1000.md`,
-`STAGE_1010.md`). Stage 1010 ends with a hard stop: Stages 1020–1140 wait for his acceptance of the
-demo. Merging, deployment, the family playtest and real devices stay the owner's.
+**Authorized: Stages 1000–1140.** The demo was accepted on 2026-11-23 («Принимаю, дальше»), which
+opened the rest; Stages 1000 and 1010 were opened earlier the same day by «Да, открываем. Для
+генераций красивых книжных ассетов интерфейса обращаемся к Codex CLI.» (record
+`reviews/OWNER_BOOK_INTERFACE_2026-11-23.json`, ADR 0075 §1, work orders in `work-orders/`). Stage
+after stage, each on its own branch and pull request stacked on the one before. Merging,
+deployment, the rehearsal on the owner's tablet before Stage 1030 is deployed, the family playtest
+and real devices stay the owner's.
 
 It continues `docs/DM_BOOK_PLAN.md` (Stages 900–930, merged and deployed 2026-11-22; ADR 0074).
 That program put a book beside the dock, for the DM, for the story. This one makes the book the

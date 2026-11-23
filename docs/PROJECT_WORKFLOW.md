@@ -10,9 +10,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   красивых книжных ассетов интерфейса обращаемся к Codex CLI.»
   (`reviews/OWNER_BOOK_INTERFACE_2026-11-23.json`). Program `docs/BOOK_INTERFACE_PLAN.md` (Stages
   1000–1140, ADR 0075), the acceptance map `docs/BOOK_INTERFACE_MAP.md`.
-- Authorized: Stage 1000 (documents) and Stage 1010 (the demo of all the books, pictures by Codex
-  CLI), each on its own branch and pull request. Stage 1010 ends with a hard stop for the owner's
-  look and acceptance; Stages 1020–1140 are not authorized. Merging and deployment stay the owner's.
+- Authorized: Stages 1000–1140. The demo (Stage 1010) was accepted with «Принимаю, дальше»; the
+  stages follow one another, each on its own branch and pull request stacked on the one before.
+  Merging, deployment and the rehearsal on the owner's tablet before Stage 1030 is deployed stay
+  the owner's.
 
 ## Request — the DM's book, 2026-11-22
 

@@ -1,5 +1,7 @@
 import { useT } from '@ltw/ui';
 
+import { PartIcon } from '../book-kit/kit.tsx';
+import type { BookPart } from '../book-kit/materials.ts';
 import type { SheetId, Shell } from '../shell/use-shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -13,15 +15,17 @@ const MARKS: readonly {
   readonly sheet: SheetId;
   readonly label: string;
   readonly glyph: GlyphName;
+  /** The part of the book the section belongs to (ADR 0075 plan): its icon in the book's style. */
+  readonly part?: BookPart;
 }[] = [
-  { sheet: 'party', label: 'Heroes', glyph: 'party' },
-  { sheet: 'places', label: 'Places', glyph: 'place' },
-  { sheet: 'journal', label: 'Journal', glyph: 'journal' },
-  { sheet: 'encounter', label: 'Encounter', glyph: 'encounter' },
+  { sheet: 'party', label: 'Heroes', glyph: 'party', part: 'heroes' },
+  { sheet: 'places', label: 'Places', glyph: 'place', part: 'world' },
+  { sheet: 'journal', label: 'Journal', glyph: 'journal', part: 'journal' },
+  { sheet: 'encounter', label: 'Encounter', glyph: 'encounter', part: 'scene' },
   // The table's dice: a roll the text did not foresee is asked there (ADR 0074 §4.2).
   { sheet: 'dice', label: 'Dice', glyph: 'roll' },
-  { sheet: 'session', label: 'Session', glyph: 'chapter' },
-  { sheet: 'rules', label: 'Rules', glyph: 'study' },
+  { sheet: 'session', label: 'Session', glyph: 'chapter', part: 'table' },
+  { sheet: 'rules', label: 'Rules', glyph: 'study', part: 'rules' },
   { sheet: 'history', label: 'History', glyph: 'history' },
 ];
 
@@ -47,7 +51,7 @@ export function BookMarks({
           onView('spread');
         }}
       >
-        <Glyph name="perform" />
+        <PartIcon part="story" glyph="perform" />
         <span className="dmb-mark-word">{t('Pages')}</span>
       </button>
       <button
@@ -74,7 +78,11 @@ export function BookMarks({
             shell.openSheetFromBook(mark.sheet);
           }}
         >
-          <Glyph name={mark.glyph} />
+          {mark.part ? (
+            <PartIcon part={mark.part} glyph={mark.glyph} />
+          ) : (
+            <Glyph name={mark.glyph} />
+          )}
           <span className="dmb-mark-word">{t(mark.label)}</span>
         </button>
       ))}

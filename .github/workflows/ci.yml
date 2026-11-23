@@ -128,17 +128,19 @@ jobs:
     name: UI and API journeys (${{ matrix.shard }}/${{ strategy.job-total }})
     # Pinned: Playwright system dependencies are installed for this image.
     runs-on: ubuntu-24.04
-    # A shard's third of the journeys: 5–7 of the 20 minutes the 184 took in one job (two
-    # workers, 2026-10-31). The browsers' system packages come from the runner's apt mirror,
-    # which took 17–25 minutes on 2026-11-17 and cancelled every shard before its journeys ran:
-    # the job's limit leaves room for that, and each step below has its own.
+    # A shard's quarter of the journeys. Three shards took 16–18 minutes each by 2026-11-22, the
+    # third once reaching its 25-minute step limit; the book interface (ADR 0075) moves most
+    # journeys, so a fourth shard keeps each well inside it. The browsers' system packages come
+    # from the runner's apt mirror, which took 17–25 minutes on 2026-11-17 and cancelled every
+    # shard before its journeys ran: the job's limit leaves room for that, and each step below
+    # has its own.
     timeout-minutes: 60
 
     strategy:
       # Every shard reports its own failures.
       fail-fast: false
       matrix:
-        shard: [1, 2, 3]
+        shard: [1, 2, 3, 4]
 
     env:
       NODE_ENV: test

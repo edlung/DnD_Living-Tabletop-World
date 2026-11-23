@@ -9,6 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
+- Stage 1020 added §2 (the kit, paper, the books' materials).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -57,6 +58,31 @@
 10. **The authority does not move.** A book is a view: every change it starts is a command the
     product already has, judged by the World Engine. A player's book and the table's book receive
     only their own projections; the DM's text never reaches them. No AI is called at the table.
+
+### 2. The kit, paper and each book's materials (Stage 1020)
+
+1. **Each book's own set.** A campaign's book has a set of pictures drawn in that campaign's house
+   style with its own pictures as the references: the binding, the paper, the ribbon, the dice tray
+   and the icons of the eight parts (Story, Scene, Heroes, Hero, World, Journal, Table, Rules); the
+   three books of the demo also have moment icons, a divider and an emblem. The originals are Codex
+   CLI pictures kept outside the repository; `scripts/book-materials/build.ts` converts them
+   mechanically to `apps/web/public/book-materials/<theme>/` and writes the manifest the client
+   reads and the stylesheet that hands a campaign's theme its textures (`--book-cover`,
+   `--book-paper`, `--book-ribbon`, `--book-tray`, …). The product's own set (`ltw`) dresses only
+   the shelf, the way in and the writer's desk.
+2. **Never another book's set.** A campaign whose set is not drawn yet keeps its theme's material
+   and the product's glyphs; no book shows a piece of another book's set
+   (`tests/ui-kit/book-materials.test.ts`).
+3. **The open book is named once.** The session's shell provides the campaign theme's id to the
+   kit (`BookThemeContext`); the kit's pieces (`apps/web/src/book-kit/`) take their pictures from it.
+4. **Paper is a scope of the tokens.** `[data-surface='paper']` gives every component on a page
+   dark inks, edges and status colours measured at WCAG 2.2 AA on the darkest parchment
+   (`tests/ui-kit/paper-tokens.test.ts`); the dark glass stays everywhere else. A section shared by
+   a page and the old shell is right in both.
+5. **The DM's book is dressed first.** Its bookmarks carry the icons of the parts their sections
+   belong to, its moments the moment icons, its pages the book's paper, its spread the book's
+   binding, the party's place the book's ribbon. Nothing else a user sees changes in this stage.
+6. **Journeys run in four shards** in CI.
 
 ## Consequences
 

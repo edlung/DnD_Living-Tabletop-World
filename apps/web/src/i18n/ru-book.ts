@@ -120,6 +120,8 @@ registerRussian({
   'Chapter {number} is not played yet': 'Снять отметку: глава {number}',
   // After the review of 2026-11-22
   'The ribbon moved here': 'Закладка перешла сюда',
+  // The book kit (Stage 1020)
+  Ribbon: 'Закладка',
   'Take the ribbon back': 'Вернуть закладку',
   'The right page': 'Правая страница',
   'Part {number} of {parts}': 'Часть {number} из {parts}',

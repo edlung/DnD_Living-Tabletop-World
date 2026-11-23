@@ -25,9 +25,10 @@
   "shownToTheOwner": "docs/BOOK_INTERFACE_PLAN.md, written in the session after the card and summarised to him in Russian: five books from one engine, the parts of a book as the navigation, where each of today's sections goes, Stages 1000–1140, the session's decisions and the main risk of replacing at once.",
   "ownerInstruction": "Да, открываем. Для генераций красивых книжных ассетов интерфейса обращаемся к Codex CLI.",
   "ownerInstructionAnswers": "The session's question: «Открываем этапы 1000 и 1010: документы и демо всех книг?»",
-  "authorizedStages": [1000, 1010],
+  "authorizedStages": [
+    1000, 1010, 1020, 1030, 1040, 1050, 1060, 1070, 1080, 1090, 1100, 1110, 1120, 1130, 1140
+  ],
   "notAuthorized": [
-    "Stages 1020–1140, the product code: they wait for the owner's acceptance of the demo (Stage 1010 ends with a hard stop).",
     "Stage 940 of the DM's book plan (a real table) and Stage 950 (Layer 2 of the story)."
   ],
   "picturesAndText": {
@@ -58,5 +59,10 @@
       "said": "Не забываем о том что каждая книга имеет свой стиль, согласно арту содержимого. Задача - картинки кампании и книги (страницы, переплет, иконки) должны выглядеть гармонично.",
       "consequence": "Every campaign book gets its own set of materials in its campaign's house style (binding, paper, part icons, moment icons, ribbon, dice tray, ornaments); the product's neutral set dresses only the shelf, the way in and the workshop desk; a manuscript is dressed as its campaign. The demo shows three books of three different styles (the lighthouse, rain-check, marrow-crown) and a harmony check is part of Stage 1010."
     }
-  ]
+  ],
+  "demoAccepted": {
+    "asked": "«Как вам демо книг?» with the buttons «Принимаю, дальше» and «Есть правки», after the demo https://claude.ai/artifact/JjaysGsEkmvKUfnsZrQ6h5 (version 3) and pull requests 78 and 79 were shown.",
+    "answered": "Принимаю, дальше",
+    "meaning": "The demo is accepted as it is, with no corrections. «дальше» opens Stages 1020–1140. Read by the session as in the program before it: stage after stage, each on its own branch and pull request stacked on the one before, the usual checks and a report a stage; merging, deployment and the rehearsal on the owner's tablet before the DM's book replaces the DM's screen stay his."
+  }
 }
