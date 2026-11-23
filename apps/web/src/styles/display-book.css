@@ -1,0 +1,111 @@
+/*
+ * The open book on the table (docs/adr/0075-book-interface.md §9): the table's screen is the
+ * campaign's book lying open — its binding around the page, pictures and the battlefield as plates,
+ * what is read on the book's paper with the fold down the middle, and the closed cover when nothing
+ * is cast. Every cast keeps its contract and its content (`display/cast-views.tsx`).
+ */
+.display {
+  background-color: var(--ink-900);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ink-950) 30%, transparent), transparent 40%),
+    var(--book-cover, var(--table-material, none));
+  background-size: auto, 320px;
+}
+/* The page inside the binding is the window less the binding's edge: nothing runs off the screen
+   (the casts' own full-window heights in display.css, display-moments.css, display-tv.css and
+   story-cast.css). */
+main.display > .display-cast {
+  min-height: calc(100dvh - 4.4vmin);
+}
+main.display > .display-cast > :is(.display-battle, .display-dice, .display-story) {
+  height: calc(100dvh - 4.4vmin);
+}
+.display-cast {
+  min-height: calc(100dvh - 4.4vmin);
+  margin: 2.2vmin;
+  overflow: hidden;
+  border-radius: 1vmin;
+  box-shadow: 0 1vmin 3vmin rgb(0 0 0 / 0.55);
+}
+.display-cast > :is(section, figure, div) {
+  min-height: calc(100dvh - 4.4vmin);
+}
+
+/* What is read: on the book's paper, a page of it. */
+.display .display-cast[data-surface='paper'] > * {
+  background:
+    var(--book-paper, none) 0 0 / 520px,
+    var(--page);
+  color: var(--page-ink);
+}
+.display .display-cast[data-surface='paper'] .display-scrim {
+  display: none;
+}
+
+/* A title page: the campaign's picture as the plate on the left page, the title on the right. */
+.display .display-cast[data-surface='paper'] > .display-title {
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  background:
+    linear-gradient(
+      to right,
+      transparent calc(50% - 3vmin),
+      rgb(43 32 21 / 0.1) calc(50% - 0.2vmin),
+      rgb(43 32 21 / 0.24) 50%,
+      rgb(255 250 238 / 0.3) calc(50% + 0.2vmin),
+      transparent calc(50% + 3vmin)
+    ),
+    var(--book-paper, none) 0 0 / 520px,
+    var(--page);
+}
+.display .display-cast[data-surface='paper'] > .display-title > .display-art {
+  inset: 6vmin auto auto 6vmin;
+  width: calc(50% - 10vmin);
+  height: calc(100% - 12vmin);
+  border: 0.6vmin solid var(--page-floor);
+  border-radius: 0.6vmin;
+  box-shadow: 0 0.4vmin 1.6vmin rgb(0 0 0 / 0.35);
+  object-fit: cover;
+}
+.display .display-cast[data-surface='paper'] > .display-title > .display-title-text {
+  grid-column: 2;
+  justify-items: center;
+  max-width: none;
+  padding: 0 6vmin;
+}
+.display .display-cast[data-surface='paper'] .display-title-text {
+  background: none;
+  border: 0;
+}
+.display .display-cast[data-surface='paper'] .display-title-text h1 {
+  color: var(--rubric);
+  text-shadow: none;
+}
+.display .display-cast[data-surface='paper'] .display-title-text p {
+  color: var(--page-ink-muted);
+}
+
+/*
+ * Nothing cast: the book lies closed — its cover and emblem, kept as dim as the dark screen the
+ * DM asked for (display.css keeps it at a third of its light).
+ */
+.display[data-cast='blank'] {
+  background-image: none;
+}
+.display[data-cast='blank'] .display-cast {
+  min-height: 100dvh;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.display-blank {
+  background:
+    var(--book-emblem, url('../assets/ui-kit/ornaments/emblem.webp')) center / 24vmin no-repeat,
+    var(--book-cover, var(--table-material, none)) 0 0 / 320px,
+    var(--ink-950);
+}
+
+/* The screen's own controls (sound, the corner's) keep a ground of their own over the page's paper. */
+.display .primary-button {
+  background-color: var(--ink-900);
+}

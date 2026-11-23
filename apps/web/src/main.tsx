@@ -91,6 +91,7 @@ import './styles/display.css';
 import './styles/screen-sheet.css';
 import './styles/display-moments.css';
 import './styles/display-tv.css';
+import './styles/display-book.css';
 import './styles/sound.css';
 import './styles/dm-screen.css';
 import './styles/chat.css';

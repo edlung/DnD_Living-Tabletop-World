@@ -37,6 +37,20 @@ import {
 import { WaitingStrip } from './waiting-strip.tsx';
 
 /**
+ * The open book on the table (docs/adr/0075-book-interface.md §9): what is read lies on the book's
+ * paper — a title page, the rolls, the agreement, the Chronicle, the stars, the bookplate to join;
+ * pictures and the battlefield are plates in the binding; nothing cast is the closed cover.
+ */
+const ON_PAPER: ReadonlySet<string> = new Set([
+  'title',
+  'dice',
+  'agreement',
+  'chronicle',
+  'stars',
+  'join',
+]);
+
+/**
  * The table display (docs/adr/0042-table-display.md): a TV's browser opens `/display`, shows a
  * code until the DM pairs it, then shows what the DM casts — read only, in the PARTY perspective,
  * following the live signal. A screen that restarts comes back to what was cast (its cookie
@@ -349,7 +363,11 @@ function DisplayScreen({
       {shown !== null ? (
         <>
           {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}
-          <div key={castKey(shown)} className="display-cast">
+          <div
+            key={castKey(shown)}
+            className="display-cast"
+            data-surface={ON_PAPER.has(shown.cast.kind) ? 'paper' : undefined}
+          >
             <CastView
               api={api}
               cast={shown}
