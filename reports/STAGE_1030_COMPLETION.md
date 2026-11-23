@@ -60,6 +60,12 @@ ground of its own and a paper page showed through its glass (it has one now); th
 own buttons lay under the bookmarks (the battle sits inside the book now); one check of the DM's
 dock.
 
+Not run locally: the journeys against the built deployment (`tests/deploy`, Docker). CI ran them,
+and two fixes came from there after the report was first written: the deployment journey waited
+for the DM's Players tab to be visible (it is in the document, its part closed: `fa6794eb`), and
+the library's fight read the workshop's list before the game's sign-in had settled, so the first
+answer was a 401 (`91f0f655`).
+
 ## Open
 
 - **Rehearsal before deployment** on the owner's tablet: this is the stage after which the DM has
