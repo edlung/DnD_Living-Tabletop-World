@@ -14,7 +14,9 @@ Work order `work-orders/STAGE_1020.md`; program `docs/BOOK_INTERFACE_PLAN.md`; A
   dice tray and the icons of the eight parts, with the campaign's cover and two of its pictures as
   the style reference (`~/Documents/living-tabletop-world-art/book-sets-2026-11-23/`,
   `make_prompts.py`, `gen.py`, `assemble.sh`). The three books of the demo keep their sets, with
-  moment icons, a divider and an emblem as well.
+  moment icons, a divider and an emblem as well. The two built-in adventures (Ravenford,
+  Hollowmere) are drawn the same way with Ravenford's own pictures as the anchor, as its art bible
+  asks (`make_builtin.py`). All 56 books ship: the product's own and 55 campaigns', 10 MB of WebP.
 - **The pipeline.** `scripts/book-materials/build.ts` converts the originals to
   `apps/web/public/book-materials/<theme>/` and writes `apps/web/src/visual/book-materials/`
   (manifest with digests; a stylesheet giving each campaign's theme `--book-cover`, `--book-paper`,
@@ -54,9 +56,10 @@ Work order `work-orders/STAGE_1020.md`; program `docs/BOOK_INTERFACE_PLAN.md`; A
 
 ## Open
 
-- The sets of the remaining campaigns are being drawn when this report is written (600 pictures,
-  seven at a time); they are added to this pull request by running `assemble.sh` and the build
-  script, and checked by the same tests. Until a set exists the campaign looks as before.
+- Every campaign's set is drawn (624 pictures by Codex CLI, none failed) and shipped in this pull
+  request; each was looked at beside its campaign's pictures in contact sheets for harmony of
+  palette, material and era. The owner has not seen them yet: a set he does not like is drawn
+  again and rebuilt with the same script.
 - The paper scope is used by the DM's book only; the shell of Stage 1030 puts every section on it.
 
 ## Next
