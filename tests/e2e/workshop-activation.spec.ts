@@ -28,7 +28,7 @@ import {
   openInvitation,
   takeSeat,
 } from './support/sign-in.ts';
-import { dockButton } from './support/shell.ts';
+import { bookPart, dockButton } from './support/shell.ts';
 
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off', video: 'off' });
 test.setTimeout(60000);
@@ -140,6 +140,14 @@ test('Russian activation and game entry keep the campaign language', async ({ pa
   await enterActivatedGame(page, 'en');
   await expect(dockButton(page, 'Игроки')).toBeAttached();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
+  // Bound, it plays like a library campaign: its DM has its book (ADR 0075 §13), assembled from
+  // the published package where none was written.
+  const title = (await page.locator('.session-shell h1').textContent()) ?? '';
+  const part = bookPart(page, 'Книга');
+  await expect(part).toBeVisible();
+  const book = page.getByRole('region', { name: title, exact: true });
+  if (!(await book.isVisible())) await part.click();
+  await expect(book).toBeVisible();
 });
 
 test('activation preserves an existing game cookie and normal entry offers keeping or replacing it', async ({

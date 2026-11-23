@@ -5,6 +5,8 @@ registerRussian({
   'This is unfinished preparation from one saved step. It has not passed the complete campaign checks.':
     'Это незавершённая подготовка из одного сохранённого шага. Она ещё не прошла полную проверку кампании.',
   'View result: {stage}': 'Открыть результат: {stage}',
+  'Page read': 'Прочитано',
+  'Not read yet': 'Ещё не прочитано',
   'Step failed': 'Шаг завершился с ошибкой',
   'Step stopped': 'Шаг остановлен',
   'Step dispatch is uncertain': 'Отправка шага не подтверждена',

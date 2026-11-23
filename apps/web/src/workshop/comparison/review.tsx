@@ -104,7 +104,11 @@ export function RevisionReview({
     finish(await action.run(`/drafts/${draftId}/${writePath}`, body, reviewedWriteAnswerSchema));
   };
   return (
-    <section className="campaign-review" aria-label={t('Review revision changes')}>
+    <section
+      className="campaign-review"
+      aria-label={t('Review revision changes')}
+      data-source={source.kind}
+    >
       <div className="workshop-section-heading">
         <h3>
           {source.kind === 'review'

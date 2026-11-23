@@ -265,6 +265,27 @@
    (`workshop/editing/`); the inspector's quick corrections and the targeted AI edit come to the
    book with the co-author in Stage 1130.
 
+### 13. The manuscript: the co-author, the plates, the binding (Stage 1130)
+
+1. **Every section of a draft is the manuscript's paper** but the world preview: the generation's
+   commission is the form on the left, the pages it proposed on the right; **each proposed page is
+   marked "Not read yet" until the author opens it**, then "Page read". The marks live while the
+   draft is open, in memory only: the workshop keeps nothing of a draft in the browser.
+2. **An AI edit is a proofreader's marks**: what it would take out is struck through, what it would
+   put in is underlined and ruled in the margin; it is accepted or refused whole, as the editing
+   contract has it (accepting each mark alone would need a new request, which this program does not
+   add — decision 12).
+3. **The draft's pictures are plates** in a thin gilt frame.
+4. **The world preview is the proof copy**: the game's own scene and board views as they will be
+   read, under the proof's stamp ("Preview only…"); it keeps the game's dark ground, so the views
+   are exactly the table's.
+5. **Activation is binding**: the checks and the consent on the manuscript's paper; once bound, the
+   book stands in the activation and on the desk in its binding, and the campaign plays like a
+   library campaign with its DM's book — the library's, or the one assembled from its package
+   (§5, `book-source.ts`); the activation journey opens it.
+6. No provider is added and no spending rule changes (ADR 0032); no workshop request, nonce or
+   consent changes.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through
