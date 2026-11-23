@@ -79,6 +79,7 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   A journey that needs a page quiet before it counts requests waits with `readsQuiet`
   (`support/live.ts`: no read for 3 s), never a fixed pause: on a hosted runner the trailing
   re-reads of a slow load were still due after one (`sign-in.spec.ts`, `sign-in-tabs.spec.ts`).
+  `expectReadsSettle` is the same wait with an end: a view that never stops reading fails it.
   The live stream never ends while a page lives, so response-body collectors skip it
   (`isLiveStream` in `support/session.ts`); its frames are held to the fixed grammar by the
   server tests. Only the stream's transport is touched: the reconnect journey cuts the open
@@ -311,7 +312,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   `hero-story-words.spec.ts` owns `ui-story-ru`.
 - The party's encyclopedia (ADR 0073 §4, Stage 830): `party-known.spec.ts` owns `ui-known` (and
   `ui-known-ipad` in WebKit, `ui-known-ru`): the page read by a player and by the DM, held to the
-  party's forbidden markers.
+  party's forbidden markers. With the page shown on both screens the journey waits for their
+  reads to stop (`expectReadsSettle`, `support/live.ts`): the page once read its four views again
+  after every answer, without end, and the journey's worker ran out of memory holding the bodies.
 - "What can I do?" (ADR 0073 §3, Stage 820): `turn-hint.spec.ts` owns the combat campaigns
   `hint` (`hintIpad` in WebKit, `hintRu`), each the ambush at Elowen's first turn, and
   `ui-hint-scene` for the hint outside a fight.

@@ -100,7 +100,9 @@ domain, rules, or providers.
   `fetch` (never `EventSource`; the credential stays in the header, or the session cookie). `useResource` re-reads
   in the background on its signals, and once more `TRAILING_REREAD_MS` after every read
   completed (`GenerationReads`; that trailing read schedules none): never remount, clear, or
-  flash a shown view for a signal, and keep drafts, selections and unsubmitted intent. Announce turn changes in the
+  flash a shown view for a signal, and keep drafts, selections and unsubmitted intent. `useResource`'s
+  `reread` and `retry` are one function each for the component's life, so an effect may depend on
+  them (made anew by every render, a `reread` in an effect's dependencies read without end). Announce turn changes in the
   turn banner's live region only, never on every refresh.
 - DM table tools (ADR 0033 §6–8): "Skip the turn" and "Act as <name>" render only in the DM
   perspective's encounter controls and ask for a reason first; acting switches the DM to that

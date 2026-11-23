@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ApiError } from './client.ts';
 import { TRAILING_REREAD_MS, useLiveActive, useLiveRefresh, useLiveRetry } from './live-context.ts';
@@ -205,17 +205,22 @@ export function useResource<T>(key: string, load: (signal: AbortSignal) => Promi
     seen.current = refresh;
     reads.current?.reread();
   }, [refresh]);
+  // One function each for the life of the component: an effect may depend on them. A `reread`
+  // made anew by every render re-ran such an effect after each answer it brought, which read
+  // again — without end (`chronicle/known/use-known.ts`, while the page was shown).
+  const again = useCallback(() => {
+    setAttempt((current) => current + 1);
+  }, []);
+  const reread = useCallback(() => {
+    reads.current?.reread();
+  }, []);
   return {
     resource: stored?.key === generation ? stored.resource : ({ status: 'loading' } as Resource<T>),
-    retry: () => {
-      setAttempt((current) => current + 1);
-    },
+    retry: again,
     /**
      * A background re-read now (after the viewer's own action): what is shown stays meanwhile,
      * and a trailing read follows as for any read.
      */
-    reread: () => {
-      reads.current?.reread();
-    },
+    reread,
   };
 }
