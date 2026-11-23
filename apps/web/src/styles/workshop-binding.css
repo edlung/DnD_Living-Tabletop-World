@@ -1,0 +1,91 @@
+/*
+ * The manuscript, the co-author, the plates and the binding (docs/adr/0075-book-interface.md §13):
+ * the generation's commission and the pages it proposed on the manuscript's paper, each proposed
+ * page marked until the author has read it; an AI edit as a proofreader's marks; the draft's
+ * pictures as plates; the world preview as the proof copy of the game's own views; activation as
+ * binding, the bound book shown once it is done. Requests, spending and the activation's consent
+ * stay the workshop's (ADR 0032, `workshop/AGENTS.md`).
+ */
+
+/* The sheets inside the manuscript: plain paper, the page's own ink, no glass over glass. */
+.workshop-manuscript-page .workshop-panel {
+  border-color: var(--line);
+  background: rgb(255 250 238 / 0.4);
+  box-shadow: none;
+}
+
+/* A proposed page and whether the author has read it. */
+.workshop-page-mark {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-block: 4px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.workshop-page-mark::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.workshop-page-mark[data-read='true']::before {
+  border: 1px solid var(--text-muted);
+  background: none;
+}
+
+/* A proofreader's marks: what the AI proposes to take out is struck, what it puts in is marked. */
+.campaign-review[data-source='review'] .campaign-diff-value[data-side='before'] > :not(h4) {
+  text-decoration: line-through;
+  text-decoration-color: var(--danger);
+  text-decoration-thickness: 2px;
+}
+.campaign-review[data-source='review'] .campaign-diff-value[data-side='after'] > :not(h4) {
+  text-decoration: underline;
+  text-decoration-color: var(--teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.campaign-review[data-source='review'] .campaign-diff-value[data-side='after'] {
+  box-shadow:
+    inset 3px 0 0 var(--teal),
+    0 6px 12px -8px rgb(0 0 0 / 0.6);
+}
+
+/* The draft's pictures as plates: each in a thin gilt frame on a dark mount. */
+.workshop-picture-card img,
+.workshop-picture-placeholder,
+.workshop-picture-chosen {
+  border: 3px solid #b58b3c;
+  border-radius: 2px;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.55),
+    0 8px 16px -8px rgb(0 0 0 / 0.8);
+}
+
+/* The world preview: the proof copy — its line about what a preview does is the proof's stamp. */
+.workshop-proof .workshop-preview > p:first-of-type {
+  justify-self: start;
+  padding: 4px 12px;
+  border: 2px solid var(--gold);
+  border-radius: 2px;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  transform: rotate(-1deg);
+}
+
+/* Bound: the book that now stands on the desk and on its DM's shelf. */
+.campaign-bound {
+  --book-w: 8rem;
+  display: flex;
+  justify-content: flex-start;
+  padding-block: 8px;
+}
+.campaign-bound .shelf-stand {
+  margin: 0;
+  padding: 0;
+  background: none;
+}

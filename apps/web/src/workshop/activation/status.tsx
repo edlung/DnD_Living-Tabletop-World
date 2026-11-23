@@ -6,15 +6,20 @@ import { inApp } from '../../native/shell.ts';
 import type { WorkshopClient } from '../client.ts';
 import { useRequestSignal } from '../use-request-signal.ts';
 import { EnterCampaignButton } from './enter-button.tsx';
+import { ShelfBook } from '../../session/shelf-book.tsx';
+import { campaignAppearance } from '../../visual/campaign-themes/index.ts';
 
 export function ActivationStatus({
   client,
   draftId,
+  title,
   activation,
   onRefresh,
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
+  /** The campaign's title, on its bound book. */
+  readonly title: string;
   readonly activation: CampaignActivationView;
   readonly onRefresh: () => void;
 }) {
@@ -62,6 +67,10 @@ export function ActivationStatus({
       <p>{t('Later draft changes do not change this campaign or its played history.')}</p>
       {activation.status === 'PUBLISHED' ? (
         <>
+          {/* Bound: the book that now stands on the desk and on its DM's shelf (ADR 0075 §13). */}
+          <div className="campaign-bound" {...campaignAppearance(title)}>
+            <ShelfBook title={title} />
+          </div>
           <p>
             {inApp()
               ? t(

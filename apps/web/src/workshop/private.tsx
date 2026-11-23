@@ -12,6 +12,7 @@ import '../styles/workshop-editing.css';
 import '../styles/workshop-activation.css';
 import '../styles/workshop-desk.css';
 import '../styles/workshop-writing.css';
+import '../styles/workshop-binding.css';
 
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useT } from '@ltw/ui';
