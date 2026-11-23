@@ -11,7 +11,7 @@ Work order `work-orders/STAGE_1050.md`; program `docs/BOOK_INTERFACE_PLAN.md`; A
   place as it is now in reading order: its name and hour, the talk while it lasts, who sits at the
   table, who and what is here as a list with their pictures, the ways beyond. The right page is the
   place's plate and, under it, the card of what is chosen (the detail panel on paper); with nothing
-  chosen the page says where a card comes from. A result is a slip at the foot of the right page;
+  chosen the page says where a card comes from. A result is a slip laid on the plate;
   the quiet row and the table's cards stand over the head of the spread. A talk takes the plate's
   place at the head of the right page while it lasts, the card of the one it is with under it,
   and no longer closes the card. In a fight seen from the Scene, whose turn it is and the switch

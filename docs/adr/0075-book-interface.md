@@ -124,7 +124,8 @@
    page is the place as it is now, in reading order: its name and hour, the talk while it lasts,
    who sits at the table, who and what is here as a list with their pictures, the ways beyond. The
    right page is the place's plate and, under it, the card of what is chosen; with nothing chosen
-   the page says where a card comes from. A result is a slip at the foot of the right page.
+   the page says where a card comes from. A result is a slip laid on the plate; a talk takes the
+   plate's place while it lasts, the card of the one it is with under it.
 2. (S) Narrower, the Scene stays one page under its picture, as Stage 1040 left it; the phone's
    page on paper comes with the hero's spread (Stage 1070).
 3. **The ribbon and the Scene point at each other.** The DM's ribbon hangs at the spine of the
