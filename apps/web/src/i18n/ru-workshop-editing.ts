@@ -218,4 +218,5 @@ registerRussian({
     'Выбранное содержимое защищено. Чтобы явно снять защиту, откройте раздел «Защита».',
   'Your manual changes are kept in Structured editing.':
     'Ручные изменения сохранены в разделе «Структурная правка».',
+  'Characters left: {left}': 'Осталось знаков: {left}',
 });

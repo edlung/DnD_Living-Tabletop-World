@@ -250,6 +250,21 @@
    co-author, plates, proof copies and binding — Generation, World preview and Activation — come to
    the book in Stage 1130, and until then keep their glass.
 
+### 12. The manuscript: writing on the page (Stage 1120)
+
+1. **The structured editor and the protections are the manuscript's page itself**, not a card on
+   it, on the book's paper.
+2. **Words are written in the page's column** (names, texts, descriptions), each with how many
+   more characters fit standing in the margin beside it.
+3. **What is chosen stands in the margin** beyond a ruled margin line — a choice from a list or a
+   reference, a number, a yes or no, a part added or removed — its label in the column with a
+   dotted leader to it. Nested parts keep their right edge on the page's, so every margin lines up
+   under the line; below 768 px the page is one column and the margin falls under its label.
+4. **Where a protection begins the margin says so** ("Locked content…"), not again inside it.
+5. Locks, conflicts, saving and every request of the editing contract stay as they were
+   (`workshop/editing/`); the inspector's quick corrections and the targeted AI edit come to the
+   book with the co-author in Stage 1130.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through
