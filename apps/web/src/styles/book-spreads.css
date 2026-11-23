@@ -38,7 +38,7 @@
  */
 @media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .world-main[data-book] > .stage:not(.stage--battle) {
-    margin: var(--pages-h) var(--parts-w) 10px 10px;
+    margin: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
     border-radius: 8px;
     background:
       var(--book-paper, none) 0 0 / 420px,
@@ -61,7 +61,7 @@
 }
 @media (max-width: 700px) {
   .world-main[data-book] > .stage:not(.stage--battle) {
-    margin: var(--pages-h) 6px 64px;
+    margin: var(--pages-h) 6px calc(64px + var(--foot-h));
   }
 }
 

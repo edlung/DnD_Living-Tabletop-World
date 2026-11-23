@@ -19,6 +19,8 @@ export const UI_DICE_CAMPAIGNS = {
   plain: 'ui-dice-plain',
   /** A check rolled again with Heroic Inspiration (ADR 0046 §6). */
   reroll: 'ui-dice-reroll',
+  /** The dice at the foot of the book's page (docs/adr/0075-book-interface.md §8). */
+  foot: 'ui-dice-foot',
 } as const;
 
 export async function seedUiDiceCampaigns(engine: WorldEngine): Promise<void> {
@@ -31,6 +33,7 @@ export async function seedUiDiceCampaigns(engine: WorldEngine): Promise<void> {
     [UI_DICE_CAMPAIGNS.still, 'en'],
     [UI_DICE_CAMPAIGNS.plain, 'en'],
     [UI_DICE_CAMPAIGNS.reroll, 'en'],
+    [UI_DICE_CAMPAIGNS.foot, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

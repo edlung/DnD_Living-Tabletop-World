@@ -6,6 +6,9 @@
 .world-main[data-book] {
   --parts-w: 148px;
   --pages-h: 52px;
+  /* The dice at the foot of the page (`dice/book-foot.tsx`), under the page; none in a fight. */
+  --foot-h: 0px;
+  --page-bottom: calc(10px + var(--foot-h));
   background-color: var(--ink-900);
   background-image:
     linear-gradient(color-mix(in srgb, var(--ink-950) 35%, transparent), transparent 40%),
@@ -20,7 +23,7 @@
 
 /* A section is a page of the book: the binding around, the paper under its words. */
 .world-main[data-book] .sheet {
-  inset: var(--pages-h) var(--parts-w) 10px 10px;
+  inset: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
   padding: 0;
   border-radius: 8px;
   background:
@@ -222,7 +225,7 @@
     --pages-h: 50px;
   }
   .world-main[data-book] .sheet {
-    inset: var(--pages-h) 6px 64px;
+    inset: var(--pages-h) 6px calc(64px + var(--foot-h));
   }
   .book-pages {
     left: 6px;
@@ -259,27 +262,35 @@
 .world-main[data-book] .scene,
 .world-main[data-book] .stage-backdrop,
 .world-main[data-book] .combat-stage {
-  inset: var(--pages-h) var(--parts-w) 10px 10px;
+  inset: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
 }
 .world-main[data-book] .stage-backdrop {
   border-radius: 8px;
   overflow: hidden;
 }
 /*
- * No dock lies under a tablet's or desktop's stage (the bookmarks are at the fore-edge): what kept
- * clear of it (who is present, a result, a banner) sits on the page's lower edge instead. A fight
- * keeps its measured layout.
+ * No dock lies under a tablet's or desktop's stage (the bookmarks are at the fore-edge), only the
+ * dice at the page's foot: what kept clear of the dock (who is present, a result, a banner) keeps
+ * clear of them instead. A fight keeps its measured layout, and its turn tray is its foot.
  */
+.world-main[data-book]:not(.has-battle) {
+  --foot-h: 48px;
+}
+@media (max-width: 700px) {
+  .world-main[data-book]:not(.has-battle) {
+    --foot-h: 46px;
+  }
+}
 @media (min-width: 768px) and (min-height: 501px) {
   .world-main[data-book]:not(.has-battle) {
-    --dock-h: 0px;
+    --dock-h: var(--foot-h);
   }
 }
 @media (max-width: 700px) {
   .world-main[data-book] .scene,
   .world-main[data-book] .stage-backdrop,
   .world-main[data-book] .combat-stage {
-    inset: var(--pages-h) 6px 64px;
+    inset: var(--pages-h) 6px calc(64px + var(--foot-h));
   }
 }
 /*
@@ -316,7 +327,7 @@
   .world-main[data-book] .detail-panel {
     top: var(--pages-h);
     right: var(--parts-w);
-    bottom: 10px;
+    bottom: var(--page-bottom);
   }
 }
 /* A result lies on the page, clear of the bookmarks (and of the selection's column beside them). */
@@ -358,14 +369,14 @@
   }
   .world-main[data-book].has-details:not(.has-battle):has(.outcome) .scene-presence {
     right: 16px;
-    bottom: 24px;
+    bottom: calc(var(--page-bottom) + 14px);
   }
 }
 /* A phone: the drawer ends above the bookmarks along the bottom. */
 @media (max-width: 767px) {
   .world-main[data-book] .detail-panel {
     top: var(--pages-h);
-    bottom: 64px;
+    bottom: calc(64px + var(--foot-h));
   }
 }
 

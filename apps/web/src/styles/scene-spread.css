@@ -9,7 +9,7 @@
 .world-main[data-book]:has(.scene[data-spread]) {
   /* The spine: the middle of the book between the binding's edge and the bookmarks. */
   --spine-x: calc(10px + (100% - 10px - var(--parts-w)) / 2);
-  --plate-h: calc((100% - var(--pages-h) - 10px) * 0.42);
+  --plate-h: calc((100% - var(--pages-h) - var(--page-bottom)) * 0.42);
 }
 /*
  * While a page of another part lies over the spread, the card goes back to where Stage 1040 put
@@ -26,7 +26,7 @@
   position: absolute;
   top: var(--pages-h);
   right: var(--parts-w);
-  bottom: 10px;
+  bottom: var(--page-bottom);
   left: var(--spine-x);
   border-radius: 0 8px 8px 0;
   background:
@@ -213,7 +213,7 @@
   position: absolute;
   top: calc(var(--pages-h) + 16px + var(--plate-h) + 10px);
   right: calc(var(--parts-w) + 8px);
-  bottom: 12px;
+  bottom: calc(var(--page-bottom) + 2px);
   left: calc(var(--spine-x) + 16px);
   width: auto;
   padding: 0.4rem 0.6rem 1.2rem;
@@ -271,7 +271,7 @@
   ):has(> .spread-talk:not(:empty))
   > .outcome {
   top: auto;
-  bottom: 24px;
+  bottom: calc(var(--page-bottom) + 14px);
   max-height: 40%;
 }
 .world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))):has(
@@ -374,7 +374,7 @@
   left: calc(var(--spine-x) + 24px);
   z-index: 16;
   display: block;
-  max-height: calc((100% - var(--pages-h) - 10px) * 0.62);
+  max-height: calc((100% - var(--pages-h) - var(--page-bottom)) * 0.62);
   overflow-y: auto;
   background:
     var(--book-paper, none) 0 0 / 420px fixed,

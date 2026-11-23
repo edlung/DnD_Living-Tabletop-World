@@ -16,6 +16,10 @@ registerRussian({
   'Larger text': 'Крупный текст',
   'This campaign has no book to read here.': 'У этой кампании пока нет книги.',
   'Assembled from the campaign itself': 'Собрано из самой кампании',
+  'The dice at the foot of the page': 'Кубики у подножия страницы',
+  'Roll a d{sides} for the table': 'Бросить d{sides} для стола',
+  'No dice yet': 'Бросков ещё не было',
+  'More dice': 'Ещё кубики',
   'The ribbon is in chapter {number}, “{title}”: open the story there':
     'Закладка в главе {number} «{title}»: открыть историю там',
   'Ch.': 'Гл.',

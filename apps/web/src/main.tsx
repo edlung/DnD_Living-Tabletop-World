@@ -112,6 +112,7 @@ import './styles/book-shell.css';
 import './styles/scene-spread.css';
 import './styles/fold-out.css';
 import './styles/book-spreads.css';
+import './styles/book-foot.css';
 import './styles/board-plates.css';
 import './styles/board-terrain.css';
 import './styles/images.css';
