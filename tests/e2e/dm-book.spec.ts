@@ -34,7 +34,7 @@ const onward = (page: Page) =>
 
 /** Turns on until the page with this title: a long text takes several screens of one page. */
 async function turnTo(page: Page, title: string) {
-  for (let turns = 0; turns < 16 && (await heading(page).textContent()) !== title; turns += 1)
+  for (let turns = 0; turns < 24 && (await heading(page).textContent()) !== title; turns += 1)
     await onward(page).click();
   await expect(heading(page)).toHaveText(title);
 }
@@ -42,7 +42,7 @@ async function turnTo(page: Page, title: string) {
 /** Presses words of the text that open a moment, reading on to the screen that holds them. */
 async function openFromText(page: Page, words: string) {
   const link = story(page).getByRole('button', { name: words, exact: true });
-  for (let turns = 0; turns < 6 && (await link.count()) === 0; turns += 1)
+  for (let turns = 0; turns < 12 && (await link.count()) === 0; turns += 1)
     await onward(page).click();
   await link.click();
   return link;
