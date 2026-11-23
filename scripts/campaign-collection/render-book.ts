@@ -1,3 +1,4 @@
+import { pocketSection } from '../campaign-shared/pocket.ts';
 import { tableGuide } from '../campaign-shared/table-guide.ts';
 import { artOf, figure } from '../campaign-shared/campaign-art.ts';
 import { COLLECTION_ROOT, type Source } from './source.ts';
@@ -48,6 +49,7 @@ export function renderBook(s: Source): string {
     `${w.genre} · ${w.audience} · ${w.minPlayers}–8 игроков + ведущий`,
     `${figure(art, 'cover', '', 'art cover')}<div class="lead">${p(w.pitch)}</div><div class="ribbon">Только ведущему: ниже находятся тайны и возможные финалы. Страницу «Игрокам» можно передавать отдельно.</div>` +
       tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
+      pocketSection(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
       box(
         'Начать игру',
         p(

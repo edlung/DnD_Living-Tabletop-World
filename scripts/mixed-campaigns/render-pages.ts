@@ -1,4 +1,5 @@
 import { castCards } from '../campaign-shared/cast-cards.ts';
+import { pocketSection } from '../campaign-shared/pocket.ts';
 import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
 import { heroSheet } from './sheets.ts';
 import { COLLECTION_ROOT, type Source } from './source.ts';
@@ -46,6 +47,7 @@ export function renderDm(s: Source): string {
     `<div class="lead">${p(w.pitch)}</div>` +
       openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
       tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
+      pocketSection(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
       box(
         'За десять минут до первой игры',
         list([

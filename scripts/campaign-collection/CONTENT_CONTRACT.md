@@ -59,7 +59,10 @@ the DM; unlock is DM-only release condition. Never distribute all unlocked hando
 Arrays of TWO sessions each. Session `{number,key,title,location,participants:string[],clues:string[],
 goal,readAloud,scenes,spotlight:string[],consequences,handouts:string[],ending,dmNote}`.
 `participants` use NPC keys only (avoid optional hero dependencies).
-`scenes` = 3+ objects `{title,minutes:number,play,choices:string[],check,failForward}`.
+`scenes` = 3+ objects `{title,minutes:number,readAloud,play,choices:string[],check,failForward}`;
+`readAloud` is 60–120 Russian words the DM reads as the scene begins (docs/CAMPAIGN_TEXT_STANDARD.md §5),
+shown in the session page and the DM book, never in a package. `source/pocket.json` is the DM's pocket
+(rumours, minor places, passers-by; §7), shown in the DM book only.
 Scene play: ~100–180 Russian words of runnable action/dialogue/obstacles, distinct choices,
 concrete consequences, clue access and callbacks. `check` states supported ability/skill and DC
 where appropriate, success/failure and a no-roll alternative; narrative rulings are DM-adjudicated,

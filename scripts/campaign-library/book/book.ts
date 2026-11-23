@@ -5,6 +5,7 @@ import {
   bookReferenceProblems,
   campaignBookSchema,
   type CampaignBook,
+  type CampaignBookPocket,
   type CampaignPackage,
 } from '../../../packages/contracts/src/index.ts';
 
@@ -18,11 +19,14 @@ import { voiceOf } from './voice.ts';
  * written, the check line also as fields, the people named in a page, the encounters tied to a
  * chapter. Nothing is written here that the source does not say. Both source shapes are read: the
  * family books (`act-N.json`, `props`, `end`) and the collections (`sessions-N.json`, `handouts`,
- * `ending`).
+ * `ending`). A scene's `readAloud` and the campaign's `pocket.json` (the DM's pocket) are carried
+ * as written; neither goes into a package.
  */
 interface SourceScene {
   title: string;
   minutes?: number;
+  /** What the DM reads aloud as the scene begins (docs/CAMPAIGN_TEXT_STANDARD.md §5). */
+  readAloud?: string;
   play: string;
   choices: string[];
   check: string;
@@ -128,6 +132,7 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
     (maybe('table-guide.json') as { session: number; title: string; text: string }[] | undefined) ??
     [];
   const routes = maybe('table-routes.json') as SourceRoutes | undefined;
+  const pocket = maybe('pocket.json') as CampaignBookPocket | undefined;
 
   const places = new Set(pkg.entities.filter((e) => e.kind === 'location').map((e) => e.key));
   const known = new Set(pkg.entities.map((e) => e.key));
@@ -173,6 +178,7 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
           filled({
             key: `${c.key}-scene-${String(index + 1)}`,
             title: scene.title,
+            readAloud: scene.readAloud,
             text: scene.play,
             voice: voiceOf(scene.play),
             layer: 1,
@@ -253,6 +259,7 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
           },
         }
       : {}),
+    ...(pocket ? { pocket } : {}),
   });
   requireBookFits(book, pkg);
   return book;

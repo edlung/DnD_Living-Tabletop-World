@@ -9,8 +9,20 @@ import act3 from '../../campaigns/lighthouse/source/act-3.json' with { type: 'js
 import act4 from '../../campaigns/lighthouse/source/act-4.json' with { type: 'json' };
 
 export { world, cast, clues, items, handouts };
-export const chapters = [...act1, ...act2, ...act3, ...act4];
-export type Chapter = (typeof chapters)[number];
+/** A scene; `readAloud` is what the DM reads as it begins (docs/CAMPAIGN_TEXT_STANDARD.md §5). */
+export interface Scene {
+  title: string;
+  minutes: number;
+  readAloud?: string;
+  play: string;
+  choices: string[];
+  check: string;
+  failForward: string;
+}
+type Act =
+  (typeof act1)[number] | (typeof act2)[number] | (typeof act3)[number] | (typeof act4)[number];
+export type Chapter = Omit<Act, 'scenes'> & { scenes: Scene[] };
+export const chapters: Chapter[] = [...act1, ...act2, ...act3, ...act4];
 export const DEFAULT_PARTY = ['finn', 'tess', 'asya'] as const;
 export const HERO_KEYS = [...DEFAULT_PARTY, 'mika'] as const;
 export type HeroKey = (typeof HERO_KEYS)[number];

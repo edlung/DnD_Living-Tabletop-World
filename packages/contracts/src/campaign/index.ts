@@ -37,6 +37,8 @@ export {
   campaignBookClueSchema,
   campaignBookHandoutSchema,
   campaignBookRoutesSchema,
+  campaignBookPocketSchema,
+  BOOK_RUMOUR_TRUTHS,
   bookReferenceProblems,
   type BookVoice,
   type BookReferenceProblem,
@@ -44,6 +46,7 @@ export {
   type CampaignBookChapter,
   type CampaignBookPage,
   type CampaignBookCheck,
+  type CampaignBookPocket,
 } from './book.ts';
 export {
   BOOK_NOTE_CHARS,

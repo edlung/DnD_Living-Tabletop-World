@@ -85,6 +85,8 @@ export const campaignBookPageSchema = z
     title,
     /** Where this page plays, when it is not the chapter's own place. */
     place: campaignKeySchema.exactOptional(),
+    /** What the DM reads aloud as the scene begins, where the source has it (layer 1). */
+    readAloud: text.exactOptional(),
     /** The scene as the campaign wrote it; paragraphs are separated by an empty line. */
     text: longText,
     voice: z.enum(BOOK_VOICES),
@@ -186,6 +188,24 @@ export const campaignBookHandoutSchema = z
   })
   .strict();
 
+/**
+ * The DM's pocket (docs/CAMPAIGN_TEXT_STANDARD.md §7): what people say, places off the prepared
+ * road and passers-by, to improvise with. A rumour's `truth` and `note` say what is behind it;
+ * like the whole book it is the DM's, never a player's or the table screen's. It names no key:
+ * nothing in it is a fact of the world until the DM says it at the table.
+ */
+export const BOOK_RUMOUR_TRUTHS = ['true', 'false', 'partial'] as const;
+export const campaignBookPocketSchema = z
+  .object({
+    rumours: z
+      .array(z.object({ text, truth: z.enum(BOOK_RUMOUR_TRUTHS), note: text }).strict())
+      .max(16),
+    places: z.array(z.object({ name: title, text }).strict()).max(8),
+    people: z.array(z.object({ name: title, look: text, line: text, knows: text }).strict()).max(8),
+  })
+  .strict();
+export type CampaignBookPocket = z.infer<typeof campaignBookPocketSchema>;
+
 const followup = z.object({ location: campaignKeySchema, choice: text }).strict();
 /** The campaign's own notes on a party that leaves the prepared road (`source/table-routes.json`). */
 export const campaignBookRoutesSchema = z
@@ -233,6 +253,7 @@ export const campaignBookSchema = z
     /** Prepared encounters no chapter could be named for with certainty. */
     looseEncounters: z.array(campaignKeySchema).max(100),
     routes: campaignBookRoutesSchema.exactOptional(),
+    pocket: campaignBookPocketSchema.exactOptional(),
   })
   .strict();
 export type CampaignBook = z.infer<typeof campaignBookSchema>;

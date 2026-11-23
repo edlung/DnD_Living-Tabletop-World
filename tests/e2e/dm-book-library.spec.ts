@@ -123,6 +123,13 @@ test('a family campaign and a collection campaign of the library open as books',
   await expect(story).toContainText('Глава 1');
   await expect(side).toContainText('Зачем эта глава');
   await toFirstPage(dm);
-  await expect(story).toContainText('Для мастера: расскажите своими словами');
+  // A scene opens with words to read aloud, quoted before the DM's own text.
+  await expect(story).toContainText('Цитату прочитайте вслух, остальное — для мастера');
+  await expect(story.locator('blockquote').first()).toBeVisible();
   await expect(side).toContainText('Люди и события');
+  // The DM's pocket is folded on every page: rumours with what is behind them.
+  await side.getByText('Карман мастера', { exact: true }).click();
+  await expect(side).toContainText('Слухи');
+  await expect(side).toContainText('Прохожие');
+  await expectAccessible(dm, 'a scene page with its words to read aloud and the open pocket');
 });

@@ -7,6 +7,7 @@ import {
   type CampaignBook,
   type Skill,
 } from '../../../packages/contracts/src/index.ts';
+import { readPocket } from './pocket.ts';
 import { readSeed } from './seed.ts';
 
 /**
@@ -193,5 +194,6 @@ export function hollowmereBook(): CampaignBook {
     looseEncounters: [...seed.encounters].filter(
       (key) => !chapters.some((chapter) => chapter.encounters.includes(key)),
     ),
+    ...readPocket('hollowmere'),
   });
 }

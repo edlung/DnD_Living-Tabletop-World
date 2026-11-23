@@ -7,12 +7,14 @@ import {
   type CampaignBook,
 } from '../../../packages/contracts/src/index.ts';
 import { hollowmereBook } from './hollowmere.ts';
+import { readPocket } from './pocket.ts';
 import { readSeed } from './seed.ts';
 
 /**
  * The DM's books of the two built-in adventures (docs/adr/0074-dm-book.md §2.8), Russian only:
  * `fixtures/hollowmere-ru/book.json` from the concept's spreads and `fixtures/ravenford-ru/
- * book.json` from the pages in `ravenford-pages.json`. Both carry `awaitingReading`: their text
+ * book.json` from the pages in `ravenford-pages.json`; each with the DM's pocket beside them
+ * (`<adventure>-pocket.json`, docs/CAMPAIGN_TEXT_STANDARD.md §7). Both carry `awaitingReading`: their text
  * was written for the book and the owner has not read it. Usage, from the repository root:
  * `node --conditions=@ltw/source scripts/adventures/books/build.ts`.
  */
@@ -37,6 +39,7 @@ function ravenfordBook(): CampaignBook {
     clues: seed.clueCards,
     handouts: [],
     looseEncounters: [...seed.encounters].filter((key) => !pages.chapter.encounters.includes(key)),
+    ...readPocket('ravenford'),
   });
 }
 

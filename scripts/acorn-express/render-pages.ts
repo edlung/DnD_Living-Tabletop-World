@@ -1,3 +1,4 @@
+import { pocketSection } from '../campaign-shared/pocket.ts';
 import { tableGuide } from '../campaign-shared/table-guide.ts';
 import { cast, chapters, handouts, items, world } from './data.ts';
 import { packRoot, esc, img, link, list, p, page, save } from './render-common.ts';
@@ -72,6 +73,7 @@ export async function renderPages() {
     ${section('Личные пути героев', `<div class="grid">${cast.heroes.map((hero) => card(hero.name, p(hero.arc))).join('')}</div>`)}
     ${section('Честный журнал путешествия', `<div class="reading stack">${list(['Где находится Тош, кто рядом и какую помощь он принял?', 'Какие улики увидели игроки; что остаётся лишь предположением?', 'Какие проекты выполнены, кто за ними смотрит и чего пока не хватает?', 'Какие обещания дали Вельт, Ива и сами герои?', 'Что стало важным каждому игроку и какой момент вернуть в его письме?'])}${p('Квесты приложения отмечают осмотры и встречи. Они не объявляют ремонт выполненным, доверие восстановленным или финал счастливым. Эти изменения вводите после реального решения за столом.')}</div>`)}
     ${tableGuide(packRoot)}
+    ${pocketSection(packRoot)}
     ${section('Двенадцать вечеров', `<div class="grid">${chapterCards}</div>`)}
     ${section('Люди, которых хочется встретить снова', `<div class="stack">${npcCards}</div>`)}
     ${section('Жизнь между главами', `<div class="reading stack">${list(world.recurring)}${p('Записывайте после вечера: какие факты узнали; кому что обещали; что изменили; кого пригласили; что осталось открытым. Эпилог строится по этим записям. Не выдавайте предполагаемый успех за случившийся.')}</div>`)}
