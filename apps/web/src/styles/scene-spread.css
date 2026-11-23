@@ -255,7 +255,7 @@
  * under it, and scrolls inside when it is longer than the plate.
  */
 .world-main[data-book]:not(.has-battle):has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
-  .outcome {
+  > .outcome {
   top: calc(var(--pages-h) + 24px);
   right: calc(var(--parts-w) + 24px);
   bottom: auto;
@@ -269,14 +269,14 @@
 .world-main[data-book]:not(.has-battle):has(.scene[data-spread]):not(
     :has(.sheet:not([hidden]))
   ):has(> .spread-talk:not(:empty))
-  .outcome {
+  > .outcome {
   top: auto;
   bottom: 24px;
   max-height: 40%;
 }
 .world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))):has(
     > .spread-talk:not(:empty)
-  ):has(.outcome)
+  ):has(> .outcome)
   > .detail-panel {
   padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
   scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
