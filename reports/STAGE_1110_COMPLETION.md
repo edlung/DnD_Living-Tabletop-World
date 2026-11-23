@@ -33,6 +33,10 @@ stacked on Stage 1100's.
   column the cover's title label shrank to a few letters a line: the margins and the label are in
   the book's own measure now (the shelf's books, Stage 1100, gain the same fix).
 - The proofs touched each other (the layout audit): they stand 12 px apart.
+- CI's iPad `hero-story` lost a backstory's unsaved words after a look at the pack: while the world
+  refreshed, its directory was empty for a moment, the open hero was not found and the Story tab
+  went with its words. The open sheets keep the last directory through a refresh, as authoring
+  did (`world/world.tsx`). Not of this stage's making; first seen on its pull request.
 
 ## Not in this stage
 
