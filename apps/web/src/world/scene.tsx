@@ -9,7 +9,9 @@ import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { SceneObjects } from './scene-objects.tsx';
 import { SPREAD_TALK_ID, useSceneSpread } from './scene-spread.ts';
+import { NARROW, useMedia } from '../combat/board/board-view.ts';
 import { useFoldOutSurface } from '../combat/fold-out.ts';
+import { usePaperSurface } from '../shell/sheet.tsx';
 
 export interface NearbyPlace {
   readonly entityId: string;
@@ -109,12 +111,16 @@ export function Scene({
   }, [spread]);
   // In a fight the place's card and who is at the table are the fold-out's margin, on paper too.
   const paper = useFoldOutSurface() !== undefined;
+  // On a phone the Scene is one page of the book under its picture, on the book's paper.
+  const narrow = useMedia(NARROW);
+  const inBook = usePaperSurface() !== undefined;
+  const page = narrow && inBook && !battlefield;
   return (
     <section
       className="scene"
       aria-label={t('Scene')}
       data-spread={spread ? '' : undefined}
-      data-surface={spread || (paper && battlefield) ? 'paper' : undefined}
+      data-surface={spread || page || (paper && battlefield) ? 'paper' : undefined}
     >
       <header className="cartouche">
         <h2>{location.name}</h2>
