@@ -1,7 +1,7 @@
 {
   "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
-  "sourceSha256": "20cb0229c78b9f2cbf4025a0947851b4c658ad935997e88d7607c85276d4a382",
+  "sourceSha256": "5f4ddf699ebf77f384ff718fa05859482b8b9b04c551ca3108c9a54583203bbf",
   "content": {
     "sessions": 8,
     "scenes": 16,
@@ -27,7 +27,7 @@
   "variants": [
     {
       "size": 3,
-      "sha256": "0f2e533245b5f518f30d5a91837fa2200d8e4721eaa572078e4da08323b3b2d7",
+      "sha256": "f33b3b9f727390d8c30b5cb4d8cbeae1d5827e5219b537486d4052cdbbed69bb",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -40,7 +40,7 @@
     },
     {
       "size": 4,
-      "sha256": "01acb555756e17668072e73bac0f6bc0e09a01159cf326e237f12fd98d9b30bf",
+      "sha256": "2ff19d6ce327ceacc7a4d4b490c4b308b052cd5c5d1230a40c5a604727a75123",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -53,7 +53,7 @@
     },
     {
       "size": 5,
-      "sha256": "bfc66df2415d404e3d211c829a4b69924f4e6ad5824373e35dd126a671ffeb1c",
+      "sha256": "f82717dbcad983fb08e785c39c2d12cb667b107cedde7cc24936ec55e0616cbb",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -66,7 +66,7 @@
     },
     {
       "size": 6,
-      "sha256": "6ba54c1b746b7e26b1694e47530053bc64a4e9f8c3bbdab3d0f541c39d22c0b2",
+      "sha256": "d3ad20ecacb63a6bf6a3486382551ca457863e400930ce1b4c23e3bedf0f937d",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -79,7 +79,7 @@
     },
     {
       "size": 7,
-      "sha256": "c64ef1b32c4bfc61616cf0d29d0234413664d7e0857f6a9d6b40440322537310",
+      "sha256": "aa3dbc10d8e8948fd027ae32a2d5a6e91615d0c026bb9ebf4f68d7a45c781470",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -92,7 +92,7 @@
     },
     {
       "size": 8,
-      "sha256": "7138a8c27e85ec0934b52346a72cfc046a2e4e5bd2e53e3fb7aea08d5469c09e",
+      "sha256": "f67654ae30f26962c0917ed072df81017ce54e676c528716adfdff9c08608fbb",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],

@@ -1,7 +1,7 @@
 {
   "modelRequested": "gpt-6-astra",
   "effortRequested": "max",
-  "sourceSha256": "f0da22367a92467429cc279ff1aa161658bee36d6fd6a253ffa35f65be351cbd",
+  "sourceSha256": "3e50ba62e045e5e8d3b41d0f2e1d226a612cd36a1e0411c604dca088a055a850",
   "content": {
     "sessions": 8,
     "scenes": 24,
@@ -10,7 +10,7 @@
     "clues": 16,
     "handouts": 8,
     "optionalEncounters": 3,
-    "duration": "180 минут: 15 минут на открытие и пересказ, три сцены по 45 минут, 10 минут перерыва, 20 минут на последствия и закрытие. Внутри истории восемь встреч занимают три дня; переходы времени объявляет DM.",
+    "duration": "180 минут: 15 минут на открытие и пересказ, три сцены по 45 минут, 10 минут перерыва, 20 минут на последствия и закрытие. Внутри истории восемь встреч занимают три дня; переходы времени объявляет ведущий.",
     "sceneMinutesBySession": [
       135,
       135,
@@ -27,7 +27,7 @@
   "variants": [
     {
       "size": 3,
-      "sha256": "26f55d2f4c3c1e86a3de0b51856216c8725a88130e79f2a065adff2f9380070c",
+      "sha256": "36a9a8b523987f8ac8152ec3b26cf6c49a6c8079d6fe14f66d91cf3c443356db",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -40,7 +40,7 @@
     },
     {
       "size": 4,
-      "sha256": "797b09ef37d8d68b0ccf47a81b718ee2d6124fbe0d55a0bc3266eed59fc40862",
+      "sha256": "aaed3788597a653aebeec57353f6bef917a9dd5f95c8bf56e18d68e645254ae9",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -53,7 +53,7 @@
     },
     {
       "size": 5,
-      "sha256": "34c41fac0bba231d91c6c6cbbce0632b45ef143dff5815eaf23fe39e972a8464",
+      "sha256": "d7eb776fd5de9352d77969aab78ae5e0c31ccb2f2699282613597f8aadb6ff57",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -66,7 +66,7 @@
     },
     {
       "size": 6,
-      "sha256": "5d3a050a0ebeae4b3373de556f958f0ab0a0c8108fc586c28b5f96f0c244f2eb",
+      "sha256": "aa26111eaee120a3df4a3b821c548f8ab411275e64e4a0ac385795fbbde2291e",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -79,7 +79,7 @@
     },
     {
       "size": 7,
-      "sha256": "80e7148ac25bd7e3dfd4321409b17eb6a9f239b949390fc666f6efbc22ae5776",
+      "sha256": "9311c956036de1f1814333422f2507645f27fc245fc80274b464881929fcdf50",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -92,7 +92,7 @@
     },
     {
       "size": 8,
-      "sha256": "6cfae83ed15dbe53e6493a12cd6576c9b25de2e4cbfd2b1ab14e41e2da8fce83",
+      "sha256": "20d1ce5c807afbbb8e74f37743fa06ff6b9ea0776a9ebdf059c3d6736eaee88c",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],

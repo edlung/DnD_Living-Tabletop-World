@@ -5,7 +5,7 @@
  "audience": "14+",
  "pitch": "При обвале в Белокамье кто-то попросил новое божество оживить высеченного в скале кита и вынести людей. Кит поднялся в воздух. Спасённые машут с его спины, а по площади уже ползёт вмятина в форме огромного плавника. Предстоит понять, куда уходит тяжесть чуда, забраться на летающего великана и выбрать следующую просьбу, которую вы готовы осуществить своими руками.",
  "tone": "Большое чудо на расстоянии вытянутой руки, риск без жестокости, деятельное сочувствие, юмор камнерезов и серьёзные материальные последствия.",
- "duration": "8 сессий; 180 минут: 15 минут на открытие и пересказ, три сцены по 45 минут, 10 минут перерыва, 20 минут на последствия и закрытие. Внутри истории восемь встреч занимают три дня; переходы времени объявляет DM.",
+ "duration": "8 сессий; 180 минут: 15 минут на открытие и пересказ, три сцены по 45 минут, 10 минут перерыва, 20 минут на последствия и закрытие. Внутри истории восемь встреч занимают три дня; переходы времени объявляет ведущий.",
  "cover": "campaigns/fantasy-2026/unwritten-god/illustrations/opening.webp",
  "defaultVariant": "4-players",
  "variants": [
@@ -14,47 +14,47 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "2ae5e74df3a4b33c0813823d6a76417da1281cbbb7965dadbb29e1cc9fe70c58"
+   "digest": "90330da733ef20edbb70e3eeabb1eaab7709455237eeb582733bd92a437240d9"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "b16a4a90661b418e574a5b89210119ff4cfbdb5b2bc86d227cb49a18a07c3762"
+   "digest": "670229260632eec7c08aac712f3806e6f3fd60bf985e577c879b4b6e5ad860f9"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "144f82ebfb6cd7f3149b053315204196b5ab5de0a2eef7545e7b4ad33c4547c2"
+   "digest": "0ed3ca76d0fe974e47dec335f8e99c85dfe38ce3bf2a3385cc9f8767a8febb23"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "1ed0714ce662be4a50907d8ae0cb2886097983229140c6dd14d5a5d1673e1b43"
+   "digest": "1885f0fc37c9e3fad4049e4e3a2fdb3af53729ee74b03590256ad07aee854e2e"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "f93af353def0ee01141be9cc8bb5b4bf1d2b656de9a865240f0dd68fbff314a0"
+   "digest": "36c138a7ac2f5bf71b948e135f9262b1ac9dcaec8189377c10143369b94e9abe"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "984bf4d0e242d91277426c79a6d1a9bf693b54aa2949e74639c2c3cd527928c8"
+   "digest": "0b9bc4e23c35673e0892697015385ed2f6f9b67eef6c7e9492a75479950a1fb0"
   }
  ],
  "book": {
   "file": "book.json",
-  "sha256": "9fea4561436ac746b22d181e0d79c4b6a7153bfd95ecc532c357647f9cdffa30"
+  "sha256": "17bbc1713d4deba7b96c81d10ff933abca5e0a23d43ecf9e768a0bcf908a914b"
  },
  "generator": "codex-cli imagegen",
  "pictures": [

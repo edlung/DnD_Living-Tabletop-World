@@ -104,7 +104,7 @@ export function encounterSection(e: BookEncounter, built: Built, size: number, h
             `${a.bonus >= 0 ? '+' : ''}${a.bonus}, ${a.damage.count}к${a.damage.sides}${a.damage.bonus ? `+${a.damage.bonus}` : ''}`,
         )
         .join('; ');
-      return `<li>${h.esc(group.name)} × ${group.count}: защита ${b.armorClass}, хиты ${b.hitPoints.max}, скорость ${b.speedFt} футов, атак за ход ${b.attacksPerAction} (${h.esc(attacks)})</li>`;
+      return `<li>${h.esc(group.name)} × ${group.count}: КД ${b.armorClass}, хиты ${b.hitPoints.max}, скорость ${b.speedFt} футов, атак за ход ${b.attacksPerAction} (${h.esc(attacks)})</li>`;
     })
     .join('');
   const { width, height, difficult, cover } = built.battlefield;

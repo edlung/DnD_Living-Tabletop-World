@@ -34,7 +34,7 @@ export function heroCard(h: Hero, picture = ''): string {
   const classes = { fighter: 'воин', rogue: 'плут', cleric: 'жрец', wizard: 'волшебник' };
   const sheet = heroSheet(h.archetype);
   const a = sheet.abilities;
-  const profile = `<p class="meta">Здоровье ${sheet.hitPoints.max} · КД ${sheet.armorClass} · Скорость ${sheet.speedFt} футов<br>СИЛ ${a.str} · ЛОВ ${a.dex} · ТЕЛ ${a.con} · ИНТ ${a.int} · МДР ${a.wis} · ХАР ${a.cha}</p>`;
+  const profile = `<p class="meta">Хиты ${sheet.hitPoints.max} · КД ${sheet.armorClass} · Скорость ${sheet.speedFt} футов<br>СИЛ ${a.str} · ЛОВ ${a.dex} · ТЕЛ ${a.con} · ИНТ ${a.int} · МДР ${a.wis} · ХАР ${a.cha}</p>`;
   const equipment =
     h.archetype === 'fighter'
       ? 'Длинный меч, ручной топор.'
