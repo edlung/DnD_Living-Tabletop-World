@@ -50,7 +50,8 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
   await expect(form).toContainText('Now: A picture with words to read aloud', LIVE);
 
-  // The TV: the words, each line its own paragraph, over one picture that fills the screen.
+  // The TV: the words, each line its own paragraph, over one picture that fills the book's page
+  // inside its binding (ADR 0075 §9).
   const story = tv.getByRole('region', { name: 'A story read aloud' });
   await expect(story.locator('p')).toHaveText(
     ['The road bends north.', 'The lanterns of Ravenford fall behind you.'],
@@ -59,8 +60,11 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   const art = story.locator('img.display-story-art');
   await expect(art).toBeVisible();
   const box = await art.boundingBox();
-  expect(box?.width).toBe(1280);
-  expect(box?.height).toBe(720);
+  const page = await tv.locator('.display-cast').boundingBox();
+  expect(box?.width).toBeCloseTo(page?.width ?? 0, 0);
+  expect(box?.height).toBeCloseTo(page?.height ?? 0, 0);
+  // The binding shows only as a narrow edge round the plate.
+  expect(box?.width).toBeGreaterThan(1280 * 0.95);
   // Nothing runs off the screen.
   expect(await tv.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(
     true,

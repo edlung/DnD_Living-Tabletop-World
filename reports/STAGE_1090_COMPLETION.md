@@ -21,6 +21,9 @@ Work order `work-orders/STAGE_1090.md`; program `docs/BOOK_INTERFACE_PLAN.md`; A
 - A title's picture as a replaced element ignored the right inset and filled the page: it is
   sized to the left page now; the theme's dark material under the title is off on paper.
 - The fold ran through centred words (joining, "No rolls yet."): only the title page has a fold.
+- Found by Stage 1100's full run: the story, the battlefield and the rolls kept their full-window
+  heights inside the binding's margin, so the screen scrolled by the binding's width
+  (`story-cast`): the page inside the binding is the window less its edge.
 
 ## Not in this stage
 
@@ -34,6 +37,7 @@ shell's remote and sound were not driven here (ADR 0075 §9.4).
 | `pnpm run typecheck`, `pnpm run lint`, `pnpm run format:check`, `pnpm run build` | pass                    |
 | `pnpm run test` (unit)                                                           | 5,119 of 5,119          |
 | The table screen's and the evening's journeys, Chromium (32, 21 files)           | 30 passed, 2 then fixed |
+| `story-cast`, `table-display`, `display-moments`, `display-room` after the fix   | 6 of 6                  |
 | The scene, a title, the rolls, the agreement, joining and the dark screen        | looked at, 1920 and 960 |
 
 Not run locally: every other journey, the iPad project and WebKit — CI runs them.

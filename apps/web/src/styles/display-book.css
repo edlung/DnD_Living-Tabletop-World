@@ -11,6 +11,15 @@
     var(--book-cover, var(--table-material, none));
   background-size: auto, 320px;
 }
+/* The page inside the binding is the window less the binding's edge: nothing runs off the screen
+   (the casts' own full-window heights in display.css, display-moments.css, display-tv.css and
+   story-cast.css). */
+main.display > .display-cast {
+  min-height: calc(100dvh - 4.4vmin);
+}
+main.display > .display-cast > :is(.display-battle, .display-dice, .display-story) {
+  height: calc(100dvh - 4.4vmin);
+}
 .display-cast {
   min-height: calc(100dvh - 4.4vmin);
   margin: 2.2vmin;
