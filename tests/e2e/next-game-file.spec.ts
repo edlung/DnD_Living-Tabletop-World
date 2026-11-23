@@ -86,7 +86,7 @@ test('a player saves the calendar file; the hub’s card and the TV say when', a
   const link = await invite(dm, 'Elowen Starwhisper');
   const player = await freshPage(browser, { acceptDownloads: true });
   await openInvitation(player, link);
-  await expect(player.locator('nav.dock')).toBeVisible(WAIT);
+  await expect(player.locator('nav.book-parts')).toBeVisible(WAIT);
 
   // The evening ends; the DM sets the next game.
   await openSheet(dm, 'Session');

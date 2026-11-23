@@ -15,12 +15,25 @@ registerRussian({
   Pages: 'Страницы',
   'Larger text': 'Крупный текст',
   'This campaign has no book to read here.': 'У этой кампании пока нет книги.',
+  'Assembled from the campaign itself': 'Собрано из самой кампании',
+  'The dice at the foot of the page': 'Кубики у подножия страницы',
+  'Roll a d{sides} for the table': 'Бросить d{sides} для стола',
+  'No dice yet': 'Бросков ещё не было',
+  'More dice': 'Ещё кубики',
+  'The ribbon is in chapter {number}, “{title}”: open the story there':
+    'Закладка в главе {number} «{title}»: открыть историю там',
+  'Ch.': 'Гл.',
+  'Open {place} in the Scene': 'Открыть место «{place}» в сцене',
+  'Choose a person or a thing on the left page: its card opens here.':
+    'Выберите человека или вещь на левой странице — здесь откроется их карточка.',
   'Your place in the book is not saved yet — it will be with the next change.':
     'Закладка и заметки не сохранились. Сохраним при следующей правке.',
   // The left page
   'Read aloud': 'Прочитайте вслух',
   'Can be read aloud': 'Можно читать вслух',
   'For the DM: tell it in your own words': 'Для мастера: расскажите своими словами',
+  'Read the quotation aloud; the rest is for the DM':
+    'Цитату прочитайте вслух, остальное — для мастера',
   'The DM’s notes after the scene': 'Заметки мастера после сцены',
   'The party is here': 'Отряд здесь',
   'The ribbon: {title}': 'Закладка: {title}',
@@ -64,6 +77,15 @@ registerRussian({
   'Moments of this page': 'Люди и события',
   'How the chapter ends': 'Чем может закончиться глава',
   'Your note on this page': 'Ваша заметка к этой странице',
+  // The DM's pocket (docs/CAMPAIGN_TEXT_STANDARD.md §7)
+  'The DM’s pocket': 'Карман мастера',
+  Rumours: 'Слухи',
+  True: 'Правда',
+  'Not true': 'Неправда',
+  'Partly true': 'Отчасти правда',
+  'Places off the road': 'Места в стороне',
+  'Passers-by': 'Прохожие',
+  'Can tell:': 'Может рассказать:',
   'Only you see it': 'Её видите только вы',
   'Fights the campaign prepared without naming a chapter: {count}. They are in the Encounter section.':
     'Бои без своей главы: {count}. Они в разделе «Схватка».',
@@ -120,6 +142,15 @@ registerRussian({
   'Chapter {number} is not played yet': 'Снять отметку: глава {number}',
   // After the review of 2026-11-22
   'The ribbon moved here': 'Закладка перешла сюда',
+  // The book kit (Stage 1020)
+  Ribbon: 'Закладка',
+  // The DM's book is the DM's screen (Stage 1030)
+  'The heroes': 'Герои',
+  World: 'Мир',
+  'Pages of this part': 'Страницы части',
+  'Parts of the book': 'Части книги',
+  // A hero's book (Stage 1040)
+  Hero: 'Герой',
   'Take the ribbon back': 'Вернуть закладку',
   'The right page': 'Правая страница',
   'Part {number} of {parts}': 'Часть {number} из {parts}',

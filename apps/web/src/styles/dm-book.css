@@ -53,9 +53,6 @@
   inline-size: 18px;
   block-size: 18px;
 }
-.dmb-marks-gap {
-  flex: 1 1 0;
-}
 
 /* The spread: two pages bound by the campaign's material. */
 .dmb-spread {
@@ -70,8 +67,8 @@
   background-color: var(--ink-900);
   background-image:
     linear-gradient(105deg, var(--table-wash, rgb(5 9 14 / 0.86)), rgb(5 9 14 / 0.8)),
-    var(--table-material, none);
-  background-size: auto, 192px;
+    var(--book-cover, var(--table-material, none));
+  background-size: auto, 256px;
 }
 .dmb-page {
   min-height: 0;
@@ -86,11 +83,17 @@
 .dmb-left {
   border-radius: 6px 0 0 6px;
   /* The spine's shade is painted on the page: the two pages are one book, not two cards. */
-  background: linear-gradient(to left, rgb(43 32 21 / 0.2), transparent 20px), var(--page);
+  background:
+    linear-gradient(to left, rgb(43 32 21 / 0.2), transparent 20px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
 }
 .dmb-right {
   border-radius: 0 6px 6px 0;
-  background: linear-gradient(to right, rgb(43 32 21 / 0.2), transparent 20px), var(--page);
+  background:
+    linear-gradient(to right, rgb(43 32 21 / 0.2), transparent 20px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
 }
 /* The shell's headings are light for the dark glass: on the parchment they take the page's ink. */
 .dmb-page :where(h3, h4, p, li, dt, dd, summary, label),

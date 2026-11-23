@@ -10,6 +10,7 @@ import { useRequestSignal } from './use-request-signal.ts';
 import { OwnerPreviewTab } from './preview/tab.tsx';
 import { PreviewWorld } from './preview/world.tsx';
 import { ActivationTab } from './activation/tab.tsx';
+import { pageKey, ReadPagesContext } from './generation/read-pages.ts';
 
 export function DraftEditor({
   client,
@@ -147,6 +148,7 @@ function EditorContent({
     revision: initialPreviewRevision,
   });
   const [older, setOlder] = useState<RevisionHistory | null>(null);
+  const [readPages, setReadPages] = useState<ReadonlySet<string>>(new Set());
   const [activationPending, setActivationPending] = useState(false);
   const [scenarioPending, setScenarioPending] = useState(false),
     [scenarioMode, setScenarioMode] = useState<ScenarioMode>('inspect');
@@ -299,147 +301,155 @@ function EditorContent({
           {t('Save, retry or explicitly discard the pending edit before leaving this scenario.')}
         </p>
       )}
+      {/* The draft is the manuscript read on its pages (ADR 0075 §11, §13); the world preview is
+          its proof copy, a plate of the game's own views. */}
       <div
         id="workshop-editor-panel"
         role="tabpanel"
         aria-labelledby={`workshop-tab-${tab}`}
         tabIndex={0}
+        className={tab === 'visual' ? 'workshop-proof' : 'workshop-manuscript-page'}
+        data-surface={tab === 'visual' ? undefined : 'paper'}
       >
-        {tab === 'scenario' ? (
-          <>
-            <div className="workshop-revisions">
-              <label htmlFor="workshop-revision">{t('Saved revision')}</label>
-              <select
-                id="workshop-revision"
-                disabled={ownerPending}
-                value={source.kind === 'revision' ? (source.revision ?? 'latest') : source.kind}
-                onChange={(event) => {
-                  if (
-                    ['candidate', 'step', 'review', 'compare', 'restore'].includes(
-                      event.target.value,
+        <ReadPagesContext.Provider value={readPages}>
+          {tab === 'scenario' ? (
+            <>
+              <div className="workshop-revisions">
+                <label htmlFor="workshop-revision">{t('Saved revision')}</label>
+                <select
+                  id="workshop-revision"
+                  disabled={ownerPending}
+                  value={source.kind === 'revision' ? (source.revision ?? 'latest') : source.kind}
+                  onChange={(event) => {
+                    if (
+                      ['candidate', 'step', 'review', 'compare', 'restore'].includes(
+                        event.target.value,
+                      )
                     )
-                  )
-                    return;
-                  setSource({
-                    kind: 'revision',
-                    revision: event.target.value === 'latest' ? null : Number(event.target.value),
-                  });
-                }}
-              >
-                <option value="latest">{t('Latest saved content')}</option>
-                {source.kind === 'candidate' && (
-                  <option value="candidate">{t('Unattached generation proposal')}</option>
-                )}
-                {source.kind === 'step' && (
-                  <option value="step">{t('Saved preparation step')}</option>
-                )}
-                {source.kind === 'review' && (
-                  <option value="review">{t('AI edit proposal')}</option>
-                )}
-                {source.kind === 'compare' && (
-                  <option value="compare">{t('Revision comparison')}</option>
-                )}
-                {source.kind === 'restore' && (
-                  <option value="restore">{t('Restore preview')}</option>
-                )}
-                {revisions.map((revision) => (
-                  <option key={revision.revision} value={revision.revision}>
-                    {t('Revision {revision}', { revision: revision.revision })}
-                    {' · '}
-                    {new Intl.DateTimeFormat(language, {
-                      dateStyle: 'medium',
-                      timeStyle: 'short',
-                    }).format(new Date(revision.createdAt))}
-                  </option>
-                ))}
-              </select>
-              {before !== null && (
-                <button
-                  disabled={historyState === 'loading'}
-                  onClick={() => {
-                    void more();
+                      return;
+                    setSource({
+                      kind: 'revision',
+                      revision: event.target.value === 'latest' ? null : Number(event.target.value),
+                    });
                   }}
                 >
-                  {t('Older revisions')}
-                </button>
-              )}
-              {historyState === 'failed' && (
-                <p role="alert">{t('The revision history could not be read.')}</p>
-              )}
-            </div>
-            <ScenarioTab
-              key={source.kind}
+                  <option value="latest">{t('Latest saved content')}</option>
+                  {source.kind === 'candidate' && (
+                    <option value="candidate">{t('Unattached generation proposal')}</option>
+                  )}
+                  {source.kind === 'step' && (
+                    <option value="step">{t('Saved preparation step')}</option>
+                  )}
+                  {source.kind === 'review' && (
+                    <option value="review">{t('AI edit proposal')}</option>
+                  )}
+                  {source.kind === 'compare' && (
+                    <option value="compare">{t('Revision comparison')}</option>
+                  )}
+                  {source.kind === 'restore' && (
+                    <option value="restore">{t('Restore preview')}</option>
+                  )}
+                  {revisions.map((revision) => (
+                    <option key={revision.revision} value={revision.revision}>
+                      {t('Revision {revision}', { revision: revision.revision })}
+                      {' · '}
+                      {new Intl.DateTimeFormat(language, {
+                        dateStyle: 'medium',
+                        timeStyle: 'short',
+                      }).format(new Date(revision.createdAt))}
+                    </option>
+                  ))}
+                </select>
+                {before !== null && (
+                  <button
+                    disabled={historyState === 'loading'}
+                    onClick={() => {
+                      void more();
+                    }}
+                  >
+                    {t('Older revisions')}
+                  </button>
+                )}
+                {historyState === 'failed' && (
+                  <p role="alert">{t('The revision history could not be read.')}</p>
+                )}
+              </div>
+              <ScenarioTab
+                key={source.kind}
+                client={client}
+                draftId={draftId}
+                source={source}
+                initialMode={scenarioMode}
+                headRevision={head}
+                revisions={revisions}
+                onPendingChanged={setScenarioPending}
+                onRefreshHistory={onRefresh}
+                onInspectSource={inspect}
+                {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
+                onVisual={(revision, entityId) => {
+                  setLinkedEntity({ revision, entityId });
+                  setSource({ kind: 'revision', revision });
+                  setTab('visual');
+                  document.getElementById('workshop-tab-visual')?.focus();
+                }}
+                onSaved={(revision) => {
+                  setScenarioMode('inspect');
+                  setSource({ kind: 'revision', revision });
+                  onRefresh();
+                }}
+              />
+            </>
+          ) : tab === 'activation' ? (
+            <ActivationTab
               client={client}
               draftId={draftId}
-              source={source}
-              initialMode={scenarioMode}
+              title={title}
+              revision={source.kind === 'revision' ? (source.revision ?? head) : head}
               headRevision={head}
-              revisions={revisions}
-              onPendingChanged={setScenarioPending}
-              onRefreshHistory={onRefresh}
-              onInspectSource={inspect}
-              {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
-              onVisual={(revision, entityId) => {
-                setLinkedEntity({ revision, entityId });
-                setSource({ kind: 'revision', revision });
-                setTab('visual');
-                document.getElementById('workshop-tab-visual')?.focus();
+              onPendingChanged={setActivationPending}
+              onInspect={(revision) => {
+                inspect({ kind: 'revision', revision });
               }}
-              onSaved={(revision) => {
-                setScenarioMode('inspect');
-                setSource({ kind: 'revision', revision });
-                onRefresh();
+              onRestore={(revision) => {
+                inspect({ kind: 'restore', revision });
               }}
             />
-          </>
-        ) : tab === 'activation' ? (
-          <ActivationTab
-            client={client}
-            draftId={draftId}
-            revision={source.kind === 'revision' ? (source.revision ?? head) : head}
-            headRevision={head}
-            onPendingChanged={setActivationPending}
-            onInspect={(revision) => {
-              inspect({ kind: 'revision', revision });
-            }}
-            onRestore={(revision) => {
-              inspect({ kind: 'restore', revision });
-            }}
-          />
-        ) : tab === 'visual' ? (
-          <OwnerPreviewTab
-            key={source.kind === 'revision' ? (source.revision ?? head) : head}
-            client={client}
-            draftId={draftId}
-            revision={source.kind === 'revision' ? (source.revision ?? head) : head}
-            onCharacter={onCharacter}
-            {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
-            onScenario={(revision, entityId) => {
-              setScenarioMode('inspect');
-              setLinkedEntity({ revision, entityId });
-              inspect({ kind: 'revision', revision });
-            }}
-            onManageProtections={(revision) => {
-              inspect({ kind: 'revision', revision }, 'locks');
-            }}
-          />
-        ) : (
-          <GenerationTab
-            client={client}
-            draftId={draftId}
-            headRevision={head}
-            onRevisionChanged={onRefresh}
-            onInspectCandidate={(jobId) => {
-              inspect({ kind: 'candidate', jobId });
-            }}
-            onInspectRevision={(revision) => {
-              inspect({ kind: 'revision', revision });
-            }}
-            onInspectStep={(jobId, ordinal) => {
-              inspect({ kind: 'step', jobId, ordinal });
-            }}
-          />
-        )}
+          ) : tab === 'visual' ? (
+            <OwnerPreviewTab
+              key={source.kind === 'revision' ? (source.revision ?? head) : head}
+              client={client}
+              draftId={draftId}
+              revision={source.kind === 'revision' ? (source.revision ?? head) : head}
+              onCharacter={onCharacter}
+              {...(linkedEntity ? { initialEntityId: linkedEntity.entityId } : {})}
+              onScenario={(revision, entityId) => {
+                setScenarioMode('inspect');
+                setLinkedEntity({ revision, entityId });
+                inspect({ kind: 'revision', revision });
+              }}
+              onManageProtections={(revision) => {
+                inspect({ kind: 'revision', revision }, 'locks');
+              }}
+            />
+          ) : (
+            <GenerationTab
+              client={client}
+              draftId={draftId}
+              headRevision={head}
+              onRevisionChanged={onRefresh}
+              onInspectCandidate={(jobId) => {
+                inspect({ kind: 'candidate', jobId });
+              }}
+              onInspectRevision={(revision) => {
+                inspect({ kind: 'revision', revision });
+              }}
+              onInspectStep={(jobId, ordinal) => {
+                setReadPages((read) => new Set(read).add(pageKey(jobId, ordinal)));
+                inspect({ kind: 'step', jobId, ordinal });
+              }}
+            />
+          )}
+        </ReadPagesContext.Provider>
       </div>
     </>
   );

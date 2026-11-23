@@ -220,6 +220,8 @@ test('the party’s story is one book, for the DM and a player, and it prints', 
 
   // A second evening: the cover gains the book's contents, and a press leads to a chapter.
   await dialog.getByRole('button', { name: 'Close the Chronicle', exact: true }).click();
+  // The Chronicle is a page of the DM's Journal: the Session is opened again from its part.
+  await openSheet(dm, 'Session');
   await sheet.getByRole('button', { name: 'Start the session', exact: true }).click();
   await sheet.getByRole('button', { name: 'End the session', exact: true }).click(WAIT);
   await sheet

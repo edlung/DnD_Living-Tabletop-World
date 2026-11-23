@@ -51,7 +51,11 @@ export function WorkshopDrafts({
   }, [load]);
   return (
     <div className="workshop-columns">
-      <section className="workshop-panel" aria-labelledby="new-draft-title">
+      <section
+        className="workshop-panel workshop-sheet"
+        aria-labelledby="new-draft-title"
+        data-surface="paper"
+      >
         <h2 id="new-draft-title">{t('Start a campaign draft')}</h2>
         <p>{t('Give your idea a name and choose the language of your campaign.')}</p>
         <DraftForm
@@ -62,7 +66,7 @@ export function WorkshopDrafts({
           onEnded={onEnded}
         />
       </section>
-      <section className="workshop-panel" aria-labelledby="draft-list-title">
+      <section className="workshop-panel workshop-manuscripts" aria-labelledby="draft-list-title">
         <div className="workshop-section-heading">
           <h2 id="draft-list-title">{t('Your drafts')}</h2>
           <button
@@ -82,7 +86,7 @@ export function WorkshopDrafts({
         {drafts && drafts.length > 0 && (
           <ul className="workshop-draft-list">
             {drafts.map((draft) => (
-              <li key={draft.draftId}>
+              <li key={draft.draftId} className="workshop-manuscript" data-surface="paper">
                 <h3 aria-label={draft.title}>
                   <a
                     href={workshopDraftPath(draft.draftId)}

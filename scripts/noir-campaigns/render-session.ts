@@ -16,7 +16,7 @@ export function renderSession(s: Source, session: Session): string {
   const scenes = session.scenes
     .map(
       (scene, i) =>
-        `<article class="scene"><div class="eyebrow">Сцена ${i + 1} · ${scene.minutes} минут</div><h2>${esc(scene.title)}</h2>${p(scene.play)}<h3>Выборы</h3>${list(scene.choices)}<h3>Проверка и путь без броска</h3>${p(scene.check)}<h3>Если не получилось</h3>${p(scene.failForward)}</article>`,
+        `<article class="scene"><div class="eyebrow">Сцена ${i + 1} · ${scene.minutes} минут</div><h2>${esc(scene.title)}</h2>${scene.readAloud ? `<div class="read-aloud">${p(scene.readAloud)}</div>` : ''}${p(scene.play)}<h3>Выборы</h3>${list(scene.choices)}<h3>Проверка и путь без броска</h3>${p(scene.check)}<h3>Если не получилось</h3>${p(scene.failForward)}</article>`,
     )
     .join('');
   const clues = session.clues

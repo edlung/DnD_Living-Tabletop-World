@@ -1,7 +1,7 @@
 {
   "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
-  "sourceSha256": "5f4ddf699ebf77f384ff718fa05859482b8b9b04c551ca3108c9a54583203bbf",
+  "sourceSha256": "cd92b876203cf79c8352b0deb535ce6b63e9cfe5c266c171953ed0b6a9a268bb",
   "content": {
     "sessions": 8,
     "scenes": 16,
@@ -27,7 +27,7 @@
   "variants": [
     {
       "size": 3,
-      "sha256": "f33b3b9f727390d8c30b5cb4d8cbeae1d5827e5219b537486d4052cdbbed69bb",
+      "sha256": "635034c9132420045e46888370c6af49664c155eb98a277677ea68fe1258324b",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -40,7 +40,7 @@
     },
     {
       "size": 4,
-      "sha256": "2ff19d6ce327ceacc7a4d4b490c4b308b052cd5c5d1230a40c5a604727a75123",
+      "sha256": "0b836915cf453d3c64bd23e993def02ae01953e31f08f8baa866ea42abd518bf",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -53,7 +53,7 @@
     },
     {
       "size": 5,
-      "sha256": "f82717dbcad983fb08e785c39c2d12cb667b107cedde7cc24936ec55e0616cbb",
+      "sha256": "683ea332cdbbb38a6a9898c78256b90484be78c490127ea5b044083750ff3102",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -66,7 +66,7 @@
     },
     {
       "size": 6,
-      "sha256": "d3ad20ecacb63a6bf6a3486382551ca457863e400930ce1b4c23e3bedf0f937d",
+      "sha256": "96bd70dd33389ca9eb34b20618d2a1b1d936e7e3fbc5a1e32b8fc86041eaea8f",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -79,7 +79,7 @@
     },
     {
       "size": 7,
-      "sha256": "aa3dbc10d8e8948fd027ae32a2d5a6e91615d0c026bb9ebf4f68d7a45c781470",
+      "sha256": "584f73d50f64455c7a67162f00c12b52ae51c1b3228ba5d198aef27472c4e6d1",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -92,7 +92,7 @@
     },
     {
       "size": 8,
-      "sha256": "f67654ae30f26962c0917ed072df81017ce54e676c528716adfdff9c08608fbb",
+      "sha256": "97470ba226994f424694e270750ff0028fea73085c443f09f27aa121ce8b5a18",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],

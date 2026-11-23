@@ -7,6 +7,7 @@ import { jobAnswerSchema, type GenerationProgress } from '../response-schemas.ts
 import { canRetryGeneration, jobWords, stepStatusWords, stepWords } from './words.ts';
 import { useRequestSignal } from '../use-request-signal.ts';
 import { EditConflict } from '../editing/conflicts.tsx';
+import { pageKey, useReadPages } from './read-pages.ts';
 
 export function GenerationJob({
   client,
@@ -29,6 +30,7 @@ export function GenerationJob({
 }) {
   const t = useT();
   const { job } = progress;
+  const read = useReadPages();
   const [command, setCommand] = useState<'cancel' | 'retry' | null>(null);
   const [failed, setFailed] = useState(false);
   const [waiting, setWaiting] = useState(false);
@@ -106,6 +108,15 @@ export function GenerationJob({
             {stepStatusWords(t, step.status, job.status)}
             {step.model && (
               <span className="muted">{t('Model: {model}', { model: step.model })}</span>
+            )}
+            {/* A proposed page stays unread until the author opens it (ADR 0075 §13). */}
+            {step.status === 'SUCCEEDED' && job.mode === 'GENERATE' && onInspectStep && (
+              <span
+                className="workshop-page-mark"
+                data-read={read.has(pageKey(job.jobId, step.ordinal))}
+              >
+                {read.has(pageKey(job.jobId, step.ordinal)) ? t('Page read') : t('Not read yet')}
+              </span>
             )}
             {step.status === 'SUCCEEDED' && job.mode === 'GENERATE' && onInspectStep && (
               <button

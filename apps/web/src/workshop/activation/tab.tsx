@@ -11,6 +11,7 @@ import { useActivationStatus } from './use-activation.ts';
 export function ActivationTab({
   client,
   draftId,
+  title,
   revision,
   headRevision,
   onPendingChanged,
@@ -19,6 +20,8 @@ export function ActivationTab({
 }: {
   readonly client: WorkshopClient;
   readonly draftId: string;
+  /** The draft's title: the bound book's on the shelf. */
+  readonly title: string;
   readonly revision: number;
   readonly headRevision: number;
   readonly onPendingChanged: (pending: boolean) => void;
@@ -47,6 +50,7 @@ export function ActivationTab({
         <ActivationStatus
           client={client}
           draftId={draftId}
+          title={title}
           activation={activation}
           onRefresh={status.reread}
         />

@@ -1,0 +1,428 @@
+/*
+ * The Scene as a spread (docs/adr/0075-book-interface.md §5), on a screen wide enough for two
+ * facing pages (`world/scene-spread.ts`): the left page is the place as it is now — its name and
+ * hour, the talk, who sits at the table, who and what is here, the ways beyond; the right page is
+ * the place's plate and, under it, the card of what is chosen. A fight takes the stage back
+ * (Stage 1060 makes it a fold-out); below the spread's width the Scene stays one page under its
+ * picture, as in Stage 1040.
+ */
+.world-main[data-book]:has(.scene[data-spread]) {
+  /* The spine: the middle of the book between the binding's edge and the bookmarks. */
+  --spine-x: calc(10px + (100% - 10px - var(--parts-w)) / 2);
+  --plate-h: calc((100% - var(--pages-h) - var(--page-bottom)) * 0.42);
+}
+/*
+ * While a page of another part lies over the spread, the card goes back to where Stage 1040 put
+ * it (a column beside the page, a drawer on a tablet): every rule placing it on the right page
+ * holds only while the Scene shows.
+ */
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* The right page's paper, under the plate and the card. */
+.world-main[data-book]:has(.scene[data-spread]) > .stage::before {
+  content: '';
+  position: absolute;
+  top: var(--pages-h);
+  right: var(--parts-w);
+  bottom: var(--page-bottom);
+  left: var(--spine-x);
+  border-radius: 0 8px 8px 0;
+  background:
+    linear-gradient(to right, rgb(43 32 21 / 0.22), transparent 28px),
+    var(--book-paper, none) 0 0 / 420px fixed,
+    var(--page);
+}
+
+/* The plate: the place's picture, framed at the head of the right page. */
+.world-main[data-book]:has(.scene[data-spread]) .stage-backdrop {
+  inset: auto;
+  top: calc(var(--pages-h) + 16px);
+  right: calc(var(--parts-w) + 16px);
+  left: calc(var(--spine-x) + 24px);
+  z-index: 1;
+  height: var(--plate-h);
+  border: 5px solid var(--page-floor);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
+}
+
+/* The left page: everything of the place in reading order, on paper, scrolling when it is long. */
+.world-main[data-book] .scene[data-spread] {
+  right: calc(100% - var(--spine-x));
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.4rem 1.7rem 1.6rem 1.4rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 8px 0 0 8px;
+  background:
+    linear-gradient(to left, rgb(43 32 21 / 0.22), transparent 28px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--page-ink);
+  pointer-events: auto;
+}
+.world-main[data-book]
+  .scene[data-spread]
+  > :is(.cartouche, .party-rail, .scene-presence, .dialogue-panel, .exits) {
+  position: static;
+  inset: auto;
+  width: auto;
+  flex: none;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  translate: none;
+}
+.world-main[data-book] .scene[data-spread] > .cartouche {
+  order: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.world-main[data-book] .scene[data-spread] > .cartouche::before,
+.world-main[data-book] .scene[data-spread] > .cartouche::after {
+  display: none;
+}
+.world-main[data-book] .scene[data-spread] > .cartouche h2 {
+  color: var(--rubric);
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  text-shadow: none;
+}
+
+/* The talk comes first while it lasts: it is what the table is doing. */
+.world-main[data-book] .scene[data-spread] > .dialogue-panel {
+  order: 1;
+  border-color: var(--line-strong);
+  background: var(--glass-raised);
+  box-shadow: none;
+}
+
+/* Who sits at the table: a row of the heroes beside the DM's place. */
+.world-main[data-book] .scene[data-spread] > .party-rail {
+  order: 2;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  overflow: visible;
+}
+.world-main[data-book] .scene[data-spread] > .party-rail ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.world-main[data-book] .scene[data-spread] > .party-rail :is(.rail-dm, .rail-member) {
+  width: 96px;
+}
+
+/* Who and what is here: a list to read, each with its picture, not medallions over a picture. */
+.world-main[data-book] .scene[data-spread] > .scene-presence {
+  order: 3;
+  display: grid;
+  gap: 0.6rem;
+  align-items: stretch;
+}
+.world-main[data-book] .scene[data-spread] .world-objects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.world-main[data-book] .scene[data-spread] .world-objects > li {
+  display: flex;
+  min-width: 0;
+}
+.world-main[data-book] .scene[data-spread] .object-button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: center;
+  align-items: center;
+  justify-items: start;
+  gap: 0.1rem 0.7rem;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  padding: 0.4rem 0.7rem 0.4rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--glass);
+  text-align: left;
+}
+.world-main[data-book] .scene[data-spread] .object-button > :first-child {
+  grid-row: span 2;
+}
+.world-main[data-book] .scene[data-spread] .object-button .medallion {
+  --m: 56px;
+}
+.world-main[data-book] .scene[data-spread] .object-button .miniature {
+  --mini-h: 64px;
+}
+.world-main[data-book] .scene[data-spread] .object-button:hover:enabled {
+  border-color: var(--line-strong);
+  background: var(--glass-raised);
+}
+.world-main[data-book] .scene[data-spread] .object-button[aria-pressed='true'] {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+  box-shadow: inset 3px 0 0 var(--teal);
+}
+.world-main[data-book] .scene[data-spread] .name-plate,
+.world-main[data-book] .scene[data-spread] .object-button[aria-pressed='true'] .name-plate {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.world-main[data-book] .scene[data-spread] .object-state {
+  padding: 0;
+  background: none;
+}
+.world-main[data-book] .scene[data-spread] .scene-caption {
+  justify-content: flex-start;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* The ways beyond this place: the page's last lines. */
+.world-main[data-book] .scene[data-spread] > .exits {
+  order: 4;
+  justify-items: start;
+}
+.world-main[data-book] .scene[data-spread] :is(.exits h3, .exits-hint) {
+  padding: 0;
+  background: none;
+  text-align: left;
+  text-shadow: none;
+}
+.world-main[data-book] .scene[data-spread] .exits ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.world-main[data-book] .scene[data-spread] .exit-button {
+  min-width: 0;
+  box-shadow: none;
+}
+
+/* The card of what is chosen: the right page under the plate. */
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))) > .detail-panel {
+  position: absolute;
+  top: calc(var(--pages-h) + 16px + var(--plate-h) + 10px);
+  right: calc(var(--parts-w) + 8px);
+  bottom: calc(var(--page-bottom) + 2px);
+  left: calc(var(--spine-x) + 16px);
+  width: auto;
+  padding: 0.4rem 0.6rem 1.2rem;
+  border: 0;
+  background-attachment: fixed;
+  box-shadow: none;
+}
+.spread-card-hint {
+  display: none;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+  > .spread-card-hint:not([hidden]) {
+  position: absolute;
+  top: calc(var(--pages-h) + 16px + var(--plate-h) + 18px);
+  right: calc(var(--parts-w) + 24px);
+  left: calc(var(--spine-x) + 26px);
+  z-index: 2;
+  display: block;
+  margin: 0;
+  background:
+    var(--book-paper, none) 0 0 / 420px fixed,
+    var(--page);
+  color: var(--page-ink-muted);
+  font-style: italic;
+}
+
+/*
+ * The card is a page of the book wherever it lies — on the spread's right page, in a column beside
+ * a page, a tablet's drawer or a phone's sheet: its own paper under its words.
+ */
+.world-main[data-book] > .detail-panel[data-surface='paper'] {
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+}
+
+/*
+ * A result is a slip laid on the plate: it covers part of the picture, never the card's actions
+ * under it, and scrolls inside when it is longer than the plate.
+ */
+.world-main[data-book]:not(.has-battle):has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+  > .outcome {
+  top: calc(var(--pages-h) + 24px);
+  right: calc(var(--parts-w) + 24px);
+  bottom: auto;
+  left: calc(var(--spine-x) + 32px);
+  width: auto;
+  max-height: calc(var(--plate-h) - 16px);
+  translate: none;
+}
+
+/* During a talk the plate's place is the talk's: the result is a slip at the card's foot instead. */
+.world-main[data-book]:not(.has-battle):has(.scene[data-spread]):not(
+    :has(.sheet:not([hidden]))
+  ):has(> .spread-talk:not(:empty))
+  > .outcome {
+  top: auto;
+  bottom: calc(var(--page-bottom) + 14px);
+  max-height: 40%;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))):has(
+    > .spread-talk:not(:empty)
+  ):has(> .outcome)
+  > .detail-panel {
+  padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
+  scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
+}
+
+/* The quiet row and the table's cards stand over the head of the spread, not on its left page. */
+@media (max-width: 1279px) {
+  .world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+    .rest-banner-slot {
+    top: calc(var(--topbar-h) + 12px);
+    left: 50%;
+    max-width: min(640px, calc(100vw - 32px));
+    translate: -50% 0;
+  }
+}
+
+/*
+ * The ribbon hangs at the spine of the Scene's spread with its chapter's number: the story and the
+ * Scene are one book (`book/scene-ribbon.tsx`). Hidden under a page and off the spread.
+ */
+.scene-ribbon {
+  display: none;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))) .scene-ribbon {
+  position: absolute;
+  top: calc(var(--pages-h) - 4px);
+  left: calc(var(--spine-x) - 21px);
+  z-index: 4;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.1rem;
+  inline-size: 42px;
+  block-size: 108px;
+  padding: 12px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--book-ribbon, linear-gradient(var(--rubric), var(--rubric))) center / cover
+    no-repeat;
+  background-color: var(--rubric);
+  color: var(--page);
+  font: inherit;
+  line-height: 1.05;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.75);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 86%, 0 100%);
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.4));
+  cursor: pointer;
+}
+.scene-ribbon-word {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.scene-ribbon-number {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.world-main[data-book] .scene-ribbon:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  clip-path: none;
+}
+
+/* A place on the book's page opens in the Scene. */
+.dmb .dmb-place {
+  min-height: 24px;
+  padding: 0 0.15rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.dmb .dmb-place:hover {
+  color: var(--rubric);
+}
+
+/*
+ * The talk on the right page: while it lasts it takes the plate's place at the head of the page and
+ * the card of the one it is with stands under it, leading to it (docs/STAGE_320_DESIGN.md §5.3).
+ */
+.spread-talk {
+  display: none;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+  > .spread-talk:not(:empty) {
+  position: absolute;
+  top: calc(var(--pages-h) + 16px);
+  right: calc(var(--parts-w) + 16px);
+  left: calc(var(--spine-x) + 24px);
+  z-index: 16;
+  display: block;
+  max-height: calc((100% - var(--pages-h) - var(--page-bottom)) * 0.62);
+  overflow-y: auto;
+  background:
+    var(--book-paper, none) 0 0 / 420px fixed,
+    var(--page);
+}
+.world-main[data-book]:has(.scene[data-spread]):has(> .spread-talk:not(:empty)) .stage-backdrop {
+  visibility: hidden;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))):has(
+    > .spread-talk:not(:empty)
+  )
+  > :is(.detail-panel, .spread-card-hint) {
+  top: calc(var(--pages-h) + 16px + var(--talk-h, 0px) + 12px);
+}
+.world-main[data-book] > .spread-talk > .dialogue-panel {
+  position: static;
+  inset: auto;
+  width: auto;
+  max-height: none;
+  margin: 0;
+  border-color: var(--line-strong);
+  background: var(--glass-raised);
+  box-shadow: none;
+}
+
+/*
+ * A fight seen from the Scene: a strip at the head of the left page holds whose turn it is and the
+ * switch back to the battlefield, clear of a result on the plate; the page's words start under it.
+ */
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+  .stage:has(> .turn-banner)
+  > .scene[data-spread] {
+  padding-top: 76px;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+  .stage:not(.stage--battle)
+  > .turn-banner {
+  top: calc(var(--pages-h) + 18px);
+  right: auto;
+  left: 30px;
+  max-width: calc(var(--spine-x) - 300px);
+  translate: none;
+}
+.world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+  .stage:not(.stage--battle)
+  > .stage-switch {
+  top: calc(var(--pages-h) + 16px);
+  right: calc(100% - var(--spine-x) + 28px);
+  left: auto;
+  translate: none;
+}

@@ -1,7 +1,7 @@
 {
   "modelRequested": "gpt-6-astra",
   "effortRequested": "max",
-  "sourceSha256": "514007e541ff61f3de606787e22ca6eb39a83949196bde55d87baa3bb1cf1045",
+  "sourceSha256": "e32ec2b92dba6e77624f80a830aeef24c08250905d39608283dbeeff83e0e5e2",
   "sourceHashAlgorithm": "sorted source JSON filename + NUL + exact bytes + NUL",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",

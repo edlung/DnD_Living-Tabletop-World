@@ -1,14 +1,14 @@
 {
   "modelRequested": "gpt-6-astra",
   "effortRequested": "max",
-  "sourceSha256": "8877845a55ec5f0929277b815259d9c561f3e11da1b848f54520397b78d13626",
+  "sourceSha256": "df7bee62112d1febf53493428a03da05524b7b338262e4e8c7bc5c1ded05508c",
   "sourceHashAlgorithm": "sorted source JSON filename + NUL + exact bytes + NUL",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",
   "variants": [
     {
       "size": 3,
-      "sha256": "ddd8cbbbfe69647a00b5e462377d07d9998486f63d0470e74674a87858f5631a",
+      "sha256": "aab6724db9b2331879723f90640b33164141c1f86468959b7128f19dc4273096",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -21,7 +21,7 @@
     },
     {
       "size": 4,
-      "sha256": "488c15841b2956fa11ab72e13a8f288da41da1efdb0973f9034708673dedc18e",
+      "sha256": "3615c83bf6fc568e73164bf1cc2952e631ae14598e90abb1909ddd9ba5683f99",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -34,7 +34,7 @@
     },
     {
       "size": 5,
-      "sha256": "db1028c30fabe17c0c64c0fe78bf598e3dd6319d60d88774992021fd9a4e8e4d",
+      "sha256": "aa1387697f709ada4eff43b5377278e49653a0dca0d05ea3d037900102d4cb29",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -47,7 +47,7 @@
     },
     {
       "size": 6,
-      "sha256": "109a38f2a28d7baaf45035348fe627bb6dd13e9c498e42e7432a8d2151f480bb",
+      "sha256": "cec0774e4fafb9d477e8f1c1e3afba3c34b85408f05db77befebf80b741a9104",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -60,7 +60,7 @@
     },
     {
       "size": 7,
-      "sha256": "bc644817f60419e8aaedf823ed7befbeb0a17454de1e730394a34e688c9ae9ee",
+      "sha256": "8e056e07f30b1df8e3e878bdbaf41b670421b71bbbe248fefd18af8fd457c50f",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -73,7 +73,7 @@
     },
     {
       "size": 8,
-      "sha256": "4f0c6c089a45da8bca787ceef3362b8b5c0d30424fa5cf59212b1fa2654cb16e",
+      "sha256": "3926dcddc45212bec4492f231e534b9d3daedc2aabe3c12f362c4ec55c0212bf",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],

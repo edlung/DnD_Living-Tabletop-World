@@ -124,6 +124,44 @@ describe('the DM book of a campaign', () => {
     ).toBe(false);
   });
 
+  it('keeps a scene’s words to read aloud and the DM’s pocket, within their bounds', () => {
+    const pocket = {
+      rumours: [{ text: '«Маяк гудит к шторму».', truth: 'partial', note: 'Гудит ветер в трубе.' }],
+      places: [{ name: 'Скамья у сетей', text: 'Здесь чинят сети и спорят о погоде.' }],
+      people: [
+        {
+          name: 'Ульяна',
+          look: 'Рыбачка в зюйдвестке.',
+          line: '«Шторм к ночи».',
+          knows: 'Кто ушёл в море.',
+        },
+      ],
+    };
+    const told = parsed((d) => {
+      (d as Draft & { pocket?: unknown }).pocket = pocket;
+      if (d.chapters[0])
+        d.chapters[0].pages = [{ ...page, readAloud: 'Ветер гонит пену по доскам.' }];
+    });
+    expect(told.pocket).toEqual(pocket);
+    expect(told.chapters[0]?.pages[0]?.readAloud).toBe('Ветер гонит пену по доскам.');
+    const withPocket = (change: (p: typeof pocket) => unknown) =>
+      book((d) => ((d as Draft & { pocket?: unknown }).pocket = change(structuredClone(pocket))));
+    expect(
+      campaignBookSchema.safeParse(
+        withPocket((p) => ({ ...p, rumours: [{ ...p.rumours[0], truth: 'maybe' }] })),
+      ).success,
+    ).toBe(false);
+    expect(
+      campaignBookSchema.safeParse(
+        withPocket((p) => ({ ...p, places: Array(9).fill(p.places[0]) })),
+      ).success,
+    ).toBe(false);
+    expect(campaignBookSchema.safeParse(withPocket((p) => ({ ...p, secret: 'x' }))).success).toBe(
+      false,
+    );
+    expect(bookReferenceProblems(told, world)).toEqual([]);
+  });
+
   it('names every key that points at nothing', () => {
     const empty = {
       places: new Set<string>(),

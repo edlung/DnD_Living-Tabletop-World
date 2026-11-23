@@ -182,6 +182,23 @@
    found as it is found today, and the contents show it when it is. A fork is not marked: the
    DM's note on the page holds what the table chose. Each waits for the owner's word.
 
+## Amendments
+
+- 2026-11-23 (campaign texts, second round; `docs/CAMPAIGN_TEXT_STANDARD.md` §5, §7): **a scene's
+  words to read aloud and the DM's pocket.** A page may carry `readAloud`, the source scene's own
+  text to read as the scene begins; the library's test compares it word for word, as it does the
+  page's text, and the web book quotes it before the page's text («Цитату прочитайте вслух,
+  остальное — для мастера»). A book may carry `pocket` (`campaignBookPocketSchema`): rumours with
+  their `truth` and the DM's `note` (at most 16), places off the prepared road (at most 8) and
+  passers-by (at most 8), read from the campaign's `source/pocket.json` or, for a built-in
+  adventure, from the file beside its pages; the web book folds it on every page as «Карман
+  мастера». Both fields are optional, so a book built before still parses. Neither names a key,
+  neither is a fact of the world until the DM says it, and neither goes into a package: the
+  package contract still does not change (§2.1), and the book stays the DM's alone (§1). The build
+  still writes nothing of its own (§2.9): both are the source's text as written. All 1,323 pages
+  of the 53 books have their words to read aloud and every book has a pocket; the books grew from
+  10.9 MB to 13.1 MB (the largest 338 KB).
+
 ## Consequences
 
 - The campaign package contract does not change (§2.1). The library gains one `book.json` a

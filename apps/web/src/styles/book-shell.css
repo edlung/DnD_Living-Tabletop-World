@@ -1,0 +1,443 @@
+/*
+ * The DM's book is the DM's screen (docs/adr/0075-book-interface.md §3): the stage and every
+ * section sit inside the campaign's binding; sections are pages on its paper; the parts are
+ * bookmarks at the fore-edge and the open part's pages are tabs at the top of the page.
+ */
+.world-main[data-book] {
+  --parts-w: 148px;
+  --pages-h: 52px;
+  /* The dice at the foot of the page (`dice/book-foot.tsx`), under the page; none in a fight. */
+  --foot-h: 0px;
+  --page-bottom: calc(10px + var(--foot-h));
+  background-color: var(--ink-900);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ink-950) 35%, transparent), transparent 40%),
+    var(--book-cover, var(--table-material, none));
+  background-size: auto, 320px;
+}
+.world-main[data-book] > .stage {
+  background-color: var(--ink-900);
+  background-image: var(--book-cover, var(--table-material, none));
+  background-size: 320px;
+}
+
+/* A section is a page of the book: the binding around, the paper under its words. */
+.world-main[data-book] .sheet {
+  inset: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
+  padding: 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(to right, rgb(43 32 21 / 0.16), transparent 18px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--page-ink);
+  animation: none;
+}
+.world-main[data-book] .sheet-header {
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+.world-main[data-book] .sheet-header > h2 {
+  color: var(--rubric);
+}
+.world-main[data-book] .sheet-glyph {
+  display: none;
+}
+
+/* The open part's pages: tabs along the top edge of the page. */
+.book-pages {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  right: var(--parts-w);
+  z-index: 46;
+  display: flex;
+  align-items: flex-end;
+  block-size: var(--pages-h);
+  padding-bottom: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Only the tabs take a press: the strip's empty stretch leaves the stage under it reachable. */
+  pointer-events: none;
+}
+.book-pages .book-page-tab {
+  pointer-events: auto;
+}
+.book-page-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.book-page-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: 8px 8px 0 0;
+  background: var(--ink-900);
+  color: var(--text);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  /* A tab is a page's edge, not a control that fades: its state shows at once. */
+  transition: none;
+}
+.book-page-tab > .glyph {
+  inline-size: 18px;
+  block-size: 18px;
+}
+.book-pages .book-page-tab:hover:enabled:not([aria-expanded='true'], [aria-pressed='true']) {
+  background: var(--ink-850);
+}
+/* Above the base button's hover (button:hover:enabled), which a tab just pressed is under. */
+.book-pages .book-page-tab[aria-expanded='true'],
+.book-pages .book-page-tab[aria-pressed='true'] {
+  border-color: var(--page-floor);
+  background: var(--page);
+  color: var(--page-ink);
+  font-weight: 600;
+}
+.book-page-tab > .dock-marker,
+.book-part > .dock-marker {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+/* The parts: bookmarks sticking out of the fore-edge, each with its own icon. */
+.book-parts {
+  position: absolute;
+  top: var(--pages-h);
+  right: 0;
+  z-index: 46;
+  inline-size: var(--parts-w);
+}
+.book-parts > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 0 0;
+  list-style: none;
+}
+.book-part {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  inline-size: calc(100% - 8px);
+  min-height: 48px;
+  padding: 4px 12px 4px 8px;
+  border: 0;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--page-floor) 88%, black),
+    var(--page-floor)
+  );
+  background-color: var(--page-floor);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  box-shadow: 2px 2px 6px rgb(0 0 0 / 0.4);
+  cursor: pointer;
+  transition: none;
+}
+.book-part > .bk-icon {
+  inline-size: 32px;
+  block-size: 32px;
+}
+.book-part > .glyph {
+  inline-size: 24px;
+  block-size: 24px;
+}
+.book-parts .book-part:hover:enabled:not([aria-current='page']) {
+  background: var(--page);
+}
+.book-parts .book-part[aria-current='page'] {
+  inline-size: 100%;
+  margin-left: -6px;
+  padding-left: 14px;
+  background: var(--page);
+  box-shadow:
+    inset 4px 0 0 var(--rubric),
+    4px 2px 10px rgb(0 0 0 / 0.5);
+}
+.book-part:focus-visible,
+.book-page-tab:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* A tablet: the bookmarks keep their icons and give up their words. */
+@media (max-width: 1100px) {
+  .world-main[data-book] {
+    --parts-w: 64px;
+  }
+  .book-part-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .book-part {
+    justify-content: center;
+    padding: 4px;
+  }
+  .book-part[aria-current='page'] {
+    padding-left: 8px;
+  }
+}
+/* A laptop beside the selection's column: the same, so the scene keeps room for its names. */
+@media (min-width: 1101px) and (max-width: 1439px) {
+  .world-main[data-book].has-details {
+    --parts-w: 64px;
+  }
+  .world-main[data-book].has-details .book-part-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book].has-details .book-part {
+    justify-content: center;
+    padding: 4px;
+  }
+  .world-main[data-book].has-details .book-part[aria-current='page'] {
+    padding-left: 8px;
+  }
+}
+
+/* A phone: the parts along the bottom, the pages along the top. */
+@media (max-width: 700px) {
+  .world-main[data-book] {
+    --parts-w: 0px;
+    --pages-h: 50px;
+  }
+  .world-main[data-book] .sheet {
+    inset: var(--pages-h) 6px calc(64px + var(--foot-h));
+  }
+  .book-pages {
+    left: 6px;
+    right: 6px;
+  }
+  .book-parts {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    inline-size: 100%;
+  }
+  .book-parts > ul {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 4px 4px env(safe-area-inset-bottom, 0px);
+  }
+  .book-part,
+  .book-part[aria-current='page'] {
+    inline-size: auto;
+    min-width: 44px;
+    margin: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.4);
+  }
+  .book-part[aria-current='page'] {
+    box-shadow: inset 0 3px 0 var(--rubric);
+  }
+}
+
+/*
+ * The Scene is a page too: the stage keeps clear of the tabs above and the bookmarks beside it.
+ * The fight's panel lies inside the battlefield (`.combat-stage`), which is inset already.
+ */
+.world-main[data-book] .scene,
+.world-main[data-book] .stage-backdrop,
+.world-main[data-book] .combat-stage {
+  inset: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
+}
+.world-main[data-book] .stage-backdrop {
+  border-radius: 8px;
+  overflow: hidden;
+}
+/*
+ * No dock lies under a tablet's or desktop's stage (the bookmarks are at the fore-edge), only the
+ * dice at the page's foot: what kept clear of the dock (who is present, a result, a banner) keeps
+ * clear of them instead. A fight keeps its measured layout, and its turn tray is its foot.
+ */
+.world-main[data-book]:not(.has-battle) {
+  --foot-h: 48px;
+}
+@media (max-width: 700px) {
+  .world-main[data-book]:not(.has-battle) {
+    --foot-h: 46px;
+  }
+}
+@media (min-width: 768px) and (min-height: 501px) {
+  .world-main[data-book]:not(.has-battle) {
+    --dock-h: var(--foot-h);
+  }
+}
+@media (max-width: 700px) {
+  .world-main[data-book] .scene,
+  .world-main[data-book] .stage-backdrop,
+  .world-main[data-book] .combat-stage {
+    inset: var(--pages-h) 6px calc(64px + var(--foot-h));
+  }
+}
+/*
+ * In a fight no dock lies under the DM's page, and what the stage itself holds — whose turn it
+ * is, the switch to the scene, a reaction asked, a result — keeps to the page with the
+ * battlefield (battle-layout.css places them for a stage without a book).
+ */
+@media (min-width: 701px) {
+  .world-main[data-book='dm'].has-battle {
+    --dock-h: 0px;
+  }
+}
+@media (min-width: 1200px) {
+  .world-main[data-book='dm'] .stage--battle .turn-banner {
+    top: calc(var(--pages-h) + 98px);
+    left: 26px;
+  }
+  .world-main[data-book='dm'] .stage--battle .stage-switch {
+    top: calc(var(--pages-h) + 16px);
+    right: calc(var(--parts-w) + 16px);
+  }
+  .world-main[data-book='dm'] .stage .reaction-prompt {
+    top: calc(var(--pages-h) + 70px);
+    right: calc(var(--parts-w) + 16px);
+  }
+  .world-main[data-book='dm'].has-battle .outcome {
+    bottom: calc(10px + 34px + var(--tray-h, 0px));
+    left: calc(var(--hud-left) + 10px);
+  }
+}
+
+/* A tablet: the selection's drawer lies on the page, never over the tabs or the bookmarks. */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .world-main[data-book] .detail-panel {
+    top: var(--pages-h);
+    right: var(--parts-w);
+    bottom: var(--page-bottom);
+  }
+}
+/* A result lies on the page, clear of the bookmarks (and of the selection's column beside them). */
+@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
+  .world-main[data-book]:not(.has-battle) .outcome {
+    right: calc(var(--parts-w) + 16px);
+  }
+}
+@media (min-width: 1200px) {
+  .world-main[data-book].has-details:not(.has-battle) .outcome {
+    right: calc(var(--panel-w) + var(--parts-w) + 16px);
+  }
+}
+/*
+ * A tablet's page is narrower than the stage was (the binding and the bookmarks): held upright, the
+ * row beside a result ran one medallion a line off the top, so there it keeps the page's width and
+ * stands above the result, the ways beyond rising under the image's note (as beside a talk); held
+ * wide, the result is narrower so the row keeps three a line beside it. With the drawer open (the
+ * result at its foot) the row runs partly under the drawer, as it did before the book.
+ */
+@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) and (orientation: portrait) {
+  .world-main[data-book]:not(.has-battle):has(.outcome) .scene-presence {
+    right: 16px;
+    bottom: calc(var(--outcome-h, 0px) + 36px);
+  }
+  .world-main[data-book]:not(.has-battle):has(.outcome) .exits {
+    top: 56px;
+    translate: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) and (orientation: landscape) {
+  .world-main[data-book]:not(.has-battle):has(.outcome) {
+    --outcome-w: min(280px, 30%);
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) {
+  .world-main[data-book].has-details:not(.has-battle) .outcome {
+    right: calc(var(--parts-w) + 16px);
+  }
+  .world-main[data-book].has-details:not(.has-battle):has(.outcome) .scene-presence {
+    right: 16px;
+    bottom: calc(var(--page-bottom) + 14px);
+  }
+}
+/* A phone: the drawer ends above the bookmarks along the bottom. */
+@media (max-width: 767px) {
+  .world-main[data-book] .detail-panel {
+    top: var(--pages-h);
+    bottom: calc(64px + var(--foot-h));
+  }
+}
+
+/* Under the place's card (rest.css), which the page's tabs moved down: the quiet row stays clear. */
+@media (min-width: 768px) and (max-width: 1279px) and (min-height: 501px) {
+  .world-main[data-book] .rest-banner-slot {
+    top: calc(var(--topbar-h) + var(--pages-h) + 120px);
+  }
+}
+
+/* The hero's sheet is a page of the book, on its paper. */
+.hero-dialog[data-surface='paper'] {
+  border-color: var(--page-floor);
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--page-ink);
+}
+
+/*
+ * A player's fight, no page open over it (docs/adr/0075-book-interface.md §4): the battlefield
+ * takes the whole stage as it always has, the Scene part's one tab steps aside, and the bookmarks
+ * run along the bottom where the battle's layout keeps room for them. The DM's Scene part keeps
+ * its Encounter tab, from which the DM runs the fight, and the DM's bookmarks stay at the edge.
+ */
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) {
+  --pages-h: 0px;
+  --parts-w: 0px;
+}
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-pages {
+  display: none;
+}
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .combat-stage,
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .combat-panel {
+  inset: 0;
+}
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts {
+  top: auto;
+  right: auto;
+  bottom: 10px;
+  left: 50%;
+  inline-size: auto;
+  translate: -50% 0;
+}
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts > ul {
+  flex-direction: row;
+  padding: 0;
+}
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part {
+  inline-size: auto;
+  min-width: 48px;
+  margin: 0;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part-word {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

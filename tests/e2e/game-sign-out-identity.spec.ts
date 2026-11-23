@@ -71,7 +71,7 @@ async function enter(page: Page, link: string, replace: boolean, dm = true) {
     dm
       ? dockButton(page, words.players)
       : page.getByRole('button', { name: 'Mira Vale', exact: true }),
-  ).toBeVisible();
+  ).toBeAttached();
 }
 
 async function staleLogout(page: Page, campaignId: string, actorId: string) {

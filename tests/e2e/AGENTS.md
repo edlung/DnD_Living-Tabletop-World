@@ -98,19 +98,19 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   `dm-tools.spec.ts` (`timeHistory`) finds the DM's day change and rain in History, undoes the
   rain the day change names as its blocker, then the day, and the scene returns to Day 1.
   Helpers: `support/dm.ts`.
-- Shell (Stage 320, `docs/STAGE_320_DESIGN.md` §5.1): controls live in the dock's sheets, one
-  open at a time, and a closed sheet stays mounted but `hidden`. Open the sheet that holds a
-  control first (`support/shell.ts`: `openSheet`, `closeSheet`, `chooseLocation` for the Places
-  sheet's location choice, `openChronicle` for the Chronicle dialog; dock words in the campaign's
-  language). Role queries skip hidden sheets, label and text queries do not: a hidden draft keeps
-  its value, but assert visibility only on an open sheet. An open sheet covers the whole stage
-  (2026-11-21), so close it before clicking anything on the scene. Keep journeys' assertions when a control moves.
-  Where the dock does not fit its screen its last items wait under More (ADR 0043 §3):
-  `dockButton` finds an item on the dock or under More (hidden ones too), `revealDockButton`
-  opens More when the item waits there, and `openSheet`, `closeSheet`, `openChronicle` and
-  `openCharacter` do it for you; never click a dock item found with `dockButton` directly. After
-  `setViewportSize` the dock measures itself again: `dockSettled` waits for it, and
-  `expectDockFits` checks no sideways scroll and nothing over the dock (`dock-fit.spec.ts`).
+- Shell (docs/adr/0075-book-interface.md §3, §4): the screen is a book — the DM's seven parts
+  and a hero's five at the fore-edge (on a phone along the bottom), the open part's pages as tabs.
+  Every section is a page of one part, one open at a time; a closed page stays mounted but
+  `hidden`. Open the page that holds a control first (`support/shell.ts`: `openSheet`,
+  `closeSheet`, `chooseLocation` for Places, `openChronicle`, `openCharacter`; words in the
+  campaign's language). Role queries skip hidden pages, label and text queries do not: a hidden
+  draft keeps its value, but assert visibility only on an open page. A page covers the stage, so
+  close it before clicking anything on the scene. Keep journeys' assertions when a control moves.
+  `dockButton` finds a page's tab by its name (hidden ones too: its part may be closed),
+  `bookPart` a part's bookmark, `revealDockButton` opens the part that holds a tab; never click a
+  tab found with `dockButton` directly. A closed page sends focus to the Scene's bookmark.
+  `expectDockFits` checks no sideways scroll and nothing over a bookmark or an open part's tab
+  (`hero-book-parts.spec.ts`, `dm-book-parts.spec.ts`).
   `expectOnTop` asserts that nothing covers an element (`elementFromPoint` at its centre), for a
   result, a prompt or a Retry that must stay reachable (`outcome-layer.spec.ts`; the DM tool
   campaign `ui-dm-outcome`).

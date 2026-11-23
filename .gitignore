@@ -27,6 +27,9 @@ test-results/
 # Logs
 *.log
 
+# Python bytecode (the campaign scripts run with `python3 -B`; a run without it leaves this)
+__pycache__/
+
 # Native apps (docs/adr/0070-native-apps.md §8): tool state and the owner's own signing
 .gradle/
 .kotlin/

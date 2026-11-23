@@ -1,0 +1,981 @@
+{
+ "books": [
+  {
+   "theme": "absent-voters",
+   "pieces": {
+    "cover": "b35ccd45bf43c9f3957a50d9d1904909fb43ed8cba90cdbae55484d898d65d28",
+    "paper": "ce7ec1f82dab9213de5260592f463891b3d141d48cda70b258b18bb02848ce3c",
+    "part-hero": "a7d9f49b32c07dc02a8c1ebeeed781acbeddfc262ba1a43fcdf94bf82d320879",
+    "part-heroes": "984d4116f3d4fa72636fb6cdac45c7bf63958ff07ecb4a56bd224251e295b190",
+    "part-journal": "4d811eeb170a0c64e00ea7856996cb807f09144bfdefde128f1ba9218b2b1252",
+    "part-rules": "4a588953d3b3517221fd861a9e676ae9e85b90bb60adfb8f0a723e5d572f6945",
+    "part-scene": "5b96c52dd9f93286dc2f4d8b74b1b78153860290cf5980e1d0c4e01d88c40178",
+    "part-story": "c1e8964cca9b89bb351f4802de8f7b8f759fd3bac6fffd730b8342e550828226",
+    "part-table": "91df7e604cb7779e5f122b869fff9e2a9d5ddd703a40410b72cacf5c8d756f50",
+    "part-world": "8fb8cec908f061530e2d0a3739e848b43531e92bf88ca1ab8c906f247fe546a5",
+    "ribbon": "b44af8eedd853540aedaddbfc614f27c69f1dcf82678e82714e4ec07abe4d630",
+    "tray": "fbff9d109f41fd20db42b5f0a1ae1c7fb06991fd7f4bcd0a861f7a0783f34bb8"
+   }
+  },
+  {
+   "theme": "acorn-express",
+   "pieces": {
+    "cover": "cacfddce6751839aa3b1b2eb44ee1512098ac1071301b0fade31a87ec2368bb7",
+    "paper": "41298ae048d2600299e508a4bef12f3b5375987092bea6ab93cb2f2862d5a438",
+    "part-hero": "1328a7446ad8c822653d0b2ec18ff3dc44cab1f144e72aec954c3ae0952bca55",
+    "part-heroes": "f109ea4f0572d320917de82c0490949f1ff33f5e8caddb5abfce4d650bc26dfb",
+    "part-journal": "3ce8307122e2822befcbdb8445436d62c387c7e3682ad123983b13b4eb2b7d1b",
+    "part-rules": "d03a4ddcfd206fc195effbeb36021e5229dc59eff542944ccfe9766ed01c6bc1",
+    "part-scene": "4e611cc75ff2b28a70a6a3890994e07aeca30de734312fca779ee7e82e09e243",
+    "part-story": "168c3cbcf1bb329fd2130bbf40c50b134be4afe200561809e09da58de1607612",
+    "part-table": "3ea41c2ba8fe2ec12665fd92ef43b95b69256e1ed680fcb86b8454f05895e92e",
+    "part-world": "4578a902e2210bbeb041987558492cdb4bde3b9c5183c47cf9af34942fa8e3b6",
+    "ribbon": "e493bc32d7fd0da4158cbb025532f52554c0d4ed28d9740767c97861f5caab1f",
+    "tray": "f64a0b2f244c9dd2c31ce0c5ccee35a4c7cf95f7e1d5ce9b529b953778f43974"
+   }
+  },
+  {
+   "theme": "ash-testament",
+   "pieces": {
+    "cover": "b063d4f63d1c761c6fcd432e5e2755f245fccc8f8f6982ef5421851d08729638",
+    "paper": "021b5fcc5a2a5d16335d09f41b2fd5ca20f7748ae2d29a663d7ddf53df018485",
+    "part-hero": "7785f4de31bd8ee2f70f489dde32085b9a9e3bfb2928fa8d89a9a1af402681ee",
+    "part-heroes": "d3d5eff91b71db32d668a7a8b6f1f827e54d7e9480c3385099913ada4cbc87d1",
+    "part-journal": "eda6ffb05fc50ea1f86a08b0225bbea8db4319335d9baad500ecbe341cd0567c",
+    "part-rules": "701aa01ddf6c75428c0b831dfdb04e59aeffeb107f20cd627009cf126493f4e8",
+    "part-scene": "ad0259e084a637fcdb205646f7958219287a93e4af0ab6949010a1fd6f1497be",
+    "part-story": "40d05010cd4ba1af3f61137c1ec37cd2c911419d8d9f4a5e23c2fc90f4e7744a",
+    "part-table": "fff4851760c9d8908a679b79ce2edbc76568a1f181edba381765cb43c45a1a8a",
+    "part-world": "78e49c1c901c2b6d99d48356ac6e887811cd1eef5cdf43e821da352c60072ccb",
+    "ribbon": "26bfa3e858d0d4e56b6dd871a25327cdfae38260816f3c05ba903787ac0e2e09",
+    "tray": "1ec9ac1496c7f1f2a63c5e67b24605f222f24177406df048dc435c9643a197df"
+   }
+  },
+  {
+   "theme": "ash-tithe",
+   "pieces": {
+    "cover": "16cc5a4aa82ea3bab5a568eb330a96442cabdd8ff04e53a056c0b7a3a143cc0d",
+    "paper": "affe6dee10c133986a3a32907b127407bc652aa4c9cb9a8e8a7af8819aa707bb",
+    "part-hero": "c0df0468a424014dea62948ffafef4550debefc37dedef5bc6bd2f761934b211",
+    "part-heroes": "ebb88769829a31acb2d0c1b00e1491c9b9cec1ceb419a2deb7e1e5ffef8e5b77",
+    "part-journal": "f6f62838d160b5776be61e11f9667e4473c258961b51dc3ef8243bd49ecbd812",
+    "part-rules": "a489bb55bc2b9ca05a6a105a5453dea8677a699f6417c6f00743fa3adba3d55d",
+    "part-scene": "45b43336d40c42c38ee7abdadfa270617a7c05e2bb73899514b60abf5fa88661",
+    "part-story": "4fbaa8c22a2dcbbfd50db796b14b73ad9921856c4fd127f8f67bfbf998d43c61",
+    "part-table": "db7371b6a7907711ee77ff1280e13403cf672bf98718f3498eed1a910cd9f0a2",
+    "part-world": "4b56aa2edd9f06b2772731c7ec022ae12110e74b9867de708ea9e8cf66170e94",
+    "ribbon": "cd3a45899ce7129207d7dc78d7322fc6ad5e14226c40c236c2eed63055b1af57",
+    "tray": "42d971d8b553bf8bc8b0c05be7a0ddf35df5831e08c8d6d1ae246418d60d93ec"
+   }
+  },
+  {
+   "theme": "basalt-bloom",
+   "pieces": {
+    "cover": "e1e9d5f49c76796805042c3386ee369edd432257e2abe9cd66055a96bfd1b796",
+    "paper": "300e34d9f730454bb65e1410780e5d7e1251a3688feada80826880b0ec913f40",
+    "part-hero": "7097e5f93350e15a85e1c450d146ae37d4b68e8a2334049abf7ba1bc1f45014f",
+    "part-heroes": "ca094cc33ebf62939a578f0e773308b06f4f19c3c614e6267385272f682b9541",
+    "part-journal": "f8bcb992871b541c7b7fc194f70717d008be55aa68c44043649d96b06336ae11",
+    "part-rules": "f50748e1c9e8d1e392fed106e54f65888b3f1d1caa5398afe2935805fe5d693f",
+    "part-scene": "f93adf3c05b551af4b4e5f2c63825251f4f85b447ce2aed3a4bc46881cb20d53",
+    "part-story": "521aac0cc7052cca81480ce5831041bf3615acf13bff1aa53806fb8e3b67ce7b",
+    "part-table": "a3a24c597298db98e63b1464f4b16d8b37aaed5e5e86a3f881273f919d6b3f78",
+    "part-world": "5708b6ebf8487961245f866ef444384ce93934151212a3a27f936304c197483a",
+    "ribbon": "4ad65e763714841d8ade24e863261e7750cde45ae3d2ef982ac7711b042e8367",
+    "tray": "af45aa89cfca7abe5343291f391f19a26de2ab5480fe718d1f1e89b3123803b9"
+   }
+  },
+  {
+   "theme": "bellwether-hollow",
+   "pieces": {
+    "cover": "7a9ef14552cb8a1d6a3f00807e117b1d48116875e047a0c3b0fbdbbfcde59bc8",
+    "paper": "c14d87ac5a5a12599d468546bdfc230203cb93b7c12bfd140d5e1969b2ad9310",
+    "part-hero": "1e1007456dd496a1b977ae6b23c18ea326d935feeffbf7afc47f5af633e4f20c",
+    "part-heroes": "46846287b1dac4495bc30d64849ee5c317bafe5aed601ec3aa230f29d47e49a0",
+    "part-journal": "27b63d5d6c0d304fa36c78838e886ec246aa63b40f77235695a1f19911ce08b4",
+    "part-rules": "acafb18ce80497572a0712c71e399f483aa46eef683a921f3fc981c160c1d233",
+    "part-scene": "da84c3ea829efef797b2cb9c35185ba855d8aff1437028be8ea75568c617a884",
+    "part-story": "82cdb1fbc05c1c14eb03a30b4fa84879d4cee3aee5fcbf3f1e3a1ce04debe4dd",
+    "part-table": "c9d46dcdd48655d48e9074604f63225e7193a6fd4c501e2b37aebeea1d82d7bf",
+    "part-world": "903535b0a57bfa106850e777fe421d070b2e4f8032b8e9a27b8fae1df2a442aa",
+    "ribbon": "79d98d533f59d10c9758eb5a60f0cca4aa414f3c691110f6603685678b64a613",
+    "tray": "c6d4d035ca58fea8965a5de9014085cdab4596e326ed9f72f704ce2f03769202"
+   }
+  },
+  {
+   "theme": "black-sun-forge",
+   "pieces": {
+    "cover": "24f93a1129041f1de417e58d3598819d315db9c361709748937befc7165b8327",
+    "paper": "7b26113ce11cbc65355c1613643b78aacdc4a7243b3a7cc05ecf5c39859a9922",
+    "part-hero": "32b72c1c15a677a52678db31d6c6672c9c839949636ec59df28dc355a717e6ca",
+    "part-heroes": "f8f7a1d34a9f47d2a212e5b372a96ef38b08f9e1c4be2b2cd4599774a1bef148",
+    "part-journal": "db4c3289ce28275d37f4f6b1e42a824b18b1500119773fd994e088d46a26bb7d",
+    "part-rules": "f3192d36d8e8e0a3c91fa120f24fa86c90dc457437ed94d7e26170b25b3f5524",
+    "part-scene": "20db2600b13988a2c82f417e4cdddfe1850da088e23791c2ec2005bead1a0241",
+    "part-story": "e4535f2672807f1b369e633ed709c31daef0f10294e38159647f9a31ed7f8948",
+    "part-table": "d5ae1055d8e693cc2cbf0756d5d409335126ddcb0164334c1b733fe527b74491",
+    "part-world": "8e35f9f31060f4f4d7dd2c101255c7d420a537ba34d0a654081f68de2bde7e9e",
+    "ribbon": "1c460a35e2bfd525e26d7bc4d402079e84524f8db8d25b9c40b87ada50f78494",
+    "tray": "7dde93789982796f40ba328ff0f9f20afb87bc7c5d9609d52368f73edbfc3934"
+   }
+  },
+  {
+   "theme": "cedar-tournament",
+   "pieces": {
+    "cover": "0daadb479f5ae460fe5b73529cf040642f0a5aa0403d2b20c935f09d1683064b",
+    "paper": "16c6ce62b867ee1906682bec6f3bff0226c4f5a4c2e4f12e2909e828eb2edc56",
+    "part-hero": "7b90423f1a0f1b4bf0d6974346c715bffe9bf3dcf1eaaaa7c7feb53243645f2f",
+    "part-heroes": "8e70500915dfced6ef0a7c86c7080c11ce957d5d4a43a1f192ba5b966ff0235a",
+    "part-journal": "7a47a3e8a54105e9b9b7f3a9dfdb3b8e3d05f38e56dc866ae6517b80a2847f9f",
+    "part-rules": "c045aa467e5b66d8aaf792e0c944c5adfc13a678cdff0b23285cbe43e64d9cbe",
+    "part-scene": "a60ee5853e1445fcb6ec47b833050188c117719e34ff5b1ba99f4f356f740c1b",
+    "part-story": "a6351a1f70292d0bb58fecd2c107af19f82feda6a424b2cb00a94ec76b83a31a",
+    "part-table": "a066ea99fce4c2780e3dbaf8ae5286f2932510b300877361b8ea8279255ea3ff",
+    "part-world": "43ebc1391f43e975cb9d4dd5f468c6f2fcfd5139168939f7c5c3bfbf7248f17f",
+    "ribbon": "0b8a38920d5581a73fd0dde161bf89b9a5cedf0ce0cd4328a9beeaa9347ae365",
+    "tray": "77d02dcd8283700911bec3a67b4aeee30bbe0dec344481fcf8626f222841a933"
+   }
+  },
+  {
+   "theme": "clockwork-carnival",
+   "pieces": {
+    "cover": "bbab5a0b42d9c1dd70c216c9972ded88d4a0b96bb20a5066ef5e994671458f95",
+    "paper": "0a25d24c2e45675b5f54f0785cc3f16cd95cd0eae27b2b9f7f06730c75757de5",
+    "part-hero": "0601a837ec6567753231cb612c6402eeb8e0725ce0c2c03957ade26ca2725ef7",
+    "part-heroes": "29c32420495673483ae132b593e7762b8d057d10822af8ad582298e930800a45",
+    "part-journal": "7c0cccb6aa6cd099573159c27124b15afc74f658deafa9e543991725359f4c8c",
+    "part-rules": "0a51a9d42ec9b5ff51b26df265f60dba31d97a8859b4d24377da9dfdc9dd7119",
+    "part-scene": "d0c3d764bc4be0d8d490fa0cbec1d9fe456b7760918f39d45b5f62a1f1cf6dc8",
+    "part-story": "adb76da01d1cd86ccdd88ce4e40b43acbc9484919998c582178da03356f4ed7e",
+    "part-table": "2bebd62e3f8519b17c7ae2614bd1d322a2116daabfbf799ccb8c931ef2e54ccb",
+    "part-world": "2d3ae68897bcd4b4b550fdd2d862411ee4029ddd5c97062a2abcca8bd6cbfe9f",
+    "ribbon": "dae1c5a0d2518d55c7fb0f9c36cafc45769260502d788cf2e9b243155f84b9fd",
+    "tray": "2bc5d6c3ce2e169c827768913ccae7b87844e020794a07b63516ce444c6cb4c8"
+   }
+  },
+  {
+   "theme": "copper-canyon",
+   "pieces": {
+    "cover": "8c16b16b06335e984ffe5c841fae56228596b4833d0413bfbdf06b19a77df415",
+    "paper": "8d25c55fcbb36f7a67a8b3db1aac60375fd42b466b752e5d072fe4e4289bf0dd",
+    "part-hero": "19c412af5fb368ea03c09df534d1fd67f0158d98b6939d6498f8cfaf28ca6e45",
+    "part-heroes": "0dda5bb8abb57adcfd0c2fc7cc1223d688eff6bbb87695765690211773f9067d",
+    "part-journal": "2b72394fb4ed6b56b59eb8ef3ab131bb9d7c5ed2b4baea603efca6bd0b35371e",
+    "part-rules": "7ff8a20e2a544f1a25350631f3299b8cec06e079d859f16e76541d53931946b0",
+    "part-scene": "54db8aa840399ed801f230e6d8e2b00ea21568eac042d240371544d283870466",
+    "part-story": "cd406392191f67735e9d804dababcbaff50481344445e2222de327eca220b3dc",
+    "part-table": "3dcd69cd2c8f2beca0f1d7b705439c61150777bf2dbdb777e04ad5e97fd6852c",
+    "part-world": "b34ab45d582a0f27c03c7f572d0f9cd03abf9eb9a807bb34d5580bee2bf22766",
+    "ribbon": "667ea6a0d3f47a1352a7e4a88b3873552187844aa6ddd9d3e8c1210b7a39e7d2",
+    "tray": "09538522d270fc69bc8cf8dc4f6e8b24cfb39e14d5975ee208cabab8fb3c6651"
+   }
+  },
+  {
+   "theme": "counterfeit-spring",
+   "pieces": {
+    "cover": "7403748a9fba0796d49a441601edc92449bbd60d3ec2165b12c0a662bdfeb604",
+    "paper": "51c47b3133b8848b0399c8430648ca7bf175b8fbadb645b9c4831e870d22ced1",
+    "part-hero": "5145c3fe6c99ba073cc2b269f5600f4c8fc2b039ffac75d603d3db20d6ad9eb7",
+    "part-heroes": "adbfe4a5e72c5a5f37dcafe43d62127c8093097da5e16722fd2cef68502cf996",
+    "part-journal": "b2ef1f38b6cf6b25e5e6a8d154f69a1fb24879c7d35240c43d22273ab3ca56da",
+    "part-rules": "6d6f4d64eea3e3150c9ee03be7650232ebdb229c06047c62a1475fe9b5381e4c",
+    "part-scene": "1fcbcf970b7d7b0fe08e125a429b6eb0ac9903586439813c3727298a3e58a9d2",
+    "part-story": "5cb734128fa74175baf375b7fe18600e72b294d7d29f3d76916f707e19d48b35",
+    "part-table": "299686cd467033987b888edf6a341febd9cde36b6ad275a8147caad4edd2de9c",
+    "part-world": "121e401eb8378a6354e5507d47774e5937f8a5d88696af6e932e36bf9bd314cd",
+    "ribbon": "94c7e1f1d9e2b3bf001047899cbcf67a1f193544926b87c40dbadd53953a0e62",
+    "tray": "d1dad7349b15c540c2cc06d9dc0a702a119f14750bd9cd2151930465190efc58"
+   }
+  },
+  {
+   "theme": "dragon-retirement",
+   "pieces": {
+    "cover": "b19a5eb36285165a1d638a3d3617dc092a2ac578107c912df4710719e7df06a2",
+    "paper": "09ab0eba239421ff3ff8f4bc435f5dfb7f2d2008d03a13c9f6fe1f82396c150c",
+    "part-hero": "49a4bb5a9750b5e3bf556a4bc18ae7ed3f9751dec6ffd28f5de01e3c4d4f28ee",
+    "part-heroes": "a08aa3b76291a78b5aa920b231c5e7f6ce92b2f84ff0febdd47dd8b7ab90968f",
+    "part-journal": "e3dd7e60bf8bcf82040bf52b9ef44983d7e787b712685344977e372172f3e8aa",
+    "part-rules": "2515106376c9a917d220fe8f45b419038d73fa68f2a46580d037193bc4e2296e",
+    "part-scene": "776e9a077ebfb50e61a960c09491f9ba7e98450aabd284876a7676e578dee64f",
+    "part-story": "7b331f472000d5b5568a9e3476ac0001dcd4964170e1c0da3d2267ab01161386",
+    "part-table": "38aa6068238676ff12fc9486f5157f5d469f88f830cb3694254f25e1ed61b25c",
+    "part-world": "1b0c8f386711eb2d2ce65c5b33fc55f101cd0cb021cb7ce7e9d7f2da34bf2e59",
+    "ribbon": "b5bcf8a9d5168e15f1aa31b64144bba40e3ac62f13f5c44bde706f3cf6e96068",
+    "tray": "26a89702764144ce48730e40e0f859118af28acb2c1e5128363f462c25a963cd"
+   }
+  },
+  {
+   "theme": "dream-orchestra",
+   "pieces": {
+    "cover": "dd107b2e5846dd45e0a43fd400fbdadcc119a5d6ce82185cf2dc18d3988c19b4",
+    "paper": "5f5f4e71b9d7c6d2f0b87a3f99b76e2c2c473db40aca573e85137fdb3b985a08",
+    "part-hero": "c8b5f372af751b4610a15f18c7362f4563d62b9d812397e27d2e433ec9165b6a",
+    "part-heroes": "20bcb1495f339c861db8dfd8f744834c06aa71217367545ea290e31cca3c10f0",
+    "part-journal": "f1b389856a4b655338f1225d7158f2236e48fb5ee704fd77f021ff6f2338d82f",
+    "part-rules": "ba25417abe6b3fc062fb223d8223f1f93a89f98ffa3f2fcff1039267ad03acce",
+    "part-scene": "67b7251a31f02cefbf38f6065f32fd4efc393678bc32deb552fb9b00e44c5e1a",
+    "part-story": "0f0d240f17ed0bfb4cedcb62c582747ca9db8c67090209852297c20896e50665",
+    "part-table": "d0ca0d8383b50568e1d26d465223e105d3e2d8589e5624dfc22b23c1a1db4e35",
+    "part-world": "819acd5cfb77ea70756994fcdb5fa7fb4c7ed083a214581fa7cbb019be5ef5ff",
+    "ribbon": "14323b0eb4ee22208c95edf19e86a4fb5b53ee2594c1de3d7d42c8cbf5e29434",
+    "tray": "7f9301e0ebcb5dea284668b02cce23a0b03bd8c719c65ce485a24733588f4dd3"
+   }
+  },
+  {
+   "theme": "dungeon-sanctuary",
+   "pieces": {
+    "cover": "a420349323261cfd1381024deb93f684bc0d596035df7f05677cf5372afcc8fe",
+    "paper": "1425f506296215ee9028d429f3e33750a2baf91c2e7e4eda4bf830e82b2426ca",
+    "part-hero": "9519655c0e459f52544f6735209a0d0d2b1afce92b14769a5f0bd21b2ef709c0",
+    "part-heroes": "ace5767714b36d6ad93a0d81f4345acfc5e2838e011b0d8bf4a26f133798ea36",
+    "part-journal": "ef6f7f674aca5a10e53996faa0a97658535d023e854c2ae97cccf532d5d4635e",
+    "part-rules": "87316c9c2512385d39e22aad14200588d8ed73537fc88e7f1bd6d39a52ef665e",
+    "part-scene": "89d7e173ac0b892da3d5f37ea432af31192a211e325f2e6d2c7a424ed3e2c726",
+    "part-story": "0b0472aa88369d89d9d262d98323819af1196c3c3a4872c33570882536e634f9",
+    "part-table": "24a6d18091cdf34c445bb74891ed765b44fb8c9b01538be0ff88c402fafc6486",
+    "part-world": "865445155ca9b67ec62399ec9901c91b21b3a5eb4bb293dd3e42d0b0c2d7f909",
+    "ribbon": "d0844e31040dcba4a873b2f545c6e789d975fcfa0a4898182b474f86071d7d90",
+    "tray": "399fcd8578b47859a1d877ff3d154cde9733f343bee601157dfccbf559222540"
+   }
+  },
+  {
+   "theme": "ember-crown",
+   "pieces": {
+    "cover": "190bdc1490dbb20ca0af83d7f5bb612a4bddcff4e18ba695c354a7322500ed4f",
+    "paper": "9f1a50d84f1a544a8f3f65aeeff0871fe1f27079509b2baeeb08292c6869ba48",
+    "part-hero": "fae7c2a8a7f2f85d5b2fd7147c0d3d68b73fc5eb99614bca421e48bfa3a97b7c",
+    "part-heroes": "2e7255c61c823c50672c75539608399b06956f4e0755a66110d69867f27e3be0",
+    "part-journal": "7e9ba63060e8dcc3f502ef6e44780f2f5b0972aab6e8f282331dae00bfe7c5ec",
+    "part-rules": "a1d51bf1da76db39f108e05c994ee75702f0bdb29ebe900a7c5a9610d420e53e",
+    "part-scene": "17527fab771c5bcbf10005f7d44866b858e44c8dbf1a06596e95b84e6cf3a0bb",
+    "part-story": "418a5c896b69481ba5c025230bf00e9857cb25a4f422cffb1fe1bd03772f519b",
+    "part-table": "bdaafe5f82fa1dc35ee5cb97f3ec88c24e2a9bb76fcc1292c7a9cb18e9bec303",
+    "part-world": "4eaf8337ed40433996ec2694b96b64d276f4e22686c64e40470ab264c26b0e55",
+    "ribbon": "a8042a5d38650ee0fb92707550249a88dd51aa1aa08a9fddc08ef9f6dcb80301",
+    "tray": "3e67ba80a65883f2845400678bb3cb59ef04fc55474f2412e39968befe5ec8c3"
+   }
+  },
+  {
+   "theme": "false-verdict",
+   "pieces": {
+    "cover": "1c5d5355996845aad9208750eaa2177744e8b684edd1aabd910754b3d87551b8",
+    "paper": "f2303fce6eafe206cc7f597399e4a96097dcaf89cdec3f5a0d2410f32fc7ff87",
+    "part-hero": "df7e51007ea3d02f1a314006cda551e06f00177216b377df04559947fb6a8de6",
+    "part-heroes": "bb3169990b896125131b950dc6b87712099ef9427341218d39ab56b56273b85d",
+    "part-journal": "3811c7bf39ee40aa343a6f1ff87bfad8700bb003229d34206223a131cf3d0167",
+    "part-rules": "c25f83785f33b51c2b683c17e6a7cb17b8528003a8b7e14fd9ac3dd56f4d3fbd",
+    "part-scene": "8ff3b5cd0b0441d0b318a9fd8765c75d79ef83e2c3915f79e456f1fce3d30478",
+    "part-story": "88ef0bcac68c4ee8bd7a30c708055f3dbb8b32ec207929b5b9a530760b0b0d02",
+    "part-table": "872e3a07786d079adcac47c9251f686bdf8c5319015c9e70eae26abfb1b6929f",
+    "part-world": "58f1d75075a0fb4a42133402d60db6c97aa93883d7e55352467e45d5e6cc3670",
+    "ribbon": "57210bbc75db81d15cf7e0ad56989c9bc3c824a0e61bf50ba428c2dffe713eef",
+    "tray": "60a00978ca9405a0c33bcdb0dcc33c929f859d8acc8703d572e337ce0589d836"
+   }
+  },
+  {
+   "theme": "familiar-school",
+   "pieces": {
+    "cover": "e4c796911e27acc6bd3eb9eadee04ab48cf2f44bc4130e77b3648653586db9a7",
+    "paper": "ea722c01b078abab5d230888a095dbde7b4843408d327766e01893fc087328bc",
+    "part-hero": "dd3cde68151b171f5d02e8427a996c365318daa7c4aa0d8e96d2556b3a2a5d9b",
+    "part-heroes": "1aae53f6b10d8f7a7db422d2ad67557b4123945698eccf131b551f7a2ecce052",
+    "part-journal": "7f2aa7e46c41a30540b15c1321d71ae9fc3f1aaf97f3635484428701e91cac6f",
+    "part-rules": "b90573d21f9f579ef599aee2e56d8a5113813cfb1109a825601af94b3e02fc64",
+    "part-scene": "549dddfda623d3dd0196cc65a86210a7979345eb38d966ef16000048e0bbdbd7",
+    "part-story": "97ee71bfa14e2b6caa4e74edcad9ee14772f8b3322d76bc007700ba31aea7949",
+    "part-table": "8ee6b9c9f8a35de98d07d0505a7b6998048ae3f5a4491226e48f86ebcd7dc451",
+    "part-world": "3408faa3d164690afb2dbae232912ffce54cef41b6718f1b9525df3587856462",
+    "ribbon": "41b62dab80a509b7f938baab20ccfd381cac48b2fcc7f31bbdbca53cfc187987",
+    "tray": "17ab07d4c033e0128e7d6d710f7053c30c2d00cbc9dd55d777657748d3f4c9be"
+   }
+  },
+  {
+   "theme": "glass-republic",
+   "pieces": {
+    "cover": "adc7607ed9d61835d15c1f380f1c1f64be0c1d07acb33de7e64f7458e57c7242",
+    "paper": "8241d046f69265aa603f4da0c4131fb2e0817de6462270f51c0ce5ac001e0a04",
+    "part-hero": "d3de359964afccc5e0add0c88d52292366852cf64325e2b681af7cc18466b1ce",
+    "part-heroes": "a3029794bb700d83346da76d547b5cf88ffeb5f6d9bab89de181f2b1eb560c84",
+    "part-journal": "f0279ac5e835109ceb3d40a07d5ffd417f87ceb7a7f50c48fee93a4143e8b16e",
+    "part-rules": "4764ad9d7f75645f8bbd5b368693c9f72d56b0833492e5f088ff69fab98e0640",
+    "part-scene": "27ffd7c276a739c950b604573a022dba62a08806d94eb6b072e88284777b82e2",
+    "part-story": "0c451e9ce2f3ed8497ae2453757ff9bbd094d1ccf59cbc6d188f4a3db1f86c67",
+    "part-table": "1b1661b03f3baa01c4250f7b6f645626fd9e56ecfa3cfaf4ec79911048bd761f",
+    "part-world": "71bbcab5eef68eabea3212769d3bcb6dc84c1430f5f330c95156a50e39ed3e0d",
+    "ribbon": "7c00b5aa3499b674bdeef98f9598a8f83647d9fdbdb8f1c2fbce73d4f86cf8e8",
+    "tray": "fd85ab07306f7ba1d615a4053315cf8d7482dde12a4a79d94d711b1928db6d29"
+   }
+  },
+  {
+   "theme": "hollow-choir",
+   "pieces": {
+    "cover": "bccc99580d8b9ac31c55a7178e2e70d47380754304227c1dfbd6f8fc20731a7f",
+    "paper": "429d52d62f69bca41eef9a08c7a21677ffc4412ce467f18d6c3c83738f60d296",
+    "part-hero": "d57922371ee2871b39751e4f004f10f2111fcf1dbf65cec476bacdfde6e20733",
+    "part-heroes": "21609ee997741a06a83b804bd516a36f406b6b2bcc59ca4d7a60856375492006",
+    "part-journal": "004bc88d6852b23ce7ecec87cff7c1a4718bc8109767917cce9c79ddac455bd9",
+    "part-rules": "6d7958a01989b901ddb78bf2d51f62c342f8108dfa2f7140957ed43f7936e3fc",
+    "part-scene": "766d6948841e45e99054f26c0de8b4914b2656204b8556870c38797116c5298c",
+    "part-story": "e8e0f2ec0d0b82685a3ad1952f7e4f4d2ce7bf43b5a16bd28ff0ea0a833be8a9",
+    "part-table": "6e220b5cf00bb078e588a9c56f78f84cca62c7fd9a132a835f37300e2eb80f90",
+    "part-world": "a700534e2d3be7b0d5c8676764f334758d0fb07e3e15e509697760cf09cdf7b1",
+    "ribbon": "2f32f7501c6ce23d6fa792021b54dad53f81565f5f0d90e2bc05d3b285e9e8ee",
+    "tray": "361dedbbd6b07209dc135c823ef4c06965abac5e45a5294558c9dd829342676e"
+   }
+  },
+  {
+   "theme": "hollowmere",
+   "pieces": {
+    "cover": "60537393c20173e5512b9165e9a0b6f84ba944c10a821c3ff3e910df56b28c16",
+    "paper": "4a4734b374846611d66118911f81dc5bc17f17d6b8d1e0283eadc374dbaad761",
+    "part-hero": "c775a95d61bb27f7f974dad22d0fc5336c96e08c0ef21fa0eca4107c31481f5e",
+    "part-heroes": "7d38d36fb70d65a2d6783e9df3bbbc600ac10e017aa335ad9bfdee099c71110e",
+    "part-journal": "240404662f2e024fd5e56968a8674fcaef2f5ef82f4762dd836c20b945f2ffd9",
+    "part-rules": "10f57c730b95c326fdca1bc4b5dfc7bfb2661bde237200267f0f333aaa6c5288",
+    "part-scene": "d0a82463d94f17d98e0d678b84392b24769f4552475b58cd22f0db46a4430150",
+    "part-story": "48f592f8052a778f8604f070c443d38c86e7bd56239aa7e3ff33abf53ca65906",
+    "part-table": "f2e8db566047f8375da1b7d8058bc2e7e262fef231b58a328cc61dda2b45e258",
+    "part-world": "01ce52ef9a905de1e0befe8e312aac97231a446d36ab399fe364ee4a66bf4611",
+    "ribbon": "7471a45737dea556b8d26ceaedde62a084167eaffb2cfb94edc21db7577e61ba",
+    "tray": "5f2ff28192ae0ac088469a91a8ef6c9e4d4d8d2bab8c25c28409f6ee2bb10801"
+   }
+  },
+  {
+   "theme": "impossible-fair",
+   "pieces": {
+    "cover": "ef264bfeaeb80f2fdad1b0c8853c292a2a8866f0af2345db4b39f4c5b227c3d7",
+    "paper": "66880f52ebe14b98c56958999f6b937d22979f54e126d15c0bf75c2bde6ca0a4",
+    "part-hero": "cdcd8d025aeb8ffcf81ee7bfce848784e6c886bb0b51a0577760728784c69dad",
+    "part-heroes": "05e190a49c77cbe9215eaea7cd8fe61b86587989b6026ca64404b10ba6170085",
+    "part-journal": "2d74cfbafaced1e5925105d9d7d7e55d4cad968f89117f8e9a7856b8ad2bfcf4",
+    "part-rules": "82a35c626ddba5804c9d2637e2c93f88fe3583e867b4c6ae4c1977a3bfbba440",
+    "part-scene": "e985d8b1d8cbc87759f2268e65da5c6bddf7223c91d7022577e5fa4c2cc68230",
+    "part-story": "053fe9cf075b0642334529815db94fe00b8f064dfe076bfbd5c5d84a97af31d4",
+    "part-table": "8ee5069ff277255a20bc9ed30d27bd8ed503f759322e2b8a35204ea9b10dc120",
+    "part-world": "25e33de7738f2a557f4cae05abb6ac71c19f07ac592a3137fd8369a4a0a18b79",
+    "ribbon": "960d2b98e5610f0d557fad0a369d684b5eed5df2c0224a561296f7d77a9807d8",
+    "tray": "6eb9e420b31fed683c8f09e3be3002b494303ca7cc377d63db46ac72c673c9dc"
+   }
+  },
+  {
+   "theme": "lantern-court",
+   "pieces": {
+    "cover": "ed01e06d0e9061b6d34c31c8fe534fe894768c08ee6caee39ea263197e926cb6",
+    "paper": "8cb74cf7bfb3b89ab114e189e5d55a2558ffe91048ab39e15ff39c2aa24c4d69",
+    "part-hero": "ff808c5dc5338230f342b069bb58204a2a35c103dca582ad5dba7406e7e3ff79",
+    "part-heroes": "05ffb832217e92dcfec9f6edff9a1568cd87e0f7d2ced5f69954a038b575c2ef",
+    "part-journal": "5e1076ce8e4da8e8ffa84b5e3d864de0e1684df3d02483376a289718bb864aa9",
+    "part-rules": "f0c80f61870599721b9f5268422e10834ec46d996f54ce1d0549d1821e1aa697",
+    "part-scene": "bd5af2f3342f95c526ba4dafb167b096445c953d39fc0b50244883a4f9126846",
+    "part-story": "89a44ddd09b581885b3340fbb624b6c028e0ab2413deb4a424d696b6f9059159",
+    "part-table": "a6d44e79cd88c03dd3c3c00e82f844a10a1a977708bad25834b52e8624accabf",
+    "part-world": "5a0094c3373fcaf6682ec144423b2b6e9973f166464969eeedf9178f76c6503d",
+    "ribbon": "a7c63c5ba2c3e8345b122a3d0359fe886dc1e87741910be8a496707928e3dcab",
+    "tray": "84fd57d23a779118c838bd99f6a8045fe75030e035883333e7bce8c7701132bf"
+   }
+  },
+  {
+   "theme": "lantern-mere",
+   "pieces": {
+    "cover": "4963dda018ee2fd2c369844c4a3f529b8fdafe0174854b55ca79808f84c8a2e7",
+    "paper": "6252b4aaffae07c32d939e9127a95dd9478c2257fd59142db446ddccae116717",
+    "part-hero": "f6375a9d9ff1a2fe49ec10f5ddf7c293cb6f8d257a0842eae7ef241f23d93f67",
+    "part-heroes": "2ba71d8515667037f3d488da40201d3aa56653a9b8e2cda05a63285a7d16612f",
+    "part-journal": "932a217ff627021fe963bacbcfe326183f1b9ecb90c0a9e3b53dff3a9890aac6",
+    "part-rules": "76850af8404a23d5973d48de15b121ef1dc6683bd680d06b445f8a7e3450f54c",
+    "part-scene": "4f62d26bd72dad5439db93f176dd40039e44a0ae5b8f8cbd83edf72d83acb7f9",
+    "part-story": "88808a83b4c72206fdd4262e18f2b46159c01220d53cb83cba629dedfe384e99",
+    "part-table": "5b4cabfeb87ec2c99e93333247acf187d4dac23deb7598f29b36e196e64d5342",
+    "part-world": "97c228c250f83beca87d074ab506f83cda80454316844bfaf268454747c1c33e",
+    "ribbon": "ca7f8e4fca0d25e00b9841e8375f7904d1c264d4dc5ea9a20f54e6c0f32afe16",
+    "tray": "c1a0f165286ddf0f40143fdefba510fe8554d2ab6a57c213e6cb8143beff7771"
+   }
+  },
+  {
+   "theme": "last-ferryman",
+   "pieces": {
+    "cover": "e80dadf5a3e953b458e7b22267e74edfd1065a93bff7699dab3b291f45155796",
+    "paper": "3547e4cd4615442e6e6df9b14173d854121a7f02f8860189201011a8b2516a22",
+    "part-hero": "2cbe834ccd7d89852214a4d111a408101dd63c38e356dc19d6b032186ea3d161",
+    "part-heroes": "7199504685eb75f36a2d73d6cd5b585ecdc4a5bcbf1f5e9fe77550c445b7a1a7",
+    "part-journal": "c80b2207d59367b1bd71ee89a64052ca43ce96ce4ed51fbf386f564ad6f65471",
+    "part-rules": "35a1e28bc13d57f016699ec587e55bf1c4435f2b706afca45948d273099e70cb",
+    "part-scene": "b4a507d3a612afade75446cc1674e719049a658a9d6ef040a392e72705d31143",
+    "part-story": "fac603c29d7755d7f28221dd83d6d73aad682c624298ae93878d1440a29185f3",
+    "part-table": "ef4f5a7d5e144717bad838512d479bb6d02d6910b6837ffaa6e0c75f33e7557d",
+    "part-world": "cc6713f405a2b50943b6e747a0af9fa00f9da95831f512bc44045c8fad883b67",
+    "ribbon": "c62d5c66ddd2fe71418f2c69e2a7dfa6e711a65c0de8a3ee0cc84ab1123a63f6",
+    "tray": "18675990365da9826698b50dc60e2d45ae943673c39d254b223b4abe14f57335"
+   }
+  },
+  {
+   "theme": "last-orbit",
+   "pieces": {
+    "cover": "3150adaf382120ecad8e63ef2674c052b4b2946305932b151f52374b45360114",
+    "paper": "184b1c14d2b92d94a131658621487152d9b516b74d4502011a934a12fa1d3760",
+    "part-hero": "6b3bbe66a3b4fd1666e3fb8cd9e2611a0a463b60598addbacd6541b9e77d6e56",
+    "part-heroes": "79e47436223b108cb713ecfa3cc498eac32a5b4201df58210817ae4a1101384c",
+    "part-journal": "8a9af12fb6fec88c32e18e64613e11c897c205c5b639b962fe21836c5d03b7b2",
+    "part-rules": "6e92a5b393842de41577cf0422505ec46cf129bfdac2aa7a9a43f57fede223d8",
+    "part-scene": "bed2952db4586269d7312a733fd4e0e1a68110be6a6370aeb40bf3cae644f561",
+    "part-story": "b575f145a47b2f5b452c86f1f2e529222458e72f61c9dae1b97fe86891324901",
+    "part-table": "a84f85fbacd9213d51490afa00b771d6aeb73806966d3ed3d47d66a559b39f80",
+    "part-world": "1ab3e8b35518e5ab7f25019c761436faaa659b8f42cd3b7394059511f8ea6b89",
+    "ribbon": "052d34eefbf5c59af9663d03ffb4ef3d12ebe4651f9b3d6d9a348cded6563bfd",
+    "tray": "47907b8256015cc76f0601b0e8740eedebe4b34c6b09a566230ba895ac0330d8"
+   }
+  },
+  {
+   "theme": "last-round",
+   "pieces": {
+    "cover": "24fa19ca890d1d363ad0549bf14b0682c7b13cd89902576b78165851dcfd3ffb",
+    "paper": "cb996f648c527e9ebd9b335d7fd9990397deae04ee72c66f0c0420203974dbe2",
+    "part-hero": "6238b22cd65cec4c405843865e9b5d82aa38ed0b5ad6424a2d450adc30086655",
+    "part-heroes": "1102415b88d172e429549cc70f49059925e143dce486948292ab10b4ad3817ac",
+    "part-journal": "fdc829ee258f343fe51ba9cf7d103052eb4011d5fe92d0c304d018bbe6fc5a4e",
+    "part-rules": "5c2d7f108cff93973e745407a1407fc458054ac370cf985063eefa7cb64da39d",
+    "part-scene": "86932b26abf70505b5fc8bf96195a7091b8ae93628e270fab658adc846b11432",
+    "part-story": "cb558a0caaac1ed4d34d58eb492b22cf762ff4e58464d7d6f84f7b4dbcfc424d",
+    "part-table": "94f47ef7300cedcb11dae9194aea682b2049151fad92b09ed23b8542c0219f82",
+    "part-world": "ce09a3513054be7e941a4149e3b564f857ea91e32850e41a14980a3fa418d3a7",
+    "ribbon": "98997cdd9dda95559c5a4636238782625a210ea8a0552388200810fc232b4bb2",
+    "tray": "22ae8745b0823a61369c156e1b0968eebdd0b3d84351904d3c6eb1273d1d49b8"
+   }
+  },
+  {
+   "theme": "lighthouse",
+   "pieces": {
+    "cover": "f94d0014efda2c10d2d3d149df1ca510bbbff5db10277151882362b88012a7f4",
+    "divider": "3c5ea87ad695406b09a64605db440efba17fc827fcd14232c165a93e041a5996",
+    "emblem": "057372e2ed2c11ce730dd99ff09286d14f53aa503803ad54f7405c4b14421584",
+    "ico-clue": "6d3d2047fae4d3dcd22f077c30908a85fbd9dbeb109e6d2faed27ec2e21a6c75",
+    "ico-fight": "b47ae886bfbe42e2ac3b46284b35992223f0c77a88656781c5a8b4c3dfd7d6ec",
+    "ico-letter": "61954375173d5f2c98feec37867f8520ee8095f5c6082c350bcb6a3224bec46b",
+    "ico-puzzle": "68d313778306996790d4485c7bae7154e46ebad7db9ab16b9df02a4a3a01a241",
+    "ico-talk": "ee535c396ca4043f3b6fd03db5034bf153c3f35d1f59e34799d92ce0dad851c4",
+    "paper": "5f220fa57175b754ec29e020462f91b96fa8b7fba9b51dee11380be0ff248e45",
+    "part-hero": "f436e435132ad208d4e98dbb9a93dcff1fa1c89c5207245db474c02d58a0b52c",
+    "part-heroes": "a1edb58796c3709b2b70cc34c7051f3634b66b1bd16fbae0a4330c449b81449d",
+    "part-journal": "6fda39462fbf1f9cc95af43ffdff004248bbc4bc778b6b2e8d0fb75525007e78",
+    "part-rules": "e34c7b0b5e3346804fe694a3a8be92add495975a443d453211ae799a2719dece",
+    "part-scene": "3833b11d2874cb3ff0560ac8ecb93809383ef471d7e2a059d8e404ecb04877b9",
+    "part-story": "078eca4e29c4d25aa3a7c2e26224bea471a19c3ee00ea633b3238b482e5119b0",
+    "part-table": "467aa4cc8ea0604421816aff6644a9ad8e04911dec0b7b51b03cbb956619096d",
+    "part-world": "6d31a035109ba35203ab79bd5be1874875cea19a28279259ba4e6f64ce9952eb",
+    "ribbon": "4db24fc8ca073500d1eca69d60d1ab007ec6af853e7e80df372682807cf98678",
+    "tray": "0c77b7b9e8be090c6eef08cca99db6e8d8ce8470b2446a1b78c92c724e1f84d5"
+   }
+  },
+  {
+   "theme": "ltw",
+   "pieces": {
+    "bookplate": "9b9e0338b39baf0ca42aa710621ea76809f480d2f57c9eeed161be6e3d80889d",
+    "cover": "f830f85146f14b1b2c7aa0927d6905d5f57a9d81477d455b091dcc17082ef112",
+    "desk": "bc412fb0f393eab90ce4c41d9e95a28a1e71ab4dd30bed33ad3dcf5c44098a6e",
+    "emblem": "6c518394ed4a695f384d41e04236cabd8f7e57a2b11dc0e00fb34d62bb4fd879",
+    "paper": "c7d642779d1f5d78b20bd174deb4cebb7038559e59679905287f6d7f6276c074",
+    "part-hero": "f137a8ad40f312b7f196817d22ea9011e95b37b5066557f0e3e1bf6ce24735df",
+    "part-heroes": "12b7b53b49509c4eb9f54272f64e0a9b418e10bc3f20c0eaff4fae9ffc74107f",
+    "part-journal": "0cdda8912bd478559ddb3547105a53d3b722a528078accd7eccd2f5a851a8e4b",
+    "part-rules": "230cb67338d9696648b360be810052b53530a2b8eae388b273c99acb58a02bc4",
+    "part-scene": "ebe9d147c5c826c21f7142afa7ccba4715e2f210e81baef8442e6ddca40b0465",
+    "part-story": "9d08aebe578fb67b972d551b509070527e714fb355ec3836c58bc752ec539ecc",
+    "part-table": "cd737fce126b2f9faa0c34f9fa86875b26dd1d69c2ca7a67d4c3b94b21a00a2e",
+    "part-world": "1b39e2cbc3895d96634a3e35129953e6cebf8811085359c876fddd3a14cd19a2",
+    "shelf": "f1665a2b1e35092055730e6bcd9d708ef4a63b81e03059521f2023cf1067c026",
+    "tray": "f125c6f256f2023048549ad7dede4832cd34da8e6c5fb5cb0107d5b49ab461e2",
+    "shelf-board": "7f14932c2bd9b0983f8898365632694ccaba09c0477b64afc0a52eaa9c9841c7"
+   }
+  },
+  {
+   "theme": "marrow-crown",
+   "pieces": {
+    "cover": "c035ce6b58bd9e957cf1eb80b40e7bc44bc5fc4910fb86ccfe26f7de86c78a0c",
+    "divider": "2ae9eb08ea61c9399015c9e6a7d3c19827465553697aa5d0683e17a17cff1abc",
+    "emblem": "c35de382dbc3d3f3b27e60a4d5c2bd61db910c1c5192c1c336aa154988c04aba",
+    "ico-clue": "5295bdc0cad3f0f8e6702e2f8ec1d80535d648a5f1f7161548ce3cb609457045",
+    "ico-fight": "e761fe2dbbb62b66372150f888f65df8fc1bded05f7fee3bb323d30f10763eac",
+    "ico-letter": "f47b437b99d9bfb8b1d2421ca468626acaa63f3ea022f91a956d728ea50ff8e4",
+    "ico-puzzle": "b0433744323a4a4c8da40147e2306ad000aa66ebebd7d124d722c6b504195f32",
+    "ico-talk": "2015b4e97aad0462c2b9533827af3c66d69f295cc97b8fcd985f0f9b2b71c5fc",
+    "paper": "a0619cd8f725761f7ed61306a798ae9a4afc6cc92af4ae7cecfad9aee2654885",
+    "part-hero": "860f1e69c72552791b6d36482a6ef614a134c0c92e622d5dcffe1921d978d114",
+    "part-heroes": "3345f4fdaa8cd796f569e3ed70bdbf591cc3f938cc286415046c90b04a3ba3be",
+    "part-journal": "7294dd1f605a0198bf576e49810f7e098c9214e7841ae13137de78141da338f3",
+    "part-rules": "757adf3be3de19a8e3cf25ec05dbdb9a300a0a519b15766013000eaca9c32997",
+    "part-scene": "4e89403198362743b2a438a69f3437001e35ddaf27470c15cc4a9bf71adb96da",
+    "part-story": "5a774a49409d6288664de4bb2230d58124b90861cb3e2e08119afa82e6eef39e",
+    "part-table": "1b9fbda5a704cb0ecb27bb390290ce4e7e4fb572b421a44bfca0d8d47789d6cd",
+    "part-world": "4565e57d35cde040ad33a897b51e9c1473d1a672d27dcb678b80cfc40ff83bae",
+    "ribbon": "5eefc834cffff22f2d66b0a7a5511d796581ec3bde2750fcafea24b2479412dc",
+    "tray": "5c6aaaf609139f45371d99591ee2122a31a8a9698def9dc83ff05e92847c0e0f"
+   }
+  },
+  {
+   "theme": "moon-pearl",
+   "pieces": {
+    "cover": "1635d0f95b874840b4d0e8268397e0152d32f8bc594ac1b430e4aa141a41e567",
+    "paper": "926bf933598d1edc83cdf0e420a8fa41c893dc3a08ae593108b3cd6d36d7b0a0",
+    "part-hero": "108e0eeba1b3d97ed273e44194b34b691267e4f558eef2e4db7be0eebb9747a5",
+    "part-heroes": "009afb1617fafa79b3ddebef9ee3faedb039c3b035664bd090a1aa2dd916f7ba",
+    "part-journal": "701a9e23d8ea3be61237d35467812e51a780eb2bb9c49121cc3b2f1135f4ab98",
+    "part-rules": "628fcf5b442615a121005e5f9df7f8b292756e81eaff754061eacd6c34026859",
+    "part-scene": "00bb07b560a039dd9ef6eb1e0b8839d04e20e58755b16060381e3cb92965fcf1",
+    "part-story": "85812032e4ba781a3b16ebf80c39e0040db6117f14fe8d2c0aab14beda4b3943",
+    "part-table": "9bbdc2d8d8602334ac981e98ad72994cced10540d859aa4ed6aa55ae3fc7ac69",
+    "part-world": "309acc337cada1d5cad6dae4f0af56af78162b4193bf8d64dbccd10713e19e83",
+    "ribbon": "a2f4d80e40f09f8e350cff7404b18647aff726ebbc1635ee03bb1e4a071a27ed",
+    "tray": "2c124864cfd6ea72f31f83e92de9d8c234462d4d42140e10eed43a0c428364f8"
+   }
+  },
+  {
+   "theme": "moth-court",
+   "pieces": {
+    "cover": "a8e52097549aca237051480bb930e596ad1a6540337ce7202acf74b77f723393",
+    "paper": "fa80ec3081ab43fbd80e7d67f554cd409b4b77641fa20543d5a79209a8719df6",
+    "part-hero": "e6c24965bcef6c2b0eff26a086adb77a941706eca506054f17e80689c6fc6db0",
+    "part-heroes": "0882fad3f325ccbbe7bae478fd28c12bfc33a329977a3872dcf47f9e1a8b2e5c",
+    "part-journal": "2cd772d73fd7a256a0f1bfee9373b9c541d91c076577c1ffc49144650f082731",
+    "part-rules": "51e41dccfa38d176475d86ccc73e069cdc00ed9c7f2b76c801fd684ac94e6b42",
+    "part-scene": "901ab8242930bfd0a66370ddfdd224aa0ef502422f84b5d0786db4a1b46249db",
+    "part-story": "06923198004f073010e22ea5bb415cebbf732a829d918b6c7dfa72e31b7c9482",
+    "part-table": "75890cd141a175f7a099ba5987156bdfcc53072cc10bf6e79abcc6a94a4f80a4",
+    "part-world": "c84dba05998dc353ba8aa0b98a8127ce7891435763cfec07c6e3a53dc498f53a",
+    "ribbon": "09ab9e51b139d5ac003047b5821d831722783fa9a0a0263733778ca152c3528a",
+    "tray": "b6f003b373ac7292b21e29d414daab77fd13666d01003057187c3580de2cb307"
+   }
+  },
+  {
+   "theme": "mountain-wedding",
+   "pieces": {
+    "cover": "a76a3e7386bc34916d4828891f0ad976db739b6d893ab37da9acd7f1046b0d30",
+    "paper": "a7cc28d7d2b0a1acf132c06c757002c7498b5e8eb3d22a605df209d144b75182",
+    "part-hero": "8f27ff8360da623d91dd818b52a393c0cf3c167c5747a4417e67ad9171686357",
+    "part-heroes": "5e67d394adf40237361a1a001d2f901b475ec03ccaab368bad76cfe438e72896",
+    "part-journal": "caad9d3ebf863af40d46750dbec00f8018e1adb983fa6197bd7719bc43f53b35",
+    "part-rules": "8b81ac349b5d5fadc44cc8b42a88e73d9da984678163c9a23800aefc7262e3f4",
+    "part-scene": "41bfc0dfd012516543424fc8116a9eae06661397d9ae443955aea04ee1daffd7",
+    "part-story": "1e4929343fe54c9dbd80a2a69036cfec766471c708e3c57e1138c6bab159072c",
+    "part-table": "35c5385c7b6d776cc693c158a8b598541f1092414a50b6fe2b10b374bb5a08e5",
+    "part-world": "d5d82a7fd3a8bb9af6ea856deb351d3efafc0e0bd041269b442b74bbba3ab865",
+    "ribbon": "218c2376114607b642d8eff3c9969d6b61ce8a06e6cbfd432cefd9a75002141b",
+    "tray": "000c319b5ec4fd83f4363cc1c4619e9bf32304bcac308aa08cd661a099bdef9e"
+   }
+  },
+  {
+   "theme": "museum-midnight",
+   "pieces": {
+    "cover": "e71946ce8615068177b633b99d527b85f25abee3c9fb7d21d71633002fde6c36",
+    "paper": "5a3bd3c931a8fbe0c84e808a71a988a888db86a0c34f04fda6db3add83f79a04",
+    "part-hero": "4d96b1b19ec753a32d098a283af2bd8355a5c89d7450f68abcccfb7df9bfb408",
+    "part-heroes": "ffa552c2857a547a5d134f3e4c6f780abd7513185731f7345f412d39c4070c72",
+    "part-journal": "2d221fe2a1d4b43794e44a52a03b49cfdd82e82df575238aa59f2f226c1f6e4f",
+    "part-rules": "8ed6964ca7472b05c4ec221dbebc59b52e90fefadf37ed001938243e798b2e04",
+    "part-scene": "61e8d67ab5c77d5541588e22d33879cc2d346c22271c341dda051fb9466e3f39",
+    "part-story": "157da421fd070621a50df003edd35023788e5d413489c48234f1fd2a57a8756a",
+    "part-table": "779027aa994013471bae6bca46aa16183c62ab39e024799bb33692e75d140550",
+    "part-world": "50bce9c0e4586741952a317e5af0ea26706fc1565491061ec4756de93aa57e3e",
+    "ribbon": "1ecb450971feeca7258ef7fcacfd4c70867016f4b15107bc509fb383eada1b3e",
+    "tray": "38754cce088d3b96598fbd83a05a84c9922d8df4f29c68d4f5a701b29145d8e5"
+   }
+  },
+  {
+   "theme": "paper-sea",
+   "pieces": {
+    "cover": "13a28b84b159c44fcc52f99ad6ff56f343fe3e660c654269c647c907fe5c3518",
+    "paper": "3eeba98a188e29997b3d6c3c2de0a38362c3a268ea9654c58dd586e8927c4e49",
+    "part-hero": "2d176a046b7ff2b4ecff233302e082dc54a409d681a278a032f9f44d18bbb968",
+    "part-heroes": "0513ca28b659426d6669c8395ef6c4163741bdb879029911c2c8fb3fdd62ffb5",
+    "part-journal": "c626a511bf08f35d71b8bc4e7243e0958ad1cfb88bb05850089df694ffe49867",
+    "part-rules": "eaa6b2f3e64df568aa5bf597a999ddb69d2b0842a923b77b0ecdab3d35393f97",
+    "part-scene": "8d3895f7c44124b1eecf20e48833f748132fc771d55b3513b4b9f0c89c9fa794",
+    "part-story": "a7886492bb647bc62687cb24836a1229ffcd6b2093c361b809714ab7edaa9d51",
+    "part-table": "65efe281132e8130e351ef7de444aaf3927e9433eb6bddc85e2428507cf72045",
+    "part-world": "f373a543592e378fd3fe2d05f8d13662689066a22e4b44d0e39669b1c48720c0",
+    "ribbon": "86d69f061c934ec8b1f26b98e4ef2c66f62971dbc0fe4a20b5e86473a066a523",
+    "tray": "d9f8f32e02158d791bb5e1fd2c89a76bd70b953b112b07bd8780c512315121bc"
+   }
+  },
+  {
+   "theme": "quiet-exchange",
+   "pieces": {
+    "cover": "28d3c938bf1a7ce702986c3b278e35c7232d1a64ab07d18c95f776c549a5adc8",
+    "paper": "2e320f436567708240e8157caae42c3e76a283d4305f4197bcd2c937fe6e9015",
+    "part-hero": "6b4aaf4099b8cc2139f89050b1ca2dc4af9ce092593554fbec3a59dbbe8ea32b",
+    "part-heroes": "29f310ef8a4d626f5109e63a6026cfcff8c7f6b6067551b82df4dfdb64ac05e1",
+    "part-journal": "69ba01017e295dcadc55d74088d821eb98fc7e47990d33c94b6e9c420e2a29be",
+    "part-rules": "e7d14248f49a0833d4957e85ba97a97c49ca748df382dc8ebd80b78940851e7b",
+    "part-scene": "8ab624d141fa158be7cc92c13261670054c258b802d99cfa444f148b60a68bc1",
+    "part-story": "977a0d825a08a56f63d270d12a62dec2ab19701b5a2a64fc146a6cdf605874bd",
+    "part-table": "d297f88d68f5f505e4da0c5ec11c087684f1ae055b7f51e547d3cc94d3534d1e",
+    "part-world": "6155b4bc7180c3508227f02949d630ccf652544d31f46ac4e1da7a0a3c112201",
+    "ribbon": "0f54d6437b5f779f4b7528145536d03ebcf6ad19c4656935e3e1464f5b98a203",
+    "tray": "bc62286b6b13a5429f8e95f4abccbc18f64573abc7697e6d1f99ed3c9f75915f"
+   }
+  },
+  {
+   "theme": "rain-bureau",
+   "pieces": {
+    "cover": "96508bf5562952302f876c3d31a6728ffba65d47f1f076c6b72fccec29d3d436",
+    "paper": "e2886a28e01d78341e8bf6ed2b437a7f1660028cae862be9c437640fdb0362fd",
+    "part-hero": "94e545ddaccbf4f20431a068f414271a991d94aa5795abdb693c1e97a844f957",
+    "part-heroes": "c1ca663c526f29fcdd928a6f3f5c29126e0c4ba777892807d849c7af33c1fd3e",
+    "part-journal": "1a5deca8c4c6b41672853697b1b8868cb1c6463e20cf49b0e7d5c1bd4b5fe4f6",
+    "part-rules": "8296a40b7c315b1461fa174c7b34bbdc73d20a9d6e81db09c9f5acd4830e8585",
+    "part-scene": "f87911bff5687a1a6f98fa9afa007a7b4592e2cf48e303dee5a242124062878b",
+    "part-story": "321e7c6888f2f39e06a657aece765940b9ce99fa49dcc522350796f6323b1201",
+    "part-table": "76457420ce529c0b60765d06e0b062fdf7efdd02dcba7f4049945706d8d819d1",
+    "part-world": "81023dffa9b6eb2ec880658984d39fe388fb13b7346c211b892c589613d68907",
+    "ribbon": "cc61ef6edb72d264e20628739084d4f32b8a2f9bfdd1aba7c289468f3bbb4e9c",
+    "tray": "b7cf8e9d84b04239cd8404103e68079d25d0480edd8154ef99009d95af81f53e"
+   }
+  },
+  {
+   "theme": "rain-check",
+   "pieces": {
+    "cover": "d70691bcd612399a36c4edccc7fe34d6b65d7ba46b81515443bc38e19dee523a",
+    "divider": "59377f077b3c2a17ecb19246ab136d6f9baa329b70dde6061ae8aa286298398d",
+    "emblem": "fc7b3ec87b75d2cc47a3dff4ff150d32cf1fcf278c9fc13aa66c359c48c1a857",
+    "ico-clue": "ac33192d9cf7c72418e47b7cbb497760f7ff1738ab7d5b52d332e8a66f33b537",
+    "ico-fight": "bcee185ea428d937ce44d2d18ee0b489b1d905735ed05b31ac1045ed39dc45f7",
+    "ico-letter": "41aee14c9d3a0f84239f48760ede795a2c69b2bc6f9e4b480119d3a50302fd27",
+    "ico-puzzle": "58c5910f3bfa78374f9692b8a1615f95220c9a2e871d96bcf08ecacc70c36ac9",
+    "ico-talk": "ac22011c848870f9249f956646cb902c1bb9f1e4940a98f9b77f848584e7df25",
+    "paper": "a9868bfef9c9e68f0ba65da67c5d1c0ad73419f6c1becb2e1a100929e793118b",
+    "part-hero": "0400062648aac8456c86f6eebdf1342587c6d6e73f082e5f0531d61b4b6a8a20",
+    "part-heroes": "593b82befe2ef840ddf4b641274018050526536b02f1c08c8944d478081d9438",
+    "part-journal": "ece1af4401835a2d735d144b784b1da53144f6e1cdb0a004986eb9553e9ca21c",
+    "part-rules": "93b826158aeb4507661e7031f496b8a55fe3b6c81042d843fcbc19ef59de900a",
+    "part-scene": "8a3e1670f563019969b6b53922b96bf1300eafd7b099eb15654d75bfc488773e",
+    "part-story": "873932e76f829204d22aa9ed6065b872b895a00de1a54084bd1c61c73db0ec06",
+    "part-table": "9e205c5637c759f7f3f46d11324268615ae8384ccf8b2051279ce1f0583862d7",
+    "part-world": "e24a2403f2c60c2823651a7b308294399389099ecf162393af27c9137fd7947d",
+    "ribbon": "5a7687d4ef59c462304745e8403e90276569f66f9cf76ed2f2c0bf4e0916ccc3",
+    "tray": "9cce6d3e231d415a3394334b538bdb0537a124b2452d21eaa983b4daf2190dc0"
+   }
+  },
+  {
+   "theme": "ravenford",
+   "pieces": {
+    "cover": "a1201d983878562319aceeadaa10ec9980102b110f509aeb269a6788c9f3c4ec",
+    "paper": "320e1851b32bb67259ed9725536a6d99d07be5b74f09090aad80c40fe54be7a2",
+    "part-hero": "9a75ddc9f347c9314a3e15e2e03a7ed31a7bbb93ccf67935a238550fd397750f",
+    "part-heroes": "62843708b4111059530aab3cbb40eb12ad96d19c7eafa383445ba53639da74a3",
+    "part-journal": "aa423ce23ad596953c912f116d7059b7edb760206cb9cfc52ca7e50be4051c3e",
+    "part-rules": "335b7b06610729dd946f7fa546662ff81e236a48a564f3c690cf92f4ab388e75",
+    "part-scene": "e45b253bd9a07251d3cd81de38404504bc31ed6db13f696bf57fb2b1c5c53f92",
+    "part-story": "e3c77bc50cd217503c9ea5801851cc8e870f92c687ed3b1562a81b4508e3c778",
+    "part-table": "4c5a94c627ea7aa236ad49fb556d5ef13a45fbfbddc33100329e7b64eb0bde66",
+    "part-world": "e316ad73d581f3b749d2cbf3f964c5eccd7693088d9ba5668a8fa280177af04e",
+    "ribbon": "3abb2fe9a681a38d6109b4126dd7026f6c1e66ff39eb1b1b1b6acda93942ce16",
+    "tray": "d65c99592655be6bf8efa99d6254c2f3257c226ba403109e73bc78adcdb8db21"
+   }
+  },
+  {
+   "theme": "red-dune-post",
+   "pieces": {
+    "cover": "82cb09ad69d4d3ec311241a0e26f49332b5f87a63f45e2402ac48c5e1d6b2c00",
+    "paper": "5a5f6a2afce43f6067e0142a3c8c60dbf82632d5286a57841e0ab3ba4f6afe8f",
+    "part-hero": "c1929401eb16a56eb3bc250fccec0fdf089024966d7c5199775d65b2e5f70596",
+    "part-heroes": "6d2254fce0299cf193b06dca7201b0de60a31e00e0a51a7417f21c253b665f36",
+    "part-journal": "df80b37ab43688774ded2854d4a48af0ee7c89b7cc11be209c8793a092a183ca",
+    "part-rules": "16a0caad52d5373473a7d6346cf020dd202ae649af43f68f863b59e064715cd5",
+    "part-scene": "c69f142ae3b142d2dc3adac84ac41ae3c9c54bce997d1e3c97ba0b38ccbb3533",
+    "part-story": "7b2718aaf9cfc58f7569994d024ad1768b4dd0bb530322e5ca350b5a3ebcfc87",
+    "part-table": "29c6a5810d3c0a996e0dc11f0d71a7a8f905c5975754f671a9cfb321ea1d8d0b",
+    "part-world": "be0b78e4eb8826c712a76cec949ac9618295aeb67bf755662ae717755e81d900",
+    "ribbon": "ceac04d66267575f83dc83113b9a51a0c4375c78a33999d88ee303e9e7e13986",
+    "tray": "92201ae50a9f59bd49cc4eab74dcfc9c909bf6c98ce3db6a033629988bff2535"
+   }
+  },
+  {
+   "theme": "room-608",
+   "pieces": {
+    "cover": "feb6ccddb4f88b129c3373f40298ca0f64c6cf062432e4911406f2017a3d68bb",
+    "paper": "9d12e9736ff3d825d24a7b516f9cecc0a5102920cd7e6377b5ceca82c38805df",
+    "part-hero": "81d97a48d9f083fb2993d5059ad6fb0c5c02c3c3ffcb9ccf6caff807e8bffd35",
+    "part-heroes": "5725cdadfbf3ab117fe61614209b6c80cfd7ba4b1d7030a95f9e4f81a4a780b4",
+    "part-journal": "e5b9a726e20f1c39a55947b5a178bb297190cfea367da094442357b21d5a82fc",
+    "part-rules": "a62149ff17a3225cfc22af1ec67da418ec66ec7c89f54d8dcb29cf6d94cfcb94",
+    "part-scene": "cbd6e94582e4f970e6c2e4ea6e42a64d6f5a970990f8a28c5c5033b39d976cb5",
+    "part-story": "7a599a5436718973ddb8ec1986d8ce4b67e7ac3abd8af85845db09d745e0aeaf",
+    "part-table": "6bf248699bcb71b553e057790fd9bd702b85bec346252935760c1f27cdf5f834",
+    "part-world": "2881b4306181b6467d28d06df0914e37163ce9ec3e9767fb8dd49b737919784b",
+    "ribbon": "e68a9ff57b6b4eff8b8c177b7f93b4e245c45711cd89ad4940211eaea288ee4e",
+    "tray": "66514f9577fde5c7cc8134382784c97a3e53c47bed55e6ff448ffcabfe7ee6ff"
+   }
+  },
+  {
+   "theme": "root-city",
+   "pieces": {
+    "cover": "7fea3493c8b54c38f05c58724ba6f41c9ef65904c751191618968e796502b2e1",
+    "paper": "d6a74a03c4576b7036ea9203eaebde8b854c79a6070c2f6aa3188ccb2d5a16eb",
+    "part-hero": "78ded57d2cc5bb5d85f819df1e865ce66afb8251414c0726828aa4f4f29ca0b1",
+    "part-heroes": "f489ed49cf0f21c307f0d57458bc50f094676a224aa0700d58292e23bf10fd2c",
+    "part-journal": "5fb9dbff02b6d9dbec5b8c809fe4d5b2cc487e76150b8dabbffbcff3b2b5b974",
+    "part-rules": "0fe19e5f0ddaf778a95ceb3d8ccd9f183b8aeba0bca7845113d945a2aa1616ee",
+    "part-scene": "5e11abedb30a5064112cb30f32cbbac6574013c160de9f04cc88f55f8f08c20d",
+    "part-story": "ea5df58459c92d2f017c7537ff11d97338a55d00e1892b61983719895d9922da",
+    "part-table": "9c94b07804f7e472a6faa175935cd586af9513fa517289f7ed8598fe798acba9",
+    "part-world": "05ad0910e7d12dddaf010c9c2cfbb9f62a065c5abecfaa821ca6ce224b77a498",
+    "ribbon": "588bc279c507c346c9c46d70562fff8c21c1915f71de0e7938c91b3601c132e5",
+    "tray": "3a35a40374afe989606aaf08f8f2c31e687bddfa3ba74e957bf1327801902a87"
+   }
+  },
+  {
+   "theme": "salt-meridian",
+   "pieces": {
+    "cover": "baabddbdbf3ceb7d9cd0232cea6441c08781002c74c32ba2b5654d5665cae475",
+    "paper": "dd3379fd9b8d3ea7f4c4735375afa691afd370aedf14d0a760de70e43b77a5d4",
+    "part-hero": "6e86082cda128455bc0a2d00a9cf8582c2b6554a0f80ea4a38bf7924d90af5f8",
+    "part-heroes": "0cea9fc68c58b6bc49c426290d47678e1cdfeb5575106c2f83048ddb9b77ced7",
+    "part-journal": "6f7f7f0837c8e55071589675469d8a542561d1a29f783160d2c87257611a5d91",
+    "part-rules": "fe357efcc74b0c209b63a2c4a9c27b4ca42d47a8ccf89954eb2e17330a8dbf8f",
+    "part-scene": "2b8f1319d90dc36ba399983f58c1e8b8dc9369b4129d4f49a8ced3dba23f7051",
+    "part-story": "a81680509af80eabd42854ca51e4f0bc9c6566cf42e66b49331cbfab2c999e52",
+    "part-table": "8dcf13a689fe915b36634794c2ab325341657cb3e61a9befcb99bda6dc7eb1ab",
+    "part-world": "a145fedb29dfcc1d362a99df0b571cf60cc76949f5fb29d3e3a2d0ef9dcf6f3a",
+    "ribbon": "f12e88e47220c9d7d7f0d7e71ac573152a760fab605418cc7dd4d5e6b8447c4a",
+    "tray": "67b29cf5b21840b4d7cbbfb1b9da6a2827d87312f27223d2fe6473a5af0c154a"
+   }
+  },
+  {
+   "theme": "salt-widows",
+   "pieces": {
+    "cover": "fffde5fe9b3a4eb0e2c26748fd3a2753a5aa4fbca59c9b1fb0879f2de9c5f9ed",
+    "paper": "678206b969b77a5099760906552f4f8893f15e4cb982f22d9ead95a8fb23d58f",
+    "part-hero": "532bf12d4f72fbbdc390616e4af3ae7044ca93fff42fe561d9ba40f3e32ac49f",
+    "part-heroes": "f65a5f52165893bd1e312903f58b281db94dea57de0892afa475d2a303e1c509",
+    "part-journal": "f04bc13a21da7214efa53da70a31860b3cfcdc72b880ea0813e6b73c73140611",
+    "part-rules": "763236ec1b05adaad3e2aaae3c760c46537efe457c7d8e18f07573169f2ba76b",
+    "part-scene": "12d38a31c80efebeab31366193c6ff9be6ef9728c72b93592ff96d67ce660172",
+    "part-story": "322fa59d2ee9625fb669a90eaed452b4bc3df1772035cfc58aa5741cb5058809",
+    "part-table": "b34dce094e9fdde4556c520259e4e561584e1e2f63f7fb135f3dc55db0c55183",
+    "part-world": "3a692d5e532113374a789e2c77c9214ef3538b0c52387380acce8a757ec86721",
+    "ribbon": "14844ef92a4402bdeef501a1a7e8172f0626383b12c8b688e42889b1bf59c44f",
+    "tray": "49713aab229906ca91b52a000271ba047ee2aa1d1403bbc200df57e23a2473e5"
+   }
+  },
+  {
+   "theme": "seventh-negative",
+   "pieces": {
+    "cover": "63fbc59448ee81f81a26b58e4832da2c967d1a9f42ed4be6ba8c986dbc620c18",
+    "paper": "1ce4d42445b2285478e527b3f0adb01a09a25f636c9f13dd25fad0d6854dcb44",
+    "part-hero": "35bda41c34d41cecfa15a1274bf678bf7be8b3cea7409e5bc47e37e0b14820d0",
+    "part-heroes": "fea06e5e0a4c226e16544c7a392aeff5f3e12fc93995cf75d0630b027b150dd0",
+    "part-journal": "246c9002fcec2e872a51755547694ac99266051f6f7eb455e47eca1690b283af",
+    "part-rules": "c9ebb1397b475d1920f9008fd679f6a3403fd15769b1f4e3556f390e128b8655",
+    "part-scene": "edb1cbb4b059df4e759974a8aeeabbf22a54a2d415cdfd4a427d1f4a8b94eb81",
+    "part-story": "914e04757dffd60bd831565a82f2fa46bd6c700ff9522e8d1c899897aed41ce0",
+    "part-table": "f5231541d35701824467ecd426b01d56dbe2391da87b39ea08112010c7f6d141",
+    "part-world": "6552012afb8a09233749145876066db8813b5529eb99203c27308f3a07028cfe",
+    "ribbon": "2e55ff7c7ba3e7685ae95751bd9929f994f8f5981b70264a8a121ae3f4144fa3",
+    "tray": "cea42c92b79e665efade3422ca78210f15340ad0844ea31838c7d8ccb796dfd3"
+   }
+  },
+  {
+   "theme": "silent-frequency",
+   "pieces": {
+    "cover": "53d4bf4e34c1d83e96b3fc7d748ee5d279e823562130a0c9d03054f4c6acba7b",
+    "paper": "01add04a9a2b3bf632f8b58097579ee08c22fafaf23fcd53ed219b3b8bbdc4dc",
+    "part-hero": "7704928c001b162d00e4d2513c8f1e1fbe6f54b5c8e26631f689bfc48a51d0b7",
+    "part-heroes": "d99ad647bdb0d21f28667ffe21d21446b4ddb0306887d5ab96bbbef78385669e",
+    "part-journal": "fd754fc559eea2eca350cf32ae025087024fd71b9c4d929e6b0c157c11427df9",
+    "part-rules": "01c779706e65198c3958e2a51231a692dd61e022ce0b7cc00d2e0a1544316e83",
+    "part-scene": "983b999be547fe14aed26742bf4d8569b6c636781361f17b2473294c6b4e1fae",
+    "part-story": "b6cafcd2b3ecce1eb6ed2cbefbbc157c34bab192b2c4b0f05522913014d917c9",
+    "part-table": "c21752b8eacd88c7ce92fceca0632ce6e67d84c84cd873c06d177680a5d16630",
+    "part-world": "b6574ebd1f614ae98fb82149f85edd6574f107e0c4dc8a89a885b00d1e476b22",
+    "ribbon": "5ac3cf4808a7fdaec3021931a70ded0e530b4573c6847461d58378c55bbd240d",
+    "tray": "89e33fa0abe2ef83712eda44ab6f02b606a1f82582f1637db8edd3cfa0678d68"
+   }
+  },
+  {
+   "theme": "sky-archipelago",
+   "pieces": {
+    "cover": "e6d615ddf96347e24f835768e3b39fa5899fe9a6205bb41524dc0c1c921a45b4",
+    "paper": "1fe4bc040b5fde6ba9ce09fdd62f3d5ecb3acfb464ffaeeea9ef66423203d851",
+    "part-hero": "7264f40b75d105d603cac63d8b7e43ad32572c1522a108577729e74ae390c2f2",
+    "part-heroes": "fa0a186530ca7c55b3f71228cfca86ae6e708045c04e94b56decd09eeecf3714",
+    "part-journal": "864a0b8e477efd4067531073259197288aa51e375628df80b06d950b9f05f7be",
+    "part-rules": "989b7bd81319e495fd337f6c14fa26b88e4d80b46ee6bef4b110e9cf3c941750",
+    "part-scene": "edfb6df843fbe1d9a563f28fb63b27356a69fc0a96ab44f2aff91efe9c031517",
+    "part-story": "a57aac702351bdb390e18767c303a92799885da4094d4b6567f95b1e8695fd0d",
+    "part-table": "365160bd55c1e72d31e85bcd973f8a12a544de42ae94cecdf667d13bb8f4b782",
+    "part-world": "645d4e80e16ef789ed40f036fb11580d301b7133e44c6255faff5cb023593c59",
+    "ribbon": "beb220e85bfd2880ba162b824a275595aacc4aa600c202af4634fd1a05dfebd5",
+    "tray": "0a298d826b305b44200785cdc6c8d809ea857e9e3f967c99a48c63cf14675f71"
+   }
+  },
+  {
+   "theme": "small-banner",
+   "pieces": {
+    "cover": "74a80855157f64adb0214e3ca6ae8b3cec336bf8b529a8cf88802bb81622e1c0",
+    "paper": "10686984fd4ca7be46e7d93e34880e32321f1fa89720256940b87b1185ab1b44",
+    "part-hero": "fa9f3d302b898e55df3e6ef84aaa38559bfc152268cfc3f16de4aec0a56d2ba4",
+    "part-heroes": "60b319499380696a926c70a27c90f46dd83aa21d2cb0abe15a36ea64f59abb40",
+    "part-journal": "5b51bd969cfc53ab5257d648c39d17451006546a4855602f908cdaa1b1662025",
+    "part-rules": "f8d6c630f0e12976b1978863e255edb766561930cdbf2596df323c662823314f",
+    "part-scene": "1dd31c160c5f50c9a6f08064d5701f7f8ec733beda50df8f1baa601dbc4dfb78",
+    "part-story": "6317039a46350779b28e5613e64d14b0464bec305dc586b5598263101334be1c",
+    "part-table": "89d91c32139bec792ec152373819746b45dc101bca59ce58801cf6e229897c96",
+    "part-world": "8701bdc60c236e91b420343449d6828cfa7ff4f0feba63050d15bf60f4cdcd3e",
+    "ribbon": "d9168f4c272642221cd6e053154b3e6388dc77d1479091013833e23ec64e509c",
+    "tray": "dcdd133e85199c18f6041afc933bc3a7b5c6846e2588e2bac6b0391cbdb6be8e"
+   }
+  },
+  {
+   "theme": "storm-kitchen",
+   "pieces": {
+    "cover": "83646026b1d5f3a23028cbf387a8725a078e8ffd3b0abe5d12555d943c3497e0",
+    "paper": "d7b006f4d26421e71d03c1ad192324d8ed88c9fdd9817903d77f2a74b6f2fed5",
+    "part-hero": "c1660594a46df9743db487b89ac8dc8a6253be55e0531067f5d805e7c02deca5",
+    "part-heroes": "b821bf68e2baed39954cdc5a7c03291c24357929af07cc552f9b422039497589",
+    "part-journal": "2afd90cce8a664872f9ee308e9967844cfea59f6114f947d6d1a74288c89349a",
+    "part-rules": "44bbd38ecd87d89bff65baede9f852e649bb9f0ba8ff1a48a696a4d19151d626",
+    "part-scene": "61e0afbbfaa901e9a4b2af9566b0d6f84982729852093985ff34644897f868d4",
+    "part-story": "03e6353573beff612a019fe56e98be85fae6562d7a9b4ee2e4e9604ed8311c80",
+    "part-table": "4ad52519ca6272353243db9e042b1f218fccce8d238cf70aa4a204f062b031f9",
+    "part-world": "aca7a41263e66584e8d25ea5c59ba35c806ccf600e549e84f909eb455965a0f1",
+    "ribbon": "927db3d3bbeba35aa739316fbde65acc60f51aec5ccf512f076201f9484d590d",
+    "tray": "367c3fc7ec2c98fb64032bc3e0946243b4370a0c032e3f21b681b465193b5b43"
+   }
+  },
+  {
+   "theme": "strike-fund",
+   "pieces": {
+    "cover": "1ecf167b4cfffccdc53bfac209c04a45fa8db2e82f3c0663baebc77fe9821e59",
+    "paper": "bd9f747779984c489f130657d27e3c41583e512f81a52f665d4326cd99fae517",
+    "part-hero": "9232985dc8bd11dfd4704f60b69719a1473edc8431b2b2a8fb50a3d3d0a30b6f",
+    "part-heroes": "7351f755078ee7d1f7928971cf7d343fe59dc862eae6037fe022be442f0e83b0",
+    "part-journal": "74fbcbebb5b70e3fc744b703f888c737439ca37976fb203cbc3f655da22e86f5",
+    "part-rules": "da504f2547c6492072e3f9a0c465f494cbba73d3c4847f7693ac31c5839b3856",
+    "part-scene": "0bc0572a8492bf59a97529b5c506f693ead3abd73506630873afc21df5eeafe9",
+    "part-story": "ec5e5003bc25596103c601ad8fd46aa7fa4fcea59bfb27201d2fef2b48449fcd",
+    "part-table": "30b272e66c5afa13ca143dd062bea5ebf2a985e04d6136ea8b2b5646627952fe",
+    "part-world": "75b211c7145f36cbe8b8687f50ae34c3795e429216bf0e855242d37e5061c036",
+    "ribbon": "287fea39e9596fd04455f4ee9c73d484215da59868e261aaa0796cdbcb9a5a36",
+    "tray": "3654597bc4e9e8c14bdb7b380cd87e1e16bd899d650f1cd2469f5cbff59dcd12"
+   }
+  },
+  {
+   "theme": "thorn-abbey",
+   "pieces": {
+    "cover": "292f5a2e63f307b0691bc83371e5dd18121e71c1cf22148d866d8548f349da74",
+    "paper": "c26c2ed3e01491fac03f1d57346d881d5755527d4c77e3ca920e20828184c825",
+    "part-hero": "f0ba168a84c83333e73bd9e6595b885492059adb01ee3bd3696e2900661d2c4d",
+    "part-heroes": "32e9ff48f35b0278fd0cf3ac448f9ac5899ac636f72feca8e20f7eb88c6505fc",
+    "part-journal": "3b43fe5d819e3e4194ef62ce4c045002cfa8248c32c3d47db295173d7a58fe44",
+    "part-rules": "fe191cc1eb38299d37b579b2f5e1ebd3c6c8d6a161f1a3a6093a46da0d77a07b",
+    "part-scene": "f1df8e4be3d2118f7c0c4bcaebb71c7f596b351391cf3d24ccddd64aa89ca7cf",
+    "part-story": "e8b5aee3c5d952c630ef7a4ff7fa3be0aa0b342b16e56d1d080aaa553a8ea64b",
+    "part-table": "326659e2a9ad00276093ef77611eb5280c44af85af28a86054c6ba862740f793",
+    "part-world": "327e07a339a75c195acdcc7af53469ad40880e2776b461cadd0dd202f0e1942e",
+    "ribbon": "a47f7513b781d1c5ed4918257c83e8bb8e49c6b97d660282c30661c7f5fce218",
+    "tray": "14d606545091588b990105f9a886cec248320a87e294c82d67fa641a1d463da6"
+   }
+  },
+  {
+   "theme": "three-magicless-days",
+   "pieces": {
+    "cover": "e410fac7da09b5392bb8f916a4bb9d14f1961ccfaf6c48357ce3a5cc500226d4",
+    "paper": "325e8939f9642c9672b73b5f13523a74a159657d53129a4b0264c3a7aebf92b9",
+    "part-hero": "6c69a32dd95a577a59ab4fc37afd26e71362384271ba8c10e4ced3931863ff42",
+    "part-heroes": "56f7091df980ed68ac4af8138fbc2a904df52945df8f1f78d5223b8a6f2f262e",
+    "part-journal": "48092c35218d42f9297b8099918cc2700cdb817acde0436c8f84522fe1a6d67a",
+    "part-rules": "9553aef5f794c1cb452399f53ed4e2a0fb09d3ef943a2f8a7d71199ae20c54a4",
+    "part-scene": "a86cd9676877515426396a0e1a8219994bb56b33eb19c273e32c29dcd1d8385b",
+    "part-story": "01a0642ca2b1509bd6e502d53ed9499adfd266a80f937fdf9fdccb42dd126b3f",
+    "part-table": "d02aa38c5f2117a0125f592b6c74c3def5911e1bf54fca9a9593db09a0dc5401",
+    "part-world": "1d95516ee9c9b8685c99db4751bfab751847f3ed6a08209d4bb75c3b2fdd72c4",
+    "ribbon": "a279415d250eb9ea82f5c455a1127cfe5ddcb5ad1eaf68bc0352e8c9684c4c3f",
+    "tray": "78f30362cb993424006d45877f910e1044d14d596bb87c2328f34101c20ab1b0"
+   }
+  },
+  {
+   "theme": "unwritten-god",
+   "pieces": {
+    "cover": "aef21098b26dfd7395fcc675692cfe2896b449c93c6a1b75b9acafc698aa685b",
+    "paper": "42129a0a016b049a0f3f1b89229cf67f1f135dd00d41b11ec13222f13654e6dc",
+    "part-hero": "a4720e61bad935922bf522b25ddbf55ae1ce50b3f7fb1b552ea317911a460a3e",
+    "part-heroes": "9cfce91509329c9006de55a6a0708f3f76c3749e8dcc53868e6482cd1d430489",
+    "part-journal": "26d8284d28c2adf27ba16a9f6181ea71553a223dc5a36d9b38107927ec9c7e88",
+    "part-rules": "744618984f8afa6b43271acfaafebcca6bffff8a422f76ddd210691de986f3f7",
+    "part-scene": "fddd71f21e1ca6395fe780c3041f4680798aabbec1a32978dc3a41b44b1f5560",
+    "part-story": "b57218186392c43e580a2a84651b10f1093b2681236785285545e3f9c649c3e9",
+    "part-table": "6668db692a8e03b2b22c908bb4840cbf2be8fd8138ea45c061858f826c27b07c",
+    "part-world": "1cf8ffeb6136819dcbf0667e12d96b2258849be8a5ea13ae832b2a5ee2e78c12",
+    "ribbon": "f1c3ba0cd2fd0fb82b01fbcd8742fb9fc287b5bcaab17cf82d2a3aaf3eb1fdab",
+    "tray": "9f5b3bb2e5348f7c8543ff1154b0fe5c79bd73f2e89ce1dc41f0b9d008e75b98"
+   }
+  },
+  {
+   "theme": "velvet-ledger",
+   "pieces": {
+    "cover": "5fe25451fa2ba8006cc85035559597bc9ffc66830efe27aad7f72312218bed5a",
+    "paper": "de186826aed3207937a0ecb6919f794b9bfe5d09efb6c22cc5a1070a56eac946",
+    "part-hero": "5d64b4e636095585c253494e6b6db7fd20bacde5d85b6b14dad8fdf1a6493895",
+    "part-heroes": "30cb05a15afa379d74ee4be7dd6ece4efba3324b3b204c914006f23ea737f4e4",
+    "part-journal": "8281e3f5f410ce432ccba8dcd9f6ef6e86ecf6a99d6d54463e5504478910e3b7",
+    "part-rules": "7b4d5090bc119122e11bb634733927a3a8373cb44298b10c1e0863cf2a504c14",
+    "part-scene": "e50775659b290bbd4ac8e47b51c3cd35bbb507947aefc8e063ebd79fc480dba4",
+    "part-story": "7f0f13ad05a1bf47056c39ecb29766801462f7774ba868086656b83725e1797e",
+    "part-table": "5f711714e3c824d5b07ac1e8de9742ee5bb6785f43a900ac6de8de288a3a67e2",
+    "part-world": "eb40fa2338dfd2dab20c925bda7742caaec8f83df2b24f059be5c4ecc918d597",
+    "ribbon": "f613e7dbe9e801c6816c8b8abf5759e2c4727385ecb2f6e7f2d821ebecd88b3d",
+    "tray": "7c055b26dcd69a39f043d5b5e6cf37a7ac57d20ddef3a551c9b3c9364f7f0777"
+   }
+  },
+  {
+   "theme": "white-ash",
+   "pieces": {
+    "cover": "e791415a55e2879bc75f23c12eb7c8bf47cfe36c4e1256650a353bafe698f48e",
+    "paper": "8dbbc0acab0ac1100848777fe6dd26d526b8d0b5fcaa92e590a70476963d1664",
+    "part-hero": "bf39c3b68dd77c5db4008d577df77d9e8c011a39ef1db3a7e0f4b6bb2923d0d6",
+    "part-heroes": "73887590506a8838ca5aceb65b9faba0abc39e9c2042fbf124b722d17d1aa351",
+    "part-journal": "26cbbf39091b0fec5e8bd7082ee38b353c7bf51c3daf253bec62a4453735f986",
+    "part-rules": "2685b85283cb37991ccc75dd14fddd8e23963fa49617216d73742e81c4f0a009",
+    "part-scene": "3820f690e0a70248da84ab29e2c24cecbbe6f39e7695e25c54d626c2c9c3a0cf",
+    "part-story": "b2b19d9c3f7ef0d37c7c13f6db6c9e1f63ecb1fe6c6aa6c290dadb39dc461515",
+    "part-table": "957143d7a76d9f12254f38653d106719b6f495ba6cbfb627a6505fb222a9e20e",
+    "part-world": "be6fe970a06d61cc8c3d3bf1dfb4a885c445cefba487bfea9eecb330b4f795ee",
+    "ribbon": "001aba2a19451bd8dbce856d0cb690dd28d31964631ff0cf43c34eff08e6417b",
+    "tray": "cdab55a3dad59fbc66c8175560088a811fd469c2f37c95468bb669c1f311f3d2"
+   }
+  },
+  {
+   "theme": "winter-caravan",
+   "pieces": {
+    "cover": "4b5c821c6d09525086956ffe01d471c733fc82ab98eb4f772468afd27f40e7fa",
+    "paper": "46ebb7664d25432ca2b98c89b3e5f66236ad71e63cdda36690a75e7a8eead0cc",
+    "part-hero": "2b8cd952ddb1bccc22bd40aafacd2be060dceb7fd49448a987d680e38fdff04e",
+    "part-heroes": "42a22b11ad705e3eb3887f998850c4283f71f46532ef030ee7f461d8986c79ca",
+    "part-journal": "d3c8554ef37005d9ae4f410b1318406a0f97551ecd99d321005a92d22b6d226b",
+    "part-rules": "5116fa4fe85f644b5a2a22e31629111b2448c4572f82a7c9028e175fc6f63cb2",
+    "part-scene": "a0b9df206335adaba8295129377ec6d21278af5b8472d4faa6e706b5eaa35389",
+    "part-story": "09f6aebd8f0d7b1d10bec09ec1ea449a2fe7d16a4fa1e2714cfca6ea9d3bb322",
+    "part-table": "174c19cd7cddca318cf5d95314650197e27f3b81151cb684182e08fb57cee196",
+    "part-world": "f08e721adef8a7835649cac20ad58b7b406f72f0e6cb8a37f3fc7bf98afcc562",
+    "ribbon": "480ad080e9676e5f991f8c4faa3131d794f40006c0afc142f376a988d8b31714",
+    "tray": "e47235d13469e61e3a486a4c4d571ccfc33eb12dfd61e22cdf5c3694d6fc06ab"
+   }
+  },
+  {
+   "theme": "winter-orchard",
+   "pieces": {
+    "cover": "2d05772942f53d1cb815742bef6c168d9a94a7a5bbbadb6d18e4940ae4495348",
+    "paper": "af3b58c180c0741f3e3cc6f6b82c8daa9006fd41946371cd600fd33323177888",
+    "part-hero": "cb8683cd9d2dce7487493c7856935ff1b97c888b63a4445c156b556db0b20282",
+    "part-heroes": "f0100dca2068053202db801627a067fd72b820a8c8345633d75d30bf89a6e71a",
+    "part-journal": "7f4632b922d45f26c129a3a7ea8d30888bf7af0c97bef83125622ba5f721f936",
+    "part-rules": "d7fbf95e5a854c27a49566965a4d9ce0bd3dc82c12dd55efced2cf1a16c2c3b5",
+    "part-scene": "b7ca8c46ef5a8dacf029035df99d9b2c23824b06c35350571117c939f91d9f35",
+    "part-story": "e1db96475cb0dafe6e0f37f70d5316fe5a5fb58640048bf369880b6053219fad",
+    "part-table": "8eaf7590bfd6105979f8a539c3dfabbdd2f5ed5d6d0d7ed722e5210dcc6bd5bd",
+    "part-world": "5b0cf1614013840f3c9ff816a91923a4104e124d98d98e6c58f746733f9af3e8",
+    "ribbon": "15e6ab45bae83e64611b35536fd6b84eda1bc5baa9dbfb354c4176f9ec0e1021",
+    "tray": "ddd54c6e24b7f5863e7c63d7d989606a0734f3892e8ff1072219f6ae80250fd5"
+   }
+  }
+ ]
+}

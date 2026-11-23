@@ -1,12 +1,12 @@
 import type { EncounterView, EntityKind, EntityRef, Weather } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
 import type { useAuthoring } from '../authoring/use-authoring.ts';
 import { BookSheet } from '../book/book-sheet.tsx';
-import { setBookPresent } from '../book/presence.ts';
+import { SceneRibbon } from '../book/scene-ribbon.tsx';
 import { useDmBook } from '../book/use-book.ts';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
@@ -81,15 +81,8 @@ export function DmSheets({
   readonly onShowEntity: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
-  // The campaign's book and the DM's place in it (docs/adr/0074-dm-book.md §3); the dock is told.
+  // The campaign's book and the DM's place in it (docs/adr/0074-dm-book.md §3).
   const book = useDmBook(api, true);
-  const hasBook = book.opened !== null;
-  useEffect(() => {
-    setBookPresent(hasBook);
-    return () => {
-      setBookPresent(false);
-    };
-  }, [hasBook]);
   const shown = authoring.proposal?.proposal.proposalId;
   const invitations = useSignInKind() === 'session';
   // The notice of a screen that broke asks for its list (docs/adr/0073-table-ideas.md §1).
@@ -102,7 +95,16 @@ export function DmSheets({
   );
   return (
     <>
-      <BookSheet api={api} shell={shell} book={book} directory={directory} />
+      <BookSheet
+        api={api}
+        shell={shell}
+        book={book}
+        directory={directory}
+        onPlace={(entityId) => {
+          onShowEntity(entityId, 'location');
+        }}
+      />
+      <SceneRibbon book={book} shell={shell} placeId={place?.locationId ?? null} />
       <Sheet
         id="party"
         title={t('Party (DM)')}

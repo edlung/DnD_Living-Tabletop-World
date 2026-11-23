@@ -13,6 +13,7 @@ import { ReadiedCard } from '../combat/readied-card.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { FIGHT_QUIET_ID } from './fight-quiet.ts';
+import { useFoldOutSurface } from '../combat/fold-out.ts';
 
 /**
  * While the viewed world has an encounter (docs/STAGE_320_DESIGN.md §5.5): the stage shows the
@@ -60,6 +61,8 @@ export function CombatStage({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
+  // In a book the fight is a fold-out on its paper (docs/adr/0075-book-interface.md §6).
+  const surface = useFoldOutSurface();
   const view = useBoardView();
   // The DM's brush outlasts the battlefield's fresh start after each stroke (ADR 0057 §2).
   const hand = useBrush();
@@ -88,7 +91,12 @@ export function CombatStage({
   }, [asked]);
   return (
     <>
-      <div className="stage-switch" role="tablist" aria-label={t('What the stage shows')}>
+      <div
+        className="stage-switch"
+        role="tablist"
+        aria-label={t('What the stage shows')}
+        data-surface={surface}
+      >
         <button
           type="button"
           role="tab"
@@ -116,11 +124,12 @@ export function CombatStage({
       </div>
       {/* A player's quiet row in a fight — "What can I do?" and the way to a pause — is put here
           (session/lobby-banner.tsx): in the fight's own layout, clear of the turn order. */}
-      <div id={FIGHT_QUIET_ID} className="fight-quiet" />
+      <div id={FIGHT_QUIET_ID} className="fight-quiet" data-surface={surface} />
       <p
         ref={banner}
         className={`turn-banner${asked || myTurn ? ' turn-banner--yours' : ''}`}
         tabIndex={-1}
+        data-surface={surface}
       >
         <span
           className={asked ? 'visually-hidden' : undefined}
@@ -152,7 +161,7 @@ export function CombatStage({
           onRun={onRun}
         />
       )}
-      <div className="combat-stage" id="combat-stage" hidden={!battlefield}>
+      <div className="combat-stage" id="combat-stage" hidden={!battlefield} data-surface={surface}>
         <CombatPanel
           key={`combat:${String(revision)}`}
           api={api}

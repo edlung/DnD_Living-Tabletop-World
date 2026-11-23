@@ -18,7 +18,8 @@ import {
   type ActionNotice as Notice,
   type ExplorationIntent,
 } from '../exploration/use-action.ts';
-import { Dock } from '../shell/dock.tsx';
+import { WorldBookParts } from '../shell/book-parts.tsx';
+import { SheetSurfaceContext } from '../shell/sheet.tsx';
 import { focusOn, useEscape, useShell } from '../shell/use-shell.ts';
 import { ApprovedImages } from '../visual/approved-images.ts';
 import { WIDE } from '../combat/board/board-view.ts';
@@ -38,6 +39,7 @@ import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
 import { Scene } from './scene.tsx';
+import { spreadShown } from './scene-spread.ts';
 import { SessionTitle } from './session-title.tsx';
 import { UndoneNotice } from './undone-notice.tsx';
 import { useScene, useWorldData } from './use-world-data.ts';
@@ -48,10 +50,9 @@ interface Selected {
 }
 
 /**
- * The world screen (docs/STAGE_320_DESIGN.md §5): the stage with the scene or the battlefield,
- * the selection's panel at the right, the dock and its sheets, and the Chronicle. It owns the
- * perspective's views, the selection and the one action in flight; everything visual (open
- * sheets, the stage's view) stays in its memory, and a perspective change remounts it.
+ * The world screen (docs/STAGE_320_DESIGN.md §5, docs/adr/0075-book-interface.md §3–§4): the
+ * stage, the selection's panel, the book's parts and pages, the Chronicle. It owns the views, the
+ * selection and the action in flight; what is visual stays in its memory.
  */
 export function World({
   api,
@@ -99,8 +100,7 @@ export function World({
   const dmImages = useDmImagesState(api, isDm, revision, () => {
     setRevision((value) => value + 1);
   });
-  // The DM's authoring session: the Add sheet and an NPC card's edit share it (SI-D8), and it
-  // restores the DM's open draft on mount (SI-D1); a lower perspective reads nothing.
+  // The DM's authoring session (SI-D8), restoring an open draft on mount (SI-D1).
   const authoring = useAuthoring(api, isDm, () => {
     setRevision((value) => value + 1);
   });
@@ -114,9 +114,8 @@ export function World({
     }
     setRevision((value) => value + 1);
   }, []);
-  // Players act as their character; the DM alone runs the existing encounter operations, and
-  // fights as a player's character only after choosing to, each command with its reason.
-  // Read when a question's answer arrives, from the records shown before it was asked.
+  // Players act as their character; the DM runs fights and acts as one by choice (ADR 0033 §6).
+  // Answers are read against the records shown before asking.
   const knowledge = data?.knowledge.knowledge ?? [];
   const action = useAction(api, canAct || standIn !== null || isDm, onResolved, (npcId, topicId) =>
     toldAbout(knowledge, npcId, topicId),
@@ -151,17 +150,16 @@ export function World({
     if (!focusOn(opener.current)) document.getElementById('world-main')?.focus();
     setSelected(null);
   };
-  // The conversation holds what to say: on a screen where the selection's panel covers the
-  // stage it steps aside (staying mounted), and focus goes to the conversation.
+  // A conversation moves a covering panel aside (mounted; not a column or the spread's card).
   const showConversation = () => {
-    if (!window.matchMedia(WIDE).matches) setSelected(null);
+    if (!window.matchMedia(WIDE).matches && !spreadShown()) setSelected(null);
     requestAnimationFrame(() => {
       document.getElementById(CONVERSATION_PANEL_ID)?.focus();
     });
   };
   // An NPC card's edit opens under Add; a panel over the sheet steps aside, as for a conversation.
   const showAuthoring = () => {
-    if (!window.matchMedia(WIDE).matches) setSelected(null);
+    if (!window.matchMedia(WIDE).matches && !spreadShown()) setSelected(null);
     shell.openSheet('add');
   };
   useEscape(() => {
@@ -177,7 +175,7 @@ export function World({
   });
 
   const directory = data?.directory.entities ?? [];
-  // The authoring session outlives each refresh, so it keeps the last directory meanwhile.
+  // Authoring and an open hero's sheet outlive a refresh: they keep the last directory meanwhile.
   const knownDirectory = useRef<readonly EntityRef[]>([]);
   if (data) knownDirectory.current = data.directory.entities;
   const locations = directory.filter((entity) => entity.kind === 'location');
@@ -191,8 +189,7 @@ export function World({
     locations[0]?.entityId ??
     '';
   const scene = useScene(api, placeId, revision);
-  // The live subscription also covers the selected entity and the viewed place (ADR 0033);
-  // while a reload has no place yet, it keeps following the previous one.
+  // Live updates follow the selection and the viewed place, or the last one while it reloads.
   const report = useLiveTarget();
   const focus = selected?.entityId ?? null;
   const settled = data !== null || placeId !== '';
@@ -209,13 +206,13 @@ export function World({
   const openSession = data?.sessions.sessions.find((session) => session.endedAt === null);
   const encounter = data?.encounter.encounter ?? null;
   const actorId = data?.surroundings?.actingCharacterId ?? null;
-  // A reaction asked of this viewer comes before reading: an open book closes, keeping its place,
-  // and the question takes focus once it has (each window once; the reader may open it again).
+  // A reaction asked of this viewer comes first; an open book or page steps aside, its place kept.
   const askedWindow = askedWindowOf(encounter, actorId);
   useEffect(() => {
     if (askedWindow === null) return;
     shell.closeChronicle();
     shell.closeHero();
+    shell.dismissSheet();
   }, [askedWindow]);
   useFightTakesStage(encounter?.encounterId ?? null, details, () => {
     setSelected(null);
@@ -226,8 +223,7 @@ export function World({
   const presentOne = (entityId: string) => view?.present.find((one) => one.entityId === entityId);
   const presentImage = (entityId: string) => presentOne(entityId)?.image ?? null;
   const presentFigure = (entityId: string) => presentOne(entityId)?.figure ?? null;
-  // The battle map is the encounter's place's (ADR 0035 §4): shown while the viewed place is
-  // where the fight is — its own presentation lists the combatants standing there.
+  // The battle map is the fight's place's (ADR 0035 §4), shown while that place is viewed.
   const fought =
     encounter !== null &&
     view !== null &&
@@ -238,8 +234,7 @@ export function World({
   const discovered = revealedIds(action.notice?.outcome);
   const notice = action.notice === dismissed ? null : action.notice;
   const speaking = conversation !== null && canAct && encounter === null;
-  // The line just spoken shows in the conversation in the same render as its result, so the
-  // words are announced once, there (the result leaves them out).
+  // The line just spoken shows in the conversation with its result: announced once, there.
   const spoken =
     action.notice?.speech && action.notice.speakerId === conversation?.npcId
       ? action.notice.speech
@@ -270,229 +265,234 @@ export function World({
         <main
           id="world-main"
           className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
+          data-book={isDm ? 'dm' : 'hero'}
           tabIndex={-1}
         >
-          <SessionTitle slot={data ? sessionSlot : null} title={openSession?.title} />
-          <div
-            className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
-          >
-            <Backdrop image={view?.location.image ?? null} settled={view !== null} />
-            {!data ? (
-              <div className="stage-status">
-                <StatusPanel
-                  state={world.resource.status === 'error' ? 'error' : 'loading'}
-                  label={
-                    world.resource.status === 'error'
-                      ? world.resource.message
-                      : t('Gathering your view of the world…')
-                  }
-                  onRetry={world.retry}
-                />
-              </div>
-            ) : location ? (
-              <Scene
-                location={location}
-                scene={scene.resource}
-                onRetry={scene.retry}
-                directory={directory}
-                nearby={data.surroundings?.nearby ?? []}
-                selectedId={focus}
-                onSelect={select}
-                battlefield={battlefield}
-                rail={
-                  <PartyRail api={api} encounter={encounter} selectedId={focus} onSelect={select} />
-                }
-                notice={acting && <UndoneNotice api={api} directory={directory} />}
-                conversation={
-                  speaking && (
-                    <DialoguePanel
-                      key={conversation.npcId}
-                      api={api}
-                      npcId={conversation.npcId}
-                      revision={revision}
-                      line={spoken ?? conversation.line}
-                      image={presentImage(conversation.npcId)}
-                      directory={directory}
-                      knowledge={data.knowledge.knowledge}
-                      actorId={data.surroundings?.actingCharacterId ?? ''}
-                      canAct={canAct}
-                      locked={action.locked}
-                      onRun={explore}
-                      onLeave={() => {
-                        setConversation(null);
-                      }}
-                    />
-                  )
-                }
-              />
-            ) : (
-              <section className="scene" aria-label={t('Scene')}>
+          <SheetSurfaceContext.Provider value="paper">
+            <SessionTitle slot={data ? sessionSlot : null} title={openSession?.title} />
+            <div
+              className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
+            >
+              <Backdrop image={view?.location.image ?? null} settled={view !== null} />
+              {!data ? (
                 <div className="stage-status">
                   <StatusPanel
-                    state={data.asOf === revision ? 'empty' : 'loading'}
+                    state={world.resource.status === 'error' ? 'error' : 'loading'}
                     label={
-                      data.asOf === revision
-                        ? t('There are no known locations in this perspective yet.')
-                        : t('Loading the scene…')
+                      world.resource.status === 'error'
+                        ? world.resource.message
+                        : t('Gathering your view of the world…')
                     }
+                    onRetry={world.retry}
                   />
                 </div>
-              </section>
-            )}
-            {data && encounter && (
-              <CombatStage
-                api={api}
-                encounter={encounter}
-                revision={revision}
-                battlefield={battlefield}
-                onView={(chosen) => {
-                  setSceneFor(chosen === 'scene' ? encounter.encounterId : null);
+              ) : location ? (
+                <Scene
+                  location={location}
+                  scene={scene.resource}
+                  onRetry={scene.retry}
+                  directory={directory}
+                  nearby={data.surroundings?.nearby ?? []}
+                  selectedId={focus}
+                  onSelect={select}
+                  battlefield={battlefield}
+                  rail={
+                    <PartyRail
+                      api={api}
+                      encounter={encounter}
+                      selectedId={focus}
+                      onSelect={select}
+                    />
+                  }
+                  notice={acting && <UndoneNotice api={api} directory={directory} />}
+                  conversation={
+                    speaking && (
+                      <DialoguePanel
+                        key={conversation.npcId}
+                        api={api}
+                        npcId={conversation.npcId}
+                        revision={revision}
+                        line={spoken ?? conversation.line}
+                        image={presentImage(conversation.npcId)}
+                        directory={directory}
+                        knowledge={data.knowledge.knowledge}
+                        actorId={data.surroundings?.actingCharacterId ?? ''}
+                        canAct={canAct}
+                        locked={action.locked}
+                        onRun={explore}
+                        onLeave={() => {
+                          setConversation(null);
+                        }}
+                      />
+                    )
+                  }
+                />
+              ) : (
+                <section className="scene" aria-label={t('Scene')}>
+                  <div className="stage-status">
+                    <StatusPanel
+                      state={data.asOf === revision ? 'empty' : 'loading'}
+                      label={
+                        data.asOf === revision
+                          ? t('There are no known locations in this perspective yet.')
+                          : t('Loading the scene…')
+                      }
+                    />
+                  </div>
+                </section>
+              )}
+              {data && encounter && (
+                <CombatStage
+                  api={api}
+                  encounter={encounter}
+                  revision={revision}
+                  battlefield={battlefield}
+                  onView={(chosen) => {
+                    setSceneFor(chosen === 'scene' ? encounter.encounterId : null);
+                  }}
+                  actorId={actorId}
+                  canAct={canAct || standIn !== null}
+                  locked={action.locked}
+                  blocked={shell.chronicle}
+                  imageOf={presentImage}
+                  figureOf={presentFigure}
+                  battleMap={battleMap}
+                  onRun={run}
+                />
+              )}
+              <PlacesSheet
+                shell={shell}
+                placeId={placeId}
+                current={location && !knownPlace ? location : null}
+                locations={data ? locations : null}
+                onView={(id) => {
+                  setViewing(id);
+                  setSelected(null);
+                  setConversation(null);
                 }}
-                actorId={actorId}
-                canAct={canAct || standIn !== null}
-                locked={action.locked}
-                blocked={shell.chronicle}
-                imageOf={presentImage}
-                figureOf={presentFigure}
-                battleMap={battleMap}
-                onRun={run}
+                onExplore={(place) => {
+                  shell.dismissSheet();
+                  select(place.entityId, place.kind);
+                }}
+                travel={{ api, revision, isDm, locked: action.locked, onRun: run }}
               />
-            )}
-            <PlacesSheet
-              shell={shell}
-              placeId={placeId}
-              current={location && !knownPlace ? location : null}
-              locations={data ? locations : null}
-              onView={(id) => {
-                setViewing(id);
-                setSelected(null);
-                setConversation(null);
-              }}
-              onExplore={(place) => {
-                shell.dismissSheet();
-                select(place.entityId, place.kind);
-              }}
-              travel={{ api, revision, isDm, locked: action.locked, onRun: run }}
-            />
-            <JournalSheet
+              <JournalSheet
+                api={api}
+                shell={shell}
+                revision={revision}
+                journal={
+                  data ? { directory, knowledge: data.knowledge.knowledge, encounter } : null
+                }
+                selectedId={focus}
+                onSelect={select}
+              />
+              <DicePanel
+                api={api}
+                shell={shell}
+                characters={directory.filter((entity) => entity.kind === 'character')}
+              />
+              <RulesSheet shell={shell} isDm={isDm} />
+              {isDm && (
+                <DmSheets
+                  api={api}
+                  authoring={authoring}
+                  shell={shell}
+                  directory={data?.directory.entities ?? knownDirectory.current}
+                  place={
+                    data
+                      ? {
+                          encounter,
+                          locationId: placeId,
+                          locationName: location?.name ?? t('this place'),
+                        }
+                      : null
+                  }
+                  revision={revision}
+                  sessionId={openSession?.sessionId ?? null}
+                  locked={action.locked}
+                  weather={dmWeather}
+                  onWeather={setDmWeather}
+                  onRun={action.run}
+                  onActAs={onActAs}
+                  onWorldChanged={() => {
+                    setRevision((value) => value + 1);
+                  }}
+                  onShowEntity={(entityId, kind) => {
+                    shell.dismissSheet();
+                    select(entityId, kind);
+                  }}
+                />
+              )}
+              <WorldBookParts
+                shell={shell}
+                isDm={isDm}
+                drafts={isDm ? authoring.drafts.length : 0}
+                hero={acting ? actorId : null}
+              />
+            </div>
+            <WorldOverlays
               api={api}
               shell={shell}
               revision={revision}
-              journal={data ? { directory, knowledge: data.knowledge.knowledge, encounter } : null}
-              selectedId={focus}
-              onSelect={select}
-            />
-            <DicePanel
-              api={api}
-              shell={shell}
-              characters={directory.filter((entity) => entity.kind === 'character')}
-            />
-            <RulesSheet shell={shell} isDm={isDm} />
-            {isDm && (
-              <DmSheets
-                api={api}
-                authoring={authoring}
-                shell={shell}
-                directory={data?.directory.entities ?? knownDirectory.current}
-                place={
-                  data
-                    ? {
-                        encounter,
-                        locationId: placeId,
-                        locationName: location?.name ?? t('this place'),
-                      }
-                    : null
-                }
-                revision={revision}
-                sessionId={openSession?.sessionId ?? null}
-                locked={action.locked}
-                weather={dmWeather}
-                onWeather={setDmWeather}
-                onRun={action.run}
-                onActAs={onActAs}
-                onWorldChanged={() => {
-                  setRevision((value) => value + 1);
-                }}
-                onShowEntity={(entityId, kind) => {
-                  shell.dismissSheet();
-                  select(entityId, kind);
-                }}
-              />
-            )}
-            <Dock
               isDm={isDm}
-              shell={shell}
-              drafts={isDm ? authoring.drafts.length : 0}
-              onCharacter={
-                acting && actorId !== null
-                  ? () => {
-                      shell.openHero(actorId);
-                    }
-                  : undefined
-              }
+              ready={data !== null}
+              directory={data?.directory.entities ?? knownDirectory.current}
+              scenePlaceId={data?.directory.scenePlaceId ?? null}
+              actorId={actorId}
+              canAct={canAct || standIn !== null}
+              locked={action.locked}
+              encounter={encounter}
+              sessionOpen={openSession !== undefined}
+              recipients={recipientsOf(view, directory, actorId)}
+              onRun={run}
+              outcome={outcome}
             />
-          </div>
-          <WorldOverlays
-            api={api}
-            shell={shell}
-            revision={revision}
-            isDm={isDm}
-            ready={data !== null}
-            directory={directory}
-            scenePlaceId={data?.directory.scenePlaceId ?? null}
-            actorId={actorId}
-            canAct={canAct || standIn !== null}
-            locked={action.locked}
-            encounter={encounter}
-            sessionOpen={openSession !== undefined}
-            recipients={recipientsOf(view, directory, actorId)}
-            onRun={run}
-            outcome={outcome}
-          />
-          <DetailPanel
-            panelRef={details}
-            hidden={!selected}
-            contentKey={`${shown?.entityId ?? ''}|${String(revision)}`}
-          >
-            {shown && data && (
-              <EntityDetails
-                key={shown.entityId}
-                api={api}
-                entityId={shown.entityId}
-                revision={revision}
-                name={shownKnown?.name ?? null}
-                kind={shown.kind}
-                known={shownKnown !== undefined}
-                effectivePerspective={effectivePerspective}
-                directory={directory}
-                knowledge={data.knowledge.knowledge}
-                presentIds={presentIds}
-                canAct={canAct && encounter === null}
-                locked={action.locked}
-                conversing={speaking && conversation.npcId === shown.entityId}
-                onShowConversation={showConversation}
-                onRun={explore}
-                onSelect={select}
-                onOpenSheet={() => {
-                  shell.openHero(shown.entityId);
-                }}
-                onClose={closeDetails}
-                profileEditing={
-                  isDm
-                    ? {
-                        draftOpen: authoring.proposal?.proposal.status === 'DRAFT',
-                        busy: authoring.busy,
-                        propose: (summary, commands) => {
-                          showAuthoring();
-                          return authoring.proposeWritten(summary, commands);
-                        },
-                        showDraft: showAuthoring,
-                      }
-                    : null
-                }
-              />
-            )}
-          </DetailPanel>
+            <DetailPanel
+              panelRef={details}
+              hidden={!selected}
+              contentKey={`${shown?.entityId ?? ''}|${String(revision)}`}
+              battlefield={battlefield}
+            >
+              {shown && data && (
+                <EntityDetails
+                  key={shown.entityId}
+                  api={api}
+                  entityId={shown.entityId}
+                  revision={revision}
+                  name={shownKnown?.name ?? null}
+                  kind={shown.kind}
+                  known={shownKnown !== undefined}
+                  effectivePerspective={effectivePerspective}
+                  directory={directory}
+                  knowledge={data.knowledge.knowledge}
+                  presentIds={presentIds}
+                  canAct={canAct && encounter === null}
+                  locked={action.locked}
+                  conversing={speaking && conversation.npcId === shown.entityId}
+                  onShowConversation={showConversation}
+                  onRun={explore}
+                  onSelect={select}
+                  onOpenSheet={() => {
+                    shell.openHero(shown.entityId);
+                  }}
+                  onClose={closeDetails}
+                  profileEditing={
+                    isDm
+                      ? {
+                          draftOpen: authoring.proposal?.proposal.status === 'DRAFT',
+                          busy: authoring.busy,
+                          propose: (summary, commands) => {
+                            showAuthoring();
+                            return authoring.proposeWritten(summary, commands);
+                          },
+                          showDraft: showAuthoring,
+                        }
+                      : null
+                  }
+                />
+              )}
+            </DetailPanel>
+          </SheetSurfaceContext.Provider>
         </main>
       </WorldPictures>
     </DiceTableProvider>

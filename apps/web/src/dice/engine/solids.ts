@@ -290,7 +290,3 @@ export function solidOf(kind: DieKind): Solid {
   cache.set(kind, built);
   return built;
 }
-
-/** Each face's normal reported per face index (for checks): recomputed from the vertices. */
-export const recomputedNormal = (solid: Solid, face: number): Vec3 =>
-  faceNormal(solid.vertices, solid.faces[face] ?? []);

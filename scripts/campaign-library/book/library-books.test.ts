@@ -40,7 +40,14 @@ interface SourceChapter {
   key: string;
   number: number;
   readAloud: string;
-  scenes: { title: string; play: string; check: string; failForward: string; choices: string[] }[];
+  scenes: {
+    title: string;
+    readAloud?: string;
+    play: string;
+    check: string;
+    failForward: string;
+    choices: string[];
+  }[];
 }
 const books = ids.map((id) => ({
   id,
@@ -62,6 +69,17 @@ describe('the books of the campaign library', () => {
     for (const { book } of books) expect(book.awaitingReading).toBeUndefined();
   });
 
+  it('gives every page words to read aloud and every book the DM’s pocket', () => {
+    const pages = books.flatMap(({ book }) => book.chapters.flatMap((c) => c.pages));
+    expect(pages.filter((p) => (p.readAloud ?? '') !== '')).toHaveLength(1323);
+    for (const { id, book } of books) {
+      expect(book.pocket, id).toBeDefined();
+      expect(book.pocket?.rumours.length, id).toBeGreaterThanOrEqual(8);
+      expect(book.pocket?.places.length, id).toBeGreaterThanOrEqual(5);
+      expect(book.pocket?.people.length, id).toBeGreaterThanOrEqual(5);
+    }
+  });
+
   it.each(books)(
     '$id: every chapter and scene of the source is in the book, word for word',
     ({ id, book }) => {
@@ -75,10 +93,18 @@ describe('the books of the campaign library', () => {
         const told = book.chapters[index];
         expect(told?.readAloud).toBe(chapter.readAloud.trim());
         expect(
-          told?.pages.map((p) => [p.title, p.text, p.check.line, p.failForward, p.choices]),
+          told?.pages.map((p) => [
+            p.title,
+            p.readAloud,
+            p.text,
+            p.check.line,
+            p.failForward,
+            p.choices,
+          ]),
         ).toEqual(
           chapter.scenes.map((s) => [
             s.title.trim(),
+            (s.readAloud ?? '').trim() === '' ? undefined : s.readAloud?.trim(),
             s.play.trim(),
             s.check.trim(),
             s.failForward.trim(),
@@ -92,6 +118,10 @@ describe('the books of the campaign library', () => {
           expect(page.question).toBeUndefined();
         }
       }
+      const pocket = files.includes('pocket.json')
+        ? (JSON.parse(readFileSync(new URL('pocket.json', dir), 'utf8')) as unknown)
+        : undefined;
+      expect(book.pocket).toEqual(pocket);
     },
   );
 

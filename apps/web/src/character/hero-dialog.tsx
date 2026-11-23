@@ -6,19 +6,21 @@ import type {
 } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import {
+  type KeyboardEvent,
+  type ReactNode,
   useCallback,
+  useContext,
   useEffect,
   useId,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
-  type KeyboardEvent,
-  type ReactNode,
 } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { SheetSurfaceContext } from '../shell/sheet.tsx';
 import type { HeroTab } from '../shell/use-shell.ts';
 import { IconButton } from '../visual/icon-button.tsx';
 import { usePortrait } from '../world/use-portrait.ts';
@@ -155,6 +157,8 @@ export function HeroDialog({
   readonly notice: ReactNode;
 }) {
   const t = useT();
+  // In a book the hero's sheet is a page of it, on its paper (docs/adr/0075-book-interface.md §4).
+  const surface = useContext(SheetSurfaceContext);
   const ref = useRef<HTMLDialogElement>(null);
   const open = entityId !== null;
   useLayoutEffect(() => {
@@ -187,6 +191,7 @@ export function HeroDialog({
     <dialog
       ref={ref}
       className="hero-dialog"
+      data-surface={surface ?? undefined}
       aria-label={t('Character: {name}', { name })}
       onCancel={(event) => {
         if (dirty.current.size === 0) return;

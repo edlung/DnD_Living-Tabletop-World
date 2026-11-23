@@ -1,5 +1,6 @@
 import type { CampaignBook, CampaignBookCheck, PreparedEncounterView } from '@ltw/contracts';
 
+import type { BookMoment } from '../book-kit/materials.ts';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import type { Leaf } from './model.ts';
 
@@ -17,18 +18,18 @@ export const momentId = (moment: Moment) =>
 
 /** The word for a kind of moment (an English key of the translations) and its glyph. */
 export const MOMENT_KINDS: Readonly<
-  Record<string, { readonly word: string; readonly glyph: GlyphName }>
+  Record<string, { readonly word: string; readonly glyph: GlyphName; readonly icon?: BookMoment }>
 > = {
-  person: { word: 'Conversation', glyph: 'talk' },
-  talk: { word: 'Conversation', glyph: 'talk' },
+  person: { word: 'Conversation', glyph: 'talk', icon: 'talk' },
+  talk: { word: 'Conversation', glyph: 'talk', icon: 'talk' },
   check: { word: 'A roll', glyph: 'roll' },
   choice: { word: 'Fork', glyph: 'travel' },
-  clue: { word: 'Find', glyph: 'evidence' },
-  encounter: { word: 'Fight', glyph: 'encounter' },
-  combat: { word: 'Fight', glyph: 'encounter' },
+  clue: { word: 'Find', glyph: 'evidence', icon: 'clue' },
+  encounter: { word: 'Fight', glyph: 'encounter', icon: 'fight' },
+  combat: { word: 'Fight', glyph: 'encounter', icon: 'fight' },
   path: { word: 'Road', glyph: 'map' },
-  handout: { word: 'Handout', glyph: 'give' },
-  puzzle: { word: 'Puzzle', glyph: 'key' },
+  handout: { word: 'Handout', glyph: 'give', icon: 'letter' },
+  puzzle: { word: 'Puzzle', glyph: 'key', icon: 'puzzle' },
 };
 
 export interface MomentLine {

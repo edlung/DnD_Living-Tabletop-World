@@ -5,6 +5,8 @@ registerRussian({
   'This is unfinished preparation from one saved step. It has not passed the complete campaign checks.':
     'Это незавершённая подготовка из одного сохранённого шага. Она ещё не прошла полную проверку кампании.',
   'View result: {stage}': 'Открыть результат: {stage}',
+  'Page read': 'Прочитано',
+  'Not read yet': 'Ещё не прочитано',
   'Step failed': 'Шаг завершился с ошибкой',
   'Step stopped': 'Шаг остановлен',
   'Step dispatch is uncertain': 'Отправка шага не подтверждена',
@@ -36,8 +38,6 @@ registerRussian({
     'Это предложение хранится отдельно от сохранённых версий. Оно не меняет игровой мир.',
   'The scenario could not be read. Try again.': 'Не удалось прочитать сценарий. Попробуйте снова.',
   'Reading the scenario…': 'Читаем сценарий…',
-  'Generate a campaign to prepare its scenario.':
-    'Запустите генерацию кампании, чтобы подготовить её сценарий.',
   'Prepare your campaign': 'Подготовьте свою кампанию',
   'Describe the campaign you want. Generation prepares a private draft for you to inspect.':
     'Опишите желаемую кампанию. Генерация подготовит личный черновик, который вы сможете изучить.',

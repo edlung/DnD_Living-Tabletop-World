@@ -3,7 +3,7 @@ import { expect, type Page } from '@playwright/test';
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
-import { closeCharacter, openCharacter } from './support/shell.ts';
+import { closeCharacter, dockButton, openCharacter } from './support/shell.ts';
 
 /**
  * Item possession in the browser (docs/adr/0039-item-possession.md): the character dialog's
@@ -160,12 +160,9 @@ test('in a fight a potion costs the Bonus Action, once a turn', async ({ page })
 
 test('the DM perspective has no character of its own to open', async ({ page }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.play);
-  await expect(
-    page.locator('nav.dock').getByRole('button', { name: 'Journal', exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.locator('nav.dock').getByRole('button', { name: 'Character', exact: true }),
-  ).toHaveCount(0);
+  await expect(page.locator('nav.book-parts')).toBeVisible();
+  await expect(dockButton(page, 'Journal')).toBeAttached();
+  await expect(dockButton(page, 'Character')).toHaveCount(0);
 });
 
 test('a Russian pack reads only Russian', async ({ page }) => {

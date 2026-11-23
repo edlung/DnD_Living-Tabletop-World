@@ -78,8 +78,6 @@ export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory' | 'story';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle' | 'character') => `dock-${id}`;
-/** The dock's More (ADR 0043 §3): where focus goes back for an item that waits under it. */
-export const DOCK_MORE_ID = 'dock-more';
 
 /** Moves focus to an element still on screen, if there is one. */
 export function focusOn(element: HTMLElement | null | undefined): boolean {
@@ -157,9 +155,10 @@ export function useShell(rememberAs?: string) {
         setSheet('book');
         return;
       }
-      if (!focusOn(document.getElementById(dockButtonId(sheet)))) {
-        focusOn(document.getElementById(DOCK_MORE_ID));
-      }
+      // A closed page leaves its part for the Scene: focus goes to the Scene's bookmark
+      // (docs/adr/0075-book-interface.md §3), or to the page's own tab where there is no book.
+      const scenePart = document.querySelector<HTMLElement>('.book-part[data-part="scene"]');
+      if (!focusOn(scenePart)) focusOn(document.getElementById(dockButtonId(sheet)));
       setSheet(null);
     },
     /** Closes the open sheet without moving focus (what was picked in it took focus). */

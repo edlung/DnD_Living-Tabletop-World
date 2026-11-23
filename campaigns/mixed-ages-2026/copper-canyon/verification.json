@@ -20,15 +20,15 @@
     "source/clues.json": "b52ebcb1ceac6d224e2a379facea0e4fbae67723dd7e8a8ce14f0c6013acbbf4",
     "source/handouts.json": "e5b7a62cba047e0812c2b3a5c690f1e9ea78097846da5e2445ad3d0edace8e9d",
     "source/encounters.json": "5c9dfe575329fd8633cf531eff77eb373198d1b5b8474660c2841e597519bcc4",
-    "source/sessions-1.json": "cc1165e19b184b103504e7e9cfce60736dc8aae43b8f67d55ccd7c68ceb77c2e",
-    "source/sessions-2.json": "cbab10bf79fe18a1021977fca38a56303cb84069f11a3688984d9550bb428c4b",
-    "source/sessions-3.json": "17da30486dc50d45ed5515e5ae245ce3f72eee689d2d0836dd9adac398359df8",
-    "source/sessions-4.json": "a20d92af6c6abd4e39138b9daa9070c51db88046b7d44b34e9b73191abba41b8"
+    "source/sessions-1.json": "fc55af6533c3147042608c59e0cf0372d18566ad171bed1bc4fe3d44691b2142",
+    "source/sessions-2.json": "f010834f0f7acdb58bc5f4f0c15b5ae9849ed27266037e8db84013bae61c5c01",
+    "source/sessions-3.json": "70e7d72ad3fb1e521ac9f354fa4c90174f790c3bc2ad2f2dfa18b9a5bab4ad98",
+    "source/sessions-4.json": "e65db628c9e6a60d915274986e6b0f50aa6696379679ffea166d0b145642e6cd"
   },
   "variants": [
     {
       "size": 3,
-      "sha256": "288f85dfc342841b134a0622d3b4417b403a218739f3775ce8ad55b3a55252b9",
+      "sha256": "2f6d35be21649d8e0e83905a28cf2b4a9d6a4818dbd48c4b0744b438998d421b",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -41,7 +41,7 @@
     },
     {
       "size": 4,
-      "sha256": "78f3920a2b05142383b807b89467d84fbe8bb9a0ae1bd86c113b4dfe71d30061",
+      "sha256": "9cb243eb10e6b545efe440084be5717804be8beecb93f18917f7f6d70d97bb6a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -54,7 +54,7 @@
     },
     {
       "size": 5,
-      "sha256": "3a4236f1d10984df6b594b508da8c016445315bf6f5457af15383ca2975318c4",
+      "sha256": "b64d6c87c6c3b4ff584597f959b5d234afafa57b0605846f9dc8f9f11365f35e",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -67,7 +67,7 @@
     },
     {
       "size": 6,
-      "sha256": "ddfbed2eeb0deafc4fe5212448bf7a2bcb169021fff5b059b3c591405afe7d32",
+      "sha256": "ba2f8fcc02dbb7fe04c5c400c1819d99cbb7857262bd9932fe9a9506473fa91e",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -80,7 +80,7 @@
     },
     {
       "size": 7,
-      "sha256": "94f2c2176df69499920ba09196ec698fc7a1396bb2557c7531b4036c5c641b42",
+      "sha256": "93ee3445ece0abb028b7358f8e9370c9a6558352f8cf10683a3935d72b0a1fa4",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],

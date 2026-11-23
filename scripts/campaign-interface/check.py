@@ -83,7 +83,20 @@ def check_book(source, theme, counts):
             assert len(set(scene["choices"])) >= 2 and scene["check"] and scene["failForward"], file
             for value in [scene["title"], scene["play"], scene["failForward"], *scene["choices"]]:
                 assert " ".join(value.split()) in content, file
+            if scene.get("readAloud"):
+                assert " ".join(scene["readAloud"].split()) in content, file
+                assert scene["readAloud"] not in public, file
+                counts["scene_read_alouds"] += 1
             counts["scenes"] += 1
+    pocket_file = source / "pocket.json"
+    if pocket_file.is_file():  # the DM's pocket: in the DM's book, never on the players' page
+        pocket = read(pocket_file)
+        dm_text = " ".join(dm.split())
+        for rumour in pocket["rumours"]:
+            assert " ".join(rumour["note"].split()) in dm_text and rumour["note"] not in public, pack
+        for person in pocket["people"]:
+            assert " ".join(person["knows"].split()) in dm_text, pack
+        counts["pockets"] += 1
     manifest = pack / "illustrations/manifest.json"
     if manifest.is_file():
         picture = read(manifest)

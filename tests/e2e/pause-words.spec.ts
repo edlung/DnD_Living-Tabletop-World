@@ -24,7 +24,7 @@ test('по-русски: игрок просит паузу, мастер отв
   const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaign);
   await enterWorld(player, TOKENS.player, campaign);
-  await expect(dm.locator('nav.dock')).toBeVisible(WAIT);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(WAIT);
   const ask = player.getByRole('button', { name: 'Попросить паузу', exact: true });
   await expect(ask).toBeVisible(WAIT);
   await ask.click();

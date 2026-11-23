@@ -1,9 +1,19 @@
 import { useT } from '@ltw/ui';
-import { useEffect, useRef, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, type ReactNode } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { sheetElementId, type SheetId } from './use-shell.ts';
+
+/**
+ * The surface a screen gives its sections: the DM's book lays every one on paper
+ * (docs/adr/0075-book-interface.md §3); elsewhere a section keeps the dark glass.
+ */
+export const SheetSurfaceContext = createContext<'paper' | null>(null);
+
+/** The surface for an element's `data-surface`: paper in a book, nothing elsewhere. */
+export const usePaperSurface = (): 'paper' | undefined =>
+  useContext(SheetSurfaceContext) ?? undefined;
 
 /**
  * One of the dock's sections (docs/STAGE_320_DESIGN.md §5.1): it takes the whole stage, the dock
@@ -28,6 +38,7 @@ export function Sheet({
   readonly children: ReactNode;
 }) {
   const t = useT();
+  const surface = useContext(SheetSurfaceContext);
   const ref = useRef<HTMLElement>(null);
   const shown = useRef(open);
   useEffect(() => {
@@ -43,6 +54,7 @@ export function Sheet({
       aria-labelledby={titleId}
       tabIndex={-1}
       hidden={!open}
+      data-surface={surface ?? undefined}
     >
       <header className="sheet-header">
         <Glyph name={glyph} className="sheet-glyph" />

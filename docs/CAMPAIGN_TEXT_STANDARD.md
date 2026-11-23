@@ -5,7 +5,8 @@ practice so the DM reads and runs them easily and nothing gets in the players' w
 dialogue and narration are not short — players want good stories, facts and lore to get into the
 world. Texts are written by the session model itself, not through an API. Checked by
 `python3 -B scripts/campaign-text/audit.py`; mechanical terms are fixed by
-`python3 -B scripts/campaign-text/fix_terms.py`.
+`python3 -B scripts/campaign-text/fix_terms.py`. The second round of the same request (a read-aloud
+for every scene, the reading of every evening as the DM, the DM's pocket) is §5–8.
 
 ## 1. Rules language
 
@@ -35,7 +36,8 @@ Conditions use the glossary names (`Схвачен`, `Сбит с ног`, `Ис
 
 ## 3. What the players hear (boxed text)
 
-`opening`, `readAloud`, `ending`, location `description`, clue `appearance`, handout `text`.
+`opening`, `readAloud` (the evening's and each scene's), `ending`, location `description`, clue
+`appearance`, handout `text`.
 
 - Present tense; «вы» only for what the heroes perceive. Never decide what the heroes feel, think,
   say or do. No dice, difficulty, hit points, rounds or squares.
@@ -50,6 +52,7 @@ Length targets (Russian words), so the story is not cut short and still reads al
 | ------------------------------------------------------------------------------- | ------- | ------: |
 | campaign `opening`                                                              | 220–360 |     200 |
 | session `readAloud`                                                             | 120–230 |     110 |
+| scene `readAloud` (§5; refused under 50 or over 130)                            | 60–120  |      50 |
 | session `ending`                                                                | 50–120  |      45 |
 | location `description`                                                          | 35–90   |      30 |
 | clue `appearance`                                                               | 20–55   |      18 |
@@ -83,3 +86,77 @@ Reference rewrite: `dark-fantasy-2026/ash-tithe`, evening 1 (`sessions-1.json#[0
 
 Kept short or laid out on purpose (a form, a chart, a picture-card caption, a battle setup read as
 rules): listed with the reason in `scripts/campaign-text/exceptions.json`, which the audit honours.
+
+## 5. A read-aloud for every scene
+
+Owner request 2026-11-23, second round: the DM always has something to read when a scene begins.
+Every scene object has `readAloud`, placed before its `play`: what the heroes see, hear and smell
+as the scene opens, who is there, one concrete fact or detail of the place, and an open moment
+at the end (someone turns, speaks, something moves). §3 applies: present tense, «вы» only for
+what the heroes perceive, no decision for them, no rules words, no secret before the story
+reveals it.
+
+- It fits every branch that can lead into the scene. A state that depends on earlier choices (who
+  came along, whether a fight happened, what was paid) is left out or phrased so it holds either
+  way; a scene whose place depends on the party's choice describes the person or the thing, not
+  the room.
+- Scene 1 follows the evening's `readAloud` directly: it continues from there and repeats none of
+  its words (no five-word sequence in common; the tools refuse an echo).
+- No eight-word sequence repeats between scene read-alouds of one campaign, and no two-word
+  opening starts more than three of them.
+- It is the book's first passage of the scene page (quoted, to be read aloud) and the HTML
+  session page's read-aloud box. It never goes into a CampaignPackage: the largest variant is
+  near the server's package limit, and the package's situation already carries the scene's play.
+
+## 6. Reading an evening as the DM who runs it tonight
+
+Read every evening as the DM who runs it tonight for a noisy table, and fix what fails:
+
+1. The first minute of each scene: the DM can read or say something at once.
+2. The three questions players ask there — «кто это?», «что здесь случилось?», «куда это
+   ведёт?» — have answers in the text (the play, an NPC's `knows`, `public` or `voice`, a clue,
+   a place). A missing answer becomes an NPC line or a short note for the DM.
+3. Each scene says what changes if the heroes act and if they do not.
+4. DM prose is warm, clear and imperative: «Отметьте, кто открыл дверь» rather than «Зафиксируйте
+   принятую помощь и отказ, не оценивая их».
+5. Names, times, places, who knows what and the terms of the campaign's own tracks agree across
+   evenings.
+6. Each ending leaves a hook for the next evening.
+7. Every hero gets a spotlight.
+8. Formulas vary inside a campaign. The audit refuses: «Спросите/Попросите каждого…» in more than
+   a third of the endings; «пахнет» in more than 40% of the read-alouds, or more than two of them
+   starting with «Пахнет»; one two-word opening for three or more endings.
+
+The plot, keys, numbers, DCs, `check`, `choices`, `failForward`, `consequences`, `truth`, `secret`
+and encounter blocks stay exactly. Added facts are colour only: no new clue, solution or mechanic.
+The reader of a campaign is not the writer of its scene read-alouds.
+
+## 7. The DM's pocket
+
+Every campaign has `source/pocket.json`, the DM's material for improvising: what people say,
+places off the main road and passers-by. The two built-in adventures keep theirs beside their pages
+(`scripts/adventures/books/ravenford-pocket.json`, `hollowmere-pocket.json`). The book shows it to
+the DM only; it is never in a package, a player export or the players' page.
+
+| List      | Items | Each item                                                                                                                                    |
+| --------- | ----: | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rumours` |  8–12 | `text` — how a local tells it, in «…»; `truth` — `true`, `false` or `partial`; `note` — for the DM only: what is behind it or where it leads |
+| `places`  |   5–6 | `name`; `text` — 35–80 words, read aloud or retold                                                                                           |
+| `people`  |   5–6 | `name`, `look`, `line` — a typical phrase in «…», `knows` — one small thing they can tell                                                    |
+
+- Consistent with `world.json` `truth` and the cast; at least one rumour of each kind.
+- A false rumour is harmless: it leads to no dead end, and in a mystery it never names an
+  innocent person of the cast as the culprit. A true one may point at what the story already
+  holds; it never gives a new clue, solution or mechanic.
+- Passers-by and places are new and minor: not a person of the cast, not a place of the world.
+  No new keys; age band and boundaries of the campaign apply.
+
+`python3 -B scripts/campaign-text/pocket.py <campaign> <draft.json>` checks a draft and writes it.
+
+## 8. Originality across campaigns
+
+No twelve-word sequence of narrative prose (read-alouds, play, endings, descriptions, handouts,
+the pocket) is shared by two campaigns; the audit reports it as `cross-campaign-12-words`.
+
+Reference for §5 and §7: `dark-fantasy-2026/ash-tithe`, the scenes of evening 1 and its
+`source/pocket.json`.

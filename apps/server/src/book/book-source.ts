@@ -10,12 +10,15 @@ import {
 import type { WorldState } from '@ltw/domain';
 
 import { REPOSITORY_ROOT, type CampaignLibrary } from '../campaigns/library.ts';
+import { bookFromPackage, bookFromWorld } from './assembled-book.ts';
 
 /**
- * Which book a live campaign has (docs/adr/0074-dm-book.md §3.1). A campaign published from a
- * package has the library's book of that package; a campaign of a built-in adventure has the
- * adventure's own, in Russian; any other campaign has none. A book that still waits for the
- * owner's reading stays closed unless this source was told to show such books (the journeys).
+ * Which book a live campaign has (docs/adr/0074-dm-book.md §3.1, docs/adr/0075-book-interface.md
+ * §5). A campaign published from a package has the library's book of that package; a campaign of a
+ * built-in adventure has the adventure's own, in Russian. A book that still waits for the owner's
+ * reading stays closed unless this source was told to show such books (the journeys). Every other
+ * campaign — and one whose written book is closed — has the book assembled from itself: from its
+ * package's situations, or from the world's places.
  */
 export interface CampaignBookFound {
   readonly book: CampaignBook;
@@ -105,9 +108,10 @@ export function createBookSource(options: {
       if (state.bootstrap) {
         const { ownerId, draftId } = state.bootstrap.source;
         const record = await options.published?.get({ ownerId, draftId });
-        const found = record && options.library?.bookFor(record.frozen.revision);
-        const book = open(found?.book);
-        if (!record || !book) return null;
+        if (!record) return null;
+        const found = options.library?.bookFor(record.frozen.revision);
+        const book = open(found?.book) ?? bookFromPackage(record.frozen.revision.content);
+        if (!book) return null;
         const { identities } = record.frozen.revision;
         const keys = keysOf(book);
         return {
@@ -119,9 +123,13 @@ export function createBookSource(options: {
           },
         };
       }
-      // A built-in adventure's seed IDs are its book's keys. Russian only (ADR 0074 §2.8).
-      if (state.campaign.language !== 'ru') return null;
-      const book = open(options.builtIn[state.campaign.adventure ?? 'ravenford']);
+      // A built-in adventure's seed IDs are its book's keys. Its written book is Russian only
+      // (ADR 0074 §2.8); one assembled from the world speaks the world's language.
+      const written =
+        state.campaign.language === 'ru'
+          ? open(options.builtIn[state.campaign.adventure ?? 'ravenford'])
+          : null;
+      const book = written ?? bookFromWorld(state);
       if (!book) return null;
       const keys = keysOf(book);
       const same = (key: string) => key;

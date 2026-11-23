@@ -123,32 +123,36 @@ test('beside an open conversation and a result the scene keeps room for its name
   expect(overlaps).toEqual([]);
 });
 
-/** Dock buttons on screen a pointer at their centre does not reach (something lies over them). */
+/**
+ * The dock's or the DM's book's buttons on screen that a pointer at their centre does not reach
+ * (something lies over them).
+ */
 async function coveredDockButtons(page: Page): Promise<string[]> {
-  return page.locator('nav.dock button').evaluateAll((buttons) =>
-    buttons
-      .filter((button) => button.checkVisibility())
-      .filter((button) => {
-        const box = button.getBoundingClientRect();
-        const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
-        return !button.contains(hit);
-      })
-      .map((button) => button.getAttribute('aria-label') ?? ''),
-  );
+  return page
+    .locator('nav.dock button, nav.book-parts button, nav.book-pages button')
+    .evaluateAll((buttons) =>
+      buttons
+        .filter((button) => button.checkVisibility())
+        .filter((button) => {
+          const box = button.getBoundingClientRect();
+          const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+          return !button.contains(hit);
+        })
+        .map((button) => button.getAttribute('aria-label') ?? ''),
+    );
 }
 
 for (const width of [768, 1024]) {
   test(`with the selection's drawer open every dock item stays reachable at ${String(width)} px (Stage 360)`, async ({
     browser,
   }) => {
-    // The DM's dock holds every tool, on it or under its More (docs/adr/0043-dm-screen.md §3);
-    // the drawer once covered its right half.
+    // The DM's book holds every tool in seven parts (docs/adr/0075-book-interface.md §3); the
+    // drawer once covered the dock's right half and must not cover a part or a tab.
     const dm = await browser.newPage({ viewport: { width, height: 1024 } });
     await enterWorld(dm, TOKENS.dm);
     await dm.getByRole('button', { name: 'Mira Vale', exact: true }).click();
     await expect(dm.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
-    // Fourteen tools, and the Rules everyone has (docs/adr/0055-rules-reference-and-toolbox.md §2).
-    await expect(dm.locator('nav.dock button:not(#dock-more)')).toHaveCount(15);
+    await expect(dm.locator('nav.book-parts button')).toHaveCount(7);
     await expect.poll(() => coveredDockButtons(dm)).toEqual([]);
 
     // A player's result at the drawer's foot keeps clear of the dock too (read-only: talking with
@@ -162,11 +166,14 @@ for (const width of [768, 1024]) {
       .click();
     await expect(player.locator('.outcome')).toBeVisible();
     await expect.poll(() => coveredDockButtons(player)).toEqual([]);
-    const [outcome, dock] = await Promise.all([
+    // The result keeps inside the stage, clear of the book's edge below it.
+    const [outcome, stage] = await Promise.all([
       player.locator('.outcome').boundingBox(),
-      player.locator('nav.dock').boundingBox(),
+      player.locator('.stage').boundingBox(),
     ]);
-    expect((outcome?.y ?? 0) + (outcome?.height ?? 0)).toBeLessThanOrEqual(dock?.y ?? 0);
+    expect((outcome?.y ?? 0) + (outcome?.height ?? 0)).toBeLessThanOrEqual(
+      (stage?.y ?? 0) + (stage?.height ?? 0),
+    );
   });
 }
 

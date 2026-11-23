@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
+import { bookPart } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -27,11 +28,19 @@ const LIVE = { timeout: 90_000 };
 async function startFromLibrary(dm: Page, title: string) {
   await dm.getByRole('button', { name: /^(My campaigns|Мои кампании)$/ }).click();
   const library = dm.getByRole('region', { name: 'Campaigns from the library', exact: true });
-  const start = library.getByRole('button', { name: `Start «${title}»`, exact: true });
-  await expect(start).toBeVisible(LIVE);
-  await start.click();
+  // Each campaign is a book on the shelf: its first page opens with "Look inside the book".
+  const look = library.getByRole('button', {
+    name: `Look inside the book «${title}»`,
+    exact: true,
+  });
+  await expect(look).toBeVisible(LIVE);
+  await look.click();
+  await dm
+    .getByRole('dialog', { name: title, exact: true })
+    .getByRole('button', { name: `Start «${title}»`, exact: true })
+    .click();
   await expect(dm.locator('.session-shell h1')).toHaveText(title, LIVE);
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 }
 
 /** Turns on from a chapter's opening to its first page: long words take several screens. */
@@ -48,8 +57,7 @@ async function toFirstPage(dm: Page) {
 }
 
 async function openBook(dm: Page, title: string) {
-  const dock = dm.locator('nav.dock');
-  const button = dock.getByRole('button', { name: 'Книга', exact: true });
+  const button = bookPart(dm, 'Книга');
   await expect(button).toBeVisible(LIVE);
   const book = dm.getByRole('region', { name: title, exact: true });
   // The tab remembers an open section: the book may be open already.
@@ -70,11 +78,7 @@ test('a family campaign and a collection campaign of the library open as books',
   await invited.getByLabel('Login', { exact: true }).fill('mira-book');
   await invited.getByLabel('Password', { exact: true }).fill('a ribbon between pages');
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
-  // The campaign the invitation leads to is the English Ravenford: it has no book.
-  await expect(
-    dm.locator('nav.dock').getByRole('button', { name: 'Book', exact: true }),
-  ).toHaveCount(0);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // A family campaign: twelve chapters, a free order the campaign states in its own words.
   await startFromLibrary(dm, 'Маяк Между Ветрами');
@@ -85,6 +89,10 @@ test('a family campaign and a collection campaign of the library open as books',
   await expect(story).toContainText('Прочитайте вслух');
   await expect(side).toContainText('Зачем эта глава');
   await expectAccessible(dm, 'a library campaign’s book at its first chapter');
+  // The book is dressed in its own campaign's set (docs/adr/0075-book-interface.md §1.8).
+  await expect(
+    lighthouse.getByRole('button', { name: 'Страницы', exact: true }).locator('img'),
+  ).toHaveAttribute('src', '/book-materials/lighthouse/part-story.webp');
   // A campaign's handout is given from its card as any handout is: the players can read it.
   await side
     .getByRole('button', { name: /Материал$/ })
@@ -123,6 +131,13 @@ test('a family campaign and a collection campaign of the library open as books',
   await expect(story).toContainText('Глава 1');
   await expect(side).toContainText('Зачем эта глава');
   await toFirstPage(dm);
-  await expect(story).toContainText('Для мастера: расскажите своими словами');
+  // A scene opens with words to read aloud, quoted before the DM's own text.
+  await expect(story).toContainText('Цитату прочитайте вслух, остальное — для мастера');
+  await expect(story.locator('blockquote').first()).toBeVisible();
   await expect(side).toContainText('Люди и события');
+  // The DM's pocket is folded on every page: rumours with what is behind them.
+  await side.getByText('Карман мастера', { exact: true }).click();
+  await expect(side).toContainText('Слухи');
+  await expect(side).toContainText('Прохожие');
+  await expectAccessible(dm, 'a scene page with its words to read aloud and the open pocket');
 });

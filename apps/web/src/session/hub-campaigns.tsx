@@ -8,12 +8,14 @@ import { keptWords } from '../ritual/ending.ts';
 import { readerLocale } from '../ritual/next-game-words.ts';
 import { calendarHref, NextGameLine } from '../ritual/next-game.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { ShelfBook } from './shelf-book.tsx';
 
 /**
- * The account's campaigns as its hub lists them (docs/adr/0041-accounts.md): those being played,
- * each with its door and — once the party's story has a chapter — its book (ADR 0072 §1); and,
- * apart, the adventures that are finished (§2): the days they were played, their heroes, what
- * each hero keeps, the book first and the door after it.
+ * The account's campaigns as its shelf shows them (docs/adr/0041-accounts.md; ADR 0075 §10): those
+ * being played, each a book in its binding with a label of who the account is there, where the
+ * party is, its door and — once the party's story has a chapter — its book (ADR 0072 §1); and, on
+ * a shelf apart, the adventures that are finished (§2): the days they were played, their heroes,
+ * what each hero keeps, the book first and the door after it.
  */
 export function CampaignLists({
   campaigns,
@@ -55,14 +57,14 @@ export function CampaignLists({
   return (
     <>
       {played.length > 0 && (
-        <ul className="hub-campaigns" aria-labelledby="hub-title">
+        <ul className="hub-campaigns shelf-row" aria-labelledby="hub-title">
           {played.map(card)}
         </ul>
       )}
       {finished.length > 0 && (
         <section className="hub-section" aria-labelledby="hub-finished">
           <h3 id="hub-finished">{t('Adventures we finished')}</h3>
-          <ul className="hub-campaigns" aria-labelledby="hub-finished">
+          <ul className="hub-campaigns shelf-row" aria-labelledby="hub-finished">
             {finished.map(card)}
           </ul>
         </section>
@@ -95,6 +97,8 @@ function CampaignCard({
   const day = new Intl.DateTimeFormat(readerLocale(language), { dateStyle: 'long' });
   // A server from before moves sends none.
   const away = campaign.away ?? null;
+  // A server from before the shelf sends none.
+  const place = campaign.place ?? null;
   const who =
     campaign.role === 'dm'
       ? t('You are the DM')
@@ -104,16 +108,25 @@ function CampaignCard({
         });
   return (
     <li
-      className={`hub-campaign${finished !== null ? ' hub-campaign--finished' : ''}`}
+      className={`hub-campaign shelf-item${finished !== null ? ' hub-campaign--finished' : ''}`}
       {...campaignAppearance(campaign.name)}
       aria-labelledby={titleId}
     >
-      <Glyph name={campaign.role === 'dm' ? 'game-master' : 'character'} />
-      <div className="hub-campaign-text">
+      <ShelfBook
+        title={campaign.name}
+        onOpen={busy ? undefined : finished !== null && campaign.chapters > 0 ? onBook : onOpen}
+      />
+      <div className="shelf-label hub-campaign-text" data-surface="paper">
         <Name id={titleId}>{campaign.name}</Name>
-        <p className="muted">
-          {who} · {campaign.language === 'ru' ? t('Russian') : t('English')}
+        <p className="hub-campaign-who">
+          <Glyph name={campaign.role === 'dm' ? 'game-master' : 'character'} />
+          <span>
+            {who} · {campaign.language === 'ru' ? t('Russian') : t('English')}
+          </span>
         </p>
+        {finished === null && place !== null && (
+          <p className="hub-campaign-place">{t('The party is in {place}', { place })}</p>
+        )}
         {finished !== null && (
           <>
             {finished.played !== null && (
@@ -159,30 +172,30 @@ function CampaignCard({
             })}
           </p>
         )}
-      </div>
-      <div className="hub-campaign-actions">
-        {/* Once the party's story has a chapter: a book with none has nothing to open for. */}
-        {campaign.chapters > 0 && (
+        <div className="hub-campaign-actions">
+          {/* Once the party's story has a chapter: a book with none has nothing to open for. */}
+          {campaign.chapters > 0 && (
+            <button
+              type="button"
+              className={finished !== null ? 'primary-button' : undefined}
+              disabled={busy}
+              aria-label={t('The book of {campaign}', { campaign: campaign.name })}
+              onClick={onBook}
+            >
+              <Glyph name="chronicle" />
+              {opening === 'book' ? t('Opening…') : t('The book')}
+            </button>
+          )}
           <button
             type="button"
-            className={finished !== null ? 'primary-button' : undefined}
+            className={finished !== null && campaign.chapters > 0 ? undefined : 'primary-button'}
             disabled={busy}
-            aria-label={t('The book of {campaign}', { campaign: campaign.name })}
-            onClick={onBook}
+            aria-label={t('Open {campaign}: {who}', { campaign: campaign.name, who })}
+            onClick={onOpen}
           >
-            <Glyph name="chronicle" />
-            {opening === 'book' ? t('Opening…') : t('The book')}
+            {opening === 'world' ? t('Opening…') : finished !== null ? t('Look inside') : t('Open')}
           </button>
-        )}
-        <button
-          type="button"
-          className={finished !== null && campaign.chapters > 0 ? undefined : 'primary-button'}
-          disabled={busy}
-          aria-label={t('Open {campaign}: {who}', { campaign: campaign.name, who })}
-          onClick={onOpen}
-        >
-          {opening === 'world' ? t('Opening…') : finished !== null ? t('Look inside') : t('Open')}
-        </button>
+        </div>
       </div>
     </li>
   );

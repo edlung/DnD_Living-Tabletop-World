@@ -2,6 +2,7 @@ import type { CampaignPackage } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 import { useId } from 'react';
 
+import { Glyph } from '../../visual/glyph.tsx';
 import { SCENARIO_WORDS } from '../scenario/fields.ts';
 import { CollectionField } from './collections.tsx';
 import { fieldWords } from './words.ts';
@@ -32,6 +33,8 @@ export interface FieldControlProps {
 export function FieldControl(props: FieldControlProps) {
   const { schema, value, field, optional, onChange } = props;
   const disabled = props.disabled === true || props.isLocked?.(props.path) === true;
+  // Where a protection begins (not inside content already kept), the page says so in its margin.
+  const protectedHere = props.disabled !== true && props.isLocked?.(props.path) === true;
   const t = useT();
   const id = useId();
   const label = fieldWords(t, field);
@@ -65,8 +68,14 @@ export function FieldControl(props: FieldControlProps) {
   const activeValue = value;
   return (
     <div
-      className={`campaign-field campaign-field--${typeof activeSchema.type === 'string' ? activeSchema.type : 'union'}`}
+      className={`campaign-field campaign-field--${typeof activeSchema.type === 'string' ? activeSchema.type : 'union'}${protectedHere ? ' campaign-field--protected' : ''}`}
     >
+      {protectedHere && (
+        <p className="campaign-protected-note">
+          <Glyph name="key" />
+          {t('Locked content. Unlock it explicitly before changing it.')}
+        </p>
+      )}
       {optional && (
         <button
           className="campaign-remove-optional"
@@ -280,6 +289,12 @@ function ScalarField({
             onChange(event.target.value);
           }}
         />
+      )}
+      {/* On the manuscript's page this stands in the margin beside the words. */}
+      {schema.maxLength !== undefined && (
+        <span className="campaign-field-count">
+          {t('Characters left: {left}', { left: String(schema.maxLength - text.length) })}
+        </span>
       )}
     </>
   );

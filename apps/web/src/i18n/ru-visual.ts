@@ -8,7 +8,6 @@ import { registerRussian } from '@ltw/ui';
 registerRussian({
   // Shell: top bar, dock, sheets
   'Enter world': 'Войти в мир',
-  'World tools': 'Инструменты мира',
   'DM tools': 'Инструменты мастера',
   Places: 'Места',
   Journal: 'Журнал',

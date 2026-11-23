@@ -354,34 +354,6 @@
     padding-bottom: calc(var(--outcome-h, 34vh) + 16px);
     scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 16px);
   }
-  .dock {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 45;
-    justify-content: flex-start;
-    max-width: none;
-    min-height: var(--dock-h);
-    padding: 0.2rem 0.3rem;
-    border-width: 1px 0 0;
-    border-radius: 0;
-    translate: none;
-  }
-  .dock-items {
-    flex: none;
-  }
-  .dock-button {
-    min-width: 58px;
-    padding: 0.25rem 0.35rem;
-    font-size: 0.75rem;
-  }
-  .dock-label {
-    display: none;
-  }
-  .dock-short {
-    display: block;
-  }
   .sign-in {
     display: block;
     padding: 34vh 0.75rem 1rem;
@@ -397,10 +369,6 @@
 }
 
 /*
- * The narrowest phones (Stage 510): a player's tabs share the bar's width. What does not fit, the
- * DM's tools first, waits under More (shell/use-dock-fit.ts).
- */
-/*
  * Phones up to 419 px: the perspective takes a row of its own, so its chosen name is read whole
  * ("Player · Elowen Starwhisper" needs about 215 px with its chevron; Stage 540, 630).
  */
@@ -411,24 +379,6 @@
   .perspective-control {
     flex: 1 1 100%;
     order: 1;
-  }
-}
-
-@media (max-width: 359px) {
-  .dock:not([data-dm]) .dock-items {
-    flex: 1;
-    gap: 0;
-  }
-  /* Each tab as wide as its word, the rest shared: equal shares left "Персонаж" past its edge. */
-  .dock:not([data-dm]) .dock-items > li {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  .dock:not([data-dm]) .dock-button {
-    width: 100%;
-    min-width: 0;
-    padding-inline: 2px;
-    font-size: 0.68rem;
   }
 }
 

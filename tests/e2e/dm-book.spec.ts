@@ -3,11 +3,12 @@ import { expect, type Page } from '@playwright/test';
 import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { TOKENS, enterWorld } from './support/session.ts';
+import { bookPart, openSheet } from './support/shell.ts';
 
 /**
  * The DM's book (docs/adr/0074-dm-book.md §3) on the Russian built-in adventure: the DM reads the
  * story page by page, opens a person and a check from the text, keeps the ribbon where the party
- * is while reading ahead, goes to a section by a bookmark and comes back to the same page; a
+ * is while reading ahead, goes to another part of the book and comes back to the same page; a
  * player has no book and cannot read it. The book changes nothing in the world.
  */
 // Each project reads its own campaign: the DM's place in the book is kept by the server.
@@ -16,12 +17,11 @@ const LIVE = { timeout: 20_000 };
 
 async function openBook(page: Page) {
   await enterWorld(page, TOKENS.dm, campaign());
-  const dock = page.locator('nav.dock');
-  await expect(dock).toBeVisible(LIVE);
+  // The DM's screen is the DM's book (docs/adr/0075-book-interface.md §3): its first part.
+  const button = bookPart(page, 'Книга');
+  await expect(button).toBeVisible(LIVE);
   const book = page.getByRole('region', { name: 'Пропавший караван', exact: true });
   // The tab remembers an open section: the book may be open already.
-  const button = dock.getByRole('button', { name: 'Книга', exact: true });
-  await expect(button).toBeVisible(LIVE);
   if (!(await book.isVisible())) await button.click();
   await expect(book).toBeVisible(LIVE);
   return book;
@@ -131,20 +131,16 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
   await expectAccessible(page, 'the path through the chapters');
   await book.getByRole('button', { name: 'Страницы', exact: true }).click();
 
-  // A roll the text did not foresee: the table's dice, one bookmark away, and back to the page.
-  await book.getByRole('button', { name: 'Кубики', exact: true }).click();
+  // A roll the text did not foresee: the dice are a page of Rules; the Book comes back to its page.
+  await openSheet(page, 'Кубики');
   await expect(page.locator('#sheet-dice')).toBeVisible();
-  await page
-    .locator('#sheet-dice')
-    .getByRole('button', { name: /^Закрыть/ })
-    .click();
+  await bookPart(page, 'Книга').click();
   await expect(heading(page)).toHaveText('Заброшенная стоянка');
 
-  // A bookmark opens a section of the dock; closing it comes back to the same page.
-  await book.getByRole('button', { name: 'Отряд', exact: true }).click();
-  const party = page.locator('#sheet-party');
-  await expect(party).toBeVisible();
-  await party.getByRole('button', { name: /^Закрыть/ }).click();
+  // Another part, then the Book again: the same page.
+  await bookPart(page, 'Герои').click();
+  await expect(page.locator('#sheet-party')).toBeVisible();
+  await bookPart(page, 'Книга').click();
   await expect(heading(page)).toHaveText('Заброшенная стоянка');
 
   // The place is kept for the DM: entering again, the book opens where the ribbon lies.
@@ -167,9 +163,9 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
 
 test('a player has no book and cannot read the DM’s', async ({ page }) => {
   await enterWorld(page, TOKENS.player, campaign());
-  const dock = page.locator('nav.dock');
-  await expect(dock).toBeVisible(LIVE);
-  await expect(dock.getByRole('button', { name: 'Книга', exact: true })).toHaveCount(0);
+  // A player's book has no Book part: the DM's book is the DM's alone.
+  await expect(page.locator('nav.book-parts')).toBeVisible(LIVE);
+  await expect(bookPart(page, 'Книга')).toHaveCount(0);
   for (const token of [TOKENS.player, TOKENS.outsider]) {
     const read = await page.request.get(`/api/campaigns/${campaign()}/dm/book`, {
       headers: { authorization: `Bearer ${token}` },

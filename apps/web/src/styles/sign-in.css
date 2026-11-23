@@ -65,13 +65,6 @@
 .sign-in-story p:last-child {
   color: var(--text-muted);
 }
-.sign-in-divider {
-  display: block;
-  width: 70%;
-  height: 18px;
-  margin: 0.6rem auto 0.8rem;
-  object-fit: contain;
-}
 .sign-in-form h2 {
   margin: 0 0 0.35rem;
   font-size: 1.7rem;
@@ -159,6 +152,8 @@
   background:
     linear-gradient(var(--glass-raised), var(--glass-raised)),
     url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+  /* Its own ground: a paper page behind the question must not show through its glass. */
+  background-color: var(--ink-900);
   box-shadow: var(--shadow);
   color: var(--text);
 }
@@ -202,8 +197,5 @@
     overflow: hidden;
     clip: rect(0 0 0 0);
     white-space: nowrap;
-  }
-  .sign-in-panel:has(.table-offer) .sign-in-divider {
-    display: none;
   }
 }

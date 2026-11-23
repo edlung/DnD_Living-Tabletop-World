@@ -34,12 +34,14 @@ async function expectRailClear(page: Page) {
     await page.setViewportSize({ width, height });
     const rail = page.getByRole('region', { name: 'At the table', exact: true });
     await expect(rail).toBeVisible();
-    const [shown, dock, active] = await Promise.all([
+    // A player's dock lies under the rail; the DM's book has none: the stage's foot is the edge.
+    const dockShown = (await page.locator('nav.dock').count()) > 0;
+    const [shown, foot, active] = await Promise.all([
       box(rail),
-      box(page.locator('nav.dock')),
+      box(page.locator(dockShown ? 'nav.dock' : '.stage')),
       box(page.getByRole('region', { name: 'Active combatant', exact: true })),
     ]);
-    expect(shown.y + shown.height).toBeLessThanOrEqual(dock.y);
+    expect(shown.y + shown.height).toBeLessThanOrEqual(dockShown ? foot.y : foot.y + foot.height);
     expect(shown.y).toBeGreaterThanOrEqual(active.y + active.height);
   }
 }

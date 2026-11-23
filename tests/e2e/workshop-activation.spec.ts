@@ -28,7 +28,7 @@ import {
   openInvitation,
   takeSeat,
 } from './support/sign-in.ts';
-import { dockButton } from './support/shell.ts';
+import { bookPart, dockButton } from './support/shell.ts';
 
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off', video: 'off' });
 test.setTimeout(60000);
@@ -67,7 +67,7 @@ test('explicit activation opens the stored world, prepared party, normal player 
   const source = (await saved.json()) as CampaignRevisionView;
   if (!source.revision) throw new Error('Saved source revision missing');
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const base = `/api/campaigns/${accepted.campaignId}`;
   const session = (await (await page.request.get(`${base}/session`)).json()) as SessionResponse;
   expect(session.campaign.campaignId).toBe(accepted.campaignId);
@@ -140,6 +140,14 @@ test('Russian activation and game entry keep the campaign language', async ({ pa
   await enterActivatedGame(page, 'en');
   await expect(dockButton(page, 'Игроки')).toBeAttached();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
+  // Bound, it plays like a library campaign: its DM has its book (ADR 0075 §13), assembled from
+  // the published package where none was written.
+  const title = (await page.locator('.session-shell h1').textContent()) ?? '';
+  const part = bookPart(page, 'Книга');
+  await expect(part).toBeVisible();
+  const book = page.getByRole('region', { name: title, exact: true });
+  if (!(await book.isVisible())) await part.click();
+  await expect(book).toBeVisible();
 });
 
 test('activation preserves an existing game cookie and normal entry offers keeping or replacing it', async ({
@@ -164,7 +172,7 @@ test('activation preserves an existing game cookie and normal entry offers keepi
   const question = accessState(page, WORDS.en.replaceQuestion);
   await expect(question.getByRole('button', { name: WORDS.en.keep })).toBeFocused();
   await question.getByRole('button', { name: WORDS.en.keep }).click();
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   expect(
     (await page.context().cookies()).find((entry) => entry.name === 'ltw_session')?.value ===
       cookie.value,
@@ -174,7 +182,7 @@ test('activation preserves an existing game cookie and normal entry offers keepi
     'The Bell Beneath the Ice',
   );
   await enterActivatedGame(page, 'en', true);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const current = (await (
     await page.request.get('/api/auth/session', { headers: { Origin: SIGN_IN_ORIGIN } })
   ).json()) as {

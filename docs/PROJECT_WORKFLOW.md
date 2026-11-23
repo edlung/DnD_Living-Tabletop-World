@@ -2,7 +2,24 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current request — the DM's book, 2026-11-22
+## Current request — the whole interface as a book, 2026-11-23
+
+- Owner, in one working session: «Задача - сделать план для преобразования всего интерфейса проекта
+  в книгу. Чтобы все шло через книжный интерфейс.»; three choices in a question card («Заменять
+  сразу», «Сначала демо всех книг», «Полностью как рукопись»); then «Да, открываем. Для генераций
+  красивых книжных ассетов интерфейса обращаемся к Codex CLI.»
+  (`reviews/OWNER_BOOK_INTERFACE_2026-11-23.json`). Program `docs/BOOK_INTERFACE_PLAN.md` (Stages
+  1000–1140, ADR 0075), the acceptance map `docs/BOOK_INTERFACE_MAP.md`.
+- Authorized: Stages 1000–1140. The demo (Stage 1010) was accepted with «Принимаю, дальше»; the
+  stages follow one another, each on its own branch and pull request stacked on the one before.
+  Merging, deployment and the rehearsal on the owner's tablet before Stage 1030 is deployed stay
+  the owner's.
+- Status 2026-11-23: Stages 1000–1140 implemented, pull requests 78–81 and 84–94 stacked in order,
+  none merged or deployed; the closing report `reports/STAGE_1140_COMPLETION.md` holds the
+  acceptance table, what each stage left and the order to merge. Waiting for the owner: the
+  rehearsal on his tablet, then merging and deployment.
+
+## Request — the DM's book, 2026-11-22
 
 - Owner, in one working session: the brief of a book as the DM's screen; «Да, развиваем» to the
   demo; «мне для всех компаний книжный формат нужен … 55 кампаний» to a plan that began with one

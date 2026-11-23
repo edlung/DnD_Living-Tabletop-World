@@ -152,7 +152,7 @@ function DiffSide({
   const linked = selected ? index.byPath.get(selected) : null;
   const field = change.path.findLast((part) => typeof part === 'string');
   return (
-    <section className="campaign-diff-value" aria-label={title}>
+    <section className="campaign-diff-value" aria-label={title} data-side={side}>
       <h4>{title}</h4>
       {value === undefined ? (
         <p>{t('Not present')}</p>

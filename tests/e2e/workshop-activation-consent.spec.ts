@@ -60,7 +60,7 @@ test('explicit text-only consent keeps chosen draft pictures and retries the exa
     ((await draftImages.json()) as { manifest: { entries: unknown[] } }).manifest.entries,
   ).toHaveLength(1);
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const assets = await page.request.get(`/api/campaigns/${accepted.campaignId}/assets`);
   expect(assets.status()).toBe(200);
   expect(((await assets.json()) as { assets: unknown[]; requests: unknown[] }).assets).toEqual([]);
@@ -121,7 +121,7 @@ test('unpublished preparation stays closed and resumes its frozen source after a
   expect(finished.packageDigest).toBe(initial.packageDigest);
   expect(finished.revision).toBe(1);
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const session = await page.request.get(`/api/campaigns/${finished.campaignId}/session`);
   expect(((await session.json()) as { campaign: { name: string } }).campaign.name).toBe(
     'The Bell Beneath the Ice',

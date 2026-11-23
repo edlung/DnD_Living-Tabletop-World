@@ -1,0 +1,215 @@
+/*
+ * The manuscript, writing on the page (docs/adr/0075-book-interface.md §12): the structured editor
+ * and the protections are the manuscript's page itself, not a card on it. Words — names, texts,
+ * descriptions — are written in the page's column; what is chosen rather than written (a choice
+ * from a list, a number, a yes or no, a part added or removed) stands in the margin to the right of
+ * a ruled margin line, its label in the column beside it. Where a protection begins, the margin
+ * says so. Locks, conflicts and saving are the editing contract's (`workshop/editing/`).
+ */
+.workshop-manuscript-page :is(.campaign-manual-editor, .campaign-locks) {
+  --margin-w: 15rem;
+  --margin-gap: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.workshop-manuscript-page .campaign-manual-editor > h3,
+.workshop-manuscript-page .campaign-locks > h3 {
+  font-size: 1.5rem;
+}
+
+/* The page: the whole width, the margin line drawn the margin's width from its right edge. */
+.workshop-manuscript-page .campaign-manual-editor form {
+  max-width: none;
+  padding-block: 8px;
+  background: linear-gradient(rgb(143 32 21 / 0.35), rgb(143 32 21 / 0.35)) no-repeat right
+    calc(var(--margin-w) + var(--margin-gap) / 2) top / 1px 100%;
+}
+/* Nested parts keep their right edge on the page's, so every margin lines up under the line. */
+.workshop-manuscript-page .campaign-manual-editor :is(fieldset, .campaign-collection-row) {
+  padding-inline-end: 0;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.workshop-manuscript-page .campaign-manual-editor fieldset {
+  margin-inline: 0;
+  padding-block: 4px 8px;
+  padding-inline-start: 12px;
+  border: 0;
+  border-left: 1px solid var(--line-strong);
+}
+.workshop-manuscript-page .campaign-manual-editor .campaign-object {
+  padding-inline-start: 0;
+  border-left: 0;
+}
+.workshop-manuscript-page .campaign-manual-editor legend {
+  padding: 4px 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+.workshop-manuscript-page .campaign-collection-row {
+  background: none;
+}
+
+/* Words in the column, how many more fit in the margin beside them. */
+.workshop-manuscript-page .campaign-manual-editor .campaign-field:has(> .campaign-field-count) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--margin-w);
+  align-items: end;
+  column-gap: var(--margin-gap);
+  row-gap: 4px;
+  max-width: none;
+}
+.workshop-manuscript-page .campaign-manual-editor .campaign-field:has(> .campaign-field-count) > * {
+  grid-column: 1;
+}
+.workshop-manuscript-page
+  .campaign-manual-editor
+  .campaign-field
+  > input:not([type='number'], [type='checkbox']) {
+  max-width: 40rem;
+}
+.campaign-field-count {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.workshop-manuscript-page .campaign-manual-editor .campaign-field > .campaign-field-count {
+  grid-column: 2;
+  padding-bottom: 6px;
+}
+.workshop-manuscript-page .campaign-manual-editor .campaign-field > textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* What is chosen, in the margin: the label in the column, the control beyond the line. */
+.workshop-manuscript-page
+  .campaign-manual-editor
+  :is(.campaign-field, fieldset):has(> select, > input[type='number']),
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional,
+.workshop-manuscript-page .campaign-manual-editor .campaign-field--boolean {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--margin-w);
+  align-items: center;
+  column-gap: var(--margin-gap);
+  row-gap: 4px;
+  max-width: none;
+}
+.workshop-manuscript-page
+  .campaign-manual-editor
+  :is(.campaign-field, fieldset):has(> select, > input[type='number'])
+  > *,
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional > span {
+  grid-column: 1 / -1;
+}
+.workshop-manuscript-page
+  .campaign-manual-editor
+  :is(.campaign-field, fieldset):has(> select, > input[type='number'])
+  > label {
+  grid-column: 1;
+}
+.workshop-manuscript-page
+  .campaign-manual-editor
+  :is(.campaign-field, fieldset)
+  > :is(select, input[type='number']),
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional > button,
+.workshop-manuscript-page .campaign-manual-editor .campaign-field--boolean > .campaign-checkbox {
+  grid-column: 2;
+  width: 100%;
+}
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional > span {
+  grid-column: 1;
+}
+/* A dotted leader carries the eye from the label across the column to its value in the margin. */
+.workshop-manuscript-page
+  .campaign-manual-editor
+  :is(.campaign-field, fieldset):has(> select, > input[type='number'])
+  > label,
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional > span {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.workshop-manuscript-page
+  .campaign-manual-editor
+  :is(.campaign-field, fieldset):has(> select, > input[type='number'])
+  > label::after,
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional > span::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px dotted var(--line-strong);
+}
+.workshop-manuscript-page .campaign-manual-editor .campaign-optional > button {
+  justify-self: stretch;
+}
+
+/* A protection's note in the margin, where it begins. */
+.campaign-protected-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.campaign-protected-note .glyph {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--gold);
+}
+.workshop-manuscript-page .campaign-field--protected > .campaign-protected-note {
+  justify-self: end;
+  max-width: var(--margin-w);
+  padding-left: 12px;
+  border-left: 2px solid var(--gold);
+}
+
+/* The protections: the same page; their list reads in the page's column. */
+.workshop-manuscript-page .campaign-locks form {
+  max-width: 40rem;
+}
+
+/* Narrower than a page and its margin: one column, the line gone, the margin under its label. */
+@media (max-width: 767px) {
+  .workshop-manuscript-page .campaign-manual-editor form {
+    background: none;
+  }
+  .workshop-manuscript-page
+    .campaign-manual-editor
+    :is(.campaign-field, fieldset):has(> select, > input[type='number']),
+  .workshop-manuscript-page .campaign-manual-editor .campaign-optional,
+  .workshop-manuscript-page .campaign-manual-editor .campaign-field--boolean {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .workshop-manuscript-page
+    .campaign-manual-editor
+    :is(.campaign-field, fieldset)
+    > :is(select, input[type='number'], label),
+  .workshop-manuscript-page .campaign-manual-editor .campaign-optional > :is(span, button),
+  .workshop-manuscript-page .campaign-manual-editor .campaign-field--boolean > .campaign-checkbox {
+    grid-column: 1;
+  }
+  .workshop-manuscript-page .campaign-manual-editor .campaign-field:has(> .campaign-field-count),
+  .workshop-manuscript-page .campaign-manual-editor .campaign-field > .campaign-field-count {
+    grid-template-columns: minmax(0, 1fr);
+    grid-column: 1;
+  }
+  .workshop-manuscript-page
+    .campaign-manual-editor
+    :is(.campaign-field, fieldset):has(> select, > input[type='number'])
+    > label::after,
+  .workshop-manuscript-page .campaign-manual-editor .campaign-optional > span::after {
+    content: none;
+  }
+  .workshop-manuscript-page .campaign-field--protected > .campaign-protected-note {
+    justify-self: start;
+    max-width: none;
+  }
+}

@@ -11,9 +11,9 @@ export interface Unsaved {
 export const UnsavedContext = createContext<Unsaved | null>(null);
 
 /**
- * Tells the sheet around it that `key` holds unsaved words, and takes that back when it goes. It
- * tells in the same commit that changes the page: a passive effect ran only after the browser had
- * painted "Saved.", and an Escape pressed in between was asked about words already kept.
+ * Tells the sheet around it that `key` holds unsaved words, and takes that back when it goes —
+ * before the frame that shows it: once "Saved." is on screen, Escape closes the sheet without
+ * asking (a later effect left a frame in which saved words still counted as unsaved).
  */
 export function useUnsaved(key: string, dirty: boolean): void {
   const unsaved = useContext(UnsavedContext);

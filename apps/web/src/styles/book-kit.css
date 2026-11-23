@@ -1,0 +1,36 @@
+/*
+ * The book kit (docs/adr/0075-book-interface.md §1.1, Stage 1020): pieces of every book in the
+ * open book's own materials. A book's set reaches it as custom properties of its campaign's theme
+ * (`visual/book-materials/book-materials.css`); a campaign without a set keeps its theme's material.
+ */
+.bk-icon {
+  inline-size: 28px;
+  block-size: 28px;
+  flex: none;
+  object-fit: contain;
+}
+.dmb-mark > .bk-icon {
+  inline-size: 26px;
+  block-size: 26px;
+}
+.dmb-moment > .bk-icon {
+  inline-size: 30px;
+  block-size: 30px;
+}
+
+/* The ribbon: the book's own ribbon where it has one, the rubric's red otherwise. */
+.bk-ribbon {
+  display: inline-block;
+  inline-size: 16px;
+  block-size: 30px;
+  flex: none;
+  vertical-align: middle;
+}
+.bk-ribbon-cloth {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: var(--book-ribbon, linear-gradient(var(--rubric), var(--rubric))) center / cover
+    no-repeat;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+}

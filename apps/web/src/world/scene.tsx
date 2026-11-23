@@ -1,12 +1,17 @@
 import type { EntityKind, EntityRef, ScenePresentationResponse } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import type { ReactNode } from 'react';
+import { useLayoutEffect, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import type { Resource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { SceneObjects } from './scene-objects.tsx';
+import { SPREAD_TALK_ID, useSceneSpread } from './scene-spread.ts';
+import { NARROW, useMedia } from '../combat/board/board-view.ts';
+import { useFoldOutSurface } from '../combat/fold-out.ts';
+import { usePaperSurface } from '../shell/sheet.tsx';
 
 export interface NearbyPlace {
   readonly entityId: string;
@@ -60,7 +65,8 @@ function Exits({
 /**
  * The scene (docs/STAGE_320_DESIGN.md §5.2): the place's cartouche with its conditions, who is
  * present as medallions along the lower third, and the ways beyond this place. While the stage
- * shows the battlefield only the cartouche stays; the rest is kept, hidden.
+ * shows the battlefield only the cartouche stays; the rest is kept, hidden. In a book on a wide
+ * screen it is the spread's left page, on the book's paper (docs/adr/0075-book-interface.md §5).
  */
 export function Scene({
   location,
@@ -97,8 +103,25 @@ export function Scene({
 }) {
   const t = useT();
   const view = scene.status === 'ready' ? scene.value : null;
+  const spread = useSceneSpread(battlefield);
+  // On the spread the talk lies on the right page, so the left keeps who and what is here in view.
+  const [talkSlot, setTalkSlot] = useState<HTMLElement | null>(null);
+  useLayoutEffect(() => {
+    setTalkSlot(spread ? document.getElementById(SPREAD_TALK_ID) : null);
+  }, [spread]);
+  // In a fight the place's card and who is at the table are the fold-out's margin, on paper too.
+  const paper = useFoldOutSurface() !== undefined;
+  // On a phone the Scene is one page of the book under its picture, on the book's paper.
+  const narrow = useMedia(NARROW);
+  const inBook = usePaperSurface() !== undefined;
+  const page = narrow && inBook && !battlefield;
   return (
-    <section className="scene" aria-label={t('Scene')}>
+    <section
+      className="scene"
+      aria-label={t('Scene')}
+      data-spread={spread ? '' : undefined}
+      data-surface={spread || page || (paper && battlefield) ? 'paper' : undefined}
+    >
       <header className="cartouche">
         <h2>{location.name}</h2>
         {view && (
@@ -151,7 +174,7 @@ export function Scene({
           <span>{t('Symbolic arrangement — no distances shown')}</span>
         </p>
       </div>
-      {conversation}
+      {talkSlot ? createPortal(conversation, talkSlot) : conversation}
       {nearby.length > 0 && !battlefield && (
         <Exits nearby={nearby} onSelect={onSelect} hint={nearbyHint} />
       )}
