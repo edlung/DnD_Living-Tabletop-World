@@ -40,6 +40,18 @@ const messageOf = (error: unknown) =>
 
 type ReadKind = 'foreground' | 'background' | 'trailing';
 
+/**
+ * What an answer says, to compare it with the one before. The views answer JSON; anything that
+ * cannot be written so says nothing new (a trailing read of it is followed by none, as before).
+ */
+function saying(value: unknown): string | undefined {
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return undefined;
+  }
+}
+
 /** A background read that failed is read again after this long, doubling to the longest. */
 export const RETRY_READ_MS = 2_000;
 export const RETRY_READ_MAX_MS = 30_000;
@@ -58,8 +70,11 @@ const passing = (error: unknown) =>
  * `TRAILING_REREAD_MS` after it completed: a change undone within one comparison cycle never
  * reaches the fingerprint, so no signal would correct a read that saw the state in between,
  * whatever caused that read (the first load, a signal, the viewer's own action). A newer read
- * replaces a pending trailing read (its own completion schedules the next one), and a trailing
- * read schedules none, so a quiet screen stops reading. Closing ends it all.
+ * replaces a pending trailing read (its own completion schedules the next one). A trailing read
+ * that brought something new is followed by one more: it may itself have read the state in
+ * between (a DM's pause, resumed within the same cycle, stayed on a player's screen). A trailing
+ * read that brought nothing new schedules none, so a quiet screen stops reading. Closing ends it
+ * all.
  *
  * Where the screen asks for it (`retry`: the table's screen alone, `LiveRetryContext`), a
  * background read that failed for a passing reason (the network, the server) is read again,
@@ -82,6 +97,8 @@ export class GenerationReads<T> {
   #trailing: ReturnType<typeof setTimeout> | undefined;
   /** Background reads failed in a row since the last answer. */
   #failures = 0;
+  /** What the shown answer said, to tell whether a trailing read brought something new. */
+  #said: string | undefined;
 
   constructor(options: {
     readonly load: (signal: AbortSignal) => Promise<T>;
@@ -136,10 +153,16 @@ export class GenerationReads<T> {
     this.#controllers.add(controller);
     const ticket = this.#order.start();
     let again = false;
+    let changed = false;
     try {
       const value = await this.#load(controller.signal);
       this.#failures = 0;
-      if (this.#open && this.#order.succeeded(ticket)) this.#show({ status: 'ready', value });
+      if (this.#open && this.#order.succeeded(ticket)) {
+        const said = saying(value);
+        changed = said !== this.#said;
+        this.#said = said;
+        this.#show({ status: 'ready', value });
+      }
     } catch (error) {
       if (this.#open && kind === 'foreground' && this.#order.failed(ticket)) {
         this.#show({ status: 'error', message: messageOf(error) });
@@ -147,7 +170,7 @@ export class GenerationReads<T> {
       again = this.#retry && kind !== 'foreground' && passing(error);
     } finally {
       this.#controllers.delete(controller);
-      if (this.#open && this.#live && (again || kind !== 'trailing')) {
+      if (this.#open && this.#live && (again || changed || kind !== 'trailing')) {
         clearTimeout(this.#trailing);
         if (again) this.#failures += 1;
         this.#trailing = setTimeout(

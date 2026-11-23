@@ -110,3 +110,10 @@ control stayed offered after Day 2.
   the stale tab of a replaced sign-in (ADR 0036 §7) — then asked the server again by itself, which
   the sign-in journeys caught on CI; a world screen has its own moments to ask (a signal, the
   network back, the tab shown, the person's action).
+- 2026-11-23 (found on CI, WebKit on an iPad: a player's "The DM paused the game" stayed after the
+  DM resumed). §4: a trailing read that brought something new is followed by one more trailing
+  read, `TRAILING_REREAD_MS` after it completed; one that brought nothing new still schedules none,
+  so a quiet screen stops reading. Before, a trailing read was followed by none, and when it was
+  the read that landed between a pause and a resume made within one comparison cycle, no signal
+  came and nothing read again: the player kept the pause. "Something new" is the answer's JSON
+  against the shown one's (`GenerationReads`). No server change, no new message.
