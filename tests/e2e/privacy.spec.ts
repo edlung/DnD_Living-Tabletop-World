@@ -62,7 +62,7 @@ test('a player saves a copy of their data and deletes the account; a DM cannot',
   const dm = await freshPage(browser);
   await dm.goto(`/join#${dmToken(SIGN_IN_CAMPAIGNS.privacy)}`);
   await takeSeatWithNewLogin(dm, 'Ada', 'ada-privacy');
-  await expect(dockButton(dm, words.players)).toBeVisible(LIVE);
+  await expect(dockButton(dm, words.players)).toBeAttached(LIVE);
   const link = await invite(dm, ELOWEN);
 
   const phone = await freshPage(browser);

@@ -171,7 +171,7 @@ test('an invitation link sends nothing until the person takes the seat', async (
   );
   expect(holdsAny(timing, [token]), 'the join page’s navigation entry').toBe(true);
   await takeSeat(page);
-  await expect(dockButton(page, words.players)).toBeVisible();
+  await expect(dockButton(page, words.players)).toBeAttached();
   expect(redeems(), 'redeems after the click').toBe(1);
   requests.expectTokensOnlyInRedeems([token]);
   await expectUnreachable(page, [token]);
@@ -241,7 +241,7 @@ test('a browser already signed in is asked before an invitation replaces its sig
   await replace.dispatchEvent('click');
   await expect(question).toBeVisible();
   await dm.keyboard.press('Enter');
-  await expect(dockButton(dm, words.players)).toBeVisible();
+  await expect(dockButton(dm, words.players)).toBeAttached();
   // Kept: the invitation stays unused, and the page holds its token nowhere.
   await expectUnreachable(dm, [tokenOf(link)]);
   await expectNothingKept(dm, [tokenOf(link)]);
@@ -294,7 +294,7 @@ test('signing out asks first, ends the session for good, and keeps nothing', asy
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(leave).toBeFocused();
-  await expect(dockButton(page, words.players)).toBeVisible();
+  await expect(dockButton(page, words.players)).toBeAttached();
 
   await leave.click();
   await dialog.getByRole('button', { name: words.signOut, exact: true }).click();

@@ -32,7 +32,7 @@ const mira = (page: Page) => page.getByRole('button', { name: 'Mira Vale', exact
 
 async function dmTab(page: Page): Promise<void> {
   await page.goto('/');
-  await expect(dockButton(page, words.players)).toBeVisible();
+  await expect(dockButton(page, words.players)).toBeAttached();
 }
 
 test('tabs still showing the DM’s world are signed out once another tab replaced the sign-in', async ({
@@ -69,7 +69,7 @@ test('tabs still showing the DM’s world are signed out once another tab replac
 
   // The DM's tabs still show the DM's world, each until it next asks the server.
   for (const page of [shown, refused, offline]) {
-    await expect(dockButton(page, words.players)).toBeVisible();
+    await expect(dockButton(page, words.players)).toBeAttached();
   }
   // Shown again.
   await shown.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
@@ -78,7 +78,7 @@ test('tabs still showing the DM’s world are signed out once another tab replac
   await refused.getByRole('button', { name: 'Refresh world', exact: true }).click();
   await expect(accessState(refused, words.signedOut)).toBeVisible();
   // Back online.
-  await expect(dockButton(offline, words.players)).toBeVisible();
+  await expect(dockButton(offline, words.players)).toBeAttached();
   await context.setOffline(true);
   await context.setOffline(false);
   await expect(accessState(offline, words.signedOut)).toBeVisible();

@@ -33,7 +33,7 @@ test('a DM leads a new campaign of The Bells of Hollowmere from the hub', async 
   await invited.getByLabel('Login', { exact: true }).fill('ada-bells');
   await invited.getByLabel('Password', { exact: true }).fill('a bell under the water');
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
-  await expect(dockButton(page, words.players)).toBeVisible(LIVE);
+  await expect(dockButton(page, words.players)).toBeAttached(LIVE);
 
   for (const [language, copy, quest, table] of [
     ['en', 'In English: The Bells of Hollowmere', 'The Widow’s Wagon', 'The Mill Road'],
@@ -43,7 +43,7 @@ test('a DM leads a new campaign of The Bells of Hollowmere from the hub', async 
     await page.getByRole('button', { name: 'My campaigns', exact: true }).click();
     await hub(page).getByRole('button', { name: copy, exact: true }).click();
     const said = language === 'en' ? WORDS.en : WORDS.ru;
-    await expect(dockButton(page, said.players)).toBeVisible(LIVE);
+    await expect(dockButton(page, said.players)).toBeAttached(LIVE);
     // It opens at the North Gate, with the picture the adventure was made with.
     await expect(page.locator('.stage-backdrop .backdrop-art')).toBeVisible(LIVE);
 

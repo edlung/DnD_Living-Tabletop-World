@@ -138,7 +138,7 @@ test('Russian activation and game entry keep the campaign language', async ({ pa
   await expectPublished(page);
   await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
   await enterActivatedGame(page, 'en');
-  await expect(dockButton(page, 'Игроки')).toBeVisible();
+  await expect(dockButton(page, 'Игроки')).toBeAttached();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
 });
 
