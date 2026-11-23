@@ -1,5 +1,13 @@
 import { createHash } from 'node:crypto';
-import { mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { join, resolve } from 'node:path';
 
 import sharp from 'sharp';
@@ -41,8 +49,34 @@ const PIECES: Readonly<Record<string, { readonly width: number; readonly propert
   ribbon: { width: 240, property: '--book-ribbon' },
   divider: { width: 640, property: '--book-divider' },
   emblem: { width: 256, property: '--book-emblem' },
+  // The product's own (ADR 0075 §10): the bookcase of the shelf and the way in's ex libris.
+  shelf: { width: 1600, property: '--book-shelf' },
+  bookplate: { width: 768, property: '--book-bookplate' },
   ...Object.fromEntries(PARTS.map((part) => [`part-${part}`, { width: 128 }])),
   ...Object.fromEntries(MOMENTS.map((moment) => [`ico-${moment}`, { width: 128 }])),
+};
+
+/**
+ * Pieces cut from another piece without changing a pixel: the shelf's middle board, laid under
+ * each row of books (the region is in the original's pixels, 1536 × 1024).
+ */
+const CUTS: Readonly<
+  Record<
+    string,
+    {
+      readonly from: string;
+      readonly region: { left: number; top: number; width: number; height: number };
+      readonly width: number;
+      readonly property: string;
+    }
+  >
+> = {
+  'shelf-board': {
+    from: 'shelf',
+    region: { left: 700, top: 616, width: 600, height: 46 },
+    width: 600,
+    property: '--book-shelf-board',
+  },
 };
 
 interface ManifestBook {
@@ -79,6 +113,17 @@ async function build(originals: string): Promise<ManifestBook[]> {
         .toFile(out);
       pieces[piece] = createHash('sha256').update(readFileSync(out)).digest('hex');
     }
+    for (const [piece, cut] of Object.entries(CUTS)) {
+      const source = join(originals, theme, `${cut.from}.png`);
+      if (!existsSync(source)) continue;
+      const out = join(PUBLIC, theme, `${piece}.webp`);
+      await sharp(source)
+        .extract(cut.region)
+        .resize({ width: cut.width, withoutEnlargement: true })
+        .webp({ quality: 80, effort: 6 })
+        .toFile(out);
+      pieces[piece] = createHash('sha256').update(readFileSync(out)).digest('hex');
+    }
     books.push({ theme, pieces });
   }
   return books;
@@ -91,7 +136,7 @@ function stylesheet(books: readonly ManifestBook[]): string {
   for (const book of books) {
     const selector = book.theme === 'ltw' ? ':root' : `[data-campaign-theme='${book.theme}']`;
     const props = Object.keys(book.pieces).flatMap((piece) => {
-      const property = PIECES[piece]?.property;
+      const property = PIECES[piece]?.property ?? CUTS[piece]?.property;
       return property ? [`  ${property}: url('/book-materials/${book.theme}/${piece}.webp');`] : [];
     });
     if (props.length > 0) lines.push(`${selector} {`, ...props, '}');

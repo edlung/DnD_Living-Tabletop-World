@@ -70,6 +70,7 @@ describe('accounts', () => {
           away: null,
           nextGame: null,
           chapters: 0,
+          place: 'Market Square',
           finished: null,
         },
       ],

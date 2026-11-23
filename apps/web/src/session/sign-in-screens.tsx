@@ -18,8 +18,9 @@ import type { CurrentSignIn } from './sign-in-flow.ts';
 import type { SignInScreen } from './use-sign-in.ts';
 
 /**
- * Sign-in's frame (docs/STAGE_320_DESIGN.md §5.8): the GPT key art full-bleed behind a glass
- * panel with the emblem, wordmark and tagline; what the panel asks or says comes below.
+ * Sign-in's frame (docs/adr/0075-book-interface.md §10): the GPT key art full-bleed behind the
+ * product's own book lying open — the ex libris with the emblem, wordmark and tagline on the left
+ * page, what the book asks or says on the right; on a narrow screen the plate stands above it.
  */
 export function SignInLayout({ children }: { readonly children: ReactNode }) {
   const t = useT();
@@ -27,33 +28,38 @@ export function SignInLayout({ children }: { readonly children: ReactNode }) {
     <main className="sign-in">
       <img className="sign-in-art" src={textureUrl('brand-keyart')} alt="" />
       <div className="sign-in-scrim" aria-hidden="true" />
-      <section className="sign-in-panel" aria-labelledby="entry-title">
-        <p className="sign-in-brand">
-          <img src={ornamentUrl('emblem')} alt="" />
-          <span>{t('Living Tabletop World')}</span>
-        </p>
-        <div className="sign-in-story">
-          <p className="eyebrow">{t('A world worth returning to')}</p>
-          <h1 id="entry-title">
-            {t('Every place')} <br />
-            {t('has a story.')}
-          </h1>
-          <p>
-            {t(
-              'Step into your shared world. See what your character knows, explore the details, and keep your story close.',
-            )}
-          </p>
+      <section className="sign-in-panel sign-in-book" aria-labelledby="entry-title">
+        <div className="bookplate">
+          <div className="bookplate-face" data-surface="paper">
+            <p className="sign-in-brand">
+              <img src={ornamentUrl('emblem')} alt="" />
+              <span>{t('Living Tabletop World')}</span>
+            </p>
+            <div className="sign-in-story">
+              <p className="eyebrow">{t('A world worth returning to')}</p>
+              <h1 id="entry-title">
+                {t('Every place')} <br />
+                {t('has a story.')}
+              </h1>
+              <p>
+                {t(
+                  'Step into your shared world. See what your character knows, explore the details, and keep your story close.',
+                )}
+              </p>
+            </div>
+          </div>
         </div>
-        <img className="sign-in-divider" src={ornamentUrl('divider')} alt="" />
-        {children}
-        <div className="sign-in-foot">
-          <p className="sign-in-footer">
-            {t('Your character. Your perspective. One living world.')}
-          </p>
-          <a className="text-link" href="/privacy">
-            {t('Privacy notice')}
-          </a>
-          <AboutButton />
+        <div className="sign-in-page" data-surface="paper">
+          {children}
+          <div className="sign-in-foot">
+            <p className="sign-in-footer">
+              {t('Your character. Your perspective. One living world.')}
+            </p>
+            <a className="text-link" href="/privacy">
+              {t('Privacy notice')}
+            </a>
+            <AboutButton />
+          </div>
         </div>
       </section>
     </main>

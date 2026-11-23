@@ -4,13 +4,14 @@ import { useT } from '@ltw/ui';
 import { useEffect, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
-
-import '../styles/hub-library.css';
+import { LibraryLook } from './library-look.tsx';
+import { ShelfBook } from './shelf-book.tsx';
 
 /**
- * The campaign library in the hub (docs/adr/0058-campaign-content.md, notes of 2026-11-19): every
- * authored campaign with its cover, what it is, and a party size; one press starts it with the
- * account as its DM. The library is read once; a hub whose server has none shows nothing here.
+ * The campaign library on the shelf (docs/adr/0058-campaign-content.md, notes of 2026-11-19; ADR
+ * 0075 §10): every authored campaign a book in its own binding with its cover set in, what it is
+ * on its label, and "Look inside" for its first page with the party size and the press that
+ * starts it with the account as its DM. The library is read once; a server with none shows none.
  */
 export function HubLibrary({
   transport,
@@ -26,6 +27,7 @@ export function HubLibrary({
   const [campaigns, setCampaigns] = useState<readonly CampaignLibraryEntry[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [variants, setVariants] = useState<Readonly<Record<string, string>>>({});
+  const [open, setOpen] = useState<string | null>(null);
   useEffect(() => {
     const controller = new AbortController();
     void (async () => {
@@ -52,76 +54,80 @@ export function HubLibrary({
   }, [transport]);
 
   if (failed || (campaigns !== null && campaigns.length === 0)) return null;
+  const looking = campaigns?.find((campaign) => campaign.id === open) ?? null;
+  const cover = (id: string) => `/api/account/library/${encodeURIComponent(id)}/cover`;
+  const close = () => {
+    const id = open;
+    setOpen(null);
+    // Focus goes back to the label's button once the dialog is gone, never to the book itself.
+    if (id !== null) {
+      requestAnimationFrame(() => {
+        document.getElementById(`hub-library-look-${id}`)?.focus();
+      });
+    }
+  };
   return (
     <section className="hub-section" aria-labelledby="hub-library">
       <h3 id="hub-library">{t('Campaigns from the library')}</h3>
-      <p className="muted">
+      <p className="hub-lead">
         {t(
-          'Written campaigns with their own pictures, figures and battle maps. Pick the number of players; the campaign starts as written, with you as its DM.',
+          'Written campaigns with their own pictures, figures and battle maps. Look inside one, pick the number of players; the campaign starts as written, with you as its DM.',
         )}
       </p>
       {campaigns === null && <p role="status">{t('Loading the library…')}</p>}
-      <ul className="hub-library" aria-labelledby="hub-library">
-        {(campaigns ?? []).map((campaign) => {
-          const select = `hub-library-variant-${campaign.id}`;
-          const mine = busy === `library:${campaign.id}`;
-          return (
-            <li key={campaign.id} className="hub-library-card" {...campaignAppearance(campaign.id)}>
-              <div className="hub-library-cover">
-                <img
-                  src={`/api/account/library/${encodeURIComponent(campaign.id)}/cover`}
-                  alt=""
-                  loading="lazy"
-                  width={300}
-                  height={200}
-                />
-              </div>
-              <div className="hub-library-body">
-                <h4>{campaign.title}</h4>
-                <p className="hub-library-meta">
-                  {campaign.genre} · {campaign.audience}
-                </p>
-                <p className="hub-library-pitch">{campaign.pitch}</p>
-                <div className="hub-library-actions">
-                  <label htmlFor={select}>{t('Players')}</label>
-                  <select
-                    id={select}
-                    value={variants[campaign.id] ?? campaign.defaultVariant}
-                    disabled={busy !== null}
-                    onChange={(event) => {
-                      setVariants({ ...variants, [campaign.id]: event.target.value });
-                    }}
-                  >
-                    {campaign.variants.map((variant) => (
-                      <option key={variant.id} value={variant.id}>
-                        {variant.label}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    type="button"
-                    disabled={busy !== null}
-                    aria-label={t('Start «{title}»', { title: campaign.title })}
-                    onClick={() => {
-                      onStart({
-                        libraryId: campaign.id,
-                        variantId: variants[campaign.id] ?? campaign.defaultVariant,
-                      });
-                    }}
-                  >
-                    <Glyph name="chronicle" />
-                    {mine ? t('Preparing the campaign…') : t('Start')}
-                  </button>
-                </div>
-                {mine && (
-                  <p className="hub-library-wait" role="status">
-                    {t('This takes up to a minute or two: the world and its pictures are set up.')}
-                  </p>
-                )}
-              </div>
-            </li>
-          );
-        })}
+      <ul className="hub-library shelf-row" aria-labelledby="hub-library">
+        {(campaigns ?? []).map((campaign) => (
+          <li
+            key={campaign.id}
+            className="hub-library-card shelf-item"
+            {...campaignAppearance(campaign.id)}
+          >
+            <ShelfBook
+              title={campaign.title}
+              picture={cover(campaign.id)}
+              onOpen={() => {
+                setOpen(campaign.id);
+              }}
+            />
+            <div className="shelf-label" data-surface="paper">
+              <h4>{campaign.title}</h4>
+              <p className="hub-library-meta">
+                {campaign.genre} · {campaign.audience}
+              </p>
+              <button
+                type="button"
+                id={`hub-library-look-${campaign.id}`}
+                aria-haspopup="dialog"
+                aria-label={t('Look inside the book «{title}»', { title: campaign.title })}
+                onClick={() => {
+                  setOpen(campaign.id);
+                }}
+              >
+                <Glyph name="chronicle" />
+                {t('Look inside the book')}
+              </button>
+            </div>
+            {looking?.id === campaign.id && (
+              <LibraryLook
+                campaign={campaign}
+                picture={cover(campaign.id)}
+                variant={variants[campaign.id] ?? campaign.defaultVariant}
+                busy={busy !== null}
+                mine={busy === `library:${campaign.id}`}
+                onVariant={(variantId) => {
+                  setVariants({ ...variants, [campaign.id]: variantId });
+                }}
+                onStart={() => {
+                  onStart({
+                    libraryId: campaign.id,
+                    variantId: variants[campaign.id] ?? campaign.defaultVariant,
+                  });
+                }}
+                onClose={close}
+              />
+            )}
+          </li>
+        ))}
       </ul>
     </section>
   );

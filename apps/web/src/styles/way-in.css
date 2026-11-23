@@ -1,0 +1,181 @@
+/*
+ * The way in as the product's own book (docs/adr/0075-book-interface.md §10): sign-in, an
+ * invitation, a table's code and signing out are the right page of the `ltw` book lying open over
+ * the key art; the left page holds the ex libris with the emblem, the wordmark and the tagline.
+ * The privacy notice and "something went wrong" are pages of the same paper. The binding is the
+ * book's cover showing round the pages (`--book-cover`), the pages its paper (`--book-paper`), the
+ * plate its bookplate (`--book-bookplate`), all Codex CLI pictures of the `ltw` set.
+ */
+.sign-in-book {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  width: min(62rem, 100%);
+  padding: 0;
+  border: 12px solid transparent;
+  border-radius: 10px;
+  background:
+    var(--book-paper) padding-box center / 512px,
+    var(--book-cover) border-box center / cover;
+  background-color: #efe5cc;
+  box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.85);
+  backdrop-filter: none;
+}
+/* The fold between the pages: each page darkens a little towards the spine. */
+.sign-in-book > .bookplate {
+  display: grid;
+  place-items: center;
+  padding: 32px 24px;
+  background: linear-gradient(to left, rgb(43 32 21 / 0.16), transparent 14%);
+}
+.sign-in-book > .sign-in-page {
+  min-width: 0;
+  padding: 32px 36px 28px;
+  background: linear-gradient(to right, rgb(43 32 21 / 0.16), transparent 12%);
+}
+/* The plate keeps its picture's proportions; what it says sits in its cream panel. */
+.bookplate-face {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1.6cqw;
+  width: min(100%, 26rem);
+  aspect-ratio: 768 / 1152;
+  padding: 31% 17% 41%;
+  background: var(--book-bookplate) center / contain no-repeat;
+  container-type: inline-size;
+  text-align: center;
+}
+.bookplate-face .sign-in-brand {
+  flex-direction: column;
+  gap: 1.6cqw;
+  margin: 0;
+  font-size: max(12px, 5.6cqw);
+  letter-spacing: 0.08em;
+}
+.bookplate-face .sign-in-brand img {
+  width: 15cqw;
+  height: 15cqw;
+  filter: none;
+}
+.bookplate-face .sign-in-story .eyebrow {
+  margin: 0 0 1cqw;
+  font-size: max(12px, 4.6cqw);
+}
+.bookplate-face .sign-in-story h1 {
+  margin: 0 0 1.6cqw;
+  font-size: 12cqw;
+  line-height: 1.05;
+}
+.bookplate-face .sign-in-story p:last-child {
+  margin: 0;
+  font-size: max(12px, 5.4cqw);
+  line-height: 1.35;
+}
+.sign-in-page .sign-in-form h2 {
+  font-size: 1.6rem;
+}
+/* The page's foot: the tagline, the privacy notice and "About this game" under a hairline. */
+.sign-in-page .sign-in-foot {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+/*
+ * Narrower than a spread the book is one page: the plate's picture would take a phone's screen,
+ * so its words head the page as a title page's would, and the form follows.
+ */
+@media (max-width: 899px) {
+  .sign-in-book {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(34rem, 100%);
+    margin-inline: auto;
+  }
+  .sign-in-book > .bookplate {
+    display: block;
+    padding: 24px 24px 0;
+    background: none;
+  }
+  .sign-in-book > .sign-in-page {
+    padding: 16px 24px 24px;
+    background: none;
+  }
+  .bookplate-face {
+    display: block;
+    width: auto;
+    aspect-ratio: auto;
+    padding: 0 0 16px;
+    border-bottom: 1px solid var(--line);
+    background: none;
+    container-type: normal;
+    text-align: start;
+  }
+  .bookplate-face .sign-in-brand {
+    flex-direction: row;
+    gap: 12px;
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+  }
+  .bookplate-face .sign-in-brand img {
+    width: 44px;
+    height: 44px;
+  }
+  .bookplate-face .sign-in-story .eyebrow {
+    margin: 0 0 4px;
+    font-size: 0.8rem;
+  }
+  .bookplate-face .sign-in-story h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.9rem, 6vw, 2.4rem);
+  }
+  .bookplate-face .sign-in-story p:last-child {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .sign-in-book {
+    border-width: 8px;
+  }
+  .sign-in-book > .bookplate {
+    padding: 20px 16px 0;
+  }
+  .sign-in-book > .sign-in-page {
+    padding: 16px 16px 20px;
+  }
+}
+
+/* The privacy notice: one page of the same book, a reading column. */
+.privacy-page {
+  justify-content: center;
+}
+.sign-in-panel.privacy-panel {
+  width: min(48rem, 100%);
+  padding: clamp(20px, 3vw, 40px);
+  border: 12px solid transparent;
+  border-radius: 10px;
+  background:
+    var(--book-paper) padding-box center / 512px,
+    var(--book-cover) border-box center / cover;
+  background-color: #efe5cc;
+  box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.85);
+  backdrop-filter: none;
+}
+.privacy-panel .sign-in-brand img {
+  filter: none;
+}
+@media (max-width: 480px) {
+  .sign-in-panel.privacy-panel {
+    border-width: 8px;
+  }
+}
+
+/* "Something went wrong": a page of paper in the dark room; the fallbacks stand if no sheet loads. */
+.broken-panel[data-surface='paper'] {
+  border: 10px solid transparent;
+  border-radius: 10px;
+  background:
+    var(--book-paper, none) padding-box center / 512px,
+    var(--book-cover, none) border-box center / cover;
+  background-color: #efe5cc;
+  color: var(--text, #2b2015);
+}

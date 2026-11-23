@@ -1,0 +1,411 @@
+/*
+ * The shelf (docs/adr/0075-book-interface.md §10): the account's campaigns, the ready adventures
+ * and the library stand as books on the boards of the product's bookcase (`--book-shelf`,
+ * `--book-shelf-board` of the `ltw` set), each in its own campaign's binding (`--book-cover`)
+ * with a paper label below in its own paper (`--book-paper`); the account is a page of the
+ * product's book at the end. Every picture is a Codex CLI piece; the page draws only the layout.
+ */
+.shelf-page {
+  position: relative;
+  min-height: 100dvh;
+  padding: clamp(16px, 3vw, 40px) var(--gutter, 16px) 48px;
+  isolation: isolate;
+}
+.shelf-room {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgb(8 10 16 / 0.72), rgb(8 10 16 / 0.86)),
+    var(--book-shelf) center / cover no-repeat;
+  background-color: var(--ink-950);
+}
+.shelf {
+  display: grid;
+  gap: 24px;
+  width: min(76rem, 100%);
+  margin: 0 auto;
+}
+.shelf-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.shelf-brand img {
+  width: 48px;
+  height: 48px;
+}
+.hub {
+  display: grid;
+  gap: 40px;
+}
+.hub-head .eyebrow {
+  margin: 0 0 4px;
+}
+.hub-head h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  line-height: 1.1;
+}
+.hub-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  column-gap: 16px;
+}
+.hub-head .eyebrow,
+.hub-head h1 {
+  grid-column: 1;
+}
+.hub-to-account {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
+/* The page jumped to stands clear of the top of the window. */
+#hub-account {
+  scroll-margin-top: 24px;
+}
+.hub-empty,
+.hub-lead {
+  max-width: 70ch;
+  margin: 0;
+  color: var(--text-muted);
+}
+.hub-section {
+  display: grid;
+  gap: 12px;
+}
+.hub-section > h3 {
+  margin: 0;
+  color: var(--gold-bright);
+  font-size: 1.4rem;
+}
+
+/* A row of books; each stands on its stretch of board, the stretches joining across the gaps. */
+.shelf-row {
+  --book-w: 9.5rem;
+  --board-h: 22px;
+  --gap-x: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  align-items: start;
+  gap: 32px var(--gap-x);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.shelf-item {
+  display: grid;
+  min-width: 0;
+}
+.shelf-stand {
+  display: grid;
+  justify-items: center;
+  margin-inline: calc(var(--gap-x) / -2);
+  padding: 0 calc(var(--gap-x) / 2) calc(var(--board-h) - 4px);
+  background: var(--book-shelf-board) bottom center / 100% var(--board-h) no-repeat;
+}
+
+/* The book face-out: its binding, a plate for a library cover, the title on a paper label. */
+.shelf-book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8%;
+  width: var(--book-w);
+  aspect-ratio: 2 / 3;
+  min-height: 0;
+  margin: 0;
+  padding: 16% 14%;
+  border: 0;
+  border-radius: 2px 5px 5px 2px;
+  background: var(--book-cover) center / cover no-repeat;
+  background-color: #1d2440;
+  box-shadow:
+    inset 6px 0 6px -3px rgb(0 0 0 / 0.6),
+    0 12px 14px -8px rgb(0 0 0 / 0.85);
+  color: #2b2015;
+  font: inherit;
+}
+button.shelf-book {
+  cursor: pointer;
+  transition: transform 150ms ease;
+}
+button.shelf-book:hover {
+  border: 0;
+  background: var(--book-cover) center / cover no-repeat;
+  background-color: #1d2440;
+  transform: translateY(-4px);
+}
+.shelf-book-plate {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 2px solid #b58b3c;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.6);
+}
+.shelf-book-plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.shelf-book-title {
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 6px 8px;
+  border: 1px solid rgb(43 32 21 / 0.45);
+  background: var(--book-paper) center / 256px;
+  background-color: #efe5cc;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.55);
+  color: #2b2015;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.shelf-book-plate + .shelf-book-title {
+  -webkit-line-clamp: 3;
+}
+
+/* The label hung under the board: what the book is, who the account is there, its buttons. */
+.shelf-label {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 12px 14px 14px;
+  border-radius: 4px;
+  background: var(--book-paper) center / 512px;
+  background-color: #efe5cc;
+  box-shadow: 0 8px 16px -8px rgb(0 0 0 / 0.8);
+}
+.shelf-label h3,
+.shelf-label h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.shelf-label p {
+  margin: 0;
+}
+.shelf-label .muted,
+.hub-library-meta {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.hub-campaign-who {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.hub-campaign-who .glyph {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--gold);
+}
+.hub-campaign-place {
+  font-size: 0.875rem;
+}
+/* Played on another server since a move (ADR 0061 §5). */
+.hub-campaign-away {
+  color: var(--gold-bright);
+  font-size: 0.875rem;
+}
+.hub-campaign-actions,
+.hub-templates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.shelf-label > button {
+  justify-self: start;
+  margin-top: 4px;
+  padding-inline: 12px;
+  font-size: 0.875rem;
+}
+.shelf-label button .glyph {
+  width: 18px;
+  height: 18px;
+}
+
+/* The account: a page of the product's book after the shelves. */
+.shelf-account {
+  display: grid;
+  gap: 24px;
+  width: min(52rem, 100%);
+  padding: clamp(20px, 3vw, 36px);
+  border: 12px solid transparent;
+  border-radius: 10px;
+  background:
+    var(--book-paper) padding-box center / 512px,
+    var(--book-cover) border-box center / cover;
+  background-color: #efe5cc;
+  box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.85);
+}
+.shelf-account .hub-section + .hub-section {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.shelf-account .hub-section > h3 {
+  color: var(--text);
+}
+.shelf-account .hub-section > .muted,
+.shelf-account .fine-print,
+.shelf-account > .action-row {
+  margin: 0;
+}
+.hub-settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  align-items: start;
+  gap: 16px;
+}
+.hub-settings .account-form {
+  margin: 0;
+}
+.hub-settings .account-form > button {
+  justify-self: start;
+}
+.shelf-account > .action-row .glyph {
+  width: 20px;
+  height: 20px;
+}
+
+/* "Look inside" a library book: its first page over the shelf. */
+.library-look {
+  width: min(44rem, calc(100vw - 2 * var(--gutter, 16px)));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  overflow: auto;
+  border: 10px solid transparent;
+  border-radius: 10px;
+  background:
+    var(--book-paper) padding-box center / 512px,
+    var(--book-cover) border-box center / cover;
+  background-color: #efe5cc;
+  box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.9);
+}
+.library-look::backdrop {
+  background: rgb(8 10 16 / 0.78);
+}
+.library-look[open] {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+}
+.library-look-plate {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+.library-look-page {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 24px;
+}
+.library-look-page h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+.library-look-page p {
+  margin: 0;
+}
+.hub-library-actions {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 4px;
+}
+.hub-library-actions label {
+  margin: 0;
+}
+.hub-library-actions select {
+  width: 100%;
+  min-width: 0;
+}
+/* The start and the close stay in reach while a long pitch scrolls on a phone. */
+.library-look-page .action-row {
+  position: sticky;
+  bottom: 0;
+  margin: 4px -24px -24px;
+  padding: 12px 24px 24px;
+  background: var(--book-paper) center / 512px;
+  background-color: #efe5cc;
+}
+.library-look-page .action-row .glyph {
+  width: 20px;
+  height: 20px;
+}
+.hub-library-wait {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 767px) {
+  .hub {
+    gap: 32px;
+  }
+  .shelf-row {
+    --book-w: 7.25rem;
+    --board-h: 16px;
+    --gap-x: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+    gap: 24px var(--gap-x);
+  }
+  .shelf-book {
+    padding: 14% 12%;
+  }
+  .shelf-book-title {
+    padding: 4px 6px;
+    font-size: 0.75rem;
+  }
+  .shelf-label {
+    padding: 10px 12px 12px;
+  }
+  .library-look[open] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .library-look-plate {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+  .library-look-page {
+    padding: 16px;
+  }
+  .library-look-page .action-row {
+    margin: 4px -16px -16px;
+    padding: 12px 16px 16px;
+  }
+}
+@media (max-width: 480px) {
+  .shelf-account {
+    border-width: 8px;
+  }
+}

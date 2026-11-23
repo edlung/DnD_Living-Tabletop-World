@@ -205,6 +205,34 @@
 4. (S) Deferred: the players' "Table screen" online keeps the casts as before inside its page of
    the book; the TV shell's remote is not driven in this stage.
 
+### 10. The shelf (Stage 1100)
+
+1. **The way in is the product's own book lying open** over the key art: the ex libris on the left
+   page (the emblem, the wordmark, the tagline in its cream panel), on the right page what the
+   book asks or says — signing in, an invitation, a table's code, a failed link, signed out. Below
+   900 px the book is one page and the plate's words head it as a title page's would: the plate's
+   picture would take a phone's screen.
+2. **The hub is the shelf**: the product's bookcase behind; each campaign the account sits in a
+   book face-out in its campaign's own binding, standing on a stretch of the bookcase's board, with
+   a paper label below in its campaign's paper — its name, who the account is there, **where the
+   party is** (a name the party knows, else nothing), the next game, its book and its door. The
+   finished adventures, the ready adventures and the library are shelves of the same kind.
+3. **A library campaign is a book with its cover picture set in**; "Look inside the book" opens its
+   first page over the shelf (a modal dialog on paper): the picture, the whole pitch, the party size
+   and the press that starts it. The book itself is a large target for the pointer doing what its
+   label's first button does, hidden from the keyboard and from assistive technology so nothing is
+   read twice.
+4. **The account is a page** of the product's book after the shelves; the privacy notice and
+   "something went wrong" are pages of the same paper.
+5. **Every campaign's book set is shipped** (55 campaigns and the product's own, Codex CLI
+   pictures in each campaign's style, converted by `scripts/book-materials/build.ts`), with the
+   product's bookcase, its board — cut from the bookcase without changing a pixel — and the ex
+   libris. Every paper is lighter than the product's, whose ink contrast is measured.
+6. The account list gains `place` (`GET /account`), from the same test the table's screen applies
+   before it names a place (ADR 0044 §5); no command, rule or projection changes.
+7. (S) Deferred: the ready adventures have no cover picture of their own on their books; the
+   shelf's own books are not ordered or grouped by the account.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

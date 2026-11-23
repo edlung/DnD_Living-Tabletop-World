@@ -164,10 +164,13 @@
   --book-tray: url('/book-materials/lighthouse/tray.webp');
 }
 :root {
+  --book-bookplate: url('/book-materials/ltw/bookplate.webp');
   --book-cover: url('/book-materials/ltw/cover.webp');
   --book-emblem: url('/book-materials/ltw/emblem.webp');
   --book-paper: url('/book-materials/ltw/paper.webp');
+  --book-shelf: url('/book-materials/ltw/shelf.webp');
   --book-tray: url('/book-materials/ltw/tray.webp');
+  --book-shelf-board: url('/book-materials/ltw/shelf-board.webp');
 }
 [data-campaign-theme='marrow-crown'] {
   --book-cover: url('/book-materials/marrow-crown/cover.webp');
