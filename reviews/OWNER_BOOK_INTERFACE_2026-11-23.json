@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-23",
+  "source": "The owner's words typed in one working session on 2026-11-23, in the desktop app, and his choices in that session's question card. This record is written by the same session: it saw every word below typed or chosen.",
+  "theBrief": "Задача - сделать план для преобразования всего интерфейса проекта в книгу. Чтобы все шло через книжный интерфейс.",
+  "answersInTheQuestionCard": [
+    {
+      "question": "План переводит в книгу всё: вход, полку кампаний, экран мастера, телефон игрока, экран стола, бой, мастерскую. Как менять нынешний интерфейс по ходу работы?",
+      "recommended": "Книга + «Как раньше»: the book by default, the old view behind a switch until the owner's acceptance after a real table, then removed.",
+      "chosen": "Заменять сразу",
+      "meaning": "A screen that becomes a book loses its old version in the same stage and pull request. There is no switch back inside the product; the way back is the previous deployment."
+    },
+    {
+      "question": "С чего начать программу «весь интерфейс — книга»?",
+      "chosen": "Сначала демо всех книг",
+      "meaning": "A clickable demo of every book on the engine of the accepted DM's book sample comes before any code; the owner looks, corrects and accepts it."
+    },
+    {
+      "question": "Мастерская кампаний (черновики, сценарий, генерация, картинки, предпросмотр, публикация) — что с ней в этой программе?",
+      "recommended": "Last, lightened: a way in from the shelf, book-like pages and a preview as a finished book; editing forms stay forms.",
+      "chosen": "Полностью как рукопись",
+      "meaning": "The workshop is rebuilt as a manuscript: a draft is the pages of the future book, edited on the page; generation proposes pages; publishing is binding.",
+      "correctionBySession": "The question said the workshop was «около трети всего клиента». Measured afterwards: 72 of 556 source files and 10,041 of 82,573 lines, about an eighth. The owner was told in the next message."
+    }
+  ],
+  "shownToTheOwner": "docs/BOOK_INTERFACE_PLAN.md, written in the session after the card and summarised to him in Russian: five books from one engine, the parts of a book as the navigation, where each of today's sections goes, Stages 1000–1140, the session's decisions and the main risk of replacing at once.",
+  "ownerInstruction": "Да, открываем. Для генераций красивых книжных ассетов интерфейса обращаемся к Codex CLI.",
+  "ownerInstructionAnswers": "The session's question: «Открываем этапы 1000 и 1010: документы и демо всех книг?»",
+  "authorizedStages": [1000, 1010],
+  "notAuthorized": [
+    "Stages 1020–1140, the product code: they wait for the owner's acceptance of the demo (Stage 1010 ends with a hard stop).",
+    "Stage 940 of the DM's book plan (a real table) and Stage 950 (Layer 2 of the story)."
+  ],
+  "picturesAndText": {
+    "pictures": "The owner's words: «Для генераций красивых книжных ассетов интерфейса обращаемся к Codex CLI». Interface book materials (covers, bindings, shelves, ribbons, tabs, trays, the icons of the book's parts) are generated with Codex CLI as on 2026-11-21 and 2026-11-22; originals are kept in ~/Documents/living-tabletop-world-art/book-interface-2026-11-23/.",
+    "text": "No model writes text for the demo or the interface. The demo shows campaign text as the campaigns wrote it and pages the owner has already seen."
+  },
+  "standingOwnerRulesThisProgramKeeps": [
+    "2026-11-19: the product «looks like an Excel table»; ease of the Google start page means nothing to search for and an obvious next step, not a search line (his correction of 2026-11-20).",
+    "2026-11-20: «если честно, рельс не хочется. DnD — это про свободу выбора и действий.»",
+    "2026-11-21: interface assets match the campaign's visual code; pictures by Codex CLI.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table.",
+    "2026-11-21: sections full screen, everything at hand and in view, the least scrolling.",
+    "2026-11-22: the book is the base of the DM's screen, for all 55 campaigns."
+  ],
+  "plan": "docs/BOOK_INTERFACE_PLAN.md",
+  "adr": "docs/adr/0075-book-interface.md",
+  "delegation": "Product points inside Stages 1000–1010 are settled by the session, marked (S) in the plan and the ADR, and stay the owner's to overrule; the demo is where he sees them.",
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; a book only calls commands that exist.",
+    "Knowledge isolation: the DM's text is the DM's; players and the table's screen get only their own projections and what the DM sends.",
+    "No AI at the table; no paid text in Stages 1000–1010.",
+    "A campaign package and a book document are generated from their source, never edited by hand.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ],
+  "ownerWordsAlongTheWay": [
+    {
+      "when": "While Stage 1010's demo was being built",
+      "said": "Не забываем о том что каждая книга имеет свой стиль, согласно арту содержимого. Задача - картинки кампании и книги (страницы, переплет, иконки) должны выглядеть гармонично.",
+      "consequence": "Every campaign book gets its own set of materials in its campaign's house style (binding, paper, part icons, moment icons, ribbon, dice tray, ornaments); the product's neutral set dresses only the shelf, the way in and the workshop desk; a manuscript is dressed as its campaign. The demo shows three books of three different styles (the lighthouse, rain-check, marrow-crown) and a harmony check is part of Stage 1010."
+    }
+  ]
+}
