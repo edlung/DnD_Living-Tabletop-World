@@ -177,19 +177,25 @@ test('a library campaign starts its fight on the battle map with the heroes stan
   const campaignId = (await ownedCampaigns(page)).campaigns[0]?.campaignId;
   if (!campaignId) throw new Error('no started campaign');
   await enterActivatedGame(page);
+  // The game's sign-in settles just after entering: until it does, the read is refused (401),
+  // so the first reads wait for it instead of failing the journey.
   const presentation = async (key: string) => {
     const response = await page.request.get(
       `/api/campaigns/${campaignId}/entities/${identities[key] ?? ''}/presentation?perspective=DM`,
     );
+    if (response.status() === 401) return null;
     expect(response.status()).toBe(200);
     return ((await response.json()) as EntityPresentationResponse).presentation;
   };
   await expect
-    .poll(async () => (await presentation('north-gate')).battleMap !== null, { timeout: 30_000 })
+    .poll(async () => ((await presentation('north-gate'))?.battleMap ?? null) !== null, {
+      timeout: 30_000,
+    })
     .toBe(true);
   const party = saved.revision?.content.party ?? [];
   for (const hero of party) {
     const shown = await presentation(hero);
+    if (!shown) throw new Error(`no presentation of ${hero}`);
     expect(shown.image, hero).not.toBeNull();
     expect(shown.figure, hero).not.toBeNull();
   }
