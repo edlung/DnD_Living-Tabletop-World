@@ -24,7 +24,9 @@ stacked on Stage 1100's.
 ## Found and fixed while checking
 
 - On a phone the four bookmarks wrapped to a second row; at 320 px one row ran off the screen
-  (`workshop-*-accessibility`, `*-package-import`): one row to 401 px, two by two below.
+  (`workshop-*-accessibility`, `*-package-import`): one row down to 360 px; narrower, the row
+  scrolls with its far edge fading (first fixed as two by two below 401 px, which put a 390 px
+  phone on two rows — the layout audit's `tabs-wrapped`, found in Stage 1120).
 - The library's cards took their campaign's dark furniture and light gold onto the page, so their
   meta failed contrast (`workshop-library`): they wear their campaign's paper and the page's ink.
 - A book's margins were percentages of its column, not of the book, so in the workshop's wider

@@ -195,10 +195,14 @@
     white-space: nowrap;
   }
 }
-/* Narrower still, the bookmarks stand two by two. */
-@media (max-width: 400px) {
+/* Narrower still, the row of bookmarks scrolls, its far edge fading where more waits. */
+@media (max-width: 359px) {
   .workshop-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+  }
+  .workshop-tabs [role='tab'] {
+    flex: 0 0 auto;
   }
 }
