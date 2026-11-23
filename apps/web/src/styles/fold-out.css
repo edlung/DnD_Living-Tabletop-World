@@ -1,0 +1,91 @@
+/*
+ * The fight as a fold-out of the book (docs/adr/0075-book-interface.md §6): the battlefield is a
+ * sheet unfolded over the whole spread inside the binding, on the book's paper, with the fold down
+ * its middle. The place's picture steps aside for the map; whose turn it is heads the sheet, the
+ * place, the active combatant and who is at the table are its left margin, the chosen square's
+ * or figure's card its right margin, the turn tray its foot — the parts and places of
+ * battle-layout.css, which this only dresses. "Scene" folds it up again. Rules, commands and the
+ * board's drawing are the fight's own and unchanged.
+ */
+.world-main[data-book]:has(.combat-stage[data-surface='paper']) .stage--battle .stage-backdrop {
+  background:
+    linear-gradient(
+      to right,
+      transparent calc(50% - 18px),
+      rgb(43 32 21 / 0.12) calc(50% - 1px),
+      rgb(43 32 21 / 0.3) 50%,
+      rgb(255 250 238 / 0.35) calc(50% + 1px),
+      transparent calc(50% + 18px)
+    ),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow: 0 2px 14px rgb(0 0 0 / 0.45);
+}
+.world-main[data-book]:has(.combat-stage[data-surface='paper'])
+  .stage--battle
+  :is(.backdrop-art, .backdrop-vignette, .backdrop-note) {
+  display: none;
+}
+
+/* The margins' notes: the fight's cards are slips on the sheet, with the page's own edge. */
+.world-main[data-book]:has(.combat-stage[data-surface='paper'])
+  .stage--battle
+  :is(
+    .cartouche,
+    .turn-banner,
+    .active-card,
+    .combat-side-card,
+    .initiative,
+    .rail-dm,
+    .rail-member
+  ) {
+  border-color: var(--line-strong);
+  box-shadow: 0 1px 4px rgb(43 32 21 / 0.18);
+  backdrop-filter: none;
+}
+.world-main[data-book]:has(.combat-stage[data-surface='paper']) .stage--battle .cartouche::before,
+.world-main[data-book]:has(.combat-stage[data-surface='paper']) .stage--battle .cartouche::after {
+  display: none;
+}
+.world-main[data-book]:has(.combat-stage[data-surface='paper']) .stage--battle .cartouche h2 {
+  color: var(--rubric);
+  text-shadow: none;
+}
+
+/* The fold-out folds up to the Scene's spread and opens again: the switch is the fold's handle. */
+.world-main[data-book] .stage-switch[data-surface='paper'] {
+  border-color: var(--line-strong);
+  background: var(--page);
+  box-shadow: 0 1px 4px rgb(43 32 21 / 0.25);
+}
+
+/*
+ * An action that cannot be taken now keeps its words readable on paper: its row is dashed instead
+ * of faded (a faded row's small print fell under 4.5:1 on the page).
+ */
+.combat-stage[data-surface='paper'] .option-entry.is-unavailable {
+  border-style: dashed;
+  opacity: 1;
+}
+
+/*
+ * Narrower than a wide desktop the fight is one column that scrolls (battle-layout.css): the
+ * book's margins are the column's padding there, not offsets — the scene's page inset, applied to
+ * a column item, moved the place and who is at the table 52 px down, over the switch under them.
+ */
+@media (max-width: 1199px) {
+  .world-main[data-book] .stage--battle {
+    padding-top: var(--pages-h);
+    padding-right: calc(var(--parts-w) + 12px);
+    padding-left: 22px;
+  }
+  .world-main[data-book] .stage--battle > .scene {
+    inset: auto;
+  }
+}
+@media (max-width: 700px) {
+  .world-main[data-book] .stage--battle {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}

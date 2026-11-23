@@ -7,6 +7,7 @@ import { useReservedHeight } from '../shell/reserved-height.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useCombatantLabels } from './labels.ts';
 import { attackWords } from './opportunity-prompt.tsx';
+import { useFoldOutSurface } from './fold-out.ts';
 
 /**
  * The attack the viewer's character readied (docs/adr/0045-conditions-and-actions.md §5), while
@@ -31,6 +32,7 @@ export function ReadiedCard({
   const ids = useId();
   // Its height is kept, as the reaction prompt's: on a phone a result stands above it.
   const card = useReservedHeight<HTMLElement>('--prompt-h', true);
+  const surface = useFoldOutSurface();
   const labelOf = useCombatantLabels(encounter);
   const readied = encounter.combatants.find((c) => c.entity.entityId === actorId)?.readied;
   if (!readied || encounter.currentCombatantId === actorId || encounter.reactionWindow) {
@@ -39,7 +41,12 @@ export function ReadiedCard({
   const target = readied.target.name ?? labelOf(readied.target.entityId);
   const attack = attackWords(t, { attackId: readied.attackId, name: null });
   return (
-    <section ref={card} className="reaction-prompt readied-card" aria-labelledby={`${ids}-title`}>
+    <section
+      ref={card}
+      className="reaction-prompt readied-card"
+      data-surface={surface}
+      aria-labelledby={`${ids}-title`}
+    >
       <p className="eyebrow reaction-eyebrow">
         <Glyph name="ready" />
         {t('Readied')}

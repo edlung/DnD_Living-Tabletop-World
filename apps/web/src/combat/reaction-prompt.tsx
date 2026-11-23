@@ -10,6 +10,7 @@ import { useCombatantLabels } from './labels.ts';
 import { AttackPrompt } from './attack-prompt.tsx';
 import { OpportunityPrompt } from './opportunity-prompt.tsx';
 import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
+import { useFoldOutSurface } from './fold-out.ts';
 
 /**
  * The open reaction window that asks this viewer, if one does: their character, or a creature it
@@ -61,6 +62,7 @@ function SpellPrompt({
   onRun,
 }: ReactionPromptProps) {
   const t = useT();
+  const surface = useFoldOutSurface();
   const ids = useId();
   const card = useAnnounceOnce(blocked);
   const window = encounter.reactionWindow;
@@ -95,6 +97,7 @@ function SpellPrompt({
     <section
       ref={card}
       className="reaction-prompt"
+      data-surface={surface}
       role="alertdialog"
       aria-labelledby={`${ids}-title`}
       aria-describedby={`${ids}-trigger`}

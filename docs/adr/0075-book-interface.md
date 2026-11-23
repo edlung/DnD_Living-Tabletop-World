@@ -9,7 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
-- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign).
+- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign); Stage 1060 §6 (the fight as a fold-out).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -145,6 +145,22 @@
    for the owner's reading stays closed, and the assembled one opens in its place. This is the one
    read route with a second source (plan decision 12): `GET /campaigns/:id/dm/book`; no command and
    no rule change.
+
+### 6. The fight as a fold-out (Stage 1060)
+
+1. **A fight unfolds over the book.** While the stage shows the battlefield, it is a sheet unfolded
+   over the whole spread inside the binding: the book's paper with the fold down its middle, the
+   place's picture stepping aside for the map. "Scene" folds it up to the Scene's spread; the
+   battlefield's own switch is the fold's handle. (S) The fold-out is the wide screen's (from
+   1200 px, where the fight lies across the spread); narrower, the fight runs as one column over
+   the dark stage and keeps its glass, inside the book's margins.
+2. **The sheet keeps the fight's places**: whose turn it is and the order at its head, the place,
+   the active combatant and who is at the table in its left margin, the card of what is chosen in
+   its right, the turn tray at its foot; a reaction asked or an attack readied lies on it as a
+   slip. Every one of them is on the book's paper (§1.7), measured at WCAG 2.2 AA like any page.
+3. **Nothing of the fight changes**: its commands, its rules, the board's drawing, the battle maps
+   and the figures stay as they are (ADR 0035, 0045, 0057); a player's bookmarks still run along
+   the bottom of a fight (§4).
 
 ## Consequences
 
