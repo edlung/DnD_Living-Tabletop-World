@@ -127,6 +127,10 @@
  */
 [data-surface='paper'] {
   color-scheme: light;
+  /* The dark grounds of fields and cards become lighter paper: dark ink stays readable on them. */
+  --ink-950: #f6efdf;
+  --ink-900: #efe5cc;
+  --ink-850: #e7dabd;
   --text: var(--page-ink);
   --text-muted: var(--page-ink-muted);
   --line: rgb(43 32 21 / 0.2);

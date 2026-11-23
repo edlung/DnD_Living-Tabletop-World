@@ -81,7 +81,7 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
       'Пока вы не займёте место, приглашение не используется.',
     );
     await takeSeat(dm, ru);
-    await expect(dockButton(dm, ru.players)).toBeVisible();
+    await expect(dockButton(dm, ru.players)).toBeAttached();
     expect(dm.url() === START, 'the DM page keeps the start page as its address').toBe(true);
   });
 

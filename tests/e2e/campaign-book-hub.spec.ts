@@ -34,7 +34,7 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
   await invited.getByLabel('Login', { exact: true }).fill('ada-book');
   await invited.getByLabel('Password', { exact: true }).fill('a lantern in the rain');
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // No chapter yet: the Chronicle's book says where it begins and has nothing to print; the
   // campaign's card offers no book.
@@ -83,6 +83,6 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
   await dialog.getByRole('button', { name: 'Close the Chronicle', exact: true }).click();
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await list.getByRole('button', { name: /^Open / }).click(LIVE);
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
   await expect(dialog).toBeHidden();
 });

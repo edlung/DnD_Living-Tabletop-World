@@ -142,7 +142,7 @@ test('a last evening, the campaign’s end and its book, on every screen', async
     [`ltw.break:${campaign}`, sessionId] as const,
   );
   await dm.reload();
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
   await openSheet(dm, 'Session');
   const sheet = dm.locator('#sheet-session');
   await sheet

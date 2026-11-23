@@ -4,7 +4,7 @@ import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { IMAGE_CAMPAIGNS, imagesRegion } from './support/images.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { closeSheet, dockButton, openSheet, revealDockButton } from './support/shell.ts';
+import { bookPart, closeSheet, openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * The DM's image controls at the three widths (docs/STAGE_330_DESIGN.md "DM controls"; design
@@ -83,7 +83,7 @@ test('the keyboard reaches every image control in order, and Escape closes the s
   );
   await page.keyboard.press('Escape');
   await expect(sheet).toBeHidden();
-  await expect(dockButton(page, 'Images')).toBeFocused();
+  await expect(bookPart(page, 'Scene')).toBeFocused();
 });
 
 for (const size of WIDTHS.filter((entry) => entry.name !== 'desktop')) {

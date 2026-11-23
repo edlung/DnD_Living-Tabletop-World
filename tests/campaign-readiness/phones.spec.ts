@@ -42,7 +42,7 @@ async function account(dm: Page, campaign: string, browserName: string) {
   await form.getByLabel('Login', { exact: true }).fill('table-' + campaign + '-' + browserName);
   await form.getByLabel('Password', { exact: true }).fill('the old oak by the river');
   await form.getByRole('button', { name: WORDS.en.takeSeat, exact: true }).click();
-  await expect(dm.locator('nav.dock')).toBeVisible(live);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(live);
 }
 
 async function checkPhone(browser: Browser, dm: Page, slug: string, width: number) {

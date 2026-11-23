@@ -58,7 +58,7 @@ test('a player’s screen breaks: they load the game again, and the DM alone rea
   const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaign);
   await enterWorld(player, TOKENS.player, campaign);
-  await expect(dm.locator('nav.dock')).toBeVisible(WAIT);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(WAIT);
   await expect(dm.locator('.trouble-notice')).toHaveCount(0);
 
   // The player opens Chat; then the chat comes back broken.
@@ -170,7 +170,7 @@ test('по-русски: экран с ошибкой и карточка мас
   const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaign);
   await enterWorld(player, TOKENS.player, campaign);
-  await expect(dm.locator('nav.dock')).toBeVisible(WAIT);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(WAIT);
   await openSheet(player, 'Чат');
   await breakChat(player);
   await openSheet(dm, 'Чат');

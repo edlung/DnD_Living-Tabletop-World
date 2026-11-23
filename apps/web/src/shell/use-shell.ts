@@ -157,7 +157,10 @@ export function useShell(rememberAs?: string) {
         setSheet('book');
         return;
       }
-      if (!focusOn(document.getElementById(dockButtonId(sheet)))) {
+      // In the DM's book a closed page leaves its part for the Scene: focus goes to the Scene's
+      // bookmark (docs/adr/0075-book-interface.md §3). Elsewhere to the dock button, or More.
+      const scenePart = document.querySelector<HTMLElement>('.book-part[data-part="scene"]');
+      if (!focusOn(scenePart) && !focusOn(document.getElementById(dockButtonId(sheet)))) {
         focusOn(document.getElementById(DOCK_MORE_ID));
       }
       setSheet(null);

@@ -159,6 +159,8 @@
   background:
     linear-gradient(var(--glass-raised), var(--glass-raised)),
     url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+  /* Its own ground: a paper page behind the question must not show through its glass. */
+  background-color: var(--ink-900);
   box-shadow: var(--shadow);
   color: var(--text);
 }

@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
+import { bookPart } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -31,7 +32,7 @@ async function startFromLibrary(dm: Page, title: string) {
   await expect(start).toBeVisible(LIVE);
   await start.click();
   await expect(dm.locator('.session-shell h1')).toHaveText(title, LIVE);
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 }
 
 /** Turns on from a chapter's opening to its first page: long words take several screens. */
@@ -48,8 +49,7 @@ async function toFirstPage(dm: Page) {
 }
 
 async function openBook(dm: Page, title: string) {
-  const dock = dm.locator('nav.dock');
-  const button = dock.getByRole('button', { name: 'Книга', exact: true });
+  const button = bookPart(dm, 'Книга');
   await expect(button).toBeVisible(LIVE);
   const book = dm.getByRole('region', { name: title, exact: true });
   // The tab remembers an open section: the book may be open already.
@@ -70,11 +70,7 @@ test('a family campaign and a collection campaign of the library open as books',
   await invited.getByLabel('Login', { exact: true }).fill('mira-book');
   await invited.getByLabel('Password', { exact: true }).fill('a ribbon between pages');
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
-  await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
-  // The campaign the invitation leads to is the English Ravenford: it has no book.
-  await expect(
-    dm.locator('nav.dock').getByRole('button', { name: 'Book', exact: true }),
-  ).toHaveCount(0);
+  await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
   // A family campaign: twelve chapters, a free order the campaign states in its own words.
   await startFromLibrary(dm, 'Маяк Между Ветрами');

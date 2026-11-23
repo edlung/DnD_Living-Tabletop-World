@@ -216,7 +216,6 @@ function OpenBook({
       <div className="dmb" data-size={size} data-view={view}>
         <BookMarks
           view={view}
-          shell={shell}
           onView={(to) => {
             setView(to);
             if (to === 'path') setMoment(null);

@@ -67,7 +67,7 @@ test('explicit activation opens the stored world, prepared party, normal player 
   const source = (await saved.json()) as CampaignRevisionView;
   if (!source.revision) throw new Error('Saved source revision missing');
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const base = `/api/campaigns/${accepted.campaignId}`;
   const session = (await (await page.request.get(`${base}/session`)).json()) as SessionResponse;
   expect(session.campaign.campaignId).toBe(accepted.campaignId);
@@ -164,7 +164,7 @@ test('activation preserves an existing game cookie and normal entry offers keepi
   const question = accessState(page, WORDS.en.replaceQuestion);
   await expect(question.getByRole('button', { name: WORDS.en.keep })).toBeFocused();
   await question.getByRole('button', { name: WORDS.en.keep }).click();
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   expect(
     (await page.context().cookies()).find((entry) => entry.name === 'ltw_session')?.value ===
       cookie.value,
@@ -174,7 +174,7 @@ test('activation preserves an existing game cookie and normal entry offers keepi
     'The Bell Beneath the Ice',
   );
   await enterActivatedGame(page, 'en', true);
-  await expect(dockButton(page, 'Players')).toBeVisible();
+  await expect(dockButton(page, 'Players')).toBeAttached();
   const current = (await (
     await page.request.get('/api/auth/session', { headers: { Origin: SIGN_IN_ORIGIN } })
   ).json()) as {
