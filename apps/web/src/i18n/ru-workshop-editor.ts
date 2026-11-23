@@ -38,8 +38,6 @@ registerRussian({
     'Это предложение хранится отдельно от сохранённых версий. Оно не меняет игровой мир.',
   'The scenario could not be read. Try again.': 'Не удалось прочитать сценарий. Попробуйте снова.',
   'Reading the scenario…': 'Читаем сценарий…',
-  'Generate a campaign to prepare its scenario.':
-    'Запустите генерацию кампании, чтобы подготовить её сценарий.',
   'Prepare your campaign': 'Подготовьте свою кампанию',
   'Describe the campaign you want. Generation prepares a private draft for you to inspect.':
     'Опишите желаемую кампанию. Генерация подготовит личный черновик, который вы сможете изучить.',

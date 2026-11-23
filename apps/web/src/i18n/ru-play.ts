@@ -5,8 +5,6 @@ registerRussian({
   // Combat
   Battlefield: 'Поле боя',
   'Encounter anchor': 'Сводка боя',
-  'Shaded squares are difficult terrain; outlined squares give cover. Select a square to move or a combatant to act.':
-    'Заштрихованные клетки — трудная местность; клетки с рамкой дают укрытие. Выберите клетку, чтобы идти, или участника боя, чтобы действовать.',
   'Round {round}': 'Раунд {round}',
   'Turn: {name}': 'Ход: {name}',
   'You: {current} / {max} HP': 'Вы: {current} / {max} ОЗ',
@@ -22,8 +20,6 @@ registerRussian({
   'Waiting for {name}; the DM runs creature turns.': 'Ждём: {name}; ходы существ ведёт мастер.',
   'the next turn': 'следующий ход',
   'Waiting for reactions to resolve.': 'Ждём разрешения реакций.',
-  'The DM acts for creatures with the encounter controls above (suggested turn).':
-    'Мастер действует за существ с помощью управления схваткой выше (предложенный ход).',
   "This is a read-only view. Use your character's session outside an encounter to act.":
     'Это вид только для чтения. Чтобы действовать, используйте сессию своего персонажа вне схватки.',
   'Options for {name}': 'Варианты действий: {name}',
@@ -46,8 +42,6 @@ registerRussian({
     'Компоненты: {components}. Заклинание ждёт вашего ответа.',
   'Checking Counterspell…': 'Проверяем контрзаклинание…',
   Ignore: 'Не вмешиваться',
-  'Counterspell spends a spell slot and may stop the spell. Ignore lets the spell happen.':
-    'Контрзаклинание тратит ячейку заклинаний и может остановить заклинание. «Не вмешиваться» даёт заклинанию сработать.',
   'Counterspell unavailable: {reason}': 'Контрзаклинание недоступно: {reason}',
   'Uses a level {level} slot.': 'Тратит ячейку {level} уровня.',
   'Start an encounter (DM)': 'Начать схватку (мастер)',
@@ -96,8 +90,6 @@ registerRussian({
   'Open flashback': 'Открыть воспоминание',
   Flashback: 'Воспоминание',
   'A place you recall': 'Место из воспоминаний',
-  'At {place}': 'Место: {place}',
-  ' with {names}': ' · Участники: {names}',
   'Write a chapter (DM)': 'Написать главу (мастер)',
   'Write chapter': 'Написать главу',
   Title: 'Название',
@@ -320,8 +312,6 @@ registerRussian({
     'Ответ прервался. История прочитана заново, чтобы показать, что произошло на самом деле.',
   'Undone. The world is as it was before this action.':
     'Отменено. Мир снова таков, каким был до этого действия.',
-  'To undo it, use the history and undo list below.':
-    'Отменить это можно в списке «История и отмена (мастер)» ниже.',
   'Acting as {name}: {action}': 'За игрока ({name}): {action}',
   Authoring: 'Добавление мастера',
   'No reason was recorded': 'Причина не записана',

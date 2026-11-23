@@ -62,8 +62,6 @@ registerRussian({
   'Checking your sign-in…': 'Проверяем вход…',
   'An invitation': 'Приглашение',
   'You are invited to a table': 'Вас пригласили за стол',
-  'This invitation link seats you at a table in this browser. It works once.':
-    'По этой ссылке-приглашению вы займёте место за столом в этом браузере. Она срабатывает один раз.',
   'Nothing is used until you take your seat. Take it only if you expected this invitation.':
     'Пока вы не займёте место, приглашение не используется. Занимайте место, только если ждали этого приглашения.',
   'Joining the table': 'Присоединяемся к столу',
@@ -95,11 +93,6 @@ registerRussian({
   'Its DM moved it to another server, such as a laptop at home. Ask your DM where it is played now, and for an invitation there.':
     'Мастер перенёс её на другой сервер, например на ноутбук дома. Спросите мастера, где она идёт сейчас, и попросите приглашение туда.',
   'Back to the start': 'В начало',
-  'Join with an invitation': 'Вход по приглашению',
-  'This table is open to invited players. Open the invitation link you were sent to take your seat.':
-    'За этот стол садятся по приглашению. Откройте присланную вам ссылку-приглашение, чтобы занять своё место.',
-  'An invitation link works once. Signing in keeps you at the table in this browser for up to {days} days.':
-    'Ссылка-приглашение срабатывает один раз. После входа этот браузер держит вас за столом до {days} дней.',
   'Signed out': 'Выход выполнен',
   'You are signed out': 'Вы вышли',
 
