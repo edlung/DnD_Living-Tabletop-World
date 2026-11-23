@@ -27,8 +27,8 @@ export const useLiveRetry = (): boolean => useContext(LiveRetryContext);
 /**
  * After every read in a live session (a first load, a read a signal caused, a re-read after the
  * viewer's own action), one more background read follows once a comparison cycle (1 s) has
- * surely passed since that read completed; that trailing read is followed by another only while
- * it brought something new (it may itself have read the state in between). A change undone within
+ * surely passed since that read completed; a trailing read that brought something new (it may
+ * itself have read the state in between) is followed by one final read. A change undone within
  * one cycle never reaches the fingerprint, so without this a screen that read the state in between
  * could keep it (Stage 310 part A limitation).
  */

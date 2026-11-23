@@ -111,9 +111,13 @@ control stayed offered after Day 2.
   the sign-in journeys caught on CI; a world screen has its own moments to ask (a signal, the
   network back, the tab shown, the person's action).
 - 2026-11-23 (found on CI, WebKit on an iPad: a player's "The DM paused the game" stayed after the
-  DM resumed). §4: a trailing read that brought something new is followed by one more trailing
-  read, `TRAILING_REREAD_MS` after it completed; one that brought nothing new still schedules none,
-  so a quiet screen stops reading. Before, a trailing read was followed by none, and when it was
-  the read that landed between a pause and a resume made within one comparison cycle, no signal
-  came and nothing read again: the player kept the pause. "Something new" is the answer's JSON
-  against the shown one's (`GenerationReads`). No server change, no new message.
+  DM resumed). §4: a trailing read that brought something new is followed by one final read,
+  `TRAILING_REREAD_MS` after it completed; the final read, and a trailing read that brought nothing
+  new, schedule none, so a quiet screen stops reading. Before, a trailing read was followed by
+  none, and when it was the read that landed between a pause and a resume made within one
+  comparison cycle, no signal came and nothing read again: the player kept the pause. "Something
+  new" is the answer's JSON against the shown one's (`GenerationReads`). The chain stops at the
+  final read because a loader may number its reads in its answer (the DM's pictures), so that each
+  answer is new: a first version chained while answers were new, and that view read every 1.5 s
+  without end (`party-known.spec.ts`, which expects the pages to fall quiet). No server change, no
+  new message.

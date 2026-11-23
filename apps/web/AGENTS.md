@@ -99,7 +99,7 @@ domain, rules, or providers.
 - Live session (ADR 0033): the session screen owns the one live connection, read with
   `fetch` (never `EventSource`; the credential stays in the header, or the session cookie). `useResource` re-reads
   in the background on its signals, and once more `TRAILING_REREAD_MS` after every read
-  completed (`GenerationReads`; a trailing read schedules another only while it brought something new): never remount, clear, or
+  completed (`GenerationReads`; a trailing read that brought something new schedules one final read, which schedules none): never remount, clear, or
   flash a shown view for a signal, and keep drafts, selections and unsubmitted intent. `useResource`'s
   `reread` and `retry` are one function each for the component's life, so an effect may depend on
   them (made anew by every render, a `reread` in an effect's dependencies read without end). Announce turn changes in the
