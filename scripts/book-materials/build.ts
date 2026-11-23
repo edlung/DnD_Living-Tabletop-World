@@ -49,8 +49,9 @@ const PIECES: Readonly<Record<string, { readonly width: number; readonly propert
   ribbon: { width: 240, property: '--book-ribbon' },
   divider: { width: 640, property: '--book-divider' },
   emblem: { width: 256, property: '--book-emblem' },
-  // The product's own (ADR 0075 §10): the bookcase of the shelf and the way in's ex libris.
+  // The product's own (ADR 0075 §10–11): the shelf's bookcase, the way in's ex libris, the desk.
   shelf: { width: 1600, property: '--book-shelf' },
+  desk: { width: 1600, property: '--book-desk' },
   bookplate: { width: 768, property: '--book-bookplate' },
   ...Object.fromEntries(PARTS.map((part) => [`part-${part}`, { width: 128 }])),
   ...Object.fromEntries(MOMENTS.map((moment) => [`ico-${moment}`, { width: 128 }])),

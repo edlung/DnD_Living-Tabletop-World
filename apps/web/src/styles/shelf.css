@@ -128,7 +128,8 @@
   aspect-ratio: 2 / 3;
   min-height: 0;
   margin: 0;
-  padding: 16% 14%;
+  /* In the book's own measure: a percentage would follow the column, not the book. */
+  padding: calc(var(--book-w) * 0.16) calc(var(--book-w) * 0.14);
   border: 0;
   border-radius: 2px 5px 5px 2px;
   background: var(--book-cover) center / cover no-repeat;
@@ -165,7 +166,8 @@ button.shelf-book:hover {
 }
 .shelf-book-title {
   display: -webkit-box;
-  max-width: 100%;
+  /* The label spans the cover's panel: a narrow list or a long word never squeezes it to a column. */
+  width: 100%;
   overflow: hidden;
   padding: 6px 8px;
   border: 1px solid rgb(43 32 21 / 0.45);
@@ -178,7 +180,8 @@ button.shelf-book:hover {
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  hyphens: auto;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
@@ -380,7 +383,7 @@ button.shelf-book:hover {
     gap: 24px var(--gap-x);
   }
   .shelf-book {
-    padding: 14% 12%;
+    padding: calc(var(--book-w) * 0.14) calc(var(--book-w) * 0.12);
   }
   .shelf-book-title {
     padding: 4px 6px;

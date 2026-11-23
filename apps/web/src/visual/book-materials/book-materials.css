@@ -166,6 +166,7 @@
 :root {
   --book-bookplate: url('/book-materials/ltw/bookplate.webp');
   --book-cover: url('/book-materials/ltw/cover.webp');
+  --book-desk: url('/book-materials/ltw/desk.webp');
   --book-emblem: url('/book-materials/ltw/emblem.webp');
   --book-paper: url('/book-materials/ltw/paper.webp');
   --book-shelf: url('/book-materials/ltw/shelf.webp');

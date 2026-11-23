@@ -18,6 +18,15 @@
   z-index: -1;
   background: color-mix(in srgb, var(--ink-950) 85%, transparent);
 }
+/* The writer's desk (docs/adr/0075-book-interface.md §11): the product's own Codex CLI picture, a
+   walnut desk with its green blotter, under a lighter veil than the key art had. */
+.workshop-desk {
+  background: var(--book-desk) center / cover no-repeat;
+  background-color: var(--ink-950);
+}
+.workshop-desk + .workshop-scrim {
+  background: linear-gradient(rgb(8 10 16 / 0.62), rgb(8 10 16 / 0.78));
+}
 .workshop-content {
   max-width: 1240px;
   margin-inline: auto;

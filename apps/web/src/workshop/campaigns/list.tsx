@@ -7,6 +7,8 @@ import { EnterCampaignButton } from '../activation/enter-button.tsx';
 import type { WorkshopClient } from '../client.ts';
 import { useRequestSignal } from '../use-request-signal.ts';
 import { workshopDraftPath } from '../route.ts';
+import { ShelfBook } from '../../session/shelf-book.tsx';
+import { campaignAppearance } from '../../visual/campaign-themes/index.ts';
 
 export function OwnedCampaigns({
   client,
@@ -92,36 +94,43 @@ export function OwnedCampaigns({
       ) : rows.length === 0 ? (
         <p>{t('Your confirmed campaigns will appear here after preparation finishes.')}</p>
       ) : (
-        <ul className="workshop-campaign-list">
+        <ul className="workshop-campaign-list shelf-row">
           {rows.map((campaign) => (
-            <li key={campaign.campaignId}>
-              <h3>{campaign.title}</h3>
-              <p>
-                {t('Confirmed revision: {revision}', { revision: campaign.revision })} ·{' '}
-                <time dateTime={campaign.publishedAt}>
-                  {new Intl.DateTimeFormat(language, { dateStyle: 'medium' }).format(
-                    new Date(campaign.publishedAt),
-                  )}
-                </time>
-              </p>
-              <EnterCampaignButton client={client} campaignId={campaign.campaignId} />
-              <a
-                href={workshopDraftPath(campaign.draftId)}
-                onClick={(event) => {
-                  if (
-                    event.button !== 0 ||
-                    event.metaKey ||
-                    event.ctrlKey ||
-                    event.shiftKey ||
-                    event.altKey
-                  )
-                    return;
-                  event.preventDefault();
-                  onOpenDraft(campaign.draftId);
-                }}
-              >
-                {t('Open source draft')}
-              </a>
+            <li
+              key={campaign.campaignId}
+              className="shelf-item"
+              {...campaignAppearance(campaign.title)}
+            >
+              <ShelfBook title={campaign.title} />
+              <div className="shelf-label" data-surface="paper">
+                <h3>{campaign.title}</h3>
+                <p>
+                  {t('Confirmed revision: {revision}', { revision: campaign.revision })} ·{' '}
+                  <time dateTime={campaign.publishedAt}>
+                    {new Intl.DateTimeFormat(language, { dateStyle: 'medium' }).format(
+                      new Date(campaign.publishedAt),
+                    )}
+                  </time>
+                </p>
+                <EnterCampaignButton client={client} campaignId={campaign.campaignId} />
+                <a
+                  href={workshopDraftPath(campaign.draftId)}
+                  onClick={(event) => {
+                    if (
+                      event.button !== 0 ||
+                      event.metaKey ||
+                      event.ctrlKey ||
+                      event.shiftKey ||
+                      event.altKey
+                    )
+                      return;
+                    event.preventDefault();
+                    onOpenDraft(campaign.draftId);
+                  }}
+                >
+                  {t('Open source draft')}
+                </a>
+              </div>
             </li>
           ))}
         </ul>
