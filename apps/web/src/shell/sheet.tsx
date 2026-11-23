@@ -11,6 +11,10 @@ import { sheetElementId, type SheetId } from './use-shell.ts';
  */
 export const SheetSurfaceContext = createContext<'paper' | null>(null);
 
+/** The surface for an element's `data-surface`: paper in a book, nothing elsewhere. */
+export const usePaperSurface = (): 'paper' | undefined =>
+  useContext(SheetSurfaceContext) ?? undefined;
+
 /**
  * One of the dock's sections (docs/STAGE_320_DESIGN.md §5.1): it takes the whole stage, the dock
  * staying in reach under it, and closes by its Close button, by Escape or by its dock button. A

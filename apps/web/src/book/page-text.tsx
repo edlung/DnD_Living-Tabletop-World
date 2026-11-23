@@ -94,10 +94,16 @@ export function PageText({
   const signature = units.map((unit) => unit.text).join('\u0001');
   // Where each screen starts, as an index into the units.
   const [starts, setStarts] = useState<readonly number[]>([0]);
+  // The room the text had when it last took more screens: the turn row under the text changes with
+  // their count (a part's number, the path's button), and with it the room, so fewer screens are
+  // taken back only once the room has clearly grown — never back and forth (the row would move
+  // under a press that waits for it to stand still).
+  const split = useRef<{ readonly room: number; readonly text: number } | null>(null);
   useLayoutEffect(() => {
     const box = frame.current;
     const probe = measure.current;
     if (!box || !probe) return;
+    split.current = null;
     const fit = () => {
       const room = box.clientHeight;
       const marks = [...probe.querySelectorAll<HTMLElement>('[data-unit]')];
@@ -114,7 +120,22 @@ export function PageText({
           top = mark.offsetTop;
         }
       });
-      setStarts((current) => (current.join() === next.join() ? current : next));
+      // The text's own height: a larger or smaller size is a new text, not a moving row.
+      const text = probe.scrollHeight;
+      setStarts((current) => {
+        if (current.join() === next.join()) return current;
+        const held = split.current;
+        if (
+          next.length < current.length &&
+          held !== null &&
+          held.text === text &&
+          room < held.room + 32
+        ) {
+          return current;
+        }
+        if (next.length > current.length) split.current = { room, text };
+        return next;
+      });
     };
     fit();
     const watch = new ResizeObserver(fit);

@@ -127,6 +127,8 @@
  */
 [data-surface='paper'] {
   color-scheme: light;
+  /* Words written straight on the page take its ink: the colour body passed down is the dark one. */
+  color: var(--text);
   /* The dark grounds of fields and cards become lighter paper: dark ink stays readable on them. */
   --ink-950: #f6efdf;
   --ink-900: #efe5cc;

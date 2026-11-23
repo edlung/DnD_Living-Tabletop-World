@@ -15,6 +15,13 @@ registerRussian({
   Pages: 'Страницы',
   'Larger text': 'Крупный текст',
   'This campaign has no book to read here.': 'У этой кампании пока нет книги.',
+  'Assembled from the campaign itself': 'Собрано из самой кампании',
+  'The ribbon is in chapter {number}, “{title}”: open the story there':
+    'Закладка в главе {number} «{title}»: открыть историю там',
+  'Ch.': 'Гл.',
+  'Open {place} in the Scene': 'Открыть место «{place}» в сцене',
+  'Choose a person or a thing on the left page: its card opens here.':
+    'Выберите человека или вещь на левой странице — здесь откроется их карточка.',
   'Your place in the book is not saved yet — it will be with the next change.':
     'Закладка и заметки не сохранились. Сохраним при следующей правке.',
   // The left page

@@ -53,11 +53,14 @@ export function BookSheet({
   shell,
   book,
   directory,
+  onPlace,
 }: {
   readonly api: WorldApi;
   readonly shell: Shell;
   readonly book: DmBook;
   readonly directory: readonly EntityRef[];
+  /** Opens a place of the story in the Scene, its card on the spread's right page. */
+  readonly onPlace: (entityId: string) => void;
 }) {
   const t = useT();
   const open = shell.sheet === 'book';
@@ -82,6 +85,7 @@ export function BookSheet({
       opened={book.opened}
       directory={directory}
       open={open}
+      onPlace={onPlace}
     />
   );
 }
@@ -93,10 +97,12 @@ function OpenBook({
   opened,
   directory,
   open,
+  onPlace,
 }: {
   readonly api: WorldApi;
   readonly shell: Shell;
   readonly book: DmBook;
+  readonly onPlace: (entityId: string) => void;
   readonly opened: OpenedBook;
   readonly directory: readonly EntityRef[];
   readonly open: boolean;
@@ -255,7 +261,11 @@ function OpenBook({
             <article className="dmb-page dmb-left" aria-label={t('The story')}>
               <p className="dmb-eyebrow">
                 <span>{trail}</span>
-                <span>{nameOf(leaf.page?.place ?? leaf.chapter.place)}</span>
+                <PlaceLink
+                  name={nameOf(leaf.page?.place ?? leaf.chapter.place)}
+                  entityId={opened.ids.entities[leaf.page?.place ?? leaf.chapter.place]}
+                  onPlace={onPlace}
+                />
               </p>
               <div className="dmb-head">
                 <h3 ref={title} className="dmb-title" tabIndex={-1}>
@@ -287,6 +297,7 @@ function OpenBook({
                     ? t('Can be read aloud')
                     : t('For the DM: tell it in your own words')}
                 {leaf.page?.aftermath === true && ` · ${t('The DM’s notes after the scene')}`}
+                {content.assembled === true && ` · ${t('Assembled from the campaign itself')}`}
               </p>
               <PageText
                 key={leaf.key}
@@ -436,5 +447,31 @@ function OpenBook({
         )}
       </div>
     </Sheet>
+  );
+}
+
+/** Where a page plays: a press opens that place in the Scene (docs/adr/0075-book-interface.md §5). */
+function PlaceLink({
+  name,
+  entityId,
+  onPlace,
+}: {
+  readonly name: string;
+  readonly entityId: string | undefined;
+  readonly onPlace: (entityId: string) => void;
+}) {
+  const t = useT();
+  if (entityId === undefined) return <span>{name}</span>;
+  return (
+    <button
+      type="button"
+      className="dmb-place"
+      aria-label={t('Open {place} in the Scene', { place: name })}
+      onClick={() => {
+        onPlace(entityId);
+      }}
+    >
+      {name}
+    </button>
   );
 }

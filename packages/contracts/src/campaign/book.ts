@@ -224,6 +224,11 @@ export const campaignBookSchema = z
      * adventures, the second layer): the server keeps it closed until this is gone.
      */
     awaitingReading: z.literal(true).exactOptional(),
+    /**
+     * A book no one wrote: assembled on the server from what the campaign already holds, its
+     * situations or its places, with every phrase the campaign's own (docs/adr/0075 §5).
+     */
+    assembled: z.literal(true).exactOptional(),
     /** The campaign's sentence about the order of its chapters, where it has one. */
     order: text.exactOptional(),
     chapters: z.array(campaignBookChapterSchema).min(1).max(40),

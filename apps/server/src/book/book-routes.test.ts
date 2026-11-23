@@ -93,20 +93,25 @@ describe('the DM’s book', () => {
     expect((await engine.load('ravenford'))?.history.length).toBe(before);
   });
 
-  it('keeps a book closed while it waits for the owner’s reading', async () => {
-    const closed = { ...testDm(), book: { builtIn: await loadBuiltInBooks() } };
+  it('keeps a written book closed while it waits for the owner’s reading: the world’s own opens', async () => {
+    const builtIn = await loadBuiltInBooks();
+    const closed = { ...testDm(), book: { builtIn } };
     const { app } = await russian(closed);
     const response = await get(app, BOOK, TOKENS.dm);
-    expect([response.statusCode, response.json()]).toEqual([200, { book: null }]);
+    expect(response.statusCode).toBe(200);
+    const { book } = response.json<CampaignBookResponse>();
+    expect(book?.content.assembled).toBe(true);
+    expect(builtIn['ravenford']?.assembled).toBeUndefined();
     expect((await get(app, BOOK, TOKENS.player)).statusCode).toBe(404);
     const place = { ribbon: null, played: [], notes: {} };
-    expect((await post(app, PLACE, place, TOKENS.dm)).statusCode).toBe(404);
+    expect((await post(app, PLACE, place, TOKENS.dm)).statusCode).toBe(200);
   });
 
-  it('has no book for a campaign in a language its book is not written in, or with none wired', async () => {
+  it('opens the world’s own book in a language no book was written in; none without the routes', async () => {
     const english = await dmTable();
     tables.push(english);
-    expect((await get(english.app, BOOK, TOKENS.dm)).json()).toEqual({ book: null });
+    const { book } = (await get(english.app, BOOK, TOKENS.dm)).json<CampaignBookResponse>();
+    expect(book?.content.assembled).toBe(true);
     const full = testDm();
     const without = {
       substitutions: full.substitutions,
