@@ -35,7 +35,8 @@ BUILT_IN_POCKETS = {
 # Formulas a campaign may use, but not in every evening.
 ASK_EACH = re.compile(
     r'\b(?:[Сс]просите|[Пп]опросите|[Пп]редложите)\s+(?:у\s+)?(?:каждого|каждую|всех|игроков|стол|стола|сидящих)\b'
-    r'|\b[Пп]усть\s+каждый\b')
+    r'|\b[Пп]усть\s+каждый\b'
+    r'|(?:^|[.!?]\s+)[Кк]аждый(?:\s+игрок)?\s+(?:называет|выбирает|говорит|вспоминает|отмечает|рассказывает)\b')
 SMELL = re.compile(r'\b[Пп]ахн(?:ет|ут|ло)\b')
 NARRATIVE = {'readAloud', 'opening', 'ending', 'end', 'play', 'description', 'appearance', 'text',
              'look', 'line', 'knows', 'note', 'pitch', 'setting', 'public', 'voice'}
