@@ -6,6 +6,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { ignoreReaction } from './combat-bindings.ts';
 import { useCombatantLabels } from './labels.ts';
 import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
+import { useFoldOutSurface } from './fold-out.ts';
 
 /**
  * An attack's question and a rebuke's (docs/adr/0046-reactions-beyond-counterspell.md §3–4), shown
@@ -17,6 +18,7 @@ import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
  */
 export function AttackPrompt({ encounter, canAct, locked, blocked, onRun }: ReactionPromptProps) {
   const t = useT();
+  const surface = useFoldOutSurface();
   const ids = useId();
   const card = useAnnounceOnce(blocked);
   const labelOf = useCombatantLabels(encounter);
@@ -113,6 +115,7 @@ export function AttackPrompt({ encounter, canAct, locked, blocked, onRun }: Reac
     <section
       ref={card}
       className="reaction-prompt"
+      data-surface={surface}
       role="alertdialog"
       aria-labelledby={`${ids}-title`}
       aria-describedby={`${ids}-trigger`}

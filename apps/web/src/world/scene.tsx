@@ -9,6 +9,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { SceneObjects } from './scene-objects.tsx';
 import { SPREAD_TALK_ID, useSceneSpread } from './scene-spread.ts';
+import { useFoldOutSurface } from '../combat/fold-out.ts';
 
 export interface NearbyPlace {
   readonly entityId: string;
@@ -106,12 +107,14 @@ export function Scene({
   useLayoutEffect(() => {
     setTalkSlot(spread ? document.getElementById(SPREAD_TALK_ID) : null);
   }, [spread]);
+  // In a fight the place's card and who is at the table are the fold-out's margin, on paper too.
+  const paper = useFoldOutSurface() !== undefined;
   return (
     <section
       className="scene"
       aria-label={t('Scene')}
       data-spread={spread ? '' : undefined}
-      data-surface={spread ? 'paper' : undefined}
+      data-surface={spread || (paper && battlefield) ? 'paper' : undefined}
     >
       <header className="cartouche">
         <h2>{location.name}</h2>

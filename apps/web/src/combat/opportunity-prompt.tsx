@@ -7,6 +7,7 @@ import { ignoreReaction, opportunityAttack } from './combat-bindings.ts';
 import { weaponWords } from './combat-art.ts';
 import { useCombatantLabels } from './labels.ts';
 import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
+import { useFoldOutSurface } from './fold-out.ts';
 
 /** An attack's words: a stat block's own name, a character's weapon, or an Unarmed Strike. */
 export function attackWords(t: Translate, option: ReactionAttackOption): string {
@@ -33,6 +34,7 @@ export function OpportunityPrompt({
   onRun,
 }: ReactionPromptProps) {
   const t = useT();
+  const surface = useFoldOutSurface();
   const ids = useId();
   const card = useAnnounceOnce(blocked);
   const labelOf = useCombatantLabels(encounter);
@@ -45,6 +47,7 @@ export function OpportunityPrompt({
     <section
       ref={card}
       className="reaction-prompt"
+      data-surface={surface}
       role="alertdialog"
       aria-labelledby={`${ids}-title`}
       aria-describedby={`${ids}-trigger`}
