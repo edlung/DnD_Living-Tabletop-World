@@ -14,6 +14,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   stages follow one another, each on its own branch and pull request stacked on the one before.
   Merging, deployment and the rehearsal on the owner's tablet before Stage 1030 is deployed stay
   the owner's.
+- Status 2026-11-23: Stages 1000–1140 implemented, pull requests 78–81 and 84–94 stacked in order,
+  none merged or deployed; the closing report `reports/STAGE_1140_COMPLETION.md` holds the
+  acceptance table, what each stage left and the order to merge. Waiting for the owner: the
+  rehearsal on his tablet, then merging and deployment.
 
 ## Request — the DM's book, 2026-11-22
 

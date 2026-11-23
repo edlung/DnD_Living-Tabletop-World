@@ -53,9 +53,6 @@
   inline-size: 18px;
   block-size: 18px;
 }
-.dmb-marks-gap {
-  flex: 1 1 0;
-}
 
 /* The spread: two pages bound by the campaign's material. */
 .dmb-spread {

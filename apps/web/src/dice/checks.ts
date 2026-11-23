@@ -3,10 +3,6 @@ import type { Translate } from '@ltw/ui';
 
 import { ABILITY_NAMES, skillName } from '../character/words.ts';
 
-/** A check as a select's value: `skill:athletics`, `ability:str`, `save:dex`. */
-export const checkValue = (check: Check): string =>
-  check.kind === 'skill' ? `skill:${check.skill}` : `${check.kind}:${check.ability}`;
-
 export function checkOf(value: string): Check | null {
   const [kind, key] = value.split(':');
   if (kind === 'skill' && key && key in SKILLS) return { kind, skill: key as Skill };

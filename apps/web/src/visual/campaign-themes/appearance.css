@@ -36,14 +36,7 @@
   }
 
   [data-campaign-theme]
-    :is(
-      .hub-library-body,
-      .campaign-library-body,
-      .item-card,
-      .handout,
-      .kept-handout,
-      .map-canvas
-    ) {
+    :is(.campaign-library-body, .item-card, .handout, .kept-handout, .map-canvas) {
     border-block-start: 2px solid var(--table-edge);
   }
   [data-campaign-theme] :is(.hero-name, .item-card h3, .topbar-title h1, .book-header h2) {

@@ -176,7 +176,6 @@ registerRussian({
   'I am ready': 'Я готов',
   // The dock's More (ADR 0043 §3)
   More: 'Ещё',
-  'More tools': 'Другие инструменты',
   // The campaign's options (docs/adr/0056-characters-from-the-srd.md §3)
   'Campaign options': 'Параметры кампании',
   'Hit points at a new level': 'Хиты на новом уровне',

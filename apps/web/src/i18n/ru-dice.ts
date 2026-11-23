@@ -43,7 +43,6 @@ registerRussian({
     'Героическое вдохновение: перебросить d20. В счёт пойдёт новый бросок.',
   'rolled again, does not count': 'переброшен, не в счёт',
   'Heroic Inspiration reroll': 'переброс за вдохновение',
-  'Dice sound and motion': 'Звук и движение кубиков',
   'Sound of the dice': 'Звук кубиков',
   Volume: 'Громкость',
   'Dice rolling across the screen': 'Кубики катятся по экрану',

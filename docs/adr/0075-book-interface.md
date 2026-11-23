@@ -286,6 +286,18 @@
 6. No provider is added and no spending rule changes (ADR 0032); no workshop request, nonce or
    consent changes.
 
+### 14. Closing (Stage 1140)
+
+1. The old dock's styles are removed (its components went in Stages 1030 and 1040); the marker it
+   drew stays for the bookmarks; `--dock-h` stays as the height kept clear at a page's foot.
+2. The dark tokens stay: the fight's narrow column, the world preview's proof, the table's screen
+   and every surface outside a page still stand on the dark ground, and paper is the token scope
+   over it (decision 10). No token is unused.
+3. The dictionaries lose the phrases no screen says any more (25), the client two functions nobody
+   calls.
+4. What every stage left undone is gathered in the closing report, with the acceptance map's rows
+   by book and stage; nothing of it is hidden in a stage's report alone.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through
