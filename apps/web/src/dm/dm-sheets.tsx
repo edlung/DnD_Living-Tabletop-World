@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
 import type { useAuthoring } from '../authoring/use-authoring.ts';
 import { BookSheet } from '../book/book-sheet.tsx';
+import { SceneRibbon } from '../book/scene-ribbon.tsx';
 import { useDmBook } from '../book/use-book.ts';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
@@ -94,7 +95,16 @@ export function DmSheets({
   );
   return (
     <>
-      <BookSheet api={api} shell={shell} book={book} directory={directory} />
+      <BookSheet
+        api={api}
+        shell={shell}
+        book={book}
+        directory={directory}
+        onPlace={(entityId) => {
+          onShowEntity(entityId, 'location');
+        }}
+      />
+      <SceneRibbon book={book} shell={shell} placeId={place?.locationId ?? null} />
       <Sheet
         id="party"
         title={t('Party (DM)')}

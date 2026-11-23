@@ -39,6 +39,7 @@ import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
 import { Scene } from './scene.tsx';
+import { spreadShown } from './scene-spread.ts';
 import { SessionTitle } from './session-title.tsx';
 import { UndoneNotice } from './undone-notice.tsx';
 import { useScene, useWorldData } from './use-world-data.ts';
@@ -113,8 +114,8 @@ export function World({
     }
     setRevision((value) => value + 1);
   }, []);
-  // Players act as their character; the DM runs encounters, and acts as a character only after
-  // choosing to (ADR 0033 §6). Answers are read against the records shown before asking.
+  // Players act as their character; the DM runs fights and acts as one by choice (ADR 0033 §6).
+  // Answers are read against the records shown before asking.
   const knowledge = data?.knowledge.knowledge ?? [];
   const action = useAction(api, canAct || standIn !== null || isDm, onResolved, (npcId, topicId) =>
     toldAbout(knowledge, npcId, topicId),
@@ -149,16 +150,16 @@ export function World({
     if (!focusOn(opener.current)) document.getElementById('world-main')?.focus();
     setSelected(null);
   };
-  // A conversation moves the covering selection's panel aside (mounted) and takes focus.
+  // A conversation moves a covering panel aside (mounted; not a column or the spread's card).
   const showConversation = () => {
-    if (!window.matchMedia(WIDE).matches) setSelected(null);
+    if (!window.matchMedia(WIDE).matches && !spreadShown()) setSelected(null);
     requestAnimationFrame(() => {
       document.getElementById(CONVERSATION_PANEL_ID)?.focus();
     });
   };
   // An NPC card's edit opens under Add; a panel over the sheet steps aside, as for a conversation.
   const showAuthoring = () => {
-    if (!window.matchMedia(WIDE).matches) setSelected(null);
+    if (!window.matchMedia(WIDE).matches && !spreadShown()) setSelected(null);
     shell.openSheet('add');
   };
   useEscape(() => {
@@ -188,8 +189,7 @@ export function World({
     locations[0]?.entityId ??
     '';
   const scene = useScene(api, placeId, revision);
-  // The live subscription also covers the selected entity and the viewed place (ADR 0033);
-  // while a reload has no place yet, it keeps following the previous one.
+  // Live updates follow the selection and the viewed place, or the last one while it reloads.
   const report = useLiveTarget();
   const focus = selected?.entityId ?? null;
   const settled = data !== null || placeId !== '';
@@ -223,8 +223,7 @@ export function World({
   const presentOne = (entityId: string) => view?.present.find((one) => one.entityId === entityId);
   const presentImage = (entityId: string) => presentOne(entityId)?.image ?? null;
   const presentFigure = (entityId: string) => presentOne(entityId)?.figure ?? null;
-  // The battle map is the encounter's place's (ADR 0035 §4): shown while the viewed place is
-  // where the fight is — its own presentation lists the combatants standing there.
+  // The battle map is the fight's place's (ADR 0035 §4), shown while that place is viewed.
   const fought =
     encounter !== null &&
     view !== null &&
@@ -452,6 +451,7 @@ export function World({
               panelRef={details}
               hidden={!selected}
               contentKey={`${shown?.entityId ?? ''}|${String(revision)}`}
+              battlefield={battlefield}
             >
               {shown && data && (
                 <EntityDetails

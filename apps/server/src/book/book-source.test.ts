@@ -83,26 +83,28 @@ describe('the book of a published campaign', () => {
       builtIn: {},
     });
     expect((await source.bookOf(state(OWN)))?.book.title).toBe('Маяк Между Ветрами');
-    // Renamed, or without something the book names, it is another campaign: no book.
+    // Renamed, or without something the book names, it is another campaign: the library's book
+    // is not its, and it opens the book assembled from its own package (ADR 0075 §5).
     const renamed = { ...edited, world: { ...edited.world, name: 'Другой маяк' } };
     const cut = { ...edited, clues: edited.clues.slice(1) };
     for (const other of [renamed, cut]) {
-      const none = createBookSource({
+      const own = createBookSource({
         library,
         published: published(revisionOf(other)),
         builtIn: {},
       });
-      expect(await none.bookOf(state(OWN))).toBeNull();
+      const found = await own.bookOf(state(OWN));
+      expect(found?.book.assembled).toBe(true);
+      expect(found?.book.title).toBe(other.world.name);
     }
   });
 
-  it('has none without the record of its publishing, without the library, or for another campaign', async () => {
+  it('has none without the record of its publishing or a campaign; without the library its own', async () => {
     const revision = revisionOf(content);
     const whole = createBookSource({ library, published: published(revision), builtIn: {} });
     expect(await whole.bookOf(state({ ownerId: 'owner-2', draftId: 'draft-1' }))).toBeNull();
-    expect(
-      await createBookSource({ published: published(revision), builtIn: {} }).bookOf(state(OWN)),
-    ).toBeNull();
+    const bare = createBookSource({ published: published(revision), builtIn: {} });
+    expect((await bare.bookOf(state(OWN)))?.book.assembled).toBe(true);
     expect(await createBookSource({ library, builtIn: {} }).bookOf(state(OWN))).toBeNull();
     expect(await whole.bookOf({ campaign: null } as unknown as WorldState)).toBeNull();
   });

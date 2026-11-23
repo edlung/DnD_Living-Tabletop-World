@@ -109,6 +109,7 @@ import './styles/dm-book.css';
 import './styles/dm-book-path.css';
 import './styles/book-kit.css';
 import './styles/book-shell.css';
+import './styles/scene-spread.css';
 import './styles/board-plates.css';
 import './styles/board-terrain.css';
 import './styles/images.css';

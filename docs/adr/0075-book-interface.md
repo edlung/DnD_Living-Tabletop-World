@@ -9,7 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
-- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book).
+- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book); Stage 1050 §5 (the Scene as a spread, a book for every campaign).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -116,6 +116,34 @@
    dialog it was, so a sheet with unsaved words still asks before it closes; it becomes a spread of
    the Heroes part in Stage 1070, with the DM's.
 4. Every section a player opens is on the book's paper inside the campaign's binding, as the DM's.
+
+### 5. The Scene as a spread; a book for every campaign (Stage 1050)
+
+1. **The Scene is a spread** in both books where two pages fit (at least 1024 px wide and 600 px
+   tall), and is not while a fight holds the stage (Stage 1060 makes the fight a fold-out). The left
+   page is the place as it is now, in reading order: its name and hour, the talk while it lasts,
+   who sits at the table, who and what is here as a list with their pictures, the ways beyond. The
+   right page is the place's plate and, under it, the card of what is chosen; with nothing chosen
+   the page says where a card comes from. A result is a slip at the foot of the right page.
+2. (S) Narrower, the Scene stays one page under its picture, as Stage 1040 left it; the phone's
+   page on paper comes with the hero's spread (Stage 1070).
+3. **The ribbon and the Scene point at each other.** The DM's ribbon hangs at the spine of the
+   Scene's spread with its chapter's number and opens the story there; the place a page of the
+   story plays at opens that place's card in the Scene. Reading never moves the ribbon (ADR 0074
+   §3.4).
+4. **Every campaign has a book.** Where none was written for it, the server assembles one from what
+   the campaign holds, with no model and no word of its own: a published campaign's package gives a
+   chapter a situation at one of its places (its words, the approaches as choices, the developments
+   as consequences, the campaign's opening on the first chapter), a world with no package behind it
+   (a built-in adventure) a chapter a place, the party's own first, with who is there and the clues
+   that lie there. Every page is the campaign's own text (layer 1) for the DM to tell — a
+   situation's words may hold what the party has not learned, so only the campaign's opening is
+   marked to be read aloud; a check, a person's wants, a handout it does not hold stay empty, for
+   the book to show as a gap (ADR 0074 §1.6). The book says on its pages that it was assembled. The
+   written book comes first wherever there is one; a built-in adventure's written book that waits
+   for the owner's reading stays closed, and the assembled one opens in its place. This is the one
+   read route with a second source (plan decision 12): `GET /campaigns/:id/dm/book`; no command and
+   no rule change.
 
 ## Consequences
 
