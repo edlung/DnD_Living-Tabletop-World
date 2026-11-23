@@ -226,11 +226,13 @@
   }
 }
 
-/* The Scene is a page too: the stage keeps clear of the tabs above and the bookmarks beside it. */
+/*
+ * The Scene is a page too: the stage keeps clear of the tabs above and the bookmarks beside it.
+ * The fight's panel lies inside the battlefield (`.combat-stage`), which is inset already.
+ */
 .world-main[data-book='dm'] .scene,
 .world-main[data-book='dm'] .stage-backdrop,
-.world-main[data-book='dm'] .combat-stage,
-.world-main[data-book] .combat-panel {
+.world-main[data-book='dm'] .combat-stage {
   inset: var(--pages-h) var(--parts-w) 10px 10px;
 }
 .world-main[data-book='dm'] .stage-backdrop {
@@ -240,9 +242,36 @@
 @media (max-width: 700px) {
   .world-main[data-book='dm'] .scene,
   .world-main[data-book='dm'] .stage-backdrop,
-  .world-main[data-book='dm'] .combat-stage,
-  .world-main[data-book] .combat-panel {
+  .world-main[data-book='dm'] .combat-stage {
     inset: var(--pages-h) 6px 64px;
+  }
+}
+/*
+ * In a fight no dock lies under the DM's page, and what the stage itself holds — whose turn it
+ * is, the switch to the scene, a reaction asked, a result — keeps to the page with the
+ * battlefield (battle-layout.css places them for a stage without a book).
+ */
+@media (min-width: 701px) {
+  .world-main[data-book='dm'].has-battle {
+    --dock-h: 0px;
+  }
+}
+@media (min-width: 1200px) {
+  .world-main[data-book='dm'] .stage--battle .turn-banner {
+    top: calc(var(--pages-h) + 98px);
+    left: 26px;
+  }
+  .world-main[data-book='dm'] .stage--battle .stage-switch {
+    top: calc(var(--pages-h) + 16px);
+    right: calc(var(--parts-w) + 16px);
+  }
+  .world-main[data-book='dm'] .stage .reaction-prompt {
+    top: calc(var(--pages-h) + 70px);
+    right: calc(var(--parts-w) + 16px);
+  }
+  .world-main[data-book='dm'].has-battle .outcome {
+    bottom: calc(10px + 34px + var(--tray-h, 0px));
+    left: calc(var(--hud-left) + 10px);
   }
 }
 

@@ -36,6 +36,13 @@ plan's main risk: this stage changes how the DM reaches everything, with no swit
 - The battlefield and its panels ran under the bookmarks; they sit inside the book like the scene.
 - The sign-out question had no colour under its glass; over a paper page its words lost contrast.
 - The helper opened a page twice when its part opened it already, closing it again.
+- (Found by CI after the report was first written; the session had wrongly put these failures down
+  to its worktree.) The fight's panel lies inside the battlefield, and both were inset by the book:
+  the panel moved twice, so the board was squeezed under the side panel ("Square 3, 3 shows nowhere
+  to point at"), and on a laptop's short screen the active combatant lay over who is at the table.
+  Only the battlefield is inset now; whose turn it is, the switch to the scene, a reaction asked and
+  a result keep to the page with it; no dock height is kept under the DM's fight. `encounters`,
+  `marks` and `party` pass again with every other fight journey (33 of 33).
 
 ## Session's decisions in this stage
 
