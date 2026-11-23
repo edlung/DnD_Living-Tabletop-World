@@ -20,15 +20,15 @@
     "source/clues.json": "8710e41ad024ec81b27c54b0c8649c28c581bc718274efd7766698486fbcf489",
     "source/handouts.json": "3cbab402bc97a129a2fd7d5aad5d7908a1cb22de88ee19e1c95da7dfb5e217bc",
     "source/encounters.json": "41e920fb6327fcea054ffc89f25061c4d3f90852309815c031dab4b8582dc689",
-    "source/sessions-1.json": "9c3c132a302982f2be278e6c024eebe846260c05a7f4fa10bff40d98230d4d42",
-    "source/sessions-2.json": "9e2c96e477de1f2ae8f9264eef3f1abdcc1cd3a1adaf654922757ef15b6d176d",
-    "source/sessions-3.json": "b5c166faba30259b2c40d17abb37b26af1f014ee23e30148f4798004336f63b2",
-    "source/sessions-4.json": "eb773e2b82f17941af7841249c6ec377275d0732a528a270a85a199ce7ae138f"
+    "source/sessions-1.json": "0aecf42c65acb93aed6f2d03c6d6524392bd615b5a920916b5d5134ca3eae1b7",
+    "source/sessions-2.json": "66cdc5a1df9c854d215fe6ba877accfb0e9d888a99ae01ea0621ab498fc9120b",
+    "source/sessions-3.json": "dbaa33d610e8572e104f4cd332b6199eed9cce7be935676b878a5af9bcea8bdb",
+    "source/sessions-4.json": "20435a3370dd483f870280bdfb3b122bd1d21a544b30931a917178dbce719ea7"
   },
   "variants": [
     {
       "size": 3,
-      "sha256": "30faa62e31ce4aa79d64278ba98577d1debcaaeba7fdb2dabe4503e5d3b432ed",
+      "sha256": "ef0c8c9c23840b86bfa8cd9a773acae59c911b8557b98a9591abf97a5362b8c9",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -41,7 +41,7 @@
     },
     {
       "size": 4,
-      "sha256": "71b1aba7e52c40647fe3b3d2ee49956c0be6721bf383036c2253d4ddbd2726e6",
+      "sha256": "4a3beca150b067982eefb466df91b3b737d7f31537b3bb3a67ce0cb5e8c93513",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -54,7 +54,7 @@
     },
     {
       "size": 5,
-      "sha256": "03758c291192fd603dafda4f82d04d2518d0916a8d94277dc31cf55da2d51291",
+      "sha256": "d5a1922cda3d0607fa7905d2cd562c93cd1961f30792a68e12258c2d37e493c4",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -67,7 +67,7 @@
     },
     {
       "size": 6,
-      "sha256": "076a347ad7c998366023be66fcb2ac14748eca7ad55245e373fb0e5afe937f25",
+      "sha256": "597bc9903a6d0989dd680a9b33ae21c2382e9af37e2e65f069114d5a2783c707",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -80,7 +80,7 @@
     },
     {
       "size": 7,
-      "sha256": "3ec5eb898ccec68e687f7117cd0dc9c62bb66e474d6b4977f06a732d304f219d",
+      "sha256": "795559f1ffbb9e61d2e99fead624a14e96dd6d944438e58e0b599e8dd357f70a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
