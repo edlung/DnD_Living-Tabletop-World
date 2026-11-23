@@ -78,8 +78,8 @@ test('one press tells the DM alone: not the other player, not the table’s scre
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);
   await openInvitation(brann, await field.inputValue());
-  await expect(elowen.locator('nav.dock')).toBeVisible(LIVE);
-  await expect(brann.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(elowen.locator('nav.book-parts')).toBeVisible(LIVE);
+  await expect(brann.locator('nav.book-parts')).toBeVisible(LIVE);
   await dm.keyboard.press('Escape');
 
   // The game plays: each player's own screen has the button, one press away; the DM's has none.

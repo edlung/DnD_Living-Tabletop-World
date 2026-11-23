@@ -67,8 +67,8 @@ test('a backstory is its player’s and the DM’s; a private note is its player
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);
   await openInvitation(brann, await field.inputValue());
-  await expect(elowen.locator('nav.dock')).toBeVisible(LIVE);
-  await expect(brann.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(elowen.locator('nav.book-parts')).toBeVisible(LIVE);
+  await expect(brann.locator('nav.book-parts')).toBeVisible(LIVE);
   await dm.keyboard.press('Escape');
 
   // Elowen's player opens the Story tab of her sheet: each part says first who reads it.
@@ -102,7 +102,7 @@ test('a backstory is its player’s and the DM’s; a private note is its player
 
   // Both are kept: a reload brings them back.
   await elowen.reload();
-  await expect(elowen.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(elowen.locator('nav.book-parts')).toBeVisible(LIVE);
   const again = await openCharacter(elowen, 'Story');
   await expect(again.getByLabel(/^Where does Elowen Starwhisper come from/)).toHaveValue(
     STORY,

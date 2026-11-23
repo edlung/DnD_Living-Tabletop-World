@@ -67,7 +67,7 @@ test('the table talks, whispers to the DM, and the DM answers one player', async
   await player.reload();
   await enterWorld(player, TOKENS.player, CAMPAIGN);
   await expect(player.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
-  await expect(dockButton(player, 'Chat')).toBeVisible();
+  await expect(dockButton(player, 'Chat')).toBeAttached();
   await player.waitForTimeout(1500);
   await expect(dockButton(player, 'Chat')).not.toHaveClass(/has-waiting/);
 

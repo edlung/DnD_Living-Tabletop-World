@@ -166,11 +166,14 @@ for (const width of [768, 1024]) {
       .click();
     await expect(player.locator('.outcome')).toBeVisible();
     await expect.poll(() => coveredDockButtons(player)).toEqual([]);
-    const [outcome, dock] = await Promise.all([
+    // The result keeps inside the stage, clear of the book's edge below it.
+    const [outcome, stage] = await Promise.all([
       player.locator('.outcome').boundingBox(),
-      player.locator('nav.dock').boundingBox(),
+      player.locator('.stage').boundingBox(),
     ]);
-    expect((outcome?.y ?? 0) + (outcome?.height ?? 0)).toBeLessThanOrEqual(dock?.y ?? 0);
+    expect((outcome?.y ?? 0) + (outcome?.height ?? 0)).toBeLessThanOrEqual(
+      (stage?.y ?? 0) + (stage?.height ?? 0),
+    );
   });
 }
 

@@ -18,8 +18,7 @@ import {
   type ActionNotice as Notice,
   type ExplorationIntent,
 } from '../exploration/use-action.ts';
-import { BookParts } from '../shell/book-parts.tsx';
-import { Dock } from '../shell/dock.tsx';
+import { WorldBookParts } from '../shell/book-parts.tsx';
 import { SheetSurfaceContext } from '../shell/sheet.tsx';
 import { focusOn, useEscape, useShell } from '../shell/use-shell.ts';
 import { ApprovedImages } from '../visual/approved-images.ts';
@@ -50,10 +49,9 @@ interface Selected {
 }
 
 /**
- * The world screen (docs/STAGE_320_DESIGN.md §5): the stage with the scene or the battlefield,
- * the selection's panel at the right, the dock and its sheets, and the Chronicle. It owns the
- * perspective's views, the selection and the one action in flight; everything visual (open
- * sheets, the stage's view) stays in its memory, and a perspective change remounts it.
+ * The world screen (docs/STAGE_320_DESIGN.md §5, docs/adr/0075-book-interface.md §3–§4): the
+ * stage, the selection's panel, the book's parts and pages, the Chronicle. It owns the views, the
+ * selection and the action in flight; what is visual stays in its memory.
  */
 export function World({
   api,
@@ -101,8 +99,7 @@ export function World({
   const dmImages = useDmImagesState(api, isDm, revision, () => {
     setRevision((value) => value + 1);
   });
-  // The DM's authoring session: the Add sheet and an NPC card's edit share it (SI-D8), and it
-  // restores the DM's open draft on mount (SI-D1); a lower perspective reads nothing.
+  // The DM's authoring session (SI-D8), restoring an open draft on mount (SI-D1).
   const authoring = useAuthoring(api, isDm, () => {
     setRevision((value) => value + 1);
   });
@@ -116,9 +113,8 @@ export function World({
     }
     setRevision((value) => value + 1);
   }, []);
-  // Players act as their character; the DM alone runs the existing encounter operations, and
-  // fights as a player's character only after choosing to, each command with its reason.
-  // Read when a question's answer arrives, from the records shown before it was asked.
+  // Players act as their character; the DM runs encounters, and acts as a character only after
+  // choosing to (ADR 0033 §6). Answers are read against the records shown before asking.
   const knowledge = data?.knowledge.knowledge ?? [];
   const action = useAction(api, canAct || standIn !== null || isDm, onResolved, (npcId, topicId) =>
     toldAbout(knowledge, npcId, topicId),
@@ -153,8 +149,7 @@ export function World({
     if (!focusOn(opener.current)) document.getElementById('world-main')?.focus();
     setSelected(null);
   };
-  // The conversation holds what to say: on a screen where the selection's panel covers the
-  // stage it steps aside (staying mounted), and focus goes to the conversation.
+  // A conversation moves the covering selection's panel aside (mounted) and takes focus.
   const showConversation = () => {
     if (!window.matchMedia(WIDE).matches) setSelected(null);
     requestAnimationFrame(() => {
@@ -211,13 +206,13 @@ export function World({
   const openSession = data?.sessions.sessions.find((session) => session.endedAt === null);
   const encounter = data?.encounter.encounter ?? null;
   const actorId = data?.surroundings?.actingCharacterId ?? null;
-  // A reaction asked of this viewer comes before reading: an open book closes, keeping its place,
-  // and the question takes focus once it has (each window once; the reader may open it again).
+  // A reaction asked of this viewer comes first; an open book or page steps aside, its place kept.
   const askedWindow = askedWindowOf(encounter, actorId);
   useEffect(() => {
     if (askedWindow === null) return;
     shell.closeChronicle();
     shell.closeHero();
+    shell.dismissSheet();
   }, [askedWindow]);
   useFightTakesStage(encounter?.encounterId ?? null, details, () => {
     setSelected(null);
@@ -240,8 +235,7 @@ export function World({
   const discovered = revealedIds(action.notice?.outcome);
   const notice = action.notice === dismissed ? null : action.notice;
   const speaking = conversation !== null && canAct && encounter === null;
-  // The line just spoken shows in the conversation in the same render as its result, so the
-  // words are announced once, there (the result leaves them out).
+  // The line just spoken shows in the conversation with its result: announced once, there.
   const spoken =
     action.notice?.speech && action.notice.speakerId === conversation?.npcId
       ? action.notice.speech
@@ -272,10 +266,10 @@ export function World({
         <main
           id="world-main"
           className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
-          data-book={isDm ? 'dm' : undefined}
+          data-book={isDm ? 'dm' : 'hero'}
           tabIndex={-1}
         >
-          <SheetSurfaceContext.Provider value={isDm ? 'paper' : null}>
+          <SheetSurfaceContext.Provider value="paper">
             <SessionTitle slot={data ? sessionSlot : null} title={openSession?.title} />
             <div
               className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
@@ -430,20 +424,12 @@ export function World({
                   }}
                 />
               )}
-              {isDm ? (
-                <BookParts shell={shell} drafts={authoring.drafts.length} />
-              ) : (
-                <Dock
-                  shell={shell}
-                  onCharacter={
-                    acting && actorId !== null
-                      ? () => {
-                          shell.openHero(actorId);
-                        }
-                      : undefined
-                  }
-                />
-              )}
+              <WorldBookParts
+                shell={shell}
+                isDm={isDm}
+                drafts={isDm ? authoring.drafts.length : 0}
+                hero={acting ? actorId : null}
+              />
             </div>
             <WorldOverlays
               api={api}

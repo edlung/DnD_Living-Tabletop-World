@@ -9,7 +9,7 @@
   dialog) and the dark-only rule of `apps/web/src/styles/tokens.css`; ADR 0043 §3 (the DM's dock and
   its fit); ADR 0074 §1.7 (the book beside the dock). Each amendment takes effect with the stage
   that builds it; until then the amended text stands.
-- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen).
+- Stage 1020 added §2 (the kit, paper, the books' materials); Stage 1030 §3 (the DM's screen); Stage 1040 §4 (the hero's book).
 - Context: On 2026-11-19 the owner said the product looks like an Excel table; on 2026-11-22 he made
   a book the base of the DM's screen, and Stages 900–930 put one beside the dock for all 55
   campaigns. On 2026-11-23 he asked that the whole interface become a book and that everything go
@@ -103,6 +103,19 @@
    they opened are parts and pages of the DM's book itself.
 5. **Not in this stage**: the running head (place, time, the meeting) stays the top bar; the dice
    at the foot of every page, slips and the Scene as a spread come with Stages 1050 and 1080.
+
+### 4. A hero's book (Stage 1040)
+
+1. **Five parts, no dock.** A player's screen is the hero's book: Scene, Hero, World, Journal and
+   At the table, with the open part's pages as tabs (World: Places; Journal: Journal, Chronicle;
+   At the table: Dice, Chat, the table's screen online, Rules). On a phone the bookmarks run along
+   the bottom with their icons. The dock, its More and its fitting are gone from the product.
+2. **What waits marks its bookmark**: a check the DM asked marks At the table and its Dice, a
+   handout the Journal, a message the talk.
+3. **The hero's sheet** opens from the Hero's bookmark, on the book's paper. (S) It stays the
+   dialog it was, so a sheet with unsaved words still asks before it closes; it becomes a spread of
+   the Heroes part in Stage 1070, with the DM's.
+4. Every section a player opens is on the book's paper inside the campaign's binding, as the DM's.
 
 ## Consequences
 

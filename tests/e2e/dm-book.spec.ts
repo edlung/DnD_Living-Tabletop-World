@@ -163,9 +163,9 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
 
 test('a player has no book and cannot read the DM’s', async ({ page }) => {
   await enterWorld(page, TOKENS.player, campaign());
-  const dock = page.locator('nav.dock');
-  await expect(dock).toBeVisible(LIVE);
-  await expect(page.locator('nav.book-parts')).toHaveCount(0);
+  // A player's book has no Book part: the DM's book is the DM's alone.
+  await expect(page.locator('nav.book-parts')).toBeVisible(LIVE);
+  await expect(bookPart(page, 'Книга')).toHaveCount(0);
   for (const token of [TOKENS.player, TOKENS.outsider]) {
     const read = await page.request.get(`/api/campaigns/${campaign()}/dm/book`, {
       headers: { authorization: `Bearer ${token}` },

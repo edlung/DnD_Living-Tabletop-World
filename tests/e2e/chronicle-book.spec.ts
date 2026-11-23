@@ -4,7 +4,7 @@ import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 import { ADD_TO_THE_WORLD, TOMAS_REQUEST } from './support/authoring.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { dockButton, openChronicle, openSheet } from './support/shell.ts';
+import { openChronicle, openSheet, revealDockButton } from './support/shell.ts';
 
 /**
  * The Chronicle as a book and a flashback as a scene (docs/STAGE_320_DESIGN.md §5.6–7): the
@@ -57,7 +57,7 @@ test('the player reads a chapter as a book, opens a flashback and returns by key
   const context = await browser.newContext();
   const page = await context.newPage();
   await enterWorld(page, TOKENS.player, campaign);
-  const opener = dockButton(page, 'Chronicle');
+  const opener = await revealDockButton(page, 'Chronicle');
   await opener.click();
   // The left page: title, the place's plate (the honest mist), the prose with margin notes.
   await expect(chapter(page).getByRole('heading', { name: TITLE })).toBeVisible();

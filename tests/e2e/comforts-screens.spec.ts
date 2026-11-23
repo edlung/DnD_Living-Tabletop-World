@@ -51,7 +51,7 @@ test('the TV shows the table’s cheers and the DM’s break', async ({ browser 
   const link = await invite(dm, ELOWEN);
   const player = await freshPage(browser);
   await openInvitation(player, link);
-  await expect(player.locator('nav.dock')).toBeVisible(LIVE);
+  await expect(player.locator('nav.book-parts')).toBeVisible(LIVE);
   await openSheet(player, 'Dice');
   await player
     .getByRole('group', { name: 'Without words', exact: true })

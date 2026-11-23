@@ -75,7 +75,9 @@ test('an investigation object shows its approved picture in its panel', async ({
   await expect(details.locator('.details-header .medallion')).toHaveCount(0);
   // The player has no image controls.
   await expect(details.getByRole('region', { name: 'Images (DM)' })).toHaveCount(0);
-  await expect(page.locator('nav.dock').getByRole('button', { name: 'Images' })).toHaveCount(0);
+  await expect(
+    page.locator('nav.book-pages').getByRole('button', { name: 'Images', includeHidden: true }),
+  ).toHaveCount(0);
 });
 
 test('the Russian player sees the same pictures', async ({ page }) => {

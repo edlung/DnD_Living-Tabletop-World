@@ -1,25 +1,18 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 /**
- * The shell (docs/STAGE_320_DESIGN.md §5.1): one section at a time over the whole stage; a closed
- * section stays mounted but hidden, so a journey opens the one that holds a control before it
- * uses that control. A player reaches sections from the dock, whose last items may wait under More
- * (docs/adr/0043-dm-screen.md §3). The DM's screen is the DM's book (docs/adr/0075-book-interface.md
- * §3): a section is a page of one of seven parts, its tab named as the dock's button was; a part
- * not open keeps its pages' tabs hidden, and `revealDockButton` opens the part first. Names are
- * the campaign's language.
+ * The book is the screen (docs/adr/0075-book-interface.md §3, §4): the DM's seven parts and a
+ * hero's five; a section is a page of one part, its tab named as the dock's button was. A part not
+ * open keeps its pages' tabs in the document, hidden, and `revealDockButton` opens the part first.
+ * A closed section stays mounted, so a journey opens the one that holds a control before using it.
+ * Names are the campaign's language.
  */
 export const dockButton = (page: Page, name: string): Locator =>
-  page
-    .locator('nav.dock, nav.book-pages')
-    .getByRole('button', { name, exact: true, includeHidden: true });
+  page.locator('nav.book-pages').getByRole('button', { name, exact: true, includeHidden: true });
 
 /** The DM's book's part buttons (Книга, Сцена, Герои, Мир, Журнал, За столом, Правила). */
 export const bookPart = (page: Page, name: string): Locator =>
   page.locator('nav.book-parts').getByRole('button', { name, exact: true });
-
-/** The dock's More, where items that do not fit wait. */
-export const dockMore = (page: Page): Locator => page.locator('#dock-more');
 
 /** Two frames: a new width has reached the dock, and the dock has measured itself again. */
 export async function dockSettled(page: Page): Promise<void> {
@@ -42,12 +35,7 @@ export async function revealDockButton(page: Page, name: string): Promise<Locato
   await expect(button).toBeAttached();
   if (!(await button.isVisible())) {
     const part = await button.getAttribute('data-part');
-    if (part !== null) {
-      await page.locator(`nav.book-parts button[data-part="${part}"]`).click();
-    } else {
-      const more = dockMore(page);
-      if ((await more.getAttribute('aria-expanded')) !== 'true') await more.click();
-    }
+    await page.locator(`nav.book-parts button[data-part="${part ?? ''}"]`).click();
   }
   await expect(button).toBeVisible();
   return button;
@@ -117,18 +105,15 @@ export async function expectOnTop(locator: Locator): Promise<void> {
 }
 
 /**
- * The dock fits its screen (docs/adr/0043-dm-screen.md §3): it never scrolls sideways, and nothing
- * lies over an item it shows or over its More.
+ * The book's bookmarks and the open part's tabs fit the screen (docs/adr/0075-book-interface.md
+ * §3, §4): the page never scrolls sideways, and nothing lies over a bookmark or a tab it shows.
  */
 export async function expectDockFits(page: Page): Promise<void> {
   await dockSettled(page);
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth - innerWidth))
     .toBeLessThanOrEqual(1);
-  // A player's dock, or the DM's book: its bookmarks and the open part's tabs.
-  const shown = page.locator(
-    'nav.dock .dock-items button, #dock-more, nav.book-parts button, nav.book-pages ul:not([hidden]) button',
-  );
+  const shown = page.locator('nav.book-parts button, nav.book-pages ul:not([hidden]) button');
   for (const button of await shown.all()) {
     await expectOnTop(button);
     // Its words stay inside it: a word wider than its button runs into the next one.
@@ -143,7 +128,17 @@ export async function expectDockFits(page: Page): Promise<void> {
  */
 export async function openCharacter(page: Page, tab: string, dock = 'Character'): Promise<Locator> {
   const dialog = page.getByRole('dialog');
-  if (!(await dialog.isVisible())) await (await revealDockButton(page, dock)).click();
+  if (!(await dialog.isVisible())) {
+    // The Hero's bookmark opens the sheet itself; its tab, where it shows, does too.
+    const opener = dockButton(page, dock);
+    if (await opener.isVisible()) await opener.click();
+    else
+      await page
+        .locator(
+          `nav.book-parts button[data-part="${(await opener.getAttribute('data-part')) ?? 'hero'}"]`,
+        )
+        .click();
+  }
   await expect(dialog).toBeVisible();
   await dialog.getByRole('tab', { name: tab, exact: true }).click();
   await expect(dialog.getByRole('tab', { name: tab, exact: true })).toHaveAttribute(
