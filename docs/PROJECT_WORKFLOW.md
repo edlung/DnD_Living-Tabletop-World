@@ -14,10 +14,21 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   stages follow one another, each on its own branch and pull request stacked on the one before.
   Merging, deployment and the rehearsal on the owner's tablet before Stage 1030 is deployed stay
   the owner's.
-- Status 2026-11-23: Stages 1000–1140 implemented, pull requests 78–81 and 84–94 stacked in order,
-  none merged or deployed; the closing report `reports/STAGE_1140_COMPLETION.md` holds the
-  acceptance table, what each stage left and the order to merge. Waiting for the owner: the
-  rehearsal on his tablet, then merging and deployment.
+- Status 2026-11-23: Stages 1000–1140 implemented, pull requests 78–81 and 84–94 stacked in order;
+  the closing report `reports/STAGE_1140_COMPLETION.md` holds the acceptance table, what each
+  stage left and the order to merge.
+- Merged 2026-11-24 on the owner's «делаем слияние» and «Yes, merge when green»: pull requests
+  78–94 in order (83, the campaign texts, among them), `main` at `644e35ed`; CI on that commit
+  green (Chromium, iPad, WebKit); locally typecheck, lint, format, context budget and 5,125 unit
+  tests pass.
+- Deployed to the VPS on 2026-11-24 on the owner's «Выкатывай», without the rehearsal on his
+  tablet (his choice): git bundle `850cfcd1..644e35ed`, tag `644e35ed0168` (previous
+  `850cfcd1b7d9`), protected dump `ltw-predeploy-20261124T063249Z.dump`, no new migration; every
+  service healthy, `readyz` 200, no errors in the server's log; the site's bundle holds the shelf
+  and the desk, and the product's book materials (`/book-materials/ltw/…`) are served. Looked at
+  signed in, in the owner's browser: a campaign opens as the DM's book with its bookmarks, and
+  "My campaigns" is the shelf of bound books. Pull request 95 (merged after 644e35ed) is not in
+  this deployment.
 
 ## Request — the DM's book, 2026-11-22
 
