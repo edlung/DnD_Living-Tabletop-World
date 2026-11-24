@@ -298,6 +298,32 @@
 4. What every stage left undone is gathered in the closing report, with the acceptance map's rows
    by book and stage; nothing of it is hidden in a stage's report alone.
 
+### 15. The book's body and the room of a page (2026-11-24)
+
+The owner, on the deployed book: «Текущий вид меня не сильно впечатляет и кажется что не все
+функции достаточно очевидны» (`work-orders/BOOK_POLISH_2026-11-24.md`). Read in the running
+product, the shell had kept the sheet's frame inside the book. Decisions, the session's, his to
+overrule:
+
+1. **A page has one row at its head.** Wider than a phone, the part's tabs, Close and a page's own
+   views share the tabs' row; the section's title is for a screen reader, since its open tab and
+   bookmark say it. A phone keeps the title row. Close stays, as the owner asked of every section
+   (2026-11-21).
+2. **A page's own views stand at its head** (`Sheet`'s `tools`): the Book's "Pages" and "The path".
+3. **The story is read with the whole page.** No second binding inside the sheet; the Scene's card
+   waits on the Scene while the Book is open (it took a column beside it). Beside the Journal,
+   where a name can be chosen, the card's column stays.
+4. **A screen of the story never cuts a line.** The measure adds the first line's leading at the
+   head and the foot of a screen and sets linked words as the page sets them.
+5. **A bookmark keeps its word** on a tablet and a phone: the DM's screen is a tablet, and seven
+   pictures without words were seven guesses. The open part's bookmark is the rubric's red.
+6. **The book is a thing**: the block of pages lies under the page with its edges showing, the
+   binding's cloth is the ground from edge to edge, the campaign's name is stamped on the head
+   band, the part's pages are index tabs of the book's own paper. Drawn by the stylesheet from each
+   campaign's existing set (`styles/book-body.css`); a painted frame per campaign is a proposal,
+   not this section.
+7. The page's place does not move (`section-screens.spec.ts` measures it); no control is removed.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

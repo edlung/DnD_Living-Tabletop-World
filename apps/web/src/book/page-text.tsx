@@ -114,8 +114,14 @@ export function PageText({
       }
       const next = [0];
       let top = marks[0]?.offsetTop ?? 0;
+      // A sentence's box starts under its line's leading and ends above it: a screen takes that
+      // much more than its sentences' boxes, at its head and at its foot — or its last line is cut.
+      const leading = 2 * top;
       marks.forEach((mark, index) => {
-        if (index > (next.at(-1) ?? 0) && mark.offsetTop + mark.offsetHeight - top > room) {
+        if (
+          index > (next.at(-1) ?? 0) &&
+          mark.offsetTop + mark.offsetHeight - top + leading > room
+        ) {
           next.push(index);
           top = mark.offsetTop;
         }
@@ -185,9 +191,21 @@ export function PageText({
           const own = units
             .map((unit, index) => ({ unit, index }))
             .filter(({ unit }) => unit.passage === block.key);
+          // Words that open something are set wider and heavier than the text around them: the
+          // copy sets them the same way, or a line the page shows would not be in its measure.
           const marks = own.map(({ unit, index }) => (
             <span key={index} data-unit={index}>
-              {unit.text}
+              {page === null
+                ? unit.text
+                : runsOf(page, unit.text).map((run, at) =>
+                    run.opens ? (
+                      <span key={at} className="dmb-link">
+                        {run.text}
+                      </span>
+                    ) : (
+                      run.text
+                    ),
+                  )}
             </span>
           ));
           return block.aloud ? (

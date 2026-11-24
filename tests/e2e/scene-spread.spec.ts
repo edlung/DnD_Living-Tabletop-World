@@ -55,7 +55,13 @@ test('a player’s Scene is a spread: the place on the left, the plate and the c
   await expect(talk).toBeVisible();
   const spoken = await box(talk);
   expect(spoken.x).toBeGreaterThanOrEqual(left.x + left.width);
-  expect(spoken.y + spoken.height).toBeLessThanOrEqual((await box(card(page))).y + 1);
+  // (The card takes its place a frame after the talk is measured: the page is asked until it has.)
+  await expect
+    .poll(async () => {
+      const said = await box(talk);
+      return said.y + said.height - (await box(card(page))).y;
+    })
+    .toBeLessThanOrEqual(1);
   for (const name of ['Brann Ironvale', 'Tamsin Quickfoot', 'Mira Vale'])
     await expectOnTop(scene(page).getByRole('button', { name, exact: true }));
   await expectAccessible(page, 'a talk on the spread');

@@ -28,6 +28,7 @@ export function Sheet({
   glyph,
   open,
   onClose,
+  tools,
   children,
 }: {
   readonly id: SheetId;
@@ -35,6 +36,8 @@ export function Sheet({
   readonly glyph: GlyphName;
   readonly open: boolean;
   readonly onClose: () => void;
+  /** The page's own views (the book's pages and its path), beside Close at the page's head. */
+  readonly tools?: ReactNode;
   readonly children: ReactNode;
 }) {
   const t = useT();
@@ -59,6 +62,7 @@ export function Sheet({
       <header className="sheet-header">
         <Glyph name={glyph} className="sheet-glyph" />
         <h2 id={titleId}>{title}</h2>
+        {tools}
         <button
           type="button"
           className="sheet-close"
