@@ -120,8 +120,8 @@ registerRussian({
   CONSEQUENCE: 'ПОСЛЕДСТВИЕ',
   'Add to the world (DM)': 'Добавить в мир (мастер)',
   'Describe what to add': 'Опишите, что добавить',
-  'Add a young guard near North Gate who saw the caravan leave.':
-    'Добавь: молодой стражник у Северных ворот, который видел, как ушёл караван.',
+  'For example: a witness at the door who saw who left at night.':
+    'Например: свидетель у входа, который видел, кто ушёл ночью.',
   Propose: 'Предложить',
   'Authoring proposal': 'Предложение мастера',
   'Proposed changes': 'Предлагаемые изменения',

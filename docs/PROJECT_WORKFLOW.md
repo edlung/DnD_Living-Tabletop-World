@@ -2,7 +2,24 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current request — the whole interface as a book, 2026-11-23
+## Current request — the book's second pass, 2026-11-24
+
+- Owner, in one working session, on the deployed book: «доработать до конца задуманное, выявить
+  неудобства использования и предложить улучшения … Текущий вид меня не сильно впечатляет и
+  кажется что не все функции достаточно очевидны … Жду от тебя предложений.»
+  (`reviews/OWNER_BOOK_POLISH_2026-11-24.json`).
+- Done on branch `claude/book-interface-polish` (`work-orders/BOOK_POLISH_2026-11-24.md`, ADR 0075
+  §15, `reports/BOOK_POLISH_2026-11-24.md`): the book's body, one row at a page's head, the story
+  read with the whole page, bookmarks with words, the defects a reader met. Not merged, not
+  deployed.
+- The owner's choices in the question card the same day: the look is direction А (a real book,
+  with В's typography); the Scene becomes the DM's working spread and the Book stays as the
+  contents; the working spread comes first; the shell work goes to a pull request.
+- Authorized next: the DM's working spread (Stage 1150, its work order with its pull request). Still proposals, each
+  waiting for his word: the fight as one fold-out, the parts by tasks, the table's screen, the
+  shelf, a player's phone, new book materials for every campaign.
+
+## Request — the whole interface as a book, 2026-11-23
 
 - Owner, in one working session: «Задача - сделать план для преобразования всего интерфейса проекта
   в книгу. Чтобы все шло через книжный интерфейс.»; three choices in a question card («Заменять

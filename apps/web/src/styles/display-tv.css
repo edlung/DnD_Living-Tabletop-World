@@ -13,8 +13,9 @@ html.is-display {
 .display .display-battle .initiative .medallion {
   --m: clamp(2.75rem, 6.4vmin, 5.5rem);
 }
+/* Wide enough for "Неопознанное" whole at this size: a name broke inside the word. */
 .display .display-battle .initiative-entry {
-  width: clamp(4.6rem, 11.5vmin, 9rem);
+  width: clamp(5.4rem, 13.6vmin, 10.6rem);
 }
 .display .display-battle .initiative-name {
   font-size: clamp(0.9rem, 1.9vmin, 1.6rem);

@@ -1,0 +1,444 @@
+/*
+ * The book's body (work-orders/BOOK_POLISH_2026-11-24.md; docs/adr/0075-book-interface.md §15):
+ * the open book as a thing. The screen is the open cover from edge to edge — the campaign's cloth,
+ * its title stamped on the head; under the page lies the block of pages, its edges showing; the
+ * open part's pages are index tabs of the same paper; the bookmarks keep their words on a tablet;
+ * and a page has one row at its head where three stood (the part's tabs, the section's title with
+ * Close, the book's own views). The page's place is the shell's (book-shell.css) and does not
+ * move: this dresses what lies around and on it.
+ */
+.world-main[data-book] {
+  /* The stack of pages under the page: a lighter and a darker edge, from the page's own tones. */
+  --block-light: color-mix(in srgb, var(--page) 82%, white);
+  --block-dark: color-mix(in srgb, var(--page-floor) 62%, #4a3718);
+  /* Close's room in the tabs' row (its word and cross; a cross alone when the row is short). */
+  --close-w: 132px;
+  /* The focus ring of what stands on the cloth, kept for a page's own controls up there. */
+  --cloth-focus: var(--teal);
+  --cloth-focus-glow: var(--teal-glow);
+  background-image:
+    linear-gradient(rgb(0 0 0 / 0.42), rgb(0 0 0 / 0.42)),
+    var(--book-cover, var(--table-material, none));
+}
+.world-main[data-book] > .stage {
+  background-image:
+    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgb(0 0 0 / 0.34)),
+    linear-gradient(rgb(0 0 0 / 0.3), rgb(0 0 0 / 0.3)),
+    var(--book-cover, var(--table-material, none));
+  background-size: auto, auto, 320px;
+}
+
+/* The cover's head: the same cloth, the campaign's name stamped on it. */
+.session-shell:has(.world-main[data-book]) > .topbar {
+  border-bottom-color: rgb(0 0 0 / 0.5);
+  background:
+    linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.42)),
+    var(--book-cover, var(--table-material, none)) 0 0 / 320px,
+    var(--ink-900);
+  box-shadow:
+    inset 0 -1px 0 rgb(255 255 255 / 0.08),
+    0 3px 12px rgb(0 0 0 / 0.45);
+}
+.session-shell:has(.world-main[data-book]) .topbar-title {
+  border-left-color: rgb(255 255 255 / 0.18);
+}
+.session-shell:has(.world-main[data-book]) .topbar-title h1 {
+  color: var(--gold-bright);
+  letter-spacing: 0.02em;
+}
+/* The campaign's name and the meeting's keep the room the product's wordmark took. */
+@media (max-width: 1700px) {
+  .session-shell:has(.world-main[data-book]) .topbar-wordmark {
+    display: none;
+  }
+}
+
+/*
+ * The block of pages: a rim of stacked edges round the page, lying on the cloth with its shadow.
+ * A phone's page is the stage itself and a narrow fight scrolls as one column: neither has a rim.
+ */
+@media (min-width: 768px) and (min-height: 501px) {
+  .world-main[data-book] > .stage::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: calc(var(--pages-h) - 2px) calc(var(--parts-w) - 7px) calc(var(--page-bottom) - 7px) 3px;
+    border-radius: 11px;
+    background:
+      repeating-linear-gradient(to bottom, var(--block-light) 0 1px, var(--block-dark) 1px 2.5px)
+        bottom / 100% 9px no-repeat,
+      repeating-linear-gradient(to right, var(--block-light) 0 1px, var(--block-dark) 1px 2.5px);
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 0.6),
+      0 12px 28px rgb(0 0 0 / 0.55),
+      0 2px 6px rgb(0 0 0 / 0.5);
+    pointer-events: none;
+  }
+}
+@media (max-width: 1199px) {
+  .world-main[data-book] > .stage--battle::after {
+    display: none;
+  }
+}
+
+/* Paper has depth: a faint line where the leaf ends and a warmer edge all round. */
+.world-main[data-book] .sheet,
+.world-main[data-book] .scene[data-spread] {
+  box-shadow:
+    inset 0 0 0 1px rgb(43 32 21 / 0.14),
+    inset 0 0 34px rgb(122 84 24 / 0.13);
+}
+
+/* --- The open part's pages: index tabs of the book's own paper, standing on the block. */
+.book-pages {
+  padding-bottom: 0;
+}
+.book-page-tab {
+  min-height: 38px;
+  border: 0;
+  border-radius: 9px 9px 0 0;
+  background:
+    linear-gradient(rgb(255 250 238 / 0.2), rgb(43 32 21 / 0.2)),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page-floor);
+  color: var(--page-ink);
+  box-shadow:
+    inset 0 1px 0 rgb(255 250 238 / 0.55),
+    0 -2px 6px rgb(0 0 0 / 0.4);
+}
+.book-pages .book-page-tab:hover:enabled:not([aria-expanded='true'], [aria-pressed='true']) {
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page-floor);
+}
+.book-pages .book-page-tab[aria-expanded='true'],
+.book-pages .book-page-tab[aria-pressed='true'] {
+  min-height: 44px;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--rubric);
+}
+.book-page-tab > .dock-marker,
+.book-part > .dock-marker {
+  border-color: var(--page);
+  background: var(--rubric);
+}
+
+/* --- The bookmarks: tags of paper at the fore-edge; the open part's is the rubric's red. */
+.book-part {
+  border-radius: 0 9px 9px 0;
+  background:
+    linear-gradient(90deg, rgb(43 32 21 / 0.3), transparent 16px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page-floor);
+  box-shadow:
+    inset 0 1px 0 rgb(255 250 238 / 0.5),
+    2px 2px 6px rgb(0 0 0 / 0.45);
+}
+.book-parts .book-part:hover:enabled:not([aria-current='page']) {
+  background:
+    linear-gradient(90deg, rgb(43 32 21 / 0.22), transparent 16px),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+}
+.book-parts .book-part[aria-current='page'] {
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.32), transparent 18px), var(--rubric);
+  color: #fff7ea;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.2),
+    4px 2px 10px rgb(0 0 0 / 0.5);
+}
+.book-part[aria-current='page'] > .dock-marker {
+  border-color: var(--rubric);
+  background: #fff7ea;
+}
+
+/*
+ * A tablet, and a laptop beside the selection's column: a bookmark keeps its word, under its icon
+ * (the owner's iPad is the DM's screen: seven pictures without words were seven guesses).
+ */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .world-main[data-book] {
+    --parts-w: 84px;
+  }
+  .book-part-word {
+    position: static;
+    inline-size: auto;
+    block-size: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .book-part,
+  .book-part[aria-current='page'] {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    min-height: 62px;
+    padding: 5px 4px 4px 6px;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .book-part > .bk-icon {
+    inline-size: 30px;
+    block-size: 30px;
+  }
+}
+@media (min-width: 1101px) and (max-width: 1439px) {
+  .world-main[data-book].has-details {
+    --parts-w: 84px;
+  }
+  .world-main[data-book].has-details .book-part-word {
+    position: static;
+    inline-size: auto;
+    block-size: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .world-main[data-book].has-details .book-part,
+  .world-main[data-book].has-details .book-part[aria-current='page'] {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    min-height: 62px;
+    padding: 5px 4px 4px 6px;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+}
+/* A phone: the bookmarks along the bottom say their part too. */
+@media (max-width: 700px) {
+  .world-main[data-book] .book-part-word {
+    position: static;
+    inline-size: auto;
+    block-size: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    text-align: center;
+  }
+  .world-main[data-book] .book-part,
+  .world-main[data-book] .book-part[aria-current='page'] {
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    min-width: 0;
+    padding: 3px 2px;
+    font-size: 0.75rem;
+    line-height: 1.08;
+  }
+  .world-main[data-book] .book-part > .bk-icon {
+    inline-size: 24px;
+    block-size: 24px;
+  }
+  .world-main[data-book] .book-parts > ul > li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .world-main[data-book] .book-parts > ul {
+    gap: 3px;
+  }
+}
+@media (max-width: 374px) {
+  .world-main[data-book] .book-parts > ul:has(> li:nth-child(6)) .book-part-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/*
+ * --- One row at the head of a page. Wider than a phone, a section's title is its open tab (and
+ * the bookmark beside it): the title stays for a screen reader, and Close — with the book's own
+ * views — stands in the tabs' row, a tab of the same paper at its end.
+ */
+@media (min-width: 701px) {
+  .world-main[data-book]:has(.sheet:not([hidden])) .book-pages {
+    right: calc(var(--parts-w) + var(--close-w));
+  }
+  .world-main[data-book]:has(.sheet--book:not([hidden])) {
+    --close-w: 420px;
+  }
+  .world-main[data-book] .sheet-header {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    block-size: var(--pages-h);
+    padding: 0;
+    border: 0;
+    background: none;
+    pointer-events: none;
+  }
+  .world-main[data-book] .sheet-header::after {
+    display: none;
+  }
+  .world-main[data-book] .sheet-header > h2 {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book] .sheet-header > :not(h2) {
+    pointer-events: auto;
+  }
+  .world-main[data-book] .sheet-close,
+  .world-main[data-book] .sheet-header .dmb-mark {
+    min-height: 38px;
+    border: 0;
+    border-radius: 9px 9px 0 0;
+    background:
+      linear-gradient(rgb(255 250 238 / 0.2), rgb(43 32 21 / 0.2)),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page-floor);
+    color: var(--page-ink);
+    box-shadow:
+      inset 0 1px 0 rgb(255 250 238 / 0.55),
+      0 -2px 6px rgb(0 0 0 / 0.4);
+  }
+  .world-main[data-book] .sheet-close:hover:enabled,
+  .world-main[data-book] .sheet-header .dmb-mark:hover:enabled {
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page-floor);
+    color: var(--page-ink);
+  }
+  .world-main[data-book] .sheet-close:focus-visible,
+  .world-main[data-book] .sheet-header .dmb-mark:focus-visible {
+    outline: 3px solid var(--cloth-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--cloth-focus-glow);
+  }
+  .world-main[data-book] .sheet-header .dmb-marks {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 0.35rem;
+  }
+  .world-main[data-book] .sheet-header .dmb-mark[aria-pressed='true'] {
+    min-height: 44px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    color: var(--rubric);
+  }
+  .world-main[data-book] .sheet-header .dmb-mark-word {
+    display: inline;
+  }
+  .world-main[data-book] .sheet-body {
+    margin-top: 0;
+  }
+}
+/* A short row (a tablet held upright): Close is its cross, its word a tooltip. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .world-main[data-book] {
+    --close-w: 52px;
+  }
+  .world-main[data-book]:has(.sheet--book:not([hidden])) {
+    --close-w: 300px;
+  }
+  .world-main[data-book] .sheet-close {
+    padding-inline: 0.7rem;
+  }
+  .world-main[data-book] .sheet-close-word {
+    display: none;
+  }
+}
+/* A phone keeps the section's title row; the book's views take a line of their own under it. */
+@media (max-width: 700px) {
+  .world-main[data-book] .sheet--book > .sheet-header {
+    flex-wrap: wrap;
+  }
+  .world-main[data-book] .sheet--book > .sheet-header > .dmb-marks {
+    order: 3;
+    flex: 1 0 100%;
+  }
+}
+
+/*
+ * --- The story's own page. The sheet is the book's paper already: the spread needs no second
+ * binding inside it, and the room it took goes to the words read aloud.
+ */
+@media (min-width: 901px) {
+  .world-main[data-book] .sheet--book > .sheet-body {
+    /* What the table asks stands at the page's head (`--asks-h`): the story starts under it. */
+    padding: var(--asks-h, 0px) 0 0;
+  }
+  .world-main[data-book] .dmb-spread {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+  .world-main[data-book] .dmb-page {
+    padding: 1.15rem 1.6rem 0.8rem;
+  }
+  .world-main[data-book] .dmb-left {
+    border-radius: 0;
+    background: linear-gradient(to left, rgb(43 32 21 / 0.22), transparent 28px);
+  }
+  .world-main[data-book] .dmb-right {
+    border-radius: 0;
+    background: linear-gradient(to right, rgb(43 32 21 / 0.22), transparent 28px);
+  }
+  .world-main[data-book] .dmb-path {
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+  .world-main[data-book] .dmb > :is(.dmb-unsaved, .dmb-status) {
+    margin: 0.5rem 1.6rem 0;
+  }
+}
+
+/*
+ * The story is read with the whole page: the card of what was chosen on the Scene waits there
+ * (it took a column beside the book and left the story a strip to be read in).
+ */
+.world-main[data-book]:has(.sheet--book:not([hidden])) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.world-main[data-book]:has(.sheet--book:not([hidden])) > .detail-panel {
+  display: none;
+}
+
+/* A hero's sheet is a way on from the party's card: it reads as one, not as a label. */
+.world-main[data-book] .party-card-actions > .quiet-button {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+/*
+ * What the party knows, a name a row: the kind stands under the name, so a long name keeps its
+ * words whole in a narrow column ("Смотритель причала" broke inside a word beside its kind).
+ */
+.journal-known .directory-list .list-button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0 0.55rem;
+  padding-block: 0.25rem;
+  line-height: 1.2;
+  text-align: left;
+}
+.journal-known .directory-list .list-button > .glyph {
+  grid-row: 1 / span 2;
+}
+.journal-known .directory-list .directory-name {
+  overflow-wrap: break-word;
+}
+.journal-known .directory-list .directory-kind {
+  grid-column: 2;
+}

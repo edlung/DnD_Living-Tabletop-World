@@ -47,7 +47,7 @@ export function AuthoringPanel({
         <textarea
           id="authoring-intent"
           value={text}
-          placeholder={t('Add a young guard near North Gate who saw the caravan leave.')}
+          placeholder={t('For example: a witness at the door who saw who left at night.')}
           onChange={(event) => {
             setText(event.target.value);
           }}

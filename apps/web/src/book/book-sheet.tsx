@@ -221,8 +221,13 @@ function OpenBook({
   const pages = leaf.chapter.pages.length;
   const pageNumber = leaf.page ? leaf.chapter.pages.indexOf(leaf.page) + 1 : 0;
   return (
-    <Sheet id="book" title={content.title} glyph="perform" open={open} onClose={shell.closeSheet}>
-      <div className="dmb" data-size={size} data-view={view}>
+    <Sheet
+      id="book"
+      title={content.title}
+      glyph="perform"
+      open={open}
+      onClose={shell.closeSheet}
+      tools={
         <BookMarks
           view={view}
           onView={(to) => {
@@ -230,6 +235,9 @@ function OpenBook({
             if (to === 'path') setMoment(null);
           }}
         />
+      }
+    >
+      <div className="dmb" data-size={size} data-view={view}>
         <p className="visually-hidden" role="status">
           {said}
         </p>

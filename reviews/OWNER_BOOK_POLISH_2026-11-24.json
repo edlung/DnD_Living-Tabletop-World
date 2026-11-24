@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-24",
+  "source": "The owner's words typed in one working session on 2026-11-24, in the desktop app, after the book interface (Stages 1000–1140) was merged and deployed. This record is written by the same session: it saw every word below typed.",
+  "theBrief": "Задача - доработать проект чтобы весь интервейс проекта был в стиле книги. Другая сессия сделала большой кусок работы. Тебе необходимо доработать до конца задуманное, выявить неудобства использования и предложить улучшения. Для ассетов верстки и картинок в твоем распоряжении Codex CLI. Текущий вид меня не сильно впечатляет и кажется что не все функции достаточно очевидны и интуитивно доступны для использования. Жду от тебя предложений. Можешь обратиться к Codex CLI для генерации нескольких идей.",
+  "whatTheSessionTookFromIt": {
+    "toDo": "Finish what the book program meant and left: the book's shell as a thing, the room a page gives its words, defects a reader meets. No product choice is needed for these (work-orders/BOOK_POLISH_2026-11-24.md).",
+    "toFindOut": "Where the product is inconvenient: read from the running product, as a DM on a tablet and a laptop, a player on a phone, the table's screen, the shelf and the workshop.",
+    "toPropose": "How the books should look and work from here. Proposals only: nothing of them is built until the owner chooses."
+  },
+  "shownToTheOwner": {
+    "page": "A private page «Второй проход книги» (https://claude.ai/artifact/7i7fSfLqy8kCsHqihKUBAL): the findings with screenshots, before and after of what this session changed, seven concept pictures, the steps proposed and four questions.",
+    "conceptPictures": "Seven pictures by Codex CLI in the lighthouse's style, from today's screenshots: the DM's spread in three directions (a real book, the book on the table, an illuminated page), a fight as a fold-out map, the open book on the table's screen, the shelf, a player's phone. Originals and prompts: ~/Documents/living-tabletop-world-art/book-polish-2026-11-24/.",
+    "independentReading": "Codex CLI was also asked for a critique of eleven screenshots without the session's conclusions (the same folder, ideas/ideas.md); it is summarised on the page."
+  },
+  "picturesAndText": {
+    "pictures": "The concept pictures are ideas, shown to the owner only; none is shipped. No book material of the product changed.",
+    "text": "One phrase of the interface is new and written by the session, for the owner to read: the example in \"Add to the world\" — «Например: свидетель у входа, который видел, кто ушёл ночью.» (it replaced Ravenford's caravan, shown in every campaign). No model wrote text for the product."
+  },
+  "answersInTheQuestionCard": [
+    {
+      "question": "Какое направление вида берём для книг? Картинки А, Б и В — на странице «Второй проход книги» и в файлах выше.",
+      "recommended": "А: настоящая книга",
+      "chosen": "А: настоящая книга",
+      "meaning": "The open volume edge to edge with a thin frame: page edges, a spine, a ribbon, the DM's actions as seals. Typography (an initial, notes in the margin) from direction В."
+    },
+    {
+      "question": "Как устроить главный экран мастера? Сейчас «Книга» — чтобы читать, «Сцена» — чтобы видеть, кто здесь, и между ними приходится ходить.",
+      "recommended": "Рабочий разворот",
+      "chosen": "Рабочий разворот",
+      "meaning": "The Scene becomes the spread the game is run from: the story of the page the party is at, who is here, the seals «Бросок», «Бой», «Привал», «На экран», «Выдать». The Book stays as the contents and for reading ahead."
+    },
+    {
+      "question": "Что делать первым после уже сделанной правки оболочки?",
+      "recommended": "Разворот мастера",
+      "chosen": "Разворот мастера",
+      "meaning": "The DM's working spread is the next piece of work."
+    },
+    {
+      "question": "Что сделать с уже готовой правкой оболочки (ветка claude/book-interface-polish: одна шапка, 10 строк вместо 5,5, закладки со словами)?",
+      "recommended": "Оформить PR",
+      "chosen": "Оформить PR",
+      "meaning": "The shell work goes to a pull request; merging and deployment only on his word."
+    }
+  ],
+  "authorized": [
+    "The shell work of work-orders/BOOK_POLISH_2026-11-24.md, as the brief's «доработать до конца задуманное», and its pull request.",
+    "The DM's working spread (Stage 1150; its work order comes with its pull request), in direction А, as the first piece after the shell."
+  ],
+  "notAuthorized": [
+    "The other proposals of the page (the fight as one fold-out, the Party's and the Table's pages by tasks, the table's screen, the shelf, a player's phone, new book materials for every campaign): each waits for the owner's word.",
+    "Merging and deployment."
+  ],
+  "standingOwnerRulesThisWorkKeeps": [
+    "2026-11-19: the product «looks like an Excel table»; the next step obvious, not a search line.",
+    "2026-11-20: no rails — «DnD — это про свободу выбора и действий».",
+    "2026-11-21: sections full screen with a way to close, everything at hand, the least scrolling; every main DM task has a visible entry named with his own word.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table.",
+    "2026-11-23: each book has its own style from its campaign's art; book materials by Codex CLI."
+  ],
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; no command, route, contract or rule changed.",
+    "Knowledge isolation: a player's client and the table's screen receive only their own projections.",
+    "No AI at the table; no paid provider call.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ]
+}
