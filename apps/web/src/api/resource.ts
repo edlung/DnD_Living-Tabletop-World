@@ -38,7 +38,27 @@ export class ReadOrder {
 const messageOf = (error: unknown) =>
   error instanceof ApiError ? error.message : 'The world could not be loaded. Please try again.';
 
-type ReadKind = 'foreground' | 'background' | 'trailing';
+/**
+ * `trailing` follows a read a cycle after it; `final` follows a trailing read that brought
+ * something new, and is followed by none.
+ */
+type ReadKind = 'foreground' | 'background' | 'trailing' | 'final';
+
+/** Reads that follow another by themselves: they leave a pending one of their kind in place. */
+const following = (kind: ReadKind) => kind === 'trailing' || kind === 'final';
+
+/**
+ * What an answer says, to compare it with the one before. The views answer JSON; anything that
+ * cannot be written so says nothing new. A loader may number its reads in its answer (the DM's
+ * pictures do), so every answer of it is new: the final read bounds what that costs.
+ */
+function saying(value: unknown): string | undefined {
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return undefined;
+  }
+}
 
 /** A background read that failed is read again after this long, doubling to the longest. */
 export const RETRY_READ_MS = 2_000;
@@ -58,8 +78,11 @@ const passing = (error: unknown) =>
  * `TRAILING_REREAD_MS` after it completed: a change undone within one comparison cycle never
  * reaches the fingerprint, so no signal would correct a read that saw the state in between,
  * whatever caused that read (the first load, a signal, the viewer's own action). A newer read
- * replaces a pending trailing read (its own completion schedules the next one), and a trailing
- * read schedules none, so a quiet screen stops reading. Closing ends it all.
+ * replaces a pending trailing read (its own completion schedules the next one). A trailing read
+ * that brought something new is followed by one final read, a cycle after it: it may itself have
+ * read the state in between (a DM's pause, resumed within the same cycle, stayed on a player's
+ * screen). The final read, and a trailing read that brought nothing new, schedule none, so a quiet
+ * screen stops reading. Closing ends it all.
  *
  * Where the screen asks for it (`retry`: the table's screen alone, `LiveRetryContext`), a
  * background read that failed for a passing reason (the network, the server) is read again,
@@ -82,6 +105,8 @@ export class GenerationReads<T> {
   #trailing: ReturnType<typeof setTimeout> | undefined;
   /** Background reads failed in a row since the last answer. */
   #failures = 0;
+  /** What the shown answer said, to tell whether a trailing read brought something new. */
+  #said: string | undefined;
 
   constructor(options: {
     readonly load: (signal: AbortSignal) => Promise<T>;
@@ -131,15 +156,21 @@ export class GenerationReads<T> {
   }
 
   async #read(kind: ReadKind): Promise<void> {
-    if (kind !== 'trailing') clearTimeout(this.#trailing);
+    if (!following(kind)) clearTimeout(this.#trailing);
     const controller = new AbortController();
     this.#controllers.add(controller);
     const ticket = this.#order.start();
     let again = false;
+    let changed = false;
     try {
       const value = await this.#load(controller.signal);
       this.#failures = 0;
-      if (this.#open && this.#order.succeeded(ticket)) this.#show({ status: 'ready', value });
+      if (this.#open && this.#order.succeeded(ticket)) {
+        const said = saying(value);
+        changed = said !== this.#said;
+        this.#said = said;
+        this.#show({ status: 'ready', value });
+      }
     } catch (error) {
       if (this.#open && kind === 'foreground' && this.#order.failed(ticket)) {
         this.#show({ status: 'error', message: messageOf(error) });
@@ -147,12 +178,21 @@ export class GenerationReads<T> {
       again = this.#retry && kind !== 'foreground' && passing(error);
     } finally {
       this.#controllers.delete(controller);
-      if (this.#open && this.#live && (again || kind !== 'trailing')) {
+      // A trailing read that brought something new is followed by the final one; a read the
+      // viewer or a signal asked for, by a trailing one; a failure to retry, by a retry.
+      const next: Exclude<ReadKind, 'foreground'> | null = again
+        ? 'trailing'
+        : !following(kind)
+          ? 'trailing'
+          : kind === 'trailing' && changed
+            ? 'final'
+            : null;
+      if (this.#open && this.#live && next !== null) {
         clearTimeout(this.#trailing);
         if (again) this.#failures += 1;
         this.#trailing = setTimeout(
           () => {
-            this.#background('trailing');
+            this.#background(next);
           },
           again
             ? Math.min(RETRY_READ_MS * 2 ** (this.#failures - 1), RETRY_READ_MAX_MS)

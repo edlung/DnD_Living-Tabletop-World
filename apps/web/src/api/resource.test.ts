@@ -47,7 +47,7 @@ describe('the order of reads', () => {
 /**
  * The trailing read: a change undone within one comparison cycle raises no signal, so in a
  * live session every read, whatever caused it, is followed by one more a cycle after it
- * completed. The trailing read itself is followed by none.
+ * completed. A trailing read that brought something new is followed by one final read.
  */
 describe('the reads of a generation', () => {
   beforeEach(() => {
@@ -103,13 +103,13 @@ describe('the reads of a generation', () => {
     expect(shown.at(-1)).toEqual({ status: 'ready', value: 2 });
   });
 
-  it('follows a signalled read with its own trailing read, and never chains them', async () => {
+  it('follows a signalled read with its own trailing read, and stops on one with nothing new', async () => {
     const { reader, reads, answer } = generation();
     reader.start();
     await answer(1);
     await wait(TRAILING_REREAD_MS);
-    await answer(2);
-    // The trailing read is followed by none: a quiet screen stops reading.
+    await answer(1);
+    // A trailing read that brought nothing new is followed by none: a quiet screen stops reading.
     await wait(TRAILING_REREAD_MS * 10);
     expect(reads).toHaveLength(2);
 
@@ -121,9 +121,49 @@ describe('the reads of a generation', () => {
     expect(reads).toHaveLength(3);
     await wait(1);
     expect(reads).toHaveLength(4);
-    await answer(4);
+    await answer(3);
     await wait(TRAILING_REREAD_MS * 10);
     expect(reads).toHaveLength(4);
+  });
+
+  it('follows a trailing read that brought something new with one more', async () => {
+    // A DM pauses and resumes within one comparison cycle: no signal comes, and a player's
+    // trailing read that saw the pause would have kept it.
+    const { reader, reads, shown, answer } = generation();
+    reader.start();
+    await answer(1);
+    await wait(TRAILING_REREAD_MS);
+    await answer(2);
+    await wait(TRAILING_REREAD_MS - 1);
+    expect(reads).toHaveLength(2);
+    await wait(1);
+    expect(reads).toHaveLength(3);
+    // The final read brings the present; it is followed by none, new or not.
+    await answer(1);
+    expect(shown.at(-1)).toEqual({ status: 'ready', value: 1 });
+    await wait(TRAILING_REREAD_MS * 10);
+    expect(reads).toHaveLength(3);
+  });
+
+  it('stops after the final read where every answer is new (a loader numbering its reads)', async () => {
+    const { reader, reads, answer } = generation();
+    reader.start();
+    await answer(1);
+    await wait(TRAILING_REREAD_MS);
+    await answer(2);
+    await wait(TRAILING_REREAD_MS);
+    await answer(3);
+    await wait(TRAILING_REREAD_MS * 10);
+    expect(reads).toHaveLength(3);
+    // A signal starts it again, as before: its read, the trailing one, the final one.
+    reader.reread();
+    await answer(4);
+    await wait(TRAILING_REREAD_MS);
+    await answer(5);
+    await wait(TRAILING_REREAD_MS);
+    await answer(6);
+    await wait(TRAILING_REREAD_MS * 10);
+    expect(reads).toHaveLength(6);
   });
 
   it('lets a newer read replace a pending trailing read', async () => {
@@ -180,6 +220,11 @@ describe('the reads of a generation', () => {
     // The network is back: the answer shows, and the waits start short again.
     await answer(2);
     expect(shown.at(-1)).toEqual({ status: 'ready', value: 2 });
+    // It was new: one more trailing read, which brings nothing new and ends it.
+    await wait(TRAILING_REREAD_MS);
+    expected += 1;
+    expect(reads).toHaveLength(expected);
+    await answer(2);
     await wait(RETRY_READ_MAX_MS * 2);
     expect(reads).toHaveLength(expected);
     reader.reread();
