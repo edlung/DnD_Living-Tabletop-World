@@ -98,6 +98,7 @@ bookmarks keep their width when a card opens on the spread), `i18n/ru-book.ts`, 
 | `pnpm run test` (unit)                                         | 5,127 of 5,127 |
 | `working-spread.spec.ts`, `dm-book-library.spec.ts` (Chromium) | 4 of 4         |
 | Chromium journeys, every one but `party-known` and the voice   | 388 of 388     |
+| The iPad project (WebKit), every journey but `party-known`     | 29 of 29       |
 
 After the last whole run only words changed (seven Russian phrases and one English key, after a
 copy review); the checks of the first three rows and the journeys that read those words —
@@ -131,10 +132,10 @@ the spread).
 In a screen reader's order the place and who is here come before the story and the seals (the
 world's Scene is earlier in the page than the DM's tools): the order is whole, not the visual one.
 
-Not run: the iPad project and WebKit (not installed here; CI runs them, and the new journey is in
-the iPad project), `party-known`, `voice.spec.ts` (WebRTC does not connect on this machine today,
-on `main` either), the native shells, a real tablet. Not seen: the Russian words of a page with
-no words on a screen (see above).
+Not run: the `webkit` project (the release journeys in desktop Safari's engine; CI runs it),
+`party-known`, `voice.spec.ts` (WebRTC does not connect on this machine today, on `main` either),
+the native shells, a real tablet. Not seen: the Russian words of a page with no words on a
+screen (see above).
 
 ## Left
 
