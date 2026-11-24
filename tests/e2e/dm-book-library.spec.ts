@@ -82,6 +82,21 @@ test('a family campaign and a collection campaign of the library open as books',
 
   // A family campaign: twelve chapters, a free order the campaign states in its own words.
   await startFromLibrary(dm, 'Маяк Между Ветрами');
+  // On the Scene's working spread the chapter's handouts are behind their seal, which says how
+  // many wait; each is read there before it is given (docs/adr/0075-book-interface.md §16).
+  if ((await bookPart(dm, 'Сцена').getAttribute('aria-current')) !== 'page')
+    await bookPart(dm, 'Сцена').click();
+  const give = dm
+    .getByRole('navigation', { name: 'Действия мастера' })
+    .getByRole('button', { name: 'Выдать', exact: true });
+  await expect(give).toHaveAccessibleDescription('Готово для этой страницы: 2', LIVE);
+  await give.click();
+  const giving = dm.getByRole('dialog', { name: 'Выдать', exact: true });
+  await expect(giving).toContainText('Приглашение на Первую Звезду');
+  await giving.getByText('Текст', { exact: true }).first().click();
+  await expect(giving.locator('details[open] p').first()).toBeVisible();
+  await dm.keyboard.press('Escape');
+  await expect(giving).toBeHidden();
   const lighthouse = await openBook(dm, 'Маяк Между Ветрами');
   const story = dm.getByRole('article', { name: 'Текст', exact: true });
   const side = dm.getByRole('complementary', { name: 'Правая страница' });

@@ -210,6 +210,33 @@
     text-align: center;
   }
 }
+/*
+ * On the Scene's spread the card lies on the right page, not in a column beside it: the bookmarks
+ * keep their width, so choosing someone moves nothing (the page was 64 px wider with a card open,
+ * and its words were set again).
+ */
+@media (min-width: 1101px) and (max-width: 1439px) {
+  .world-main[data-book].has-details:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))) {
+    --parts-w: 148px;
+  }
+  .world-main[data-book].has-details:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+    .book-part,
+  .world-main[data-book].has-details:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+    .book-part[aria-current='page'] {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 4px 12px 4px 8px;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: left;
+  }
+  .world-main[data-book].has-details:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
+    .book-part[aria-current='page'] {
+    padding-left: 14px;
+  }
+}
 /* A phone: the bookmarks along the bottom say their part too. */
 @media (max-width: 700px) {
   .world-main[data-book] .book-part-word {

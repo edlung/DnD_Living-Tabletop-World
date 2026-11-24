@@ -324,6 +324,47 @@ overrule:
    not this section.
 7. The page's place does not move (`section-screens.spec.ts` measures it); no control is removed.
 
+### 16. The DM's working spread (Stage 1150)
+
+The owner chose it on 2026-11-24 (`work-orders/STAGE_1150.md`): the look is a real book, and the
+Scene is the spread the game is run from. It amends §5 for the DM's perspective.
+
+1. **Two pages, one job.** On the Scene's spread, outside a fight, the left page is the story of
+   the leaf the ribbon lies on and the right page is the place: the plate, who and what is here,
+   the DM's actions. The Book stays the contents and the reading ahead. A player's Scene, the DM's
+   narrower Scene and a fight are §5's and §6's, unchanged.
+2. **The working page is where the party is.** It shows the ribbon's leaf and nothing else:
+   turning it on or back moves the ribbon (in the Book, reading leaves the ribbon alone, ADR 0074
+   §3.4 — that rule stays the Book's).
+3. **The DM's actions are seals with the table's words**, in view on every working spread: a
+   roll, a fight, a rest, to the screen, a handout. A seal's slip shows what this page prepares
+   first and the whole tool one press further. A seal adds no command and no route: it calls what
+   the Book's cards and the rest's controls call. A seal says how much this page prepares (a tag
+   with the number of rolls, fights or handouts) before it is pressed, and what is given to the
+   players — a handout's text — is read in the slip first.
+4. **The Scene is laid, not rebuilt.** The world's own Scene — its controls, names and order —
+   stands on the right page under the plate; the stylesheet places it while the working spread is
+   mounted. Who is here is a small plate each; the heroes' presence is at the caption's end.
+5. **A card takes the plate's place**, as a talk does, so who is here and the seals are never
+   under it. The DM's card of a person begins with the book's telling of them, then the world's
+   description and "Perform"; the leads to others follow. The book is held for that card in the
+   DM's screen only (`book/told.ts`); a player's perspective never reads it.
+6. **A result is never covered and covers no control** (the shell's rule for an action's result,
+   `apps/web/AGENTS.md`): a slip opened under one ends below it, and a card open in the plate's
+   place begins under it.
+7. **A page with no words is not left blank.** A book assembled from the campaign itself (§5)
+   has pages the campaign wrote nothing for — a built-in adventure's place with no description.
+   The working page says so and lays out what the book does hold of it: the page's notes, who is
+   here as the campaign describes them, what can be found here (`book/work-brief.tsx`). Nothing is
+   written for the gap (ADR 0074 §1.6), and no model is asked. A name there is a word: one person
+   is one button on a spread — their plate on the right page.
+8. **An assembled book's chapters are the campaign's places.** When the Scene shows another place
+   than the working page tells, the page offers the chapter told there; the DM turns to it with
+   one press. Nothing moves by itself. A written story keeps its own order: no offer is made
+   there, and the ribbon at the spine still says whether its chapter plays here (§5). The card of
+   someone of an assembled book has no "By the book": that book holds only the world's own
+   description of them, which the card shows.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through
