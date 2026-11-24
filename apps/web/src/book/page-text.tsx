@@ -182,7 +182,7 @@ export function PageText({
         );
   return (
     <div className="dmb-text-frame">
-      <div ref={frame} className="dmb-text" data-screens={starts.length}>
+      <div ref={frame} className="dmb-text" data-screens={starts.length} data-screen={shown}>
         <Blocks units={visible} render={linked} />
       </div>
       {/* The same text, each sentence marked, to learn where a screen ends. */}

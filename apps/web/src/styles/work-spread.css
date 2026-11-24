@@ -1,0 +1,420 @@
+/*
+ * The DM's working spread (docs/adr/0075-book-interface.md §16; `book/work-spread.tsx`): while it
+ * is mounted — the DM's Scene on a screen wide enough for two pages, outside a fight — the left
+ * page is the story where the party is, and the Scene itself moves to the right page: its plate
+ * at the head, then who and what is here in small, then the DM's actions as seals at the foot. The
+ * card of what is chosen takes the plate's place (as a talk does), so who is here is never under
+ * a card. The Scene's own parts are laid here, not rebuilt; the seals and their slips are in
+ * `work-seals.css`.
+ */
+.world-main[data-book='dm']:has(.work-story) {
+  --seals-h: 86px;
+  /* The foot of the plate and of the card: above the Scene's block and the seals. */
+  --plate-foot: calc(var(--page-bottom) + var(--seals-h) + var(--here-h, 190px) + 18px);
+}
+
+/* --- The left page: the story, set as the Book sets it. */
+.world-main[data-book='dm'] .work-story {
+  position: absolute;
+  top: var(--pages-h);
+  right: calc(100% - var(--spine-x));
+  bottom: var(--page-bottom);
+  left: 10px;
+  z-index: 2;
+  border-radius: 8px 0 0 8px;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--page-ink);
+  box-shadow:
+    inset 0 0 0 1px rgb(43 32 21 / 0.14),
+    inset 0 0 34px rgb(122 84 24 / 0.13);
+}
+.world-main[data-book='dm'] .work-story > .dmb-page {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 1.1rem 1.7rem 0.8rem 1.5rem;
+  border-radius: 0;
+  background: linear-gradient(to left, rgb(43 32 21 / 0.22), transparent 28px);
+}
+.dmb .work-to-book {
+  min-height: 36px;
+  padding: 0 0.7rem;
+  font-size: 0.95em;
+  letter-spacing: 0;
+  text-transform: none;
+}
+/* The story opens with an initial, as a chapter of a printed book does (its first screen only). */
+.work-story .dmb-text > :first-child::first-letter,
+.work-story .dmb-text > blockquote:first-child > p::first-letter {
+  float: left;
+  margin: 0.06em 0.1em 0 0;
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: 3.1em;
+  font-weight: 700;
+  line-height: 0.82;
+}
+.work-story
+  .dmb-text:not(.dmb-measure)[data-screen]:not([data-screen='0'])
+  > :first-child::first-letter,
+.work-story
+  .dmb-text:not(.dmb-measure)[data-screen]:not([data-screen='0'])
+  > blockquote:first-child
+  > p::first-letter {
+  float: none;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+/* "How we play this": the DM's notes at the page's foot, folded when the words need the room. */
+.work-notes {
+  flex: none;
+  max-height: 34%;
+  overflow-y: auto;
+  padding: 0.35rem 0.7rem 0.4rem;
+  border-left: 3px solid color-mix(in srgb, var(--page-ink) 28%, transparent);
+  background: rgb(255 250 238 / 0.42);
+  font-size: 0.92em;
+}
+.work-notes > summary {
+  min-height: 28px;
+  color: var(--page-ink-muted);
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.work-notes > dl {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.2rem 0 0;
+}
+.work-notes dt {
+  display: inline;
+  font-weight: 700;
+}
+.work-notes dt::after {
+  content: ': ';
+}
+.work-notes dd {
+  display: inline;
+  margin: 0;
+}
+
+/*
+ * A page the campaign wrote no words for (`book/work-brief.tsx`): what the book holds of it, in the
+ * story's place — the notes, who is here as the campaign describes them, what can be found.
+ */
+.work-brief {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+  font-size: 1.04em;
+  line-height: 1.45;
+}
+.work-brief h3 {
+  margin: 0.9rem 0 0.35rem;
+  color: var(--page-ink-muted);
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.work-brief > :first-child {
+  margin-top: 0.3rem;
+}
+.work-brief ul,
+.work-brief dl {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.work-brief dt {
+  display: inline;
+  font-weight: 700;
+}
+.work-brief dt::after {
+  content: ': ';
+}
+.work-brief dd {
+  display: inline;
+  margin: 0;
+}
+/*
+ * The Scene shows another place than the page tells (a book assembled from the campaign itself):
+ * the chapter told there, one press away, at the page's head.
+ */
+.work-elsewhere {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.6rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.7rem;
+  border-left: 3px solid var(--rubric);
+  background: rgb(255 250 238 / 0.5);
+  font-size: 0.92em;
+  line-height: 1.3;
+}
+.work-elsewhere > p {
+  flex: 1 1 auto;
+  margin: 0;
+}
+.dmb .work-elsewhere > .dmb-button {
+  flex: none;
+  min-height: 36px;
+  padding: 0 0.7rem;
+  font-size: 0.95em;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* --- The right page. The plate ends above the Scene's block; the card takes its place. */
+.world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]) .stage-backdrop {
+  top: calc(var(--pages-h) + 14px);
+  bottom: var(--plate-foot);
+  height: auto;
+}
+.world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+    :has(.sheet:not([hidden]))
+  )
+  > .detail-panel {
+  top: calc(var(--pages-h) + 10px);
+  bottom: calc(var(--plate-foot) - 6px);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgb(43 32 21 / 0.3);
+}
+.world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+    :has(.sheet:not([hidden]))
+  )
+  > .spread-card-hint:not([hidden]) {
+  display: none;
+}
+/* The card lies over the plate: under its fading edge is the page's paper, not the picture. */
+.world-main[data-book='dm'].has-details:has(.work-story):has(.scene[data-spread]):not(
+    :has(.sheet:not([hidden]))
+  )
+  .stage-backdrop {
+  visibility: hidden;
+}
+/*
+ * A short screen (a tablet held wide): the card stands in a plate some 290 px tall, so its head is
+ * one close row and its words get the room. "A closer look" stays for a screen reader.
+ */
+@media (max-height: 859px) {
+  .world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+      :has(.sheet:not([hidden]))
+    )
+    > .detail-panel
+    .details-header {
+    gap: 0.7rem;
+    margin-bottom: 0.55rem;
+    padding-bottom: 0.5rem;
+  }
+  .world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+      :has(.sheet:not([hidden]))
+    )
+    > .detail-panel
+    .details-header
+    .medallion--xl {
+    --m: 60px;
+  }
+  .world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+      :has(.sheet:not([hidden]))
+    )
+    > .detail-panel
+    .details-title
+    > h2 {
+    font-size: 1.4rem;
+  }
+  .world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+      :has(.sheet:not([hidden]))
+    )
+    > .detail-panel
+    .details-title
+    > .eyebrow {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+/* A talk shares the plate's place with the card of the one it is with, under it. */
+.world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]):not(
+    :has(.sheet:not([hidden]))
+  )
+  > .spread-talk:not(:empty) {
+  max-height: calc(
+    (100% - var(--pages-h) - var(--page-bottom) - var(--seals-h) - var(--here-h, 190px)) * 0.6
+  );
+}
+/* A result is a slip on the plate: it ends where the plate does. */
+.world-main[data-book='dm']:has(.work-story):not(.has-battle):has(.scene[data-spread]):not(
+    :has(.sheet:not([hidden]))
+  )
+  > .outcome {
+  max-height: calc(
+    100% - var(--pages-h) - var(--page-bottom) - var(--seals-h) - var(--here-h, 190px) - 60px
+  );
+}
+
+/*
+ * The Scene's block: the plate's caption with who sits at the table at its end, then who and what
+ * is here, then the ways on.
+ */
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] {
+  top: auto;
+  right: calc(var(--parts-w) + 14px);
+  bottom: calc(var(--page-bottom) + var(--seals-h) + 6px);
+  left: calc(var(--spine-x) + 20px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  max-height: 46%;
+  padding: 0.1rem 0.2rem 0.3rem;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > :is(.scene-presence, .exits) {
+  grid-column: 1 / -1;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .cartouche {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem 0.9rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .cartouche h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .cartouche .conditions {
+  font-size: 0.9rem;
+}
+/*
+ * Who sits at the table: the heroes' faces with their presence, at the caption's end. Their names
+ * stand just below among who is here (and are said to a screen reader here too); the DM knows the
+ * DM is here.
+ */
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .party-rail .rail-dm {
+  display: none;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .party-rail,
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .party-rail ul {
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .party-rail .rail-member {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  min-height: 40px;
+  padding: 0;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .party-rail .rail-text {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .party-rail .medallion {
+  --m: 32px;
+}
+/* Who and what is here: a small plate each — its picture and its name. */
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .scene-presence {
+  gap: 0.3rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .world-objects {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 138px), 1fr));
+  gap: 0.3rem;
+  font-size: 0.78rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .object-button {
+  min-height: 44px;
+  padding: 0.1rem 0.5rem 0.1rem 0.25rem;
+  gap: 0 0.45rem;
+  line-height: 1.15;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .object-button > :first-child {
+  grid-row: auto;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .object-button .medallion {
+  --m: 34px;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .object-button .miniature {
+  --mini-h: 38px;
+}
+.world-main[data-book='dm']:has(.work-story)
+  .scene[data-spread]
+  :is(.name-plate-kind, .object-state) {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* A name keeps to three close lines (a name of three words is whole): plates stay of a height. */
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .name-plate > strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.15;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .scene-caption {
+  display: none;
+}
+/* The ways beyond: a line of small plates, their hint for a screen reader. */
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .exits {
+  gap: 0.25rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .exits-hint {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .exits ul {
+  gap: 0.3rem;
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] .exit-button {
+  min-height: 40px;
+  padding: 0.15rem 0.7rem 0.15rem 0.5rem;
+}
+
+/*
+ * With a card in the plate's place a result lies at the plate's head as ever, and the card begins
+ * under it: neither covers the other's words or controls. The result takes less than half the
+ * plate, so the card keeps a place.
+ */
+.world-main[data-book='dm'].has-details:has(.work-story):not(.has-battle):has(
+    .scene[data-spread]
+  ):not(:has(.sheet:not([hidden])))
+  > .outcome {
+  max-height: calc(
+    (100% - var(--pages-h) - var(--page-bottom) - var(--seals-h) - var(--here-h, 190px)) * 0.45
+  );
+}
+.world-main[data-book='dm'].has-details:has(.work-story):has(> .outcome):not(.has-battle):has(
+    .scene[data-spread]
+  ):not(:has(.sheet:not([hidden])))
+  > .detail-panel {
+  top: calc(var(--pages-h) + 24px + var(--outcome-h, 6rem) + 8px);
+}

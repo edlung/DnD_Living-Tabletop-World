@@ -15,7 +15,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - The owner's choices in the question card the same day: the look is direction А (a real book,
   with В's typography); the Scene becomes the DM's working spread and the Book stays as the
   contents; the working spread comes first; the shell work goes to a pull request.
-- Authorized next: the DM's working spread (Stage 1150, its work order with its pull request). Still proposals, each
+- Stage 1150, the DM's working spread, implemented on branch `claude/stage-1150-working-spread`
+  (`work-orders/STAGE_1150.md`, ADR 0075 §16, `reports/STAGE_1150_COMPLETION.md`), stacked on the
+  shell's pull request 97. Not merged, not deployed.
+- Still proposals, each
   waiting for his word: the fight as one fold-out, the parts by tasks, the table's screen, the
   shelf, a player's phone, new book materials for every campaign.
 

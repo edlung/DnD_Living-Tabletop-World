@@ -6,5 +6,7 @@
   "perspectiveRace": "ui-investigation-perspective",
   "logoutRace": "ui-investigation-logout",
   "recallRace": "ui-investigation-recall",
-  "resultLayout": "ui-investigation-layout"
+  "resultLayout": "ui-investigation-layout",
+  "workAssembled": "ui-work-assembled",
+  "workAssembledIpad": "ui-work-assembled-ipad"
 }

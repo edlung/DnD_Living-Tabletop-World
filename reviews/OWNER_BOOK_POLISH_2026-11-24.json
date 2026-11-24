@@ -14,7 +14,7 @@
   },
   "picturesAndText": {
     "pictures": "The concept pictures are ideas, shown to the owner only; none is shipped. No book material of the product changed.",
-    "text": "One phrase of the interface is new and written by the session, for the owner to read: the example in \"Add to the world\" — «Например: свидетель у входа, который видел, кто ушёл ночью.» (it replaced Ravenford's caravan, shown in every campaign). No model wrote text for the product."
+    "text": "No model wrote text for the product. Phrases of the interface written by the session, for the owner to read. The shell (pull request 97): «Например: свидетель у входа, который видел, кто ушёл ночью.» Stage 1150 (the working spread): «Рассказ: где сейчас отряд» (a screen reader's label), «В книгу», «Действия мастера» (a label), «Привал», «На экран», «Выдать», «На этой странице броска нет.», «Попросить свою проверку», «Для этого места и главы готового боя нет.», «Все бои и свой бой», «Рассвет, прерванный отдых, опасности пути», «Всё, что показывает экран стола», «В этой главе материалов нет.», «Написать свой материал», «По книге»; for a campaign with no written book: «У этой страницы нет текста: расскажите сцену своими словами.», «Кто здесь по книге», «Что здесь можно найти», «На сцене другое место. В книге о нём глава {number}: «{title}».», «Открыть эту главу»; on the seals: «Готово для этой страницы: {count}» (a screen reader's words for a seal's tag), «На экране стола появится картинка этого места.»."
   },
   "answersInTheQuestionCard": [
     {

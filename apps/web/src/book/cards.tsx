@@ -66,6 +66,59 @@ function Facts({ rows }: { readonly rows: readonly (readonly [string, string | u
   );
 }
 
+/**
+ * Someone of the cast as the campaign's book tells them: how they look and speak, what they want
+ * and know, and — folded — the secret. The Book's card of a person, and the head of that person's
+ * card on the Scene (`world/entity-details.tsx`), for the DM alone.
+ */
+export function PersonBody({ person }: { readonly person: CampaignBook['people'][number] }) {
+  const t = useT();
+  const empty = [person.look, person.public, person.want, person.voice ?? ''].every(
+    (x) => x === '',
+  );
+  return (
+    <>
+      <Facts
+        rows={[
+          [t('Looks'), person.look],
+          [t('Everyone knows'), person.public],
+          [t('Wants'), person.want],
+          [t('Speaks'), person.voice],
+          [t('Will not'), person.boundary],
+          [t('Offers'), person.offer],
+        ]}
+      />
+      {empty && <p className="dmb-gap">{t('The campaign has no card for this person.')}</p>}
+      {person.knows.length > 0 && (
+        <>
+          <h4>{t('Knows')}</h4>
+          <ul>
+            {person.knows.map((fact) => (
+              <li key={fact}>{fact}</li>
+            ))}
+          </ul>
+        </>
+      )}
+      {(person.secret ?? person.reveal) !== undefined && (
+        <details className="dmb-secret">
+          <summary>{t('The secret — for the DM only')}</summary>
+          {person.secret !== undefined && <p>{person.secret}</p>}
+          {person.reveal !== undefined && (
+            <p>
+              <strong>{t('Comes out when')}:</strong> {person.reveal}
+            </p>
+          )}
+          {person.change !== undefined && (
+            <p>
+              <strong>{t('May change')}:</strong> {person.change}
+            </p>
+          )}
+        </details>
+      )}
+    </>
+  );
+}
+
 export interface CardContent {
   readonly kind: string;
   readonly title: string;
@@ -92,54 +145,11 @@ export function useCard(
   if (moment.kind === 'person') {
     const person = book.people.find((p) => p.key === moment.key);
     if (!person) return null;
-    const empty = [person.look, person.public, person.want, person.voice ?? ''].every(
-      (x) => x === '',
-    );
     return {
       kind: 'person',
       title: person.name,
       subject: person.key,
-      body: (
-        <>
-          <Facts
-            rows={[
-              [t('Looks'), person.look],
-              [t('Everyone knows'), person.public],
-              [t('Wants'), person.want],
-              [t('Speaks'), person.voice],
-              [t('Will not'), person.boundary],
-              [t('Offers'), person.offer],
-            ]}
-          />
-          {empty && gap(t('The campaign has no card for this person.'))}
-          {person.knows.length > 0 && (
-            <>
-              <h4>{t('Knows')}</h4>
-              <ul>
-                {person.knows.map((fact) => (
-                  <li key={fact}>{fact}</li>
-                ))}
-              </ul>
-            </>
-          )}
-          {(person.secret ?? person.reveal) !== undefined && (
-            <details className="dmb-secret">
-              <summary>{t('The secret — for the DM only')}</summary>
-              {person.secret !== undefined && <p>{person.secret}</p>}
-              {person.reveal !== undefined && (
-                <p>
-                  <strong>{t('Comes out when')}:</strong> {person.reveal}
-                </p>
-              )}
-              {person.change !== undefined && (
-                <p>
-                  <strong>{t('May change')}:</strong> {person.change}
-                </p>
-              )}
-            </details>
-          )}
-        </>
-      ),
+      body: <PersonBody person={person} />,
     };
   }
   if (moment.kind === 'clue') {

@@ -179,4 +179,31 @@ registerRussian({
   'Show on the table’s screen': 'Показать на экране стола',
   'With the words read aloud': 'Со словами вслух',
   'The table’s screen shows it.': 'Экран стола показывает это.',
+  // The DM's working spread (docs/adr/0075-book-interface.md §16): the story on the Scene, the seals.
+  'The story where the party is': 'Рассказ: где сейчас отряд',
+  'In the book': 'В книгу',
+  'What the DM does': 'Действия мастера',
+  'A rest': 'Привал',
+  'To the screen': 'На экран',
+  'Hand out': 'Выдать',
+  'This page of the story asks for no roll.': 'На этой странице броска нет.',
+  'Ask for a check of your own': 'Попросить свою проверку',
+  'No fight is prepared for this place or this chapter.':
+    'Для этого места и главы готового боя нет.',
+  'Every fight, and one of your own': 'Все бои и свой бой',
+  'Dawn, a rest cut short, the road’s hazards': 'Рассвет, прерванный отдых, опасности пути',
+  'Everything the table’s screen shows': 'Всё, что показывает экран стола',
+  'This chapter has no handout of its own.': 'В этой главе материалов нет.',
+  'Write a handout of your own': 'Написать свой материал',
+  'By the book': 'По книге',
+  'The campaign wrote no text for this page: tell it in your own words.':
+    'У этой страницы нет текста: расскажите сцену своими словами.',
+  'Who is here by the book': 'Кто здесь по книге',
+  'What can be found here': 'Что здесь можно найти',
+  'The Scene shows another place. The book tells it in chapter {number}, “{title}”.':
+    'На сцене другое место. В книге о нём глава {number}: «{title}».',
+  'Open that chapter': 'Открыть эту главу',
+  'Prepared for this page: {count}': 'Готово для этой страницы: {count}',
+  'The picture of this place goes to the table’s screen.':
+    'На экране стола появится картинка этого места.',
 });

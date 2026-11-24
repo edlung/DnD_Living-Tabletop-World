@@ -11,6 +11,8 @@ import { useCallback } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { NpcProfile, type ProfileEditing } from '../authoring/npc-profile.tsx';
+import { PersonBody } from '../book/cards.tsx';
+import { useToldPerson } from '../book/told.ts';
 import { NpcShop } from '../dm/npc-shop.tsx';
 import { ChangeByHand } from '../dm/editors/change-by-hand.tsx';
 import { PerformNpc } from '../dm/perform-npc.tsx';
@@ -111,6 +113,8 @@ export function EntityDetails({
     (kind === 'character' && effectivePerspective === `CHARACTER:${entityId}`);
   const visible = resource.status === 'ready' ? resource.value.context?.context.visibleState : null;
   const names = distinctNames(t, directory);
+  // How the campaign's book tells this person, for the DM (`book/told.ts`).
+  const told = useToldPerson(entityId, effectivePerspective === 'DM');
   return (
     <>
       <header className={`details-header${plate.held ? ' details-header--plate' : ''}`}>
@@ -178,6 +182,26 @@ export function EntityDetails({
               />
             </>
           )}
+          {/* The DM's card begins with who this is: the book's telling, the world's own words,
+              then playing them; the leads to others follow (ADR 0075 §16). */}
+          {told && (
+            <section className="told-person dmb" aria-label={t('By the book')}>
+              <h3>{t('By the book')}</h3>
+              <PersonBody person={told} />
+            </section>
+          )}
+          {effectivePerspective === 'DM' && kind === 'npc' && profileEditing && name !== null && (
+            <NpcProfile entityId={entityId} name={name} editing={profileEditing} />
+          )}
+          {effectivePerspective === 'DM' && kind === 'npc' && (
+            <PerformNpc
+              api={api}
+              npcId={entityId}
+              npcName={name ?? entityId}
+              directory={directory}
+              presentIds={presentIds}
+            />
+          )}
           {resource.value.knowledge && (
             <Leads
               knowledge={resource.value.knowledge}
@@ -185,9 +209,6 @@ export function EntityDetails({
               names={names}
               onSelect={onSelect}
             />
-          )}
-          {effectivePerspective === 'DM' && kind === 'npc' && profileEditing && name !== null && (
-            <NpcProfile entityId={entityId} name={name} editing={profileEditing} />
           )}
           {/* An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8). */}
           {effectivePerspective === 'DM' && kind === 'npc' && (
@@ -204,15 +225,6 @@ export function EntityDetails({
               onRun={(command) => {
                 onRun({ kind: 'command', command });
               }}
-            />
-          )}
-          {effectivePerspective === 'DM' && kind === 'npc' && (
-            <PerformNpc
-              api={api}
-              npcId={entityId}
-              npcName={name ?? entityId}
-              directory={directory}
-              presentIds={presentIds}
             />
           )}
           <EntityImages entityId={entityId} kind={kind} name={name ?? unidentifiedName(t, kind)} />
