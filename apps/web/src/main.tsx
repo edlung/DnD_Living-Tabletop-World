@@ -156,6 +156,8 @@ import './styles/book-controls.css';
 import './styles/book-leaf.css';
 import './styles/book-concept.css';
 import './styles/book-picks.css';
+import './styles/fight-whole.css';
+import './styles/fight-cards.css';
 import './styles/book-phone.css';
 import './styles/print.css';
 import './styles/print-book.css';

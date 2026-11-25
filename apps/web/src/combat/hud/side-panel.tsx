@@ -14,6 +14,7 @@ import { Medallion } from '../../visual/medallion.tsx';
 import { boardUrl } from '../../visual/ui-kit.ts';
 import { HpBar } from '../board/token.tsx';
 import { conditionGlyph } from '../combat-art.ts';
+import { CONDITION_EFFECTS, conditionNoteWords } from '../condition-words.ts';
 import { sideWords, stateWords, temporaryWords } from '../hit-point-words.ts';
 import { useCombatantLabels } from '../labels.ts';
 import type { MoveOption } from '../move-options.ts';
@@ -286,9 +287,20 @@ export function CombatantCard({
       {combatant.conditions.length > 0 && (
         <ul className="side-conditions" aria-label={t('Conditions')}>
           {combatant.conditions.map((condition) => (
-            <li key={condition}>
+            <li key={condition} title={t(CONDITION_EFFECTS[condition])}>
               <Glyph name={conditionGlyph(condition)} />
               {t(readableLabel(condition))}
+            </li>
+          ))}
+        </ul>
+      )}
+      {/* How each ends, as the viewer knows it: where the active combatant's card is not shown
+          (ADR 0075 §26) this card is where it is read. */}
+      {(combatant.conditionNotes ?? []).length > 0 && (
+        <ul className="active-condition-notes" aria-label={t('How they end')}>
+          {(combatant.conditionNotes ?? []).map((note) => (
+            <li key={note.condition}>
+              <strong>{t(readableLabel(note.condition))}:</strong> {conditionNoteWords(t, note)}
             </li>
           ))}
         </ul>

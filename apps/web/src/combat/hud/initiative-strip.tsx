@@ -2,8 +2,10 @@ import { HIDDEN_TURN, type EncounterView, type PlayerAssetView } from '@ltw/cont
 import { useT } from '@ltw/ui';
 import { useRef } from 'react';
 
+import { usePaperSurface } from '../../shell/sheet.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
+import { ORDER_COLUMN, useMedia } from '../board/board-view.ts';
 import { HpBar } from '../board/token.tsx';
 import { temporaryWords } from '../hit-point-words.ts';
 import { splitLabel, useCombatantLabels } from '../labels.ts';
@@ -34,7 +36,9 @@ export function InitiativeStrip({
       : labelOf(encounter.currentCombatantId);
   // A long order scrolls inside the band; its edges fade where more of it hides (Stage 605).
   const list = useRef<HTMLOListElement>(null);
-  const edges = useScrollEdges(list, encounter.order.join(' '));
+  // In a book on a screen wider than tall the order is a column: it scrolls down, not across.
+  const column = useMedia(ORDER_COLUMN) && usePaperSurface() !== undefined;
+  const edges = useScrollEdges(list, encounter.order.join(' '), column ? 'y' : 'x');
   // A creature the viewer's character commands (ADR 0044 §7): its turn is the viewer's to run.
   const commanded =
     actorId !== null &&

@@ -358,7 +358,7 @@
  * the section's content starts under it (`--asks-h`, alerts/slot-room.ts), so a card of the
  * table's never lies over the section's Close or its controls.
  */
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
+@media (min-width: 701px) and (min-height: 501px), (min-width: 1200px) {
   .world-main:has(.sheet:not([hidden])) .rest-banner-slot {
     top: calc(var(--topbar-real-h, var(--topbar-h)) + 66px);
     left: 50%;

@@ -100,7 +100,7 @@
 .rest-banner-slot:has(.stars-form) .previously--lobby {
   display: none;
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .previously-brief.stars-card {
     max-height: max(160px, calc(100dvh - 460px));
   }
@@ -274,7 +274,7 @@
 
 /* A wide, short screen (a phone held wide) floats the slot under the place's card: while a player
    writes, it moves up to the top bar so both fields and their buttons end above the dock. */
-@media (min-width: 768px) and (max-height: 560px) {
+@media (min-width: 701px) and (max-height: 560px) {
   .rest-banner-slot:has(.stars-form) {
     top: calc(var(--topbar-h) + 8px);
   }
@@ -372,7 +372,7 @@
 }
 /* A small phone with the stars card too: the date stays whole, a long line keeps two rows (the
    whole of it is on the campaign's card in the list), so the cards stay under the top bar. */
-@media (max-width: 767px) and (max-height: 700px) {
+@media (max-width: 700px) and (max-height: 700px) {
   .rest-banner-slot:has(.stars-card) .next-game--lobby .next-game-note {
     display: -webkit-box;
     overflow: hidden;

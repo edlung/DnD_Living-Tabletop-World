@@ -234,16 +234,19 @@
   }
 
   /*
-   * A hero's fight takes the page's whole width, its bookmarks along the bottom: the clasp
-   * stands in their row, at the cover's lower corner, and its slip opens upward.
+   * A phone held wide: a hero's fight keeps its bookmarks along the bottom there
+   * (`book-shell.css`), and the clasp stands in their row, at the cover's lower corner; its slip
+   * opens upward.
    */
-  .session-shell:has(> .world-main[data-book='hero'].has-battle) > .topbar > .session-controls {
-    top: auto;
-    bottom: 8px;
-  }
-  .session-shell:has(> .world-main[data-book='hero'].has-battle) > .topbar .topbar-menu {
-    top: auto;
-    bottom: 62px;
+  @media (max-height: 500px) {
+    .session-shell:has(> .world-main[data-book='hero'].has-battle) > .topbar > .session-controls {
+      top: auto;
+      bottom: 8px;
+    }
+    .session-shell:has(> .world-main[data-book='hero'].has-battle) > .topbar .topbar-menu {
+      top: auto;
+      bottom: 62px;
+    }
   }
 
   /* --- A page's running head: the book's own name, as a printed book carries it. */

@@ -421,7 +421,7 @@
 }
 /* It stays while the campaign is away: under the place's card, never over it, on every width
    that floats the slot (a phone's sits above the tab bar). */
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
+@media (min-width: 701px) and (min-height: 501px), (min-width: 1200px) {
   .rest-banner-slot:has(.lobby-banner.is-away) {
     top: calc(var(--topbar-h) + 120px);
     left: 120px;

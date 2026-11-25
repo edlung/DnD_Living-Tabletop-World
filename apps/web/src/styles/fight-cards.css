@@ -1,0 +1,205 @@
+/*
+ * Where the fight's cards lie (docs/adr/0075-book-interface.md §26). On the whole-screen sheet
+ * (`fight-whole.css`) the card of what is chosen lies over the map's edge and the active
+ * combatant's is said, not shown; where the map leaves room to spare (the board says so,
+ * `combat/board/spare-room.ts`) the cards take it instead — a margin at the map's right, or the
+ * room under it. And each card is a slip of the fold-out's paper.
+ */
+
+/*
+ * --- Room beside the map (a laptop's window; a tilted board most of all): the map stands at the
+ * sheet's left, and the margin at its right holds the active combatant, the card of what is
+ * chosen (or how to read the board) and who is at the table.
+ */
+@media (min-width: 701px) and (min-height: 501px) {
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='beside'] .board-stage {
+    margin-inline: 0 auto;
+  }
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='beside'] .board-controls {
+    right: 300px;
+  }
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='beside'] .active-card {
+    position: relative;
+    inset: auto;
+    z-index: 6;
+    grid-row: 2;
+    align-self: start;
+    justify-self: end;
+    width: 288px;
+  }
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='beside'] .combat-side {
+    align-self: start;
+    justify-self: end;
+    width: 288px;
+    max-height: calc(100% - var(--active-h, 0px) - 10px - 164px);
+    margin: calc(var(--active-h, 0px) + 10px) 0 0;
+  }
+  /* How to read the board is never cut or scrolled: it is words alone, with nothing to focus. */
+  .world-main[data-book]
+    .stage--battle
+    .combat-panel[data-spare='beside']
+    .combat-side:has(> .board-legend) {
+    max-height: none;
+    overflow: visible;
+  }
+  /* A margin tall enough always shows it; a shorter one keeps the board's tool for it. */
+  @media (min-height: 800px) {
+    .world-main[data-book] .stage--battle .combat-panel[data-spare='beside'] .board-read {
+      display: none;
+    }
+    .world-main[data-book]
+      .stage--battle
+      .combat-panel[data-spare='beside']:not([data-legend])
+      .combat-side:has(> .board-legend):not(:has(.legend-window)) {
+      display: block;
+    }
+  }
+  /* Who is at the table: at the margin's foot, a close row each. */
+  .world-main[data-book] .stage--battle:has(.combat-panel[data-spare='beside']) > .scene {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  .world-main[data-book]
+    .stage--battle:has(.combat-panel[data-spare='beside'])
+    > .scene
+    > :not(.party-rail) {
+    display: none;
+  }
+  .world-main[data-book]
+    .stage--battle:has(.combat-panel[data-spare='beside'])
+    > .scene
+    > .party-rail {
+    top: auto;
+    right: calc(var(--parts-w) + 10px);
+    bottom: calc(var(--fight-bottom) + 8px + var(--fight-foot));
+    left: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    width: 288px;
+    max-width: none;
+    max-height: 156px;
+    overflow: hidden auto;
+    pointer-events: auto;
+  }
+  .world-main[data-book] .stage--battle > .scene > .party-rail ul {
+    display: grid;
+    gap: 3px;
+  }
+  .world-main[data-book] .stage--battle > .scene > .party-rail :is(.rail-dm, .rail-member) {
+    min-height: 28px;
+    padding-block: 0.05rem;
+  }
+  .world-main[data-book] .stage--battle > .scene > .party-rail .rail-name {
+    overflow: hidden;
+    overflow-wrap: normal;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .world-main[data-book] .stage--battle > .scene > .party-rail .rail-hp {
+    flex: none;
+  }
+}
+
+/*
+ * --- Room under the map (a tablet held upright): the active combatant and the card of what is
+ * chosen — how to read the board until something is — lie under the map, side by side.
+ */
+@media (min-width: 701px) and (min-height: 501px) and (max-aspect-ratio: 5/4) {
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='below'] .active-card {
+    position: relative;
+    inset: auto;
+    z-index: 6;
+    grid-row: 2;
+    align-self: end;
+    justify-self: start;
+    width: calc(50% - 4px);
+    /*
+     * Its head stands just under the map: the room left is under the card. It is words alone,
+     * with nothing to focus, so it is never a scroll box.
+     */
+    margin-bottom: max(0px, calc(var(--board-spare) - 14px - var(--active-h, 0px)));
+  }
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='below'] .combat-side,
+  .world-main[data-book]
+    .stage--battle
+    .combat-panel[data-spare='below']:not([data-legend])
+    .combat-side:has(> .board-legend):not(:has(.legend-window)) {
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+    justify-self: end;
+    width: calc(50% - 4px);
+    height: calc(var(--board-spare) - 14px);
+    max-height: none;
+    margin: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='below'] .combat-side > * {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    pointer-events: auto;
+  }
+  .world-main[data-book] .stage--battle .combat-panel[data-spare='below'] .board-read {
+    display: none;
+  }
+}
+
+/*
+ * --- A card over the map is narrow: its face is smaller, so a name breaks between its words and
+ * never inside one, and a line's mark stays beside the first line of its words.
+ */
+@media (min-width: 701px) and (min-height: 501px) {
+  .world-main[data-book] .stage--battle .combat-side .side-header {
+    gap: 0.55rem;
+  }
+  .world-main[data-book] .stage--battle .combat-side .side-header > .medallion {
+    --m: 56px;
+  }
+  .world-main[data-book] .stage--battle .combat-side .side-title h3 {
+    overflow-wrap: break-word;
+    font-size: 1.15rem;
+    line-height: 1.2;
+  }
+  .world-main[data-book] .stage--battle .combat-side .side-initiative {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+  .world-main[data-book] .stage--battle .combat-side .side-initiative > .glyph {
+    margin-top: 0.1rem;
+  }
+  .world-main[data-book] .stage--battle .combat-side .side-initiative > small {
+    grid-column: 2;
+  }
+}
+
+/*
+ * --- On the fold-out's paper a card is a slip of that paper — the active combatant, the card of
+ * what is chosen, the turn tray, what is asked — not grey glass over a dark grain.
+ */
+[data-surface='paper'] :is(.active-card, .combat-side-card, .turn-tray, .terrain-card),
+:is(.reaction-prompt, .turn-tray)[data-surface='paper'] {
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow:
+    0 0 0 1px rgb(43 32 21 / 0.08),
+    0 3px 12px rgb(43 32 21 / 0.32);
+}
+[data-surface='paper'] :is(.initiative-band, .anchor-caption, .board-controls) {
+  background:
+    linear-gradient(rgb(255 250 238 / 0.55), rgb(255 250 238 / 0.55)),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+}

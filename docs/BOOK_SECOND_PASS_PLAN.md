@@ -67,6 +67,17 @@ title over the book's ornament, round portraits, the ribbon down the gutter and 
 between drawn hands; choices are made by pressing one of fifty-six vignettes Codex CLI drew, the
 heroes are chosen by their faces, and a form's own tick, ring and list mark are drawn.
 
+Then (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`): every loose end of the interface first —
+he checks the book when it is whole, and the other books' materials are drawn after that — and
+the fight large, on the whole screen. Pull request 108 (ADR 0075 §26,
+`reports/BOOK_FIGHT_WHOLE_SCREEN_2026-11-25.md`): from a tablet up the fight is one sheet the map
+takes, with only the order of turns beside it; its foot keeps a constant room, so the map never
+changes its size under a pointer; the cards lie over the map's edge, or in the room the map
+leaves beside or under itself. The loose ends that follow, each in its own pull request stacked
+on the last: every card, slip and dialog on the book's paper; the choices and lists the browser
+still draws; the shelf, the way in, the table's screen, the Chronicle; the workshop and a hero's
+builder.
+
 Still the owner's: merging and deploying the stack; his look at the three campaigns' new
 materials before the other books are drawn; reading and opening the written books of «Пропавший
 караван» and «Холлоумир» (until then his own campaigns run on a book assembled from the world).

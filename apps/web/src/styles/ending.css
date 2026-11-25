@@ -48,7 +48,7 @@
 }
 /* On a phone the card is whole and the table's column scrolls (ADR 0071's slot): the end of an
    adventure is not read through a keyhole. */
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .previously-brief.stars-card.finished-card:not(:has(.keepsake-form)) {
     max-height: none;
     overflow: visible;
@@ -60,7 +60,7 @@
   }
 }
 /* A short or narrow screen: the closing words keep two lines; the whole of them is in the book. */
-@media (max-height: 700px), (max-width: 767px) {
+@media (max-height: 700px), (max-width: 700px) {
   .finished-card .finished-line {
     display: -webkit-box;
     overflow: hidden;

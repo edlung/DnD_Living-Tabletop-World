@@ -43,7 +43,7 @@
   opacity: 0.6;
   cursor: progress;
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   /* On a phone the column fills the width: the button keeps to the right, out of the thumb's way
      to the dock's first tabs. */
   .pause-ask {
@@ -51,7 +51,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   /* A request for a pause is told nowhere else: on a phone it stays over an open sheet, where
      the table's other questions give way (`rest.css`), and stands alone there. */
   .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
@@ -79,7 +79,7 @@
 .quiet-row > * {
   pointer-events: auto;
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .quiet-row {
     justify-content: flex-end;
   }
@@ -178,7 +178,7 @@
     justify-content: center;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .fight-quiet {
     position: relative;
     inset: auto;

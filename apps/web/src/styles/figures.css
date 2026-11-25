@@ -225,7 +225,7 @@
   font-size: 0.95rem;
 }
 
-@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
+@media (max-width: 700px), (max-width: 1199px) and (max-height: 500px) {
   .object-button--figure .miniature,
   .world-objects:has(> li:nth-child(5)) .object-button--figure .miniature {
     --mini-h: 104px;

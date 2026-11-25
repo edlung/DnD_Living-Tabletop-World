@@ -615,6 +615,50 @@ asked with the browser's own controls, however they were inked.
    Chronicle's own dialog. The fifty-three books without seals, an initial, a corner or an
    ornament of their own keep the product's drawn ones.
 
+### 26. The fight is the whole screen (2026-11-25)
+
+The owner, on the book set closer to the concept: «Бой не должен быть мелким. Сделай его на весь
+экран.» (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`). In his own window (766 px) the map kept
+510 of 650 px beside a column of cards; on a tablet held wide, about half of the sheet. §6 and
+§17 laid the fight as a page with margins; from a tablet up it is now one sheet the map takes.
+
+1. **One sheet that never scrolls, and the map takes it** (from 701 × 501 px). A square grows to
+   160 px (it stopped at 72). Nothing stands beside the board but the order of turns: a narrow
+   column at its left where the sheet is wider than tall (5 : 4 and wider), a row of faces at its
+   head where it is not — each with its Initiative, its number, its hit points and its name.
+2. **The head row** is the part's own: the fold's handle («Сцена» / «Поле боя») at its end,
+   "Your turn" in its middle for the one it calls (whose turn it is stands in the order, and is
+   still said aloud), the DM's quiet switch at its start. A page opened over the fight covers
+   that row with its own.
+3. **The foot keeps a constant room.** A player's turn tray, or the DM's turn slip, lies at the
+   sheet's foot over room kept for it at rest; one that needs more — the ways to act on what is
+   chosen, a question — rises over the map's foot. The map never changes its size or its place
+   under a pointer. (It does when a player's turn begins or ends: the tray comes and goes.)
+4. **Cards lie over the map's edge, away from what is chosen.** The card of a chosen square or
+   combatant opens in the half of the map its subject is not in. How to read the board waits
+   behind one of the board's own tools. The active combatant's card is said to a reader of the
+   screen and not shown: the order and the foot say whose turn it is, and the card of a chosen
+   combatant tells what its conditions do and how they end. Each card is a slip of the
+   fold-out's paper.
+5. **Where the map leaves room to spare, the cards take it instead.** The board says how much
+   room it leaves on its sheet (`combat/board/spare-room.ts`); the cards lie in the board's own
+   cell, so saying it changes nothing the board measures. Room beside the map (300 px: a
+   laptop's window, a tilted board most of all): the map stands at the sheet's left and a margin
+   at its right holds the active combatant, the card of what is chosen or how to read the
+   board, and who is at the table. Room under it where the order is a row (290 px: a tablet
+   held upright): the active combatant and the card side by side under the map.
+6. **A hero's fight is laid as the DM's** from a tablet up: the bookmarks at the fore-edge in
+   their close form, the map across the sheet. A phone, and a phone held wide, keep their own
+   column and the bookmarks along the bottom (§21).
+7. **What the table asks during a fight** (a check, a rest, an evening not begun) lies on the
+   map's head at its left, clear of the board's tools; a result lies at its foot on the left,
+   above the tray or the slip. The slip over the book that says the DM acts for a hero is one
+   row.
+8. **The book's layouts begin at 701 px everywhere**: sixteen stylesheets still switched at
+   768 px, so a window between the two widths mixed a phone's rules into the book.
+9. **Not changed**: every command, route and contract; what a player's client is sent; the
+   board's hit-testing, its tools and their names; a phone's fight; the table's screen.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

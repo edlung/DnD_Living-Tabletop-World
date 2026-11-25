@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-25",
+  "source": "The owner's words typed in the same working session as reviews/OWNER_BOOK_CLOSER_TO_CONCEPT_2026-11-25.json, in the desktop app, after the session showed him the book set closer to the concept (pull request 107). This record is written by the same session: it saw the words below typed.",
+  "theWords": [
+    "Закончи сначала все недоделки интерфейса. Когда выполним работу интерфейса - книги на 100%, я проверю и продолжим работа над остальными 53 книгами.",
+    "Бой не должен быть мелким. Сделай его на весь экран."
+  ],
+  "whatHeAsksFor": [
+    "Every loose end of the book interface finished first, so that the interface as a book is whole; he checks it then.",
+    "The fight large: the battlefield takes the whole screen.",
+    "The ornaments, seals and other materials of the fifty-three books that have none wait until he has checked the finished interface."
+  ],
+  "whatTheSessionFound": "In his own window (about 766 px wide) the fight's map was some 510 px wide beside a column of cards; on a tablet held wide the map kept about half of the sheet. The session's survey of every page at that width also found pages and cards the book had not reached: the result of an action and what the table asks on dark glass, dialogs that open outside the book (a hero's sheet, the guide, the account, the Chronicle), lists of a few options still shown as the browser's own lists, the Encounter page's cards.",
+  "whatTheSessionTookFromIt": {
+    "authorized": [
+      "The fight as the whole sheet from a tablet up: the map as large as its squares go, the order of turns a narrow column or a row, the cards over the map's edge or behind the board's tools; a pull request stacked on the book set closer to the concept (pull request 107).",
+      "After it, in pull requests stacked one on another: every card, slip and dialog on the book's paper; the remaining choices as pictures and faces; lists, dates, numbers and scrolling in the book's hand; the shelf, the way in, the table's screen, the Chronicle; the workshop and a hero's builder; wording and small things.",
+      "The checks, the journeys and the layout audit for each; a real screen shown early."
+    ],
+    "notAuthorized": [
+      "Drawing the materials of the fifty-three books that have none (after he has checked the interface).",
+      "Merging and deployment.",
+      "Opening the two built-in adventures' written books (they wait for his reading, ADR 0074 §2.8)."
+    ]
+  },
+  "standingOwnerRulesThisWorkKeeps": [
+    "2026-11-20: no rails — «DnD — это про свободу выбора и действий».",
+    "2026-11-21: sections full screen with a way to close, everything at hand, the least scrolling; every main DM task has a visible entry named with his own word.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table.",
+    "2026-11-23: each book has its own style from its campaign's art; book materials by Codex CLI.",
+    "2026-11-25: the book is the whole screen; everything is in the book or in a bookmark; no raw web controls; show a real screen early."
+  ],
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; rules and legality stay the server's.",
+    "Knowledge isolation: a player's client and the table's screen receive only their own projections.",
+    "No AI at the table; no paid provider call beyond the pictures Codex CLI makes for the book materials.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ]
+}

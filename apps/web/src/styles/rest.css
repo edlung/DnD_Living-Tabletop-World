@@ -213,7 +213,7 @@
     max-width: calc(100vw - 152px - var(--panel-w));
   }
 }
-@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
+@media (max-width: 700px), (max-width: 1199px) and (max-height: 500px) {
   /* A phone's scene flows under a two-row top bar: the banner sits above the tab bar and the
      result (--outcome-h, shell/reserved-height.ts), the scene keeps room for it, and a sheet or
      panel over the whole screen hides it. */
