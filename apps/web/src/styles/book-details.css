@@ -68,7 +68,7 @@
 }
 
 /* --- The block of pages: the book's painted edge under the page, where the book has it. */
-@media (min-width: 768px) and (min-height: 501px) {
+@media (min-width: 701px) and (min-height: 501px) {
   [data-campaign-theme] .world-main[data-book] > .stage::after {
     background:
       var(

@@ -303,6 +303,11 @@
     --dock-h: 0px;
   }
 }
+@media (min-width: 701px) and (min-height: 501px) {
+  .world-main[data-book='hero'].has-battle {
+    --dock-h: 0px;
+  }
+}
 @media (min-width: 1200px) {
   .world-main[data-book='dm'] .stage--battle .turn-banner {
     top: calc(var(--pages-h) + 98px);
@@ -397,47 +402,50 @@
 }
 
 /*
- * A player's fight, no page open over it (docs/adr/0075-book-interface.md §4): the battlefield
- * takes the whole stage as it always has, the Scene part's one tab steps aside, and the bookmarks
- * run along the bottom where the battle's layout keeps room for them. The DM's Scene part keeps
- * its Encounter tab, from which the DM runs the fight, and the DM's bookmarks stay at the edge.
+ * A player's fight on a phone, no page open over it (docs/adr/0075-book-interface.md §4): the
+ * battlefield takes the whole stage, the Scene part's one tab steps aside, and the bookmarks run
+ * along the bottom where the phone's column keeps room for them. From a tablet up a hero's fight
+ * is laid as the DM's — the bookmarks at the fore-edge, the map across the sheet
+ * (`fight-whole.css`, §26).
  */
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) {
-  --pages-h: 0px;
-  --parts-w: 0px;
-}
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-pages {
-  display: none;
-}
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .combat-stage,
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .combat-panel {
-  inset: 0;
-}
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts {
-  top: auto;
-  right: auto;
-  bottom: 10px;
-  left: 50%;
-  inline-size: auto;
-  translate: -50% 0;
-}
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts > ul {
-  flex-direction: row;
-  padding: 0;
-}
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part {
-  inline-size: auto;
-  min-width: 48px;
-  margin: 0;
-  justify-content: center;
-  padding: 4px 8px;
-  border-radius: 10px;
-}
-.world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part-word {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+@media (max-width: 700px), (max-width: 1199px) and (max-height: 500px) {
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) {
+    --pages-h: 0px;
+    --parts-w: 0px;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-pages {
+    display: none;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .combat-stage,
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .combat-panel {
+    inset: 0;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts {
+    top: auto;
+    right: auto;
+    bottom: 10px;
+    left: 50%;
+    inline-size: auto;
+    translate: -50% 0;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts > ul {
+    flex-direction: row;
+    padding: 0;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part {
+    inline-size: auto;
+    min-width: 48px;
+    margin: 0;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 10px;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }

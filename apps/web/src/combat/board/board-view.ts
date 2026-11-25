@@ -5,6 +5,15 @@ export const WIDE = '(min-width: 1200px)';
 /** A phone, or a phone held wide (some 400 px tall): one column, the flat board. */
 export const NARROW = '(max-width: 700px), (max-width: 1199px) and (max-height: 500px)';
 
+/** The largest square of a board that has a sheet to fill: a map of ten squares across a laptop. */
+export const MAX_CELL = 160;
+/**
+ * Where the fight's sheet is wider than tall (a tablet held wide, a laptop): the order of turns
+ * stands as a column beside the map (`styles/fight-whole.css`).
+ */
+export const ORDER_COLUMN =
+  '(min-width: 701px) and (min-height: 501px) and (min-aspect-ratio: 5/4)';
+
 const ZOOMS = [0.75, 1, 1.25, 1.5, 2] as const;
 
 export type BoardMode = 'flat' | 'tilted';

@@ -135,7 +135,7 @@
   opacity: 0.55;
 }
 /* On a phone or a tablet a cheer is smaller: it floats over what the thumb just pressed. */
-@media (max-width: 768px) {
+@media (max-width: 701px) {
   .cheer-layer:not(.cheer-layer--display) .cheer-sign {
     font-size: 2rem;
   }

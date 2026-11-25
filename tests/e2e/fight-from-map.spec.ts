@@ -98,6 +98,41 @@ test('the DM runs a fight from the map: a hero’s turn, a creature’s, the end
   await expect(field(page)).toHaveCount(0);
 });
 
+/**
+ * The fight is the whole screen (docs/adr/0075-book-interface.md §26): in a window some 760 px
+ * wide the map takes the sheet — no column of cards stands beside it — and it keeps its size and
+ * its place while a figure is chosen, though the card opens and the tray lists what can be done.
+ */
+test('the map takes the sheet and stands still while a figure is chosen', async ({ page }) => {
+  test.skip(test.info().project.name === 'ipad', 'a window’s own width, set in Chromium');
+  await page.setViewportSize({ width: 766, height: 799 });
+  await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGNS.hintRu);
+  await expect(field(page)).toBeVisible(LIVE);
+  await expect(tray(page)).toBeVisible(LIVE);
+  const plane = page.locator('.board-plane');
+  const sheet = await box(page.locator('.stage--battle'));
+  const room = await box(page.locator('.board'));
+  const before = await box(plane);
+  // The board has the sheet's width but for the bookmarks, and the map fills it one way or the other.
+  expect(room.width).toBeGreaterThan(sheet.width * 0.8);
+  expect(
+    Math.max(before.width / room.width, before.height / room.height),
+    'the map is as wide or as tall as its room',
+  ).toBeGreaterThan(0.85);
+  expect(
+    await page
+      .locator('.stage--battle')
+      .evaluate((stage) => stage.scrollHeight - stage.clientHeight),
+  ).toBeLessThanOrEqual(1);
+
+  // A foe is chosen: its card lies over the map, the tray lists the ways to act on it.
+  await page.locator('.board-square:has(.token--hostile)').first().click();
+  await expect(field(page).locator('.combat-side-card')).toBeVisible();
+  await expect(tray(page).getByRole('button').nth(1)).toBeVisible();
+  expect(await box(plane), 'the map has not moved or changed its size').toEqual(before);
+  await expectAccessible(page, 'the whole-screen fight with a figure chosen');
+});
+
 test('a player’s fold-out has no slip of the DM’s', async ({ page }) => {
   await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGNS.hintRu);
   await expect(field(page)).toBeVisible(LIVE);

@@ -71,7 +71,7 @@
   height: auto;
   min-height: min(32vh, 22rem);
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .shared-screen .display-story {
     min-height: 52vh;
   }

@@ -13,6 +13,12 @@ export interface BoardTools {
   readonly onArea: () => void;
   /** The table's marks: absent while this viewer may not mark. */
   readonly onMark?: (() => void) | undefined;
+  /**
+   * How to read the board (docs/adr/0075-book-interface.md §26): where the map has the whole
+   * sheet the legend waits behind this tool; where it has a margin of its own it always shows.
+   */
+  readonly reading?: boolean;
+  readonly onRead?: (() => void) | undefined;
 }
 
 /** The DM's brush on the board (docs/adr/0057-encounters-maps-loot.md §2). */
@@ -63,6 +69,15 @@ export function BoardControls({
             />
           )}
         </>
+      )}
+      {tools?.onRead && (
+        <IconButton
+          glyph="unknown"
+          className="board-read"
+          label={t('Reading the board')}
+          aria-pressed={tools.reading === true}
+          onClick={tools.onRead}
+        />
       )}
       {paint && (
         <IconButton

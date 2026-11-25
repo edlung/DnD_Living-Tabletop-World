@@ -466,3 +466,7 @@
   background: var(--teal-fill);
   color: var(--text);
 }
+/* How to read the board is a tool only where the legend has no place of its own (`fight-whole.css`). */
+.board-read {
+  display: none;
+}

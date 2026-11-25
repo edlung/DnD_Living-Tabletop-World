@@ -161,6 +161,8 @@ export function CombatPanel({
   }, []);
   // The viewer's own ruler and spell's area (ADR 0057 §5): a press on the board serves the tool.
   const [tool, setTool] = useState<Tool>(null);
+  // How to read the board, asked for from the board's tools where the map has the sheet (§26).
+  const [reading, setReading] = useState(false);
   // The table's shared marks (ADR 0057 §5): the DM always marks, players when the DM allows.
   const mayMark = dm || (marks.value?.playersMayMark ?? false);
   // The DM takes the players' marking back: a player's marks go out of hand.
@@ -376,6 +378,7 @@ export function CombatPanel({
     <section
       ref={section}
       className={`combat-panel${asked ? ' is-asked' : ''}`}
+      data-legend={reading ? '' : undefined}
       aria-label={t('Battlefield')}
       onKeyDown={onKeyDown}
     >
@@ -423,6 +426,14 @@ export function CombatPanel({
           onArea: () => {
             toggle({ kind: 'area', spec: DEFAULT_AREA, toward: null });
           },
+          reading,
+          // The legend lies where a card would: asking for it puts what was chosen away.
+          onRead: () => {
+            setFocus(null);
+            setTool(null);
+            setBrushState((state) => ({ ...state, painting: false }));
+            setReading((now) => !now);
+          },
         }}
         {...(dm
           ? {
@@ -440,7 +451,18 @@ export function CombatPanel({
             }
           : {})}
       />
-      <div className="combat-side">{side}</div>
+      {/* Over the map the card lies in the half what is chosen is not in (§26). */}
+      <div
+        className="combat-side"
+        data-far={
+          ((focus?.kind === 'square' ? focus.square.x : picked?.position.x) ?? 0) >=
+          encounter.battlefield.width / 2
+            ? ''
+            : undefined
+        }
+      >
+        {side}
+      </div>
       {mayAct && (
         <TurnTray
           encounter={encounter}

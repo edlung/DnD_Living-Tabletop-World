@@ -77,7 +77,9 @@ test('on her turn the hint says what is left, as she spends it; then that she wa
   await expect(hintButton(page)).toBeFocused();
   // The quiet row lies in the fight's own layout: the switch and the turn order stay in reach.
   await expectOnTop(page.getByRole('tab', { name: 'Battlefield', exact: true }));
-  await expectOnTop(anchor(page));
+  // The anchor's own box spans the map where the order stands beside it (`fight-whole.css`):
+  // what must stay in reach is the order itself.
+  await expectOnTop(anchor(page).getByRole('list', { name: 'Turn order' }));
   await expectOnTop(hintButton(page));
 
   // She walks three squares: fifteen feet are left.

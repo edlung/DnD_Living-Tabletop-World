@@ -110,7 +110,7 @@ export function CombatStage({
           }}
         >
           <Glyph name="look" />
-          {t('Scene')}
+          <span className="stage-switch-word">{t('Scene')}</span>
         </button>
         <button
           type="button"
@@ -122,7 +122,7 @@ export function CombatStage({
           }}
         >
           <Glyph name="encounter" />
-          {t('Battlefield')}
+          <span className="stage-switch-word">{t('Battlefield')}</span>
         </button>
       </div>
       {/* A player's quiet row in a fight — "What can I do?" and the way to a pause — is put here

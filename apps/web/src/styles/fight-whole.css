@@ -1,0 +1,448 @@
+/*
+ * The fight is the whole screen (docs/adr/0075-book-interface.md §26; the owner, 2026-11-25:
+ * «Бой не должен быть мелким. Сделай его на весь экран»). From a tablet up the fold-out is one
+ * sheet that never scrolls and the map takes it: nothing stands beside the board but the order of
+ * turns — a narrow column at its left where the screen is wider than tall, a row at its head
+ * where it is not — and the board is as large as its squares go (`combat/board/board.tsx`). The
+ * fold's handle and whose turn it is stand in the head row; the turn tray, or the DM's slip, is
+ * the sheet's foot, and the room kept for it is constant, so the map never changes its size under
+ * a pointer. The card of what is chosen lies over the map's edge while it is open; where the
+ * screen is much wider than tall (a laptop's window), the active combatant, that card and who is
+ * at the table keep a margin of their own. A phone keeps its own column (`battle-layout.css`).
+ */
+@media (min-width: 701px) and (min-height: 501px) {
+  .world-main[data-book].has-battle {
+    /* The head row: the part's tabs where it has them, a row of its own where it has none. */
+    --fight-top: max(var(--pages-h), 46px);
+    --fight-bottom: max(var(--dock-h, 0px), var(--page-bottom, 10px));
+    /* The room under the map for the sheet's foot, and where the map begins from the left. */
+    --fight-foot: 0px;
+    --map-left: 18px;
+    --map-top: calc(var(--fight-top) + 6px);
+    --hud-left: 0px;
+    --hud-right: 0px;
+    /* The bookmarks keep their close form through a fight: the room is the map's. */
+    --parts-w: 84px;
+  }
+  .world-main[data-book].has-battle:has(.stage--battle .turn-tray) {
+    --fight-foot: 94px;
+  }
+  .world-main[data-book].has-battle .book-part-word {
+    position: static;
+    inline-size: auto;
+    block-size: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .world-main[data-book].has-battle .book-part,
+  .world-main[data-book].has-battle .book-part[aria-current='page'] {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    min-height: 62px;
+    padding: 5px 4px 4px 6px;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .world-main[data-book].has-battle .book-part > .bk-icon {
+    inline-size: 30px;
+    block-size: 30px;
+  }
+
+  /* --- The sheet: the map, then its foot. */
+  .world-main[data-book] .stage--battle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: calc(var(--fight-top) + 6px) calc(var(--parts-w) + 10px)
+      calc(var(--fight-bottom) + 8px + var(--fight-foot)) 18px;
+    overflow: hidden;
+  }
+  .world-main[data-book] .stage--battle > .scene {
+    display: none;
+  }
+
+  /* --- The head row: the fold's handle at its end, whose turn it is in its middle. */
+  .world-main[data-book] .stage--battle > .stage-switch {
+    position: absolute;
+    top: calc((var(--fight-top) - 42px) / 2 + 2px);
+    right: calc(var(--parts-w) + 12px);
+    left: auto;
+    z-index: 47;
+    align-self: auto;
+    translate: none;
+  }
+  /* Whose turn it is stands in the order of turns; said apart only to the one it calls. */
+  .world-main[data-book] .stage--battle > .turn-banner:not(.turn-banner--yours) {
+    position: absolute;
+    inline-size: 1px;
+    min-inline-size: 0;
+    block-size: 1px;
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book] .stage--battle > .turn-banner--yours {
+    position: absolute;
+    top: calc((var(--fight-top) - 38px) / 2 + 2px);
+    left: 50%;
+    z-index: 47;
+    width: auto;
+    max-width: 34%;
+    margin: 0;
+    padding: 0.25rem 0.9rem 0.3rem;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    translate: -50% 0;
+  }
+  .world-main[data-book] .stage--battle > .fight-quiet {
+    position: absolute;
+    top: calc((var(--fight-top) - 40px) / 2 + 2px);
+    right: auto;
+    bottom: auto;
+    left: 18px;
+    z-index: 47;
+    margin: 0;
+  }
+  .world-main[data-book] .stage--battle > .fight-quiet .quiet-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  /* A page opened over the fight covers the head row with its own: the fold's handle lies under it. */
+  .world-main[data-book]:has(.sheet:not([hidden]))
+    .stage--battle
+    > :is(.stage-switch, .turn-banner--yours, .fight-quiet) {
+    z-index: 1;
+  }
+
+  /* --- The map takes the sheet. */
+  .world-main[data-book] .stage--battle > .combat-stage:not([hidden]) {
+    position: static;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0;
+    pointer-events: auto;
+  }
+  .world-main[data-book] .stage--battle .combat-panel {
+    position: static;
+    display: grid;
+    flex: 1 1 auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 6px 8px;
+    min-height: 0;
+    pointer-events: auto;
+  }
+  .world-main[data-book] .stage--battle .encounter-anchor {
+    position: relative;
+    inset: auto;
+    grid-column: 1;
+    grid-row: 1;
+    justify-items: start;
+    padding: 0;
+  }
+  .world-main[data-book] .stage--battle .board,
+  .world-main[data-book] .stage--battle .board.board--tilted {
+    position: relative;
+    inset: auto;
+    grid-column: 1;
+    grid-row: 2;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  /*
+   * Whose turn it is, with their hit points, stands in the order of turns and on the foot: the
+   * active combatant's card is said, not shown, until the map leaves it room (`fight-cards.css`).
+   */
+  .world-main[data-book] .stage--battle .active-card {
+    grid-column: 1;
+  }
+  .world-main[data-book] .stage--battle .combat-panel:not([data-spare]) .active-card {
+    position: absolute;
+    inline-size: 1px;
+    min-inline-size: 0;
+    block-size: 1px;
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  /*
+   * The card of what is chosen lies over the map's far edge, under the board's own tools, while
+   * it is open. How to read the board waits behind the tools; what a reaction waits for shows.
+   */
+  .world-main[data-book] .stage--battle .combat-side {
+    position: relative;
+    inset: auto;
+    z-index: 6;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    justify-self: end;
+    order: 0;
+    width: min(300px, 46%);
+    max-height: min(calc(100% - 60px), 30rem);
+    margin: 52px 8px 8px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .world-main[data-book] .stage--battle .board-read {
+    display: inline-flex;
+  }
+  /* What is chosen stands in the map's far half: its card lies in the near one, not over it. */
+  .world-main[data-book] .stage--battle .combat-side[data-far] {
+    justify-self: start;
+  }
+  .world-main[data-book]
+    .stage--battle
+    .combat-panel:not([data-legend])
+    .combat-side:has(> .board-legend):not(:has(.legend-window)) {
+    display: none;
+  }
+
+  /*
+   * --- The foot: a player's tray, or the DM's slip (`fold-out.css`). Each lies at the sheet's
+   * foot over the room kept for it; one that needs more (the ways to act on what is chosen, a
+   * question) rises over the map's foot — the map keeps its size and its place.
+   */
+  .world-main[data-book] .stage--battle .turn-tray {
+    position: absolute;
+    right: calc(var(--parts-w) + 10px);
+    bottom: calc(var(--fight-bottom) + 8px);
+    left: 18px;
+    z-index: 34;
+    width: fit-content;
+    max-width: calc(100% - var(--parts-w) - 28px);
+    margin-inline: auto;
+  }
+
+  /* --- What is asked over the map: a reaction, an attack held ready. */
+  .world-main[data-book] .stage--battle > .reaction-prompt {
+    position: absolute;
+    top: calc(var(--fight-top) + 14px);
+    right: calc(var(--parts-w) + 18px);
+    bottom: auto;
+    left: auto;
+    z-index: 9;
+    width: min(320px, 46%);
+    max-height: calc(100% - var(--fight-top) - var(--fight-bottom) - 40px);
+    overflow-y: auto;
+  }
+  /* A result lies at the map's foot on the left, above the tray or the slip. */
+  .world-main[data-book].has-battle > .outcome {
+    right: auto;
+    left: 28px;
+    width: min(360px, calc(100% - var(--parts-w) - 56px));
+    translate: none;
+  }
+  /*
+   * What the table asks during a fight (a check, a rest, the evening not begun) lies on the map's
+   * head at its left, clear of the board's tools at its right.
+   */
+  .world-main[data-book].has-battle:not(:has(.sheet:not([hidden]))) .rest-banner-slot {
+    position: absolute;
+    top: calc(var(--map-top) + 8px);
+    right: auto;
+    bottom: auto;
+    left: calc(var(--map-left) + 8px);
+    align-items: flex-start;
+    width: max-content;
+    max-width: min(560px, calc(100% - var(--parts-w) - var(--map-left) - 280px));
+    max-height: none;
+    overflow: visible;
+    translate: none;
+  }
+  /* The DM takes a hero's turn: the slip above the book says it in one close row. */
+  .session-shell:has(> .world-main[data-book].has-battle) > .acting-bar {
+    gap: 0.2rem 0.8rem;
+    padding-block: 0.3rem;
+    font-size: 0.92rem;
+    line-height: 1.25;
+  }
+  .session-shell:has(> .world-main[data-book].has-battle) > .acting-bar .acting-text > .muted {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  /* The DM's foot says whose turn it is: the words under the order are a player's. */
+  .world-main[data-book='dm'] .stage--battle .anchor-caption {
+    display: none;
+  }
+
+  /*
+   * --- Wider than tall (a tablet held wide, a laptop): the order of turns is a column at the
+   * map's left, so the map has the sheet's whole height.
+   */
+  @media (min-aspect-ratio: 5/4) {
+    .world-main[data-book].has-battle {
+      --map-left: 110px;
+    }
+    .world-main[data-book='hero'].has-battle {
+      --map-top: calc(var(--fight-top) + 38px);
+    }
+    .world-main[data-book] .stage--battle .combat-panel {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    /* The anchor spans the panel and lends it its tracks: the band at the left, the words on top. */
+    .world-main[data-book] .stage--battle .encounter-anchor {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      grid-template-columns: subgrid;
+      grid-template-rows: subgrid;
+      justify-items: stretch;
+      gap: 6px 8px;
+      pointer-events: none;
+    }
+    .world-main[data-book] .stage--battle .initiative-band {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      flex-direction: column;
+      align-self: start;
+      max-height: 100%;
+      min-height: 0;
+      pointer-events: auto;
+    }
+    .world-main[data-book] .stage--battle .initiative {
+      flex-direction: column;
+      gap: 0.1rem;
+      padding: 0.3rem 0.25rem;
+      overflow: hidden auto;
+    }
+    .world-main[data-book] .stage--battle .initiative[data-more-after] {
+      mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+    }
+    .world-main[data-book] .stage--battle .initiative[data-more-before] {
+      mask-image: linear-gradient(to bottom, transparent, #000 28px);
+    }
+    .world-main[data-book] .stage--battle .initiative[data-more-before][data-more-after] {
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        #000 28px,
+        #000 calc(100% - 28px),
+        transparent
+      );
+    }
+    .world-main[data-book] .stage--battle .round-mark {
+      order: -1;
+      justify-content: center;
+      padding: 0.3rem 0.2rem 0.25rem;
+      border-bottom: 1px solid var(--line);
+      border-left: 0;
+      font-size: 0.82rem;
+      line-height: 1.1;
+      text-align: center;
+    }
+    .world-main[data-book] .stage--battle .anchor-caption {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: center;
+      flex-wrap: nowrap;
+      max-inline-size: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      pointer-events: auto;
+    }
+    .world-main[data-book] .stage--battle .anchor-caption > span {
+      flex: 0 1 auto;
+      min-inline-size: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .world-main[data-book] .stage--battle .anchor-caption > span:not(.muted) {
+      flex-shrink: 0;
+    }
+    .world-main[data-book] .stage--battle .board,
+    .world-main[data-book] .stage--battle .board.board--tilted,
+    .world-main[data-book] .stage--battle .active-card,
+    .world-main[data-book] .stage--battle .combat-side {
+      grid-column: 2;
+    }
+  }
+}
+
+/* --- A window under 900 px: the fold's handle keeps its marks, the words are its names. */
+@media (min-width: 701px) and (max-width: 899px) and (min-height: 501px) {
+  .world-main[data-book='dm'] .stage--battle > .stage-switch button {
+    gap: 0;
+    padding-inline: 0.7rem;
+  }
+  .world-main[data-book='dm'] .stage--battle > .stage-switch .stage-switch-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book='dm'] .stage--battle > .stage-switch button > .glyph {
+    inline-size: 20px;
+    block-size: 20px;
+  }
+}
+
+/*
+ * --- Taller than wide (a window beside another, a tablet held upright): the order of turns is
+ * a row of faces at the map's head — each with its Initiative, its number, its hit points and
+ * its name on one line — so the map has the sheet's width.
+ */
+@media (min-width: 701px) and (min-height: 501px) and (max-aspect-ratio: 5/4) {
+  .world-main[data-book].has-battle {
+    --map-top: calc(var(--fight-top) + 96px);
+  }
+  /* The map stands under the order of turns, its tools on its corner: the room left is its foot's. */
+  .world-main[data-book] .stage--battle .board-stage {
+    margin-block: 0 auto;
+  }
+  /* The band, and beside it the words under the order: one row at the map's head. */
+  .world-main[data-book] .stage--battle .encounter-anchor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+  }
+  .world-main[data-book] .stage--battle .anchor-caption {
+    flex: 1 1 8rem;
+    justify-content: flex-start;
+    min-inline-size: 0;
+    font-size: 0.8rem;
+    line-height: 1.25;
+  }
+  .world-main[data-book] .stage--battle .initiative-entry {
+    width: 4rem;
+    padding-block: 0.1rem 0.15rem;
+  }
+  .world-main[data-book] .stage--battle .initiative {
+    padding-block: 0.25rem 0.2rem;
+  }
+  /* A name keeps one line under its face: two creatures of one picture are told apart. */
+  .world-main[data-book] .stage--battle .initiative-name {
+    display: block;
+    max-inline-size: 100%;
+    overflow: hidden;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .world-main[data-book] .stage--battle .round-mark {
+    padding-inline: 0.7rem;
+    font-size: 0.95rem;
+  }
+}

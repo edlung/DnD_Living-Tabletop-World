@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { BoardControls } from './board-controls.tsx';
+import { MAX_CELL } from './board-view.ts';
 import type { BoardProps } from './board-props.ts';
 import {
   boardLayout,
@@ -26,6 +27,7 @@ import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
 import { usePaintStroke } from './paint-stroke.ts';
 import { useTokenDrag } from './token-drag.ts';
+import { useSpareRoom } from './spare-room.ts';
 import { useSpace } from './use-space.ts';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
@@ -100,10 +102,22 @@ export function Board({
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
   const fitted = space
-    ? fitCell(space, grid, tilt, { min: view.narrow ? 36 : 24, max: view.maxCell ?? 72 })
+    ? fitCell(space, grid, tilt, {
+        min: view.narrow ? 36 : 24,
+        // From a tablet up the map takes the sheet it is given (ADR 0075 §26): its squares
+        // grow with it. A phone's stay a thumb's size; its zoom makes them larger.
+        max: view.maxCell ?? (view.narrow ? 72 : MAX_CELL),
+      })
     : 40;
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
+  // The room the map leaves on its sheet is the cards' (ADR 0075 §26).
+  const roomy = space !== null && !view.narrow;
+  useSpareRoom(
+    area,
+    roomy ? space.width - layout.box.width : null,
+    roomy ? space.height - layout.box.height : null,
+  );
   const hard = new Set(difficult.map(key));
   const walls = new Set((encounter.battlefield.walls ?? []).map(key));
   // Water and the ground's heights (docs/adr/0049-space-and-movement.md §5–6).

@@ -47,7 +47,7 @@
 .trouble-notice button {
   min-height: 44px;
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   /* On a phone the stage shows through glass: this one is read over a busy scene. */
   .trouble-notice {
     background: var(--ink-900, #12161d);

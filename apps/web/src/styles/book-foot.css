@@ -101,7 +101,7 @@
   }
 }
 /* A phone: what kept clear of the tab bar (the quiet row, a result) keeps clear of the dice too. */
-@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
+@media (max-width: 700px), (max-width: 1199px) and (max-height: 500px) {
   .world-main[data-book]:not(.has-battle) {
     --dock-h: calc(var(--foot-h) + 8px);
   }

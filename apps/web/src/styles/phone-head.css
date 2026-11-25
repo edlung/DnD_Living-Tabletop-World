@@ -252,6 +252,24 @@
   }
 
   /*
+   * Whose turn it is stands in the words under the order of turns: the plate above them is for
+   * the one it calls ("Your turn"). Otherwise it is said aloud and not shown twice, and the map
+   * comes up a row.
+   */
+  .world-main[data-book] .stage--battle > .turn-banner:not(.turn-banner--yours) {
+    position: absolute;
+    inline-size: 1px;
+    min-inline-size: 0;
+    block-size: 1px;
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /*
    * The bookmarks along the bottom lie on the binding's own cloth: a fight, which scrolls as one
    * column under them, does not show through between them.
    */

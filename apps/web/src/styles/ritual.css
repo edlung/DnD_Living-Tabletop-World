@@ -68,7 +68,7 @@
     grid-column: 2;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 701px) {
   .previously:not(.previously--aloud) {
     grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     align-items: start;
@@ -121,7 +121,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .previously--lobby {
     max-height: 60dvh;
   }
@@ -270,7 +270,7 @@
 
 /* The recap stays while the table waits: under the place's card, never over it, on every width
    that floats the slot (a phone's sits above the tab bar) — as the away notice does. */
-@media (min-width: 768px) {
+@media (min-width: 701px) {
   .rest-banner-slot:has(.previously-brief, .previously--lobby, .next-game--lobby) {
     top: calc(var(--topbar-h) + 120px);
     left: 120px;
@@ -306,7 +306,7 @@
 }
 
 /* A phone's lobby: the words alone (the book holds the picture), within what the scene leaves. */
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .previously--lobby .chapter-plate {
     display: none;
   }
