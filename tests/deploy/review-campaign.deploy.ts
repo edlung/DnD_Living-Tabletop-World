@@ -163,12 +163,14 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
       await expect(place).toHaveText(SQUARE);
       const backdrop = await shownPicture(player.locator('.stage-backdrop .backdrop-art'));
       expect(curatedHashes('market-square', 'image')).toContain(backdrop);
-      expect(await shownPicture(mira.locator('.miniature-art'))).toBe(
+      // On the book's page everyone is a round portrait: a figure stands inside its ring
+      // (docs/adr/0075-book-interface.md §25).
+      expect(await shownPicture(mira.locator('.medallion-figure'))).toBe(
         curatedHash('mira-vale--figure.webp'),
       );
       // Everyone standing in the scene is a curated figure (Mira, and Elowen herself), and every
       // picture came as authorized content through the proxy.
-      const standing = await scene.locator('.miniature-art').all();
+      const standing = await scene.locator('.medallion-figure').all();
       expect(standing.length).toBeGreaterThanOrEqual(2);
       for (const figure of standing) {
         const hash = await shownPicture(figure);
