@@ -1,4 +1,4 @@
-import type { LobbyResponse, SessionListResponse, TableDice, TableMode } from '@ltw/contracts';
+import type { LobbyResponse, SessionListResponse, TableMode } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useEffect, useId, useRef, useState, type SubmitEvent } from 'react';
 
@@ -16,7 +16,6 @@ import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { FirstEvening } from './first-evening.tsx';
-import { CampaignOptionsForm } from './campaign-options.tsx';
 import { STEP_WORDS, writeChapter, type EveningResult, type EveningStep } from './evening.ts';
 import { MusicPanel } from './music-panel.tsx';
 import { Running } from './session-running.tsx';
@@ -24,12 +23,14 @@ import { SoundChoice } from './sound-choice.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
- * A session at the table (docs/adr/0043-dm-screen.md §6), on the DM's Session sheet: who is here,
- * ready or absent; the session's start (at the table or online, opened with "Previously…"), its
- * pause and its end — and at the end the evening closed (`session-running.tsx`,
+ * A session at the table (docs/adr/0043-dm-screen.md §6), on the DM's Session sheet: the
+ * session's start first (at the table or online, opened with "Previously…"), its pause and its
+ * end — and at the end the evening closed (`session-running.tsx`,
  * docs/adr/0071-memory-and-ritual.md §1): its moments kept, the table's screens unpaired, guest
- * seats freed, the party's chapter written. The start and the end are the World Engine's; the
- * rest is the table's.
+ * seats freed, the party's chapter written; then who is here, ready or absent. The start and the
+ * end are the World Engine's; the rest is the table's. The page is the evening's: whose dice the
+ * table rolls and the campaign's options are on the settings page (`table-settings-sheet.tsx`,
+ * docs/adr/0075-book-interface.md §18).
  */
 export function SessionSheet({
   api,
@@ -68,12 +69,6 @@ export function SessionSheet({
   // The closing's step that runs: the session is gone from the table before its chapter is
   // written, so the sheet itself says what goes on.
   const [step, setStep] = useState<EveningStep | null>(null);
-  // The campaign's dice as just chosen, shown at once until the table's state reads it back.
-  const [dice, setDice] = useState<TableDice | null>(null);
-  const readDice = lobby.resource.status === 'ready' ? lobby.resource.value.dice : null;
-  useEffect(() => {
-    if (dice !== null && readDice === dice) setDice(null);
-  }, [dice, readDice]);
   if (!open) return null;
   if (lobby.resource.status !== 'ready') {
     return (
@@ -108,17 +103,6 @@ export function SessionSheet({
             api={api}
             result={ended}
             onOpenChronicle={onOpenChronicle}
-          />
-        )}
-        {/* Until the first evening has ended (a campaign may begin with its session open). */}
-        {step === null && (
-          <FirstEvening api={api} revision={revision + round} dated={Boolean(table.nextGame)} />
-        )}
-        {table.session === null && step === null && (
-          <EveningWords
-            api={api}
-            revision={revision + round}
-            characters={table.characters.map((entry) => entry.character)}
           />
         )}
         {table.session === null && step !== null ? (
@@ -183,6 +167,17 @@ export function SessionSheet({
             }}
           />
         )}
+        {/* Until the first evening has ended (a campaign may begin with its session open). */}
+        {step === null && (
+          <FirstEvening api={api} revision={revision + round} dated={Boolean(table.nextGame)} />
+        )}
+        {table.session === null && step === null && (
+          <EveningWords
+            api={api}
+            revision={revision + round}
+            characters={table.characters.map((entry) => entry.character)}
+          />
+        )}
         {/* When the table meets again (ADR 0071 §3). */}
         {!finished && (
           <NextGameForm
@@ -219,21 +214,6 @@ export function SessionSheet({
           <Glyph name="party" />
           {t('At the table')}
         </h3>
-        {/* The campaign's dice (ADR 0044 §4): the players' own, entered, or the app's. */}
-        <label className="lobby-dice">
-          <input
-            type="checkbox"
-            checked={(dice ?? table.dice) === 'physical'}
-            onChange={(event) => {
-              const next = event.target.checked ? 'physical' : 'app';
-              setDice(next);
-              void change({ dice: next }).then((done) => {
-                if (!done) setDice(null);
-              });
-            }}
-          />
-          {t('Players roll their own dice and enter what they show')}
-        </label>
         {/* What the table hears (ADR 0059 §1): on the table's screen and, online, everywhere. */}
         <SoundChoice
           api={api}
@@ -279,13 +259,6 @@ export function SessionSheet({
           {t('The table could not be changed. Try again.')}
         </p>
       )}
-      {/* Mounted again for each set read back: a saved change becomes the form's start. */}
-      <CampaignOptionsForm
-        key={JSON.stringify(table.options)}
-        options={table.options}
-        locked={locked}
-        onRun={onRun}
-      />
     </div>
   );
 }

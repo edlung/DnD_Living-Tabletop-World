@@ -20,12 +20,14 @@ import { useSignInKind } from '../session/sign-in-kind.ts';
 import { useScreenRequest } from '../shell/requests.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
+import { AppendixSheet } from './appendix-sheet.tsx';
 import { DmHistory } from './dm-history.tsx';
 import { NotesSheet } from './notes-sheet.tsx';
 import { PartySheet } from './party-sheet.tsx';
 import { SessionSheet } from './session-sheet.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
 import { ScreenSheet } from './screen-sheet.tsx';
+import { TableSettingsSheet } from './table-settings-sheet.tsx';
 import { DmHazardControls } from '../rest/dm-hazard-controls.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
@@ -124,6 +126,7 @@ export function DmSheets({
         directory={directory}
         placeId={place?.locationId ?? null}
         fighting={place !== null && place.encounter !== null}
+        evening={sessionId !== null}
         locked={locked}
         onRun={onRun}
         onEntity={onShowEntity}
@@ -163,6 +166,29 @@ export function DmSheets({
           onOpenSheet={(entityId) => {
             shell.openHero(entityId);
           }}
+          rest={
+            place && (
+              <DmRestControls locked={locked} fighting={place.encounter !== null} onRun={onRun} />
+            )
+          }
+        />
+      </Sheet>
+      {/* The tools an evening rarely needs (docs/adr/0075-book-interface.md §18). */}
+      <Sheet
+        id="appendix"
+        title={t('Appendix (DM)')}
+        glyph="warning"
+        open={shell.sheet === 'appendix'}
+        onClose={shell.closeSheet}
+      >
+        <AppendixSheet
+          api={api}
+          open={shell.sheet === 'appendix'}
+          revision={revision}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
+          }}
         />
       </Sheet>
       <Sheet
@@ -188,6 +214,24 @@ export function DmSheets({
           onOpenChronicle={(chronicleId) => {
             shell.dismissSheet();
             shell.openChronicle(chronicleId);
+          }}
+        />
+      </Sheet>
+      {/* What is chosen once for a campaign, apart from the evening (ADR 0075 §18). */}
+      <Sheet
+        id="settings"
+        title={t('Table settings (DM)')}
+        glyph="settings"
+        open={shell.sheet === 'settings'}
+        onClose={shell.closeSheet}
+      >
+        <TableSettingsSheet
+          api={api}
+          open={shell.sheet === 'settings'}
+          revision={revision}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
           }}
         />
       </Sheet>

@@ -15,6 +15,8 @@ export const UI_RU_CAMPAIGNS = {
   // The DM's working spread on the same adventure (tests/e2e/working-spread.spec.ts).
   work: 'ui-ru-work',
   workIpad: 'ui-ru-work-ipad',
+  // The parts by tasks (tests/e2e/pages-by-tasks.spec.ts): an evening begun, a rest called.
+  pages: 'ui-ru-pages',
 } as const;
 
 /** The Russian campaign that waits at an open Counterspell window. */

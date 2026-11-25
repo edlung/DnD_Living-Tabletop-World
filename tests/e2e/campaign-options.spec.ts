@@ -25,7 +25,7 @@ async function setOptions(
     readonly save: string;
   },
 ) {
-  const form = page.locator('#sheet-session').getByRole('region', { name: words.region });
+  const form = page.locator('#sheet-settings').getByRole('region', { name: words.region });
   await form
     .getByLabel(words.hitPoints[0], { exact: true })
     .selectOption({ label: words.hitPoints[1] });
@@ -47,7 +47,8 @@ test('the DM’s options give a milestone level with the fixed hit points, and a
   test.setTimeout(120_000);
   const dm = await (await browser.newContext()).newPage();
   await enterWorld(dm, TOKENS.dm, 'ui-campaign-options');
-  await openSheet(dm, 'Session');
+  // The campaign's options are the table's settings, apart from the evening (ADR 0075 §18).
+  await openSheet(dm, 'Settings');
   await setOptions(dm, {
     region: 'Campaign options',
     hitPoints: ['Hit points at a new level', 'Always fixed'],
@@ -94,7 +95,7 @@ test('a Russian table sets and reads the campaign options in Russian', async ({ 
   test.setTimeout(90_000);
   // The campaign's language is the table's: the persona sign-in stays English.
   await enterWorld(page, TOKENS.dm, 'ui-campaign-options-ru');
-  await openSheet(page, 'Сессия');
+  await openSheet(page, 'Настройки');
   await setOptions(page, {
     region: 'Параметры кампании',
     hitPoints: ['Хиты на новом уровне', 'Всегда фиксированные'],

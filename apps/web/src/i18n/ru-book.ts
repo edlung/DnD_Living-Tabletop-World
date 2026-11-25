@@ -206,6 +206,14 @@ registerRussian({
   'Prepared for this page: {count}': 'Готово для этой страницы: {count}',
   'The picture of this place goes to the table’s screen.':
     'На экране стола появится картинка этого места.',
+  // The pages by tasks (Stage 1170)
+  Appendix: 'Приложение',
+  'Appendix (DM)': 'Приложение (мастер)',
+  Settings: 'Настройки',
+  'Table settings (DM)': 'Настройки стола (мастер)',
+  'The table’s dice': 'Кубики стола',
+  'The evening has not begun.': 'Вечер ещё не начат.',
+  'Begin the evening': 'Начать вечер',
   // The fight run from the map (Stage 1160)
   'The DM’s turn slip': 'Ход на карте',
   'Take the hero’s turn': 'Ходить за героя',

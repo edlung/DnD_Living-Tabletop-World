@@ -10,7 +10,7 @@ import { openCharacter, openSheet } from './support/shell.ts';
  * Crafting (Stage 670f, docs/adr/0057-encounters-maps-loot.md §9): Elowen, who knows the Herbalism
  * Kit and carries one, begins a Potion of Healing with Brann helping — 25 crowns of materials, a
  * day's work shared by two — and sees her prepared spells offered as scrolls. The DM gives a day
- * of downtime from the Party sheet; the potion is in her pack.
+ * of downtime from the heroes' appendix; the potion is in her pack.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
 const CAMPAIGN = UI_ITEM_CAMPAIGNS.craft;
@@ -47,7 +47,8 @@ test('Elowen brews a Potion of Healing with Brann, and a day of downtime makes i
 
   // The DM gives a day of downtime.
   await enterWorld(dm, TOKENS.dm, CAMPAIGN);
-  await openSheet(dm, 'Party');
+  // The days between adventures are in the heroes' appendix (ADR 0075 §18).
+  await openSheet(dm, 'Appendix');
   const downtime = dm.locator('.downtime');
   await expect(downtime).toContainText('Potion of Healing');
   await expect(downtime).toContainText('Elowen Starwhisper, Brann Ironvale');

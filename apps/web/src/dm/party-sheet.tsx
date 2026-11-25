@@ -5,7 +5,7 @@ import type {
   ScenePresentationResponse,
 } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useId, useState, type SubmitEvent } from 'react';
+import { useCallback, useId, useState, type ReactNode, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -13,18 +13,18 @@ import { AskForCheck } from '../dice/check-forms.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { TableHandouts } from '../library/kept-handouts.tsx';
-import { DowntimeCard } from './downtime-card.tsx';
 import { PartyAdvancement } from '../builder/party-advancement.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { PartyCard } from './party-card.tsx';
-import { ToolboxForms } from './toolbox-forms.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
  * The DM's Party sheet (docs/adr/0043-dm-screen.md §3): every character at a glance — hit points,
  * Armor Class, conditions, inspiration, passive scores, slots, death saves — with the DM's hand on
- * each, a check asked of one or of everyone, and a ruling recorded for the party. Everything goes
- * through the World Engine as the DM; the sheet follows the live signal.
+ * each, the party's rest and experience beside its health, a check asked of one or of everyone,
+ * and a ruling recorded for the party. Everything goes through the World Engine as the DM; the
+ * sheet follows the live signal. The tools an evening rarely needs are the part's appendix
+ * (`appendix-sheet.tsx`, docs/adr/0075-book-interface.md §18).
  */
 export function PartySheet({
   api,
@@ -36,10 +36,13 @@ export function PartySheet({
   locked,
   onRun,
   onOpenSheet,
+  rest,
 }: {
   readonly api: WorldApi;
   readonly open: boolean;
   readonly revision: number;
+  /** The party's rest (`rest/dm-rest-controls.tsx`): beside its health, where it is called for. */
+  readonly rest: ReactNode;
   /** What a handout may picture (ADR 0044 §5). */
   readonly directory: readonly EntityRef[];
   /** The viewed place: a ruling happens at the world time read there. */
@@ -106,6 +109,7 @@ export function PartySheet({
         )}
       </section>
       <div className="party-tools">
+        {rest}
         {levelsBy && (
           <PartyAdvancement
             api={api}
@@ -114,12 +118,6 @@ export function PartySheet({
           />
         )}
         <AskForCheck characters={characters.map((entry) => entry.character)} />
-        <DowntimeCard api={api} revision={revision} locked={locked} onRun={onRun} />
-        <ToolboxForms
-          characters={characters.map((entry) => entry.character)}
-          locked={locked}
-          onRun={onRun}
-        />
         <RulingForm
           api={api}
           characters={characters.map((entry) => entry.character)}

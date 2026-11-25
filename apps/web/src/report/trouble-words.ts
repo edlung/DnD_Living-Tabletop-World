@@ -62,6 +62,8 @@ const PARTS: Readonly<Record<ClientErrorView['part'], string>> = {
   chronicle: 'Chronicle',
   hero: 'Character',
   book: 'Book',
+  appendix: 'Appendix',
+  settings: 'Settings',
 };
 
 const KINDS: Readonly<Record<ClientErrorView['kind'], string>> = {
