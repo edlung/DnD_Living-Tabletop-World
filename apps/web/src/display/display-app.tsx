@@ -43,6 +43,8 @@ import { WaitingStrip } from './waiting-strip.tsx';
  * pictures and the battlefield are plates in the binding; nothing cast is the closed cover.
  */
 const ON_PAPER: ReadonlySet<string> = new Set([
+  // The battlefield too (docs/adr/0075-book-interface.md §30): the fold-out on the book's paper.
+  'battlefield',
   'title',
   'dice',
   'agreement',
