@@ -1,7 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { WORDS, accessState, takeSeat } from '../e2e/support/sign-in.ts';
-import { chooseLocation, dockButton, openSheet, sceneRegion } from '../e2e/support/shell.ts';
+import {
+  chooseLocation,
+  dockButton,
+  openSheet,
+  openTopMenu,
+  sceneRegion,
+} from '../e2e/support/shell.ts';
 import {
   START,
   captureRequests,
@@ -224,6 +230,8 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
   );
 
   await step('the DM signs out, asked first', async () => {
+    // Leaving is behind the clasp on the book's cover (docs/adr/0075-book-interface.md §24).
+    await openTopMenu(dm);
     await dm.getByRole('button', { name: ru.signOut, exact: true }).click();
     const dialog = dm.getByRole('dialog', { name: ru.signOutQuestion });
     await dialog.getByRole('button', { name: ru.signOut, exact: true }).click();
