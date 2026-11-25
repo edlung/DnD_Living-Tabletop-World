@@ -28,15 +28,16 @@ test('a player answers a private check with their own d20 and the DM confirms it
   await openSheet(player, 'Dice');
   const playerDice = player.locator('#sheet-dice');
   await expect(playerDice.getByText('I roll my own dice')).toHaveCount(0);
-  await openSheet(dm, 'Session');
+  // Whose dice the table rolls is one of its settings (ADR 0075 §18).
+  await openSheet(dm, 'Settings');
   const ownDice = dm
-    .locator('#sheet-session')
+    .locator('#sheet-settings')
     .getByRole('checkbox', { name: 'Players roll their own dice and enter what they show' });
   await ownDice.check();
   await expect(playerDice.getByText('I roll my own dice').first()).toBeVisible();
   // Made, and kept: the box stays ticked and the sheet says nothing failed.
   await expect(ownDice).toBeChecked();
-  await expect(dm.locator('#sheet-session').getByRole('alert')).toHaveCount(0);
+  await expect(dm.locator('#sheet-settings').getByRole('alert')).toHaveCount(0);
 
   // A check asked in private.
   await openSheet(dm, 'Dice');

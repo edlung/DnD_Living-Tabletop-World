@@ -32,6 +32,7 @@ export function WorkStory({
   directory,
   placeId,
   covered,
+  onEvening,
   onBook,
   onEntity,
 }: {
@@ -42,6 +43,8 @@ export function WorkStory({
   readonly placeId: string;
   /** Another page lies over the Scene: the story under it is inert. */
   readonly covered: boolean;
+  /** Between sessions: opens the Session's page, where the evening begins. Null while one plays. */
+  readonly onEvening: (() => void) | null;
   /** Opens the Book at the ribbon: its contents, its cards, reading ahead. */
   readonly onBook: () => void;
   /** Opens someone of the story in the Scene: their card on the right page. */
@@ -131,6 +134,15 @@ export function WorkStory({
       data-size={remembered(SIZE_KEY) === 'large' ? 'large' : 'normal'}
     >
       <div className="dmb-page dmb-left">
+        {/* The evening begins from the page the DM is at, not from a list of settings (§18). */}
+        {onEvening && (
+          <div className="work-elsewhere work-evening" role="note">
+            <p>{t('The evening has not begun.')}</p>
+            <button type="button" className="dmb-button" onClick={onEvening}>
+              {t('Begin the evening')}
+            </button>
+          </div>
+        )}
         {there && (
           <div className="work-elsewhere" role="note">
             <p>

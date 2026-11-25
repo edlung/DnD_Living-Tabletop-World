@@ -65,7 +65,11 @@ export function useDmParts(drafts: number): readonly PartItem[] {
       id: 'heroes',
       label: t('The heroes'),
       glyph: 'party',
-      pages: [{ id: 'party', label: t('Party'), glyph: 'party' }],
+      pages: [
+        { id: 'party', label: t('Party'), glyph: 'party' },
+        // The tools an evening rarely needs (docs/adr/0075-book-interface.md §18).
+        { id: 'appendix', label: t('Appendix'), glyph: 'warning' },
+      ],
     },
     {
       id: 'world',
@@ -112,6 +116,8 @@ export function useDmParts(drafts: number): readonly PartItem[] {
               { id: 'players', label: t('Players'), glyph: 'member' },
             ] as const)
           : []),
+        // The campaign's own settings, apart from the evening (ADR 0075 §18).
+        { id: 'settings', label: t('Settings'), glyph: 'settings' },
       ],
     },
     {

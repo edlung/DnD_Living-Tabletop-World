@@ -38,7 +38,9 @@
   background: linear-gradient(to left, rgb(43 32 21 / 0.22), transparent 28px);
 }
 .dmb .work-to-book {
+  flex: none;
   min-height: 36px;
+  white-space: nowrap;
   padding: 0 0.7rem;
   font-size: 0.95em;
   letter-spacing: 0;

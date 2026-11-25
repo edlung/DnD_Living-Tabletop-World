@@ -33,6 +33,7 @@ export function WorkSpread({
   directory,
   placeId,
   fighting,
+  evening,
   locked,
   onRun,
   onEntity,
@@ -44,6 +45,8 @@ export function WorkSpread({
   /** The place the Scene shows; null while the world loads. */
   readonly placeId: string | null;
   readonly fighting: boolean;
+  /** A session plays: between sessions the story's page offers to begin the evening. */
+  readonly evening: boolean;
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onEntity: (entityId: string, kind: EntityKind) => void;
@@ -58,6 +61,7 @@ export function WorkSpread({
       opened={book.opened}
       directory={directory}
       placeId={placeId}
+      evening={evening}
       locked={locked}
       onRun={onRun}
       onEntity={onEntity}
@@ -72,6 +76,7 @@ function Working({
   opened,
   directory,
   placeId,
+  evening,
   locked,
   onRun,
   onEntity,
@@ -82,6 +87,7 @@ function Working({
   readonly opened: OpenedBook;
   readonly directory: readonly EntityRef[];
   readonly placeId: string;
+  readonly evening: boolean;
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onEntity: (entityId: string, kind: EntityKind) => void;
@@ -135,6 +141,13 @@ function Working({
         directory={directory}
         placeId={placeId}
         covered={covered}
+        onEvening={
+          evening
+            ? null
+            : () => {
+                shell.openSheet('session');
+              }
+        }
         onBook={() => {
           shell.openSheet('book');
         }}

@@ -78,6 +78,9 @@ export const CLIENT_PARTS = [
   'hero',
   // The DM's book (docs/adr/0074-dm-book.md §3).
   'book',
+  // The heroes' appendix and the table's settings (docs/adr/0075-book-interface.md §18).
+  'appendix',
+  'settings',
 ] as const;
 export type ClientPart = (typeof CLIENT_PARTS)[number];
 

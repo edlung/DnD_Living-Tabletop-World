@@ -20,8 +20,10 @@ export type SheetId =
   | 'players'
   | 'screen'
   | 'party'
+  | 'appendix'
   | 'notes'
   | 'session'
+  | 'settings'
   | 'chat'
   | 'shared'
   | 'rules';
@@ -39,8 +41,10 @@ const SHEETS: readonly SheetId[] = [
   'players',
   'screen',
   'party',
+  'appendix',
   'notes',
   'session',
+  'settings',
   'chat',
   'shared',
   'rules',

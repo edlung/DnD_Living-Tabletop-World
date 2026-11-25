@@ -396,6 +396,22 @@ together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
 6. **A result and the slip do not cover each other**: the result lies above the slip, and on a
    wide screen the map ends above it (the slip's height is kept, `--turn-h`).
 
+### 18. The parts by tasks (Stage 1170)
+
+1. **A page holds what its task needs every evening; the rest is an appendix.** The Party's page
+   is the heroes' health with what is done about it — a rest, experience, a check, a ruling, a
+   handout. A trap, a mind under stress, a contagion and the days between adventures are the
+   heroes' appendix: a page of the same part, one press away, each tool as it was.
+2. **The evening is apart from the campaign's settings.** The Session's page is the evening, its
+   start (or the session that runs) first. Whose dice the table rolls and the campaign's options
+   are the table's settings, a page of the same part. The table's agreement stays with the
+   evening: it is shown and said aloud at the first one.
+3. **The evening begins from where the DM is.** Between sessions the working spread's story page
+   says the evening has not begun and leads to its start. It is an offer: nothing is asked
+   before the DM reads or prepares.
+4. **A moved tool keeps its name, its form and its command**; only the page it stands on
+   changes. A report of a broken screen can name the two new pages (`CLIENT_PARTS`).
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

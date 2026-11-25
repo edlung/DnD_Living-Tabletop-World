@@ -86,6 +86,19 @@ test('a family campaign and a collection campaign of the library open as books',
   // many wait; each is read there before it is given (docs/adr/0075-book-interface.md §16).
   if ((await bookPart(dm, 'Сцена').getAttribute('aria-current')) !== 'page')
     await bookPart(dm, 'Сцена').click();
+  // A campaign just started has no session yet: the story's page says so and leads to the
+  // evening's start, the first thing on the Session's page (ADR 0075 §18).
+  const begin = dm
+    .getByRole('region', { name: 'Рассказ: где сейчас отряд', exact: true })
+    .getByRole('note')
+    .filter({ hasText: 'Вечер ещё не начат.' });
+  await expect(begin).toBeVisible(LIVE);
+  await begin.getByRole('button', { name: 'Начать вечер', exact: true }).click();
+  const session = dm.locator('#sheet-session');
+  await expect(session).toBeVisible();
+  await expect(session.getByRole('heading', { level: 3 }).first()).toHaveText('Начать сессию');
+  await bookPart(dm, 'Сцена').click();
+  await expect(session).toBeHidden();
   const give = dm
     .getByRole('navigation', { name: 'Действия мастера' })
     .getByRole('button', { name: 'Выдать', exact: true });
