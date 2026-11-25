@@ -41,6 +41,20 @@ export async function revealDockButton(page: Page, name: string): Promise<Locato
   return button;
 }
 
+/**
+ * A phone's head keeps the view, how to play, refresh, the account and leaving behind "More"
+ * (docs/adr/0075-book-interface.md §21): opens its list where it is there and closed. On a wider
+ * screen there is no "More" and nothing happens.
+ */
+export async function openTopMenu(page: Page): Promise<void> {
+  // The world's own head, once it is there: asked while the world still opens, "More" is not yet.
+  await expect(page.locator('header.topbar')).toBeVisible();
+  const more = page.locator('header.topbar .topbar-more');
+  if ((await more.isVisible()) && (await more.getAttribute('aria-expanded')) !== 'true') {
+    await more.click();
+  }
+}
+
 /** Opens a dock sheet (once) and waits until it shows. */
 export async function openSheet(page: Page, name: string): Promise<void> {
   const button = dockButton(page, name);
@@ -113,7 +127,10 @@ export async function expectDockFits(page: Page): Promise<void> {
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth - innerWidth))
     .toBeLessThanOrEqual(1);
-  const shown = page.locator('nav.book-parts button, nav.book-pages ul:not([hidden]) button');
+  // (A phone shows no row of tabs for a part of one page while the stage shows: ADR 0075 §21.)
+  const shown = page.locator(
+    'nav.book-parts button:visible, nav.book-pages ul:not([hidden]) button:visible',
+  );
   for (const button of await shown.all()) {
     await expectOnTop(button);
     // Its words stay inside it: a word wider than its button runs into the next one.

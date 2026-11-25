@@ -5,7 +5,7 @@ import { dmRequest, TOMAS_REQUEST } from './support/authoring.ts';
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { battlefield, clickSquare, square, turnTray } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { bookPart, closeSheet, openSheet, revealDockButton } from './support/shell.ts';
+import { bookPart, closeSheet, openSheet, openTopMenu, revealDockButton } from './support/shell.ts';
 
 /**
  * Accessibility at the three widths (docs/STAGE_320_DESIGN.md §6–7): automated axe scans of
@@ -43,6 +43,8 @@ for (const size of WIDTHS) {
     await expect(page.getByRole('region', { name: 'Conversation with Mira Vale' })).toBeAttached();
     await expectAccessible(page, `${size.name} conversation`);
 
+    // (On a phone leaving lies behind "More": ADR 0075 §21.)
+    await openTopMenu(page);
     await page.getByRole('button', { name: 'Leave session', exact: true }).click();
     await enterWorld(page, TOKENS.dm);
     // Every DM tool's sheet: what it shows before anything is done.

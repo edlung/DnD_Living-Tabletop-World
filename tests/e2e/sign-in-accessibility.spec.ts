@@ -2,7 +2,7 @@ import { expect, type Browser } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { test } from './support/journey.ts';
-import { dockButton, expectDockFits, openSheet } from './support/shell.ts';
+import { dockButton, expectDockFits, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -93,6 +93,8 @@ async function scan(
   await question.getByRole('button', { name: words.keep }).click();
   await expect(dockButton(dm, words.players)).toBeAttached();
 
+  // (On a phone signing out is a row of "More": ADR 0075 §21.)
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: words.signOut, exact: true }).click();
   const dialog = dm.getByRole('dialog', { name: words.signOutQuestion });
   await expect(dialog).toBeVisible();

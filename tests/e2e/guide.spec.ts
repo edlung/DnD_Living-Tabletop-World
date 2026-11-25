@@ -4,6 +4,7 @@ import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campa
 import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
+import { openTopMenu } from './support/shell.ts';
 
 /**
  * The first-session guide (docs/adr/0044-online-play.md §8): five short pages from "How to play" in
@@ -48,6 +49,8 @@ test('the guide speaks Russian on a phone', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   await enterWorld(page, TOKENS.player, UI_PARTY_CAMPAIGNS.ru);
+  // On a phone "How to play" is a row of "More" (ADR 0075 §21).
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Как играть', exact: true }).click();
   const guide = page.getByRole('dialog', { name: 'Как играть' });
   await expect(guide.getByRole('heading', { name: 'Ваши экраны' })).toBeVisible();

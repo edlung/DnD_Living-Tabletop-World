@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { TableMusic } from '../audio/table-music.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
+import { useMedia } from '../combat/board/board-view.ts';
 import { useBookRequest } from '../shell/book-request.ts';
 import { RollAnnouncer } from '../dice/announcer.tsx';
 import { DiceStage } from '../dice/dice-stage.tsx';
@@ -15,11 +16,13 @@ import { handoutElementId } from '../handouts/handouts.tsx';
 import { TurnHintButton } from '../hint/turn-hint-button.tsx';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
+import { HeroPlate, PLATE_SCREENS } from '../shell/hero-plate.tsx';
 import { focusOn, type Shell } from '../shell/use-shell.ts';
 import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 
 /**
- * What lies over the world screen: the table's questions — the short rest (Stage 530) and the
+ * What lies over the world screen (and, for a player's own hero, the plate it writes into the top
+ * bar: docs/adr/0075-book-interface.md §21): the table's questions — the short rest (Stage 530) and the
  * checks asked, with the companion's alerts (ADR 0044 §3) — the Chronicle book, the character
  * dialog, the dice (Stage 510) and, online, the table's sound (ADR 0059 §1). The action's result
  * and the latest roll in words go where the viewer is — inside the character dialog while it is
@@ -66,8 +69,23 @@ export function WorldOverlays({
   const announcer = <RollAnnouncer entry={announced} />;
   const table = useDiceTable();
   useBookRequest(api.campaignId, shell.openBook);
+  // Whom the viewer plays, by the name this view knows: the plate at a phone's head — mounted
+  // only there, so no other screen reads the hero's sheet for it.
+  const phone = useMedia(PLATE_SCREENS);
+  const hero = isDm || actorId === null ? null : directory.find((one) => one.entityId === actorId);
   return (
     <>
+      {hero && phone && (
+        <HeroPlate
+          api={api}
+          heroId={hero.entityId}
+          name={hero.name}
+          revision={revision}
+          onOpen={() => {
+            shell.openHero(hero.entityId, 'overview');
+          }}
+        />
+      )}
       <TableAsks
         api={api}
         isDm={isDm}
