@@ -11,7 +11,7 @@ import {
 } from './support/combat.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { chooseLocation, closeSheet, openSheet } from './support/shell.ts';
+import { chooseLocation, closeSheet, openSheet, openTopMenu } from './support/shell.ts';
 
 const campaign = COMBAT_CAMPAIGNS.lifecycle;
 
@@ -37,6 +37,7 @@ test('the DM starts, runs, and ends an encounter and the player returns to explo
   expectAccepted(await submit(player, turnTray(player).getByRole('button', { name: 'End turn' })));
 
   // The DM runs exactly the command the server suggests for the creature's turn.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'Refresh world' }).click();
   await openSheet(dm, 'Encounter');
   const suggestion = dm.getByRole('button', { name: /^Run suggested / });
@@ -55,6 +56,7 @@ test('the DM starts, runs, and ends an encounter and the player returns to explo
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Yes, end encounter' })));
   await expect(battlefield(dm)).toHaveCount(0);
   await expect(dm.getByText('Start an encounter (DM)', { exact: true })).toBeVisible();
+  await openTopMenu(player);
   await player.getByRole('button', { name: 'Refresh world' }).click();
   await expect(battlefield(player)).toHaveCount(0);
   await openSheet(player, 'Journal');

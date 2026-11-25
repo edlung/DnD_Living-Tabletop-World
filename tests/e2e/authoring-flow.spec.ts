@@ -10,7 +10,7 @@ import {
 } from './support/authoring.ts';
 import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
-import { chooseLocation, dockButton, openSheet } from './support/shell.ts';
+import { chooseLocation, dockButton, openSheet, openTopMenu } from './support/shell.ts';
 
 const campaign = AUTHORING_CAMPAIGNS.flow;
 const SECRET = 'saw the caravan leave';
@@ -82,6 +82,7 @@ test('Tomas Reed goes from a sentence to a previewed, edited, confirmed, native 
   await player.close();
 
   // The DM previewing the Player View keeps no DM preview or private knowledge on screen.
+  await openTopMenu(dm);
   await dm.getByLabel('Perspective', { exact: true }).selectOption('CHARACTER:elowen-starwhisper');
   await expect(dm.getByText('Add to the world (DM)', { exact: true })).toHaveCount(0);
   await expect(dockButton(dm, ADD_TO_THE_WORLD)).toHaveCount(0);
@@ -89,6 +90,7 @@ test('Tomas Reed goes from a sentence to a previewed, edited, confirmed, native 
   for (const hidden of [SECRET, 'Confirm and add', 'Edit proposal', 'Proposed from']) {
     expect(previewed, `Player View must not contain ${hidden}`).not.toContain(hidden);
   }
+  await openTopMenu(dm);
   await dm.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openSheet(dm, ADD_TO_THE_WORLD);
   await expect(dm.getByText('Add to the world (DM)', { exact: true })).toBeVisible();

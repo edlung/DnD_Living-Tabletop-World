@@ -7,7 +7,7 @@ import {
   playerScene,
   TOKENS,
 } from './support/session.ts';
-import { chooseLocation } from './support/shell.ts';
+import { chooseLocation, openTopMenu } from './support/shell.ts';
 
 test('full authorized character sheet remains reachable from the selected character', async ({
   page,
@@ -42,6 +42,7 @@ test('real empty scene and failed scene load can recover', async ({ page }) => {
   await chooseLocation(page, 'market-square');
   await expect(scene.getByRole('alert')).toBeVisible();
   fail = false;
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Refresh world', exact: true }).click();
   await expect(page.getByRole('region', { name: 'Scene', exact: true })).toContainText('Mira Vale');
   await expectPlayerBoundary(page);
@@ -78,6 +79,7 @@ test('DM can read an NPC sheet while the player cannot request it through the de
   await page.getByRole('button', { name: 'Full character sheet', exact: true }).click();
   await expect(page.getByRole('dialog', { name: 'Character: Mira Vale' })).toContainText('78');
   await page.keyboard.press('Escape');
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await page.getByLabel('Access token', { exact: true }).fill(TOKENS.player);
   await page.getByRole('button', { name: 'Enter world', exact: true }).click();

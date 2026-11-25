@@ -6,7 +6,7 @@ import { historyEntry, openHistory } from './support/dm.ts';
 import { test } from './support/journey.ts';
 import { expectLive, LIVE_CAMPAIGNS } from './support/live.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 
 /**
  * A player's action the DM undoes (second AI stand-in pass; ADR 0033, amendment of 2026-10-28):
@@ -70,6 +70,7 @@ test('the DM confirms undoing a player’s action, and that player alone is told
   await expect(notice).toContainText(`The DM undid your action: ${WENT}`);
   await expect(scene.getByRole('heading', { name: 'Market Square', level: 2 })).toBeVisible();
   // The DM's own view of Elowen tells the DM nothing: the action was not the DM's.
+  await openTopMenu(dm);
   await dm.getByLabel('Perspective', { exact: true }).selectOption('CHARACTER:elowen-starwhisper');
   await expect(dm.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
   await expect(dm.getByRole('region', { name: 'Undone by the DM', exact: true })).toHaveCount(0);
@@ -78,6 +79,7 @@ test('the DM confirms undoing a player’s action, and that player alone is told
   await notice.getByRole('button', { name: 'Understood' }).click();
   await expect(notice).toHaveCount(0);
   for (const perspective of ['PARTY', 'PUBLIC']) {
+    await openTopMenu(player);
     await player.getByLabel('Perspective', { exact: true }).selectOption(perspective);
     await expect(player.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
     await expect(notice).toHaveCount(0);
@@ -88,6 +90,7 @@ test('the DM confirms undoing a player’s action, and that player alone is told
     expect(await other.json()).toEqual({ perspective, actions: [] });
   }
   // Back in the player's own view the notice is said again until the player acts on.
+  await openTopMenu(player);
   await player.getByLabel('Perspective', { exact: true }).selectOption('PLAYER');
   await expect(notice).toContainText(`The DM undid your action: ${WENT}`);
   // Nothing of the DM's reached the player: no undo, no blocker, no history.

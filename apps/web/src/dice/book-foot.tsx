@@ -2,6 +2,7 @@ import { DIE_SIDES, type DieSides } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
+import { diePicture, dieStyle, useBookTheme } from '../book-kit/materials.ts';
 import type { Shell } from '../shell/use-shell.ts';
 import { useDiceTable } from './table.tsx';
 import { rollerWords } from './words.ts';
@@ -16,6 +17,8 @@ export function BookFoot({ shell }: { readonly shell: Shell }) {
   const t = useT();
   const table = useDiceTable();
   const [rolling, setRolling] = useState(false);
+  // A book with dice of its own shows each die as its picture (ADR 0075 §24).
+  const theme = useBookTheme();
   if (!table) return null;
   const roll = async (sides: DieSides) => {
     setRolling(true);
@@ -36,13 +39,18 @@ export function BookFoot({ shell }: { readonly shell: Shell }) {
     .find((entry) => !table.flying.has(entry.rollId) && !entry.rerolled);
   const total = last?.groups.at(-1)?.total;
   return (
-    <footer className="book-foot" role="group" aria-label={t('The dice at the foot of the page')}>
+    <footer
+      className="book-foot"
+      role="group"
+      aria-label={t('The dice at the foot of the page')}
+      data-drawn={diePicture(theme, 20) ? '' : undefined}
+    >
       <span className="book-foot-word" aria-hidden="true">
         {t('Dice')}
       </span>
       <ul className="book-foot-dice">
         {DIE_SIDES.map((sides) => (
-          <li key={sides} data-sides={sides}>
+          <li key={sides} data-sides={sides} style={dieStyle(theme, sides)}>
             <button
               type="button"
               className="book-die"

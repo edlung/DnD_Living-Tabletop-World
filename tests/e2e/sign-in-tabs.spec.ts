@@ -2,7 +2,7 @@ import { expect as baseExpect, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
 import { LIVE_URL, readsQuiet } from './support/live.ts';
-import { dockButton } from './support/shell.ts';
+import { dockButton, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -75,6 +75,7 @@ test('tabs still showing the DM’s world are signed out once another tab replac
   await shown.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
   await expect(accessState(shown, words.signedOut)).toBeVisible();
   // A refused request: the player may not read the DM's view.
+  await openTopMenu(refused);
   await refused.getByRole('button', { name: 'Refresh world', exact: true }).click();
   await expect(accessState(refused, words.signedOut)).toBeVisible();
   // Back online.

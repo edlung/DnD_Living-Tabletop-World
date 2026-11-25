@@ -27,10 +27,11 @@ export function DmRestControls({
   const [hours, setHours] = useState(4);
   const open = useDiceTable()?.rest ?? null;
   const blocked = locked || fighting;
-  const hint = fighting ? 'dm-rest-fighting' : undefined;
+  // The tool stands on two pages (the Party's and Time and weather): its ids are its own.
+  const hint = fighting ? `${ids}-fighting` : undefined;
   return (
-    <section className="tool-group" aria-labelledby="dm-rest-title">
-      <h3 id="dm-rest-title">
+    <section className="tool-group" aria-labelledby={`${ids}-title`}>
+      <h3 id={`${ids}-title`}>
         <Glyph name="dawn" />
         {t('Rest')}
       </h3>
@@ -45,7 +46,7 @@ export function DmRestControls({
         </p>
       )}
       {fighting && (
-        <p id="dm-rest-fighting" className="muted">
+        <p id={`${ids}-fighting`} className="muted">
           {t('No rest while a fight is running.')}
         </p>
       )}

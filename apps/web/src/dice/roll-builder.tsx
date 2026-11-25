@@ -2,6 +2,7 @@ import { DIE_SIDES, type DieSides, type EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
+import { diePicture, dieStyle, useBookTheme } from '../book-kit/materials.ts';
 import { FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
 
@@ -27,6 +28,7 @@ export function poolWords(pool: ReadonlyMap<DieSides, number>, modifier: number)
  */
 export function RollBuilder({ characters }: { readonly characters: readonly EntityRef[] }) {
   const t = useT();
+  const theme = useBookTheme();
   const table = useDiceTable();
   const own = useOwnDice();
   const ids = useId();
@@ -78,12 +80,20 @@ export function RollBuilder({ characters }: { readonly characters: readonly Enti
   return (
     <section className="sheet-section dice-builder" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Roll dice')}</h3>
-      <ul className="dice-picker" aria-label={t('Dice to roll')}>
+      <ul
+        className="dice-picker"
+        aria-label={t('Dice to roll')}
+        data-drawn={diePicture(theme, 20) ? '' : undefined}
+      >
         {DIE_SIDES.map((sides) => {
           const count = pool.get(sides) ?? 0;
           const full = count >= MAX_PER_DIE || (count === 0 && kinds >= MAX_KINDS);
           return (
-            <li key={sides} className={`dice-pick${count > 0 ? ' is-chosen' : ''}`}>
+            <li
+              key={sides}
+              className={`dice-pick${count > 0 ? ' is-chosen' : ''}`}
+              style={dieStyle(theme, sides)}
+            >
               <button
                 type="button"
                 className="dice-pick-add"

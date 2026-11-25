@@ -5,7 +5,7 @@ import { dmRequest, playerCommand } from './support/authoring.ts';
 import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
 import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
-import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
+import { chooseLocation, openChronicle, openSheet, openTopMenu } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 
 test('the DM moves time and weather and the player returns to a changed Ravenford', async ({
@@ -38,6 +38,7 @@ test('the DM moves time and weather and the player returns to a changed Ravenfor
   await expect(dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })).toHaveCount(0);
 
   // The player looks again and finds a different morning.
+  await openTopMenu(player);
   await player.getByRole('button', { name: 'Refresh world' }).click();
   await expect(conditions).toContainText('Day 2 · 10:00');
   await expect(conditions).toContainText('rain');

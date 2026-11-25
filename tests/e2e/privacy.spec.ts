@@ -4,7 +4,7 @@ import { expect, type Browser, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
-import { dockButton } from './support/shell.ts';
+import { dockButton, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -69,6 +69,7 @@ test('a player saves a copy of their data and deletes the account; a DM cannot',
   await phone.goto(link);
   await takeSeatWithNewLogin(phone, 'Lena', 'lena-privacy');
   await expect(phone.getByRole('button', { name: 'Mira Vale', exact: true })).toBeVisible(LIVE);
+  await openTopMenu(phone);
   await phone.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await expect(hub(phone)).toContainText(`You play ${ELOWEN}`);
 
@@ -108,6 +109,7 @@ test('a player saves a copy of their data and deletes the account; a DM cannot',
   await expect(phone.getByRole('alert')).toHaveText('That login and password do not match.');
 
   // A DM's account stays: the operator deletes it.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await data(dm).getByRole('button', { name: 'Delete my account', exact: true }).click();
   const asked = dm.getByRole('dialog', { name: 'Delete your account?' });

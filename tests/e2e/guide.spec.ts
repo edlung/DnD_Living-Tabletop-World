@@ -15,6 +15,7 @@ test('a new player reads how to play, page by page, and comes back to the world'
   page,
 }) => {
   await enterWorld(page, TOKENS.player);
+  await openTopMenu(page);
   const button = page.getByRole('button', { name: 'How to play', exact: true });
   await button.click();
   const guide = page.getByRole('dialog', { name: 'How to play' });

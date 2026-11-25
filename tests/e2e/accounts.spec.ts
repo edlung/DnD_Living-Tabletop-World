@@ -2,7 +2,7 @@ import { expect, type Browser, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { closeTopMenu, dockButton, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -63,6 +63,7 @@ async function signIn(page: Page, login: string, password: string): Promise<void
 
 /** The top bar's "Sign out", confirmed. */
 async function signOut(page: Page, says: string): Promise<void> {
+  await openTopMenu(page);
   await page.getByRole('button', { name: words.signOut, exact: true }).first().click();
   const dialog = page.getByRole('dialog', { name: words.signOutQuestion });
   await expect(dialog).toContainText(says);
@@ -85,7 +86,9 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
   await dm.goto(joinPath(dmToken(campaign)));
   await takeSeatWithNewLogin(dm, { name: 'Ada', login: 'ada-dm', password: PASSWORD });
   await expect(dockButton(dm, words.players)).toBeAttached(LIVE);
+  await openTopMenu(dm);
   await expect(dm.getByRole('button', { name: 'My campaigns', exact: true })).toBeVisible();
+  await closeTopMenu(dm);
 
   // The invitation is shown once, with its QR code for a phone at the table.
   const link = await invite(dm, ELOWEN);
@@ -153,6 +156,7 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
     .getByRole('button', { name: 'In English: The Missing Caravan', exact: true })
     .click();
   await expect(dockButton(tablet, words.players)).toBeAttached(LIVE);
+  await openTopMenu(tablet);
   await tablet.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await expect(campaigns(tablet)).toHaveCount(2);
   await expect(hub(tablet)).toContainText('You are the DM');
@@ -184,6 +188,7 @@ test('a seat is saved to a login later, a taken login waits, and "I have a login
   // The DM joined in this browser only, then saves the seat to a new login.
   const dm = await freshPage(browser);
   await joinAsDm(dm, campaign);
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'Save my seat', exact: true }).click();
   const dialog = dm.getByRole('dialog', { name: 'Save your seat to a login' });
   await dialog.getByRole('button', { name: 'Save my seat', exact: true }).click();
@@ -194,7 +199,9 @@ test('a seat is saved to a login later, a taken login waits, and "I have a login
   await dialog.getByLabel('Password', { exact: true }).fill(PASSWORD);
   await dialog.getByRole('button', { name: 'Save my seat', exact: true }).click();
   await expect(dialog).toBeHidden();
+  await openTopMenu(dm);
   await expect(dm.getByRole('button', { name: 'My campaigns', exact: true })).toBeVisible();
+  await closeTopMenu(dm);
 
   // The player's login is taken: the same invitation still seats them with another one.
   const link = await invite(dm, ELOWEN);
@@ -227,6 +234,7 @@ test('a seat is saved to a login later, a taken login waits, and "I have a login
   await second.getByLabel('Password', { exact: true }).fill(PASSWORD);
   await second.getByRole('button', { name: words.takeSeat, exact: true }).click();
   await expect(inWorld(player)).toBeVisible(LIVE);
+  await openTopMenu(player);
   await player.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await expect(campaigns(player)).toHaveCount(1);
   await expect(hub(player)).toContainText(`You play ${ELOWEN}`);

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -89,6 +89,7 @@ test('the DM shows the agreement on the table’s screen for the first meeting',
 
   // A campaign the same DM starts anew: nothing has been played, and the Session sheet says what
   // to do before the first evening — ticked as it is done, with the way to the DM's guide.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await dm.getByRole('button', { name: 'In English: The Missing Caravan', exact: true }).click();
   await openSheet(dm, 'Session');

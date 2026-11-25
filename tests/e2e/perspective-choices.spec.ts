@@ -7,13 +7,14 @@ import {
   holdResponse,
   TOKENS,
 } from './support/session.ts';
-import { sceneRegion } from './support/shell.ts';
+import { openTopMenu, sceneRegion } from './support/shell.ts';
 
 for (const transition of ['delayed', 'failed'] as const) {
   test(`hidden character choices disappear during ${transition} public preview and return only in DM`, async ({
     page,
   }) => {
     await enterWorld(page, TOKENS.dm);
+    await openTopMenu(page);
     const choices = page.getByLabel('Perspective', { exact: true });
     const secretOption = choices.locator(`option[value="CHARACTER:${HIDDEN_CHARACTER.entityId}"]`);
     await expect(secretOption).toHaveText(HIDDEN_CHARACTER.name);
@@ -55,12 +56,14 @@ for (const transition of ['delayed', 'failed'] as const) {
       await delayed.completed;
     } else {
       fail = false;
+      await openTopMenu(page);
       await page.getByRole('button', { name: 'Refresh world', exact: true }).click();
     }
     // The public view has loaded: its scene is shown.
     await expect(sceneRegion(page)).toBeVisible();
     await expectPlayerBoundary(page);
     expect(await page.content()).not.toContain('elowen-sigil-lore');
+    await openTopMenu(page);
     await choices.selectOption('DM');
     await expect(secretOption).toHaveText(HIDDEN_CHARACTER.name);
   });

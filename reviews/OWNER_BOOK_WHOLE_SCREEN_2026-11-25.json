@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-25",
+  "source": "The owner's words typed in the same working session as reviews/OWNER_BOOK_SECOND_PASS_2026-11-25.json, in the desktop app, after he looked at the local product with pull requests 97 to 105 in the app's browser pane (about 766 px wide). This record is written by the same session: it saw the words below typed.",
+  "theWords": "Ты проработал столько часов, спалил столько токенов, а результат плачевный. Ничего не поменялось визуально. Рванный интерфейс, даже не близок к концепту. Я тебя попросил сделать интерфейс - книга. К чему этот header вверху? Книга должна быть на весь экран. Все элементы должны располагаться если не в книге, то в закладках. У тебя доступ был к Codex CLI для генерации ассетов. Вышло - радиокнопки, выпадающие списки, формы ввода и все невероятно корявое в плане верстки. Я не знаю, чем ты вообще занимался.",
+  "whatHeAsksFor": [
+    "The book is the whole screen: no header of the application above it.",
+    "Every element is in the book or in a bookmark.",
+    "Assets from Codex CLI are used for the book's frame and its controls.",
+    "No radio buttons, dropdowns and input forms that read as a web form; the layout is not ragged.",
+    "The result is close to the concept he chose on 2026-11-24 (direction А, a real book: ~/Documents/living-tabletop-world-art/book-polish-2026-11-24/out/dm-a-real-book.png)."
+  ],
+  "theSessionsOwnFault": "The plan of 2026-11-25 turned his choice of a look into stages that moved functions between pages; none of them built the picture he had chosen, and the session did not say so. The application's top bar, the dark strip of dice and the standard form controls were all still there after nine pull requests.",
+  "theFirstLook": "The same day the session showed him, in the running local product, the DM's screens without the bar: the cover to the screen's edges with a corner fitting drawn by Codex CLI, the campaign's name as a page's running head, the bar's actions behind a clasp with the book's emblem, the dice drawn on the page's foot, forms set as passages with ledger fields and inked choices. Asked «Это то направление?», he answered: «Да, продолжай».",
+  "whatTheSessionTookFromIt": {
+    "authorized": [
+      "Every screen of the book — the DM's and a player's, a tablet's, a laptop's and a phone's — without the application's bar, with what it held behind the clasp.",
+      "Forms of every page set as parts of the book.",
+      "Codex CLI pictures for the cover's corner fitting and the dice of every book.",
+      "The journeys moved to the new shell; a pull request stacked on the second pass."
+    ],
+    "notAuthorized": [
+      "Merging and deployment.",
+      "Opening the two built-in adventures' written books (they wait for his reading, ADR 0074 §2.8)."
+    ]
+  },
+  "standingOwnerRulesThisWorkKeeps": [
+    "2026-11-20: no rails — «DnD — это про свободу выбора и действий».",
+    "2026-11-21: sections full screen with a way to close, everything at hand, the least scrolling; every main DM task has a visible entry named with his own word.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table.",
+    "2026-11-23: each book has its own style from its campaign's art; book materials by Codex CLI."
+  ],
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; rules and legality stay the server's.",
+    "Knowledge isolation: a player's client and the table's screen receive only their own projections.",
+    "No AI at the table; no paid provider call beyond the pictures Codex CLI makes for the book materials.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ]
+}

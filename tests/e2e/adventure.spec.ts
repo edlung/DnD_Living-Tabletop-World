@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { dockButton, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -40,6 +40,7 @@ test('a DM leads a new campaign of The Bells of Hollowmere from the hub', async 
     // The hub speaks the browser's language; the Russian copy then speaks Russian.
     ['ru', 'In Russian: The Bells of Hollowmere', 'Повозка вдовы', 'Мельничная дорога'],
   ] as const) {
+    await openTopMenu(page);
     await page.getByRole('button', { name: 'My campaigns', exact: true }).click();
     await hub(page).getByRole('button', { name: copy, exact: true }).click();
     const said = language === 'en' ? WORDS.en : WORDS.ru;

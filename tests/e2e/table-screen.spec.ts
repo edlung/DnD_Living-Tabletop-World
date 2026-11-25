@@ -2,7 +2,7 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -34,6 +34,7 @@ const EMBLEM = '/book-materials/lighthouse/emblem.webp';
 const TV = { width: 1920, height: 1080 };
 
 async function startFromLibrary(dm: Page, title: string) {
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: /^(My campaigns|Мои кампании)$/ }).click();
   const library = dm.getByRole('region', { name: 'Campaigns from the library', exact: true });
   const look = library.getByRole('button', {

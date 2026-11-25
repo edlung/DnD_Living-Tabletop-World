@@ -2,7 +2,7 @@ import { expect as baseExpect } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
-import { openCharacter, openSheet } from './support/shell.ts';
+import { openCharacter, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -48,6 +48,7 @@ test('the DM gives a player a second character, and the player switches to it', 
   await expect(members).toContainText('Also plays: Brann Ironvale');
 
   // The player's perspective control offers Brann; as Brann, the sheet is his.
+  await openTopMenu(player);
   const perspective = player.getByLabel('Perspective', { exact: true });
   await expect(perspective.locator('option', { hasText: 'Brann Ironvale' })).toHaveCount(1);
   await perspective.selectOption({ label: 'Brann Ironvale' });

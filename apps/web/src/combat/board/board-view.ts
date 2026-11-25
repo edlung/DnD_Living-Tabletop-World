@@ -3,7 +3,7 @@ import { useCallback, useState, useSyncExternalStore } from 'react';
 /** Where the board stands tilted by default, and where a phone offers zoom (design §6). */
 export const WIDE = '(min-width: 1200px)';
 /** A phone, or a phone held wide (some 400 px tall): one column, the flat board. */
-export const NARROW = '(max-width: 767px), (max-width: 1199px) and (max-height: 500px)';
+export const NARROW = '(max-width: 700px), (max-width: 1199px) and (max-height: 500px)';
 
 const ZOOMS = [0.75, 1, 1.25, 1.5, 2] as const;
 

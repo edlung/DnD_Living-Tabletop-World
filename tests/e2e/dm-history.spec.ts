@@ -11,7 +11,7 @@ import { dmHistory, historyEntry, HISTORY_SUMMARY, openHistory } from './support
 import { test } from './support/journey.ts';
 import { expectLive, LIVE_CAMPAIGNS } from './support/live.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
-import { chooseLocation, dockButton, openSheet } from './support/shell.ts';
+import { chooseLocation, dockButton, openSheet, openTopMenu } from './support/shell.ts';
 
 /**
  * The DM history (docs/adr/0033-live-session.md §7): read from the server, so an authoring
@@ -76,6 +76,7 @@ test('the history never appears for a player or in a lower perspective', async (
   // The DM holding Elowen's or the party's view: no history, no read of it, no row left.
   let reads: { count(): number } | null = null;
   for (const perspective of ['CHARACTER:elowen-starwhisper', 'PARTY']) {
+    await openTopMenu(dm);
     await dm.getByLabel('Perspective', { exact: true }).selectOption(perspective);
     await expect(dm.getByLabel('Perspective', { exact: true })).toHaveValue(perspective);
     await expect(dm.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
@@ -94,6 +95,7 @@ test('the history never appears for a player or in a lower perspective', async (
   expect(lower.status()).toBe(403);
 
   // Back in the DM perspective, the history is read again from the server.
+  await openTopMenu(dm);
   await dm.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openHistory(dm);
   await expect(dmHistory(dm)).toContainText('Nothing yet');
@@ -106,6 +108,7 @@ test('the history never appears for a player or in a lower perspective', async (
   await expectLive(player);
   await expect(player.getByRole('region', { name: 'Scene', exact: true })).toBeVisible();
   for (const perspective of ['PLAYER', 'PARTY', 'PUBLIC']) {
+    await openTopMenu(player);
     await player.getByLabel('Perspective', { exact: true }).selectOption(perspective);
     await expect(player.getByText(HISTORY_SUMMARY, { exact: true })).toHaveCount(0);
     await expect(dockButton(player, 'History')).toHaveCount(0);

@@ -4,7 +4,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -131,6 +131,7 @@ test('a player saves the calendar file; the hub’s card and the TV say when', a
   await expectAccessible(tv, 'the join screen with the next game');
 
   // The hub's card says it too, before the campaign is opened.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const hub = dm.getByRole('region', { name: 'Your campaigns', exact: true });
   await expect(hub.locator('.next-game--hub')).toContainText(

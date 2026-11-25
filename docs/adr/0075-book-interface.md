@@ -524,6 +524,46 @@ After Stage 1210 the second pass's screens were read once more for accessibility
 4. **The heroes' cards keep one line of actions across a row**, at each card's foot.
 5. **A phone's dice foot shows no half of a sentence**: nothing rolled yet, it shows nothing.
 
+### 24. The book is the whole screen (2026-11-25)
+
+The owner, on the second pass as he saw it running: «Книга должна быть на весь экран. Все
+элементы должны располагаться если не в книге, то в закладках… Вышло — радиокнопки, выпадающие
+списки, формы ввода» (`reviews/OWNER_BOOK_WHOLE_SCREEN_2026-11-25.json`). Sections 15 to 23 moved
+what a page holds; none of them made the screen the book of the concept he had chosen. This one
+does.
+
+1. **No bar of the application stands above the book.** From 701 px the top bar takes no room:
+   the cover's cloth runs to the screen's edges, with a corner fitting on each corner where the
+   book's set has one. The campaign's name stays the page's heading for a reader of the screen
+   and is shown as a page's running head. A phone's head of one row (§21) is the cover's upper
+   edge: the cloth under it, the hero's plate a paper label.
+2. **What the bar held is behind the clasp**: a round fitting on the cover's upper corner with
+   the book's emblem (three dots on brass for a book without one), named "More" as on a phone.
+   It opens a slip of the book's paper with the view, how to play, refreshing, the shelf, the
+   account and leaving — the same controls, the same names, at every width. Being connected is a
+   lit point on the clasp's rim; any other state says its word beside it.
+3. **The dice are the page's own foot**: a band of the page's paper under it with the dice, the
+   last roll and the way to the Dice page. Where the book's set has dice of its own, each die is
+   its picture with its name on it, there and on the Dice page.
+4. **What is written and chosen on a page is set as a book sets it.** A tool is a passage under
+   a rubric with a rule, not a rounded card; a field is a box of a printed ledger, inked on all
+   four sides; a choice is an inked ring or square filled in the rubric's red; a button is a
+   stamped label, a page's main action in the rubric's red; a page with nothing to show says so
+   in its own voice. What the table tells over the page (the evening has not begun, the DM takes
+   a hero's turn) is a slip of the book's paper. Names, sizes and order of the controls are as
+   they were: a key and a reader of the screen meet the same page.
+5. **The book begins at 701 px.** The tablet's layouts of the book and of the fight began at
+   768 px, and between 701 and 767 the screen was a phone's dark column inside a tablet's shell
+   (the owner's own window was 766 px wide). They begin at 701 now. Under 900 px the fight's map
+   takes the page's width; the card of what is chosen lies under it.
+6. **New pieces of a book's set, by Codex CLI**: `cover-corner` (one fitting; the build turns it
+   to the four corners of a frame whose sides stay empty, `cover-frame`, a border image for any
+   screen) and the dice — seven pictures, or one sheet of six in a row, cut where nothing is
+   painted between them (the d100 is the d10 again). Each book's own finished pieces are the
+   style references. The build still draws nothing.
+7. **Not changed**: every command, route and contract; what a player's client is sent; the
+   table's screen; the shelf and the way in.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

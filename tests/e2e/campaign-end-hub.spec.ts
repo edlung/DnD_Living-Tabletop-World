@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { closePages, freshPage } from './support/pages.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -56,6 +56,7 @@ test('a finished campaign stands among the adventures we finished', async ({ bro
   // The DM, too, reads on the stage that the adventure is finished.
   await expect(dm.getByRole('region', { name: 'The adventure is finished' })).toBeVisible(LIVE);
 
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const finished = dm.getByRole('region', { name: 'Adventures we finished', exact: true });
   await expect(finished.getByRole('listitem')).toHaveCount(1, LIVE);

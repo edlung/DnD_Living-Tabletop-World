@@ -47,12 +47,17 @@ export async function revealDockButton(page: Page, name: string): Promise<Locato
  * screen there is no "More" and nothing happens.
  */
 export async function openTopMenu(page: Page): Promise<void> {
-  // The world's own head, once it is there: asked while the world still opens, "More" is not yet.
-  await expect(page.locator('header.topbar')).toBeVisible();
+  // The clasp on the cover's corner, once the world is there (asked while the world still opens,
+  // it is not yet): the slip it opens holds what the top bar held, at every width.
   const more = page.locator('header.topbar .topbar-more');
-  if ((await more.isVisible()) && (await more.getAttribute('aria-expanded')) !== 'true') {
-    await more.click();
-  }
+  await expect(more).toBeVisible();
+  if ((await more.getAttribute('aria-expanded')) !== 'true') await more.click();
+}
+
+/** Closes the slip behind the clasp, where a journey opened it only to look at it. */
+export async function closeTopMenu(page: Page): Promise<void> {
+  const more = page.locator('header.topbar .topbar-more');
+  if ((await more.getAttribute('aria-expanded')) === 'true') await more.click();
 }
 
 /** Opens a dock sheet (once) and waits until it shows. */

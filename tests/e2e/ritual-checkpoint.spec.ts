@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import boundary from '../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import { closePages, freshPage } from './support/pages.ts';
 import { isLiveStream } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -128,6 +128,7 @@ test('one evening from the agreement to “Previously…”, on every screen', a
   );
 
   // 2. Play: the session is open; a player asks for a pause in words only the DM reads.
+  await openTopMenu(elowen);
   await elowen.getByRole('button', { name: 'How to play' }).first().click();
   const guide = elowen.getByRole('dialog', { name: 'How to play' });
   await guide.getByRole('button', { name: 'Our table', exact: true }).click();
@@ -205,6 +206,7 @@ test('one evening from the agreement to “Previously…”, on every screen', a
   await expect(recap.getByRole('heading', { level: 1, name: FIRST })).toBeVisible(LIVE);
   await expect(recap).toContainText('Previously…');
   await expect(next).toContainText('in 6 days');
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await expect(
     dm.getByRole('region', { name: 'Your campaigns', exact: true }).locator('.next-game--hub'),
