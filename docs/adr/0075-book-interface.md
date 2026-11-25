@@ -647,6 +647,9 @@ The owner, on the book set closer to the concept: «Бой не должен б�
    at its right holds the active combatant, the card of what is chosen or how to read the
    board, and who is at the table. Room under it where the order is a row (290 px: a tablet
    held upright): the active combatant and the card side by side under the map.
+   Where the map leaves no room, who is at the table steps aside: the order of turns names the
+   party with their hit points, and the DM's slip says whether the player whose turn it is is
+   connected.
 6. **A hero's fight is laid as the DM's** from a tablet up: the bookmarks at the fore-edge in
    their close form, the map across the sheet. A phone, and a phone held wide, keep their own
    column and the bookmarks along the bottom (§21).

@@ -24,8 +24,10 @@ async function box(locator: Locator) {
 }
 
 /**
- * Wide, in a fight, who is at the table stands between the active combatant and the dock: the
- * DM's dock spans nearly the whole stage, and on a laptop's shorter screen the rail scrolls.
+ * Wide, in a fight, the map takes the sheet (docs/adr/0075-book-interface.md §26). Who is at the
+ * table stands in the margin the map leaves beside it — under the active combatant, clear of the
+ * sheet's foot and of the map; where the map leaves none (a wide road on a short laptop), it steps
+ * aside, and the order of turns names the whole party.
  */
 async function expectRailClear(page: Page) {
   for (const [width, height] of [
@@ -34,16 +36,26 @@ async function expectRailClear(page: Page) {
   ] as const) {
     await page.setViewportSize({ width, height });
     const rail = page.getByRole('region', { name: 'At the table', exact: true });
+    for (const hero of ['Brann Ironvale', 'Elowen Starwhisper', 'Maren Ashby', 'Tamsin Quickfoot'])
+      await expect(turnOrder(page)).toContainText(hero);
+    const panel = page.locator('.combat-panel');
+    await expect(panel).toBeVisible();
+    if ((await panel.getAttribute('data-spare')) !== 'beside') {
+      await expect(rail).toBeHidden();
+      continue;
+    }
     await expect(rail).toBeVisible();
-    // A player's dock lies under the rail; the DM's book has none: the stage's foot is the edge.
-    const dockShown = (await page.locator('nav.dock').count()) > 0;
-    const [shown, foot, active] = await Promise.all([
+    const [shown, stage, active, board] = await Promise.all([
       box(rail),
-      box(page.locator(dockShown ? 'nav.dock' : '.stage')),
+      box(page.locator('.stage--battle')),
       box(page.getByRole('region', { name: 'Active combatant', exact: true })),
+      box(page.locator('.board-plane')),
     ]);
-    expect(shown.y + shown.height).toBeLessThanOrEqual(dockShown ? foot.y : foot.y + foot.height);
+    expect(shown.y + shown.height).toBeLessThanOrEqual(stage.y + stage.height);
     expect(shown.y).toBeGreaterThanOrEqual(active.y + active.height);
+    expect(shown.x, 'the rail lies beside the map, not over it').toBeGreaterThanOrEqual(
+      board.x + board.width,
+    );
   }
 }
 

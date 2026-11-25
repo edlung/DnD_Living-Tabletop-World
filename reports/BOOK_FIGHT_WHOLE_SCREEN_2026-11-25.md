@@ -53,6 +53,12 @@ The map, measured (the test copy of «Маяк Между Ветрами», a ma
   that said what a condition does and how it ends — was gone with the right column. A media
   query could not say where a card fits: the same window has room beside a tilted map and none
   beside a flat one. The board now says what room it leaves, and the cards take it.
+- **The pull request's checks caught three more** that the local runs had not included: two
+  journeys read how to read the board, which now waits behind the board's tool where the map has
+  the sheet (they open it there, `openBoardLegend` in `tests/e2e/support/combat.ts`), and one
+  read who is at the table beside a wide road's map at 1440 × 900, where the map now leaves no
+  margin (it checks the margin where the map leaves one, and the order of turns where it does
+  not).
 - **A card of words alone must not scroll**: how to read the board has nothing to focus, so a
   scroll box around it failed the accessibility check. It is never cut — a margin too short for
   it keeps the board's tool instead.
