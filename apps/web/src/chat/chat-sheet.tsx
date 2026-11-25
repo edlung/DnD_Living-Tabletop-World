@@ -20,6 +20,8 @@ import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { useScrollEdges } from '../visual/scroll-edges.ts';
 import { VoicePanel } from '../voice/voice-panel.tsx';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 /**
  * The table's chat (docs/adr/0044-online-play.md §1): the table's talk, a whisper to the DM, the
@@ -203,36 +205,47 @@ export function ChatSheet({
           }}
         >
           <div className="chat-options">
-            <label htmlFor={`${ids}-channel`}>{t('To')}</label>
-            <select
-              id={`${ids}-channel`}
-              value={channel}
-              onChange={(event) => {
-                setChannel(event.target.value);
-              }}
-            >
-              <option value="table">{t('Everyone at the table')}</option>
-              {isDm ? (
-                characters.map((character) => (
-                  <option key={character.entityId} value={`to:${character.entityId}`}>
-                    {t('Only {name}', { name: character.name })}
-                  </option>
-                ))
-              ) : (
-                <option value="dm">{t('Only the DM')}</option>
-              )}
-            </select>
-            <label htmlFor={`${ids}-voice`}>{t('As')}</label>
-            <select
-              id={`${ids}-voice`}
+            {isDm ? (
+              <HeroTiles
+                legend={t('To')}
+                name={`${ids}-channel`}
+                value={channel.startsWith('to:') ? channel.slice(3) : channel}
+                heroes={characters}
+                first={{ value: 'table', label: t('Everyone at the table'), pick: 'table' }}
+                onChange={(value) => {
+                  setChannel(value === 'table' ? 'table' : `to:${value}`);
+                }}
+              />
+            ) : (
+              <PickTiles
+                legend={t('To')}
+                name={`${ids}-channel`}
+                value={channel === 'dm' ? 'dm' : 'table'}
+                options={[
+                  { value: 'table', label: t('Everyone at the table'), pick: 'table' },
+                  { value: 'dm', label: t('Only the DM'), pick: 'see-dm' },
+                ]}
+                onChange={setChannel}
+              />
+            )}
+            <PickTiles<ChatVoice>
+              legend={t('As')}
+              name={`${ids}-voice`}
               value={voice}
-              onChange={(event) => {
-                setVoice(event.target.value as ChatVoice);
-              }}
-            >
-              <option value="in-character">{isDm ? t('Narration') : t('My character')}</option>
-              <option value="out-of-character">{t('Out of character')}</option>
-            </select>
+              options={[
+                {
+                  value: 'in-character',
+                  label: isDm ? t('Narration') : t('My character'),
+                  pick: 'voice-in-character',
+                },
+                {
+                  value: 'out-of-character',
+                  label: t('Out of character'),
+                  pick: 'voice-out-of-character',
+                },
+              ]}
+              onChange={setVoice}
+            />
           </div>
           <label htmlFor={`${ids}-text`} className="visually-hidden">
             {t('Message')}

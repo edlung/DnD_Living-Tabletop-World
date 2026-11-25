@@ -4,6 +4,7 @@ import { UI_RULES_CAMPAIGNS } from '../../apps/server/src/testing/ui-rules-campa
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The Gameplay Toolbox at the table (docs/adr/0055-rules-reference-and-toolbox.md §4): from the
@@ -31,7 +32,7 @@ test('the DM springs a trap and puts a mind under stress', async ({ page }) => {
   await openSheet(page, 'Appendix');
   const trap = page.getByRole('form', { name: 'A trap' });
   await trap.getByLabel('Trap').selectOption({ label: 'Hidden pit' });
-  await trap.getByLabel('For characters of').selectOption({ label: 'levels 5–10' });
+  await tile(trap, 'For characters of', 'levels 5–10').check();
   // It asks who it catches first.
   await trap.getByRole('button', { name: 'Spring the trap' }).click();
   await expect(trap.getByRole('alert')).toHaveText('Choose who it catches.');
@@ -61,7 +62,7 @@ test('the DM springs a trap and puts a mind under stress', async ({ page }) => {
   await openSheet(page, 'Appendix');
   const contagion = page.getByRole('form', { name: 'A contagion' });
   await contagion.getByLabel('Contagion').selectOption({ label: 'Cackle Fever' });
-  await contagion.getByLabel('Who').selectOption({ label: ELOWEN });
+  await tile(contagion, 'Who', ELOWEN).check();
   await contagion.getByRole('button', { name: 'Infect' }).click();
   await expectAccessible(page, 'the Toolbox forms');
   await openSheet(page, 'Party');

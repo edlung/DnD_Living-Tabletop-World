@@ -12,6 +12,7 @@ import {
   openInvitation,
   tokenOf,
 } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * One player, several characters (docs/adr/0044-online-play.md §6, plan decision 14): the DM gives
@@ -37,9 +38,7 @@ test('the DM gives a player a second character, and the player switches to it', 
     .locator('#sheet-players')
     .getByRole('region', { name: 'Players at the table' });
   await expect(members).toContainText('Elowen Starwhisper');
-  await members
-    .getByLabel('Another character for this player', { exact: true })
-    .selectOption({ label: 'Brann Ironvale' });
+  await tile(members, 'Another character for this player', 'Brann Ironvale').check();
   await expectAccessible(dm, 'giving a player another character');
   await members.getByRole('button', { name: 'Give: Elowen Starwhisper', exact: true }).click();
   await expect(dm.locator('#sheet-players')).toContainText(

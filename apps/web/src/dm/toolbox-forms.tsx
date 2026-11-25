@@ -10,6 +10,8 @@ import { useId, useState, type SubmitEvent } from 'react';
 
 import { CONTAGION_WORDS, TRAP_WORDS, trapTiers } from '../rules/toolbox-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 /**
  * The Gameplay Toolbox at the table (docs/adr/0055-rules-reference-and-toolbox.md §4), on the DM's
@@ -141,21 +143,19 @@ function TrapForm({
             ))}
           </select>
         </label>
-        <label className="toolbox-field">
-          <span>{t('For characters of')}</span>
-          <select
-            value={level}
-            onChange={(event) => {
-              setTier(Number(event.target.value));
-            }}
-          >
-            {tiers.map((range, index) => (
-              <option key={range} value={index + 1}>
-                {t('levels {range}', { range })}
-              </option>
-            ))}
-          </select>
-        </label>
+        <PickTiles
+          legend={t('For characters of')}
+          name={`${ids}-tier`}
+          value={String(level)}
+          words
+          options={tiers.map((range, index) => ({
+            value: String(index + 1),
+            label: t('levels {range}', { range }),
+          }))}
+          onChange={(tier) => {
+            setTier(Number(tier));
+          }}
+        />
       </div>
       <Who
         t={t}
@@ -231,21 +231,17 @@ function StressForm({
         ))}
       </div>
       <div className="toolbox-fields">
-        <label className="toolbox-field">
-          <span>{t('Save')}</span>
-          <select
-            value={ability}
-            onChange={(event) => {
-              setAbility(event.target.value as StressAbility);
-            }}
-          >
-            {(Object.keys(ABILITY_WORDS) as StressAbility[]).map((key) => (
-              <option key={key} value={key}>
-                {t(ABILITY_WORDS[key])}
-              </option>
-            ))}
-          </select>
-        </label>
+        <PickTiles
+          legend={t('Save')}
+          name={`${ids}-save`}
+          value={ability}
+          words
+          options={(Object.keys(ABILITY_WORDS) as StressAbility[]).map((key) => ({
+            value: key,
+            label: t(ABILITY_WORDS[key]),
+          }))}
+          onChange={setAbility}
+        />
         <label className="toolbox-field">
           <span>{t('DC')}</span>
           <input
@@ -354,21 +350,13 @@ function ContagionForm({
             ))}
           </select>
         </label>
-        <label className="toolbox-field">
-          <span>{t('Who')}</span>
-          <select
-            value={chosen}
-            onChange={(event) => {
-              setWho(event.target.value);
-            }}
-          >
-            {characters.map((entry) => (
-              <option key={entry.entityId} value={entry.entityId}>
-                {entry.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <HeroTiles
+          legend={t('Who')}
+          name={`${ids}-who`}
+          value={chosen}
+          heroes={characters}
+          onChange={setWho}
+        />
       </div>
       <button type="submit" className="primary-button" disabled={locked}>
         {t('Infect')}

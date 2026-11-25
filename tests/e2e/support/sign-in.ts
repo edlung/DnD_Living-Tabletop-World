@@ -8,6 +8,7 @@ import {
   signInSeed,
 } from '../../../apps/server/src/testing/ui-sign-in-links.ts';
 import campaigns from '../fixtures/sign-in-campaigns.json' with { type: 'json' };
+import { tile } from './choices.ts';
 import { dockButton, openSheet } from './shell.ts';
 
 /**
@@ -130,7 +131,8 @@ export async function joinAsDm(
 export async function invite(page: Page, character: string, words: Words = WORDS.en) {
   await openSheet(page, words.players);
   const sheet = page.locator('#sheet-players');
-  await sheet.getByLabel(words.character, { exact: true }).selectOption({ label: character });
+  // The character is a face among the free heroes' (docs/adr/0075-book-interface.md §29).
+  await tile(sheet, words.character, character).check();
   await sheet.getByRole('button', { name: words.create, exact: true }).click();
   const field = sheet.getByLabel(words.link, { exact: true });
   await expect(field).toHaveValue(/^http:\/\/127\.0\.0\.1:4312\/join#[A-Za-z0-9_-]{43}$/);

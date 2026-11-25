@@ -38,10 +38,7 @@ async function freshPage(browser: Browser): Promise<Page> {
 /** The DM chooses what the table hears, on the Session sheet. */
 async function choose(dm: Page, label: string): Promise<void> {
   await openSheet(dm, 'Session');
-  await dm
-    .locator('#sheet-session')
-    .getByLabel('The table’s sound', { exact: true })
-    .selectOption({ label });
+  await tile(dm.locator('#sheet-session'), 'The table’s sound', label).check();
 }
 
 test('the table hears what the DM chooses, on the TV and online on every screen', async ({
@@ -73,7 +70,7 @@ test('the table hears what the DM chooses, on the TV and online on every screen'
   // The DM sees what plays by the scene.
   await openSheet(dm, 'Session');
   const session = dm.locator('#sheet-session');
-  await expect(session.getByLabel('The table’s sound', { exact: true })).toHaveValue('scene');
+  await expect(tile(session, 'The table’s sound', 'By the scene')).toBeChecked();
   await expect(session.getByText('Now by the scene: Crowd.', { exact: true })).toBeVisible();
   await expectAccessible(dm, 'the DM’s choice of the table’s sound');
 

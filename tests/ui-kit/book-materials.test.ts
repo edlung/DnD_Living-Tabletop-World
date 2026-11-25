@@ -4,6 +4,9 @@ import { join } from 'node:path';
 
 import {
   AGREEMENT_TONES,
+  AMBIENCE_CHOICES,
+  HAZARDS,
+  LOCATION_TYPES,
   ROLL_MODES,
   SURPRISED_SIDES,
   TRAVEL_PACES,
@@ -142,6 +145,20 @@ describe('the books’ materials', () => {
       ...['turn', 'to-book', 'more-dice', 'evening', 'cross'],
       // A form's own marks, set by the stylesheet.
       ...['check-on', 'check-off', 'radio-on', 'radio-off', 'select-mark'],
+      // The remaining choices (§29): what the table hears (rain is the weather's own picture),
+      // what the DM makes and what kind of place, a chat line, a side, a hazard, three options.
+      ...AMBIENCE_CHOICES.filter((sound) => sound !== 'rain').map((sound) => `sound-${sound}`),
+      ...['place', 'person', 'creature', 'object', 'clue', 'knowledge', 'quest'].map(
+        (make) => `make-${make}`,
+      ),
+      ...LOCATION_TYPES.map((kind) => `place-${kind}`),
+      ...['in-character', 'out-of-character'].map((voice) => `voice-${voice}`),
+      ...['party', 'hostile', 'neutral'].map((side) => `side-${side}`),
+      ...HAZARDS.map((hazard) => `hazard-${hazard}`),
+      ...['choice', 'fixed', 'rolled'].map((way) => `hp-level-${way}`),
+      ...['experience', 'milestone'].map((way) => `levels-${way}`),
+      ...['shown', 'enforced'].map((way) => `carrying-${way}`),
+      ...['see-table', 'see-hidden', 'see-dm'],
     ];
     for (const pick of drawn) {
       expect(bookPiece(PRODUCT_BOOK, `pick-${pick}`), pick).toBe(

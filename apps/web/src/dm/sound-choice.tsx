@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useScenePlace, useSceneSound } from '../audio/table-sound.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 export const AMBIENCE_WORDS: Readonly<Record<AmbienceChoice, string>> = {
   scene: 'By the scene',
@@ -44,25 +45,24 @@ export function SoundChoice({
   const now = scene ? sceneAmbience(scene) : null;
   return (
     <div className="field lobby-sound">
-      <label htmlFor={`${id}-ambience`}>{t('The table’s sound')}</label>
-      <select
-        id={`${id}-ambience`}
-        aria-describedby={`${id}-hint`}
+      <PickTiles
+        legend={t('The table’s sound')}
+        name={`${id}-ambience`}
         value={choice}
-        onChange={(event) => {
-          const next = event.target.value as AmbienceChoice;
+        describedBy={`${id}-hint`}
+        options={AMBIENCE_CHOICES.map((ambience) => ({
+          value: ambience,
+          label: t(AMBIENCE_WORDS[ambience]),
+          // Rain is the weather's own picture: what the table hears is what falls.
+          pick: ambience === 'rain' ? 'weather-rain' : `sound-${ambience}`,
+        }))}
+        onChange={(next) => {
           setChosen(next);
           void onChoose(next).then((done) => {
             if (!done) setChosen(null);
           });
         }}
-      >
-        {AMBIENCE_CHOICES.map((ambience) => (
-          <option key={ambience} value={ambience}>
-            {t(AMBIENCE_WORDS[ambience])}
-          </option>
-        ))}
-      </select>
+      />
       <p id={`${id}-hint`} className="muted">
         {choice === 'scene'
           ? now === null

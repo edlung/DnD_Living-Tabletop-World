@@ -5,6 +5,7 @@ import { test } from './support/journey.ts';
 import { takeWizardLevel } from './support/levels.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeSheet, openCharacter, openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /** Several browsers wait on each other's changes: a hosted runner is about four times slower. */
 const expect = baseExpect.configure({ timeout: 15_000 });
@@ -140,7 +141,7 @@ test('the DM exposes the party to extreme cold, and the history keeps the failed
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.hazard);
   await openSheet(page, 'Time and weather');
   const hazards = page.locator('#sheet-time').getByRole('region', { name: 'Hazards of the road' });
-  await hazards.getByRole('combobox', { name: 'Hazard' }).selectOption('cold');
+  await tile(hazards, 'Hazard', 'Extreme cold').check();
   await hazards.getByRole('combobox', { name: 'Hours' }).selectOption('2');
   const answer = page.waitForResponse(
     (response) =>

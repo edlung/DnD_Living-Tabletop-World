@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 import { ClueForm, CreatureForm, KnowledgeForm } from './lore-forms.tsx';
 import { QuestEditor } from './quest-editor.tsx';
 import { ObjectForm, PersonForm, PlaceForm, type EditorProps } from './thing-forms.tsx';
+import { PickTiles } from '../../book-kit/pick.tsx';
 
 /** What the DM may make by hand, each with its own form. */
 const MAKES = ['place', 'person', 'creature', 'object', 'clue', 'knowledge', 'quest'] as const;
@@ -31,21 +32,18 @@ export function MakeByHand(props: EditorProps) {
     <section className="sheet-section make-by-hand" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Make by hand')}</h3>
       <p className="muted">{t('No AI: what you write is what the world holds.')}</p>
-      <div className="account-field">
-        <label htmlFor={`${ids}-make`}>{t('What to make')}</label>
-        <select
-          id={`${ids}-make`}
+      <div className="make-choice">
+        <PickTiles
+          legend={t('What to make')}
+          name={`${ids}-make`}
           value={make}
-          onChange={(event) => {
-            setMake(event.target.value as Make);
-          }}
-        >
-          {MAKES.map((one) => (
-            <option key={one} value={one}>
-              {t(MAKE_WORDS[one])}
-            </option>
-          ))}
-        </select>
+          options={MAKES.map((one) => ({
+            value: one,
+            label: t(MAKE_WORDS[one]),
+            pick: `make-${one}`,
+          }))}
+          onChange={setMake}
+        />
       </div>
       {make === 'place' && <PlaceForm {...props} />}
       {make === 'person' && <PersonForm {...props} />}

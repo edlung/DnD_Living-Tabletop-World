@@ -476,6 +476,8 @@
   --pick-act-hit-points: url('/book-materials/ltw/pick-act-hit-points.webp');
   --pick-act-inspiration: url('/book-materials/ltw/pick-act-inspiration.webp');
   --pick-act-sheet: url('/book-materials/ltw/pick-act-sheet.webp');
+  --pick-carrying-enforced: url('/book-materials/ltw/pick-carrying-enforced.webp');
+  --pick-carrying-shown: url('/book-materials/ltw/pick-carrying-shown.webp');
   --pick-cast-agreement: url('/book-materials/ltw/pick-cast-agreement.webp');
   --pick-cast-battlefield: url('/book-materials/ltw/pick-cast-battlefield.webp');
   --pick-cast-blank: url('/book-materials/ltw/pick-cast-blank.webp');
@@ -491,15 +493,36 @@
   --pick-check-on: url('/book-materials/ltw/pick-check-on.webp');
   --pick-cross: url('/book-materials/ltw/pick-cross.webp');
   --pick-evening: url('/book-materials/ltw/pick-evening.webp');
+  --pick-hazard-cold: url('/book-materials/ltw/pick-hazard-cold.webp');
+  --pick-hazard-heat: url('/book-materials/ltw/pick-hazard-heat.webp');
   --pick-hp-damage: url('/book-materials/ltw/pick-hp-damage.webp');
   --pick-hp-healing: url('/book-materials/ltw/pick-hp-healing.webp');
+  --pick-hp-level-choice: url('/book-materials/ltw/pick-hp-level-choice.webp');
+  --pick-hp-level-fixed: url('/book-materials/ltw/pick-hp-level-fixed.webp');
+  --pick-hp-level-rolled: url('/book-materials/ltw/pick-hp-level-rolled.webp');
   --pick-hp-reduce-maximum: url('/book-materials/ltw/pick-hp-reduce-maximum.webp');
   --pick-hp-temporary: url('/book-materials/ltw/pick-hp-temporary.webp');
+  --pick-levels-experience: url('/book-materials/ltw/pick-levels-experience.webp');
+  --pick-levels-milestone: url('/book-materials/ltw/pick-levels-milestone.webp');
+  --pick-make-clue: url('/book-materials/ltw/pick-make-clue.webp');
+  --pick-make-creature: url('/book-materials/ltw/pick-make-creature.webp');
+  --pick-make-knowledge: url('/book-materials/ltw/pick-make-knowledge.webp');
+  --pick-make-object: url('/book-materials/ltw/pick-make-object.webp');
+  --pick-make-person: url('/book-materials/ltw/pick-make-person.webp');
+  --pick-make-place: url('/book-materials/ltw/pick-make-place.webp');
+  --pick-make-quest: url('/book-materials/ltw/pick-make-quest.webp');
   --pick-more-dice: url('/book-materials/ltw/pick-more-dice.webp');
   --pick-online: url('/book-materials/ltw/pick-online.webp');
   --pick-pace-fast: url('/book-materials/ltw/pick-pace-fast.webp');
   --pick-pace-normal: url('/book-materials/ltw/pick-pace-normal.webp');
   --pick-pace-slow: url('/book-materials/ltw/pick-pace-slow.webp');
+  --pick-place-building: url('/book-materials/ltw/pick-place-building.webp');
+  --pick-place-district: url('/book-materials/ltw/pick-place-district.webp');
+  --pick-place-region: url('/book-materials/ltw/pick-place-region.webp');
+  --pick-place-room: url('/book-materials/ltw/pick-place-room.webp');
+  --pick-place-route: url('/book-materials/ltw/pick-place-route.webp');
+  --pick-place-settlement: url('/book-materials/ltw/pick-place-settlement.webp');
+  --pick-place-site: url('/book-materials/ltw/pick-place-site.webp');
   --pick-radio-off: url('/book-materials/ltw/pick-radio-off.webp');
   --pick-radio-on: url('/book-materials/ltw/pick-radio-on.webp');
   --pick-rest-dawn: url('/book-materials/ltw/pick-rest-dawn.webp');
@@ -512,6 +535,15 @@
   --pick-see-hidden: url('/book-materials/ltw/pick-see-hidden.webp');
   --pick-see-table: url('/book-materials/ltw/pick-see-table.webp');
   --pick-select-mark: url('/book-materials/ltw/pick-select-mark.webp');
+  --pick-side-hostile: url('/book-materials/ltw/pick-side-hostile.webp');
+  --pick-side-neutral: url('/book-materials/ltw/pick-side-neutral.webp');
+  --pick-side-party: url('/book-materials/ltw/pick-side-party.webp');
+  --pick-sound-crowd: url('/book-materials/ltw/pick-sound-crowd.webp');
+  --pick-sound-fire: url('/book-materials/ltw/pick-sound-fire.webp');
+  --pick-sound-night: url('/book-materials/ltw/pick-sound-night.webp');
+  --pick-sound-none: url('/book-materials/ltw/pick-sound-none.webp');
+  --pick-sound-scene: url('/book-materials/ltw/pick-sound-scene.webp');
+  --pick-sound-wind: url('/book-materials/ltw/pick-sound-wind.webp');
   --pick-surprise-foes: url('/book-materials/ltw/pick-surprise-foes.webp');
   --pick-surprise-none: url('/book-materials/ltw/pick-surprise-none.webp');
   --pick-surprise-party: url('/book-materials/ltw/pick-surprise-party.webp');
@@ -522,6 +554,8 @@
   --pick-tone-grim: url('/book-materials/ltw/pick-tone-grim.webp');
   --pick-tone-spooky: url('/book-materials/ltw/pick-tone-spooky.webp');
   --pick-turn: url('/book-materials/ltw/pick-turn.webp');
+  --pick-voice-in-character: url('/book-materials/ltw/pick-voice-in-character.webp');
+  --pick-voice-out-of-character: url('/book-materials/ltw/pick-voice-out-of-character.webp');
   --pick-weather-clear: url('/book-materials/ltw/pick-weather-clear.webp');
   --pick-weather-fog: url('/book-materials/ltw/pick-weather-fog.webp');
   --pick-weather-overcast: url('/book-materials/ltw/pick-weather-overcast.webp');
@@ -540,6 +574,12 @@
 }
 [data-pick='act-sheet'] {
   --pick: var(--pick-act-sheet);
+}
+[data-pick='carrying-enforced'] {
+  --pick: var(--pick-carrying-enforced);
+}
+[data-pick='carrying-shown'] {
+  --pick: var(--pick-carrying-shown);
 }
 [data-pick='cast-agreement'] {
   --pick: var(--pick-cast-agreement);
@@ -586,17 +626,59 @@
 [data-pick='evening'] {
   --pick: var(--pick-evening);
 }
+[data-pick='hazard-cold'] {
+  --pick: var(--pick-hazard-cold);
+}
+[data-pick='hazard-heat'] {
+  --pick: var(--pick-hazard-heat);
+}
 [data-pick='hp-damage'] {
   --pick: var(--pick-hp-damage);
 }
 [data-pick='hp-healing'] {
   --pick: var(--pick-hp-healing);
 }
+[data-pick='hp-level-choice'] {
+  --pick: var(--pick-hp-level-choice);
+}
+[data-pick='hp-level-fixed'] {
+  --pick: var(--pick-hp-level-fixed);
+}
+[data-pick='hp-level-rolled'] {
+  --pick: var(--pick-hp-level-rolled);
+}
 [data-pick='hp-reduce-maximum'] {
   --pick: var(--pick-hp-reduce-maximum);
 }
 [data-pick='hp-temporary'] {
   --pick: var(--pick-hp-temporary);
+}
+[data-pick='levels-experience'] {
+  --pick: var(--pick-levels-experience);
+}
+[data-pick='levels-milestone'] {
+  --pick: var(--pick-levels-milestone);
+}
+[data-pick='make-clue'] {
+  --pick: var(--pick-make-clue);
+}
+[data-pick='make-creature'] {
+  --pick: var(--pick-make-creature);
+}
+[data-pick='make-knowledge'] {
+  --pick: var(--pick-make-knowledge);
+}
+[data-pick='make-object'] {
+  --pick: var(--pick-make-object);
+}
+[data-pick='make-person'] {
+  --pick: var(--pick-make-person);
+}
+[data-pick='make-place'] {
+  --pick: var(--pick-make-place);
+}
+[data-pick='make-quest'] {
+  --pick: var(--pick-make-quest);
 }
 [data-pick='more-dice'] {
   --pick: var(--pick-more-dice);
@@ -612,6 +694,27 @@
 }
 [data-pick='pace-slow'] {
   --pick: var(--pick-pace-slow);
+}
+[data-pick='place-building'] {
+  --pick: var(--pick-place-building);
+}
+[data-pick='place-district'] {
+  --pick: var(--pick-place-district);
+}
+[data-pick='place-region'] {
+  --pick: var(--pick-place-region);
+}
+[data-pick='place-room'] {
+  --pick: var(--pick-place-room);
+}
+[data-pick='place-route'] {
+  --pick: var(--pick-place-route);
+}
+[data-pick='place-settlement'] {
+  --pick: var(--pick-place-settlement);
+}
+[data-pick='place-site'] {
+  --pick: var(--pick-place-site);
 }
 [data-pick='radio-off'] {
   --pick: var(--pick-radio-off);
@@ -649,6 +752,33 @@
 [data-pick='select-mark'] {
   --pick: var(--pick-select-mark);
 }
+[data-pick='side-hostile'] {
+  --pick: var(--pick-side-hostile);
+}
+[data-pick='side-neutral'] {
+  --pick: var(--pick-side-neutral);
+}
+[data-pick='side-party'] {
+  --pick: var(--pick-side-party);
+}
+[data-pick='sound-crowd'] {
+  --pick: var(--pick-sound-crowd);
+}
+[data-pick='sound-fire'] {
+  --pick: var(--pick-sound-fire);
+}
+[data-pick='sound-night'] {
+  --pick: var(--pick-sound-night);
+}
+[data-pick='sound-none'] {
+  --pick: var(--pick-sound-none);
+}
+[data-pick='sound-scene'] {
+  --pick: var(--pick-sound-scene);
+}
+[data-pick='sound-wind'] {
+  --pick: var(--pick-sound-wind);
+}
 [data-pick='surprise-foes'] {
   --pick: var(--pick-surprise-foes);
 }
@@ -678,6 +808,12 @@
 }
 [data-pick='turn'] {
   --pick: var(--pick-turn);
+}
+[data-pick='voice-in-character'] {
+  --pick: var(--pick-voice-in-character);
+}
+[data-pick='voice-out-of-character'] {
+  --pick: var(--pick-voice-out-of-character);
 }
 [data-pick='weather-clear'] {
   --pick: var(--pick-weather-clear);

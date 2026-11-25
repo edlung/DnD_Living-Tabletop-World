@@ -5,6 +5,7 @@ import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet, openTopMenu } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The character builder (docs/adr/0056-characters-from-the-srd.md §2): the DM makes a level 1
@@ -74,11 +75,7 @@ test('the DM makes a level 1 character step by step and may invite a player to h
     sheet.getByRole('status').filter({ hasText: 'Brunna Stonehand is made.' }),
   ).toBeVisible();
   await expect(dialog).toBeHidden();
-  await expect(
-    sheet
-      .getByLabel('Character', { exact: true })
-      .locator('option', { hasText: 'Brunna Stonehand' }),
-  ).toHaveCount(1);
+  await expect(tile(sheet, 'Character', 'Brunna Stonehand')).toHaveCount(1);
 });
 
 test('a step whose choices do not hold is marked, and a Russian table reads it in Russian', async ({

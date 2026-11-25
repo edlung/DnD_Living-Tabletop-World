@@ -23,6 +23,7 @@ import {
   takeSeat,
   tokenOf,
 } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * Production sign-in in the browser (docs/adr/0036-production-sign-in.md §7;
@@ -120,9 +121,7 @@ test('the DM invites, the player joins and plays, and revocation signs the playe
   expect(reads, 'reads the player sent before the signed-out screen').toBe(0);
   expect(accountReads, 'the signed-out screen asks about a login once').toBeLessThanOrEqual(1);
   // The seat is free again.
-  await expect(
-    players(dm).getByLabel(words.character, { exact: true }).getByRole('option', { name: ELOWEN }),
-  ).toHaveCount(1);
+  await expect(tile(players(dm), words.character, ELOWEN)).toHaveCount(1);
 
   const tokens = [tokenOf(link), dmToken(campaign)];
   dmRequests.expectTokensOnlyInRedeems(tokens);
@@ -341,13 +340,14 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   await page.keyboard.press('Enter');
   const sheet = players(page);
   await expect(sheet).toBeFocused();
-  const character = sheet.getByLabel(words.character, { exact: true });
+  // Her companions' seats are free too (Stage 605): each a face; Space takes Elowen's.
+  const character = tile(sheet, words.character, ELOWEN);
   await character.focus();
-  // Her companions' seats are free too (Stage 605): a letter picks Elowen in the list.
-  await page.keyboard.type('E');
-  await expect(character.locator('option:checked')).toHaveText(ELOWEN);
+  await page.keyboard.press('Space');
+  await expect(character).toBeChecked();
+  // Tab leaves the faces for the next choice: how long the link lasts, at its three days.
   await page.keyboard.press('Tab');
-  await expect(sheet.getByLabel('The link expires after', { exact: true })).toBeFocused();
+  await expect(tile(sheet, 'The link expires after', '3 days')).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(sheet.getByRole('button', { name: words.create })).toBeFocused();
   await page.keyboard.press('Enter');

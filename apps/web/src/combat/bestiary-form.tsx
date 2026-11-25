@@ -17,6 +17,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { monsterArtUrl } from '../visual/ui-kit.ts';
 import { BestiaryEntry } from './bestiary-entry.tsx';
 import { SquareFields, useSquare } from './join-forms.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 /**
  * A creature from the SRD's bestiary into the running fight (docs/adr/0053-monsters-as-data.md
@@ -154,24 +155,18 @@ export function BestiaryForm({
           })}
         </p>
       )}
+      <PickTiles
+        legend={t('Side')}
+        name={`${ids}-side`}
+        value={side}
+        options={SIDES.map((option) => ({
+          value: option,
+          label: t(option),
+          pick: `side-${option}`,
+        }))}
+        onChange={setSide}
+      />
       <div className="hand-row">
-        <Field label={t('Side')}>
-          {(control) => (
-            <select
-              {...control}
-              value={side}
-              onChange={(event) => {
-                setSide(event.target.value as Side);
-              }}
-            >
-              {SIDES.map((option) => (
-                <option key={option} value={option}>
-                  {t(option)}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
         <SquareFields at={at} attempted={attempted} />
       </div>
       <div className="action-row">

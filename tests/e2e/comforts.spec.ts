@@ -5,6 +5,7 @@ import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeTopMenu, expectDockFits, openSheet, openTopMenu } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -37,13 +38,12 @@ test('a viewer makes this screen’s text larger, and it stays', async ({ browse
   await openSheet(page, 'Dice');
   const dice = page.locator('#sheet-dice');
   await dice.getByText(SETTINGS, { exact: true }).click();
-  const size = dice.getByLabel('Text size', { exact: true });
-  await expect(size).toHaveValue('normal');
+  await expect(tile(dice, 'Text size', 'Normal size')).toBeChecked();
   expect(await rootSize(page)).toBe('16px');
 
-  await size.selectOption({ label: 'Larger' });
+  await tile(dice, 'Text size', 'Larger').check();
   expect(await rootSize(page)).toBe('18px');
-  await size.selectOption({ label: 'Largest' });
+  await tile(dice, 'Text size', 'Largest').check();
   await expect(page.locator('html')).toHaveAttribute('data-text-size', 'larger');
   expect(await rootSize(page)).toBe('20px');
   // The page still fits its screen: nothing runs off sideways, the dock holds its buttons.
@@ -66,11 +66,10 @@ test('a viewer makes this screen’s text larger, and it stays', async ({ browse
   await page.getByRole('button', { name: 'How to play' }).first().click();
   const guide = page.getByRole('dialog', { name: 'How to play' });
   await expect(guide).toContainText('If the words are small, make them larger here');
-  const inGuide = guide.getByLabel('Text size', { exact: true });
-  await expect(inGuide).toHaveValue('larger');
+  await expect(tile(guide, 'Text size', 'Largest')).toBeChecked();
   await expectAccessible(page, 'the guide’s first page at the largest text');
   // And back: the normal size leaves no mark on the page.
-  await inGuide.selectOption({ label: 'Normal size' });
+  await tile(guide, 'Text size', 'Normal size').check();
   await expect(page.locator('html')).not.toHaveAttribute('data-text-size');
   expect(await rootSize(page)).toBe('16px');
   await guide.getByRole('button', { name: 'Close the guide', exact: true }).click();
@@ -78,7 +77,7 @@ test('a viewer makes this screen’s text larger, and it stays', async ({ browse
   await closeTopMenu(page);
   await openSheet(page, 'Dice');
   await dice.getByText(SETTINGS, { exact: true }).click();
-  await expect(size).toHaveValue('normal');
+  await expect(tile(dice, 'Text size', 'Normal size')).toBeChecked();
 });
 
 test('a cheer shows on every screen for a moment and is kept nowhere', async ({

@@ -30,6 +30,8 @@ export function PickRadio({
   checked,
   disabled = false,
   row = false,
+  words = false,
+  sample,
   onChange,
   children,
 }: {
@@ -40,11 +42,18 @@ export function PickRadio({
   readonly disabled?: boolean;
   /** The picture beside a line of words, not above one word. */
   readonly row?: boolean;
+  /** A word alone, no picture: a choice of numbers, of hours, of sizes. */
+  readonly words?: boolean;
+  /** The word set at the size it chooses (the text's own size). */
+  readonly sample?: string | undefined;
   readonly onChange: () => void;
   readonly children: ReactNode;
 }) {
   return (
-    <label className={row ? 'pick-row' : 'pick-tile'} data-pick={pick}>
+    <label
+      className={row ? 'pick-row' : words ? 'pick-tile pick-tile--words' : 'pick-tile'}
+      data-pick={pick}
+    >
       <input
         type="radio"
         name={name}
@@ -53,7 +62,9 @@ export function PickRadio({
         disabled={disabled}
         onChange={onChange}
       />
-      <span className="pick-words">{children}</span>
+      <span className="pick-words" style={sample === undefined ? undefined : { fontSize: sample }}>
+        {children}
+      </span>
     </label>
   );
 }
@@ -61,7 +72,10 @@ export function PickRadio({
 export interface PickOption<T extends string> {
   readonly value: T;
   readonly label: string;
-  readonly pick: string;
+  /** Its vignette; none in a choice of words (`PickTiles`' `words`). */
+  readonly pick?: string;
+  /** The word set at the size it chooses. */
+  readonly sample?: string;
 }
 
 /**
@@ -74,6 +88,7 @@ export function PickTiles<T extends string>({
   value,
   options,
   disabled = false,
+  words = false,
   describedBy,
   onChange,
 }: {
@@ -83,6 +98,8 @@ export function PickTiles<T extends string>({
   readonly value: T | null;
   readonly options: readonly PickOption<T>[];
   readonly disabled?: boolean;
+  /** Tiles of words alone (numbers, hours, sizes): no vignette. */
+  readonly words?: boolean;
   readonly describedBy?: string;
   readonly onChange: (value: T) => void;
 }) {
@@ -92,11 +109,13 @@ export function PickTiles<T extends string>({
       {options.map((option) => (
         <PickRadio
           key={option.value}
-          pick={option.pick}
+          pick={option.pick ?? ''}
           name={name}
           value={option.value}
           checked={value === option.value}
           disabled={disabled}
+          words={words}
+          sample={option.sample}
           onChange={() => {
             onChange(option.value);
           }}
