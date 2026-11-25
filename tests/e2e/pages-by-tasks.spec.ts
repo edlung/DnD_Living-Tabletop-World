@@ -55,6 +55,23 @@ test('each page of the heroes and of the table holds its own tasks', async ({ pa
   expect(party).toContain('Отдых');
   expect(party).not.toContain('Ловушка');
   expect(party).not.toContain('Заразная болезнь');
+  // The heroes' cards of one row are one height, and their actions stand on one line at the
+  // cards' foot whatever a card says above them (spell slots, a condition).
+  const cards = await sheet(page, 'party')
+    .locator('.party-card')
+    .evaluateAll((all) =>
+      all.map((card) => ({
+        top: Math.round(card.getBoundingClientRect().top),
+        foot: Math.round(
+          card.querySelector('.party-card-actions')?.getBoundingClientRect().bottom ?? 0,
+        ),
+      })),
+    );
+  expect(cards.length).toBeGreaterThan(1);
+  for (const card of cards) {
+    const row = cards.filter((other) => other.top === card.top).map((other) => other.foot);
+    expect(new Set(row).size, 'the actions of one row of cards end on one line').toBe(1);
+  }
   await sheet(page, 'party').getByRole('button', { name: 'Короткий отдых (1 час)' }).click();
   await expect(
     sheet(page, 'party').getByRole('button', { name: 'Закончить короткий отдых' }),

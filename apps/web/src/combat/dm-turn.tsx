@@ -1,10 +1,11 @@
 import type { EncounterSuggestionResponse, EncounterView, PresenceResponse } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
-import { useCallback, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { useAskedFocus } from '../shell/asked-focus.ts';
 import { useReservedHeight } from '../shell/reserved-height.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { DmReactionWindow } from './dm-reaction-window.tsx';
@@ -47,6 +48,9 @@ export function DmTurn({
   const language = useLanguage();
   const labelOf = useCombatantLabels(encounter);
   const [ending, setEnding] = useState(false);
+  // The question takes the focus and gives it back: a keyboard keeps its place on the slip.
+  const question = useId();
+  const asked = useAskedFocus<HTMLButtonElement, HTMLButtonElement>(ending);
   // Wide, the map ends above the slip whatever it holds (`fold-out.css`).
   const slip = useReservedHeight<HTMLElement>('--turn-h', !covered);
   const window = encounter.reactionWindow;
@@ -153,8 +157,8 @@ export function DmTurn({
           <Glyph name="chevron-right" />
         </button>
         {ending ? (
-          <span className="dm-turn-ending" role="group" aria-label={t('End the fight')}>
-            <span>{t('End the fight for everyone?')}</span>
+          <span className="dm-turn-ending" role="group" aria-labelledby={question}>
+            <span id={question}>{t('End the fight for everyone?')}</span>
             <button
               type="button"
               disabled={locked}
@@ -168,6 +172,7 @@ export function DmTurn({
               {t('Yes, end the fight')}
             </button>
             <button
+              ref={asked.careful}
               type="button"
               onClick={() => {
                 setEnding(false);
@@ -178,6 +183,7 @@ export function DmTurn({
           </span>
         ) : (
           <button
+            ref={asked.ask}
             type="button"
             disabled={locked}
             onClick={() => {

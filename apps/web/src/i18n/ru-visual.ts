@@ -53,7 +53,7 @@ registerRussian({
   'Creating…': 'Создаём…',
   'Perform {npc} (DM)': 'Сыграть: {npc} (мастер)',
   'Press a figure, then a square, to move it. The turn’s actions are on the slip below.':
-    'Нажмите на фигурку, затем на клетку — и переставьте её. Действия хода — на листке внизу.',
+    'Чтобы переставить фигурку, нажмите на неё, затем на клетку. Действия хода — на листке внизу.',
   'To undo it, use History in the DM tools.':
     'Чтобы отменить, откройте «Историю» в инструментах мастера.',
 

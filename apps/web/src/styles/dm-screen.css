@@ -33,8 +33,9 @@
 .party-card {
   /* Holds its words for screen readers inside the sheet's scroll pane. */
   position: relative;
-  display: grid;
-  align-content: start;
+  /* A column: the cards of a row are one height, and the actions stand at each card's foot. */
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   padding: 0.75rem 0.85rem;
   border: 1px solid var(--line-strong);
@@ -131,8 +132,12 @@
   color: var(--danger);
   font-weight: 600;
 }
+/*
+ * A hero with a line more (spell slots, a condition) pushed its buttons a line lower than its
+ * neighbours': the actions keep one line across the row.
+ */
 .party-card-actions {
-  margin: 0;
+  margin: auto 0 0;
 }
 .party-card-actions button .glyph {
   width: 18px;
