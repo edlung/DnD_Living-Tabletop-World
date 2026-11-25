@@ -1,0 +1,196 @@
+/*
+ * What the browser still drew in a page's forms (docs/adr/0075-book-interface.md §28): the list a
+ * select opens, a date and time's own mark, a scroll bar. Each is set in the book's hand where
+ * the browser lets a page set it; elsewhere it stays the browser's own, with the page's inks.
+ */
+
+/*
+ * --- The list a select opens: a slip of the book's paper, its options inked lines, the chosen
+ * one in the rubric's red. A browser that cannot set it (Safari on a tablet opens its own
+ * picker) keeps its own list; the closed field is drawn the same in both.
+ */
+@supports (appearance: base-select) {
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select,
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select,
+  .session-shell > .topbar .topbar-menu .perspective-control select {
+    appearance: base-select;
+  }
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select::picker-icon,
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select::picker-icon,
+  .session-shell > .topbar .topbar-menu .perspective-control select::picker-icon {
+    display: none;
+  }
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select::picker(select),
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select::picker(select),
+  .session-shell > .topbar .topbar-menu .perspective-control select::picker(select) {
+    appearance: base-select;
+    max-block-size: min(60vh, 26rem);
+    margin-block: 3px;
+    padding: 4px;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 55%, transparent);
+    border-radius: 3px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.45);
+    color: var(--page-ink);
+    scrollbar-color: color-mix(in srgb, var(--page-ink) 40%, transparent) transparent;
+    scrollbar-width: thin;
+  }
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select option,
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select
+    option,
+  .session-shell > .topbar .topbar-menu .perspective-control select option {
+    min-block-size: 36px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    background: none;
+    color: var(--page-ink);
+    font: inherit;
+  }
+  .world-main[data-book]
+    :is(.sheet, [data-surface='paper'], .work-slip)
+    select
+    option:is(:hover, :focus-visible),
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select
+    option:is(:hover, :focus-visible),
+  .session-shell
+    > .topbar
+    .topbar-menu
+    .perspective-control
+    select
+    option:is(:hover, :focus-visible) {
+    background: color-mix(in srgb, var(--rubric) 10%, transparent);
+    outline: none;
+  }
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select option:checked,
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select
+    option:checked,
+  .session-shell > .topbar .topbar-menu .perspective-control select option:checked {
+    color: var(--rubric);
+    font-weight: 600;
+  }
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select option::checkmark,
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select
+    option::checkmark,
+  .session-shell > .topbar .topbar-menu .perspective-control select option::checkmark {
+    display: none;
+  }
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select option:disabled,
+  :is(
+      .guide-dialog,
+      .sign-out-dialog,
+      .sign-in-page,
+      .library-look,
+      .shelf-label,
+      .shelf-account
+    )[data-surface='paper']
+    select
+    option:disabled,
+  .session-shell > .topbar .topbar-menu .perspective-control select option:disabled {
+    color: color-mix(in srgb, var(--page-ink) 62%, transparent);
+    font-style: italic;
+  }
+}
+
+/* The list of views behind the cover's clasp keeps a list's drawn mark, as a page's lists do. */
+.session-shell > .topbar .topbar-menu .perspective-control select {
+  background-image: var(--pick-select-mark);
+  background-position: right 0.5rem center;
+  background-size: 1rem 1rem;
+}
+
+/* --- A date and a time: the field's own mark is the page's clock, in the page's ink. */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  input:is(
+    [type='datetime-local'],
+    [type='date'],
+    [type='time']
+  )::-webkit-calendar-picker-indicator {
+  inline-size: 20px;
+  block-size: 20px;
+  background: var(--rubric);
+  mask: url('../assets/ui-kit/glyphs/time.png') center / contain no-repeat;
+  cursor: pointer;
+}
+
+/* --- A page's scroll bar: a thin stroke of the page's ink, no grey trough. */
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip),
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) *,
+:is(
+  .guide-dialog,
+  .sign-out-dialog,
+  .sign-in-page,
+  .library-look,
+  .shelf-label,
+  .shelf-account
+)[data-surface='paper'],
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
+  * {
+  scrollbar-color: color-mix(in srgb, var(--page-ink) 38%, transparent) transparent;
+  scrollbar-width: thin;
+}
