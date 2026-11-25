@@ -6,7 +6,7 @@ import {
   INVESTIGATION_CAMPAIGNS,
 } from './support/investigation.ts';
 import { holdResponse } from './support/session.ts';
-import { sceneRegion } from './support/shell.ts';
+import { openTopMenu, sceneRegion } from './support/shell.ts';
 
 test('an accepted private action completing after a perspective change cannot enter the public view', async ({
   page,
@@ -18,6 +18,7 @@ test('an accepted private action completing after a perspective change cannot en
     .getByRole('button', { name: 'Ask about Merchant Guild caravan', exact: true })
     .click();
   await pending.requested;
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('PUBLIC');
   // The public view has loaded: its scene is shown.
   await expect(sceneRegion(page)).toBeVisible();
@@ -41,6 +42,7 @@ test('an action accepted before logout cannot restore its session or private res
     .getByRole('button', { name: 'Ask about Merchant Guild caravan', exact: true })
     .click();
   await pending.requested;
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await expect(page.getByLabel('Access token', { exact: true })).toHaveValue('');
   pending.release();

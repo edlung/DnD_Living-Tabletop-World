@@ -224,7 +224,7 @@
  * people and things in the scene keep clear of it on its left. Centred, or anchored above the
  * medallion it concerns, it lay over the row (or the row above) and swallowed their clicks.
  */
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
+@media (min-width: 701px) and (min-height: 501px), (min-width: 1200px) {
   .world-main:not(.has-battle):has(.outcome) {
     --outcome-w: min(360px, 36%);
   }
@@ -262,7 +262,7 @@
  * result sits at the drawer's foot instead (it concerns the selection), and the drawer's content
  * scrolls clear of it.
  */
-@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) {
+@media (min-width: 701px) and (max-width: 1199px) and (min-height: 501px) {
   .world-main.has-details:not(.has-battle) .outcome {
     right: 16px;
     bottom: calc(var(--dock-h) + 36px);

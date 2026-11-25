@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
-import { bookPart } from './support/shell.ts';
+import { bookPart, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -26,6 +26,7 @@ test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off' });
 const LIVE = { timeout: 90_000 };
 
 async function startFromLibrary(dm: Page, title: string) {
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: /^(My campaigns|Мои кампании)$/ }).click();
   const library = dm.getByRole('region', { name: 'Campaigns from the library', exact: true });
   // Each campaign is a book on the shelf: its first page opens with "Look inside the book".

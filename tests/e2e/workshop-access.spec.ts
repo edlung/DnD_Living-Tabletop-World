@@ -8,6 +8,7 @@ import {
 } from '../../apps/server/src/testing/ui-workshop-links.ts';
 import { test } from './support/journey.ts';
 import { dmToken } from './support/sign-in.ts';
+import { closeTopMenu, openTopMenu } from './support/shell.ts';
 
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off', video: 'off' });
 const link = (name: WorkshopFixture) =>
@@ -128,7 +129,9 @@ test('a workshop and a game sign-in coexist and signing out of the workshop pres
   await page.goto(`/join#${dmToken(WORKSHOP_CAMPAIGN)}`);
   await page.getByRole('radio', { name: 'Only this browser', exact: true }).check();
   await page.getByRole('button', { name: 'Take your seat', exact: true }).click();
+  await openTopMenu(page);
   await expect(page.getByRole('button', { name: 'Sign out', exact: true })).toBeVisible();
+  await closeTopMenu(page);
   await enter(page, 'coexist');
   await page.getByRole('button', { name: 'Sign out of workshop', exact: true }).click();
   await page
@@ -136,7 +139,9 @@ test('a workshop and a game sign-in coexist and signing out of the workshop pres
     .getByRole('button', { name: 'Sign out of workshop', exact: true })
     .click();
   await page.goto('/');
+  await openTopMenu(page);
   await expect(page.getByRole('button', { name: 'Sign out', exact: true })).toBeVisible();
+  await closeTopMenu(page);
 });
 
 test('more drafts keeps every private container reachable after the first page', async ({

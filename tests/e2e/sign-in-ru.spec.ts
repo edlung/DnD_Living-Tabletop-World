@@ -13,6 +13,7 @@ import {
   openInvitation,
   takeSeat,
 } from './support/sign-in.ts';
+import { openTopMenu } from './support/shell.ts';
 
 /**
  * Production sign-in in Russian (docs/adr/0031-play-language.md; docs/adr/0036-production-sign-in.md
@@ -66,6 +67,7 @@ test('in Russian, the DM invites, an English browser joins, and is signed out in
   await expect(accessState(forged, ru.failed)).toContainText('Попросите новую.');
 
   // Signing out, asked in Russian.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: ru.signOut, exact: true }).click();
   const dialog = dm.getByRole('dialog', { name: ru.signOutQuestion });
   await expect(dialog).toContainText('понадобится новая ссылка-приглашение');

@@ -8,7 +8,7 @@ import {
   playerScene,
   TOKENS,
 } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 
 test('player uses real authorized scene and knowledge without receiving DM secrets', async ({
   page,
@@ -30,6 +30,7 @@ test('player uses real authorized scene and knowledge without receiving DM secre
 
 test('DM data disappears before a delayed player preview completes', async ({ page }) => {
   await enterWorld(page, TOKENS.dm);
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openSheet(page, 'Journal');
   await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
@@ -39,6 +40,7 @@ test('DM data disappears before a delayed player preview completes', async ({ pa
     page,
     (url) => url.pathname.endsWith('/entities') && url.searchParams.get('perspective') !== 'DM',
   );
+  await openTopMenu(page);
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');
@@ -55,6 +57,7 @@ test('failed perspective downgrade stays empty and recovers without stale DM dat
   page,
 }) => {
   await enterWorld(page, TOKENS.dm);
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openSheet(page, 'Journal');
   await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
@@ -73,12 +76,14 @@ test('failed perspective downgrade stays empty and recovers without stale DM dat
     }
   });
 
+  await openTopMenu(page);
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');
   await expect(page.getByRole('alert')).toBeVisible();
   await expectPlayerBoundary(page);
   fail = false;
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Refresh world', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Mira Vale', exact: true })).toBeVisible();
   await expectPlayerBoundary(page);
@@ -86,6 +91,7 @@ test('failed perspective downgrade stays empty and recovers without stale DM dat
 
 test('late DM response cannot overwrite an already loaded player preview', async ({ page }) => {
   await enterWorld(page, TOKENS.dm);
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openSheet(page, 'Journal');
   await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
@@ -94,8 +100,10 @@ test('late DM response cannot overwrite an already loaded player preview', async
     page,
     (url) => url.pathname.endsWith('/entities') && url.searchParams.get('perspective') === 'DM',
   );
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Refresh world', exact: true }).click();
   await delayed.requested;
+  await openTopMenu(page);
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');

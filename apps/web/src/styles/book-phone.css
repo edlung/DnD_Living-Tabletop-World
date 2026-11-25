@@ -1,0 +1,151 @@
+/*
+ * The whole-screen book on a phone (docs/adr/0075-book-interface.md §24; the wider screens are
+ * `book-whole.css`, the head's own layout `phone-head.css`).
+ */
+/*
+ * No bar of the application either. The head is the cover's upper edge — the cloth
+ * under it, the hero's plate a paper label, the clasp in its corner; the slip and the page's foot
+ * are paper as on a wider screen.
+ */
+@media (max-width: 700px) {
+  .session-shell:has(> .world-main[data-book]) {
+    background-color: var(--ink-900);
+    background-image: var(--book-cover, var(--table-material, none));
+    background-size: 320px;
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar {
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar > .topbar-brand {
+    display: none;
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-more {
+    position: relative;
+    border: 2px solid color-mix(in srgb, var(--gold) 70%, black);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 55%, #6f5320);
+    box-shadow:
+      inset 0 0 0 2px rgb(0 0 0 / 0.35),
+      0 2px 6px rgb(0 0 0 / 0.6);
+    color: var(--ink-950);
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-more::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--book-emblem, none) center / cover no-repeat;
+  }
+  /* Live, a lit point on the clasp's rim (it overlaps the clasp; the slip keeps the head's box). */
+  .session-shell:has(> .world-main[data-book]) > .topbar .live-badge--live {
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    margin-right: -20px;
+    inline-size: 14px;
+    block-size: 14px;
+    min-height: 0;
+    padding: 0;
+    border: 2px solid var(--ink-950);
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .live-badge--live > * {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  /* The slip: paper, the rows named in ink. */
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-menu {
+    gap: 4px;
+    border: 0;
+    border-radius: 4px 4px 10px 10px;
+    background:
+      linear-gradient(rgb(43 32 21 / 0.14), transparent 14px),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow:
+      0 0 0 1px rgb(43 32 21 / 0.35),
+      0 14px 32px rgb(0 0 0 / 0.6);
+    color: var(--page-ink);
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-menu .perspective-control label,
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-menu .perspective-note {
+    color: color-mix(in srgb, var(--page-ink) 78%, transparent);
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-menu .perspective-control select {
+    padding: 0.35rem 2rem 0.35rem 0.6rem;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 58%, transparent);
+    border-radius: 2px;
+    background-color: color-mix(in srgb, #fffdf6 62%, transparent);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--page-ink) 50%),
+      linear-gradient(135deg, var(--page-ink) 50%, transparent 50%);
+    background-position:
+      calc(100% - 17px) 55%,
+      calc(100% - 11px) 55%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 2px 3px rgb(43 32 21 / 0.1);
+    color: var(--page-ink);
+    appearance: none;
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .topbar-menu .icon-button--labelled {
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--page-ink);
+    font-weight: 600;
+  }
+  /* The hero's plate: a paper label on the cloth. */
+  .session-shell:has(> .world-main[data-book]) > .topbar .hero-plate {
+    border: 1px solid color-mix(in srgb, var(--page-ink) 55%, transparent);
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+    color: var(--page-ink);
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .hero-plate-name {
+    color: var(--rubric);
+  }
+  .session-shell:has(> .world-main[data-book]) > .topbar .hero-plate-numbers .glyph {
+    color: var(--page-ink);
+  }
+  /* The page's foot: paper under the dice. */
+  .world-main[data-book] .book-foot {
+    border-radius: 0 0 8px 8px;
+    background:
+      linear-gradient(rgb(43 32 21 / 0.2), transparent 3px),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: inset 0 0 0 1px rgb(43 32 21 / 0.14);
+    color: var(--page-ink);
+  }
+  .world-main[data-book] .book-foot-who {
+    color: color-mix(in srgb, var(--page-ink) 72%, transparent);
+    font-style: italic;
+  }
+  .world-main[data-book] .book-foot-last strong {
+    color: var(--rubric);
+  }
+  .world-main[data-book] .book-foot:not([data-drawn]) .book-die,
+  .world-main[data-book] .book-foot-more {
+    border: 1px solid color-mix(in srgb, var(--page-ink) 45%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--page-floor) 55%, transparent);
+    color: var(--page-ink);
+  }
+  /* The die a table rolls most stands first and larger, drawn or not. */
+  .world-main[data-book] .book-foot[data-drawn] li[data-sides='20'] .book-die {
+    min-inline-size: 54px;
+    min-block-size: 46px;
+    font-size: 0.95rem;
+  }
+}

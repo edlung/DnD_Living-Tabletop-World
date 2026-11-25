@@ -3,7 +3,13 @@ import { expect, type Page } from '@playwright/test';
 import { clickWhereShown } from './support/combat.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
+import {
+  chooseLocation,
+  closeTopMenu,
+  openChronicle,
+  openSheet,
+  openTopMenu,
+} from './support/shell.ts';
 
 /**
  * The Russian Ravenford in the browser (docs/adr/0031-play-language.md §10): a Russian
@@ -28,7 +34,9 @@ test('a Russian player finds Mira, asks about the caravan, and reads only Russia
 }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.player);
   await expect(page.getByRole('heading', { level: 1, name: 'Пропавший караван' })).toBeVisible();
+  await openTopMenu(page);
   await expect(page.getByLabel('Вид', { exact: true })).toBeVisible();
+  await closeTopMenu(page);
   await chooseLocation(page, 'market-square', { sheet: 'Места', label: 'Место' });
   await page.getByRole('button', { name: 'Мира Вейл', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Что вы хотите сделать?' })).toBeVisible();

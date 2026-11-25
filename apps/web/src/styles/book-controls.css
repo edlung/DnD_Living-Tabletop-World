@@ -1,0 +1,417 @@
+/*
+ * What is written and chosen on a page of the book (docs/adr/0075-book-interface.md §24) is set
+ * as a printed book sets it, not as a web form: a tool is a passage under a rubric with a rule,
+ * not a rounded card; a field is a box of a printed ledger, inked on all four sides; a choice is
+ * an inked ring or square filled in the rubric's red; a button is a stamped label, the page's one
+ * main action in the rubric's red. Sizes and names of the controls are as they were.
+ */
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) {
+  --ink-edge: color-mix(in srgb, var(--page-ink) 58%, transparent);
+  --ink-soft: color-mix(in srgb, var(--page-ink) 26%, transparent);
+  --ledger: color-mix(in srgb, #fffdf6 62%, transparent);
+}
+
+/* --- A tool is a passage of the page: its rubric, a rule, then its words. */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(.tool-group, .sheet-section, .dm-card, .settings-group) {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(.tool-group, .sheet-section, .dm-card, .settings-group)
+  > :is(h3, h4):first-child,
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(.tool-group, .sheet-section, .dm-card, .settings-group)
+  > header:first-child {
+  margin: 0 0 0.7rem;
+  padding: 0 0 0.3rem;
+  border-bottom: 1px solid var(--ink-soft);
+  background: linear-gradient(var(--rubric), var(--rubric)) left bottom / 2.6rem 2px no-repeat;
+  color: var(--rubric);
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+/* What a tool holds inside itself is not a second box. */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(.tool-group, .sheet-section)
+  :is(fieldset, .hand-form, .hand-choice, form) {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(.tool-group, .sheet-section)
+  legend {
+  padding: 0;
+  color: color-mix(in srgb, var(--page-ink) 78%, transparent);
+  font: 600 0.78rem/1.4 var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* --- A field: a box of a printed ledger. */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(
+    input:not([type='checkbox'], [type='radio'], [type='range'], [type='file'], [type='color']),
+    textarea,
+    select
+  ) {
+  min-height: 40px;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--ink-edge);
+  border-radius: 2px;
+  background-color: var(--ledger);
+  box-shadow: inset 0 2px 3px rgb(43 32 21 / 0.1);
+  color: var(--page-ink);
+  font-family: var(--font-body, inherit);
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select {
+  padding-right: 2rem;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--page-ink) 50%),
+    linear-gradient(135deg, var(--page-ink) 50%, transparent 50%);
+  background-position:
+    calc(100% - 17px) 55%,
+    calc(100% - 11px) 55%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  :is(input, textarea, select):focus-visible {
+  border-color: var(--rubric);
+  box-shadow:
+    inset 0 2px 3px rgb(43 32 21 / 0.1),
+    0 0 0 1px var(--rubric);
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) label,
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) .field-label {
+  color: color-mix(in srgb, var(--page-ink) 84%, transparent);
+}
+
+/* --- A choice: an inked ring, an inked square; chosen, the rubric's red. */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  input:is([type='radio'], [type='checkbox']) {
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 1.5px solid var(--ink-edge);
+  background: var(--ledger);
+  box-shadow: inset 0 1px 2px rgb(43 32 21 / 0.14);
+  appearance: none;
+  cursor: pointer;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) input[type='radio'] {
+  border-radius: 50%;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) input[type='checkbox'] {
+  border-radius: 2px;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) input[type='radio']:checked {
+  border-color: var(--rubric);
+  background: radial-gradient(circle, var(--rubric) 0 42%, var(--ledger) 46%);
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  input[type='checkbox']:checked {
+  border-color: var(--rubric);
+  /* The tick: a stroke of the page's cream on the red. */
+  background: var(--rubric)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4.5 10.5l3.6 3.6 7.4-8.2' fill='none' stroke='%23fff8e6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 100% 100% no-repeat;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  input:is([type='radio'], [type='checkbox']):disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* --- A button: a stamped label; the page's main action in the rubric's red. */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  button:not(
+    .book-page-tab,
+    .sheet-close,
+    .icon-button,
+    .dmb-button,
+    .object-button,
+    .rail-member,
+    .initiative-entry,
+    .work-seal-slot,
+    .stage-switch-button,
+    .board-tool,
+    .work-seal,
+    .book-die,
+    .medallion-button,
+    [class*='square'],
+    [class*='token'],
+    [role='tab']
+  ) {
+  border: 1px solid var(--ink-edge);
+  border-radius: 3px;
+  background: linear-gradient(rgb(255 252 242 / 0.75), rgb(236 222 190 / 0.45)), var(--page);
+  box-shadow:
+    inset 0 1px 0 rgb(255 252 242 / 0.8),
+    0 1px 2px rgb(43 32 21 / 0.28);
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  button:not(
+    .book-page-tab,
+    .sheet-close,
+    .icon-button,
+    .dmb-button,
+    .object-button,
+    .rail-member,
+    .initiative-entry,
+    .work-seal-slot,
+    .stage-switch-button,
+    .board-tool,
+    .work-seal,
+    .book-die,
+    .medallion-button,
+    [class*='square'],
+    [class*='token'],
+    [role='tab']
+  ):hover:enabled {
+  background: linear-gradient(rgb(255 252 242 / 0.9), rgb(236 222 190 / 0.6)), var(--page);
+  border-color: var(--page-ink);
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  button:not(
+    .book-page-tab,
+    .sheet-close,
+    .icon-button,
+    .dmb-button,
+    .object-button,
+    .rail-member,
+    .initiative-entry,
+    .work-seal-slot,
+    .stage-switch-button,
+    .board-tool,
+    .work-seal,
+    .book-die,
+    .medallion-button,
+    [class*='square'],
+    [class*='token'],
+    [role='tab']
+  ):active:enabled {
+  box-shadow: inset 0 1px 3px rgb(43 32 21 / 0.35);
+  translate: 0 1px;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  button.primary-button:not(.book-page-tab) {
+  border-color: color-mix(in srgb, var(--rubric) 80%, black);
+  background:
+    linear-gradient(color-mix(in srgb, var(--rubric) 88%, white), var(--rubric)), var(--rubric);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 1px 3px rgb(43 32 21 / 0.4);
+  color: #fff8e6;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  button.primary-button:not(.book-page-tab):hover:enabled {
+  border-color: color-mix(in srgb, var(--rubric) 70%, black);
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--rubric) 80%, white),
+      color-mix(in srgb, var(--rubric) 94%, white)
+    ),
+    var(--rubric);
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) button:disabled {
+  opacity: 0.55;
+}
+
+/* --- A hero's entry on the Party's page: a plate set in the page, not a rounded card. */
+.world-main[data-book] .sheet .party-card {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--ink-edge);
+  border-radius: 3px;
+  background: color-mix(in srgb, #fffdf6 42%, transparent);
+  box-shadow:
+    inset 0 0 0 3px color-mix(in srgb, var(--page) 70%, transparent),
+    inset 0 0 0 4px var(--ink-soft);
+}
+.world-main[data-book] .sheet .party-card-title > strong {
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+}
+
+/* --- A form's rows keep a line's breath between a field and the next label. */
+.world-main[data-book]
+  .sheet
+  :is(.hand-form, .tool-group form)
+  > :is(label, .hand-row, fieldset, .choice-row)
+  + :is(label, .hand-row, fieldset, .choice-row, .action-row) {
+  margin-top: 0.75rem;
+}
+
+/* --- A short field keeps room for its own words beside the mark that it opens. */
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select {
+  min-inline-size: 6.5rem;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) input[type='number'] {
+  min-inline-size: 4.5rem;
+}
+
+/* --- A page with nothing to show says so in its own voice, not in a tinted box. */
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) .status-panel {
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  border: 0;
+  border-left: 2px solid var(--ink-soft);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: color-mix(in srgb, var(--page-ink) 80%, transparent);
+  font-style: italic;
+}
+
+/* --- A choice among a few (what the table's screen shows): inked rows, not option cards. */
+.world-main[data-book] .sheet .join-mode {
+  padding: 0.15rem 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* --- A page's own two views (the rules' glossary and tools): index words, the open one ruled. */
+.world-main[data-book] .sheet .rules-parts {
+  gap: 1.2rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink-soft);
+  border-radius: 0;
+  background: none;
+}
+.world-main[data-book] .sheet .rules-parts > button {
+  min-height: 40px;
+  padding: 0 0.1rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: color-mix(in srgb, var(--page-ink) 80%, transparent);
+}
+.world-main[data-book] .sheet .rules-parts > button[aria-selected='true'] {
+  border-bottom-color: var(--rubric);
+  background: none;
+  color: var(--rubric);
+}
+
+/* --- A task of the party's (the Journal): a plate, like a hero's entry. */
+.world-main[data-book] .sheet .quest-card {
+  border: 1px solid var(--ink-edge);
+  border-radius: 3px;
+  background: color-mix(in srgb, #fffdf6 42%, transparent);
+  box-shadow: none;
+}
+
+/*
+ * --- The story's page (the DM's working spread): its notes are the page's margins, its title
+ * carries the book's own ornament, the things of the place are plates set in the page.
+ */
+.world-main[data-book='dm'] .work-story .work-elsewhere {
+  padding: 0 0 0.45rem;
+  border: 0;
+  border-bottom: 1px solid var(--ink-soft, color-mix(in srgb, var(--page-ink) 26%, transparent));
+  border-radius: 0;
+  background: none;
+  font-style: italic;
+}
+.world-main[data-book='dm'] .work-story .dmb-head {
+  flex-wrap: wrap;
+}
+/* The title wraps beside its button; the book's ornament lies under both. */
+.world-main[data-book='dm'] .work-story .dmb-head > .dmb-title {
+  flex: 1 1 0;
+  min-inline-size: 0;
+}
+.world-main[data-book='dm'] .work-story .dmb-head::after {
+  content: '';
+  flex: 1 0 100%;
+  block-size: 20px;
+  background: var(--book-divider, none) left center / auto 100% no-repeat;
+}
+.world-main[data-book='dm'] .work-story .work-notes {
+  padding: 0 0 0 0.9rem;
+  border: 0;
+  border-left: 2px solid color-mix(in srgb, var(--page-ink) 26%, transparent);
+  border-radius: 0;
+  background: none;
+}
+.world-main[data-book] .scene[data-spread] .object-button {
+  border: 1px solid color-mix(in srgb, var(--page-ink) 34%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, #fffdf6 46%, transparent);
+  box-shadow: none;
+}
+
+/*
+ * --- What the table tells the reader over the page — the evening has not begun, the DM takes a
+ * hero's turn — is a slip of the book's paper laid on it, not a dark bar of the application.
+ */
+.session-shell:has(> .world-main[data-book]) .lobby-banner,
+.session-shell:has(> .world-main[data-book]) > .acting-bar {
+  border: 1px solid color-mix(in srgb, var(--page-ink) 55%, transparent);
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.5);
+  color: var(--page-ink);
+}
+.session-shell:has(> .world-main[data-book]) .lobby-banner > .glyph,
+.session-shell:has(> .world-main[data-book]) > .acting-bar .acting-glyph {
+  color: var(--rubric);
+}
+.session-shell:has(> .world-main[data-book]) :is(.lobby-banner, .acting-bar) .muted {
+  color: color-mix(in srgb, var(--page-ink) 78%, transparent);
+}
+.session-shell:has(> .world-main[data-book]) :is(.lobby-banner, .acting-bar) button {
+  border: 1px solid color-mix(in srgb, var(--page-ink) 58%, transparent);
+  border-radius: 3px;
+  background: linear-gradient(rgb(255 252 242 / 0.75), rgb(236 222 190 / 0.45)), var(--page);
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.session-shell:has(> .world-main[data-book]) :is(.lobby-banner, .acting-bar) button.primary-button {
+  border-color: color-mix(in srgb, var(--rubric) 80%, black);
+  background:
+    linear-gradient(color-mix(in srgb, var(--rubric) 88%, white), var(--rubric)), var(--rubric);
+  color: #fff8e6;
+}
+/* The DM takes a hero's turn: the slip lies on the cover's upper edge, inside the book's frame. */
+@media (min-width: 701px) {
+  .session-shell:has(> .world-main[data-book]) > .acting-bar {
+    margin: 6px 96px 0 28px;
+    border-radius: 4px;
+  }
+}

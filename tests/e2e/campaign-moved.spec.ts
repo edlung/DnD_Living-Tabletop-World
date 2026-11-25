@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
-import { dockButton } from './support/shell.ts';
+import { dockButton, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -73,6 +73,7 @@ test('a campaign played elsewhere is looked at here, not played', async ({ page,
   await expect(notice).toContainText('here you can look, not play.');
   expect(await changeTheTable(page, campaign)).toEqual([409, 'MOVED']);
 
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const entry = page.locator('.hub-campaign').filter({ hasText: 'You are the DM' });
   await expect(entry.locator('.hub-campaign-away')).toContainText('Played on MacBook Pro since');

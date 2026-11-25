@@ -72,11 +72,15 @@ export function TopBar({
     const away = (event: PointerEvent) => {
       const target = event.target instanceof Node ? event.target : null;
       if (target && (list.current?.contains(target) || more.current?.contains(target))) return;
+      // A dialog a row opened (the guide) lies outside the slip: a press in it keeps the slip, so
+      // the dialog gives the focus back to its row.
+      if (target instanceof Element && target.closest('dialog[open]')) return;
       setMenu(false);
     };
     const escape = (event: KeyboardEvent) => {
-      // A dialog opened from the menu takes Escape for itself.
-      if (event.key !== 'Escape' || list.current?.querySelector('dialog[open]')) return;
+      // A dialog a row opened (the guide, the question before signing out) takes Escape for
+      // itself, wherever it is written: the slip stays, and its row gets the focus back.
+      if (event.key !== 'Escape' || document.querySelector('dialog[open]')) return;
       event.stopImmediatePropagation();
       setMenu(false);
       more.current?.focus();

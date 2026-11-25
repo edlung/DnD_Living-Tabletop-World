@@ -57,7 +57,7 @@
  * The block of pages: a rim of stacked edges round the page, lying on the cloth with its shadow.
  * A phone's page is the stage itself and a narrow fight scrolls as one column: neither has a rim.
  */
-@media (min-width: 768px) and (min-height: 501px) {
+@media (min-width: 701px) and (min-height: 501px) {
   .world-main[data-book] > .stage::after {
     content: '';
     position: absolute;

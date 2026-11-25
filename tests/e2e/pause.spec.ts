@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
 import { isLiveStream } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -125,6 +125,7 @@ test('one press tells the DM alone: not the other player, not the table’s scre
   await expect(elowen.getByText(PAUSED, { exact: true })).toHaveCount(0);
 
   // The same request from "How to play": Brann asks there; the DM pauses the game.
+  await openTopMenu(brann);
   await brann.getByRole('button', { name: 'How to play' }).first().click();
   const guide = brann.getByRole('dialog', { name: 'How to play' });
   await guide.getByRole('button', { name: 'Our table', exact: true }).click();

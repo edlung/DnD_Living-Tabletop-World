@@ -2,7 +2,7 @@ import { expect, type Response } from '@playwright/test';
 
 import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
 
@@ -90,6 +90,7 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   });
   await expect(shaman).toContainText('21 / 21');
   await expect(shaman).toContainText('13 (roll 11, modifier 2)');
+  await openTopMenu(page);
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');
@@ -99,6 +100,7 @@ test('DM summary exposes authorized spell and stats, then clears them for charac
   );
   await expectPlayerBoundary(page);
   await expect(encounter).not.toContainText('21 / 21');
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('PUBLIC');
   await openSheet(page, 'Journal');
   await expect(

@@ -2,7 +2,7 @@ import { expect as baseExpect, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
 import { LIVE_URL } from './support/live.ts';
-import { dockButton } from './support/shell.ts';
+import { dockButton, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -105,11 +105,13 @@ test('old game logout and delayed refusals preserve the new cookie; history snap
   await joinAsDm(old, oldCampaign);
   const oldActor = await actor(old, oldCampaign);
   await keepOldWorld(old);
+  await openTopMenu(old);
   await signOut(old).click();
   await expect(dialog(old).getByRole('button', { name: words.stay })).toBeFocused();
   await old.keyboard.press('Escape');
   await expect(dialog(old)).toBeHidden();
   await expect(signOut(old)).toBeFocused();
+  await openTopMenu(old);
   await signOut(old).click();
 
   const replacement = await context.newPage();
@@ -121,6 +123,7 @@ test('old game logout and delayed refusals preserve the new cookie; history snap
   const playerLink = await invite(replacement, 'Elowen Starwhisper');
   const mountedDm = await actor(replacement, newCampaign);
   await keepOldWorld(replacement);
+  await openTopMenu(replacement);
   await signOut(replacement).click();
   const player = await context.newPage();
   await enter(player, playerLink, true, false);
@@ -148,6 +151,7 @@ test('old game logout and delayed refusals preserve the new cookie; history snap
       await release.promise;
       await route.fulfill({ response });
     });
+    await openTopMenu(delayed);
     await signOut(delayed).click();
     await dialog(delayed).getByRole('button', { name: words.signOut, exact: true }).click();
     await logoutReached.promise;

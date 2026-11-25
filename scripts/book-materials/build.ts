@@ -42,6 +42,8 @@ export const PARTS = [
 export const MOMENTS = ['talk', 'clue', 'letter', 'fight', 'puzzle'] as const;
 /** The seals of the DM's working spread (docs/adr/0075-book-interface.md §16, §22). */
 export const SEALS = ['roll', 'fight', 'rest', 'screen', 'give'] as const;
+/** The dice of a page's foot and of the Dice page, drawn in the book's own style (§24). */
+export const DICE = [4, 6, 8, 10, 12, 20, 100] as const;
 
 /** A piece, the width it is shipped at, and the custom property that carries it (if any). */
 const PIECES: Readonly<Record<string, { readonly width: number; readonly property?: string }>> = {
@@ -61,7 +63,98 @@ const PIECES: Readonly<Record<string, { readonly width: number; readonly propert
   // the working spread's seals.
   initial: { width: 256, property: '--book-initial' },
   ...Object.fromEntries(SEALS.map((seal) => [`seal-${seal}`, { width: 160 }])),
+  // The whole-screen book (ADR 0075 §24): a die a picture, where a book has them one by one.
+  ...Object.fromEntries(DICE.map((sides) => [`die-d${String(sides)}`, { width: 144 }])),
 };
+
+/**
+ * Pieces put together from a book's pictures without drawing anything (ADR 0075 §24). The
+ * cover's frame is one corner fitting turned to each corner of a square whose sides stay empty,
+ * so it serves a screen of any size as a border image. A set of dice drawn as one row on one
+ * sheet (so the set is of one material) is cut into its six dice, left to right, where nothing
+ * is painted between them; the d100 is the d10 again.
+ */
+const FRAME = { side: 600, corner: 276, property: '--book-cover-frame' } as const;
+const SHEET_DICE = [4, 6, 8, 10, 12, 20] as const;
+
+async function coverFrame(source: string, out: string): Promise<void> {
+  const corner = await sharp(await sharp(source).trim({ threshold: 8 }).toBuffer())
+    .resize(FRAME.corner, FRAME.corner, {
+      fit: 'contain',
+      position: 'left top',
+      background: '#00000000',
+    })
+    .png()
+    .toBuffer();
+  const turned = (angle: number) => sharp(corner).rotate(angle).png().toBuffer();
+  const far = FRAME.side - FRAME.corner;
+  await sharp({
+    create: { width: FRAME.side, height: FRAME.side, channels: 4, background: '#00000000' },
+  })
+    .composite([
+      { input: corner, left: 0, top: 0 },
+      { input: await turned(90), left: far, top: 0 },
+      { input: await turned(180), left: far, top: far },
+      { input: await turned(270), left: 0, top: far },
+    ])
+    .webp({ quality: 80, alphaQuality: 90, effort: 6 })
+    .toFile(out);
+}
+
+/** The painted stretches of a sheet along its width: where a column holds any paint. */
+async function paintedRuns(source: string): Promise<{ left: number; width: number }[]> {
+  const { data, info } = await sharp(source)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const painted = Array.from({ length: info.width }, (_, x) => {
+    for (let y = 0; y < info.height; y += 1) {
+      if ((data[(y * info.width + x) * info.channels + 3] ?? 0) > 24) return true;
+    }
+    return false;
+  });
+  const runs: { left: number; width: number }[] = [];
+  let start = -1;
+  for (let x = 0; x <= info.width; x += 1) {
+    if (x < info.width && painted[x]) {
+      if (start < 0) start = x;
+    } else if (start >= 0) {
+      // A speck is not a die.
+      if (x - start >= info.width / 40) runs.push({ left: start, width: x - start });
+      start = -1;
+    }
+  }
+  return runs;
+}
+
+async function diceFromSheet(
+  source: string,
+  theme: string,
+  write: (piece: string, picture: ReturnType<typeof sharp>) => Promise<void>,
+): Promise<void> {
+  const runs = await paintedRuns(source);
+  if (runs.length !== SHEET_DICE.length) {
+    throw new Error(
+      `${theme}: the dice sheet holds ${String(runs.length)} separate pictures, not ${String(SHEET_DICE.length)}`,
+    );
+  }
+  const height = (await sharp(source).metadata()).height;
+  // One step at a time: a trim asked for with a cut is taken before it, and the cut then misses.
+  const die = async (index: number) => {
+    const run = runs[index];
+    if (!run) throw new Error(`${theme}: no die ${String(index)} on the sheet`);
+    const cut = await sharp(source)
+      .extract({ left: run.left, top: 0, width: run.width, height })
+      .png()
+      .toBuffer();
+    const trimmed = await sharp(cut).trim({ threshold: 8 }).png().toBuffer();
+    return sharp(trimmed).resize(144, 144, { fit: 'contain', background: '#00000000' });
+  };
+  for (const [index, sides] of SHEET_DICE.entries()) {
+    await write(`die-d${String(sides)}`, await die(index));
+  }
+  await write('die-d100', await die(SHEET_DICE.indexOf(10)));
+}
 
 /**
  * Pieces cut from another piece without changing a pixel: the shelf's middle board, laid under
@@ -145,6 +238,20 @@ async function build(originals: string): Promise<ManifestBook[]> {
         .toFile(out);
       pieces[piece] = createHash('sha256').update(readFileSync(out)).digest('hex');
     }
+    const fitting = join(originals, theme, 'cover-corner.png');
+    if (existsSync(fitting)) {
+      const out = join(PUBLIC, theme, 'cover-frame.webp');
+      await coverFrame(fitting, out);
+      pieces['cover-frame'] = createHash('sha256').update(readFileSync(out)).digest('hex');
+    }
+    const sheet = join(originals, theme, 'dice.png');
+    if (existsSync(sheet) && !('die-d20' in pieces)) {
+      await diceFromSheet(sheet, theme, async (piece, picture) => {
+        const out = join(PUBLIC, theme, `${piece}.webp`);
+        await picture.webp({ quality: 80, alphaQuality: 90, effort: 6 }).toFile(out);
+        pieces[piece] = createHash('sha256').update(readFileSync(out)).digest('hex');
+      });
+    }
     books.push({ theme, pieces });
   }
   return books;
@@ -157,7 +264,10 @@ function stylesheet(books: readonly ManifestBook[]): string {
   for (const book of books) {
     const selector = book.theme === 'ltw' ? ':root' : `[data-campaign-theme='${book.theme}']`;
     const props = Object.keys(book.pieces).flatMap((piece) => {
-      const property = PIECES[piece]?.property ?? CUTS[piece]?.property;
+      const property =
+        PIECES[piece]?.property ??
+        CUTS[piece]?.property ??
+        (piece === 'cover-frame' ? FRAME.property : undefined);
       return property ? [`  ${property}: url('/book-materials/${book.theme}/${piece}.webp');`] : [];
     });
     if (props.length > 0) lines.push(`${selector} {`, ...props, '}');

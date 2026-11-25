@@ -3,7 +3,7 @@ import { expect as baseExpect, type Locator } from '@playwright/test';
 import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { openCharacter, openSheet } from './support/shell.ts';
+import { openCharacter, openSheet, openTopMenu } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/sign-in.ts';
 
 /**
@@ -139,6 +139,7 @@ test('a player makes another character of their own from the character dialog', 
   ).toBeVisible();
   // The new character is the player's: the perspective control offers her.
   await page.keyboard.press('Escape');
+  await openTopMenu(page);
   const perspective = page.getByLabel('Perspective', { exact: true });
   const pip = perspective.locator('option', { hasText: 'Pip Underbough' });
   await expect(pip).toHaveCount(1);

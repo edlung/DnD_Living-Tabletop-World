@@ -51,6 +51,14 @@ the one before (97 to 104); none is merged or deployed. The screens of Stages 11
 then read once more for accessibility and design, and what that found is fixed in pull request
 105 (ADR 0075 §23, `reports/BOOK_SECOND_PASS_REVIEW_2026-11-25.md`).
 
+**What the plan missed, and what followed (2026-11-25).** The owner looked at the stack running
+and said that nothing had changed to the eye: a header over the book, web forms on its pages, no
+Codex CLI pictures in its frame (`reviews/OWNER_BOOK_WHOLE_SCREEN_2026-11-25.json`). The stages
+above moved what a page holds; none of them built the picture he had chosen. Pull request 106
+does (ADR 0075 §24, `reports/BOOK_WHOLE_SCREEN_2026-11-25.md`): the book is the whole screen, what
+the top bar held is behind a clasp on the cover, the dice and every form are set as parts of the
+book, and each of the 56 books has a corner fitting and dice of its own by Codex CLI.
+
 Still the owner's: merging and deploying the stack; his look at the three campaigns' new
 materials before the other books are drawn; reading and opening the written books of «Пропавший
 караван» and «Холлоумир» (until then his own campaigns run on a book assembled from the world).

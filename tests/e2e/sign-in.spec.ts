@@ -2,7 +2,7 @@ import { expect, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
 import { readsQuiet } from './support/live.ts';
-import { bookPart, dockButton, openSheet } from './support/shell.ts';
+import { bookPart, dockButton, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -284,11 +284,13 @@ test('signing out asks first, ends the session for good, and keeps nothing', asy
   const leave = page.getByRole('button', { name: words.signOut, exact: true });
 
   // Staying keeps the session; Escape is staying too, and focus returns to the button.
+  await openTopMenu(page);
   await leave.click();
   const dialog = page.getByRole('dialog', { name: words.signOutQuestion });
   await expect(dialog).toContainText('You will need a new invitation link');
   await dialog.getByRole('button', { name: words.stay }).click();
   await expect(dialog).toBeHidden();
+  await openTopMenu(page);
   await leave.click();
   await expect(dialog).toBeVisible();
   await page.keyboard.press('Escape');
@@ -296,6 +298,7 @@ test('signing out asks first, ends the session for good, and keeps nothing', asy
   await expect(leave).toBeFocused();
   await expect(dockButton(page, words.players)).toBeAttached();
 
+  await openTopMenu(page);
   await leave.click();
   await dialog.getByRole('button', { name: words.signOut, exact: true }).click();
   await expect(accessState(page, words.signedOut)).toBeVisible();
@@ -378,6 +381,7 @@ test('joining, the Players sheet and signing out work from the keyboard', async 
   await expect(player.getByRole('button', { name: 'Mira Vale', exact: true })).toBeVisible();
 
   // Signing out: the question opens on staying; the final choice takes a deliberate step.
+  await openTopMenu(page);
   await page.getByRole('button', { name: words.signOut, exact: true }).focus();
   await page.keyboard.press('Enter');
   const dialog = page.getByRole('dialog', { name: words.signOutQuestion });

@@ -48,6 +48,16 @@ export const partIcon = (theme: string | null | undefined, part: BookPart) =>
 export const momentIcon = (theme: string | null | undefined, moment: BookMoment) =>
   bookPiece(theme, `ico-${moment}`);
 
+/** A die drawn in the book's own style (docs/adr/0075-book-interface.md §24), where it has them. */
+export const diePicture = (theme: string | null | undefined, sides: number) =>
+  bookPiece(theme, `die-d${String(sides)}`);
+
+/** The custom property a die's button draws its picture from (`styles/book-whole.css`). */
+export const dieStyle = (theme: string | null | undefined, sides: number) => {
+  const picture = diePicture(theme, sides);
+  return picture ? ({ '--die': `url('${picture}')` } as Record<string, string>) : undefined;
+};
+
 /** A seal pressed in the book's own wax, where the book has it; the product's drawn wax else. */
 export const sealPicture = (theme: string | null | undefined, seal: BookSeal) =>
   bookPiece(theme, `seal-${seal}`);

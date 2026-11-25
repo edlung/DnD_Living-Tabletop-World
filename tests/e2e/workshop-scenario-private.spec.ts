@@ -8,6 +8,7 @@ import {
 import { test } from './support/journey.ts';
 import { dmToken, openInvitation, joinPath } from './support/sign-in.ts';
 import { draftApi, draftPath, openWorkshopDraft, workshopOwner } from './support/workshop.ts';
+import { closeTopMenu, openTopMenu } from './support/shell.ts';
 
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off', video: 'off' });
 const truth =
@@ -17,7 +18,9 @@ test('a campaign DM cookie and an unrelated workshop owner cannot read the scena
   page,
 }) => {
   await openInvitation(page, joinPath(dmToken(WORKSHOP_CAMPAIGN, 1)));
+  await openTopMenu(page);
   await expect(page.getByRole('button', { name: 'Sign out', exact: true })).toBeVisible();
+  await closeTopMenu(page);
   const campaign = await page.request.get(`${draftApi('scenario-en')}/package`);
   expect(campaign.status()).toBe(401);
   expect(await campaign.text()).not.toContain(truth);

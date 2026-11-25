@@ -1,7 +1,7 @@
 import { expect as baseExpect, type Browser, type Page } from '@playwright/test';
 
 import { test } from './support/journey.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { dockButton, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -52,6 +52,7 @@ async function table(browser: Browser, index: number, prefix: string) {
   await dm.goto(`/join#${dmToken(campaign, index)}`);
   await takeSeatWithNewLogin(dm, 'Ada', `${prefix}-dm`);
   await expect(dockButton(dm, words.players)).toBeAttached();
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await dm
     .getByRole('region', { name: 'Your campaigns', exact: true })

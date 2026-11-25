@@ -10,6 +10,7 @@ import {
   dmToken,
   joinPath,
 } from './support/sign-in.ts';
+import { closeTopMenu, openTopMenu } from './support/shell.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -38,6 +39,7 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
   await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
 
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   // The campaign the login sits in has an evening under way: it is the book the shelf goes on
   // with — under its ribbon, its door the shelf's first press.
@@ -130,8 +132,11 @@ test('a login starts a library campaign from the hub as its DM', async ({ browse
   // The library's campaigns are written in Russian: the world speaks it. The hub now lists the
   // campaign, with the login as its DM: no evening was played in it, so it is opened, and the
   // book with the evening under way stays the one gone on with.
+  await openTopMenu(dm);
   await expect(dm.getByRole('combobox', { name: 'Вид', exact: true })).toHaveValue(/.+/);
+  await closeTopMenu(dm);
   await expect(dm.locator('.session-shell')).toHaveAttribute('data-campaign-theme', theme ?? '');
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'Мои кампании', exact: true }).click();
   await expect(yours).toHaveCount(2, LIVE);
   const started = yours.filter({ hasText: title });

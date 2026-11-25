@@ -10,6 +10,7 @@ import {
   useLayoutEffect,
   useMemo,
   useState,
+  type CSSProperties,
   type ReactNode,
 } from 'react';
 
@@ -399,7 +400,12 @@ function SessionShell({
     [actingAs, onStopActing],
   );
   return (
-    <div className="session-shell" {...campaignAppearance(identity.campaign.name)}>
+    <div
+      className="session-shell"
+      {...campaignAppearance(identity.campaign.name)}
+      // A page's running head is the book's own name (`styles/book-whole.css`).
+      style={{ '--campaign-name': JSON.stringify(identity.campaign.name) } as CSSProperties}
+    >
       <BookThemeContext.Provider value={campaignTheme(identity.campaign.name)?.id ?? null}>
         <a className="skip-link" href="#world-main">
           {t('Skip to world')}

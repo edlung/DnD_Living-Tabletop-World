@@ -9,7 +9,7 @@ import {
   review,
 } from './support/authoring.ts';
 import { test } from './support/journey.ts';
-import { dockButton, openSheet } from './support/shell.ts';
+import { dockButton, openSheet, openTopMenu } from './support/shell.ts';
 
 /**
  * The DM's drafts live on the server (owner decisions 11, SI-D1; ADR 0029 §6, amendment
@@ -54,11 +54,13 @@ test('a reload and a change of perspective keep the DM’s unfinished draft', as
   expect(stored).not.toContain('Tomas');
 
   // The Player View holds none of it; back in the DM view the draft returns.
+  await openTopMenu(page);
   await page
     .getByLabel('Perspective', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');
   await expect(page.getByText('Add to the world (DM)', { exact: true })).toHaveCount(0);
   expect(await page.content()).not.toContain('scar over one eye');
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openSheet(page, ADD_TO_THE_WORLD);
   await expect(review(page)).toContainText('A young guard with a scar over one eye.');

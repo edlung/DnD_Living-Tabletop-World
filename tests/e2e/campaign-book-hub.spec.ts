@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { closePages, freshPage } from './support/pages.ts';
-import { openChronicle, openSheet } from './support/shell.ts';
+import { openChronicle, openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -51,6 +51,7 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
   await expect(dialog.getByRole('button', { name: 'Print or save as PDF' })).toHaveCount(0);
   await dialog.getByRole('button', { name: 'By chapter', exact: true }).click();
   await dialog.getByRole('button', { name: 'Close the Chronicle', exact: true }).click();
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const list = dm.getByRole('region', { name: 'Your campaigns', exact: true });
   await expect(list.getByRole('button', { name: /^Continue / })).toBeVisible(LIVE);
@@ -71,6 +72,7 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
     /Chapter written( as the plain record: [^.]+)?\./,
     LIVE,
   );
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await list.getByRole('button', { name: /^The book of / }).click(LIVE);
   await expect(dialog).toBeVisible(LIVE);
@@ -83,6 +85,7 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
 
   // The asking was spent: opening the campaign again shows the world, not the book.
   await dialog.getByRole('button', { name: 'Close the Chronicle', exact: true }).click();
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await list.getByRole('button', { name: /^Continue / }).click(LIVE);
   await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);

@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import boundary from '../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import { closePages, freshPage } from './support/pages.ts';
 import { isLiveStream } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,
@@ -254,6 +254,7 @@ test('a last evening, the campaign’s end and its book, on every screen', async
 
   // 7. The home between worlds: the adventure among those finished in the DM's list, its heroes
   // and what they keep, the book first.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const finished = dm.getByRole('region', { name: 'Adventures we finished', exact: true });
   await expect(finished.getByRole('listitem').first()).toBeVisible(LIVE);

@@ -1,0 +1,404 @@
+/*
+ * The book is the whole screen (docs/adr/0075-book-interface.md §24). No bar stands above it:
+ * the cover's cloth runs to the screen's edges with its corner fittings, the block of pages lies
+ * on it, the campaign's name is a page's running head, and what the bar held is behind the clasp
+ * on the cover's corner — the view, how to play, the shelf, the account, leaving. The dice are the
+ * page's own foot. A phone's head of one row (`phone-head.css`) is the cover's upper edge: the
+ * hero's plate a paper label on the cloth, the same clasp, the same slip.
+ */
+@media (min-width: 701px) {
+  :root {
+    --topbar-h: 0px;
+  }
+
+  /* --- The cover: one cloth under everything, the fittings on its corners. */
+  .session-shell:has(> .world-main[data-book]) {
+    position: relative;
+    background-color: var(--ink-900);
+    background-image:
+      radial-gradient(120% 90% at 50% 40%, transparent 55%, rgb(0 0 0 / 0.42)),
+      var(--book-cover, var(--table-material, none));
+    background-size: auto, 320px;
+  }
+  .session-shell:has(> .world-main[data-book])::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border: 58px solid transparent;
+    border-image: var(--book-cover-frame, none) 46% / 58px stretch;
+    pointer-events: none;
+  }
+  .session-shell > .world-main[data-book] {
+    z-index: 1;
+    margin: 6px 6px 16px 18px;
+    background: none;
+  }
+  .session-shell > .world-main[data-book] > .stage {
+    background: none;
+  }
+
+  /* --- The bar is gone; its controls are the clasp and the slip it opens. */
+  .session-shell > .topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 62;
+    display: block;
+    inline-size: 0;
+    block-size: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .session-shell > .topbar > .topbar-brand,
+  .session-shell > .topbar .guide-button--title {
+    display: none;
+  }
+  .session-shell > .topbar .guide-button--controls {
+    display: inline-flex;
+  }
+  /* The campaign's name stays the page's heading for a reader of the screen; a page shows it. */
+  .session-shell > .topbar > .topbar-title {
+    position: absolute;
+    width: 1px;
+    min-width: 0;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .session-shell > .topbar > .session-controls {
+    position: fixed;
+    top: 6px;
+    right: 22px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* The clasp: the book's own emblem on the cover's corner. */
+  .session-shell > .topbar .topbar-more {
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: 46px;
+    block-size: 46px;
+    min-height: 46px;
+    padding: 0;
+    border: 2px solid color-mix(in srgb, var(--gold) 70%, black);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 55%, #6f5320);
+    box-shadow:
+      inset 0 0 0 2px rgb(0 0 0 / 0.35),
+      0 2px 6px rgb(0 0 0 / 0.6);
+    color: var(--ink-950);
+  }
+  /* A book with an emblem shows it over the brass; one without keeps the three dots. */
+  .session-shell > .topbar .topbar-more::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--book-emblem, none) center / cover no-repeat;
+  }
+  .session-shell > .topbar .topbar-more[aria-expanded='true'] {
+    outline: 3px solid var(--teal);
+    outline-offset: 2px;
+  }
+
+  /* Live, a lit point on the clasp's rim; any other state says its word beside it. */
+  .session-shell > .topbar .live-badge--live {
+    position: absolute;
+    top: 0;
+    right: 36px;
+    z-index: 1;
+    inline-size: 14px;
+    block-size: 14px;
+    min-height: 0;
+    padding: 0;
+    border: 2px solid var(--ink-950);
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+  }
+  .session-shell > .topbar .live-badge--live > * {
+    position: absolute;
+    color: var(--ink-950);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* The slip the clasp opens: paper, the rows named. */
+  .session-shell > .topbar .topbar-menu {
+    position: fixed;
+    top: 58px;
+    right: 14px;
+    z-index: 62;
+    display: grid;
+    gap: 4px;
+    inline-size: min(340px, calc(100vw - 28px));
+    max-block-size: calc(100dvh - 72px);
+    padding: 14px 14px 12px;
+    overflow-y: auto;
+    border-radius: 4px 4px 10px 10px;
+    background:
+      linear-gradient(rgb(43 32 21 / 0.14), transparent 14px),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow:
+      0 0 0 1px rgb(43 32 21 / 0.35),
+      0 14px 32px rgb(0 0 0 / 0.6);
+    color: var(--page-ink);
+    visibility: hidden;
+  }
+  .session-shell > .topbar .topbar-menu[data-open],
+  .session-shell > .topbar .topbar-menu dialog[open] {
+    visibility: visible;
+  }
+  .session-shell > .topbar .topbar-menu .perspective-control {
+    display: grid;
+    flex: none;
+    gap: 2px;
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .session-shell > .topbar .topbar-menu .perspective-control label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    color: var(--page-muted, var(--page-ink));
+    font: 600 0.78rem/1.3 var(--font-display);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+  .session-shell > .topbar .topbar-menu .perspective-control select {
+    inline-size: 100%;
+    max-inline-size: none;
+    min-height: 40px;
+    padding: 0.35rem 2rem 0.35rem 0.6rem;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 58%, transparent);
+    border-radius: 2px;
+    background-color: color-mix(in srgb, #fffdf6 62%, transparent);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--page-ink) 50%),
+      linear-gradient(135deg, var(--page-ink) 50%, transparent 50%);
+    background-position:
+      calc(100% - 17px) 55%,
+      calc(100% - 11px) 55%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 2px 3px rgb(43 32 21 / 0.1);
+    color: var(--page-ink);
+    appearance: none;
+  }
+  .session-shell > .topbar .topbar-menu .perspective-note {
+    color: var(--page-muted, var(--page-ink));
+  }
+  .session-shell > .topbar .topbar-menu .icon-button--labelled {
+    justify-content: flex-start;
+    gap: 10px;
+    inline-size: 100%;
+    min-height: 44px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--page-ink);
+    font-weight: 600;
+  }
+  .session-shell > .topbar .topbar-menu .icon-button--labelled:hover:enabled,
+  .session-shell > .topbar .topbar-menu .icon-button--labelled:focus-visible {
+    background: color-mix(in srgb, var(--rubric) 10%, transparent);
+  }
+  .session-shell > .topbar .topbar-menu .icon-button--labelled > .icon-button-label {
+    display: inline;
+  }
+  .session-shell > .topbar .topbar-menu .icon-button--labelled:hover::after,
+  .session-shell > .topbar .topbar-menu .icon-button--labelled:focus-visible::after {
+    display: none;
+  }
+
+  /*
+   * A hero's fight takes the page's whole width, its bookmarks along the bottom: the clasp
+   * stands in their row, at the cover's lower corner, and its slip opens upward.
+   */
+  .session-shell:has(> .world-main[data-book='hero'].has-battle) > .topbar > .session-controls {
+    top: auto;
+    bottom: 8px;
+  }
+  .session-shell:has(> .world-main[data-book='hero'].has-battle) > .topbar .topbar-menu {
+    top: auto;
+    bottom: 62px;
+  }
+
+  /* --- A page's running head: the book's own name, as a printed book carries it. */
+  .world-main[data-book] .sheet-header::before,
+  .world-main[data-book='dm'] .work-story::after {
+    content: var(--campaign-name, '');
+    overflow: hidden;
+    color: color-mix(in srgb, var(--page-ink) 76%, transparent);
+    font: 600 0.75rem/1.4 var(--font-display);
+    letter-spacing: 0.18em;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .world-main[data-book] .sheet-header::before {
+    display: block;
+    flex: 1 0 100%;
+    order: -1;
+  }
+  .world-main[data-book='dm'] .work-story::after {
+    position: absolute;
+    top: 9px;
+    right: 64px;
+    left: 64px;
+  }
+  .world-main[data-book='dm'] .work-story > .dmb-page {
+    padding-top: 1.9rem;
+  }
+
+  /*
+   * --- Where the stage is not a spread of two pages (a narrower screen, a hero's Scene), it is
+   * still a page: the paper lies under it, in the block's own place.
+   */
+  .world-main[data-book]:not(.has-battle, :has(.scene[data-spread], .work-story)) > .stage::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
+    border-radius: 8px 8px 0 0;
+    background:
+      linear-gradient(to right, rgb(43 32 21 / 0.16), transparent 18px),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow:
+      inset 0 0 0 1px rgb(43 32 21 / 0.14),
+      inset 0 0 34px rgb(122 84 24 / 0.13),
+      0 10px 24px rgb(0 0 0 / 0.5);
+    pointer-events: none;
+  }
+
+  /* --- The dice are the page's own foot: paper, a rule above, the dice drawn. */
+  .world-main[data-book] .book-foot {
+    bottom: 10px;
+    block-size: var(--foot-h);
+    padding: 0 14px 0 18px;
+    border-radius: 0 0 8px 8px;
+    background:
+      linear-gradient(rgb(43 32 21 / 0.2), transparent 3px),
+      linear-gradient(to right, rgb(43 32 21 / 0.16), transparent 18px),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow:
+      inset 0 0 0 1px rgb(43 32 21 / 0.14),
+      inset 0 0 34px rgb(122 84 24 / 0.13);
+    color: var(--page-ink);
+  }
+  /* The page above ends square where its foot begins; the block of pages holds both. */
+  .world-main[data-book]:not(.has-battle) .sheet,
+  .world-main[data-book]:not(.has-battle) .scene[data-spread] {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+  .world-main[data-book]:not(.has-battle) > .stage::after {
+    bottom: 3px;
+  }
+  .world-main[data-book] .book-foot-word,
+  .world-main[data-book] .book-foot-who {
+    color: color-mix(in srgb, var(--page-ink) 72%, transparent);
+    font-style: italic;
+  }
+  .world-main[data-book] .book-foot-last strong {
+    color: var(--rubric);
+  }
+  .world-main[data-book] .book-die {
+    min-inline-size: 42px;
+    min-block-size: 38px;
+    padding: 0 6px;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 45%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--page-floor) 55%, transparent);
+    color: var(--page-ink);
+    font-family: var(--font-display);
+  }
+  .world-main[data-book] .book-foot .book-die:hover:enabled {
+    background: color-mix(in srgb, var(--rubric) 12%, transparent);
+  }
+  .world-main[data-book] .book-foot-more {
+    border: 1px solid color-mix(in srgb, var(--page-ink) 45%, transparent);
+    border-radius: 6px;
+    background: none;
+    color: var(--page-ink);
+  }
+}
+
+/*
+ * --- A book with dice of its own (its set has them: `book-kit/materials.ts`) shows each die as
+ * its picture, the die's name on it: at the page's foot and on the Dice page.
+ */
+.book-foot[data-drawn] .book-die,
+.dice-picker[data-drawn] .dice-pick-add {
+  border: 0;
+  background: var(--die) center / contain no-repeat;
+  box-shadow: none;
+  /*
+   * The die's name in the page's ink with a halo of the page's cream: read on a dark die and on
+   * a pale one alike, and on the bare page where the picture has not come.
+   */
+  color: #1a1208;
+  font-weight: 800;
+  text-shadow:
+    0 0 2px #fff8e6,
+    0 0 3px #fff8e6,
+    0 0 5px #fff8e6,
+    0 0 8px #fff8e6;
+}
+.world-main[data-book] .book-foot[data-drawn] .book-die {
+  min-inline-size: 44px;
+  min-block-size: 42px;
+  border: 0;
+  background: var(--die) center / contain no-repeat;
+  color: #1a1208;
+  font-size: 0.82rem;
+}
+.world-main[data-book] .book-foot[data-drawn] .book-die:hover:enabled,
+.dice-picker[data-drawn] .dice-pick-add:hover:enabled {
+  background: var(--die) center / contain no-repeat;
+  filter: brightness(1.12);
+}
+.dice-picker[data-drawn] .dice-pick-add {
+  min-block-size: 76px;
+  background-size: auto 78%;
+  font-size: 1rem;
+}
+.dice-picker[data-drawn] .die-shape {
+  display: none;
+}
+
+/*
+ * --- A wide fight: the board's own tools stand on the map's corner, under the turn's caption —
+ * a caption of two lines lay over them and took their presses.
+ */
+@media (min-width: 1200px) {
+  .world-main[data-book] .stage--battle .board > .board-controls {
+    top: 46px;
+  }
+}

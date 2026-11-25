@@ -36,7 +36,7 @@
  * what is here and the ways beyond on the book's paper under it, inside the binding's margins.
  * The scene is a column item there, so the book's page inset is the stage's margin, not an offset.
  */
-@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
+@media (max-width: 700px), (max-width: 1199px) and (max-height: 500px) {
   .world-main[data-book] > .stage:not(.stage--battle) {
     margin: var(--pages-h) var(--parts-w) var(--page-bottom) 10px;
     border-radius: 8px;

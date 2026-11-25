@@ -4,7 +4,7 @@ import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campa
 import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -97,6 +97,7 @@ test('the DM writes the agreement; a player reads it, agrees, and asks for a pau
   await expect(card).toHaveCount(0, WAIT);
 
   // It stays in "How to play": the last page, with the quiet ways to the DM.
+  await openTopMenu(player);
   await player.getByRole('button', { name: 'How to play' }).first().click();
   const guide = player.getByRole('dialog', { name: 'How to play' });
   await expect(guide.getByRole('button', { name: 'For the DM', exact: true })).toHaveCount(0);
@@ -126,6 +127,7 @@ test('the DM writes the agreement; a player reads it, agrees, and asks for a pau
   await expect(player.locator('#sheet-chat').getByLabel('To', { exact: true })).toHaveValue('dm');
 
   // The guide's pages for the DM are the DM's alone.
+  await openTopMenu(dm);
   await dm.getByRole('button', { name: 'How to play' }).first().click();
   const dmGuide = dm.getByRole('dialog', { name: 'How to play' });
   await expect(dmGuide.getByRole('button', { name: 'For the DM', exact: true })).toHaveAttribute(

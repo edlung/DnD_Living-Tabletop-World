@@ -97,7 +97,7 @@
  * are its right margin; the turn tray, or the DM's turn slip, is its foot. The place's card and
  * who is at the table step aside for the map — the order of turns shows everyone's hit points.
  */
-@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) {
+@media (min-width: 701px) and (max-width: 1199px) and (min-height: 501px) {
   /* The foot keeps clear of what stands under the sheet: a player's bookmarks, the page's edge. */
   .world-main[data-book] .stage--battle {
     gap: 8px;
@@ -124,7 +124,11 @@
   .world-main[data-book] .stage--battle > .turn-banner:not(.turn-banner--yours) {
     position: absolute;
     inline-size: 1px;
+    min-inline-size: 0;
     block-size: 1px;
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
@@ -191,6 +195,33 @@
     width: 272px;
     max-height: calc(100% - var(--pages-h) - 170px);
     overflow-y: auto;
+  }
+}
+
+/*
+ * A narrower page (a window beside another, a small tablet held upright): the map takes the
+ * page's width and what is left of its height; the card of what is chosen lies under it. The
+ * active combatant's card and the legend step aside for the map.
+ */
+@media (min-width: 701px) and (max-width: 899px) and (min-height: 501px) {
+  .world-main[data-book] .stage--battle .combat-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .world-main[data-book] .stage--battle .board,
+  .world-main[data-book] .stage--battle .board.board--tilted {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  /* Whose turn it is, with their hit points, stands in the order of turns and on the slip. */
+  .world-main[data-book] .stage--battle .active-card,
+  .world-main[data-book] .stage--battle .combat-side .board-legend {
+    display: none;
+  }
+  .world-main[data-book] .stage--battle .combat-side {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    max-height: 9rem;
   }
 }
 

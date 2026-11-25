@@ -4,7 +4,7 @@ import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campa
 import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { expectDockFits, openSheet } from './support/shell.ts';
+import { closeTopMenu, expectDockFits, openSheet, openTopMenu } from './support/shell.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -62,6 +62,7 @@ test('a viewer makes this screen’s text larger, and it stays', async ({ browse
 
   // The same choice is on the first page of "How to play", where a newcomer reads first.
   await enterWorld(page, TOKENS.player, campaignOf());
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'How to play' }).first().click();
   const guide = page.getByRole('dialog', { name: 'How to play' });
   await expect(guide).toContainText('If the words are small, make them larger here');
@@ -73,6 +74,8 @@ test('a viewer makes this screen’s text larger, and it stays', async ({ browse
   await expect(page.locator('html')).not.toHaveAttribute('data-text-size');
   expect(await rootSize(page)).toBe('16px');
   await guide.getByRole('button', { name: 'Close the guide', exact: true }).click();
+  // The guide gives the focus back to its row of the slip: the slip is closed to go on.
+  await closeTopMenu(page);
   await openSheet(page, 'Dice');
   await dice.getByText(SETTINGS, { exact: true }).click();
   await expect(size).toHaveValue('normal');

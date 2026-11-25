@@ -151,6 +151,9 @@ import './styles/work-spread.css';
 import './styles/work-seals.css';
 import './styles/book-details.css';
 import './styles/phone-head.css';
+import './styles/book-whole.css';
+import './styles/book-controls.css';
+import './styles/book-phone.css';
 import './styles/print.css';
 import './styles/print-book.css';
 

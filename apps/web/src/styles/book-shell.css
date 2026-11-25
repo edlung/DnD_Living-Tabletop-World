@@ -281,7 +281,7 @@
     --foot-h: 46px;
   }
 }
-@media (min-width: 768px) and (min-height: 501px) {
+@media (min-width: 701px) and (min-height: 501px) {
   .world-main[data-book]:not(.has-battle) {
     --dock-h: var(--foot-h);
   }
@@ -323,7 +323,7 @@
 }
 
 /* A tablet: the selection's drawer lies on the page, never over the tabs or the bookmarks. */
-@media (max-width: 1199px) and (min-width: 768px) {
+@media (max-width: 1199px) and (min-width: 701px) {
   .world-main[data-book] .detail-panel {
     top: var(--pages-h);
     right: var(--parts-w);
@@ -331,7 +331,7 @@
   }
 }
 /* A result lies on the page, clear of the bookmarks (and of the selection's column beside them). */
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
+@media (min-width: 701px) and (min-height: 501px), (min-width: 1200px) {
   .world-main[data-book]:not(.has-battle) .outcome {
     right: calc(var(--parts-w) + 16px);
   }
@@ -348,7 +348,7 @@
  * wide, the result is narrower so the row keeps three a line beside it. With the drawer open (the
  * result at its foot) the row runs partly under the drawer, as it did before the book.
  */
-@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) and (orientation: portrait) {
+@media (min-width: 701px) and (max-width: 1199px) and (min-height: 501px) and (orientation: portrait) {
   .world-main[data-book]:not(.has-battle):has(.outcome) .scene-presence {
     right: 16px;
     bottom: calc(var(--outcome-h, 0px) + 36px);
@@ -358,12 +358,12 @@
     translate: none;
   }
 }
-@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) and (orientation: landscape) {
+@media (min-width: 701px) and (max-width: 1199px) and (min-height: 501px) and (orientation: landscape) {
   .world-main[data-book]:not(.has-battle):has(.outcome) {
     --outcome-w: min(280px, 30%);
   }
 }
-@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) {
+@media (min-width: 701px) and (max-width: 1199px) and (min-height: 501px) {
   .world-main[data-book].has-details:not(.has-battle) .outcome {
     right: calc(var(--parts-w) + 16px);
   }
@@ -373,7 +373,7 @@
   }
 }
 /* A phone: the drawer ends above the bookmarks along the bottom. */
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .world-main[data-book] .detail-panel {
     top: var(--pages-h);
     bottom: calc(64px + var(--foot-h));
@@ -381,7 +381,7 @@
 }
 
 /* Under the place's card (rest.css), which the page's tabs moved down: the quiet row stays clear. */
-@media (min-width: 768px) and (max-width: 1279px) and (min-height: 501px) {
+@media (min-width: 701px) and (max-width: 1279px) and (min-height: 501px) {
   .world-main[data-book] .rest-banner-slot {
     top: calc(var(--topbar-h) + var(--pages-h) + 120px);
   }

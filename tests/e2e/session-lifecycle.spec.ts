@@ -1,16 +1,18 @@
 import { expect, test } from '@playwright/test';
 
 import { enterWorld, expectPlayerBoundary, playerScene, TOKENS } from './support/session.ts';
-import { openSheet } from './support/shell.ts';
+import { openSheet, openTopMenu } from './support/shell.ts';
 
 test('logout and account switch remove DM data and do not persist access tokens', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.dm);
+  await openTopMenu(page);
   await page.getByLabel('Perspective', { exact: true }).selectOption('DM');
   await openSheet(page, 'Journal');
   await expect(page.getByText('Known people & places', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Ashen Circle/ })).toBeVisible();
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await expect(page.getByLabel('Access token', { exact: true })).toHaveValue('');
   await expectPlayerBoundary(page);
@@ -32,6 +34,7 @@ test('unknown campaign and unauthorized account show errors without previous cam
   page,
 }) => {
   await playerScene(page);
+  await openTopMenu(page);
   await page.getByRole('button', { name: 'Leave session', exact: true }).click();
   await page.getByLabel('Access token', { exact: true }).fill(TOKENS.player);
   await page.getByLabel('Campaign', { exact: true }).fill('unknown-campaign');
