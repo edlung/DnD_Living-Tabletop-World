@@ -292,15 +292,6 @@
   font-style: italic;
 }
 
-/* --- A choice among a few (what the table's screen shows): inked rows, not option cards. */
-.world-main[data-book] .sheet .join-mode {
-  padding: 0.15rem 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  box-shadow: none;
-}
-
 /* --- A page's own two views (the rules' glossary and tools): index words, the open one ruled. */
 .world-main[data-book] .sheet .rules-parts {
   gap: 1.2rem;
@@ -336,7 +327,7 @@
 
 /*
  * --- The story's page (the DM's working spread): its notes are the page's margins, its title
- * carries the book's own ornament, the things of the place are plates set in the page.
+ * carries the book's own ornament (`book-concept.css`).
  */
 .world-main[data-book='dm'] .work-story .work-elsewhere {
   padding: 0 0 0.45rem;
@@ -366,12 +357,6 @@
   border-left: 2px solid color-mix(in srgb, var(--page-ink) 26%, transparent);
   border-radius: 0;
   background: none;
-}
-.world-main[data-book] .scene[data-spread] .object-button {
-  border: 1px solid color-mix(in srgb, var(--page-ink) 34%, transparent);
-  border-radius: 3px;
-  background: color-mix(in srgb, #fffdf6 46%, transparent);
-  box-shadow: none;
 }
 
 /*

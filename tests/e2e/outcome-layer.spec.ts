@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import dmTools from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 import { enterWorld, TOKENS } from './support/session.ts';
 import { expectOnTop, openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The result of an action shows over every sheet and panel (docs/STAGE_320_DESIGN.md §5.2): a
@@ -14,7 +15,7 @@ test('an interrupted result and its Retry show over the DM sheet that caused the
 }) => {
   await enterWorld(page, TOKENS.dm, dmTools.outcome);
   await openSheet(page, 'Time and weather');
-  await page.getByLabel(/^Weather at /).selectOption('fog');
+  await tile(page, /^Weather at /, 'fog').check();
   // The command is committed, but its response is lost on the way back.
   const commandIds: string[] = [];
   await page.route('**/api/**/commands', async (route) => {

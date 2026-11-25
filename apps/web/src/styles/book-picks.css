@@ -1,0 +1,226 @@
+/*
+ * A form drawn (docs/adr/0075-book-interface.md §25; `book-kit/pick.tsx`). Where a form offers a
+ * few named things, each is a tile — its vignette, its word — and the radio button is the whole
+ * tile, unseen. Where a form keeps a tick, a ring or a list, the mark itself is drawn: the box and
+ * its quill's tick, the ring and its drop of wax, the leaf that says a list opens. The pictures are
+ * the product's set (`--pick-<name>`, `visual/book-materials/generated/book-materials.css`).
+ *
+ * The tile outranks a form's own rules for its labels (`.dice-check label`, a sheet's `label`):
+ * its selectors name the picture twice.
+ */
+.pick-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.pick-tiles > legend {
+  flex: 1 0 100%;
+  margin-bottom: 2px;
+  padding: 0;
+}
+label[data-pick][data-pick]:is(.pick-tile, .pick-row) {
+  position: relative;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--page-ink, inherit);
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+}
+label[data-pick][data-pick].pick-tile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  justify-items: center;
+  gap: 3px;
+  inline-size: var(--tile-w, 86px);
+  padding: 6px 4px 5px;
+  font-size: 0.88rem;
+  text-align: center;
+}
+label[data-pick][data-pick].pick-row {
+  display: grid;
+  grid-template-columns: var(--pick-size, 46px) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px 5px 6px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.3;
+}
+label[data-pick][data-pick]:is(.pick-tile, .pick-row)::before {
+  content: '';
+  inline-size: var(--pick-size, 48px);
+  block-size: var(--pick-size, 48px);
+  background: var(--pick, none) center / contain no-repeat;
+}
+/* The words take the tile's width: every tile's words begin and end with its edges. */
+label[data-pick][data-pick].pick-tile > .pick-words {
+  display: block;
+  inline-size: 100%;
+  overflow-wrap: break-word;
+}
+/*
+ * The button is the tile: it lies over all of it — over a portrait in it too —, unseen, and takes
+ * every press and the keys.
+ */
+label[data-pick][data-pick]:is(.pick-tile, .pick-row) > input[type='radio'] {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  inline-size: 100%;
+  block-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  box-shadow: none;
+  opacity: 0;
+  cursor: pointer;
+  appearance: none;
+}
+label[data-pick][data-pick]:is(.pick-tile, .pick-row):hover {
+  background: color-mix(in srgb, var(--rubric) 7%, transparent);
+}
+label[data-pick][data-pick]:is(.pick-tile, .pick-row):has(> input:checked) {
+  border-color: var(--rubric);
+  background: color-mix(in srgb, var(--rubric) 10%, transparent);
+  box-shadow: inset 0 0 0 1px var(--rubric);
+  color: var(--rubric);
+}
+label[data-pick][data-pick]:is(.pick-tile, .pick-row):has(> input:focus-visible) {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+label[data-pick][data-pick]:is(.pick-tile, .pick-row):has(> input:disabled) {
+  opacity: 0.45;
+  cursor: default;
+}
+/* Three lines of words to a tile (who is surprised): a wider tile. */
+.surprise-choice .pick-tiles {
+  --tile-w: 108px;
+}
+
+/* A button that carries its vignette before its words. */
+button > .pick {
+  --pick-size: 28px;
+  margin-block: -4px;
+}
+
+/*
+ * --- A form's own marks, drawn. A tick box is the quill's square, ticked in red; a choice kept
+ * as a row is the inked ring, chosen with a drop of wax; a list is a ledger's field whose leaf
+ * says it opens; a fold of a page opens at the same leaf.
+ */
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  input:is([type='radio'], [type='checkbox']) {
+  inline-size: 24px;
+  block-size: 24px;
+  border: 0;
+  border-radius: 0;
+  background: var(--pick-check-off, none) center / contain no-repeat;
+  box-shadow: none;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) input[type='radio'] {
+  border-radius: 50%;
+  background-image: var(--pick-radio-off, none);
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) input[type='radio']:checked {
+  background: var(--pick-radio-on, none) center / contain no-repeat;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  input[type='checkbox']:checked {
+  /* The tick sweeps out of its box, as a quill's does. */
+  background: var(--pick-check-on, none) center / contain no-repeat;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) select {
+  padding-right: 2.2rem;
+  background-image: var(--pick-select-mark, none);
+  background-position: right 9px center;
+  background-size: 15px 20px;
+  background-repeat: no-repeat;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) details > summary {
+  list-style: none;
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  details
+  > summary::-webkit-details-marker {
+  display: none;
+}
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) details > summary::before {
+  content: '';
+  display: inline-block;
+  inline-size: 13px;
+  block-size: 17px;
+  margin-right: 0.45em;
+  vertical-align: -3px;
+  background: var(--pick-select-mark, none) center / contain no-repeat;
+  rotate: -90deg;
+  transition: rotate 120ms var(--ease);
+}
+.world-main[data-book]
+  :is(.sheet, [data-surface='paper'], .work-slip)
+  details[open]
+  > summary::before {
+  rotate: 0deg;
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) details > summary::before {
+    transition: none;
+  }
+}
+
+/* --- Whom a form is about, as faces (`book-kit/hero-tiles.tsx`): the portrait is the picture. */
+label[data-pick][data-pick].pick-face::before {
+  content: none;
+}
+label[data-pick][data-pick].pick-face > .medallion {
+  --m: 50px;
+}
+.hero-tiles {
+  --tile-w: 88px;
+}
+
+/*
+ * --- What closes a page, a card or a slip is the drawn cross: two strokes of a quill in the
+ * rubric's red, in the glyph's own place (the word stays beside it where there is room).
+ */
+.world-main[data-book] :is(.sheet-close, .details-close, .work-slip-head > .dmb-button) > .glyph {
+  inline-size: 1.35em;
+  block-size: 1.35em;
+  background: var(--pick-cross) center / contain no-repeat;
+  -webkit-mask: none;
+  mask: none;
+}
+
+/* A list of long names keeps room for its longest beside the leaf (the hazards of the road). */
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) .hazard-field select {
+  min-inline-size: 10rem;
+}
+
+/* A tick and its words: the words take the rest of the row, whatever their length. */
+.world-main[data-book] :is(.sheet, [data-surface='paper'], .work-slip) .toolbox-who-row > span {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+/* What is asked, under whom it is asked of: a line's breath between the faces and the field. */
+.dice-check-what {
+  margin-top: 0.5rem;
+}

@@ -111,9 +111,10 @@ test('the DM asks for a check with a hidden DC, and the player answers it', asyn
   const dmSheet = dm.locator('#sheet-dice');
   // Elowen's companions are at the table too (Stage 605): the DM asks her.
   await dmSheet
-    .getByLabel('Character', { exact: true })
+    .getByRole('group', { name: 'Character', exact: true })
     .last()
-    .selectOption({ label: 'Elowen Starwhisper' });
+    .getByRole('radio', { name: 'Elowen Starwhisper', exact: true })
+    .check();
   await dmSheet
     .getByLabel('Check', { exact: true })
     .last()

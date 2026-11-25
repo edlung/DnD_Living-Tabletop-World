@@ -1,7 +1,7 @@
 /*
  * The book kit (docs/adr/0075-book-interface.md §1.1, Stage 1020): pieces of every book in the
  * open book's own materials. A book's set reaches it as custom properties of its campaign's theme
- * (`visual/book-materials/book-materials.css`); a campaign without a set keeps its theme's material.
+ * (`visual/book-materials/generated/book-materials.css`); a campaign without a set keeps its theme's material.
  */
 .bk-icon {
   inline-size: 28px;
@@ -33,4 +33,19 @@
   background: var(--book-ribbon, linear-gradient(var(--rubric), var(--rubric))) center / cover
     no-repeat;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+}
+
+/*
+ * A drawn choice or action (ADR 0075 §25; `book-kit/pick.tsx`): the vignette named by the
+ * element, in the product's set or the book's own. A control sizes it (`--pick-size`).
+ */
+.pick {
+  display: inline-block;
+  flex: none;
+  inline-size: var(--pick-size, 40px);
+  block-size: var(--pick-size, 40px);
+  background: var(--pick, none) center / contain no-repeat;
+}
+.pick--back {
+  scale: -1 1;
 }

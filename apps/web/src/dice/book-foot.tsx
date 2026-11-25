@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
 import { diePicture, dieStyle, useBookTheme } from '../book-kit/materials.ts';
+import { Pick } from '../book-kit/pick.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { useDiceTable } from './table.tsx';
 import { rollerWords } from './words.ts';
@@ -78,11 +79,13 @@ export function BookFoot({ shell }: { readonly shell: Shell }) {
       <button
         type="button"
         className="book-foot-more"
+        title={t('More dice')}
         onClick={() => {
           shell.openSheet('dice');
         }}
       >
-        {t('More dice')}
+        <Pick name="more-dice" />
+        <span className="book-foot-more-word">{t('More dice')}</span>
       </button>
     </footer>
   );

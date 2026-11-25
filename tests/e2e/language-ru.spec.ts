@@ -10,6 +10,7 @@ import {
   openSheet,
   openTopMenu,
 } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The Russian Ravenford in the browser (docs/adr/0031-play-language.md §10): a Russian
@@ -144,7 +145,7 @@ test('a Russian DM moves time and weather, and writes a chapter that reads in Ru
   await expect(page.getByText('Время и погода (мастер)', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Перейти к дню 2, 10:00' }).click();
   await expect(page.getByLabel('Условия сцены')).toContainText('День 2 · 10:00');
-  await page.getByLabel('Погода: Рыночная площадь').selectOption('rain');
+  await tile(page, 'Погода: Рыночная площадь', 'дождь').check();
   await page.getByRole('button', { name: 'Установить погоду' }).click();
   await expect(page.getByLabel('Условия сцены')).toContainText('дождь');
   await expectNoEnglish(page, 'time and weather');

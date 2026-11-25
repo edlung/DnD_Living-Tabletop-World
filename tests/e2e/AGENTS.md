@@ -98,6 +98,18 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   `dm-tools.spec.ts` (`timeHistory`) finds the DM's day change and rain in History, undoes the
   rain the day change names as its blocker, then the day, and the scene returns to Day 1.
   Helpers: `support/dm.ts`.
+- Drawn choices (docs/adr/0075-book-interface.md §25): where a form offers a few named things —
+  where the session is played, the tone, how to roll, what the screens show, damage or healing,
+  the weather, who is surprised — each is a tile, a radio button under its group's legend; whom a
+  check is asked of and whom a handout is for are the heroes' faces, radio buttons too. Choose
+  with `tile(scope, legend, word).check()` (`support/choices.ts`), never `selectOption`: those
+  lists are gone. The button lies over its tile unseen (`opacity: 0`), so `check()`, `focus()`
+  and the arrow keys work on it. Lists of the world's own names (a creature, a spell, a place, a
+  check, the Players page's "Character") are still lists.
+- The Scene is a spread from 701 px wide and 600 px tall (§25): the DM's working spread and a
+  player's two pages show in a window 766 px wide and on a tablet held upright; a phone (700 px
+  and narrower) keeps one page. On a spread who is here are round portraits
+  (`.medallion-figure` for an approved figure, never `.miniature`).
 - Shell (docs/adr/0075-book-interface.md §3, §4): the screen is a book — the DM's seven parts
   and a hero's five at the fore-edge (on a phone along the bottom), the open part's pages as tabs.
   Every section is a page of one part, one open at a time; a closed page stays mounted but

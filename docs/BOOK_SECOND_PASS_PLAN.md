@@ -59,6 +59,14 @@ does (ADR 0075 §24, `reports/BOOK_WHOLE_SCREEN_2026-11-25.md`): the book is the
 the top bar held is behind a clasp on the cover, the dice and every form are set as parts of the
 book, and each of the 56 books has a corner fitting and dice of its own by Codex CLI.
 
+He then asked for more of the same (`reviews/OWNER_BOOK_CLOSER_TO_CONCEPT_2026-11-25.json`):
+closer to the concept, and generated icons in place of standard forms wherever possible. Pull
+request 107 (ADR 0075 §25, `reports/BOOK_CLOSER_TO_CONCEPT_2026-11-25.md`): the Scene is a spread
+from 701 px — his own window showed a picture under glass plates —, set with running heads, the
+title over the book's ornament, round portraits, the ribbon down the gutter and the page's number
+between drawn hands; choices are made by pressing one of fifty-six vignettes Codex CLI drew, the
+heroes are chosen by their faces, and a form's own tick, ring and list mark are drawn.
+
 Still the owner's: merging and deploying the stack; his look at the three campaigns' new
 materials before the other books are drawn; reading and opening the written books of «Пропавший
 караван» and «Холлоумир» (until then his own campaigns run on a book assembled from the world).

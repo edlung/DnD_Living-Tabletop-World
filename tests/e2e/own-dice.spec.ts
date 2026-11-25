@@ -43,7 +43,10 @@ test('a player answers a private check with their own d20 and the DM confirms it
   await openSheet(dm, 'Dice');
   const dmDice = dm.locator('#sheet-dice');
   const ask = dmDice.getByRole('region', { name: 'Ask for a check' });
-  await ask.getByLabel('Character', { exact: true }).selectOption({ label: 'Elowen Starwhisper' });
+  await ask
+    .getByRole('group', { name: 'Character', exact: true })
+    .getByRole('radio', { name: 'Elowen Starwhisper', exact: true })
+    .check();
   await ask.getByLabel('Check', { exact: true }).selectOption({ label: 'Dexterity saving throw' });
   await ask.getByRole('checkbox', { name: 'In private: only that player sees the roll' }).check();
   await ask.getByRole('button', { name: 'Ask', exact: true }).click();

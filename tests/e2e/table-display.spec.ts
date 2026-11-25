@@ -198,9 +198,10 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
   await openSheet(dm, 'Dice');
   const dice = dm.locator('#sheet-dice');
   await dice
-    .getByLabel('Character', { exact: true })
+    .getByRole('group', { name: 'Character', exact: true })
     .last()
-    .selectOption({ label: 'Tamsin Quickfoot' });
+    .getByRole('radio', { name: 'Tamsin Quickfoot', exact: true })
+    .check();
   await dice
     .getByLabel('Check', { exact: true })
     .last()

@@ -1,0 +1,305 @@
+/*
+ * The DM's working spread set as a printed book (docs/adr/0075-book-interface.md §25): the picture
+ * the owner chose — each page under its running head, the story's title in the page's middle over
+ * the book's ornament, the plate in a gilt frame, who is here as round portraits, the seals at
+ * the page's foot, the ribbon down the gutter, the page's number between the hands that turn it.
+ * The spread's places are laid in `work-spread.css`; this sets how they are printed. From 701 px
+ * a spread is two pages (`world/scene-spread.ts`), each of a phone's width at first.
+ */
+.world-main[data-book='dm']:has(.work-story) {
+  --face: 54px;
+  --face-w: 76px;
+  --seal: 60px;
+  --seals-h: 92px;
+  --ribbon-w: clamp(24px, 3vw, 34px);
+}
+/* --- The left page: the story (its print is the leaf's: `book-leaf.css`). */
+.world-main[data-book='dm'] .work-story::after {
+  content: none;
+}
+.world-main[data-book='dm'] .work-story > .dmb-page {
+  padding: 0.5rem calc(var(--ribbon-w) / 2 + 14px) 0.45rem 1.5rem;
+}
+/* What the page says before the story — the evening has not begun, another place: one line. */
+.world-main[data-book='dm'] .work-story .work-elsewhere {
+  justify-content: center;
+  gap: 0.2rem 0.7rem;
+  margin: 0;
+  padding: 0.1rem 0 0.35rem;
+  font-size: 0.9em;
+  text-align: center;
+}
+.world-main[data-book='dm'] .work-story .work-elsewhere > p {
+  flex: 0 1 auto;
+}
+.dmb .work-elsewhere > .dmb-button {
+  --pick-size: 26px;
+  gap: 0.3rem;
+}
+
+/* --- A corner ornament in each page's outer upper corner, where the book has one. */
+.work-story[data-corner]::before {
+  top: 4px;
+  left: 4px;
+  inline-size: clamp(44px, 6vw, 72px);
+  block-size: clamp(44px, 6vw, 72px);
+}
+.world-main[data-book='dm']:has(.work-story[data-corner]) .scene[data-spread]::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -12px;
+  z-index: -1;
+  inline-size: clamp(44px, 6vw, 72px);
+  block-size: clamp(44px, 6vw, 72px);
+  background: var(--book-corner) top left / contain no-repeat;
+  scale: -1 1;
+  pointer-events: none;
+}
+
+/* --- The right page: the plate in its gilt frame, on its mount. */
+.world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]) .stage-backdrop {
+  border: 3px solid color-mix(in srgb, var(--gold) 78%, #5a4420);
+  border-radius: 5px;
+  outline: 1px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+  outline-offset: 2px;
+  box-shadow:
+    inset 0 0 0 1px rgb(0 0 0 / 0.35),
+    0 3px 10px rgb(43 32 21 / 0.4);
+}
+.world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .scene-plate-slot {
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--page-ink) 8%, transparent);
+}
+
+/* --- The seals: larger, their words in the title's letters, under a hairline of the page's ink. */
+.world-main[data-book='dm'] .work-seals {
+  left: calc(var(--page-in) - 6px);
+  border-top: 0;
+  background: var(--hairline) top center / 86% 1px no-repeat;
+}
+.work-seals > ul {
+  padding-top: 2px;
+}
+.work-seals .work-seal {
+  gap: 2px;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+}
+.world-main[data-book='dm'] .work-seal-art {
+  inline-size: var(--seal, 56px);
+  block-size: var(--seal, 56px);
+}
+.world-main[data-book='dm'] .work-seal-wax {
+  inline-size: calc(var(--seal, 56px) - 4px);
+  block-size: calc(var(--seal, 56px) - 4px);
+}
+.world-main[data-book='dm'] .work-slip {
+  left: calc(var(--page-in) + 4px);
+}
+
+/* --- The ribbon hangs down the gutter to the page's foot, its chapter at its head. */
+.world-main[data-book='dm']:has(.scene[data-spread]):not(:has(.sheet:not([hidden]))) .scene-ribbon {
+  top: calc(var(--pages-h) - 4px);
+  bottom: calc(var(--page-bottom) + 30px);
+  left: calc(var(--spine-x) - var(--ribbon-w) / 2);
+  inline-size: var(--ribbon-w);
+  block-size: auto;
+  padding-top: 10px;
+  background: var(--book-ribbon-band, linear-gradient(var(--rubric), var(--rubric))) center top /
+    100% 108% no-repeat;
+  background-color: var(--rubric);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 16px), 0 100%);
+}
+.world-main[data-book='dm'] .scene-ribbon-word {
+  font-size: 0.75rem;
+  letter-spacing: 0;
+}
+.world-main[data-book='dm'] .scene-ribbon-number {
+  font-size: 1.15rem;
+}
+
+/* --- The dice's way to the Dice page: the drawn cup with its word. */
+.world-main[data-book] .book-foot-more {
+  --pick-size: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-block: 0;
+}
+
+/*
+ * --- A tablet held wide and wider: the dice are the right page's foot, and the story's page
+ * runs to the foot of the book — its own foot is the ornament and the page's number.
+ */
+@media (min-width: 1024px) {
+  .world-main[data-book='dm']:has(.work-story) {
+    --face: 58px;
+    --face-w: 78px;
+    --seal: 66px;
+    --seals-h: 98px;
+  }
+  .world-main[data-book='dm']:not(.has-battle):not(:has(.sheet:not([hidden]))) .work-story {
+    bottom: 10px;
+    border-end-start-radius: 8px;
+  }
+  .world-main[data-book='dm']:not(.has-battle):has(.work-story):not(:has(.sheet:not([hidden])))
+    .book-foot {
+    left: var(--spine-x);
+    justify-content: center;
+    gap: 4px;
+    padding: 0 10px 0 calc(var(--ribbon-w) / 2 + 8px);
+    border-end-start-radius: 0;
+    background:
+      linear-gradient(to right, rgb(43 32 21 / 0.22), transparent 28px),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: none;
+  }
+  .world-main[data-book='dm']:not(.has-battle):has(.work-story):not(:has(.sheet:not([hidden])))
+    .book-foot-dice {
+    gap: 2px;
+  }
+  .world-main[data-book='dm']:not(.has-battle):has(.work-story):not(:has(.sheet:not([hidden])))
+    .book-foot-last {
+    margin-left: 4px;
+  }
+  .world-main[data-book='dm']:not(.has-battle):has(.work-story):not(:has(.sheet:not([hidden])))
+    .book-foot
+    :is(.book-foot-who, .book-foot-more-word) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book='dm']:not(.has-battle):has(.work-story):not(:has(.sheet:not([hidden])))
+    .book-foot-more {
+    min-inline-size: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .world-main[data-book='dm']:not(.has-battle):has(.work-story):not(:has(.sheet:not([hidden])))
+    .scene-ribbon {
+    bottom: calc(var(--page-bottom) + 8px);
+  }
+}
+
+/* --- A window some 760 px wide: two pages of a phone's width each, set closer. */
+@media (max-width: 1023px) {
+  .world-main[data-book='dm']:has(.work-story) {
+    --face: 46px;
+    --face-w: 73px;
+    --seal: 50px;
+    --seals-h: 80px;
+    --page-in: calc(var(--spine-x) + var(--ribbon-w) / 2 + 6px);
+  }
+  .world-main[data-book='dm']:has(.work-story) .scene[data-spread] {
+    right: calc(var(--parts-w) + 8px);
+  }
+  .world-main[data-book='dm']:has(.work-story):has(.scene[data-spread]) .stage-backdrop {
+    right: calc(var(--parts-w) + 10px);
+  }
+  .world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .scene-presence {
+    max-block-size: 52cqb;
+  }
+  /* A card is open: who is here keeps to two rows (the one chosen in view), the card the rest. */
+  .world-main[data-book='dm'].has-details:has(.work-story) .scene[data-spread] > .scene-presence {
+    max-block-size: 33cqb;
+    padding-block: 6px;
+    /* A row scrolled half out of the block fades at its edge: it is not cut by a line. */
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 7px,
+      #000 calc(100% - 7px),
+      transparent
+    );
+  }
+  .world-main[data-book='dm'] .work-story > .dmb-page {
+    padding-left: 1rem;
+  }
+  .work-seals .work-seal {
+    min-inline-size: 0;
+    padding: 0;
+    font-size: 0.8rem;
+  }
+  .world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .cartouche {
+    padding-inline: 0.2rem;
+  }
+  .world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .cartouche h2 {
+    flex: 1 0 100%;
+    letter-spacing: 0.12em;
+  }
+  .world-main[data-book='dm']:has(.work-story) .scene[data-spread] > .cartouche .conditions {
+    letter-spacing: 0.06em;
+  }
+  .world-main[data-book='dm']:has(.work-story) .scene[data-spread] .world-objects {
+    gap: 4px 2px;
+  }
+}
+
+/*
+ * The Book's own page becomes one scrolling column on a narrow screen (`dm-book-path.css`); the
+ * story of the spread stays a page of a height, its words in screens that turn.
+ */
+@media (max-width: 900px) {
+  .world-main[data-book='dm'] .work-story > .dmb-page {
+    border-radius: 0;
+    background: linear-gradient(to left, rgb(43 32 21 / 0.22), transparent 28px);
+  }
+  .world-main[data-book='dm'] .work-story .dmb-text {
+    overflow: hidden;
+  }
+}
+
+/*
+ * --- A spread without the story (a hero's Scene, a DM's whose campaign has no written book):
+ * the place's page is set the same way — its name in the page's middle over the book's ornament,
+ * the hour under it, the table's faces, then who is here as portraits.
+ */
+.world-main[data-book]:not(:has(.work-story)) .scene[data-spread] {
+  gap: 0.8rem;
+  padding: 1rem 1.6rem 1.2rem 1.3rem;
+}
+.world-main[data-book]:not(:has(.work-story)) .scene[data-spread] > .cartouche {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+.world-main[data-book]:not(:has(.work-story)) .scene[data-spread] > .cartouche h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 2.15rem);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.world-main[data-book]:not(:has(.work-story)) .scene[data-spread] > .cartouche .conditions {
+  justify-content: center;
+  gap: 0.1rem 0.8rem;
+  color: color-mix(in srgb, var(--page-ink) 82%, transparent);
+  font: 600 0.75rem/1.4 var(--font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.world-main[data-book]:not(:has(.work-story)) .scene[data-spread] > .cartouche::after {
+  position: static;
+  display: block;
+  order: 9;
+  inline-size: 100%;
+  block-size: 22px;
+  margin-top: 0.15rem;
+  background: var(--flourish);
+  scale: none;
+}
+.world-main[data-book]:not(:has(.work-story)) .scene[data-spread] {
+  --face-w: clamp(92px, 9vw, 112px);
+  --face-words: 0.8rem;
+}
+@media (max-width: 1023px) {
+  .world-main[data-book]:not(:has(.work-story)) .scene[data-spread] {
+    padding: 0.9rem 1.3rem 1rem 1rem;
+  }
+}

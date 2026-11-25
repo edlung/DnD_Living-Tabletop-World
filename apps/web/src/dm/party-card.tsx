@@ -16,6 +16,7 @@ import { ContagionCourse } from './contagion-course.tsx';
 import { HitPointsForm, InspirationForm, type HandForm } from './hand-forms.tsx';
 import { CONDITION_WORDS } from './hand-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
+import { Pick } from '../book-kit/pick.tsx';
 
 /**
  * One character on the DM's Party sheet (docs/adr/0043-dm-screen.md §3): portrait and presence,
@@ -179,11 +180,11 @@ export function PartyCard({
       <div className="action-row party-card-actions">
         {(
           [
-            ['hit-points', 'Damage or heal', 'hit-points'],
-            ['condition', 'Condition', 'incapacitated'],
-            ['inspiration', 'Inspiration', 'blessing'],
+            ['hit-points', 'Damage or heal'],
+            ['condition', 'Condition'],
+            ['inspiration', 'Inspiration'],
           ] as const
-        ).map(([id, word, glyph]) => (
+        ).map(([id, word]) => (
           <button
             key={id}
             type="button"
@@ -194,7 +195,7 @@ export function PartyCard({
               setForm(form === id ? null : id);
             }}
           >
-            <Glyph name={glyph} />
+            <Pick name={`act-${id}`} />
             {t(word)}
           </button>
         ))}
@@ -206,6 +207,7 @@ export function PartyCard({
             onOpenSheet(character.entityId);
           }}
         >
+          <Pick name="act-sheet" />
           {t('Sheet')}
         </button>
       </div>

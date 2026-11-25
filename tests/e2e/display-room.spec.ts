@@ -83,9 +83,10 @@ test('the screen follows a fight, keeps the turn order clear and survives a lost
   const dice = dm.locator('#sheet-dice');
   for (let asked = 0; asked < 2; asked += 1) {
     await dice
-      .getByLabel('Character', { exact: true })
+      .getByRole('group', { name: 'Character', exact: true })
       .last()
-      .selectOption({ label: 'Elowen Starwhisper' });
+      .getByRole('radio', { name: 'Elowen Starwhisper', exact: true })
+      .check();
     await dice.getByLabel('Check', { exact: true }).last().selectOption({ label: 'Perception' });
     await dice.getByRole('button', { name: 'Ask', exact: true }).click();
   }

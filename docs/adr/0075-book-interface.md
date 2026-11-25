@@ -564,6 +564,57 @@ does.
 7. **Not changed**: every command, route and contract; what a player's client is sent; the
    table's screen; the shelf and the way in.
 
+### 25. Closer to the concept; forms drawn (2026-11-25)
+
+The owner, on the whole-screen book: «а можно еще ближе к концепту? стандартные формы можно
+заменить сгенерированными значками где только можно?»
+(`reviews/OWNER_BOOK_CLOSER_TO_CONCEPT_2026-11-25.json`). Two things stood between §24 and the
+picture he chose. At the width of his own window (766 px) the Scene was not a spread at all — the
+two pages began at 1024 px — and no width set a page as the concept sets it. And a form still
+asked with the browser's own controls, however they were inked.
+
+1. **A spread is two pages from 701 px**, where the book's own layouts begin (§24.5): each page
+   a phone's width at first. Below that, and on a screen under 600 px tall, the Scene stays one
+   page.
+2. **The DM's working spread is set as the concept sets it.** Each page stands under a running
+   head: the book and the chapter on the left (the chapter's own name on its inner pages), the
+   place with the day and the hour on the right. The story's title stands alone in the page's
+   middle over the book's ornament. The right page is one flow — its head, the plate in a frame,
+   the table's faces on a rule, who and what is here, the seals: the plate takes what room the
+   rest leaves (its place is measured, and the picture and the card of what is chosen take it).
+   The ribbon hangs down the gutter to the page's foot. From 1024 px the dice are the right
+   page's foot and the story's page runs to the foot of the book.
+3. **Who and what is here are round portraits** on every spread, a name under each; who has an
+   approved figure stands inside the ring (the Scene's one page on a phone keeps its figures).
+   Kind and state are said to a reader of the screen as before. The heroes at the table keep
+   their own small row, with their presence.
+4. **The story's leaf has one print** on the working spread and in the Book: head, title,
+   ornament; at its foot the ornament again, the leaf's number in the book, and the hands that
+   turn the page — the engraved pointing hand, back in the outer corner, on with the page's own
+   word («Дальше», «Следующая страница», «Следующая глава») in the rubric's red. "In the book" and
+   "larger letters" are marks in the page's upper corner.
+5. **A choice among a few named things is made by pressing a picture.** Each option is a tile —
+   a vignette and its word — and the radio button is the whole tile, unseen: its name, its
+   group's legend, the arrow keys and a journey's `check()` are as they were. Short lists of
+   fixed options become such groups (the weather, who is surprised); lists of the heroes become
+   their faces (whom a check is asked of, whom a handout is for), "everyone" a drawn tile before
+   them. A list whose options are the world's own names (a creature, a spell, a place) stays a
+   list.
+6. **What a form keeps is drawn too**: the tick box and its tick, the ring of a choice kept as a
+   row and its drop of wax, the mark that a list opens, the fold of a page. Buttons that do a
+   thing a picture exists for carry it before their words (a rest, a hero's card, starting the
+   session, "More dice"); a page, a card and a slip are closed by a drawn cross.
+7. **One set of vignettes for every book**, drawn by Codex CLI as engravings in ink with two
+   tints, so they sit on any book's paper: `pick-<name>` in the product's own set, each a named
+   custom property (`--pick-<name>`); an element names its picture (`data-pick`). A book may
+   bring its own for any of them. The build also trims, without drawing: a ribbon to the band
+   that fills the gutter's ribbon, a divider to a flourish set by its height (a book without one
+   keeps a hairline). The generated stylesheet lies under `generated/`.
+8. **Not changed**: every command, route and contract; what a player's client is sent; names
+   and order of controls; the table's screen, the shelf, the way in, the workshop, the
+   Chronicle's own dialog. The fifty-three books without seals, an initial, a corner or an
+   ornament of their own keep the product's drawn ones.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

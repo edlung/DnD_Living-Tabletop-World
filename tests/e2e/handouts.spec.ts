@@ -26,7 +26,10 @@ test('the DM gives a player a letter, and the player reads it in the Journal', a
 
   await openSheet(dm, 'Party');
   const give = dm.locator('#sheet-party').getByRole('region', { name: 'Give a handout' });
-  await give.getByLabel('For', { exact: true }).selectOption({ label: 'Elowen Starwhisper' });
+  await give
+    .getByRole('group', { name: 'For', exact: true })
+    .getByRole('radio', { name: 'Elowen Starwhisper', exact: true })
+    .check();
   // A picture of a place she has never found: refused.
   await give.getByLabel('Title', { exact: true }).fill('A map');
   await give

@@ -4,6 +4,7 @@
   --book-paper: url('/book-materials/absent-voters/paper.webp');
   --book-ribbon: url('/book-materials/absent-voters/ribbon.webp');
   --book-tray: url('/book-materials/absent-voters/tray.webp');
+  --book-ribbon-band: url('/book-materials/absent-voters/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/absent-voters/cover-frame.webp');
 }
 [data-campaign-theme='acorn-express'] {
@@ -11,6 +12,7 @@
   --book-paper: url('/book-materials/acorn-express/paper.webp');
   --book-ribbon: url('/book-materials/acorn-express/ribbon.webp');
   --book-tray: url('/book-materials/acorn-express/tray.webp');
+  --book-ribbon-band: url('/book-materials/acorn-express/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/acorn-express/cover-frame.webp');
 }
 [data-campaign-theme='ash-testament'] {
@@ -18,6 +20,7 @@
   --book-paper: url('/book-materials/ash-testament/paper.webp');
   --book-ribbon: url('/book-materials/ash-testament/ribbon.webp');
   --book-tray: url('/book-materials/ash-testament/tray.webp');
+  --book-ribbon-band: url('/book-materials/ash-testament/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/ash-testament/cover-frame.webp');
 }
 [data-campaign-theme='ash-tithe'] {
@@ -25,6 +28,7 @@
   --book-paper: url('/book-materials/ash-tithe/paper.webp');
   --book-ribbon: url('/book-materials/ash-tithe/ribbon.webp');
   --book-tray: url('/book-materials/ash-tithe/tray.webp');
+  --book-ribbon-band: url('/book-materials/ash-tithe/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/ash-tithe/cover-frame.webp');
 }
 [data-campaign-theme='basalt-bloom'] {
@@ -32,6 +36,7 @@
   --book-paper: url('/book-materials/basalt-bloom/paper.webp');
   --book-ribbon: url('/book-materials/basalt-bloom/ribbon.webp');
   --book-tray: url('/book-materials/basalt-bloom/tray.webp');
+  --book-ribbon-band: url('/book-materials/basalt-bloom/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/basalt-bloom/cover-frame.webp');
 }
 [data-campaign-theme='bellwether-hollow'] {
@@ -39,6 +44,7 @@
   --book-paper: url('/book-materials/bellwether-hollow/paper.webp');
   --book-ribbon: url('/book-materials/bellwether-hollow/ribbon.webp');
   --book-tray: url('/book-materials/bellwether-hollow/tray.webp');
+  --book-ribbon-band: url('/book-materials/bellwether-hollow/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/bellwether-hollow/cover-frame.webp');
 }
 [data-campaign-theme='black-sun-forge'] {
@@ -46,6 +52,7 @@
   --book-paper: url('/book-materials/black-sun-forge/paper.webp');
   --book-ribbon: url('/book-materials/black-sun-forge/ribbon.webp');
   --book-tray: url('/book-materials/black-sun-forge/tray.webp');
+  --book-ribbon-band: url('/book-materials/black-sun-forge/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/black-sun-forge/cover-frame.webp');
 }
 [data-campaign-theme='cedar-tournament'] {
@@ -53,6 +60,7 @@
   --book-paper: url('/book-materials/cedar-tournament/paper.webp');
   --book-ribbon: url('/book-materials/cedar-tournament/ribbon.webp');
   --book-tray: url('/book-materials/cedar-tournament/tray.webp');
+  --book-ribbon-band: url('/book-materials/cedar-tournament/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/cedar-tournament/cover-frame.webp');
 }
 [data-campaign-theme='clockwork-carnival'] {
@@ -60,6 +68,7 @@
   --book-paper: url('/book-materials/clockwork-carnival/paper.webp');
   --book-ribbon: url('/book-materials/clockwork-carnival/ribbon.webp');
   --book-tray: url('/book-materials/clockwork-carnival/tray.webp');
+  --book-ribbon-band: url('/book-materials/clockwork-carnival/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/clockwork-carnival/cover-frame.webp');
 }
 [data-campaign-theme='copper-canyon'] {
@@ -67,6 +76,7 @@
   --book-paper: url('/book-materials/copper-canyon/paper.webp');
   --book-ribbon: url('/book-materials/copper-canyon/ribbon.webp');
   --book-tray: url('/book-materials/copper-canyon/tray.webp');
+  --book-ribbon-band: url('/book-materials/copper-canyon/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/copper-canyon/cover-frame.webp');
 }
 [data-campaign-theme='counterfeit-spring'] {
@@ -74,6 +84,7 @@
   --book-paper: url('/book-materials/counterfeit-spring/paper.webp');
   --book-ribbon: url('/book-materials/counterfeit-spring/ribbon.webp');
   --book-tray: url('/book-materials/counterfeit-spring/tray.webp');
+  --book-ribbon-band: url('/book-materials/counterfeit-spring/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/counterfeit-spring/cover-frame.webp');
 }
 [data-campaign-theme='dragon-retirement'] {
@@ -81,6 +92,7 @@
   --book-paper: url('/book-materials/dragon-retirement/paper.webp');
   --book-ribbon: url('/book-materials/dragon-retirement/ribbon.webp');
   --book-tray: url('/book-materials/dragon-retirement/tray.webp');
+  --book-ribbon-band: url('/book-materials/dragon-retirement/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/dragon-retirement/cover-frame.webp');
 }
 [data-campaign-theme='dream-orchestra'] {
@@ -88,6 +100,7 @@
   --book-paper: url('/book-materials/dream-orchestra/paper.webp');
   --book-ribbon: url('/book-materials/dream-orchestra/ribbon.webp');
   --book-tray: url('/book-materials/dream-orchestra/tray.webp');
+  --book-ribbon-band: url('/book-materials/dream-orchestra/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/dream-orchestra/cover-frame.webp');
 }
 [data-campaign-theme='dungeon-sanctuary'] {
@@ -95,6 +108,7 @@
   --book-paper: url('/book-materials/dungeon-sanctuary/paper.webp');
   --book-ribbon: url('/book-materials/dungeon-sanctuary/ribbon.webp');
   --book-tray: url('/book-materials/dungeon-sanctuary/tray.webp');
+  --book-ribbon-band: url('/book-materials/dungeon-sanctuary/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/dungeon-sanctuary/cover-frame.webp');
 }
 [data-campaign-theme='ember-crown'] {
@@ -102,6 +116,7 @@
   --book-paper: url('/book-materials/ember-crown/paper.webp');
   --book-ribbon: url('/book-materials/ember-crown/ribbon.webp');
   --book-tray: url('/book-materials/ember-crown/tray.webp');
+  --book-ribbon-band: url('/book-materials/ember-crown/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/ember-crown/cover-frame.webp');
 }
 [data-campaign-theme='false-verdict'] {
@@ -109,6 +124,7 @@
   --book-paper: url('/book-materials/false-verdict/paper.webp');
   --book-ribbon: url('/book-materials/false-verdict/ribbon.webp');
   --book-tray: url('/book-materials/false-verdict/tray.webp');
+  --book-ribbon-band: url('/book-materials/false-verdict/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/false-verdict/cover-frame.webp');
 }
 [data-campaign-theme='familiar-school'] {
@@ -116,6 +132,7 @@
   --book-paper: url('/book-materials/familiar-school/paper.webp');
   --book-ribbon: url('/book-materials/familiar-school/ribbon.webp');
   --book-tray: url('/book-materials/familiar-school/tray.webp');
+  --book-ribbon-band: url('/book-materials/familiar-school/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/familiar-school/cover-frame.webp');
 }
 [data-campaign-theme='glass-republic'] {
@@ -123,6 +140,7 @@
   --book-paper: url('/book-materials/glass-republic/paper.webp');
   --book-ribbon: url('/book-materials/glass-republic/ribbon.webp');
   --book-tray: url('/book-materials/glass-republic/tray.webp');
+  --book-ribbon-band: url('/book-materials/glass-republic/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/glass-republic/cover-frame.webp');
 }
 [data-campaign-theme='hollow-choir'] {
@@ -130,6 +148,7 @@
   --book-paper: url('/book-materials/hollow-choir/paper.webp');
   --book-ribbon: url('/book-materials/hollow-choir/ribbon.webp');
   --book-tray: url('/book-materials/hollow-choir/tray.webp');
+  --book-ribbon-band: url('/book-materials/hollow-choir/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/hollow-choir/cover-frame.webp');
 }
 [data-campaign-theme='hollowmere'] {
@@ -137,6 +156,7 @@
   --book-paper: url('/book-materials/hollowmere/paper.webp');
   --book-ribbon: url('/book-materials/hollowmere/ribbon.webp');
   --book-tray: url('/book-materials/hollowmere/tray.webp');
+  --book-ribbon-band: url('/book-materials/hollowmere/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/hollowmere/cover-frame.webp');
 }
 [data-campaign-theme='impossible-fair'] {
@@ -144,6 +164,7 @@
   --book-paper: url('/book-materials/impossible-fair/paper.webp');
   --book-ribbon: url('/book-materials/impossible-fair/ribbon.webp');
   --book-tray: url('/book-materials/impossible-fair/tray.webp');
+  --book-ribbon-band: url('/book-materials/impossible-fair/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/impossible-fair/cover-frame.webp');
 }
 [data-campaign-theme='lantern-court'] {
@@ -151,6 +172,7 @@
   --book-paper: url('/book-materials/lantern-court/paper.webp');
   --book-ribbon: url('/book-materials/lantern-court/ribbon.webp');
   --book-tray: url('/book-materials/lantern-court/tray.webp');
+  --book-ribbon-band: url('/book-materials/lantern-court/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/lantern-court/cover-frame.webp');
 }
 [data-campaign-theme='lantern-mere'] {
@@ -158,6 +180,7 @@
   --book-paper: url('/book-materials/lantern-mere/paper.webp');
   --book-ribbon: url('/book-materials/lantern-mere/ribbon.webp');
   --book-tray: url('/book-materials/lantern-mere/tray.webp');
+  --book-ribbon-band: url('/book-materials/lantern-mere/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/lantern-mere/cover-frame.webp');
 }
 [data-campaign-theme='last-ferryman'] {
@@ -165,6 +188,7 @@
   --book-paper: url('/book-materials/last-ferryman/paper.webp');
   --book-ribbon: url('/book-materials/last-ferryman/ribbon.webp');
   --book-tray: url('/book-materials/last-ferryman/tray.webp');
+  --book-ribbon-band: url('/book-materials/last-ferryman/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/last-ferryman/cover-frame.webp');
 }
 [data-campaign-theme='last-orbit'] {
@@ -172,6 +196,7 @@
   --book-paper: url('/book-materials/last-orbit/paper.webp');
   --book-ribbon: url('/book-materials/last-orbit/ribbon.webp');
   --book-tray: url('/book-materials/last-orbit/tray.webp');
+  --book-ribbon-band: url('/book-materials/last-orbit/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/last-orbit/cover-frame.webp');
 }
 [data-campaign-theme='last-round'] {
@@ -179,6 +204,7 @@
   --book-paper: url('/book-materials/last-round/paper.webp');
   --book-ribbon: url('/book-materials/last-round/ribbon.webp');
   --book-tray: url('/book-materials/last-round/tray.webp');
+  --book-ribbon-band: url('/book-materials/last-round/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/last-round/cover-frame.webp');
 }
 [data-campaign-theme='lighthouse'] {
@@ -191,6 +217,9 @@
   --book-tray: url('/book-materials/lighthouse/tray.webp');
   --book-corner: url('/book-materials/lighthouse/corner.webp');
   --book-edge: url('/book-materials/lighthouse/edge.webp');
+  --book-ribbon-band: url('/book-materials/lighthouse/ribbon-band.webp');
+  --book-flourish: url('/book-materials/lighthouse/flourish.webp');
+  --book-flourish-size: auto 100%;
   --book-cover-frame: url('/book-materials/lighthouse/cover-frame.webp');
 }
 :root {
@@ -214,6 +243,9 @@
   --book-tray: url('/book-materials/marrow-crown/tray.webp');
   --book-corner: url('/book-materials/marrow-crown/corner.webp');
   --book-edge: url('/book-materials/marrow-crown/edge.webp');
+  --book-ribbon-band: url('/book-materials/marrow-crown/ribbon-band.webp');
+  --book-flourish: url('/book-materials/marrow-crown/flourish.webp');
+  --book-flourish-size: auto 100%;
   --book-cover-frame: url('/book-materials/marrow-crown/cover-frame.webp');
 }
 [data-campaign-theme='moon-pearl'] {
@@ -221,6 +253,7 @@
   --book-paper: url('/book-materials/moon-pearl/paper.webp');
   --book-ribbon: url('/book-materials/moon-pearl/ribbon.webp');
   --book-tray: url('/book-materials/moon-pearl/tray.webp');
+  --book-ribbon-band: url('/book-materials/moon-pearl/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/moon-pearl/cover-frame.webp');
 }
 [data-campaign-theme='moth-court'] {
@@ -228,6 +261,7 @@
   --book-paper: url('/book-materials/moth-court/paper.webp');
   --book-ribbon: url('/book-materials/moth-court/ribbon.webp');
   --book-tray: url('/book-materials/moth-court/tray.webp');
+  --book-ribbon-band: url('/book-materials/moth-court/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/moth-court/cover-frame.webp');
 }
 [data-campaign-theme='mountain-wedding'] {
@@ -235,6 +269,7 @@
   --book-paper: url('/book-materials/mountain-wedding/paper.webp');
   --book-ribbon: url('/book-materials/mountain-wedding/ribbon.webp');
   --book-tray: url('/book-materials/mountain-wedding/tray.webp');
+  --book-ribbon-band: url('/book-materials/mountain-wedding/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/mountain-wedding/cover-frame.webp');
 }
 [data-campaign-theme='museum-midnight'] {
@@ -242,6 +277,7 @@
   --book-paper: url('/book-materials/museum-midnight/paper.webp');
   --book-ribbon: url('/book-materials/museum-midnight/ribbon.webp');
   --book-tray: url('/book-materials/museum-midnight/tray.webp');
+  --book-ribbon-band: url('/book-materials/museum-midnight/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/museum-midnight/cover-frame.webp');
 }
 [data-campaign-theme='paper-sea'] {
@@ -249,6 +285,7 @@
   --book-paper: url('/book-materials/paper-sea/paper.webp');
   --book-ribbon: url('/book-materials/paper-sea/ribbon.webp');
   --book-tray: url('/book-materials/paper-sea/tray.webp');
+  --book-ribbon-band: url('/book-materials/paper-sea/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/paper-sea/cover-frame.webp');
 }
 [data-campaign-theme='quiet-exchange'] {
@@ -256,6 +293,7 @@
   --book-paper: url('/book-materials/quiet-exchange/paper.webp');
   --book-ribbon: url('/book-materials/quiet-exchange/ribbon.webp');
   --book-tray: url('/book-materials/quiet-exchange/tray.webp');
+  --book-ribbon-band: url('/book-materials/quiet-exchange/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/quiet-exchange/cover-frame.webp');
 }
 [data-campaign-theme='rain-bureau'] {
@@ -263,6 +301,7 @@
   --book-paper: url('/book-materials/rain-bureau/paper.webp');
   --book-ribbon: url('/book-materials/rain-bureau/ribbon.webp');
   --book-tray: url('/book-materials/rain-bureau/tray.webp');
+  --book-ribbon-band: url('/book-materials/rain-bureau/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/rain-bureau/cover-frame.webp');
 }
 [data-campaign-theme='rain-check'] {
@@ -275,6 +314,9 @@
   --book-tray: url('/book-materials/rain-check/tray.webp');
   --book-corner: url('/book-materials/rain-check/corner.webp');
   --book-edge: url('/book-materials/rain-check/edge.webp');
+  --book-ribbon-band: url('/book-materials/rain-check/ribbon-band.webp');
+  --book-flourish: url('/book-materials/rain-check/flourish.webp');
+  --book-flourish-size: auto 100%;
   --book-cover-frame: url('/book-materials/rain-check/cover-frame.webp');
 }
 [data-campaign-theme='ravenford'] {
@@ -282,6 +324,7 @@
   --book-paper: url('/book-materials/ravenford/paper.webp');
   --book-ribbon: url('/book-materials/ravenford/ribbon.webp');
   --book-tray: url('/book-materials/ravenford/tray.webp');
+  --book-ribbon-band: url('/book-materials/ravenford/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/ravenford/cover-frame.webp');
 }
 [data-campaign-theme='red-dune-post'] {
@@ -289,6 +332,7 @@
   --book-paper: url('/book-materials/red-dune-post/paper.webp');
   --book-ribbon: url('/book-materials/red-dune-post/ribbon.webp');
   --book-tray: url('/book-materials/red-dune-post/tray.webp');
+  --book-ribbon-band: url('/book-materials/red-dune-post/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/red-dune-post/cover-frame.webp');
 }
 [data-campaign-theme='room-608'] {
@@ -296,6 +340,7 @@
   --book-paper: url('/book-materials/room-608/paper.webp');
   --book-ribbon: url('/book-materials/room-608/ribbon.webp');
   --book-tray: url('/book-materials/room-608/tray.webp');
+  --book-ribbon-band: url('/book-materials/room-608/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/room-608/cover-frame.webp');
 }
 [data-campaign-theme='root-city'] {
@@ -303,6 +348,7 @@
   --book-paper: url('/book-materials/root-city/paper.webp');
   --book-ribbon: url('/book-materials/root-city/ribbon.webp');
   --book-tray: url('/book-materials/root-city/tray.webp');
+  --book-ribbon-band: url('/book-materials/root-city/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/root-city/cover-frame.webp');
 }
 [data-campaign-theme='salt-meridian'] {
@@ -310,6 +356,7 @@
   --book-paper: url('/book-materials/salt-meridian/paper.webp');
   --book-ribbon: url('/book-materials/salt-meridian/ribbon.webp');
   --book-tray: url('/book-materials/salt-meridian/tray.webp');
+  --book-ribbon-band: url('/book-materials/salt-meridian/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/salt-meridian/cover-frame.webp');
 }
 [data-campaign-theme='salt-widows'] {
@@ -317,6 +364,7 @@
   --book-paper: url('/book-materials/salt-widows/paper.webp');
   --book-ribbon: url('/book-materials/salt-widows/ribbon.webp');
   --book-tray: url('/book-materials/salt-widows/tray.webp');
+  --book-ribbon-band: url('/book-materials/salt-widows/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/salt-widows/cover-frame.webp');
 }
 [data-campaign-theme='seventh-negative'] {
@@ -324,6 +372,7 @@
   --book-paper: url('/book-materials/seventh-negative/paper.webp');
   --book-ribbon: url('/book-materials/seventh-negative/ribbon.webp');
   --book-tray: url('/book-materials/seventh-negative/tray.webp');
+  --book-ribbon-band: url('/book-materials/seventh-negative/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/seventh-negative/cover-frame.webp');
 }
 [data-campaign-theme='silent-frequency'] {
@@ -331,6 +380,7 @@
   --book-paper: url('/book-materials/silent-frequency/paper.webp');
   --book-ribbon: url('/book-materials/silent-frequency/ribbon.webp');
   --book-tray: url('/book-materials/silent-frequency/tray.webp');
+  --book-ribbon-band: url('/book-materials/silent-frequency/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/silent-frequency/cover-frame.webp');
 }
 [data-campaign-theme='sky-archipelago'] {
@@ -338,6 +388,7 @@
   --book-paper: url('/book-materials/sky-archipelago/paper.webp');
   --book-ribbon: url('/book-materials/sky-archipelago/ribbon.webp');
   --book-tray: url('/book-materials/sky-archipelago/tray.webp');
+  --book-ribbon-band: url('/book-materials/sky-archipelago/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/sky-archipelago/cover-frame.webp');
 }
 [data-campaign-theme='small-banner'] {
@@ -345,6 +396,7 @@
   --book-paper: url('/book-materials/small-banner/paper.webp');
   --book-ribbon: url('/book-materials/small-banner/ribbon.webp');
   --book-tray: url('/book-materials/small-banner/tray.webp');
+  --book-ribbon-band: url('/book-materials/small-banner/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/small-banner/cover-frame.webp');
 }
 [data-campaign-theme='storm-kitchen'] {
@@ -352,6 +404,7 @@
   --book-paper: url('/book-materials/storm-kitchen/paper.webp');
   --book-ribbon: url('/book-materials/storm-kitchen/ribbon.webp');
   --book-tray: url('/book-materials/storm-kitchen/tray.webp');
+  --book-ribbon-band: url('/book-materials/storm-kitchen/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/storm-kitchen/cover-frame.webp');
 }
 [data-campaign-theme='strike-fund'] {
@@ -359,6 +412,7 @@
   --book-paper: url('/book-materials/strike-fund/paper.webp');
   --book-ribbon: url('/book-materials/strike-fund/ribbon.webp');
   --book-tray: url('/book-materials/strike-fund/tray.webp');
+  --book-ribbon-band: url('/book-materials/strike-fund/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/strike-fund/cover-frame.webp');
 }
 [data-campaign-theme='thorn-abbey'] {
@@ -366,6 +420,7 @@
   --book-paper: url('/book-materials/thorn-abbey/paper.webp');
   --book-ribbon: url('/book-materials/thorn-abbey/ribbon.webp');
   --book-tray: url('/book-materials/thorn-abbey/tray.webp');
+  --book-ribbon-band: url('/book-materials/thorn-abbey/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/thorn-abbey/cover-frame.webp');
 }
 [data-campaign-theme='three-magicless-days'] {
@@ -373,6 +428,7 @@
   --book-paper: url('/book-materials/three-magicless-days/paper.webp');
   --book-ribbon: url('/book-materials/three-magicless-days/ribbon.webp');
   --book-tray: url('/book-materials/three-magicless-days/tray.webp');
+  --book-ribbon-band: url('/book-materials/three-magicless-days/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/three-magicless-days/cover-frame.webp');
 }
 [data-campaign-theme='unwritten-god'] {
@@ -380,6 +436,7 @@
   --book-paper: url('/book-materials/unwritten-god/paper.webp');
   --book-ribbon: url('/book-materials/unwritten-god/ribbon.webp');
   --book-tray: url('/book-materials/unwritten-god/tray.webp');
+  --book-ribbon-band: url('/book-materials/unwritten-god/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/unwritten-god/cover-frame.webp');
 }
 [data-campaign-theme='velvet-ledger'] {
@@ -387,6 +444,7 @@
   --book-paper: url('/book-materials/velvet-ledger/paper.webp');
   --book-ribbon: url('/book-materials/velvet-ledger/ribbon.webp');
   --book-tray: url('/book-materials/velvet-ledger/tray.webp');
+  --book-ribbon-band: url('/book-materials/velvet-ledger/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/velvet-ledger/cover-frame.webp');
 }
 [data-campaign-theme='white-ash'] {
@@ -394,6 +452,7 @@
   --book-paper: url('/book-materials/white-ash/paper.webp');
   --book-ribbon: url('/book-materials/white-ash/ribbon.webp');
   --book-tray: url('/book-materials/white-ash/tray.webp');
+  --book-ribbon-band: url('/book-materials/white-ash/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/white-ash/cover-frame.webp');
 }
 [data-campaign-theme='winter-caravan'] {
@@ -401,6 +460,7 @@
   --book-paper: url('/book-materials/winter-caravan/paper.webp');
   --book-ribbon: url('/book-materials/winter-caravan/ribbon.webp');
   --book-tray: url('/book-materials/winter-caravan/tray.webp');
+  --book-ribbon-band: url('/book-materials/winter-caravan/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/winter-caravan/cover-frame.webp');
 }
 [data-campaign-theme='winter-orchard'] {
@@ -408,5 +468,232 @@
   --book-paper: url('/book-materials/winter-orchard/paper.webp');
   --book-ribbon: url('/book-materials/winter-orchard/ribbon.webp');
   --book-tray: url('/book-materials/winter-orchard/tray.webp');
+  --book-ribbon-band: url('/book-materials/winter-orchard/ribbon-band.webp');
   --book-cover-frame: url('/book-materials/winter-orchard/cover-frame.webp');
+}
+:root {
+  --pick-act-condition: url('/book-materials/ltw/pick-act-condition.webp');
+  --pick-act-hit-points: url('/book-materials/ltw/pick-act-hit-points.webp');
+  --pick-act-inspiration: url('/book-materials/ltw/pick-act-inspiration.webp');
+  --pick-act-sheet: url('/book-materials/ltw/pick-act-sheet.webp');
+  --pick-cast-agreement: url('/book-materials/ltw/pick-cast-agreement.webp');
+  --pick-cast-battlefield: url('/book-materials/ltw/pick-cast-battlefield.webp');
+  --pick-cast-blank: url('/book-materials/ltw/pick-cast-blank.webp');
+  --pick-cast-chronicle: url('/book-materials/ltw/pick-cast-chronicle.webp');
+  --pick-cast-dice: url('/book-materials/ltw/pick-cast-dice.webp');
+  --pick-cast-join: url('/book-materials/ltw/pick-cast-join.webp');
+  --pick-cast-picture: url('/book-materials/ltw/pick-cast-picture.webp');
+  --pick-cast-scene: url('/book-materials/ltw/pick-cast-scene.webp');
+  --pick-cast-stars: url('/book-materials/ltw/pick-cast-stars.webp');
+  --pick-cast-story: url('/book-materials/ltw/pick-cast-story.webp');
+  --pick-cast-title: url('/book-materials/ltw/pick-cast-title.webp');
+  --pick-check-off: url('/book-materials/ltw/pick-check-off.webp');
+  --pick-check-on: url('/book-materials/ltw/pick-check-on.webp');
+  --pick-cross: url('/book-materials/ltw/pick-cross.webp');
+  --pick-evening: url('/book-materials/ltw/pick-evening.webp');
+  --pick-hp-damage: url('/book-materials/ltw/pick-hp-damage.webp');
+  --pick-hp-healing: url('/book-materials/ltw/pick-hp-healing.webp');
+  --pick-hp-reduce-maximum: url('/book-materials/ltw/pick-hp-reduce-maximum.webp');
+  --pick-hp-temporary: url('/book-materials/ltw/pick-hp-temporary.webp');
+  --pick-more-dice: url('/book-materials/ltw/pick-more-dice.webp');
+  --pick-online: url('/book-materials/ltw/pick-online.webp');
+  --pick-pace-fast: url('/book-materials/ltw/pick-pace-fast.webp');
+  --pick-pace-normal: url('/book-materials/ltw/pick-pace-normal.webp');
+  --pick-pace-slow: url('/book-materials/ltw/pick-pace-slow.webp');
+  --pick-radio-off: url('/book-materials/ltw/pick-radio-off.webp');
+  --pick-radio-on: url('/book-materials/ltw/pick-radio-on.webp');
+  --pick-rest-dawn: url('/book-materials/ltw/pick-rest-dawn.webp');
+  --pick-rest-long: url('/book-materials/ltw/pick-rest-long.webp');
+  --pick-rest-short: url('/book-materials/ltw/pick-rest-short.webp');
+  --pick-roll-advantage: url('/book-materials/ltw/pick-roll-advantage.webp');
+  --pick-roll-disadvantage: url('/book-materials/ltw/pick-roll-disadvantage.webp');
+  --pick-roll-normal: url('/book-materials/ltw/pick-roll-normal.webp');
+  --pick-see-dm: url('/book-materials/ltw/pick-see-dm.webp');
+  --pick-see-hidden: url('/book-materials/ltw/pick-see-hidden.webp');
+  --pick-see-table: url('/book-materials/ltw/pick-see-table.webp');
+  --pick-select-mark: url('/book-materials/ltw/pick-select-mark.webp');
+  --pick-surprise-foes: url('/book-materials/ltw/pick-surprise-foes.webp');
+  --pick-surprise-none: url('/book-materials/ltw/pick-surprise-none.webp');
+  --pick-surprise-party: url('/book-materials/ltw/pick-surprise-party.webp');
+  --pick-table: url('/book-materials/ltw/pick-table.webp');
+  --pick-to-book: url('/book-materials/ltw/pick-to-book.webp');
+  --pick-tone-adventurous: url('/book-materials/ltw/pick-tone-adventurous.webp');
+  --pick-tone-cosy: url('/book-materials/ltw/pick-tone-cosy.webp');
+  --pick-tone-grim: url('/book-materials/ltw/pick-tone-grim.webp');
+  --pick-tone-spooky: url('/book-materials/ltw/pick-tone-spooky.webp');
+  --pick-turn: url('/book-materials/ltw/pick-turn.webp');
+  --pick-weather-clear: url('/book-materials/ltw/pick-weather-clear.webp');
+  --pick-weather-fog: url('/book-materials/ltw/pick-weather-fog.webp');
+  --pick-weather-overcast: url('/book-materials/ltw/pick-weather-overcast.webp');
+  --pick-weather-rain: url('/book-materials/ltw/pick-weather-rain.webp');
+  --pick-weather-snow: url('/book-materials/ltw/pick-weather-snow.webp');
+  --pick-weather-storm: url('/book-materials/ltw/pick-weather-storm.webp');
+}
+[data-pick='act-condition'] {
+  --pick: var(--pick-act-condition);
+}
+[data-pick='act-hit-points'] {
+  --pick: var(--pick-act-hit-points);
+}
+[data-pick='act-inspiration'] {
+  --pick: var(--pick-act-inspiration);
+}
+[data-pick='act-sheet'] {
+  --pick: var(--pick-act-sheet);
+}
+[data-pick='cast-agreement'] {
+  --pick: var(--pick-cast-agreement);
+}
+[data-pick='cast-battlefield'] {
+  --pick: var(--pick-cast-battlefield);
+}
+[data-pick='cast-blank'] {
+  --pick: var(--pick-cast-blank);
+}
+[data-pick='cast-chronicle'] {
+  --pick: var(--pick-cast-chronicle);
+}
+[data-pick='cast-dice'] {
+  --pick: var(--pick-cast-dice);
+}
+[data-pick='cast-join'] {
+  --pick: var(--pick-cast-join);
+}
+[data-pick='cast-picture'] {
+  --pick: var(--pick-cast-picture);
+}
+[data-pick='cast-scene'] {
+  --pick: var(--pick-cast-scene);
+}
+[data-pick='cast-stars'] {
+  --pick: var(--pick-cast-stars);
+}
+[data-pick='cast-story'] {
+  --pick: var(--pick-cast-story);
+}
+[data-pick='cast-title'] {
+  --pick: var(--pick-cast-title);
+}
+[data-pick='check-off'] {
+  --pick: var(--pick-check-off);
+}
+[data-pick='check-on'] {
+  --pick: var(--pick-check-on);
+}
+[data-pick='cross'] {
+  --pick: var(--pick-cross);
+}
+[data-pick='evening'] {
+  --pick: var(--pick-evening);
+}
+[data-pick='hp-damage'] {
+  --pick: var(--pick-hp-damage);
+}
+[data-pick='hp-healing'] {
+  --pick: var(--pick-hp-healing);
+}
+[data-pick='hp-reduce-maximum'] {
+  --pick: var(--pick-hp-reduce-maximum);
+}
+[data-pick='hp-temporary'] {
+  --pick: var(--pick-hp-temporary);
+}
+[data-pick='more-dice'] {
+  --pick: var(--pick-more-dice);
+}
+[data-pick='online'] {
+  --pick: var(--pick-online);
+}
+[data-pick='pace-fast'] {
+  --pick: var(--pick-pace-fast);
+}
+[data-pick='pace-normal'] {
+  --pick: var(--pick-pace-normal);
+}
+[data-pick='pace-slow'] {
+  --pick: var(--pick-pace-slow);
+}
+[data-pick='radio-off'] {
+  --pick: var(--pick-radio-off);
+}
+[data-pick='radio-on'] {
+  --pick: var(--pick-radio-on);
+}
+[data-pick='rest-dawn'] {
+  --pick: var(--pick-rest-dawn);
+}
+[data-pick='rest-long'] {
+  --pick: var(--pick-rest-long);
+}
+[data-pick='rest-short'] {
+  --pick: var(--pick-rest-short);
+}
+[data-pick='roll-advantage'] {
+  --pick: var(--pick-roll-advantage);
+}
+[data-pick='roll-disadvantage'] {
+  --pick: var(--pick-roll-disadvantage);
+}
+[data-pick='roll-normal'] {
+  --pick: var(--pick-roll-normal);
+}
+[data-pick='see-dm'] {
+  --pick: var(--pick-see-dm);
+}
+[data-pick='see-hidden'] {
+  --pick: var(--pick-see-hidden);
+}
+[data-pick='see-table'] {
+  --pick: var(--pick-see-table);
+}
+[data-pick='select-mark'] {
+  --pick: var(--pick-select-mark);
+}
+[data-pick='surprise-foes'] {
+  --pick: var(--pick-surprise-foes);
+}
+[data-pick='surprise-none'] {
+  --pick: var(--pick-surprise-none);
+}
+[data-pick='surprise-party'] {
+  --pick: var(--pick-surprise-party);
+}
+[data-pick='table'] {
+  --pick: var(--pick-table);
+}
+[data-pick='to-book'] {
+  --pick: var(--pick-to-book);
+}
+[data-pick='tone-adventurous'] {
+  --pick: var(--pick-tone-adventurous);
+}
+[data-pick='tone-cosy'] {
+  --pick: var(--pick-tone-cosy);
+}
+[data-pick='tone-grim'] {
+  --pick: var(--pick-tone-grim);
+}
+[data-pick='tone-spooky'] {
+  --pick: var(--pick-tone-spooky);
+}
+[data-pick='turn'] {
+  --pick: var(--pick-turn);
+}
+[data-pick='weather-clear'] {
+  --pick: var(--pick-weather-clear);
+}
+[data-pick='weather-fog'] {
+  --pick: var(--pick-weather-fog);
+}
+[data-pick='weather-overcast'] {
+  --pick: var(--pick-weather-overcast);
+}
+[data-pick='weather-rain'] {
+  --pick: var(--pick-weather-rain);
+}
+[data-pick='weather-snow'] {
+  --pick: var(--pick-weather-snow);
+}
+[data-pick='weather-storm'] {
+  --pick: var(--pick-weather-storm);
 }

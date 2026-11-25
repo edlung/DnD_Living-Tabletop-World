@@ -8,7 +8,7 @@ import { expectOnTop } from './support/shell.ts';
 /**
  * The Scene as a spread (docs/adr/0075-book-interface.md §5): on a wide screen the place is the
  * left page — its name, who and what is here, the ways beyond — and the plate and the card of what
- * is chosen the right. Narrower it stays one page under its picture. The DM's ribbon hangs at the
+ * is chosen the right. On a phone it stays one page under its picture. The DM's ribbon hangs at the
  * spine with its chapter, and the story's place opens the Scene: every campaign has a book now,
  * the English adventure's assembled from its own world.
  */
@@ -66,12 +66,16 @@ test('a player’s Scene is a spread: the place on the left, the plate and the c
     await expectOnTop(scene(page).getByRole('button', { name, exact: true }));
   await expectAccessible(page, 'a talk on the spread');
 
-  // A laptop keeps the spread; an upright tablet one page under the picture.
+  // A laptop keeps the spread, and so does an upright tablet or a window some 760 px wide: two
+  // pages from 701 px (§25). A phone's Scene is one page under its picture.
   await page.setViewportSize({ width: 1024, height: 768 });
   await expect(scene(page)).toHaveAttribute('data-spread', '');
   await page.setViewportSize({ width: 834, height: 1194 });
+  await expect(scene(page)).toHaveAttribute('data-spread', '');
+  await page.setViewportSize({ width: 766, height: 799 });
+  await expect(scene(page)).toHaveAttribute('data-spread', '');
+  await page.setViewportSize({ width: 700, height: 900 });
   await expect(scene(page)).not.toHaveAttribute('data-spread', '');
-  await expect(scene(page)).not.toHaveAttribute('data-surface', 'paper');
   await expect(page.locator('.spread-card-hint')).toHaveCount(0);
 });
 

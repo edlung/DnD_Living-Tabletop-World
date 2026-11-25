@@ -21,6 +21,7 @@ import {
   writeAgreement,
 } from './agreement-words.ts';
 import { AgreementPage } from './agreement.tsx';
+import { PickRadio } from '../book-kit/pick.tsx';
 
 const wordsOf = (answer: AgreementResponse | null): AgreementRequest => {
   const kept = answer?.agreement;
@@ -238,17 +239,18 @@ function AgreementForm({
         <fieldset>
           <legend>{t('How we play')}</legend>
           {AGREEMENT_TONES.map((tone) => (
-            <label key={tone} className="choice-row">
-              <input
-                type="radio"
-                name={`${ids}-tone`}
-                checked={words.tone === tone}
-                onChange={() => {
-                  change({ tone });
-                }}
-              />
-              <span>{toneWords(t, tone)}</span>
-            </label>
+            <PickRadio
+              key={tone}
+              row
+              pick={`tone-${tone}`}
+              name={`${ids}-tone`}
+              checked={words.tone === tone}
+              onChange={() => {
+                change({ tone });
+              }}
+            >
+              {toneWords(t, tone)}
+            </PickRadio>
           ))}
         </fieldset>
         <label htmlFor={`${ids}-tone-note`}>{t('In your own words (optional)')}</label>

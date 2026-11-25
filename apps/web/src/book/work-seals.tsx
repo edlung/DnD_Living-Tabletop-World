@@ -8,6 +8,7 @@ import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { restAction } from '../rest/rest-intent.ts';
 import type { SheetId } from '../shell/use-shell.ts';
+import { Pick } from '../book-kit/pick.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { AskRoll, CastToScreen, GiveHandout, StartFight } from './actions.tsx';
@@ -216,6 +217,7 @@ export function WorkSeals({
                 close();
               }}
             >
+              <Pick name="rest-short" />
               {t('Short rest (1 hour)')}
             </button>
           )}
@@ -228,6 +230,7 @@ export function WorkSeals({
               close();
             }}
           >
+            <Pick name="rest-long" />
             {t('Long rest (8 hours)')}
           </button>
         </div>

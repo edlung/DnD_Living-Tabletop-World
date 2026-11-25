@@ -5,6 +5,7 @@ import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * A party for the table (Stage 605): Elowen's three companions stand with her on the Old Trade
@@ -59,9 +60,7 @@ test('the DM starts the prepared ambush for the party of four in one step', asyn
     'Joining: Brann Ironvale, Elowen Starwhisper, Maren Ashby, Tamsin Quickfoot',
   );
   // The ambush takes the raiders by surprise this time (ADR 0045 §5).
-  await row
-    .getByLabel('Surprise', { exact: true })
-    .selectOption({ label: 'The foes are surprised' });
+  await tile(row, 'Surprise', 'The foes are surprised').check();
   await expectAccessible(dm, 'the prepared ambush');
   await row
     .getByRole('button', { name: 'Start: Ambush on the Old Trade Road', exact: true })

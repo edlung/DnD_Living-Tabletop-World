@@ -79,8 +79,9 @@ test('the DM sees the party and changes it by hand, with reasons the history kee
   // The whole table is asked for a check at once.
   const ask = party(page).getByRole('region', { name: 'Ask for a check' });
   await ask
-    .getByLabel('Character', { exact: true })
-    .selectOption({ label: 'Everyone at the table' });
+    .getByRole('group', { name: 'Character', exact: true })
+    .getByRole('radio', { name: 'Everyone at the table', exact: true })
+    .check();
   await ask.getByRole('button', { name: 'Ask', exact: true }).click();
   await openSheet(page, 'Dice');
   await expect(page.locator('#sheet-dice')).toContainText('Maren Ashby');

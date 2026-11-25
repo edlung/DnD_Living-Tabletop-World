@@ -1,6 +1,6 @@
 import type { EntityKind, EntityPresentation, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useId } from 'react';
+import { useEffect, useId, useRef } from 'react';
 
 import { useHeldImage } from '../visual/approved-images.ts';
 import { Medallion, type MedallionCondition } from '../visual/medallion.tsx';
@@ -19,20 +19,29 @@ function SceneObject({
   name,
   selected,
   onSelect,
+  round,
 }: {
   readonly entity: EntityPresentation;
   readonly name: string;
   readonly selected: boolean;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
+  readonly round: boolean;
 }) {
   const t = useT();
   // A generated ID: entity IDs never enter the page's markup.
   const stateId = useId();
   // Who has an approved figure stands in the scene as it (ADR 0035 §4); anyone else, or a
   // figure that cannot be read, keeps the medallion.
-  const standing = useHeldImage(entity.figure);
+  const standing = useHeldImage(round ? null : entity.figure);
+  // On a spread who is here may scroll in a block of their own (a card open beside them takes
+  // the room): the one chosen is kept in view.
+  const button = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (selected && round) button.current?.scrollIntoView({ block: 'nearest' });
+  }, [selected, round]);
   return (
     <button
+      ref={button}
       type="button"
       className={`object-button${standing.held ? ' object-button--figure' : ''}`}
       aria-label={name}
@@ -42,7 +51,18 @@ function SceneObject({
         onSelect(entity.entityId, entity.kind);
       }}
     >
-      {standing.held ? (
+      {round ? (
+        // On a page of the book everyone is a round portrait: the figure stands inside the ring.
+        <Medallion
+          image={entity.image}
+          figure={entity.figure}
+          kind={entity.kind}
+          size="lg"
+          tone={entity.kind === 'character' ? 'party' : 'gold'}
+          selected={selected}
+          condition={condition(entity)}
+        />
+      ) : standing.held ? (
         <Miniature url={standing.url} condition={condition(entity)} />
       ) : (
         <Medallion
@@ -78,11 +98,14 @@ export function SceneObjects({
   directory,
   selectedId,
   onSelect,
+  round = false,
 }: {
   readonly present: readonly EntityPresentation[];
   readonly directory: readonly EntityRef[];
   readonly selectedId: string | null;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
+  /** On a spread of the book (ADR 0075 §25): round portraits, a figure inside its ring. */
+  readonly round?: boolean;
 }) {
   const t = useT();
   return (
@@ -97,6 +120,7 @@ export function SceneObjects({
             }
             selected={selectedId === entity.entityId}
             onSelect={onSelect}
+            round={round}
           />
         </li>
       ))}
