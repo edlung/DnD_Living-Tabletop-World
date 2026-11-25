@@ -14,6 +14,30 @@ export async function enterCombat(page: Page, campaign: string, token: string = 
 export const battlefield = (page: Page) =>
   page.getByRole('region', { name: 'Battlefield', exact: true });
 
+/**
+ * How to read the board (docs/adr/0075-book-interface.md §26): where the map has the whole sheet
+ * the legend waits behind one of the board's own tools; where the map leaves a margin it shows
+ * there. Opens it where it waits, and gives a way to put it away again, so it lies over no square
+ * the journey presses next.
+ */
+export async function openBoardLegend(
+  page: Page,
+): Promise<{ readonly legend: Locator; readonly close: () => Promise<void> }> {
+  const legend = battlefield(page).getByRole('region', { name: 'Reading the board' });
+  const tool = battlefield(page).getByRole('button', { name: 'Reading the board', exact: true });
+  const waits = await tool.isVisible();
+  if (waits && (await tool.getAttribute('aria-pressed')) !== 'true') await tool.click();
+  await expect(legend).toBeVisible();
+  return {
+    legend,
+    close: async () => {
+      if (!waits) return;
+      await tool.click();
+      await expect(tool).toHaveAttribute('aria-pressed', 'false');
+    },
+  };
+}
+
 /** One square of the persistent battlefield, found by its coordinates. */
 export const square = (page: Page, x: number, y: number): Locator =>
   battlefield(page).getByRole('button', { name: new RegExp(`^Square ${x}, ${y}(:|$)`) });

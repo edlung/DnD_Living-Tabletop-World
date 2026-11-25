@@ -7,6 +7,7 @@ import {
   clickSquare,
   enterCombat,
   expectAccepted,
+  openBoardLegend,
   playerHp,
   square,
   submit,
@@ -29,10 +30,11 @@ test('the board names a stream, a ledge and a pit; Elowen drops off the ledge, t
   await expect(square(page, 2, 5)).toHaveAccessibleName(/: raised 10 ft/);
   await expect(square(page, 3, 7)).toHaveAccessibleName(/: water/);
   await expect(square(page, 5, 6)).toHaveAccessibleName(/: a pit 10 ft deep/);
-  const legend = battlefield(page).getByRole('region', { name: 'Reading the board' });
+  const { legend, close } = await openBoardLegend(page);
   for (const words of ['Water', 'Raised ground', 'Pit'])
     await expect(legend.getByText(words, { exact: true })).toBeVisible();
   await expectAccessible(page, 'the board with a stream, a ledge and a pit');
+  await close();
 
   // Off the ledge: climbing down costs 25 ft; dropping, 5 ft and a fall of 10.
   await clickSquare(page, 3, 6);

@@ -6,6 +6,7 @@ import {
   battlefield,
   enterCombat,
   expectAccepted,
+  openBoardLegend,
   square,
   submit,
 } from './support/combat.ts';
@@ -39,7 +40,7 @@ test('the DM puts out the light, and the player’s board goes dark', async ({ b
   await enterCombat(player, campaign);
   await expect(square(player, 2, 6)).toHaveAccessibleName(/darkness/);
   await expect(battlefield(player).locator('.square-shade--dark').first()).toBeVisible();
-  const legend = battlefield(player).getByRole('region', { name: 'Reading the board' });
+  const { legend } = await openBoardLegend(player);
   await expect(legend.getByText('Darkness', { exact: true })).toBeVisible();
   await expectAccessible(player, 'the board in darkness');
 });
