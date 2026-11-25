@@ -176,6 +176,7 @@ function ClaimDialog({
     <dialog
       ref={ref}
       className="sign-out-dialog account-dialog"
+      data-surface="paper"
       aria-labelledby="claim-title"
       aria-describedby="claim-text"
       onCancel={(event) => {

@@ -1,0 +1,104 @@
+/*
+ * Lists of a page set as a book sets them (docs/adr/0075-book-interface.md §27): a list of entries
+ * — what the party knows, the places to go, the glossary's terms, the DM's tools — is an index: a
+ * line under a hairline with its kind in small capitals, not a row of boxes. The Dice page's
+ * picker shows the book's own dice, as the page's foot does. And nothing on paper is a rounded
+ * card: a slip, a plate and a field are cut square (`tokens.css` keeps the corners' sizes).
+ */
+[data-surface='paper'] {
+  --radius-panel: 4px;
+  --radius-control: 3px;
+}
+
+/* --- An index: entries under hairlines, two columns of them where the page is wide. */
+.world-main[data-book] .sheet :is(.place-list, .directory-list, .rules-list) {
+  gap: 0 1.5rem;
+}
+.world-main[data-book] .sheet button.list-button.list-button {
+  min-height: 38px;
+  padding: 0.3rem;
+  border: 0;
+  border-bottom: 1px solid var(--ink-soft);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-family: var(--font-body, inherit);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-align: left;
+}
+.world-main[data-book] .sheet button.list-button.list-button:hover:enabled {
+  border-color: var(--ink-edge);
+  background: color-mix(in srgb, var(--rubric) 7%, transparent);
+}
+.world-main[data-book] .sheet button.list-button.list-button:active:enabled {
+  box-shadow: none;
+  translate: none;
+}
+/* The entry that is open, or where the party is: the rubric's red. */
+.world-main[data-book]
+  .sheet
+  button.list-button.list-button:is(
+    [aria-current='true'],
+    [aria-current='location'],
+    [aria-pressed='true']
+  ) {
+  border-bottom-color: var(--rubric);
+  background: color-mix(in srgb, var(--rubric) 9%, transparent);
+  color: var(--rubric);
+}
+.world-main[data-book] .sheet .list-button > .glyph {
+  color: var(--rubric);
+}
+.world-main[data-book] .sheet .list-button .directory-kind {
+  color: color-mix(in srgb, var(--page-ink) 74%, transparent);
+  font-family: var(--font-display);
+}
+.world-main[data-book] .sheet .rules-list .list-button[aria-current='true'] .directory-kind {
+  color: var(--rubric);
+}
+
+/* The Book's own list of a page's people and events is the same index. */
+.world-main[data-book] .dmb .dmb-list {
+  gap: 0;
+}
+.world-main[data-book] .dmb button.dmb-moment.dmb-moment {
+  padding: 0.35rem 0.3rem;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--page-ink) 26%, transparent);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-family: var(--font-body, inherit);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.world-main[data-book] .dmb button.dmb-moment.dmb-moment:hover:enabled {
+  border-color: color-mix(in srgb, var(--page-ink) 58%, transparent);
+  background: color-mix(in srgb, var(--rubric) 7%, transparent);
+}
+.world-main[data-book] .dmb button.dmb-moment.dmb-moment:active:enabled {
+  box-shadow: none;
+  translate: none;
+}
+.world-main[data-book] .dmb .dmb-moment-kind {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --- The Dice page's picker: the book's own dice, each with its name on it. */
+.world-main[data-book] .sheet .dice-picker[data-drawn] button.dice-pick-add.dice-pick-add {
+  border: 0;
+  background: var(--die) center / auto 78% no-repeat;
+  box-shadow: none;
+  color: #1a1208;
+  font-weight: 800;
+}
+.world-main[data-book]
+  .sheet
+  .dice-picker[data-drawn]
+  button.dice-pick-add.dice-pick-add:hover:enabled {
+  background: var(--die) center / auto 78% no-repeat;
+  filter: brightness(1.12);
+}

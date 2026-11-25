@@ -115,11 +115,23 @@
     align-items: center;
     justify-content: flex-start;
   }
-  /* A page opened over the fight covers the head row with its own: the fold's handle lies under it. */
+  /*
+   * A page opened over the fight has the head row for its own tabs and its close: the fold's
+   * handle and whose turn it is are said, not shown, until the page is closed.
+   */
   .world-main[data-book]:has(.sheet:not([hidden]))
     .stage--battle
     > :is(.stage-switch, .turn-banner--yours, .fight-quiet) {
-    z-index: 1;
+    inline-size: 1px;
+    min-inline-size: 0;
+    max-inline-size: 1px;
+    block-size: 1px;
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   /* --- The map takes the sheet. */

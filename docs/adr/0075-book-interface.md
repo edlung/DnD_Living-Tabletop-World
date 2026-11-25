@@ -659,6 +659,45 @@ The owner, on the book set closer to the concept: «Бой не должен б�
 9. **Not changed**: every command, route and contract; what a player's client is sent; the
    board's hit-testing, its tools and their names; a phone's fight; the table's screen.
 
+### 27. Every slip and window on the book's paper (2026-11-25)
+
+The second of the loose ends (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`). A survey of every
+page, window and overlay at the owner's width found what the book had not reached: the result of
+an action and what the table asks lay over the page as dark glass; the guide, the questions about
+signing out and saving a seat, and the Chronicle's head were dark panes of the old application; a
+hero's builder was a grey pane (the paper's inks over a dark grain); a phone's fight ran on dark
+glass under a book of paper pages.
+
+1. **A slip laid over a page is the page's paper** (`styles/book-slips.css`): the result of an
+   action with what was learned from it, and each thing the table asks — a check, a rest, a
+   pause, a break, a handout to read. They take the paper's inks (`data-surface='paper'`), a
+   ground of their own (the tokens' glass is see-through and a slip lies over pictures), the
+   page's stamped buttons, square corners, and the drawn cross where one is put away.
+2. **A small window is a slip of the same paper**, the book dimmed behind it: how to play, about
+   the game, "What can I do?", the table's agreement, signing out, saving a seat, deleting an
+   account, a hero's builder and a new level. A window that opens outside a page (from the
+   cover's clasp, or before any book) sets its controls as a page sets them: a stamped label, the
+   one main action in the rubric's red, a ledger's field, the drawn mark of a list, the drawn
+   cross. The builder's step is the rubric's.
+3. **The Chronicle's head is set as the book's head**: its three views are index tabs of the
+   book's paper standing on its page, the chapter's writer a stamped label and its form a slip,
+   the drawn cross closes it; below the desk's size it lies on the cover's cloth. The book
+   itself — the desk, the spread, the ribbons — is as it was (§5.6 of the design).
+4. **A phone's fight lies on a page of paper** as its other pages do (amending §6 and §17, which
+   kept the dark glass there): the column that scrolls is the page, the cover's cloth its margin.
+   The fold-out's surface is paper wherever the fight is in a book.
+5. **A list of entries is an index** (`styles/book-index.css`): what the party knows, the places
+   to go, the glossary's terms, the DM's tools and the Book's own list of a page's people and
+   events are lines under hairlines, each with its kind in small capitals — not rows of boxes;
+   the entry that is open, or where the party is, takes the rubric's red.
+6. **Nothing on paper is a rounded card.** The paper's surface cuts a panel and a control square
+   (4 and 3 px for the 10 and 8 of the dark glass): a slip, a plate and a field are a printed
+   page's. A tag keeps its rounded ends.
+7. **The Dice page's picker shows the book's own dice**, as the page's foot does: the page's rule
+   for a stamped button had outweighed the drawn dice since §24.
+8. **Not changed**: every command, route and contract; the windows' words, order and focus; the
+   table's screen; the workshop; the shelf and the way in (their turn is next).
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

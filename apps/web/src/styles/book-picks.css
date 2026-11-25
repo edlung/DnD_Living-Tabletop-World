@@ -67,6 +67,8 @@ label[data-pick][data-pick]:is(.pick-tile, .pick-row)::before {
 label[data-pick][data-pick].pick-tile > .pick-words {
   display: block;
   inline-size: 100%;
+  /* A word longer than its tile («преимуществом») breaks at a syllable, with a hyphen. */
+  hyphens: auto;
   overflow-wrap: break-word;
 }
 /*

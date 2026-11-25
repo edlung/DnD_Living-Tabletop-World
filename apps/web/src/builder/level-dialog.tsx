@@ -106,6 +106,7 @@ export function LevelDialog({
     <dialog
       ref={ref}
       className="guide-dialog builder-dialog level-dialog"
+      data-surface="paper"
       aria-labelledby={`${ids}-title`}
       onClose={(event) => {
         // The character dialog around it stays open (React carries a dialog's close upward).

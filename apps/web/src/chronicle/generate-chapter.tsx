@@ -82,7 +82,7 @@ export function GenerateChapter({
         </>
       }
     >
-      <div className="book-writer-form">
+      <div className="book-writer-form" data-surface="paper">
         <label htmlFor="chapter-title">{t('Title')}</label>
         <input
           id="chapter-title"

@@ -76,6 +76,7 @@ export function TurnHintButton({
       <dialog
         ref={dialog}
         className="guide-dialog hint-dialog"
+        data-surface="paper"
         aria-labelledby={`${ids}-title`}
         // Among the table's questions, which are announced as they change: the hint is a dialog
         // of its own and is read as one.
