@@ -8,9 +8,11 @@ import catalog from '../../apps/web/src/visual/campaign-themes/catalog.json' wit
 import manifest from '../../apps/web/src/visual/book-materials/manifest.json' with { type: 'json' };
 import {
   BOOK_PARTS,
+  BOOK_SEALS,
   PRODUCT_BOOK,
   bookPiece,
   partIcon,
+  sealPicture,
 } from '../../apps/web/src/book-kit/materials.ts';
 
 /**
@@ -61,5 +63,33 @@ describe('the books’ materials', () => {
         expect(css).toContain(`/book-materials/${book.theme}/cover.webp`);
       }
     }
+  });
+
+  // The second pass's details (docs/adr/0075-book-interface.md §22): three campaigns on trial.
+  it('gives the three books on trial their own seals, initial, corner and edge', () => {
+    const css = readFileSync(
+      join(import.meta.dirname, '../../apps/web/src/visual/book-materials/book-materials.css'),
+      'utf8',
+    );
+    for (const theme of ['lighthouse', 'rain-check', 'marrow-crown']) {
+      for (const seal of BOOK_SEALS) {
+        expect(sealPicture(theme, seal)).toBe(`/book-materials/${theme}/seal-${seal}.webp`);
+      }
+      for (const piece of ['initial', 'corner', 'edge']) {
+        expect(bookPiece(theme, piece)).toBe(`/book-materials/${theme}/${piece}.webp`);
+        expect(css).toContain(`--book-${piece}: url('/book-materials/${theme}/${piece}.webp');`);
+      }
+    }
+  });
+
+  it('leaves a book without those details with the product’s drawn ones', () => {
+    const plain = manifest.books.find(
+      (book) => book.theme !== PRODUCT_BOOK && !('seal-roll' in book.pieces),
+    );
+    expect(plain).toBeDefined();
+    if (!plain) return;
+    for (const seal of BOOK_SEALS) expect(sealPicture(plain.theme, seal)).toBeNull();
+    expect(bookPiece(plain.theme, 'initial')).toBeNull();
+    expect(sealPicture(null, 'roll')).toBeNull();
   });
 });

@@ -40,6 +40,8 @@ export const PARTS = [
   'rules',
 ] as const;
 export const MOMENTS = ['talk', 'clue', 'letter', 'fight', 'puzzle'] as const;
+/** The seals of the DM's working spread (docs/adr/0075-book-interface.md §16, §22). */
+export const SEALS = ['roll', 'fight', 'rest', 'screen', 'give'] as const;
 
 /** A piece, the width it is shipped at, and the custom property that carries it (if any). */
 const PIECES: Readonly<Record<string, { readonly width: number; readonly property?: string }>> = {
@@ -55,6 +57,10 @@ const PIECES: Readonly<Record<string, { readonly width: number; readonly propert
   bookplate: { width: 768, property: '--book-bookplate' },
   ...Object.fromEntries(PARTS.map((part) => [`part-${part}`, { width: 128 }])),
   ...Object.fromEntries(MOMENTS.map((moment) => [`ico-${moment}`, { width: 128 }])),
+  // The second pass's details (ADR 0075 §22): the plate a chapter's initial is printed on, and
+  // the working spread's seals.
+  initial: { width: 256, property: '--book-initial' },
+  ...Object.fromEntries(SEALS.map((seal) => [`seal-${seal}`, { width: 160 }])),
 };
 
 /**
@@ -77,6 +83,20 @@ const CUTS: Readonly<
     region: { left: 700, top: 616, width: 600, height: 46 },
     width: 600,
     property: '--book-shelf-board',
+  },
+  // A page's corner ornament: the original (1254 × 1254) keeps it in its top-left corner.
+  corner: {
+    from: 'corner',
+    region: { left: 0, top: 0, width: 512, height: 512 },
+    width: 256,
+    property: '--book-corner',
+  },
+  // The edge of the block of pages: a band from the middle of the painted fore-edge (2172 × 724).
+  edge: {
+    from: 'edge',
+    region: { left: 0, top: 262, width: 2172, height: 200 },
+    width: 1086,
+    property: '--book-edge',
   },
 };
 
