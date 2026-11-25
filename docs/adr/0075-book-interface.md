@@ -756,6 +756,21 @@ The fourth of the loose ends (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`), 
    between groups). A select wrapped in its label had read its chosen option into its own name
    (the appendix's tier and contagion's who): a group's name is its legend alone now.
 
+### 30. The table's screen: the fight on the book's paper (2026-11-25)
+
+The fifth of the loose ends (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`). §19 laid the
+table's quiet spreads, its title and the story's words on the book's paper; the fight stayed on
+the dark ground under dark glass — the order of turns, whom the table waits for — while the DM's
+own fight became a fold-out of paper (§17, §26).
+
+1. **The battlefield is cast on the book's paper** (`display/display-app.tsx`: `battlefield`
+   among the casts on paper): the fold down its middle, the board as a plate on it, the order of
+   turns a slip of the same paper, the turn's line under it.
+2. **Whom the table waits for** lies over every cast but the dice' own; over a cast on paper it is
+   a slip of that paper with the rubric's red heading (`styles/display-book.css`).
+3. **Not changed**: what the screen is sent, the column's steps by the order's length, a
+   picture's and the scene's casts (a picture on its plate), the screen's own corner of controls.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

@@ -109,3 +109,36 @@ main.display > .display-cast > :is(.display-battle, .display-dice, .display-stor
 .display .primary-button {
   background-color: var(--ink-900);
 }
+
+/*
+ * The battlefield is the fold-out on the book's paper, as the DM's is (docs/adr/0075-book-interface.md
+ * §30): the fold down its middle, the order of turns a slip of that paper, and whom the table waits
+ * for — over the cast, outside it — a slip as well.
+ */
+.display .display-cast[data-surface='paper'] > .display-battle {
+  background:
+    linear-gradient(
+      to right,
+      transparent calc(50% - 3vmin),
+      rgb(43 32 21 / 0.1) calc(50% - 0.2vmin),
+      rgb(43 32 21 / 0.24) 50%,
+      rgb(255 250 238 / 0.3) calc(50% + 0.2vmin),
+      transparent calc(50% + 3vmin)
+    ),
+    var(--book-paper, none) 0 0 / 520px,
+    var(--page);
+}
+.display:has(> .display-cast[data-surface='paper']) > .display-waiting-strip {
+  --text: var(--page-ink);
+  --text-muted: var(--page-ink-muted);
+  --gold-bright: var(--rubric);
+  color: var(--page-ink);
+}
+.display:has(> .display-cast[data-surface='paper']) > .display-waiting-strip .display-waiting {
+  border-color: color-mix(in srgb, var(--page-ink) 55%, transparent);
+  border-radius: 0.5vmin;
+  background:
+    var(--book-paper, none) 0 0 / 520px,
+    var(--page);
+  box-shadow: 0 0.6vmin 2vmin rgb(0 0 0 / 0.35);
+}
