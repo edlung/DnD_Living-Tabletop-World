@@ -17,6 +17,8 @@ import { InvitationList, MemberList } from './players-lists.tsx';
 import { ShownLink } from './shown-link.tsx';
 import { TableLink } from './table-link.tsx';
 import { usePlayers, type Players } from './use-players.ts';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 /** How long a new link lasts: one day, the default three, or the longest a link may last. */
 const EXPIRY_HOURS = [24, DEFAULT_INVITATION_HOURS, MAX_INVITATION_HOURS] as const;
@@ -164,38 +166,26 @@ function Membership({
               void players.invite(chosen, hours);
             }}
           >
-            <div className="field">
-              <label htmlFor="invite-character">{t('Character')}</label>
-              <select
-                id="invite-character"
-                value={chosen.entityId}
-                onChange={(event) => {
-                  onCharacter(event.target.value);
-                }}
-              >
-                {free.map((character) => (
-                  <option key={character.entityId} value={character.entityId}>
-                    {character.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="field">
-              <label htmlFor="invite-expiry">{t('The link expires after')}</label>
-              <select
-                id="invite-expiry"
-                value={hours}
-                onChange={(event) => {
-                  onHours(Number(event.target.value));
-                }}
-              >
-                {EXPIRY_HOURS.map((choice) => (
-                  <option key={choice} value={choice}>
-                    {choice === 24 ? t('1 day') : choice === 168 ? t('7 days') : t('3 days')}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <HeroTiles
+              legend={t('Character')}
+              name="invite-character"
+              value={chosen.entityId}
+              heroes={free}
+              onChange={onCharacter}
+            />
+            <PickTiles
+              legend={t('The link expires after')}
+              name="invite-expiry"
+              value={String(hours)}
+              words
+              options={EXPIRY_HOURS.map((choice) => ({
+                value: String(choice),
+                label: choice === 24 ? t('1 day') : choice === 168 ? t('7 days') : t('3 days'),
+              }))}
+              onChange={(choice) => {
+                onHours(Number(choice));
+              }}
+            />
             <button type="submit" className="primary-button" disabled={players.working}>
               <Glyph name="link" />
               {t('Create invitation link')}

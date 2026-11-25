@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 const WORDS: Readonly<Record<Hazard, string>> = {
   cold: 'Extreme cold',
@@ -39,22 +40,18 @@ export function DmHazardControls({
           'Each hour every character makes a Constitution save — cold DC 10, heat DC 5 and 1 more each hour — or gains a level of Exhaustion.',
         )}
       </p>
+      <PickTiles
+        legend={t('Hazard')}
+        name={`${ids}-hazard`}
+        value={hazard}
+        options={HAZARDS.map((option) => ({
+          value: option,
+          label: t(WORDS[option]),
+          pick: `hazard-${option}`,
+        }))}
+        onChange={setHazard}
+      />
       <div className="hazard-row">
-        <label className="hazard-field">
-          <span>{t('Hazard')}</span>
-          <select
-            value={hazard}
-            onChange={(event) => {
-              setHazard(event.target.value as Hazard);
-            }}
-          >
-            {HAZARDS.map((option) => (
-              <option key={option} value={option}>
-                {t(WORDS[option])}
-              </option>
-            ))}
-          </select>
-        </label>
         <label className="hazard-field">
           <span>{t('Hours')}</span>
           <select

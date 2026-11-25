@@ -92,7 +92,8 @@ export async function chooseLocation(
   },
 ): Promise<void> {
   await openSheet(page, words.sheet);
-  await page.getByLabel(words.label, { exact: true }).selectOption(placeId);
+  // The list itself: «Make by hand» has a choice of the same word (a place to make).
+  await page.getByRole('combobox', { name: words.label, exact: true }).selectOption(placeId);
   await closeSheet(page, words.sheet);
 }
 

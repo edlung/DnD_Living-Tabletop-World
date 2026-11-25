@@ -67,9 +67,14 @@ label[data-pick][data-pick]:is(.pick-tile, .pick-row)::before {
 label[data-pick][data-pick].pick-tile > .pick-words {
   display: block;
   inline-size: 100%;
-  /* A word longer than its tile («преимуществом») breaks at a syllable, with a hyphen. */
-  hyphens: auto;
   overflow-wrap: break-word;
+}
+/*
+ * A word longer than its tile («преимуществом») breaks at a syllable, with a hyphen. Elsewhere
+ * words wrap between them only: a name or «Показывается» is never cut to fill a line.
+ */
+label[data-pick^='roll-'][data-pick^='roll-'].pick-tile > .pick-words {
+  hyphens: auto;
 }
 /*
  * The button is the tile: it lies over all of it — over a portrait in it too —, unseen, and takes
@@ -110,9 +115,49 @@ label[data-pick][data-pick]:is(.pick-tile, .pick-row):has(> input:disabled) {
   opacity: 0.45;
   cursor: default;
 }
-/* Three lines of words to a tile (who is surprised): a wider tile. */
-.surprise-choice .pick-tiles {
+/* Three lines of words to a tile (who is surprised, what to make): a wider tile. */
+:is(.surprise-choice, .make-choice) .pick-tiles {
   --tile-w: 108px;
+}
+
+/*
+ * A choice of words alone — a number of days or hours, a level, an ability, a size — is a row of
+ * stamped labels of the page; the chosen one is pressed in the rubric's red.
+ */
+label[data-pick][data-pick].pick-tile--words {
+  align-content: center;
+  inline-size: auto;
+  min-inline-size: 4.5rem;
+  min-block-size: 40px;
+  padding: 6px 12px;
+  border-color: color-mix(in srgb, var(--page-ink) 45%, transparent);
+  border-radius: 3px;
+  background: linear-gradient(rgb(255 252 242 / 0.7), rgb(236 222 190 / 0.4));
+  font-size: 0.95rem;
+}
+label[data-pick][data-pick].pick-tile--words::before {
+  content: none;
+}
+/* Words of two or three long ones to a tile: a wider tile where the page has the room. */
+.campaign-options .pick-tiles,
+.chat-options .pick-tiles:not(.hero-tiles) {
+  --tile-w: 104px;
+}
+/* Another character for a player: a face is a tile, not a line (`players.css` sets the label's). */
+.players-give .pick-tiles > label {
+  flex: none;
+  margin: 0;
+}
+/* A group of tiles keeps a line of its own among a form's fields. */
+:is(.toolbox-fields, .players-give) > .pick-tiles {
+  flex: 1 1 100%;
+}
+/* A chat line's whom and how: two groups side by side where they fit, one under the other where not. */
+.chat-compose .chat-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
 }
 
 /* A button that carries its vignette before its words. */

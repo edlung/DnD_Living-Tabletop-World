@@ -5,6 +5,7 @@ import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeSheet, openCharacter, openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The DM's editors without AI (Stage 680a, docs/adr/0058-campaign-content.md §1): the DM makes a
@@ -16,7 +17,7 @@ const expect = baseExpect.configure({ timeout: 15_000 });
 const CAMPAIGN = UI_PARTY_CAMPAIGNS.editors;
 
 async function choose(make: Locator, what: string) {
-  await make.getByLabel('What to make', { exact: true }).selectOption({ label: what });
+  await tile(make, 'What to make', what).check();
 }
 async function resolved(page: Page) {
   await expect(
@@ -36,7 +37,7 @@ test('the DM makes a mill, its miller, a goblin, a letter, a clue and lore by ha
 
   // A place in Ravenford.
   await make.getByLabel('Name', { exact: true }).fill('The Old Mill');
-  await make.getByLabel('Kind of place').selectOption({ label: 'A building' });
+  await tile(make, 'Kind of place', 'A building').check();
   await make.getByLabel('It lies in').selectOption({ label: 'Ravenford' });
   await make.getByRole('button', { name: 'Make the place' }).click();
   await resolved(dm);

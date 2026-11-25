@@ -12,6 +12,7 @@ import {
   joinAsDm,
   openInvitation,
 } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -60,9 +61,7 @@ test('a backstory is its player’s and the DM’s; a private note is its player
   const brann = await freshPage(browser);
   const brannReceived = collectBodies(brann);
   const players = dm.locator('#sheet-players');
-  await players
-    .getByLabel(words.character, { exact: true })
-    .selectOption({ label: 'Brann Ironvale' });
+  await tile(players, words.character, 'Brann Ironvale').check();
   await players.getByRole('button', { name: words.create, exact: true }).click();
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);

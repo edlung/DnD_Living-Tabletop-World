@@ -5,6 +5,8 @@ import { useId, useState } from 'react';
 import { diePicture, dieStyle, useBookTheme } from '../book-kit/materials.ts';
 import { FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 const MAX_PER_DIE = 10;
 const MAX_KINDS = 4;
@@ -139,30 +141,35 @@ export function RollBuilder({ characters }: { readonly characters: readonly Enti
             }}
           />
         </label>
-        <label className="dice-audience" htmlFor={`${ids}-audience`}>
-          <span>{t('Who sees it')}</span>
-          <select
-            id={`${ids}-audience`}
-            value={audience}
-            onChange={(event) => {
-              setAudience(event.target.value);
-            }}
-          >
-            <option value="table">{t('Everyone at the table')}</option>
-            {table.isDm ? (
-              <>
-                <option value="hidden">{t('Only me')}</option>
-                {characters.map((character) => (
-                  <option key={character.entityId} value={`to:${character.entityId}`}>
-                    {t('{name} and me', { name: character.name })}
-                  </option>
-                ))}
-              </>
-            ) : (
-              <option value="dm">{t('Only the DM and me')}</option>
-            )}
-          </select>
-        </label>
+        <div className="dice-audience">
+          {table.isDm ? (
+            <HeroTiles
+              legend={t('Who sees it')}
+              name={`${ids}-audience`}
+              value={audience.startsWith('to:') ? audience.slice(3) : audience}
+              heroes={characters}
+              first={[
+                { value: 'table', label: t('Everyone at the table'), pick: 'see-table' },
+                { value: 'hidden', label: t('Only me'), pick: 'see-hidden' },
+              ]}
+              wordsOf={(hero) => t('{name} and me', { name: hero.name })}
+              onChange={(value) => {
+                setAudience(value === 'table' || value === 'hidden' ? value : `to:${value}`);
+              }}
+            />
+          ) : (
+            <PickTiles
+              legend={t('Who sees it')}
+              name={`${ids}-audience`}
+              value={audience === 'dm' ? 'dm' : 'table'}
+              options={[
+                { value: 'table', label: t('Everyone at the table'), pick: 'see-table' },
+                { value: 'dm', label: t('Only the DM and me'), pick: 'see-dm' },
+              ]}
+              onChange={setAudience}
+            />
+          )}
+        </div>
       </div>
       {own && (
         <label className="dice-own">

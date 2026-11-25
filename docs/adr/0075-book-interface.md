@@ -728,6 +728,34 @@ closed controls; what opened from them and what scrolled was still the browser's
    lasts, a saving throw, what to create). They open as slips of paper now; turning each into
    tiles changes a form's controls and its journeys, and is not done here.
 
+### 29. The remaining choices drawn (2026-11-25)
+
+The fourth of the loose ends (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`), finishing what
+§25 began («стандартные формы … заменить сгенерированными значками где только можно»).
+
+1. **Whom a form is about is chosen by a face** everywhere it was still a list of names: the
+   character an invitation is for, another character for a player, who catches a contagion,
+   whom a chat line is for (everyone at the table before the faces), who sees a roll (everyone,
+   only me, then each hero "and me"). A form may put more than one drawn tile before the faces,
+   and a face may carry more words than the name (`book-kit/hero-tiles.tsx`).
+2. **A short fixed list is a row of vignettes**, thirty-four more drawn by Codex CLI in the same
+   engraved set (`pick-*`): what the table hears, what the DM makes by hand, what kind of place,
+   how a chat line is said, a creature's side, the road's hazard, and three of the campaign's
+   options (a new level's hit points, how levels come, carrying). Rain is the weather's own
+   picture.
+3. **A choice of numbers, hours or sizes is a row of words** — stamped labels of the page, the
+   chosen one in the rubric's red (`PickTiles`' `words`): how long an invitation lasts, how long
+   the table's link is open, a trap's tier, the save against a stress, the text's size (each word
+   set at the size it chooses).
+4. **What stays a list**: names of the world (a creature, a spell, a place, a check, a picture, a
+   trap, a contagion), numbers of more than a few (a level from 1 to 20, hours of rest), who runs
+   a creature (a compact control in each row of the Encounter page), and how dice move across a
+   screen. They open as slips of paper (§28).
+5. **Not changed**: every command and its values; each group's name and each option's word, so a
+   reader of the screen hears what a list said; the keyboard (the arrow keys within a group, Tab
+   between groups). A select wrapped in its label had read its chosen option into its own name
+   (the appendix's tier and contagion's who): a group's name is its legend alone now.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

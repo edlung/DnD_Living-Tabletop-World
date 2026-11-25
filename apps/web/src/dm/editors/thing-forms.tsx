@@ -5,13 +5,14 @@ import {
   type LocationType,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useState, type SubmitEvent } from 'react';
+import { useId, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../../api/client.ts';
 import { rejectionMessage } from '../../exploration/outcome-messages.ts';
 import { Field } from '../../session/account-forms.tsx';
 import type { DmTableCommand } from '../table-commands.ts';
 import { PLACE_KINDS, freshId } from './editor-words.ts';
+import { PickTiles } from '../../book-kit/pick.tsx';
 
 /** What every editor gets: the world the DM knows, whether a command runs, and a way to run one. */
 export interface EditorProps {
@@ -77,6 +78,7 @@ function useNamed() {
 /** A place: its name and words, its kind and the place it lies in. */
 export function PlaceForm({ directory, locked, onRun }: EditorProps) {
   const t = useT();
+  const kindName = useId();
   const named = useNamed();
   const [kind, setKind] = useState<LocationType>('site');
   const [parentId, setParentId] = useState('');
@@ -98,24 +100,18 @@ export function PlaceForm({ directory, locked, onRun }: EditorProps) {
   return (
     <form className="hand-form editor-form" noValidate onSubmit={submit}>
       {named.fields(t)}
+      <PickTiles
+        legend={t('Kind of place')}
+        name={kindName}
+        value={kind}
+        options={LOCATION_TYPES.map((one) => ({
+          value: one,
+          label: t(PLACE_KINDS[one]),
+          pick: `place-${one}`,
+        }))}
+        onChange={setKind}
+      />
       <div className="hand-row">
-        <Field label={t('Kind of place')}>
-          {(control) => (
-            <select
-              {...control}
-              value={kind}
-              onChange={(event) => {
-                setKind(event.target.value as LocationType);
-              }}
-            >
-              {LOCATION_TYPES.map((one) => (
-                <option key={one} value={one}>
-                  {t(PLACE_KINDS[one])}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
         <Field label={t('It lies in')}>
           {(control) => (
             <select

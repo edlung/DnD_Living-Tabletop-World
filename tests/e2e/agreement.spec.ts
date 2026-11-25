@@ -5,6 +5,7 @@ import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet, openTopMenu } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -124,7 +125,7 @@ test('the DM writes the agreement; a player reads it, agrees, and asks for a pau
   // "Tell the DM privately" opens the chat with the DM chosen.
   await guide.getByRole('button', { name: 'Tell the DM privately', exact: true }).click();
   await expect(guide).toBeHidden();
-  await expect(player.locator('#sheet-chat').getByLabel('To', { exact: true })).toHaveValue('dm');
+  await expect(tile(player.locator('#sheet-chat'), 'To', 'Only the DM')).toBeChecked();
 
   // The guide's pages for the DM are the DM's alone.
   await openTopMenu(dm);

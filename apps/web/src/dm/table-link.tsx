@@ -12,6 +12,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { formatWhen } from './players.ts';
 import { ShownLink } from './shown-link.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 /**
  * The table's join link in the DM's Players sheet (docs/adr/0042-table-display.md §5): open for a
@@ -106,22 +107,19 @@ export function TableLink({ api, round }: { readonly api: WorldApi; readonly rou
         </>
       ) : (
         <div className="players-form">
-          <div className="field">
-            <label htmlFor={`${id}-hours`}>{t('Open for')}</label>
-            <select
-              id={`${id}-hours`}
-              value={hours}
-              onChange={(event) => {
-                setHours(Number(event.target.value));
-              }}
-            >
-              {HOURS.map((choice) => (
-                <option key={choice} value={choice}>
-                  {t('{count} hours', { count: choice })}
-                </option>
-              ))}
-            </select>
-          </div>
+          <PickTiles
+            legend={t('Open for')}
+            name={`${id}-hours`}
+            value={String(hours)}
+            words
+            options={HOURS.map((choice) => ({
+              value: String(choice),
+              label: t('{count} hours', { count: choice }),
+            }))}
+            onChange={(choice) => {
+              setHours(Number(choice));
+            }}
+          />
           <button
             className="primary-button"
             disabled={busy}

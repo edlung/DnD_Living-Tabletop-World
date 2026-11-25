@@ -5,6 +5,7 @@ import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeSheet, dockButton, openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The table's chat (docs/adr/0044-online-play.md §1, Stage 630): a player speaks to the table as
@@ -18,8 +19,8 @@ const chat = (page: Page) => page.locator('#sheet-chat');
 const logOf = (page: Page) => chat(page).getByRole('list', { name: 'The table’s talk and rolls' });
 
 async function say(page: Page, text: string, to: string, as: string): Promise<void> {
-  await chat(page).getByLabel('To', { exact: true }).selectOption({ label: to });
-  await chat(page).getByLabel('As', { exact: true }).selectOption({ label: as });
+  await tile(chat(page), 'To', to).check();
+  await tile(chat(page), 'As', as).check();
   await chat(page).getByLabel('Message', { exact: true }).fill(text);
   await chat(page).getByLabel('Message', { exact: true }).press('Enter');
 }
@@ -56,7 +57,7 @@ test('the table talks, whispers to the DM, and the DM answers one player', async
   await say(
     dm,
     'You notice a faint smell of bitter almonds.',
-    'Only Elowen Starwhisper',
+    'Elowen Starwhisper',
     'Out of character',
   );
   await expect(logOf(player)).toContainText('You notice a faint smell of bitter almonds.');

@@ -4,6 +4,7 @@ import { expectAccessible } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeCharacter, openCharacter, openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The campaign's options (docs/adr/0056-characters-from-the-srd.md §3): on the Session sheet the
@@ -26,18 +27,14 @@ async function setOptions(
   },
 ) {
   const form = page.locator('#sheet-settings').getByRole('region', { name: words.region });
-  await form
-    .getByLabel(words.hitPoints[0], { exact: true })
-    .selectOption({ label: words.hitPoints[1] });
-  await form.getByLabel(words.levels[0], { exact: true }).selectOption({ label: words.levels[1] });
-  await form
-    .getByLabel(words.carrying[0], { exact: true })
-    .selectOption({ label: words.carrying[1] });
+  await tile(form, words.hitPoints[0], words.hitPoints[1]).check();
+  await tile(form, words.levels[0], words.levels[1]).check();
+  await tile(form, words.carrying[0], words.carrying[1]).check();
   await form.getByLabel(words.start, { exact: true }).selectOption('3');
   await form.getByRole('button', { name: words.save }).click();
   // Read back from the World Engine: the saved set is the form's start, nothing left to save.
   await expect(form.getByRole('button', { name: words.save })).toBeDisabled();
-  await expect(form.getByLabel(words.levels[0], { exact: true })).toHaveValue('milestone');
+  await expect(tile(form, words.levels[0], words.levels[1])).toBeChecked();
   return form;
 }
 

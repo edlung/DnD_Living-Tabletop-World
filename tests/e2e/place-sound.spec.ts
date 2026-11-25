@@ -4,6 +4,7 @@ import { expectAccessible } from './support/axe.ts';
 import { closePages, freshPage } from './support/pages.ts';
 import { openSheet } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -76,9 +77,9 @@ test('showing a place switches its sound on, and the DM’s choice still stands 
 
   // Session shows what plays, and the DM changes it there as before.
   await openSheet(dm, 'Session');
-  const choice = dm.locator('#sheet-session').getByLabel('The table’s sound', { exact: true });
-  await expect(choice).toHaveValue('rain', LIVE);
-  await choice.selectOption({ label: 'No sound' });
+  const session = dm.locator('#sheet-session');
+  await expect(tile(session, 'The table’s sound', 'Rain')).toBeChecked(LIVE);
+  await tile(session, 'The table’s sound', 'No sound').check();
   await expect(sound(tv)).toHaveAttribute('data-ambience', 'none', LIVE);
 
   // A place without a sound of its own leaves the table's sound alone.

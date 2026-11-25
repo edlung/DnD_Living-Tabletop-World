@@ -14,6 +14,7 @@ import {
   joinPath,
   openInvitation,
 } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The ritual's checkpoint (docs/MEMORY_RITUAL_PLAN.md, Stage 760; ADR 0071 §1–4): one evening from
@@ -93,9 +94,7 @@ test('one evening from the agreement to “Previously…”, on every screen', a
   const brannReceived = collectBodies(brann);
   // The second link, not the first still standing in the field.
   const players = dm.locator('#sheet-players');
-  await players
-    .getByLabel(words.character, { exact: true })
-    .selectOption({ label: 'Brann Ironvale' });
+  await tile(players, words.character, 'Brann Ironvale').check();
   await players.getByRole('button', { name: words.create, exact: true }).click();
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);

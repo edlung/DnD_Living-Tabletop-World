@@ -12,6 +12,7 @@ import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { CARRYING_WORDS, HIT_POINT_WORDS, LEVEL_WORDS, OPTION_KEYS } from './option-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 const LEVELS = Array.from({ length: 20 }, (_, index) => index + 1);
 const HELPERS = Array.from({ length: MAX_CRAFT_HELPERS }, (_, index) => index + 1);
@@ -55,68 +56,63 @@ export function CampaignOptionsForm({
           if (changed) onRun({ type: 'SetCampaignOptions', options: draft });
         }}
       >
-        <Field
-          label={t('Hit points at a new level')}
-          hint={t('Fixed: the class’s fixed value. Rolled: the World Engine rolls the Hit Die.')}
-        >
-          {(control) => (
-            <select
-              {...control}
-              value={draft.hitPointsAtLevel}
-              onChange={(event) => {
-                set({
-                  hitPointsAtLevel: event.target.value as CampaignOptions['hitPointsAtLevel'],
-                });
-              }}
-            >
-              {HIT_POINTS_AT_LEVEL.map((value) => (
-                <option key={value} value={value}>
-                  {t(HIT_POINT_WORDS[value])}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
-        <Field
-          label={t('Levels')}
-          hint={t('By milestone the DM grants each level, and no experience is counted.')}
-        >
-          {(control) => (
-            <select
-              {...control}
-              value={draft.levelsBy}
-              onChange={(event) => {
-                set({ levelsBy: event.target.value as CampaignOptions['levelsBy'] });
-              }}
-            >
-              {LEVELS_BY.map((value) => (
-                <option key={value} value={value}>
-                  {t(LEVEL_WORDS[value])}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
-        <Field
-          label={t('Carrying')}
-          hint={t('Enforced: past what Strength carries, Speed is 5 ft; past twice that, 0.')}
-        >
-          {(control) => (
-            <select
-              {...control}
-              value={draft.carrying}
-              onChange={(event) => {
-                set({ carrying: event.target.value as CampaignOptions['carrying'] });
-              }}
-            >
-              {CARRYING.map((value) => (
-                <option key={value} value={value}>
-                  {t(CARRYING_WORDS[value])}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
+        <div className="account-field">
+          <PickTiles
+            legend={t('Hit points at a new level')}
+            name={`${ids}-hit-points`}
+            value={draft.hitPointsAtLevel}
+            describedBy={`${ids}-hit-points-hint`}
+            options={HIT_POINTS_AT_LEVEL.map((value) => ({
+              value,
+              label: t(HIT_POINT_WORDS[value]),
+              pick: `hp-level-${value}`,
+            }))}
+            onChange={(hitPointsAtLevel) => {
+              set({ hitPointsAtLevel });
+            }}
+          />
+          <p id={`${ids}-hit-points-hint`} className="fine-print">
+            {t('Fixed: the class’s fixed value. Rolled: the World Engine rolls the Hit Die.')}
+          </p>
+        </div>
+        <div className="account-field">
+          <PickTiles
+            legend={t('Levels')}
+            name={`${ids}-levels`}
+            value={draft.levelsBy}
+            describedBy={`${ids}-levels-hint`}
+            options={LEVELS_BY.map((value) => ({
+              value,
+              label: t(LEVEL_WORDS[value]),
+              pick: `levels-${value}`,
+            }))}
+            onChange={(levelsBy) => {
+              set({ levelsBy });
+            }}
+          />
+          <p id={`${ids}-levels-hint`} className="fine-print">
+            {t('By milestone the DM grants each level, and no experience is counted.')}
+          </p>
+        </div>
+        <div className="account-field">
+          <PickTiles
+            legend={t('Carrying')}
+            name={`${ids}-carrying`}
+            value={draft.carrying}
+            describedBy={`${ids}-carrying-hint`}
+            options={CARRYING.map((value) => ({
+              value,
+              label: t(CARRYING_WORDS[value]),
+              pick: `carrying-${value}`,
+            }))}
+            onChange={(carrying) => {
+              set({ carrying });
+            }}
+          />
+          <p id={`${ids}-carrying-hint`} className="fine-print">
+            {t('Enforced: past what Strength carries, Speed is 5 ft; past twice that, 0.')}
+          </p>
+        </div>
         <Field
           label={t('New characters start at level')}
           hint={t('A character who joins later starts at the party’s level.')}

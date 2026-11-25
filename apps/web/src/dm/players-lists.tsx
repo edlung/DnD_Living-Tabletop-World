@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Glyph } from '../visual/glyph.tsx';
 import { formatWhen, freeCharacters, nameOf, splitInvitations } from './players.ts';
 import type { Players } from './use-players.ts';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
 
 /**
  * The players at the table: each character with a player, whether that player is signed in
@@ -108,21 +109,13 @@ function MemberRow({
       )}
       {free.length > 0 && (
         <div className="players-give">
-          <label htmlFor={`${ids}-give`}>{t('Another character for this player')}</label>
-          <select
-            id={`${ids}-give`}
+          <HeroTiles
+            legend={t('Another character for this player')}
+            name={`${ids}-give`}
             value={given}
-            onChange={(event) => {
-              setGiven(event.target.value);
-            }}
-          >
-            <option value="">{t('Choose a character')}</option>
-            {free.map((character) => (
-              <option key={character.entityId} value={character.entityId}>
-                {character.name}
-              </option>
-            ))}
-          </select>
+            heroes={free}
+            onChange={setGiven}
+          />
           <button
             type="button"
             disabled={given === '' || players.working}

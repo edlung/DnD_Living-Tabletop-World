@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { tile } from '../e2e/support/choices.ts';
 import { WORDS, accessState, takeSeat } from '../e2e/support/sign-in.ts';
 import {
   chooseLocation,
@@ -104,7 +105,8 @@ test('the review campaign in Russian browsers, through Caddy', async ({ browser 
       // half-way may have left a player in Elowen's seat: the DM frees it first.
       await expect(sheet.getByRole('region', { name: ru.members })).toBeVisible();
       if ((await seat.count()) > 0) await revoke(dm);
-      await sheet.getByLabel(ru.character, { exact: true }).selectOption({ label: ELOWEN });
+      // The character is a face among the free heroes' (docs/adr/0075-book-interface.md §29).
+      await tile(sheet, ru.character, ELOWEN).check();
       await sheet.getByRole('button', { name: ru.create, exact: true }).click();
       const field = sheet.getByLabel(ru.link, { exact: true });
       await expect(field).toBeVisible();

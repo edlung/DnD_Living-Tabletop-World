@@ -14,6 +14,7 @@ import {
   joinPath,
   openInvitation,
 } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The close of Part 2 (docs/MEMORY_RITUAL_PLAN.md, Stage 799; ADR 0072 §1–3): a campaign's last
@@ -92,7 +93,7 @@ test('a last evening, the campaign’s end and its book, on every screen', async
   const brannReceived = collectBodies(brann);
   // The second link, not the first still standing in the field.
   const players = dm.locator('#sheet-players');
-  await players.getByLabel(words.character, { exact: true }).selectOption({ label: BRANN });
+  await tile(players, words.character, BRANN).check();
   await players.getByRole('button', { name: words.create, exact: true }).click();
   const field = players.getByLabel(words.link, { exact: true });
   await expect(field).not.toHaveValue(first, LIVE);
@@ -110,7 +111,7 @@ test('a last evening, the campaign’s end and its book, on every screen', async
   await openSheet(elowen, 'Dice');
   const dice = elowen.locator('#sheet-dice');
   await dice.getByText('This screen: sound, motion, text size', { exact: true }).click();
-  await dice.getByLabel('Text size', { exact: true }).selectOption({ label: 'Largest' });
+  await tile(dice, 'Text size', 'Largest').check();
   await expect(elowen.locator('html')).toHaveAttribute('data-text-size', 'larger');
   await expect(brann.locator('html')).not.toHaveAttribute('data-text-size');
   await expect(tv.locator('html')).not.toHaveAttribute('data-text-size');
