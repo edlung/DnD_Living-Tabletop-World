@@ -268,6 +268,7 @@ registerRussian({
   '{name} · connected': '{name} · на связи',
   '{name} · not connected': '{name} · нет на связи',
   'Your turn': 'Ваш ход',
+  'Taking the turn': 'Ходит',
   "{name}'s turn": 'Ходит: {name}',
   'Your reaction is needed': 'Нужна ваша реакция',
 

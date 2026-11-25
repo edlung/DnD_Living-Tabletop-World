@@ -1,0 +1,310 @@
+/*
+ * The fight as the concept draws it, its corners and its slips (docs/adr/0075-book-interface.md
+ * §31; the sheet itself is `fight-concept.css`): the fold's handle at the upper left, ending the
+ * fight a paper tag at the lower left, the d20 in its felt tray at the lower right, and the slip
+ * of the turn beside the figure whose turn it is (`combat/sheet-anchors.ts`).
+ */
+@media (min-width: 701px) and (min-height: 501px) {
+  /* --- The corners: the fold's handle at the upper left; what is said apart. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .stage-switch {
+    top: calc(var(--rim) + 16px);
+    right: auto;
+    left: calc(var(--rim) + 14px);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .turn-banner--yours {
+    inline-size: 1px;
+    min-inline-size: 0;
+    max-inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .fight-quiet {
+    top: auto;
+    bottom: calc(var(--rim) + 14px);
+    left: calc(var(--rim) + 14px);
+  }
+  /* Ending the fight: a paper tag at the lower left. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn-end {
+    position: absolute;
+    bottom: calc(var(--rim) + 14px);
+    left: calc(var(--rim) + 14px);
+    z-index: 34;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    max-inline-size: min(420px, 60%);
+    padding: 6px 8px;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 45%, transparent);
+    border-radius: 4px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: 0 3px 10px rgb(43 32 21 / 0.4);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn-end
+    button {
+    min-height: 44px;
+    padding-inline: 1rem;
+    font-size: 1.05rem;
+  }
+  /* The d20 in its felt tray at the lower right. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-foot {
+    display: flex;
+    right: calc(var(--parts-w) + 18px);
+    bottom: calc(var(--rim) + 14px);
+    left: auto;
+    inline-size: auto;
+    block-size: auto;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background:
+      linear-gradient(rgb(0 0 0 / 0.2), rgb(0 0 0 / 0.2)),
+      var(--book-tray, none) center / cover,
+      var(--ink-900);
+    box-shadow:
+      inset 0 0 0 2px color-mix(in srgb, var(--gold) 70%, transparent),
+      inset 0 0 14px rgb(0 0 0 / 0.6),
+      0 4px 12px rgb(0 0 0 / 0.45);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-foot
+    > :not(.book-foot-dice),
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-foot-dice
+    > li:not([data-sides='20']) {
+    display: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-foot
+    .book-die {
+    min-inline-size: 92px;
+    min-block-size: 92px;
+    font-size: 1.1rem;
+  }
+
+  /*
+   * --- The slip of the turn (`combat/sheet-anchors.ts`): beside whoever's turn it is, below the
+   * board's own tools, clear of every figure where a side has room. Without an anchor it lies at
+   * the sheet's foot, above the corner tags. The card of what is chosen keeps the map's far edge
+   * (`fight-whole.css`).
+   */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .turn-tray {
+    inset: auto auto calc(var(--rim) + 74px) 50%;
+    inline-size: max-content;
+    max-inline-size: min(380px, 46%);
+    margin: 0;
+    translate: -50% 0;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn
+    .dm-turn-now {
+    display: grid;
+    flex: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn
+    .dm-turn-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: 6px;
+  }
+  /* Beside the figure whose turn it is, where `combat/sheet-anchors.ts` found it room. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle[data-actor-slip]
+    > .dm-turn,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle[data-actor-slip]
+    .turn-tray {
+    inset: var(--slip-y) auto auto var(--slip-x);
+    translate: none;
+  }
+  /*
+   * The slip lies on the map, as the concept lays it: its paper lets a press through to the square
+   * under it, and only its own controls take one — no square is out of reach for being beside the
+   * figure whose turn it is.
+   */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .turn-tray {
+    pointer-events: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .dm-turn
+    :is(button, a, input, select, label, details, summary),
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .turn-tray
+    :is(button, a, input, select, label, details, summary, .tray-warning) {
+    pointer-events: auto;
+  }
+  /* A player's ways to act: two to a line, as on the concept's slip. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .turn-tray
+    .tray-row {
+    flex-wrap: wrap;
+    overflow: visible;
+    mask-image: none;
+  }
+
+  /* A result lies on the sheet's foot line, between the left corner's tags and the d20's tray. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    > .outcome {
+    right: auto;
+    bottom: calc(var(--rim) + 14px);
+    left: calc(var(--rim) + 354px);
+    width: clamp(200px, calc(100% - var(--rim) - 354px - var(--parts-w) - 150px), 420px);
+    translate: none;
+  }
+  /* Who is at the table, in a wide window's margin: above the d20's tray. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .scene
+    > .party-rail {
+    bottom: calc(var(--rim) + 14px + 128px);
+  }
+  /* Cards under the map (a tall window) stop above the corner tags and the d20's tray. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='below']
+    .combat-side,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='below']:not([data-legend])
+    .combat-side:has(> .board-legend):not(:has(.legend-window)) {
+    height: calc(var(--board-spare) - 14px - 132px);
+    margin-bottom: 132px;
+  }
+}
+
+@media (min-width: 701px) and (min-height: 501px) {
+  /*
+   * What the table asks (a check, a rest, the evening not begun) lies at the sheet's foot between
+   * its corner pieces, not over the map's figures.
+   */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .rest-banner-slot {
+    top: auto;
+    bottom: calc(var(--rim) + 14px);
+    left: 50%;
+    max-width: max(240px, calc(100% - 2 * var(--parts-w) - 360px));
+    translate: -50% 0;
+  }
+}
+
+/* A window under 900 px: the fold's handle keeps its marks, its words are its names, for anyone. */
+@media (min-width: 701px) and (max-width: 899px) and (min-height: 501px) {
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .stage-switch
+    button {
+    gap: 0;
+    padding-inline: 0.7rem;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .stage-switch
+    .stage-switch-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 701px) and (min-height: 501px) {
+  /* The margin's cards end above who is at the table, which stands above the d20's tray. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='beside']
+    .combat-side {
+    max-height: calc(100% - var(--active-h, 0px) - 10px - 164px - 128px);
+  }
+  /*
+   * Under the map a card is half the sheet: its face and name above, its figures across the card,
+   * so «Класс доспеха» never runs into «Скорость».
+   */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='below']
+    .active-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='below']
+    .active-card
+    > .active-header {
+    grid-row: auto;
+  }
+}
+
+/*
+ * A margin under 1000 px tall holds the card and who is at the table above the d20's tray, not
+ * how to read the board as well: that waits behind the board's tool, as on a shorter margin.
+ */
+@media (min-width: 701px) and (min-height: 800px) and (max-height: 999px) {
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='beside']
+    .board-read {
+    display: inline-flex;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel[data-spare='beside']:not([data-legend])
+    .combat-side:has(> .board-legend):not(:has(.legend-window)) {
+    display: none;
+  }
+}
+
+@media (min-width: 701px) and (min-height: 501px) {
+  /*
+   * While the DM paints the ground or carries a figure, the slips on the map step out of sight:
+   * no square is out of reach for lying under one. They come back when the brush is put down.
+   */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle:has(.board-square:is(.is-paintable, .is-drop-target))
+    > :is(.dm-turn, .dm-turn-end),
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle:has(.board-square:is(.is-paintable, .is-drop-target))
+    .turn-tray {
+    visibility: hidden;
+  }
+}

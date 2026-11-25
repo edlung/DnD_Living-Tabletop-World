@@ -79,7 +79,15 @@ export async function shownPoint(target: Locator): Promise<{ x: number; y: numbe
   });
   if (!point) {
     const name = (await target.getAttribute('aria-label')) ?? 'The square';
-    throw new Error(`${name} shows nowhere to point at`);
+    // What lies over its middle, so a failure says what covers it.
+    const over = await target.evaluate((button) => {
+      const box = button.getBoundingClientRect();
+      const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+      return hit
+        ? `${hit.tagName.toLowerCase()} «${(hit.getAttribute('aria-label') ?? hit.textContent).trim().slice(0, 40)}»`
+        : 'nothing';
+    });
+    throw new Error(`${name} shows nowhere to point at (${over} lies over it)`);
   }
   return point;
 }

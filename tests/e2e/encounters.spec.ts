@@ -133,7 +133,6 @@ test('the DM builds, saves and starts an encounter, then sets its foes down', as
   await expect(square(page, 15, 2)).toHaveAccessibleName(/Goblin Warrior 2/);
   const grip = await plate(page, 'Goblin Warrior 2').boundingBox();
   if (!grip) throw new Error('no plate');
-  const to = await shownPoint(square(page, 9, 8));
   const placed = page.waitForResponse(
     (response) =>
       new URL(response.url()).pathname.endsWith('/commands') &&
@@ -141,6 +140,9 @@ test('the DM builds, saves and starts an encounter, then sets its foes down', as
   );
   await page.mouse.move(grip.x + grip.width / 2, grip.y + grip.height / 2);
   await page.mouse.down();
+  // Carried, the figure lets the map show through the slips on it (ADR 0075 §31).
+  await page.mouse.move(grip.x + grip.width / 2 - 20, grip.y + grip.height / 2 + 20, { steps: 4 });
+  const to = await shownPoint(square(page, 9, 8));
   await page.mouse.move(to.x, to.y, { steps: 12 });
   await page.mouse.up();
   expect(((await (await placed).json()) as { status: string }).status).toBe('accepted');

@@ -12,6 +12,7 @@ import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Board } from './board/board.tsx';
 import type { BoardView } from './board/board-view.ts';
 import { ActiveCard } from './hud/active-card.tsx';
+import { useSheetAnchors } from './sheet-anchors.ts';
 import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
@@ -118,6 +119,12 @@ export function CombatPanel({
     focus?.kind === 'combatant'
       ? (encounter.combatants.find((entry) => entry.entity.entityId === focus.id) ?? null)
       : null;
+  // The slip of the turn lies beside whose turn it is (ADR 0075 §31).
+  useSheetAnchors(
+    section,
+    encounter,
+    focus?.kind === 'square' ? focus.square : (picked?.position ?? null),
+  );
   // The ways to a chosen square (docs/adr/0049-space-and-movement.md §5–8); the first is drawn.
   const moves =
     focus?.kind === 'square' && moverId !== null

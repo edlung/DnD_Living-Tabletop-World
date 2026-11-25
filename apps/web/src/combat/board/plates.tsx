@@ -67,6 +67,7 @@ export function BoardPlates({
             <span
               key={combatant.entity.entityId}
               className={`board-plate board-plate--${anchor.edge} token--${combatant.side}${onPress ? ' is-draggable' : ''}`}
+              data-entity={combatant.entity.entityId}
               style={style}
               onClick={() => {
                 onPick(combatant.position);

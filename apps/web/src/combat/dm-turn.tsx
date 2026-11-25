@@ -89,73 +89,83 @@ export function DmTurn({
   };
   if (covered) return null;
   return (
-    <section
-      ref={slip}
-      className="dm-turn"
-      aria-label={t('The DM’s turn slip')}
-      data-surface="paper"
-    >
-      <div className="dm-turn-now">
-        <p className="dm-turn-who">
-          <Glyph name="encounter" />
-          <span>{t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) })}</span>
-        </p>
-        {window && (
-          <DmReactionWindow encounter={encounter} window={window} locked={locked} onRun={onRun} />
-        )}
-        {!window && suggestion && (
-          <p className="dm-turn-suggested">
-            <strong>{t('Suggested turn:')}</strong>{' '}
-            {language === 'en' ? suggestion.explanation : suggestionWords(t, suggestion, labelOf)}
+    <>
+      <section
+        ref={slip}
+        className="dm-turn"
+        aria-label={t('The DM’s turn slip')}
+        data-surface="paper"
+      >
+        <div className="dm-turn-now">
+          <p className="dm-turn-who">
+            <Glyph name="encounter" />
+            <span>{t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) })}</span>
           </p>
-        )}
-        {heroes.map((hero) => {
-          const present = connected(hero.characterId);
-          // Shown for information only: whether a player is away is the DM's call (ADR 0033 §6).
-          if (present === undefined) return null;
-          return (
-            <p key={hero.characterId} className="dm-turn-hero">
-              <span className={`stand-in-dot${present ? ' is-present' : ''}`} aria-hidden="true" />
-              <span>
-                {hero.current ? '' : `${hero.name} · `}
-                {present ? t('Player connected') : t('Player not connected')}
-              </span>
+          {window && (
+            <DmReactionWindow encounter={encounter} window={window} locked={locked} onRun={onRun} />
+          )}
+          {!window && suggestion && (
+            <p className="dm-turn-suggested">
+              <strong>{t('Suggested turn:')}</strong>{' '}
+              {language === 'en' ? suggestion.explanation : suggestionWords(t, suggestion, labelOf)}
             </p>
-          );
-        })}
-      </div>
-      <div className="dm-turn-actions">
-        {!window && suggestion && (
-          <button
-            type="button"
-            className="primary-button"
-            disabled={locked}
-            onClick={() => {
-              onRun({ kind: 'command', command: suggestion.command });
-            }}
-          >
-            {t('Make this move')}
+          )}
+          {heroes.map((hero) => {
+            const present = connected(hero.characterId);
+            // Shown for information only: whether a player is away is the DM's call (ADR 0033 §6).
+            if (present === undefined) return null;
+            return (
+              <p key={hero.characterId} className="dm-turn-hero">
+                <span
+                  className={`stand-in-dot${present ? ' is-present' : ''}`}
+                  aria-hidden="true"
+                />
+                <span>
+                  {hero.current ? '' : `${hero.name} · `}
+                  {present ? t('Player connected') : t('Player not connected')}
+                </span>
+              </p>
+            );
+          })}
+        </div>
+        <div className="dm-turn-actions">
+          {!window && suggestion && (
+            <button
+              type="button"
+              className="primary-button"
+              disabled={locked}
+              onClick={() => {
+                onRun({ kind: 'command', command: suggestion.command });
+              }}
+            >
+              {t('Make this move')}
+            </button>
+          )}
+          {heroes.map((hero) => (
+            <button
+              key={hero.characterId}
+              type="button"
+              className={hero.current ? 'primary-button' : undefined}
+              disabled={locked}
+              onClick={() => {
+                act(hero.characterId, hero.name);
+              }}
+            >
+              <Glyph name="perform" />
+              {/* Whose turn it is stands at the slip's head: the button need not name them again. */}
+              {hero.current
+                ? t('Take the hero’s turn')
+                : t('Answer for {name}', { name: hero.name })}
+            </button>
+          ))}
+          <button type="button" onClick={onWhole}>
+            {t('The whole Encounter page')}
+            <Glyph name="chevron-right" />
           </button>
-        )}
-        {heroes.map((hero) => (
-          <button
-            key={hero.characterId}
-            type="button"
-            className={hero.current ? 'primary-button' : undefined}
-            disabled={locked}
-            onClick={() => {
-              act(hero.characterId, hero.name);
-            }}
-          >
-            <Glyph name="perform" />
-            {/* Whose turn it is stands at the slip's head: the button need not name them again. */}
-            {hero.current ? t('Take the hero’s turn') : t('Answer for {name}', { name: hero.name })}
-          </button>
-        ))}
-        <button type="button" onClick={onWhole}>
-          {t('The whole Encounter page')}
-          <Glyph name="chevron-right" />
-        </button>
+        </div>
+      </section>
+      {/* Ending the fight is a tag at the sheet's lower corner, apart from the turn (ADR 0075 §31). */}
+      <div className="dm-turn-end" data-surface="paper">
         {ending ? (
           <span className="dm-turn-ending" role="group" aria-labelledby={question}>
             <span id={question}>{t('End the fight for everyone?')}</span>
@@ -195,6 +205,6 @@ export function DmTurn({
           </button>
         )}
       </div>
-    </section>
+    </>
   );
 }

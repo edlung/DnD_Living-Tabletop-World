@@ -33,9 +33,24 @@ export async function revealDockButton(page: Page, name: string): Promise<Locato
   await dockSettled(page);
   const button = dockButton(page, name);
   await expect(button).toBeAttached();
+  // On the fight's sheet the Scene's own tabs step aside (docs/adr/0075-book-interface.md §31):
+  // the DM's slip leads to the whole Encounter page, as the DM goes there.
+  const whole = page.getByRole('button', { name: /^(The whole Encounter page|Вся схватка)$/ });
+  if (
+    /^(Encounter|Схватка)$/.test(name) &&
+    !(await button.isVisible()) &&
+    (await whole.isVisible())
+  ) {
+    return whole;
+  }
   if (!(await button.isVisible())) {
     const part = await button.getAttribute('data-part');
     await page.locator(`nav.book-parts button[data-part="${part ?? ''}"]`).click();
+    // The part opened on the fight's sheet, where the slip is the way to the Encounter page.
+    if (/^(Encounter|Схватка)$/.test(name)) {
+      await expect(button.or(whole).first()).toBeVisible();
+      if (!(await button.isVisible())) return whole;
+    }
   }
   await expect(button).toBeVisible();
   return button;
