@@ -365,6 +365,37 @@ Scene is the spread the game is run from. It amends §5 for the DM's perspective
    someone of an assembled book has no "By the book": that book holds only the world's own
    description of them, which the card shows.
 
+### 17. The fight run from the map (Stage 1160)
+
+The owner's word of 2026-11-25 (`docs/BOOK_SECOND_PASS_PLAN.md`): the field and the actions
+together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
+
+1. **A tablet's fight is a fold-out too.** From 768 px wide and 501 px tall the fight lies on the
+   book's paper and fits the page: the order of turns at the head with the fold's handle at its
+   end, the map as large as its squares go, the active combatant and the chosen card in the right
+   margin, the tray or the DM's slip at the foot. The stage does not scroll. The place's card and
+   who is at the table step aside for the map; whose turn it is is said in the order of turns,
+   and apart only to the one it calls. §6.1's "narrower … over the dark stage" is a phone's now.
+2. **The DM's turn is a slip at the map's foot**, where a player's tray is: whose turn it is and
+   what the DM does about it — a creature's suggested turn, a hero's turn, a reaction that waits —
+   with "End the fight" and the way to the whole Encounter page. It adds no command: each is one
+   the Encounter page had, which keeps the turn order's tools, the light and what joins a fight.
+3. **A hero's turn taken from the map ends with it.** The DM acts in that character's own view
+   (ADR 0033 §6 stands: the screen shows exactly what the character sees), and when the character
+   has nothing more to do now the DM's own view comes back by itself. Such a turn asks no reason:
+   it is kept in the DM's history as "a turn taken from the map" (the reason "other" with that
+   note). Standing in for a player with a reason — absent, asked — stays on the Encounter page and
+   lasts until "Stop acting".
+4. **A hero nobody plays is the DM's to run.** The server keeps a reason only for a character who
+   has a player (`dm-routes.ts`: "anyone else the DM simply runs") and answers 422; the client
+   goes on with the command there. Before, it refused the turn, and a table with no player's
+   device could not play a hero's turn.
+5. **A creature's suggested turn is said in the table's language** from the suggestion's own
+   command (attack whom, a spell at whom, a move toward the nearest foe, the end of the turn); the
+   server's sentence, English only, is shown to an English table.
+6. **A result and the slip do not cover each other**: the result lies above the slip, and on a
+   wide screen the map ends above it (the slip's height is kept, `--turn-h`).
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

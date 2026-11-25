@@ -11,6 +11,7 @@ import { holdBook } from '../book/told.ts';
 import { useDmBook } from '../book/use-book.ts';
 import { WorkSpread } from '../book/work-spread.tsx';
 import { DmCombatControls } from '../combat/dm-controls.tsx';
+import { DmTurn } from '../combat/dm-turn.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { ImagesSheet } from '../images/images-sheet.tsx';
@@ -127,6 +128,20 @@ export function DmSheets({
         onRun={onRun}
         onEntity={onShowEntity}
       />
+      {/* A fight is run from the map: the DM's turn at its foot (ADR 0075 §17). */}
+      {place?.encounter && (
+        <DmTurn
+          api={api}
+          encounter={place.encounter}
+          covered={shell.sheet !== null}
+          locked={locked}
+          onRun={onRun}
+          onActAs={onActAs}
+          onWhole={() => {
+            shell.openSheet('encounter');
+          }}
+        />
+      )}
       <Sheet
         id="party"
         title={t('Party (DM)')}

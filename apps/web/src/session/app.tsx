@@ -18,7 +18,7 @@ import { REPORT_NOTE } from '../report/broken-page.tsx';
 import { reportError, reportPage, reportSender } from '../report/reporter.ts';
 import { LiveActiveContext, LiveRefreshContext, LiveTargetContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
-import type { StandIn } from '../combat/stand-in.ts';
+import { ActingContext, type StandIn } from '../combat/stand-in.ts';
 import { TopBar } from '../shell/top-bar.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
 import { RulesApiContext } from '../rules/reference-data.ts';
@@ -394,6 +394,10 @@ function SessionShell({
     identity.role === 'DM' && standIn !== null && perspective === `CHARACTER:${standIn.characterId}`
       ? standIn
       : null;
+  const acting = useMemo(
+    () => (actingAs ? { standIn: actingAs, stop: onStopActing } : null),
+    [actingAs, onStopActing],
+  );
   return (
     <div className="session-shell" {...campaignAppearance(identity.campaign.name)}>
       <BookThemeContext.Provider value={campaignTheme(identity.campaign.name)?.id ?? null}>
@@ -417,15 +421,17 @@ function SessionShell({
             sessionSlot={setSessionSlot}
           />
           {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
-          <World
-            key={`${perspective}:${String(revision)}`}
-            api={api}
-            effectivePerspective={effective}
-            canAct={identity.role === 'PLAYER' && own.has(effective)}
-            standIn={actingAs}
-            onActAs={onActAs}
-            sessionSlot={sessionSlot}
-          />
+          <ActingContext.Provider value={acting}>
+            <World
+              key={`${perspective}:${String(revision)}`}
+              api={api}
+              effectivePerspective={effective}
+              canAct={identity.role === 'PLAYER' && own.has(effective)}
+              standIn={actingAs}
+              onActAs={onActAs}
+              sessionSlot={sessionSlot}
+            />
+          </ActingContext.Provider>
         </RulesApiContext.Provider>
       </BookThemeContext.Provider>
     </div>

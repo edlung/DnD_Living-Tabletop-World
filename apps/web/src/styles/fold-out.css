@@ -89,3 +89,208 @@
     padding-left: 12px;
   }
 }
+
+/*
+ * A tablet's fold-out (docs/adr/0075-book-interface.md §17): the map takes the page and nothing
+ * scrolls. Whose turn it is heads the sheet with the fold's handle at its end; the board fills
+ * what is left, as large as its squares go; the active combatant and the card of what is chosen
+ * are its right margin; the turn tray, or the DM's turn slip, is its foot. The place's card and
+ * who is at the table step aside for the map — the order of turns shows everyone's hit points.
+ */
+@media (min-width: 768px) and (max-width: 1199px) and (min-height: 501px) {
+  /* The foot keeps clear of what stands under the sheet: a player's bookmarks, the page's edge. */
+  .world-main[data-book] .stage--battle {
+    gap: 8px;
+    padding-bottom: calc(max(var(--dock-h, 0px), var(--page-bottom, 10px)) + 8px);
+    overflow: hidden;
+  }
+  .world-main[data-book] .stage--battle:has(.turn-tray) {
+    padding-bottom: calc(
+      max(var(--dock-h, 0px), var(--page-bottom, 10px)) + var(--tray-h, 96px) + 30px
+    );
+  }
+  .world-main[data-book] .stage--battle > .scene {
+    display: none;
+  }
+  /* The fold's handle stands at the head's end, beside the order of turns. */
+  .world-main[data-book] .stage--battle > .stage-switch {
+    position: absolute;
+    top: calc(var(--pages-h) + 12px);
+    right: calc(var(--parts-w) + 14px);
+    z-index: 6;
+    align-self: auto;
+  }
+  /* Whose turn it is stands in the order of turns; said apart only to the one it calls. */
+  .world-main[data-book] .stage--battle > .turn-banner:not(.turn-banner--yours) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book] .stage--battle > .turn-banner--yours {
+    margin-top: 8px;
+    margin-right: 236px;
+  }
+  .world-main[data-book] .stage--battle > .combat-stage:not([hidden]) {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    padding-top: 8px;
+  }
+  .world-main[data-book] .stage--battle .combat-panel {
+    display: grid;
+    flex: 1 1 auto;
+    grid-template-columns: minmax(0, 1fr) 272px;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 8px 10px;
+    min-height: 0;
+  }
+  .world-main[data-book] .stage--battle .encounter-anchor {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding-right: 236px;
+  }
+  .world-main[data-book] .stage--battle .board,
+  .world-main[data-book] .stage--battle .board.board--tilted {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    height: auto;
+    min-height: 0;
+  }
+  .world-main[data-book] .stage--battle .active-card {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    order: 0;
+  }
+  .world-main[data-book] .stage--battle .combat-side {
+    grid-column: 2;
+    grid-row: 3;
+    order: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+  /* A card of what is chosen scrolls (its Close is in the keyboard's reach); the legend never does. */
+  .world-main[data-book] .stage--battle .combat-side:has(.combat-side-card:not(.board-legend)) {
+    overflow-y: auto;
+  }
+  @media (max-height: 859px) {
+    .world-main[data-book] .stage--battle .board-legend .legend {
+      display: none;
+    }
+  }
+  /* A reaction asked of the viewer lies on the right margin, over the cards, as on a wide screen. */
+  .world-main[data-book] .stage--battle > .reaction-prompt {
+    position: absolute;
+    top: calc(var(--pages-h) + 150px);
+    right: calc(var(--parts-w) + 12px);
+    z-index: 9;
+    width: 272px;
+    max-height: calc(100% - var(--pages-h) - 170px);
+    overflow-y: auto;
+  }
+}
+
+/*
+ * The DM's turn slip (`combat/dm-turn.tsx`, ADR 0075 §17): at the fold-out's foot, where a
+ * player's turn tray is — whose turn it is, what the DM does about it, "End the fight" and the
+ * way to the whole Encounter page. A paper slip on any ground.
+ */
+.dm-turn {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.9rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  color: var(--page-ink);
+  box-shadow: 0 2px 10px rgb(43 32 21 / 0.3);
+}
+/* The Scene's view of a fight (the fold folded up) keeps the slip away. */
+.stage:not(.stage--battle) > .dm-turn {
+  display: none;
+}
+.dm-turn-now {
+  display: grid;
+  flex: 1 1 15rem;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.dm-turn-now p {
+  margin: 0;
+}
+.dm-turn-who {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.dm-turn-suggested,
+.dm-turn-hero {
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+.dm-turn-hero {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--page-ink-muted);
+}
+.dm-turn-actions,
+.dm-turn-ending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dm-turn .tool-card {
+  margin: 0;
+}
+/* A result lies above the slip, never over its buttons (the shell's rule for a result). */
+.world-main.has-battle:has(.stage--battle > .dm-turn) > .outcome {
+  bottom: calc(max(var(--dock-h, 0px), var(--page-bottom, 10px)) + var(--turn-h, 88px) + 20px);
+}
+@media (min-width: 1200px) {
+  /* The map ends above the slip, as it does above a player's tray. */
+  .has-battle:has(.stage--battle > .dm-turn) {
+    --hud-bottom: calc(var(--dock-h) + var(--turn-h, 96px) + 34px);
+  }
+  /*
+   * The slip keeps to the map's own width (the fight's panel lies on the page, inside the
+   * bookmarks): the cards of the margins — a brush's, a chosen figure's — are never under it.
+   * Whose turn it is stands in the left margin there, so the slip does not say it again.
+   */
+  .stage--battle > .dm-turn {
+    position: absolute;
+    right: calc(var(--parts-w, 0px) + var(--hud-right));
+    bottom: calc(var(--page-bottom, 10px) + 12px);
+    left: calc(var(--hud-left) + 10px);
+    z-index: 5;
+    justify-content: center;
+  }
+  .stage--battle > .dm-turn .dm-turn-who {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .stage--battle > .dm-turn .dm-turn-now:not(:has(.dm-turn-suggested, .dm-turn-hero, .tool-card)) {
+    display: none;
+  }
+}

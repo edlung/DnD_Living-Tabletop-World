@@ -1,4 +1,5 @@
 import type { EncounterView, SubstitutionReason } from '@ltw/contracts';
+import { createContext, useContext, useEffect } from 'react';
 
 import type { StandInReason } from '../exploration/use-action.ts';
 
@@ -12,6 +13,11 @@ export interface StandIn {
   readonly name: string;
   readonly reason: SubstitutionReason;
   readonly note: string | null;
+  /**
+   * Taken from the fold-out for this turn or this reaction only (ADR 0075 §17): when the
+   * character has nothing more to do now, the DM is back in the DM's own view.
+   */
+  readonly untilDone?: boolean;
 }
 
 /** The reason as each command records it. */
@@ -50,4 +56,28 @@ export function standInChoices(encounter: EncounterView): StandInChoice[] {
     name: characters.get(characterId) ?? characterId,
     current: characterId === encounter.currentCombatantId,
   }));
+}
+
+/** The DM acting for a character now, and the way back: read by the fight's stage. */
+export interface Acting {
+  readonly standIn: StandIn;
+  readonly stop: () => void;
+}
+export const ActingContext = createContext<Acting | null>(null);
+
+/**
+ * A turn or a reaction taken from the fold-out ends with it (ADR 0075 §17): once the character
+ * is no longer one the DM may act for now, the DM's own view comes back by itself. A stand-in
+ * begun on the Encounter page with its reason stays until "Stop acting", as before.
+ */
+export function useReturnWhenDone(encounter: EncounterView): void {
+  const acting = useContext(ActingContext);
+  const done =
+    acting !== null &&
+    acting.standIn.untilDone === true &&
+    !standInChoices(encounter).some((choice) => choice.characterId === acting.standIn.characterId);
+  const stop = acting?.stop;
+  useEffect(() => {
+    if (done) stop?.();
+  }, [done, stop]);
 }

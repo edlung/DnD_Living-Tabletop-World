@@ -4,7 +4,7 @@ import type {
   EntityRef,
   ScenePresentationResponse,
 } from '@ltw/contracts';
-import { StatusPanel, useT } from '@ltw/ui';
+import { StatusPanel, useLanguage, useT } from '@ltw/ui';
 import { useCallback, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -12,6 +12,7 @@ import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { withPictureTimes } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { useCombatantLabels } from './labels.ts';
 import { LightControl } from './light-control.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
@@ -23,6 +24,7 @@ import type { StandIn } from './stand-in.ts';
 import { PreparedEncounters } from './prepared-encounters.tsx';
 import { SavedEncounters } from './saved-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
+import { suggestionWords } from './suggestion-words.ts';
 import { SurpriseChoice, type SurpriseValue } from './surprise-choice.tsx';
 import { TurnOrderControls } from './turn-order-controls.tsx';
 
@@ -258,6 +260,8 @@ function RunningControls({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
+  const language = useLanguage();
+  const labelOf = useCombatantLabels(encounter);
   const [confirmingEnd, setConfirmingEnd] = useState(false);
   const window = encounter.reactionWindow;
   const load = useCallback(
@@ -286,7 +290,8 @@ function RunningControls({
           )}
           <div className="suggestion-text">
             <p>
-              <strong>{t('Suggested turn:')}</strong> {suggestion.explanation}
+              <strong>{t('Suggested turn:')}</strong>{' '}
+              {language === 'en' ? suggestion.explanation : suggestionWords(t, suggestion, labelOf)}
             </p>
             <button
               className="primary-button"

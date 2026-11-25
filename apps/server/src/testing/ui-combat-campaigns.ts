@@ -110,6 +110,9 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   hint: 'started',
   hintIpad: 'started',
   hintRu: 'started',
+  // The fight run from the map (docs/adr/0075-book-interface.md §17): the DM's turn slip.
+  mapRu: 'started',
+  mapIpadRu: 'started',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {

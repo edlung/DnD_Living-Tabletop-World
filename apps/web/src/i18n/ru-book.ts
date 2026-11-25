@@ -206,4 +206,21 @@ registerRussian({
   'Prepared for this page: {count}': 'Готово для этой страницы: {count}',
   'The picture of this place goes to the table’s screen.':
     'На экране стола появится картинка этого места.',
+  // The fight run from the map (Stage 1160)
+  'The DM’s turn slip': 'Ход на карте',
+  'Take the hero’s turn': 'Ходить за героя',
+  'A turn taken from the map': 'Ход, сделанный с карты',
+  'You see what {name} sees. When this turn is over, you are the DM again.':
+    'Вы видите то, что видит {name}. Когда ход закончится, вы снова мастер.',
+  'Answer for {name}': 'Ответить за: {name}',
+  'The whole Encounter page': 'Вся схватка',
+  'Make this move': 'Сделать этот ход',
+  'attack {target}': 'атаковать — {target}',
+  'cast a spell': 'сотворить заклинание',
+  'cast a spell at {target}': 'сотворить заклинание — {target}',
+  'move toward the nearest foe': 'подойти к ближайшему противнику',
+  'end the turn': 'закончить ход',
+  'End the fight': 'Закончить бой',
+  'End the fight for everyone?': 'Закончить бой для всех?',
+  'Yes, end the fight': 'Да, закончить',
 });

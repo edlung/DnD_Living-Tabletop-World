@@ -117,7 +117,10 @@ export function useAction(
       } else {
         const { command, standIn } = attempt.intent;
         // The reason first, under the same client command ID: a retry repeats both safely.
-        if (standIn && !(await recordReason(api, attempt.commandId, standIn, request.signal))) {
+        if (
+          standIn &&
+          (await recordReason(api, attempt.commandId, standIn, request.signal)) === 'refused'
+        ) {
           if (!isLive()) return;
           current.current = null;
           setState({ status: 'done', notice: { message: t(REASON_REFUSED) } });
@@ -178,21 +181,26 @@ export function useAction(
 
 const REASON_REFUSED = 'Your reason could not be recorded, so nothing was done for the player.';
 
-/** Whether the DM's reason is recorded (now or already); a lost response throws to retry. */
+/**
+ * Whether the DM's reason is recorded (now or already), refused, or not asked for: a character
+ * nobody plays has no player to stand in for — the server keeps no reason for it (422) and the
+ * DM simply runs it. A lost response throws to retry.
+ */
 async function recordReason(
   api: WorldApi,
   clientCommandId: string,
   reason: StandInReason,
   signal: AbortSignal,
-): Promise<boolean> {
+): Promise<'recorded' | 'no-player' | 'refused'> {
   try {
     const body: RecordSubstitutionRequest = { clientCommandId, ...reason };
     const answer = await api.post<RecordSubstitutionResponse>('dm/substitutions', body, signal);
     // Anything but these two answers is treated as a lost response: the same attempt retries.
     if (!['recorded', 'duplicate'].includes(answer.status)) throw new ApiError(0);
-    return true;
+    return 'recorded';
   } catch (error) {
-    if (error instanceof ApiError && error.status >= 400 && error.status < 500) return false;
+    if (error instanceof ApiError && error.status === 422) return 'no-player';
+    if (error instanceof ApiError && error.status >= 400 && error.status < 500) return 'refused';
     throw error;
   }
 }

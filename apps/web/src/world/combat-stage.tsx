@@ -10,6 +10,7 @@ import { useMarks } from '../combat/use-marks.ts';
 import { useCombatantLabels } from '../combat/labels.ts';
 import { askedWindowOf, ReactionPrompt } from '../combat/reaction-prompt.tsx';
 import { ReadiedCard } from '../combat/readied-card.tsx';
+import { useReturnWhenDone } from '../combat/stand-in.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { FIGHT_QUIET_ID } from './fight-quiet.ts';
@@ -75,6 +76,8 @@ export function CombatStage({
     encounter.currentCombatantId === actorId &&
     encounter.combatants.some((entry) => entry.entity.entityId === actorId);
   const labelOf = useCombatantLabels(encounter);
+  // A hero's turn the DM took from the fold-out ends with it: the DM's own view comes back.
+  useReturnWhenDone(encounter);
   // A creature the fog of war hides takes the DM's turn, as far as the table can tell (ADR 0057 §4).
   const turn = myTurn
     ? t('Your turn')

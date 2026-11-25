@@ -75,7 +75,9 @@ export function BoardLegend({
       <p className="eyebrow">{t('Reading the board')}</p>
       <p className="legend-hint">
         {isDm
-          ? t('The DM acts for creatures with the Encounter tools (suggested turn).')
+          ? t(
+              'Press a figure, then a square, to move it. The turn’s actions are on the slip below.',
+            )
           : t('Choose a square to move, or a combatant to act.')}
       </p>
       <ul className="legend">
@@ -292,7 +294,7 @@ export function CombatantCard({
         </ul>
       )}
       <p className="muted">
-        {t('The DM acts for creatures with the Encounter tools (suggested turn).')}
+        {t('Press a figure, then a square, to move it. The turn’s actions are on the slip below.')}
       </p>
       {children}
     </section>

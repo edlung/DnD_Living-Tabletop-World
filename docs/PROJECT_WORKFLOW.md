@@ -18,9 +18,13 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Stage 1150, the DM's working spread, implemented on branch `claude/stage-1150-working-spread`
   (`work-orders/STAGE_1150.md`, ADR 0075 §16, `reports/STAGE_1150_COMPLETION.md`), stacked on the
   shell's pull request 97. Not merged, not deployed.
-- Still proposals, each
-  waiting for his word: the fight as one fold-out, the parts by tasks, the table's screen, the
-  shelf, a player's phone, new book materials for every campaign.
+- 2026-11-25, after the working spread was reported: «Реализуй весь план до конца»
+  (`reviews/OWNER_BOOK_SECOND_PASS_2026-11-25.json`). Authorized: Stages 1160–1210 of
+  `docs/BOOK_SECOND_PASS_PLAN.md` — the fight as one fold-out, the Party and the Table by tasks,
+  the table's screen, the shelf, a player's phone, new book materials for three campaigns — each
+  on its own branch and pull request stacked on the one before. Not answered: merging and
+  deploying pull requests 97 and 98. New materials for the other campaigns wait for his look at
+  the three.
 
 ## Request — the whole interface as a book, 2026-11-23
 

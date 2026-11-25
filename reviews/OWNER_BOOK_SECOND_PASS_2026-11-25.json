@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-25",
+  "source": "The owner's words typed in the same working session as reviews/OWNER_BOOK_POLISH_2026-11-24.json, in the desktop app, after the session reported the DM's working spread (pull request 98) and asked whether to merge and deploy. This record is written by the same session: it saw the words below typed.",
+  "theWords": "Реализуй весь план до конца",
+  "whatThePlanIs": "The steps shown to him on the private page «Второй проход книги» (https://claude.ai/artifact/7i7fSfLqy8kCsHqihKUBAL, version 2, section «План по шагам»), after the two already done: «Бой — раскладная карта», «Герои и „За столом“ по задачам», «Экран стола», «Полка», «Телефон игрока», and the paragraph «Материалы» (new book details for three campaigns first, then a look, then the rest). In the repository: docs/BOOK_SECOND_PASS_PLAN.md.",
+  "whatTheSessionTookFromIt": {
+    "authorized": [
+      "Stage 1160: the fight as one fold-out — the field and the DM's actions together.",
+      "Stage 1170: the Party's and the Table's pages by tasks — rest and experience beside the party's health, the evening apart from the campaign's settings, rare tools in an appendix.",
+      "Stage 1180: the table's screen — the book across the whole television, the battlefield at full height.",
+      "Stage 1190: the shelf — labelled shelves, «Продолжить» at the current book, no eight screens of scrolling.",
+      "Stage 1200: a player's phone — the hero and the die first, a thin head.",
+      "Stage 1210: new book materials for three campaigns, by Codex CLI, as the plan says: three first, then his look."
+    ],
+    "notAnswered": "The session's question whether to merge and deploy pull requests 97 and 98 was not answered: nothing is merged or deployed.",
+    "notAuthorized": [
+      "New book materials for the other campaigns: the plan itself puts his look at three campaigns before them.",
+      "Merging and deployment.",
+      "Opening the two built-in adventures' written books (they wait for his reading, ADR 0074 §2.8)."
+    ]
+  },
+  "howTheWorkIsDone": "Each stage on its own branch and pull request, stacked on the one before (pull request 98 first); a work order, a section of ADR 0075 and a completion report each; the usual checks and journeys; a report to the owner at the end. Every phrase the session writes for the interface is listed for him to read; pictures are made by Codex CLI.",
+  "standingOwnerRulesThisWorkKeeps": [
+    "2026-11-19: the product «looks like an Excel table»; the next step obvious, not a search line.",
+    "2026-11-20: no rails — «DnD — это про свободу выбора и действий».",
+    "2026-11-21: sections full screen with a way to close, everything at hand, the least scrolling; every main DM task has a visible entry named with his own word.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table.",
+    "2026-11-23: each book has its own style from its campaign's art; book materials by Codex CLI."
+  ],
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; rules and legality stay the server's.",
+    "Knowledge isolation: a player's client and the table's screen receive only their own projections.",
+    "No AI at the table; no paid provider call beyond the pictures Codex CLI makes for the book materials.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ]
+}
