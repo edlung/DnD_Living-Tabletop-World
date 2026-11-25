@@ -90,7 +90,7 @@ export function TravelForm({
               })}
             </legend>
             {TRAVEL_PACES.map((one) => (
-              <label key={one} className="travel-pace">
+              <label key={one} className="pick-row travel-pace" data-pick={`pace-${one}`}>
                 <input
                   type="radio"
                   name={`${ids}-pace`}
@@ -100,7 +100,7 @@ export function TravelForm({
                     setPace(one);
                   }}
                 />
-                <span>
+                <span className="pick-words">
                   <strong>{t(PACE_NAMES[one])}</strong> {t(PACE_EFFECTS[one])}
                 </span>
               </label>

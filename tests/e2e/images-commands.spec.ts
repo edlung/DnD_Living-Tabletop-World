@@ -89,7 +89,7 @@ test('approving the older of two figures makes it the one players see and the DM
   await approve(older.assetId).click();
   await expect(result).toHaveText(approved);
   await expect.poll(figureShown).toBe(older.contentHash);
-  await expectServedPicture(seen.locator('.miniature-art'));
+  await expectServedPicture(seen.locator('.medallion-figure'));
   // The DM's list approves the older one alone.
   const figures = images
     .locator('.image-card--approved')

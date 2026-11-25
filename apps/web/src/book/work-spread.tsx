@@ -100,19 +100,26 @@ function Working({
   );
   const prepared = useResource('work-prepared-encounters', load);
   const encounters = prepared.resource.status === 'ready' ? prepared.resource.value.encounters : [];
-  // The Scene's block under the plate is as tall as what it holds: the plate and the card end
-  // above it, so its height is kept on the world screen (`--here-h`).
+  // The right page is the Scene's own block: its head, the plate's place, then who and what is
+  // here. The picture and the card take the plate's place, so what stands above it and below it
+  // is kept on the world screen (`--head-h`, `--here-h`).
   useLayoutEffect(() => {
     const host = document.getElementById('world-main');
     const scene = host?.querySelector<HTMLElement>('.scene[data-spread]');
-    if (!host || !scene) return;
-    let last = -1;
+    const slot = scene?.querySelector<HTMLElement>('.scene-plate-slot');
+    if (!host || !scene || !slot) return;
+    let last = '';
     let frame: number | undefined;
     const measure = () => {
-      const height = scene.offsetHeight;
-      if (height === last) return;
-      last = height;
-      host.style.setProperty('--here-h', `${String(height)}px`);
+      const whole = scene.getBoundingClientRect();
+      const plate = slot.getBoundingClientRect();
+      const head = Math.max(0, Math.round(plate.top - whole.top));
+      const here = Math.max(0, Math.round(whole.bottom - plate.bottom));
+      const now = `${String(head)}:${String(here)}`;
+      if (now === last) return;
+      last = now;
+      host.style.setProperty('--head-h', `${String(head)}px`);
+      host.style.setProperty('--here-h', `${String(here)}px`);
     };
     measure();
     const observer = new ResizeObserver(() => {
@@ -123,9 +130,11 @@ function Working({
       });
     });
     observer.observe(scene);
+    observer.observe(slot);
     return () => {
       observer.disconnect();
       if (frame !== undefined) cancelAnimationFrame(frame);
+      host.style.removeProperty('--head-h');
       host.style.removeProperty('--here-h');
     };
   }, [placeId]);

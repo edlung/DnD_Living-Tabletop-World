@@ -6,9 +6,10 @@ import { SheetSurfaceContext } from '../shell/sheet.tsx';
 /**
  * Where the Scene is a spread (docs/adr/0075-book-interface.md §5): a screen wide and tall enough
  * for two facing pages — the place on the left, its plate and the card of what is chosen on the
- * right. Narrower, the Scene stays one page under its picture.
+ * right. It begins where the book's own layouts do (§25): a window some 760 px wide is two pages
+ * too, each of a phone's width. Narrower, the Scene stays one page under its picture.
  */
-export const SPREAD = '(min-width: 1024px) and (min-height: 600px)';
+export const SPREAD = '(min-width: 701px) and (min-height: 600px)';
 
 /** The Scene is drawn as a spread now: in a book, wide enough, and not while a fight holds it. */
 export function useSceneSpread(battlefield: boolean): boolean {

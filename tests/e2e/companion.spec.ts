@@ -38,7 +38,10 @@ test('the table waits for a player until the check asked of them is rolled', asy
   await openSheet(dm, 'Party');
   const party = dm.locator('#sheet-party');
   const ask = party.getByRole('region', { name: 'Ask for a check' });
-  await ask.getByLabel('Character', { exact: true }).selectOption({ label: 'Elowen Starwhisper' });
+  await ask
+    .getByRole('group', { name: 'Character', exact: true })
+    .getByRole('radio', { name: 'Elowen Starwhisper', exact: true })
+    .check();
   await ask.getByLabel('Check', { exact: true }).selectOption({ label: 'Dexterity saving throw' });
   await ask.getByRole('button', { name: 'Ask', exact: true }).click();
   await expect(party.locator('.party-waiting')).toContainText('Dexterity saving throw');

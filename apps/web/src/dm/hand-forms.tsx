@@ -5,6 +5,7 @@ import { useId, useState, type SubmitEvent } from 'react';
 import { Field } from '../session/account-forms.tsx';
 import { DAMAGE_WORDS } from './hand-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
+import { PickRadio } from '../book-kit/pick.tsx';
 
 /**
  * The DM's hand on one character (docs/adr/0043-dm-screen.md §1): damage or healing, a condition
@@ -100,20 +101,20 @@ export function HitPointsForm({ characterId, name, locked, onSend, onCancel }: F
   return (
     <form className="hand-form" noValidate onSubmit={submit} aria-labelledby={`${ids}-title`}>
       <h4 id={`${ids}-title`}>{t('Hit points of {name}', { name })}</h4>
-      <fieldset className="hand-choice">
+      <fieldset className="pick-tiles hand-choice">
         <legend className="visually-hidden">{t('Damage or healing')}</legend>
         {HIT_POINT_CHANGES.map((option) => (
-          <label key={option}>
-            <input
-              type="radio"
-              name={`${ids}-change`}
-              checked={change === option}
-              onChange={() => {
-                setChange(option);
-              }}
-            />
+          <PickRadio
+            key={option}
+            pick={`hp-${option}`}
+            name={`${ids}-change`}
+            checked={change === option}
+            onChange={() => {
+              setChange(option);
+            }}
+          >
             {t(CHANGE_WORDS[option])}
-          </label>
+          </PickRadio>
         ))}
       </fieldset>
       <div className="hand-row">

@@ -52,14 +52,10 @@
 }
 
 /*
- * Choices side by side instead of one a line: how a check is rolled, whom a tool concerns. A
- * form is as tall as what it asks, so more tools fit one screen.
+ * Choices side by side instead of one a line: whom a tool concerns. A form is as tall as what it
+ * asks, so more tools fit one screen. (How a check is rolled is a row of drawn tiles now:
+ * `book-picks.css`.)
  */
-.dice-modes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.25rem;
-}
 /* A tool's field never grows to its longest option: it keeps to its cell. */
 .toolbox-field {
   grid-template-columns: minmax(0, 1fr);
@@ -72,14 +68,6 @@
 }
 .toolbox-who > legend {
   grid-column: 1 / -1;
-}
-.dice-check-pair {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
-  gap: 0 0.75rem;
-}
-.dice-check-pair select {
-  width: 100%;
 }
 .dice-panel-log > .dice-settings {
   margin-top: 1.25rem;

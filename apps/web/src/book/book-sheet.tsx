@@ -12,6 +12,7 @@ import { useResource } from '../api/resource.ts';
 import { Ribbon } from '../book-kit/kit.tsx';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
+import { Pick } from '../book-kit/pick.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { BookMarks } from './bookmarks.tsx';
 import { useCard } from './cards.tsx';
@@ -269,8 +270,8 @@ function OpenBook({
           />
         ) : (
           <div className="dmb-spread" data-surface="paper">
-            <article className="dmb-page dmb-left" aria-label={t('The story')}>
-              <p className="dmb-eyebrow">
+            <article className="dmb-page dmb-left dmb-leaf" aria-label={t('The story')}>
+              <p className="dmb-eyebrow work-head">
                 <span>{trail}</span>
                 <PlaceLink
                   name={nameOf(leaf.page?.place ?? leaf.chapter.place)}
@@ -301,6 +302,7 @@ function OpenBook({
                   {t('Aa')}
                 </button>
               </div>
+              <span className="work-flourish" aria-hidden="true" />
               <p className="dmb-voice">
                 {leaf.page === null
                   ? t('Read aloud')
@@ -383,11 +385,15 @@ function OpenBook({
                   className="dmb-button"
                   disabled={shownScreen === 0 && !previous}
                   aria-label={t('Turn back')}
+                  title={t('Turn back')}
                   onClick={turnBack}
                 >
-                  <Glyph name="chevron-left" />
+                  <Pick name="turn" className="pick--back" />
                 </button>
                 <p className="dmb-turn-count">
+                  <span className="work-folio" aria-hidden="true">
+                    {leaf.index + 1}
+                  </span>
                   {pageNumber === 0
                     ? t('The chapter opens · {pages} pages', { pages })
                     : t('Page {number} of {pages}', { number: pageNumber, pages })}
@@ -417,7 +423,7 @@ function OpenBook({
                     : next && next.chapter.key !== leaf.chapter.key
                       ? t('Next chapter')
                       : t('Next page')}
-                  <Glyph name="chevron-right" />
+                  <Pick name="turn" />
                 </button>
               </div>
             </article>

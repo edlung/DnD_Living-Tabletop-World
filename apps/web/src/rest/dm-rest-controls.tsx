@@ -5,6 +5,7 @@ import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { restAction } from './rest-intent.ts';
+import { Pick } from '../book-kit/pick.tsx';
 
 /**
  * The DM's rests (Stage 530), in the Time and weather sheet: a short rest of an hour, while which
@@ -72,7 +73,7 @@ export function DmRestControls({
               onRun(restAction({ action: 'start', rest: 'short' }));
             }}
           >
-            <Glyph name="time" />
+            <Pick name="rest-short" />
             {t('Short rest (1 hour)')}
           </button>
         )}
@@ -85,7 +86,7 @@ export function DmRestControls({
             onRun(restAction({ action: 'start', rest: 'long' }));
           }}
         >
-          <Glyph name="night" />
+          <Pick name="rest-long" />
           {t('Long rest (8 hours)')}
         </button>
       </div>
@@ -98,7 +99,7 @@ export function DmRestControls({
             onRun({ kind: 'command', command: { type: 'DawnRecharge' } });
           }}
         >
-          <Glyph name="dawn" />
+          <Pick name="rest-dawn" />
           {t('Dawn: magic items regain charges')}
         </button>
       </div>

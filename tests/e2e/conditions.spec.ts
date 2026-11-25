@@ -107,7 +107,10 @@ test('the DM sets conditions in a fight, and the player reads what they do', asy
 
   // A check the DM asks of her: her screen says what Poisoned does to it.
   const ask = dm.locator('#sheet-party').getByRole('region', { name: 'Ask for a check' });
-  await ask.getByLabel('Character', { exact: true }).selectOption({ label: ELOWEN });
+  await ask
+    .getByRole('group', { name: 'Character', exact: true })
+    .getByRole('radio', { name: ELOWEN, exact: true })
+    .check();
   await ask.getByRole('button', { name: 'Ask', exact: true }).click();
   await expect(player.locator('.asked-check')).toContainText(
     'Your conditions give Disadvantage. Exhaustion: −4 to the roll.',

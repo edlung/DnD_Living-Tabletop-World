@@ -3,7 +3,7 @@ import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { bookPiece, useBookTheme } from '../book-kit/materials.ts';
-import { Glyph } from '../visual/glyph.tsx';
+import { Pick } from '../book-kit/pick.tsx';
 import { leafAt, leavesOf, placeAfterTurn, placeWithRibbon, type Leaf } from './model.ts';
 import { PageText, type Passage } from './page-text.tsx';
 import type { DmBook } from './use-book.ts';
@@ -140,12 +140,13 @@ export function WorkStory({
       data-surface="paper"
       data-size={remembered(SIZE_KEY) === 'large' ? 'large' : 'normal'}
     >
-      <div className="dmb-page dmb-left">
+      <div className="dmb-page dmb-left dmb-leaf">
         {/* The evening begins from the page the DM is at, not from a list of settings (§18). */}
         {onEvening && (
           <div className="work-elsewhere work-evening" role="note">
             <p>{t('The evening has not begun.')}</p>
             <button type="button" className="dmb-button" onClick={onEvening}>
+              <Pick name="evening" />
               {t('Begin the evening')}
             </button>
           </div>
@@ -173,18 +174,27 @@ export function WorkStory({
             </button>
           </div>
         )}
-        <p className="dmb-eyebrow">
-          {t('Chapter {number}', { number: chapter.number })} · {chapter.title}
+        {/* The page's running head (§25): the book and the chapter where the chapter opens (the
+            stylesheet sets the book's name before it), the chapter's own name on its pages. */}
+        <p className="dmb-eyebrow work-head" data-opening={page ? undefined : ''}>
+          {t('Chapter {number}', { number: chapter.number })}
+          {page && ` · ${chapter.title}`}
         </p>
         <div className="dmb-head">
           <h2 className="dmb-title" id={titleId}>
             {page ? page.title : chapter.title}
           </h2>
-          <button type="button" className="dmb-button work-to-book" onClick={onBook}>
-            <Glyph name="perform" />
-            {t('In the book')}
+          <button
+            type="button"
+            className="dmb-button work-to-book"
+            title={t('In the book')}
+            onClick={onBook}
+          >
+            <Pick name="to-book" />
+            <span className="visually-hidden">{t('In the book')}</span>
           </button>
         </div>
+        <span className="work-flourish" aria-hidden="true" />
         <p className="dmb-voice">
           {wordless
             ? t('The campaign wrote no text for this page: tell it in your own words.')
@@ -243,11 +253,16 @@ export function WorkStory({
             className="dmb-button"
             disabled={shown === 0 && !previous}
             aria-label={t('Turn back')}
+            title={t('Turn back')}
             onClick={turnBack}
           >
-            <Glyph name="chevron-left" />
+            <Pick name="turn" className="pick--back" />
           </button>
           <p className="dmb-turn-count">
+            {/* The leaf's number in the whole book, as a printed page carries it at its foot. */}
+            <span className="work-folio" aria-hidden="true">
+              {leaf.index + 1}
+            </span>
             {pageNumber === 0
               ? t('The chapter opens · {pages} pages', { pages })
               : t('Page {number} of {pages}', { number: pageNumber, pages })}
@@ -264,7 +279,7 @@ export function WorkStory({
               : next && next.chapter.key !== chapter.key
                 ? t('Next chapter')
                 : t('Next page')}
-            <Glyph name="chevron-right" />
+            <Pick name="turn" />
           </button>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { formatWorldTime, nextMorning } from './world-time.ts';
 import { useT } from '@ltw/ui';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 export type DmWorldCommand = KernelCommandOf<'AdvanceWorldTime' | 'SetWeather'>;
 
@@ -128,30 +129,18 @@ export function DmWorldControls({
             <span>{sky ? t('Now: {weather}', { weather: t(sky) }) : t('Now: not set')}</span>
           </p>
         )}
-        <label htmlFor="weather-choice">{t('Weather at {place}', { place: locationName })}</label>
+        <PickTiles
+          legend={t('Weather at {place}', { place: locationName })}
+          name="weather-choice"
+          value={chosen}
+          options={WEATHERS.map((entry) => ({
+            value: entry,
+            label: t(entry),
+            pick: `weather-${entry}`,
+          }))}
+          onChange={onWeather}
+        />
         <div className="inline-field weather-field">
-          <Glyph
-            name={chosen ? weatherGlyph(chosen) : 'unknown'}
-            className="weather-choice-glyph"
-          />
-          <select
-            id="weather-choice"
-            value={chosen ?? ''}
-            onChange={(event) => {
-              onWeather(event.target.value as (typeof WEATHERS)[number]);
-            }}
-          >
-            {chosen === null && (
-              <option value="" disabled>
-                {t('Choose the weather')}
-              </option>
-            )}
-            {WEATHERS.map((entry) => (
-              <option key={entry} value={entry}>
-                {t(entry)}
-              </option>
-            ))}
-          </select>
           <button
             disabled={locked || chosen === null}
             onClick={() => {

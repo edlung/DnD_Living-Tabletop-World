@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-25",
+  "source": "The owner's words typed in the same working session as reviews/OWNER_BOOK_WHOLE_SCREEN_2026-11-25.json, in the desktop app, after the session showed him the whole-screen book (pull request 106). This record is written by the same session: it saw the words below typed.",
+  "theWords": "а можно еще ближе к концепту? стандартные формы можно заменить сгенерированными значками где только можно?",
+  "whatHeAsksFor": [
+    "The screens closer still to the concept he chose on 2026-11-24 (direction А, a real book: ~/Documents/living-tabletop-world-art/book-polish-2026-11-24/out/dm-a-real-book.png).",
+    "Standard form controls replaced with generated icons wherever that is possible."
+  ],
+  "whatTheSessionFound": "At the width of his own window (about 766 px) the Scene was not a spread of the book at all: the two pages began at 1024 px, and below that the Scene was the place's picture under dark glass plates. The concept's page — running heads, the title in the page's middle over an ornament, round portraits, the ribbon down the gutter, the page's number at its foot — was not set at any width.",
+  "whatTheSessionTookFromIt": {
+    "authorized": [
+      "The Scene's spread set as the concept sets it, from 701 px: running heads, the title over the book's ornament, the plate in a frame, who is here as round portraits, the ribbon down the gutter, the page's number between drawn hands, the dice at the right page's foot.",
+      "The same print for the story's page in the Book.",
+      "Vignettes drawn by Codex CLI (one set for every book) for the options of forms and for actions; tiles in place of bare radio buttons and of short lists; the heroes' portraits in place of lists of their names; a drawn tick, ring and list mark where a form keeps them.",
+      "The journeys moved to the tiles; a pull request stacked on the whole-screen book."
+    ],
+    "notAuthorized": [
+      "Merging and deployment.",
+      "Opening the two built-in adventures' written books (they wait for his reading, ADR 0074 §2.8)."
+    ]
+  },
+  "standingOwnerRulesThisWorkKeeps": [
+    "2026-11-20: no rails — «DnD — это про свободу выбора и действий».",
+    "2026-11-21: sections full screen with a way to close, everything at hand, the least scrolling; every main DM task has a visible entry named with his own word.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table.",
+    "2026-11-23: each book has its own style from its campaign's art; book materials by Codex CLI.",
+    "2026-11-25: the book is the whole screen; everything is in the book or in a bookmark; show a real screen early."
+  ],
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; rules and legality stay the server's.",
+    "Knowledge isolation: a player's client and the table's screen receive only their own projections.",
+    "No AI at the table; no paid provider call beyond the pictures Codex CLI makes for the book materials.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ]
+}

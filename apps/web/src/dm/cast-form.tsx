@@ -7,6 +7,7 @@ import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { PlaceSoundField } from './place-sound.tsx';
 import { StoryCastFields } from './story-cast-fields.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 /**
  * What the table's screens show (docs/adr/0042-table-display.md §3), on the DM's Table screen
@@ -142,23 +143,17 @@ export function CastForm({
       </h3>
       <p className="muted">{t('Now: {what}', { what: t(KIND_WORDS[current.kind]) })}</p>
       <form className="screen-cast-form" noValidate onSubmit={(event) => void show(event)}>
-        <fieldset className="join-modes">
-          <legend>{t('Show')}</legend>
-          {KINDS.map((option) => (
-            <div className="join-mode" key={option}>
-              <input
-                type="radio"
-                id={`${id}-kind-${option}`}
-                name={`${id}-kind`}
-                checked={kind === option}
-                onChange={() => {
-                  setKind(option);
-                }}
-              />
-              <label htmlFor={`${id}-kind-${option}`}>{t(KIND_WORDS[option])}</label>
-            </div>
-          ))}
-        </fieldset>
+        <PickTiles
+          legend={t('Show')}
+          name={`${id}-kind`}
+          value={kind}
+          options={KINDS.map((option) => ({
+            value: option,
+            label: t(KIND_WORDS[option]),
+            pick: `cast-${option}`,
+          }))}
+          onChange={setKind}
+        />
         {kind === 'scene' && (
           <div className="field">
             <label htmlFor={`${id}-place`}>{t('Place')}</label>

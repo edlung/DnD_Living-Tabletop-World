@@ -23,9 +23,10 @@ test('the player sees the curated scene, portraits and standing figures', async 
   await expect(mira).toBeVisible();
   await expectServedPicture(page.locator('.stage-backdrop .backdrop-art'));
   await expect(page.getByText('No approved image yet', { exact: true })).toHaveCount(0);
-  // Who has an approved figure stands in the scene as it; the party rail keeps the portrait.
-  await expectServedPicture(mira.locator('.miniature-art'));
-  await expect(mira.locator('.medallion')).toHaveCount(0);
+  // Who has an approved figure stands in its round portrait on the book's page; the party rail
+  // keeps the portrait.
+  await expectServedPicture(mira.locator('.medallion-figure'));
+  await expect(mira.locator('.miniature')).toHaveCount(0);
   // Elowen's entry (her companions have no approved portrait yet: they keep the silhouette).
   const rail = page.getByRole('region', { name: 'At the table', exact: true });
   await expectServedPicture(
@@ -85,7 +86,7 @@ test('the Russian player sees the same pictures', async ({ page }) => {
   const objects = page.getByRole('list', { name: 'Видимые объекты мира', exact: true });
   await expect(objects).toBeVisible();
   await expectServedPicture(page.locator('.stage-backdrop .backdrop-art'));
-  await expectServedPicture(objects.locator('.miniature-art').first());
+  await expectServedPicture(objects.locator('.medallion-figure').first());
   await objects.getByRole('button', { name: 'Неопознанный объект (предмет)' }).first().click();
   await expectServedPicture(detailsPanel(page, 'Подробности').locator('.details-plate img'));
 });

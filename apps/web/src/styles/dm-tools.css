@@ -282,12 +282,6 @@
 .weather-field {
   align-items: center;
 }
-.weather-choice-glyph {
-  flex: none;
-  width: 28px;
-  height: 28px;
-  color: var(--teal);
-}
 
 /* The history: each step with when, its status, what undoing it would do, and its undo */
 .dm-history-list {

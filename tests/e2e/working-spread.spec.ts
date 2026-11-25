@@ -11,8 +11,8 @@ import { bookPart, chooseLocation, expectOnTop } from './support/shell.ts';
  * on a screen wide enough for two pages the Scene is the spread the game is run from — the story
  * where the party is on the left page; the plate, who and what is here and the DM's five seals on
  * the right. A seal opens what this page of the story prepares, then the whole tool; the card of
- * someone chosen takes the plate's place and begins with how the book tells them. Narrower, and
- * for a player, the Scene is as it was.
+ * someone chosen takes the plate's place and begins with how the book tells them. On a phone,
+ * and for a player, the Scene is as it was.
  */
 // Each project runs its own campaign: the ribbon and a rest are the campaign's.
 const campaign = () => (test.info().project.name === 'ipad' ? 'ui-ru-work-ipad' : 'ui-ru-work');
@@ -31,6 +31,8 @@ const seal = (page: Page, word: string) =>
 const slip = (page: Page, word: string) => page.getByRole('dialog', { name: word, exact: true });
 const scene = (page: Page) => page.getByRole('region', { name: 'Сцена', exact: true });
 const card = (page: Page) => page.getByRole('complementary', { name: 'Подробности' });
+const people = (page: Page) =>
+  scene(page).getByRole('list', { name: 'Видимые объекты мира', exact: true });
 const heading = (page: Page) => story(page).getByRole('heading', { level: 2 });
 const onward = (page: Page) =>
   story(page).getByRole('button', { name: /^(Дальше|Следующая страница|Следующая глава)$/ });
@@ -61,8 +63,14 @@ test('the DM runs the game from the Scene: the story, who is here and five seals
   const left = await box(story(page));
   const here = await box(scene(page));
   expect(here.x).toBeGreaterThanOrEqual(left.x + left.width);
+  // The right page is one flow (§25): its running head, the plate, then who and what is here.
   const plate = await box(page.locator('.stage-backdrop'));
-  expect(plate.y + plate.height).toBeLessThanOrEqual(here.y + 1);
+  const head = await box(scene(page).getByRole('heading', { level: 2 }));
+  expect(plate.y).toBeGreaterThanOrEqual(head.y + head.height - 1);
+  expect(plate.y + plate.height).toBeLessThanOrEqual((await box(people(page))).y + 1);
+  // Everyone here is a round portrait with a name under it: nobody stands as a figure.
+  await expect(people(page).locator('.medallion').first()).toBeVisible();
+  await expect(people(page).locator('.miniature')).toHaveCount(0);
   // The DM's actions are five seals at the page's foot, each with its word, none covered.
   for (const word of ['Бросок', 'Бой', 'Привал', 'На экран', 'Выдать'])
     await expectOnTop(seal(page, word));
@@ -100,7 +108,7 @@ test('the DM runs the game from the Scene: the story, who is here and five seals
   await expect
     .poll(async () => {
       const shown = await box(card(page));
-      return shown.y + shown.height - (await box(scene(page))).y;
+      return shown.y + shown.height - (await box(people(page))).y;
     })
     .toBeLessThanOrEqual(1);
   await expectOnTop(scene(page).getByRole('button', { name: 'Мира Вейл', exact: true }));
@@ -174,8 +182,21 @@ test('the DM runs the game from the Scene: the story, who is here and five seals
   await expect(page.locator('#sheet-party')).toBeVisible();
   await bookPart(page, 'Сцена').click();
 
-  // Held upright, a tablet has no room for two pages: the Scene is one page, the story the Book's.
-  await page.setViewportSize({ width: 834, height: 1194 });
+  // A window some 760 px wide — the owner's own — is the same spread, each page a phone's width
+  // (§25): the story beside the place, the seals in reach, the story's foot above the dice.
+  await page.setViewportSize({ width: 766, height: 799 });
+  await expect(story(page)).toBeVisible();
+  const narrow = await box(story(page));
+  expect((await box(scene(page))).x).toBeGreaterThanOrEqual(narrow.x + narrow.width);
+  for (const word of ['Бросок', 'Бой', 'Привал', 'На экран', 'Выдать'])
+    await expectOnTop(seal(page, word));
+  await expectOnTop(onward(page));
+  const dice = await box(page.getByRole('group', { name: 'Кубики у подножия страницы' }));
+  expect(narrow.y + narrow.height).toBeLessThanOrEqual(dice.y + 1);
+  await expectAccessible(page, 'the working spread in a window 766 px wide');
+
+  // A phone has no room for two pages: the Scene is one page, the story the Book's.
+  await page.setViewportSize({ width: 700, height: 900 });
   await expect(story(page)).toHaveCount(0);
   await expect(seals(page)).toHaveCount(0);
   await expect(scene(page).getByRole('heading', { level: 2 })).toBeVisible();

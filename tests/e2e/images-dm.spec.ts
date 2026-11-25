@@ -151,7 +151,7 @@ test('the DM requests, discards, approves and replaces Tomas’s picture; the pl
   await images
     .getByRole('button', { name: 'Approve: Figure for the battlefield', exact: true })
     .click();
-  await expectServedPicture(seen.locator('.miniature-art'));
+  await expectServedPicture(seen.locator('.medallion-figure'));
   expect((await playerPresentation(player, campaign, TOMAS)).figure?.purpose).toBe('figure');
 
   expect(pictureFetches.length).toBeGreaterThan(0);

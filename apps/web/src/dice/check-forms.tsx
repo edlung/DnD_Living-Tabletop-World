@@ -6,6 +6,8 @@ import { checkGroups, checkOf, MODE_WORDS } from './checks.ts';
 import { d20sFor, rolledMode } from './modes.ts';
 import { ConditionsNote, FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
+import { PickTiles } from '../book-kit/pick.tsx';
 
 function CheckSelect({
   id,
@@ -49,23 +51,17 @@ function ModeChoice({
 }) {
   const t = useT();
   return (
-    <fieldset className="dice-modes">
-      <legend>{t('How to roll')}</legend>
-      {ROLL_MODES.map((option) => (
-        <label key={option} className="dice-mode">
-          <input
-            type="radio"
-            name={name}
-            value={option}
-            checked={mode === option}
-            onChange={() => {
-              onChange(option);
-            }}
-          />
-          <span>{t(MODE_WORDS[option])}</span>
-        </label>
-      ))}
-    </fieldset>
+    <PickTiles
+      legend={t('How to roll')}
+      name={name}
+      value={mode}
+      options={ROLL_MODES.map((option) => ({
+        value: option,
+        label: t(MODE_WORDS[option]),
+        pick: `roll-${option}`,
+      }))}
+      onChange={onChange}
+    />
   );
 }
 
@@ -178,29 +174,20 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
   return (
     <section className="sheet-section dice-check" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Ask for a check')}</h3>
-      {/* Who and what, side by side where the card is wide enough. */}
-      <div className="dice-check-pair">
-        <div>
-          <label htmlFor={`${ids}-who`}>{t('Character')}</label>
-          <select
-            id={`${ids}-who`}
-            value={chosen}
-            onChange={(event) => {
-              setCharacterId(event.target.value);
-            }}
-          >
-            {group && <option value={EVERYONE}>{t('Everyone at the table')}</option>}
-            {characters.map((entry) => (
-              <option key={entry.entityId} value={entry.entityId}>
-                {entry.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor={`${ids}-check`}>{t('Check')}</label>
-          <CheckSelect id={`${ids}-check`} value={value} onChange={setValue} />
-        </div>
+      {/* Who: the heroes' faces, everyone at once before them. Then what. */}
+      <HeroTiles
+        legend={t('Character')}
+        name={`${ids}-who`}
+        value={chosen}
+        heroes={characters}
+        {...(group
+          ? { first: { value: EVERYONE, label: t('Everyone at the table'), pick: 'table' } }
+          : {})}
+        onChange={setCharacterId}
+      />
+      <div className="dice-check-what">
+        <label htmlFor={`${ids}-check`}>{t('Check')}</label>
+        <CheckSelect id={`${ids}-check`} value={value} onChange={setValue} />
       </div>
       <ModeChoice name={`${ids}-mode`} mode={mode} onChange={setMode} />
       <label htmlFor={`${ids}-dc`}>{t('Difficulty (DC), seen only by you')}</label>

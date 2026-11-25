@@ -30,7 +30,6 @@ registerRussian({
     'Отменено: этого больше нет в мире, и никто этого не видит.',
   'Discarded: it never reached the world, and no one saw it.':
     'Отброшено: это не попало в мир, и никто этого не видел.',
-  'Choose the weather': 'Выберите погоду',
   // Action words
   Trade: 'Торговать',
   'Insight check': 'Проверка проницательности',

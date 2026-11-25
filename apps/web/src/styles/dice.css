@@ -217,8 +217,7 @@
   width: 120px;
 }
 .dice-own,
-.dice-toggle,
-.dice-mode {
+.dice-toggle {
   display: flex !important;
   align-items: center;
   gap: 8px;
@@ -234,11 +233,6 @@
 .dice-builder-actions {
   display: flex;
   gap: 8px;
-}
-.dice-modes {
-  margin: 8px 0 12px;
-  padding: 0;
-  border: 0;
 }
 .dice-check .primary-button,
 .dice-check select {

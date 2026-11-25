@@ -4,6 +4,7 @@ import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 import { expectAccepted, submit } from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, openSheet } from './support/shell.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * Drafts survive (docs/STAGE_320_DESIGN.md §5.1, ADR 0033): Escape in a field that holds a
@@ -58,7 +59,7 @@ test('the DM’s line for an NPC survives Escape, closing the panel and the DM�
 
   // The DM's own action re-reads the world; the closed panel keeps its draft and choice.
   await openSheet(page, 'Time and weather');
-  await page.getByLabel('Weather at Market Square').selectOption('fog');
+  await tile(page, 'Weather at Market Square', 'fog').check();
   expectAccepted(await submit(page, page.getByRole('button', { name: 'Set weather' })));
   await expect(page.getByLabel('Scene conditions')).toContainText('fog');
   await closeSheet(page, 'Time and weather');

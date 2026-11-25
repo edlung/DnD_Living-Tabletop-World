@@ -103,23 +103,58 @@
   box-shadow: none;
 }
 
-/* Who sits at the table: a row of the heroes beside the DM's place. */
+/* Who sits at the table: the DM's place, then the heroes' faces in a row, a name under each. */
 .world-main[data-book] .scene[data-spread] > .party-rail {
   order: 2;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: stretch;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.3rem 0.6rem;
   overflow: visible;
 }
 .world-main[data-book] .scene[data-spread] > .party-rail ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
 }
-.world-main[data-book] .scene[data-spread] > .party-rail :is(.rail-dm, .rail-member) {
-  width: 96px;
+.world-main[data-book] .scene[data-spread] > .party-rail .rail-dm {
+  flex: 1 0 100%;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--page-ink-muted);
+  font-size: 0.82rem;
+  font-style: italic;
+}
+.world-main[data-book] .scene[data-spread] > .party-rail .rail-member {
+  width: 84px;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  box-shadow: none;
+  color: var(--page-ink);
+}
+.world-main[data-book] .scene[data-spread] > .party-rail .rail-member[aria-pressed='true'] {
+  color: var(--rubric);
+}
+.world-main[data-book] .scene[data-spread] > .party-rail .rail-name {
+  overflow-wrap: break-word;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.world-main[data-book] .scene[data-spread] > .party-rail .presence-dot {
+  top: 2px;
+  right: calc(50% - 26px);
+  border-color: var(--page);
 }
 
-/* Who and what is here: a list to read, each with its picture, not medallions over a picture. */
+/* Who and what is here: a round portrait each, its name under it (ADR 0075 §25). */
 .world-main[data-book] .scene[data-spread] > .scene-presence {
   order: 3;
   display: grid;
@@ -127,64 +162,92 @@
   align-items: stretch;
 }
 .world-main[data-book] .scene[data-spread] .world-objects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 4px;
+  font-size: var(--face-words, 0.82rem);
 }
 .world-main[data-book] .scene[data-spread] .world-objects > li {
-  display: flex;
-  min-width: 0;
+  display: block;
+  flex: 0 0 var(--face-w, 96px);
+  min-inline-size: 0;
 }
 .world-main[data-book] .scene[data-spread] .object-button {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-content: center;
-  align-items: center;
-  justify-items: start;
-  gap: 0.1rem 0.7rem;
-  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  align-content: start;
+  gap: 2px;
+  inline-size: 100%;
   min-width: 0;
   max-width: none;
-  padding: 0.4rem 0.7rem 0.4rem 0.45rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-control);
-  background: var(--glass);
-  text-align: left;
-}
-.world-main[data-book] .scene[data-spread] .object-button > :first-child {
-  grid-row: span 2;
+  min-height: 0;
+  padding: 2px 0 1px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  box-shadow: none;
+  color: var(--page-ink);
+  line-height: 1.12;
+  text-align: center;
 }
 .world-main[data-book] .scene[data-spread] .object-button .medallion {
-  --m: 56px;
-}
-.world-main[data-book] .scene[data-spread] .object-button .miniature {
-  --mini-h: 64px;
+  --m: var(--face, 68px);
 }
 .world-main[data-book] .scene[data-spread] .object-button:hover:enabled {
-  border-color: var(--line-strong);
-  background: var(--glass-raised);
+  background: none;
+}
+.world-main[data-book] .scene[data-spread] .object-button:hover:enabled .medallion {
+  filter: brightness(1.08);
 }
 .world-main[data-book] .scene[data-spread] .object-button[aria-pressed='true'] {
-  border-color: var(--teal);
-  background: var(--teal-fill);
-  box-shadow: inset 3px 0 0 var(--teal);
+  background: none;
+  box-shadow: none;
+  color: var(--rubric);
 }
+.world-main[data-book] .scene[data-spread] :is(.name-plate-kind, .object-state) {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* A name keeps to three close lines under its portrait (a name of three words is whole). */
 .world-main[data-book] .scene[data-spread] .name-plate,
 .world-main[data-book] .scene[data-spread] .object-button[aria-pressed='true'] .name-plate {
+  justify-items: center;
+  inline-size: 100%;
   padding: 0;
   border: 0;
   background: none;
   box-shadow: none;
+  color: inherit;
+  text-align: center;
 }
-.world-main[data-book] .scene[data-spread] .object-state {
-  padding: 0;
-  background: none;
+.world-main[data-book] .scene[data-spread] .name-plate > strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.12;
+  overflow-wrap: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .world-main[data-book] .scene[data-spread] .scene-caption {
-  justify-content: flex-start;
-  color: var(--text-muted);
+  justify-content: center;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--page-ink-muted);
   font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
 }
 
 /* The ways beyond this place: the page's last lines. */
@@ -286,9 +349,16 @@
 @media (max-width: 1279px) {
   .world-main[data-book]:has(.scene[data-spread]):not(:has(.sheet:not([hidden])))
     .rest-banner-slot {
+    /* The whole box is said here: under 768 px a phone's rules would stretch it down the page. */
     top: calc(var(--topbar-h) + 12px);
+    right: auto;
+    bottom: auto;
     left: 50%;
+    align-items: center;
+    width: max-content;
     max-width: min(640px, calc(100vw - 32px));
+    max-height: none;
+    overflow: visible;
     translate: -50% 0;
   }
 }

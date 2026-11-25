@@ -23,7 +23,7 @@ import sharp from 'sharp';
  * `node scripts/book-materials/build.ts <originals>` converts every known piece mechanically to
  * WebP in `apps/web/public/book-materials/<theme>/`, writes the manifest the client reads
  * (`apps/web/src/visual/book-materials/manifest.json`, with each file's SHA-256) and the stylesheet
- * that hands a book its materials (`book-materials.css`). Nothing is drawn or edited here.
+ * that hands a book its materials (`generated/book-materials.css`). Nothing is drawn or edited here.
  */
 const ROOT = resolve(import.meta.dirname, '../..');
 const PUBLIC = join(ROOT, 'apps/web/public/book-materials');
@@ -157,6 +157,26 @@ async function diceFromSheet(
 }
 
 /**
+ * Pieces that are another piece without its empty margins (ADR 0075 §25): a ribbon drawn down the
+ * middle of its sheet is a band that fills the gutter's ribbon whole, and the ornament of a
+ * chapter's title is as wide as its own flourish, so a page sets it by its height.
+ */
+const TRIMS: Readonly<
+  Record<string, { readonly from: string; readonly width: number; readonly property: string }>
+> = {
+  'ribbon-band': { from: 'ribbon', width: 96, property: '--book-ribbon-band' },
+  flourish: { from: 'divider', width: 640, property: '--book-flourish' },
+};
+
+/**
+ * The drawn choices and actions (§25): a vignette for an option of a form or for an action, named
+ * `pick-<key>.png` in a book's folder. The product's own set has them all; a book may bring its
+ * own for any of them. An element names its picture (`data-pick`) and the stylesheet hands it in.
+ */
+const PICK = /^pick-[a-z0-9-]+$/u;
+const PICK_WIDTH = 160;
+
+/**
  * Pieces cut from another piece without changing a pixel: the shelf's middle board, laid under
  * each row of books (the region is in the original's pixels, 1536 × 1024).
  */
@@ -217,7 +237,7 @@ async function build(originals: string): Promise<ManifestBook[]> {
     const pieces: Record<string, string> = {};
     for (const file of readdirSync(join(originals, theme)).sort()) {
       const piece = file.replace(/\.png$/u, '');
-      const spec = PIECES[piece];
+      const spec = PIECES[piece] ?? (PICK.test(piece) ? { width: PICK_WIDTH } : undefined);
       if (!file.endsWith('.png') || spec === undefined) continue;
       mkdirSync(join(PUBLIC, theme), { recursive: true });
       const out = join(PUBLIC, theme, `${piece}.webp`);
@@ -235,6 +255,18 @@ async function build(originals: string): Promise<ManifestBook[]> {
         .extract(cut.region)
         .resize({ width: cut.width, withoutEnlargement: true })
         .webp({ quality: 80, effort: 6 })
+        .toFile(out);
+      pieces[piece] = createHash('sha256').update(readFileSync(out)).digest('hex');
+    }
+    for (const [piece, trim] of Object.entries(TRIMS)) {
+      const source = join(originals, theme, `${trim.from}.png`);
+      if (!existsSync(source)) continue;
+      const out = join(PUBLIC, theme, `${piece}.webp`);
+      // One step at a time: a resize asked for with a trim is taken before it.
+      const tight = await sharp(source).trim({ threshold: 8 }).png().toBuffer();
+      await sharp(tight)
+        .resize({ width: trim.width, withoutEnlargement: true })
+        .webp({ quality: 80, alphaQuality: 90, effort: 6 })
         .toFile(out);
       pieces[piece] = createHash('sha256').update(readFileSync(out)).digest('hex');
     }
@@ -267,10 +299,31 @@ function stylesheet(books: readonly ManifestBook[]): string {
       const property =
         PIECES[piece]?.property ??
         CUTS[piece]?.property ??
+        TRIMS[piece]?.property ??
         (piece === 'cover-frame' ? FRAME.property : undefined);
-      return property ? [`  ${property}: url('/book-materials/${book.theme}/${piece}.webp');`] : [];
+      if (!property) return [];
+      const picture = `  ${property}: url('/book-materials/${book.theme}/${piece}.webp');`;
+      // The ornament is set by its height; the hairline that stands in for it, by its width.
+      return piece === 'flourish' ? [picture, '  --book-flourish-size: auto 100%;'] : [picture];
     });
     if (props.length > 0) lines.push(`${selector} {`, ...props, '}');
+  }
+  // The drawn choices: each a named property of the product's set, or of a book's own over it,
+  // and an element that names its picture (`data-pick`) takes it from there.
+  const named = new Set<string>();
+  for (const book of books) {
+    const picks = Object.keys(book.pieces).filter((piece) => PICK.test(piece));
+    if (picks.length === 0) continue;
+    const selector = book.theme === 'ltw' ? ':root' : `[data-campaign-theme='${book.theme}']`;
+    lines.push(
+      `${selector} {`,
+      ...picks.map((piece) => `  --${piece}: url('/book-materials/${book.theme}/${piece}.webp');`),
+      '}',
+    );
+    for (const piece of picks) named.add(piece);
+  }
+  for (const piece of [...named].sort()) {
+    lines.push(`[data-pick='${piece.slice('pick-'.length)}'] {`, `  --pick: var(--${piece});`, '}');
   }
   return `${lines.join('\n')}\n`;
 }
@@ -280,7 +333,8 @@ if (originals) {
   const books = await build(resolve(originals));
   mkdirSync(CLIENT, { recursive: true });
   writeFileSync(join(CLIENT, 'manifest.json'), `${JSON.stringify({ books }, null, 1)}\n`);
-  writeFileSync(join(CLIENT, 'book-materials.css'), stylesheet(books));
+  mkdirSync(join(CLIENT, 'generated'), { recursive: true });
+  writeFileSync(join(CLIENT, 'generated', 'book-materials.css'), stylesheet(books));
   const complete = books.filter((book) => PARTS.every((part) => `part-${part}` in book.pieces));
   process.stdout.write(`${books.length} books, ${complete.length} with every part's icon\n`);
 }

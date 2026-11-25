@@ -21,15 +21,6 @@
   align-items: end;
   gap: 0.6rem;
 }
-/* What to show: a compact grid, so the button stays in reach */
-.screen-cast-form .join-modes {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
-}
-.screen-cast-form .join-mode label {
-  margin: 0;
-  color: var(--text);
-  cursor: pointer;
-}
 .screen-sheet .glyph {
   width: 20px;
   height: 20px;

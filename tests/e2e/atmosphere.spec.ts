@@ -12,6 +12,7 @@ import {
   openInvitation,
   tokenOf,
 } from './support/sign-in.ts';
+import { tile } from './support/choices.ts';
 
 /**
  * The table's sound in the browser (docs/adr/0059-atmosphere.md §1, §6; Stage 690a): a paired TV
@@ -84,7 +85,7 @@ test('the table hears what the DM chooses, on the TV and online on every screen'
   await expect(sound(player)).toHaveCount(0);
   // Rain over the square: the crowd gives way to the rain.
   await openSheet(dm, 'Time and weather');
-  await dm.getByLabel('Weather at Market Square', { exact: true }).selectOption('rain');
+  await tile(dm, 'Weather at Market Square', 'rain').check();
   await dm.getByRole('button', { name: 'Set weather', exact: true }).click();
   await expect(sound(tv)).toHaveAttribute('data-ambience', 'rain');
 

@@ -145,6 +145,9 @@ export function Scene({
         )}
         {notice}
       </header>
+      {/* On the DM's working spread the plate stands between the page's head and who is here:
+          its place in the page's own flow, which the picture and the card take (§25). */}
+      {spread && <div className="scene-plate-slot" aria-hidden="true" />}
       {rail}
       <div className="scene-presence" id="scene-presence" hidden={battlefield}>
         <h3 className="visually-hidden">{t('In this scene')}</h3>
@@ -167,6 +170,7 @@ export function Scene({
             directory={directory}
             selectedId={selectedId}
             onSelect={onSelect}
+            round={spread}
           />
         )}
         <p className="scene-caption">

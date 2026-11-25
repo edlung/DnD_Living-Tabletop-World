@@ -7,6 +7,7 @@ import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, openChronicle, openSheet, openTopMenu } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
+import { tile } from './support/choices.ts';
 
 test('the DM moves time and weather and the player returns to a changed Ravenford', async ({
   browser,
@@ -24,14 +25,25 @@ test('the DM moves time and weather and the player returns to a changed Ravenfor
   await expect(dm.getByText('Time and weather (DM)', { exact: true })).toBeVisible();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })));
   // No weather is set, and none is preselected beside "Now: not set" (second stand-in pass).
-  const choice = dm.getByLabel('Weather at Market Square');
+  const choice = dm.getByRole('group', { name: 'Weather at Market Square', exact: true });
   await expect(dm.getByText('Now: not set', { exact: true })).toBeVisible();
-  await expect(choice).toHaveValue('');
+  await expect(choice.getByRole('radio', { checked: true })).toHaveCount(0);
   await expect(dm.getByRole('button', { name: 'Set weather' })).toBeDisabled();
-  await choice.selectOption('rain');
+  // The weather is a row of drawn tiles, one group of radio buttons (ADR 0075 §25): each tile
+  // carries its vignette, and the arrow keys move the choice as in any such group.
+  const rainTile = choice.getByRole('radio', { name: 'rain', exact: true });
+  expect(
+    await rainTile.evaluate(
+      (radio) => getComputedStyle(radio.parentElement ?? radio, '::before').backgroundImage,
+    ),
+  ).toContain('/book-materials/ltw/pick-weather-rain.webp');
+  await choice.getByRole('radio', { name: 'clear', exact: true }).focus();
+  await dm.keyboard.press('ArrowRight');
+  await expect(choice.getByRole('radio', { name: 'overcast', exact: true })).toBeChecked();
+  await rainTile.check();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Set weather' })));
   await expect(dm.getByText('Now: rain', { exact: true })).toBeVisible();
-  await expect(choice).toHaveValue('rain');
+  await expect(choice.getByRole('radio', { name: 'rain', exact: true })).toBeChecked();
   await expect(dm.getByLabel('Scene conditions')).toContainText('Day 2 · 10:00');
   // The day control now offers the next morning, never a day already reached (ADR 0033 §8).
   await expect(dm.getByRole('button', { name: 'Advance to Day 3, 10:00' })).toBeVisible();
@@ -55,7 +67,7 @@ test('the DM finds a day change in History and undoes it once the weather set af
   await openSheet(dm, 'Time and weather');
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Advance to Day 2, 10:00' })));
   await expect(conditions).toContainText('Day 2 · 10:00');
-  await dm.getByLabel('Weather at Market Square').selectOption('rain');
+  await tile(dm, 'Weather at Market Square', 'rain').check();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Set weather' })));
 
   // History lists both, newest first; the rain was set on Day 2, so it holds the day change.

@@ -21,6 +21,7 @@ import { MusicPanel } from './music-panel.tsx';
 import { Running } from './session-running.tsx';
 import { SoundChoice } from './sound-choice.tsx';
 import type { DmTableCommand } from './table-commands.ts';
+import { Pick, PickTiles } from '../book-kit/pick.tsx';
 
 /**
  * A session at the table (docs/adr/0043-dm-screen.md §6), on the DM's Session sheet: the
@@ -411,22 +412,16 @@ function StartForm({
             />
           )}
         </Field>
-        <fieldset className="hand-choice">
-          <legend>{t('Where you play')}</legend>
-          {(['table', 'online'] as const).map((option) => (
-            <label key={option}>
-              <input
-                type="radio"
-                name={`${ids}-mode`}
-                checked={mode === option}
-                onChange={() => {
-                  setMode(option);
-                }}
-              />
-              {option === 'table' ? t('At the table') : t('Online')}
-            </label>
-          ))}
-        </fieldset>
+        <PickTiles
+          legend={t('Where you play')}
+          name={`${ids}-mode`}
+          value={mode}
+          options={[
+            { value: 'table', label: t('At the table'), pick: 'table' },
+            { value: 'online', label: t('Online'), pick: 'online' },
+          ]}
+          onChange={setMode}
+        />
         {previously.chapter !== null && (
           <>
             <label className="session-recap-choice">
@@ -453,7 +448,7 @@ function StartForm({
         )}
         <div className="action-row">
           <button type="submit" className="primary-button" disabled={locked}>
-            <Glyph name="confirm" />
+            <Pick name="evening" />
             {t('Start the session')}
           </button>
         </div>

@@ -13,6 +13,7 @@ import { useDiceTable } from '../dice/table.tsx';
 import { useApprovedImage } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { EMPTY_DRAFT, HandoutFields, draftHandout, type HandoutDraft } from './handout-fields.tsx';
+import { HeroTiles } from '../book-kit/hero-tiles.tsx';
 
 /**
  * Handouts (docs/adr/0044-online-play.md §5): what the DM shows one player, or the party — a text,
@@ -141,21 +142,14 @@ export function GiveHandout({
     <section className="sheet-section give-handout" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Give a handout')}</h3>
       <form className="hand-form" noValidate onSubmit={submit}>
-        <label htmlFor={`${ids}-to`}>{t('For')}</label>
-        <select
-          id={`${ids}-to`}
+        <HeroTiles
+          legend={t('For')}
+          name={`${ids}-to`}
           value={to}
-          onChange={(event) => {
-            setTo(event.target.value);
-          }}
-        >
-          <option value="party">{t('The party')}</option>
-          {characters.map((character) => (
-            <option key={character.entityId} value={character.entityId}>
-              {character.name}
-            </option>
-          ))}
-        </select>
+          heroes={characters}
+          first={{ value: 'party', label: t('The party'), pick: 'table' }}
+          onChange={setTo}
+        />
         <HandoutFields
           draft={draft}
           onChange={setDraft}

@@ -1,13 +1,13 @@
 import { createContext, useContext } from 'react';
 
 import manifest from '../visual/book-materials/manifest.json' with { type: 'json' };
-import '../visual/book-materials/book-materials.css';
+import '../visual/book-materials/generated/book-materials.css';
 
 /**
  * A book's own materials (docs/adr/0075-book-interface.md §1.8): the binding, the paper, the
  * ribbon, the dice tray and the icons of the book's parts, each drawn in its campaign's style
  * (`scripts/book-materials/build.ts`). The textures reach a book through custom properties set by
- * the campaign's theme (`book-materials.css`); the icons are pictures named here. A campaign whose
+ * the campaign's theme (`generated/book-materials.css`); the icons are pictures named here. A campaign whose
  * set is not drawn yet has no icons: its book shows the product's glyphs, never another book's set.
  */
 export const BOOK_PARTS = [
