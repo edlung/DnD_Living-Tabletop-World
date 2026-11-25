@@ -17,16 +17,16 @@ actions are filed under parts named for something else; the table's screen draws
 quarter of the television; the shelf is eight screens tall; a player's phone opens on the Scene
 under 200 px of heads. Findings with screenshots: the page; `reports/BOOK_POLISH_2026-11-24.md`.
 
-| Stage | What                                | The promise shown to the owner                                                                                           | Status                                    |
-| ----- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
-| —     | The book's body                     | One row at a page's head, bookmarks with words, the block of pages, text never cut                                       | pull request 97                           |
-| 1150  | The DM's working spread             | The story and the Scene on one spread, five seals with slips, a card "by the book"                                       | pull request 98                           |
-| 1160  | The fight as one fold-out           | The field and the actions together; a turn for anyone by pressing their figure; "End the fight" on the map               | pull request 99                           |
-| 1170  | The Party and the Table by tasks    | Rest and experience beside the party's health; the evening apart from the campaign's settings; rare tools in an appendix | branch `claude/stage-1170-pages-by-tasks` |
-| 1180  | The table's screen                  | The book across the whole television, the battlefield at full height, a cover instead of a beige rectangle               | `work-orders/STAGE_1180.md`               |
-| 1190  | The shelf                           | Labelled shelves, «Продолжить» at the current book, no eight screens of scrolling                                        | `work-orders/STAGE_1190.md`               |
-| 1200  | A player's phone                    | The hero and the die first, a thin head                                                                                  | `work-orders/STAGE_1200.md`               |
-| 1210  | New book materials, three campaigns | A painted frame with the block of pages, action seals, an initial, corners — in each campaign's own style, by Codex CLI  | `work-orders/STAGE_1210.md`               |
+| Stage | What                                | The promise shown to the owner                                                                                           | Status                                  |
+| ----- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------- |
+| —     | The book's body                     | One row at a page's head, bookmarks with words, the block of pages, text never cut                                       | pull request 97                         |
+| 1150  | The DM's working spread             | The story and the Scene on one spread, five seals with slips, a card "by the book"                                       | pull request 98                         |
+| 1160  | The fight as one fold-out           | The field and the actions together; a turn for anyone by pressing their figure; "End the fight" on the map               | pull request 99                         |
+| 1170  | The Party and the Table by tasks    | Rest and experience beside the party's health; the evening apart from the campaign's settings; rare tools in an appendix | pull request 100                        |
+| 1180  | The table's screen                  | The book across the whole television, the battlefield at full height, a cover instead of a beige rectangle               | branch `claude/stage-1180-table-screen` |
+| 1190  | The shelf                           | Labelled shelves, «Продолжить» at the current book, no eight screens of scrolling                                        | `work-orders/STAGE_1190.md`             |
+| 1200  | A player's phone                    | The hero and the die first, a thin head                                                                                  | `work-orders/STAGE_1200.md`             |
+| 1210  | New book materials, three campaigns | A painted frame with the block of pages, action seals, an initial, corners — in each campaign's own style, by Codex CLI  | `work-orders/STAGE_1210.md`             |
 
 ## What every stage keeps
 

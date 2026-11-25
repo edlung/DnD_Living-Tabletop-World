@@ -1,4 +1,4 @@
-import { campaignAppearance } from '../visual/campaign-themes/index.ts';
+import { campaignAppearance, campaignTheme } from '../visual/campaign-themes/index.ts';
 import type {
   CastResponse,
   DisplaySessionResponse,
@@ -15,6 +15,7 @@ import { useScreenAwake } from '../alerts/screen.ts';
 import { TableMusic } from '../audio/table-music.tsx';
 import { DisplayCheers } from '../comforts/cheers.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
+import { bookPiece } from '../book-kit/materials.ts';
 import { onForgetAsked, reportToHost } from '../native/tv-report.ts';
 import { useHostedTvSound } from '../native/tv-sound.ts';
 import { useLiveSession } from '../session/use-live-session.ts';
@@ -374,6 +375,7 @@ function DisplayScreen({
               directory={directory}
               refresh={live.refresh}
               campaignName={session.campaignName}
+              emblem={bookPiece(campaignTheme(session.campaignName)?.id, 'emblem')}
             />
           </div>
           {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}

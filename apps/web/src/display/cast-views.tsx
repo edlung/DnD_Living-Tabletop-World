@@ -11,7 +11,7 @@ import type {
   ScenePresentationResponse,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -49,6 +49,8 @@ interface Props {
   readonly directory: readonly EntityRef[];
   readonly refresh: number;
   readonly campaignName: string;
+  /** The open book's own emblem, on the table's screen (`display-app.tsx`); none elsewhere. */
+  readonly emblem?: string | null;
 }
 
 export function CastView(props: Props) {
@@ -61,7 +63,7 @@ export function CastView(props: Props) {
     case 'dice':
       return <DiceCast {...props} />;
     case 'title':
-      return <TitleCard title={cast.title} subtitle={cast.subtitle} />;
+      return <TitleCard title={cast.title} subtitle={cast.subtitle} emblem={props.emblem} />;
     case 'chronicle':
       return <ChronicleCast {...props} />;
     case 'stars':
@@ -113,7 +115,7 @@ function SceneCast(props: Props & { readonly place: string | null }) {
   const art = useApprovedImage(scene?.location.image ?? null);
   const name = nameIn(props.directory, props.place);
   if (props.place === null || !scene || name === null) {
-    return <TitleCard title={props.campaignName} subtitle="" />;
+    return <TitleCard title={props.campaignName} subtitle="" emblem={props.emblem} />;
   }
   const party = scene.present
     .filter((entity) => entity.kind === 'character')
@@ -176,7 +178,13 @@ function BattleCast(props: Props & { readonly zoom: number; readonly focus: stri
   const marks = useRead(props, 'marks', readMarks);
   const encounter = read?.encounter ?? null;
   if (!encounter) {
-    return <TitleCard title={t('No fight right now')} subtitle={props.campaignName} />;
+    return (
+      <TitleCard
+        title={t('No fight right now')}
+        subtitle={props.campaignName}
+        emblem={props.emblem}
+      />
+    );
   }
   return (
     <Battle
@@ -217,8 +225,16 @@ function Battle({
     ) ?? false;
   const kept = focus ?? encounter.currentCombatantId;
   const centre = encounter.combatants.find((entry) => entry.entity.entityId === kept)?.position;
+  // The order of turns is a column on a wide screen (`display-spread.css`): a long one scrolls,
+  // and nobody scrolls a television — whoever acts is kept in view.
+  const stage = useRef<HTMLElement>(null);
+  useEffect(() => {
+    stage.current
+      ?.querySelector('.initiative-entry.is-current')
+      ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [encounter.currentCombatantId, encounter.order.length]);
   return (
-    <section className="display-battle" aria-label={t('The battlefield')}>
+    <section ref={stage} className="display-battle" aria-label={t('The battlefield')}>
       <InitiativeStrip encounter={encounter} actorId={null} imageOf={imageOf} />
       {/* A picture of the fight: nothing on it is pressed. */}
       <div className="display-board" inert>
@@ -290,14 +306,26 @@ function DiceCast(props: Props) {
 export function TitleCard({
   title,
   subtitle,
+  emblem = null,
 }: {
   readonly title: string;
   readonly subtitle: string;
+  /** A book with an emblem of its own shows it as the plate; any other, the game's key art. */
+  readonly emblem?: string | null | undefined;
 }) {
   return (
-    <section className="display-title" aria-label={title}>
-      <img className="display-art" src={textureUrl('brand-keyart')} alt="" />
-      <div className="display-scrim" aria-hidden="true" />
+    <section
+      className={`display-title${emblem ? ' display-title--emblem' : ''}`}
+      aria-label={title}
+    >
+      {emblem ? (
+        <img className="display-emblem" src={emblem} alt="" />
+      ) : (
+        <>
+          <img className="display-art" src={textureUrl('brand-keyart')} alt="" />
+          <div className="display-scrim" aria-hidden="true" />
+        </>
+      )}
       <div className="display-title-text">
         <h1>{title}</h1>
         {subtitle !== '' && <p>{subtitle}</p>}
@@ -314,7 +342,13 @@ function ChronicleCast(props: Props) {
   // "Previously…" (ADR 0071 §1.4): the party's newest chapter, as every other screen shows it.
   const chapter = list ? newestPartyChapter(list.chapters) : null;
   if (!chapter)
-    return <TitleCard title={t('The Chronicle is still empty')} subtitle={props.campaignName} />;
+    return (
+      <TitleCard
+        title={t('The Chronicle is still empty')}
+        subtitle={props.campaignName}
+        emblem={props.emblem}
+      />
+    );
   return (
     <section className="display-chronicle" aria-label={chapter.title}>
       <Previously api={props.api} chapter={chapter} heading="h1" />
@@ -330,7 +364,8 @@ function PictureCast(props: Props & { readonly entityId: string }) {
   const art = useApprovedImage(shown?.presentation.image ?? null);
   const name = nameIn(props.directory, props.entityId);
   // Nothing approved to show: its name on a title card, never a dark screen that looks broken.
-  if (!art) return <TitleCard title={name ?? props.campaignName} subtitle="" />;
+  if (!art)
+    return <TitleCard title={name ?? props.campaignName} subtitle="" emblem={props.emblem} />;
   return (
     <figure className="display-picture">
       <img src={art} alt={name ?? ''} />

@@ -412,6 +412,33 @@ together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
 4. **A moved tool keeps its name, its form and its command**; only the page it stands on
    changes. A report of a broken screen can name the two new pages (`CLIENT_PARTS`).
 
+### 19. The table's screen, second pass (Stage 1180)
+
+1. **In a fight the map takes the screen's height.** On a screen wider than tall (4:3 and wider)
+   the order of turns is a column at the left — the round at its head, whose turn at its foot —
+   and the battlefield stands beside it from the top of the page to its foot. An upright screen
+   keeps the order above the map.
+2. **Nobody scrolls a television.** Every row of the column is one portrait high, with or
+   without a health bar; up to eight stand large, nine to twelve and thirteen to sixteen step
+   down in size and still stand whole; a longer order keeps whoever acts in view. A number that
+   tells two unnamed creatures apart is sized to be read from the sofa.
+3. **Whom the table waits for stands at the head of the map, beside the column** — its old
+   place, the foot at the left, is the column's. It never lies over the order of turns.
+4. **A page with little to say is a spread, never an empty sheet.** No rolls yet, or a table not
+   open to join: the book's emblem is the plate of the left page and the words are on the right
+   one, with the fold between. A book without an emblem of its own shows the product's.
+5. **A title page takes the book's own emblem** where the book has one — on the left page of a
+   paper spread (a title card, a Chronicle with no chapter), and above the title on the cover
+   (no fight, a place or a picture the party has none of), where the title is the cover's own
+   lettering with no plate under it. A book without its own emblem keeps the game's key art: a
+   picture of another world is never put in its place.
+6. **Words read aloud lie on the book's page.** Their picture fills the page as the plate; the
+   words stand at its foot on the book's paper, in the page's ink, the fold under them — not on
+   a dark veil. The players' "Table screen" online keeps the veil (§9.4).
+7. No cast changes its contract or its content, and nothing is added to what a screen is sent.
+8. (S) Left: on a flat board (a screen under 1200 px wide) a name plate at the map's edge still
+   reaches past it and the edge fades, as before this stage; the screen's remote is not driven.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

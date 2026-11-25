@@ -62,5 +62,6 @@
   "phoneGroup4": "ui-phone-group-4",
   "phoneGroup5": "ui-phone-group-5",
   "phoneGroup6": "ui-phone-group-6",
-  "phoneBuiltin": "ui-phone-builtin"
+  "phoneBuiltin": "ui-phone-builtin",
+  "screenBook": "ui-signin-screen-book"
 }

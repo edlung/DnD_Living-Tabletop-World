@@ -1,0 +1,235 @@
+/*
+ * The table's screen, second pass (docs/adr/0075-book-interface.md §19): what the table looks at
+ * all evening. In a fight the order of turns is a column at the left and the battlefield takes
+ * the screen's whole height; a page with little to say — no rolls yet, a table not open to join,
+ * a title — is a spread of the book with its emblem as the plate, never an empty sheet; words read
+ * aloud lie on the book's page under their picture. Every cast keeps its contract and its content
+ * (`display/cast-views.tsx`).
+ */
+
+/* A combatant's number is read from the sofa too (it tells two "Unidentified creature" apart). */
+.display .display-battle :is(.initiative-total, .initiative-number) {
+  min-width: 1.5em;
+  font-size: clamp(0.82rem, 1.7vmin, 1.5rem);
+}
+
+/* --- A fight on a screen wider than tall: the order of turns down the left, the map beside it. */
+@media (min-aspect-ratio: 4/3) {
+  main.display {
+    /* Wide enough for "Неопознанное" whole beside its portrait, on a 4:3 projector too. */
+    --order-w: clamp(13rem, 26vmin + 3vw, 24rem);
+  }
+  main.display .display-battle {
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-columns: var(--order-w) minmax(0, 1fr);
+    gap: 2vmin;
+    padding: 2vmin;
+  }
+  /*
+   * Whom the table waits for: at the head of the map, beside the column — the foot at the left is
+   * the column's now, and above a tilted board's far edge the band is empty.
+   */
+  main.display .display-waiting-strip.is-low {
+    top: 4.2vmin;
+    bottom: auto;
+    left: calc(6.2vmin + var(--order-w));
+    max-width: 44vw;
+  }
+  .display .display-battle .encounter-anchor {
+    grid-template-rows: minmax(0, max-content) auto;
+    align-content: start;
+    justify-items: stretch;
+    min-height: 0;
+  }
+  .display .display-battle .initiative-band {
+    flex-direction: column;
+    min-height: 0;
+  }
+  /*
+   * Nobody scrolls a television: up to sixteen stand in the column whole — the portraits and the
+   * names step down as the order grows (below) — and a longer order keeps whoever acts in view
+   * (`cast-views.tsx`).
+   */
+  .display .display-battle .initiative {
+    --entry-pad: 0.8vmin;
+    flex-direction: column;
+    gap: 0.6vmin;
+    padding: 1vmin;
+    overflow: hidden auto;
+    mask-image: none;
+  }
+  .display .display-battle .initiative .medallion {
+    --m: clamp(2.75rem, 7vmin, 6rem);
+  }
+  .display .display-battle .initiative :is(.initiative-total, .initiative-number) {
+    font-size: clamp(0.82rem, 2vmin, 1.7rem);
+  }
+  /*
+   * A row is one portrait high, with or without a health bar: the name and the bar share the
+   * cell beside the portrait (a portrait spanning two rows made a row without a bar taller).
+   */
+  .display .display-battle .initiative-entry {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    justify-items: start;
+    gap: 0 1.4vmin;
+    width: auto;
+    padding: var(--entry-pad) 1vmin;
+  }
+  /* A box of the portrait's own height: an inline one keeps a line's gap under it. */
+  .display .display-battle .initiative-portrait {
+    display: flex;
+    grid-area: 1 / 1;
+  }
+  .display .display-battle .initiative-name {
+    grid-area: 1 / 2;
+    font-size: clamp(1rem, 2.3vmin, 2rem);
+    text-align: left;
+  }
+  .display .display-battle .initiative-entry .hp-bar {
+    grid-area: 1 / 2;
+    align-self: end;
+    width: 100%;
+    height: max(3px, 0.6vmin);
+  }
+  .display .display-battle .initiative-entry:has(> .hp-bar) .initiative-name {
+    margin-bottom: 1.2vmin;
+  }
+  /* Nine to twelve in the order. */
+  .display .display-battle .initiative:has(> :nth-child(9)) {
+    --entry-pad: 0.6vmin;
+    gap: 0.5vmin;
+  }
+  .display .display-battle .initiative:has(> :nth-child(9)) .medallion {
+    --m: clamp(2rem, 4.5vmin, 4rem);
+  }
+  .display .display-battle .initiative:has(> :nth-child(9)) .initiative-name {
+    font-size: clamp(0.95rem, 1.9vmin, 1.7rem);
+    -webkit-line-clamp: 1;
+  }
+  .display
+    .display-battle
+    .initiative:has(> :nth-child(9))
+    :is(.initiative-total, .initiative-number) {
+    font-size: clamp(0.78rem, 1.6vmin, 1.4rem);
+  }
+  /* Thirteen and more. */
+  .display .display-battle .initiative:has(> :nth-child(13)) {
+    --entry-pad: 0.4vmin;
+    gap: 0.4vmin;
+  }
+  .display .display-battle .initiative:has(> :nth-child(13)) .medallion {
+    --m: clamp(1.5rem, 3.4vmin, 3.2rem);
+  }
+  .display .display-battle .initiative:has(> :nth-child(13)) .initiative-name {
+    font-size: clamp(0.9rem, 1.8vmin, 1.6rem);
+  }
+  .display
+    .display-battle
+    .initiative:has(> :nth-child(13))
+    :is(.initiative-total, .initiative-number) {
+    font-size: clamp(0.75rem, 1.3vmin, 1.15rem);
+  }
+  .display .display-battle .round-mark {
+    order: -1;
+    justify-content: center;
+    padding: 1.2vmin 1vmin;
+    border-bottom: 1px solid var(--line);
+    border-left: 0;
+  }
+  .display .display-battle .anchor-caption {
+    text-align: center;
+  }
+}
+
+/*
+ * --- A page with little to say: the book lies open at a spread, its emblem the plate of the left
+ * page and the words on the right one.
+ */
+.display .display-cast[data-surface='paper'] > .display-dice:has(> .display-quiet),
+.display .display-cast[data-surface='paper'] > .display-join:not(:has(.qr-code, .display-recap)) {
+  position: relative;
+  padding-left: 50%;
+  background:
+    linear-gradient(
+      to right,
+      transparent calc(50% - 3vmin),
+      rgb(43 32 21 / 0.1) calc(50% - 0.2vmin),
+      rgb(43 32 21 / 0.24) 50%,
+      rgb(255 250 238 / 0.3) calc(50% + 0.2vmin),
+      transparent calc(50% + 3vmin)
+    ),
+    var(--book-paper, none) 0 0 / 520px,
+    var(--page);
+}
+.display .display-cast[data-surface='paper'] > .display-dice:has(> .display-quiet)::before,
+.display
+  .display-cast[data-surface='paper']
+  > .display-join:not(:has(.qr-code, .display-recap))::before {
+  content: '';
+  position: absolute;
+  inset: 0 50% 0 0;
+  background: var(--book-emblem, url('../assets/ui-kit/ornaments/emblem.webp')) center / auto 36vmin
+    no-repeat;
+}
+.display .display-cast[data-surface='paper'] > .display-join:not(:has(.qr-code, .display-recap)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/*
+ * --- A title page of a book that has an emblem of its own (`TitleCard`): the emblem is the plate,
+ * not the game's key art — on the left page of a paper spread, above the title on the cover.
+ */
+.display-emblem {
+  width: auto;
+  max-width: 80%;
+  height: 30vmin;
+  object-fit: contain;
+}
+.display-title--emblem {
+  gap: 4vmin;
+}
+/* On the cover the title is the cover's own lettering: no plate under it. */
+.display .display-title--emblem .display-title-text {
+  border: 0;
+  background: none;
+}
+/* The two pages meet at the fold: the emblem's centre is the left page's, as on a quiet spread. */
+.display .display-cast[data-surface='paper'] > .display-title--emblem {
+  gap: 0;
+}
+.display .display-cast[data-surface='paper'] > .display-title--emblem > .display-emblem {
+  place-self: center;
+  height: 36vmin;
+}
+
+/*
+ * --- Words read aloud: their picture is the spread's plate and the words lie on the book's page
+ * at its foot, in the page's ink (the fold runs under them).
+ */
+main.display .display-story-scrim {
+  display: none;
+}
+main.display .display-story-words {
+  padding: 3.6vmin 5vmin 5vmin;
+  color: var(--page-ink);
+}
+main.display .display-story-words::before {
+  inset: 0 -100vw;
+  border-top: 0.3vmin solid var(--page-floor);
+  background:
+    linear-gradient(
+      to right,
+      transparent calc(50% - 3vmin),
+      rgb(43 32 21 / 0.1) calc(50% - 0.2vmin),
+      rgb(43 32 21 / 0.24) 50%,
+      rgb(255 250 238 / 0.3) calc(50% + 0.2vmin),
+      transparent calc(50% + 3vmin)
+    ),
+    var(--book-paper, none) 0 0 / 520px,
+    var(--page);
+  box-shadow: 0 -0.8vmin 2.4vmin rgb(0 0 0 / 0.4);
+}
+main.display .display-story-words p {
+  text-shadow: none;
+}
