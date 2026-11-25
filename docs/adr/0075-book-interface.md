@@ -701,6 +701,33 @@ glass under a book of paper pages.
 8. **Not changed**: every command, route and contract; the windows' words, order and focus; the
    table's screen; the workshop; the shelf and the way in (their turn is next).
 
+### 28. What the browser still drew in a form (2026-11-25)
+
+The third of the loose ends (`reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json`). §25 drew a form's
+closed controls; what opened from them and what scrolled was still the browser's own.
+
+1. **The list a select opens is a slip of the book's paper** (`styles/book-lists.css`): its
+   options are inked lines, the chosen one in the rubric's red, with no tick of the system's. It
+   is set where the browser lets a page set it (`appearance: base-select`); a browser that opens
+   its own picker (Safari on a tablet or a phone) keeps it, and the closed field is drawn the
+   same in both. The select stays a select: its name, its keys and a journey's `selectOption`
+   are as they were. The list of views behind the cover's clasp is such a list too, with the
+   drawn mark of a list.
+2. **A date and time keeps the browser's own field** — the reader's locale writes its order —
+   with the page's clock, in the rubric's red, in place of the system's calendar mark.
+3. **A page's scroll bar** is a thin stroke of the page's ink with no trough.
+4. **A long word on a tile breaks at a syllable**, with a hyphen («преимуще-ством»), not inside
+   one.
+5. **Before any book is open the paper is set the same** (`styles/book-slips.css`): the way in,
+   a shelf's label, the account's page and a library book's look carry a page's stamped labels —
+   the one main action («Войти», «Продолжить», «Начать») in the rubric's red —, its ledger
+   fields and its lists. The shelf itself, the way in's picture and the table's screen keep
+   their own looks: a shelf of dark wood, a screen across a room.
+6. **Lists that stay lists**: every select whose options are the world's own names, and those of
+   a few fixed options that §25 did not turn into tiles (a campaign's options, how long a link
+   lasts, a saving throw, what to create). They open as slips of paper now; turning each into
+   tiles changes a form's controls and its journeys, and is not done here.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

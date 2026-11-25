@@ -8,6 +8,11 @@
  */
 
 /* --- A window: a slip laid on the book, the book dimmed behind it. */
+:is(.sign-in-page, .library-look, .shelf-label, .shelf-account)[data-surface='paper'] {
+  --ink-edge: color-mix(in srgb, var(--page-ink) 58%, transparent);
+  --ink-soft: color-mix(in srgb, var(--page-ink) 26%, transparent);
+  --ledger: color-mix(in srgb, #fffdf6 62%, transparent);
+}
 :is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] {
   --ink-edge: color-mix(in srgb, var(--page-ink) 58%, transparent);
   --ink-soft: color-mix(in srgb, var(--page-ink) 26%, transparent);
@@ -47,11 +52,19 @@
 }
 
 /*
- * --- What a slip holds, where no page sets it (a window opened from the cover's clasp, or before
- * the book): a button is a stamped label, the one main action in the rubric's red; a field is a
- * box of a printed ledger.
+ * --- What a slip holds, where no page sets it (a window opened from the cover's clasp; the way
+ * in, a shelf's label and a library book's look, before any book is open): a button is a stamped
+ * label, the one main action in the rubric's red; a field is a box of a printed ledger.
  */
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] button:not(.icon-button, .pick-tile) {
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
+  button:not(.icon-button, .pick-tile, .about-button) {
   border: 1px solid var(--ink-edge);
   border-radius: 3px;
   background: linear-gradient(rgb(255 252 242 / 0.75), rgb(236 222 190 / 0.45)), var(--page);
@@ -60,22 +73,51 @@
   font-family: var(--font-display);
   font-weight: 600;
 }
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
-  button:not(.icon-button, .pick-tile):hover:enabled {
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
+  button:not(.icon-button, .pick-tile, .about-button):hover:enabled {
   border-color: var(--page-ink);
   background: linear-gradient(rgb(255 252 242 / 0.95), rgb(236 222 190 / 0.7)), var(--page);
 }
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
   button:is(.primary-button, [aria-pressed='true'], [aria-selected='true']):not(.icon-button) {
   border-color: color-mix(in srgb, var(--rubric) 80%, black);
   background:
     linear-gradient(color-mix(in srgb, var(--rubric) 88%, white), var(--rubric)), var(--rubric);
   color: #fff8e6;
 }
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] button:disabled {
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
+  button:disabled {
   opacity: 0.55;
 }
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
   :is(
     input:not([type='checkbox'], [type='radio'], [type='range'], [type='file'], [type='color']),
     textarea,
@@ -89,7 +131,14 @@
   box-shadow: inset 0 2px 3px rgb(43 32 21 / 0.1);
   color: var(--page-ink);
 }
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
   :is(input, textarea, select):focus-visible {
   border-color: var(--rubric);
   outline: none;
@@ -97,7 +146,15 @@
     inset 0 2px 3px rgb(43 32 21 / 0.1),
     0 0 0 1px var(--rubric);
 }
-:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] select {
+:is(
+    .guide-dialog,
+    .sign-out-dialog,
+    .sign-in-page,
+    .library-look,
+    .shelf-label,
+    .shelf-account
+  )[data-surface='paper']
+  select {
   padding-right: 2rem;
   appearance: none;
   background-image: var(--pick-select-mark);
