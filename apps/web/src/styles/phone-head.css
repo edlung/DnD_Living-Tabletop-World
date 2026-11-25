@@ -1,0 +1,273 @@
+/*
+ * A player's phone (docs/adr/0075-book-interface.md §21): a head of one row — the hero's plate,
+ * whether the view is live, and "More" for what is rarely pressed; a part with one page has no
+ * row of tabs; the d20 stands first at the page's foot; in a fight the map comes up under the
+ * order of turns. Wider screens keep the top bar as it was: the menu's box is not a box there.
+ */
+.topbar-more {
+  display: none;
+}
+.topbar-menu {
+  display: contents;
+}
+.topbar-hero {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  /* --- One row: the emblem, the hero (or the campaign's name), the live mark, "More". */
+  .topbar {
+    flex-wrap: nowrap;
+    gap: 8px;
+    min-height: 48px;
+    padding-block: 4px;
+  }
+  .topbar-title {
+    padding-left: 8px;
+  }
+  .topbar-title h1 {
+    min-width: 0;
+    font-size: 1.1rem;
+  }
+  .topbar .session-controls {
+    flex: none;
+    gap: 6px;
+  }
+  .topbar .session-controls {
+    flex-wrap: nowrap;
+  }
+  /* Live, the mark alone; any other state keeps its word. */
+  .topbar .live-badge--live {
+    position: relative;
+    gap: 0;
+    padding-inline: 8px;
+  }
+  .topbar .live-badge--live .live-word {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .topbar .guide-button--title {
+    display: none;
+  }
+  .topbar .guide-button--controls {
+    display: inline-flex;
+  }
+  .topbar-more {
+    display: inline-flex;
+    flex: none;
+    width: 40px;
+    min-height: 40px;
+    padding: 0;
+  }
+  .topbar-more .glyph {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* --- "More": the view, how to play, refresh, the account, leaving — a list under the head. */
+  .topbar-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: var(--gutter);
+    left: var(--gutter);
+    z-index: 60;
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-panel);
+    background: var(--ink-900);
+    box-shadow: var(--shadow);
+    /* Closed, it is out of sight and out of reach; a dialog opened from it still shows. */
+    visibility: hidden;
+  }
+  .topbar-menu[data-open] {
+    visibility: visible;
+  }
+  /* Open, the head and its list lie over the page's own layers (the dice, a page, a result). */
+  .topbar:has(.topbar-menu[data-open]) {
+    z-index: 60;
+  }
+  .topbar-menu dialog[open] {
+    visibility: visible;
+  }
+  /* In the order they are read and reached by keys: the view first (it had a row of its own). */
+  .topbar-menu .perspective-control {
+    display: grid;
+    flex: none;
+    order: 0;
+    gap: 4px;
+  }
+  .topbar-menu .perspective-control label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  .topbar-menu .perspective-control select {
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+  }
+  .topbar-menu .icon-button--labelled {
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    color: var(--text);
+  }
+  .topbar-menu .icon-button--labelled > .icon-button-label {
+    display: inline;
+  }
+  .topbar-menu .icon-button--labelled:hover::after,
+  .topbar-menu .icon-button--labelled:focus-visible::after {
+    display: none;
+  }
+
+  /* --- The hero's plate, in place of the campaign's name (which stays the page's heading). */
+  .topbar-hero:not(:empty) {
+    display: block;
+    flex: 1;
+    min-width: 0;
+  }
+  .topbar:has(.topbar-hero > .hero-plate) .topbar-title {
+    position: absolute;
+    width: 1px;
+    min-width: 0;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  /* The name has the first line whole; under it the bar, then hit points and Armor Class. */
+  .hero-plate {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 1px 8px;
+    width: 100%;
+    min-height: 40px;
+    padding: 2px 10px 2px 2px;
+    border: 1px solid var(--line);
+    border-radius: 999px 12px 12px 999px;
+    background: color-mix(in srgb, var(--text) 5%, transparent);
+    text-align: left;
+  }
+  .hero-plate .medallion {
+    --m: 34px;
+    grid-row: 1 / span 2;
+    grid-column: 1;
+  }
+  .hero-plate-name {
+    grid-row: 1;
+    grid-column: 2 / -1;
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.15;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .hero-plate .hp-bar {
+    grid-row: 2;
+    grid-column: 2;
+    width: 100%;
+    height: 4px;
+  }
+  .hero-plate-numbers {
+    display: inline-flex;
+    grid-row: 2;
+    grid-column: 3;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  .hero-plate-numbers > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .hero-plate-numbers .glyph {
+    width: 12px;
+    height: 12px;
+    color: var(--gold);
+  }
+
+  /* --- A part with one page, and no page open over the stage: no row of tabs. */
+  .world-main[data-book]:has(.book-page-tabs:not([hidden]) > li:only-child):not(
+      :has(.sheet:not([hidden]))
+    ) {
+    --pages-h: 0px;
+  }
+  .world-main[data-book]:has(.book-page-tabs:not([hidden]) > li:only-child):not(
+      :has(.sheet:not([hidden]))
+    )
+    .book-pages {
+    display: none;
+  }
+
+  /*
+   * --- A phone's fight: the map comes up — no card of the place and no row of who is at the
+   * table above the order of turns, which names the party with its hit points — and the
+   * bookmarks stay the phone's own, along the bottom with their words.
+   */
+  .stage--battle .scene {
+    display: none;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts {
+    bottom: 0;
+    left: 0;
+    inline-size: 100%;
+    translate: none;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-parts > ul {
+    justify-content: space-around;
+    padding: 4px 4px env(safe-area-inset-bottom, 0px);
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part {
+    min-width: 0;
+    padding: 3px 2px;
+    border-radius: 0 0 10px 10px;
+  }
+  .world-main[data-book='hero'].has-battle:not(:has(.sheet:not([hidden]))) .book-part-word {
+    position: static;
+    inline-size: auto;
+    block-size: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  /*
+   * The bookmarks along the bottom lie on the binding's own cloth: a fight, which scrolls as one
+   * column under them, does not show through between them.
+   */
+  .world-main[data-book] .book-parts {
+    background-color: var(--ink-900);
+    background-image: var(--book-cover, var(--table-material, none));
+    background-size: 320px;
+  }
+
+  /* --- The die a table rolls most stands first and larger. */
+  .book-foot-dice > li[data-sides='20'] {
+    order: -1;
+  }
+  .book-foot-dice > li[data-sides='20'] .book-die {
+    min-inline-size: 56px;
+    border-color: var(--teal);
+    background: var(--teal-fill);
+    font-size: 1.05rem;
+  }
+}

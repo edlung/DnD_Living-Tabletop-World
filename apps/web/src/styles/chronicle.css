@@ -360,9 +360,10 @@
 
 /* Narrower than a wide screen: one parchment page, the same order; no desk around it */
 @media (max-width: 1023px), (max-height: 599px) {
+  /* Its own dark ground: the ribbons' words never lie over whatever the page behind shows. */
   .chronicle-frame {
     padding: 8px 8px 0;
-    background: none;
+    background: var(--ink-950);
   }
   .book-stage {
     display: flex;

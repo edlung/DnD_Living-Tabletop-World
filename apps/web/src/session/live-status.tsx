@@ -28,7 +28,8 @@ export function ConnectionBadge({ status }: { readonly status: LiveStatus }) {
     <span className={`live-badge live-badge--${status}`} title={hint}>
       <Glyph name={status === 'offline' ? 'offline' : 'live'} className="live-glyph" />
       <span className="visually-hidden">{t('Live updates:')} </span>
-      {label}
+      {/* Its own box: a phone's head shows the mark alone while live (styles/phone-head.css). */}
+      <span className="live-word">{label}</span>
     </span>
   );
 }

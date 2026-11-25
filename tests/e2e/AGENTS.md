@@ -299,6 +299,12 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   column at the left, every row whole and of one height, the map beside it at the screen's height,
   the waits beside the column (ADR 0075 §19) — the corner and a remote's keys, a lost network
   (`context.setOffline`) and the screen's own retry.
+- A phone's head (ADR 0075 §21; `phone-head.spec.ts`, read-only on `ravenford` at 390 × 844): on
+  a screen 700 px wide or less the view, "How to play", "Refresh world", the account and leaving
+  are rows of "More" — `openTopMenu` (`support/shell.ts`) opens it where it is there, and does
+  nothing on a wider screen; call it before pressing one of them in a journey that may run on a
+  phone. The Scene of a part with one page shows no row of tabs there, so `expectDockFits` looks
+  only at the tabs that show.
 - The shelf (ADR 0075 §20; `hub-library.spec.ts`, the `hubLibrary` sign-in campaign): the door of
   the campaign whose last evening is the latest is "Continue …" — every seeded sign-in campaign has
   an evening under way, a campaign just started from the library or a ready adventure has none

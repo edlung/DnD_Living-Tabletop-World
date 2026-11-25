@@ -464,6 +464,32 @@ together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
 6. (S) Left: the ready adventures keep their paper labels with a button for each language; the
    account's page still ends the shelf.
 
+### 21. A player's phone (Stage 1200)
+
+1. **A phone's head is one row.** The emblem, the hero's plate (the campaign's name where the
+   viewer plays no hero), whether the view is live, "Sound on" while the table's sound waits for
+   a press, and «Ещё». Behind «Ещё» lies what is rarely pressed — the view, how to play, refresh,
+   the account, leaving — as a list of named rows under the head; a press outside it or Escape
+   closes it, and a dialog opened from it shows over it. A wider screen keeps its top bar: there
+   the menu's box is no box.
+2. **The hero is first.** For a player in their own hero's view the head holds the hero's plate:
+   the portrait, the name on a line of its own, under it the bar of hit points, their numbers and
+   the Armor Class, each the server's (the hero's own sheet), and one press opens the sheet. The
+   campaign's name stays the page's heading for a screen reader. The plate is mounted, and the
+   sheet read for it, only on a phone: no other screen is sent the sheet for a head it does not
+   show.
+3. **A part with one page has no row of tabs** on a phone while the stage shows: the bookmark
+   along the bottom already says where the reader is. A page opened over the stage keeps its head
+   row, where Close is.
+4. **The d20 stands first at the page's foot**, larger and marked as the first press; the d6 and
+   the d8 follow, and "More dice" opens the Dice page as before.
+5. **In a fight the map comes up.** A phone's fight has no card of the place and no row of who is
+   at the table above the order of turns: the order names the party with its hit points, and the
+   place is the map itself. The bookmarks stay the phone's own — along the bottom, each with its
+   word, on the binding's cloth, so the fight's column does not show through between them.
+6. (S) Left: the hero's sheet is still a dialog over the book, not a page of it; the three dice
+   at the foot are the same for every hero.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through
