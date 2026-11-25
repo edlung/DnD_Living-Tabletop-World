@@ -1,0 +1,165 @@
+/*
+ * The shelf's second pass (docs/adr/0075-book-interface.md §20): the book gone on with stands
+ * first under its ribbon; the library stands on shelves by age, one row each with the rest a
+ * press away, its ages an index at its head; a library's book and its caption are one press.
+ * The shelf itself is laid in `shelf.css`.
+ */
+.shelf-item.is-current {
+  position: relative;
+}
+/* The ribbon hangs out of the book that is being read: the campaign's own, else the rubric's red. */
+.shelf-ribbon {
+  position: absolute;
+  top: -8px;
+  left: calc(50% + var(--book-w) / 2 - 38px);
+  z-index: 1;
+  width: 22px;
+  height: 72px;
+  background: var(--book-ribbon, linear-gradient(var(--rubric), var(--rubric))) center / cover;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  /* A light edge too: a dark ribbon on a dark binding is still seen. */
+  filter: drop-shadow(0 0 1px rgb(255 232 180 / 0.75)) drop-shadow(0 3px 3px rgb(0 0 0 / 0.55));
+  pointer-events: none;
+}
+.hub-campaign-evening {
+  color: var(--rubric);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* The ages at the library's head: each leads to its shelf. */
+.hub-ages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.hub-ages-word {
+  margin-right: 4px;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+.hub-ages a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  color: var(--gold-bright);
+  font-weight: 700;
+  text-decoration: none;
+}
+.hub-ages a:hover {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+}
+
+/* A shelf of the library: its brass plate, "the whole shelf", then its books. */
+.hub-shelf {
+  display: grid;
+  gap: 12px;
+}
+.hub-shelf + .hub-shelf {
+  margin-top: 12px;
+}
+.hub-shelf-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+.hub-shelf-head h4 {
+  margin: 0;
+  /* Come to by the ages' index: clear of the window's top. */
+  scroll-margin-top: 16px;
+  padding: 3px 14px;
+  border: 1px solid #7a5a1c;
+  border-radius: 3px;
+  background-color: #c9a24a;
+  box-shadow:
+    inset 0 1px 0 rgb(255 240 200 / 0.55),
+    inset 0 -1px 0 rgb(60 40 10 / 0.35),
+    0 2px 4px rgb(0 0 0 / 0.5);
+  color: #2b2015;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+.hub-shelf-all {
+  min-height: 36px;
+  padding: 4px 12px;
+  font-size: 0.875rem;
+}
+
+/* A library's book: the book and its caption, one press that looks inside. */
+.shelf-pick {
+  display: grid;
+  align-content: start;
+  justify-content: stretch;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  text-align: center;
+}
+.shelf-pick:hover:enabled {
+  border: 0;
+  background: none;
+}
+.shelf-pick .shelf-book {
+  transition: transform 150ms ease;
+}
+.shelf-pick:hover .shelf-book,
+.shelf-pick:focus-visible .shelf-book {
+  transform: translateY(-4px);
+}
+.shelf-caption {
+  display: grid;
+  gap: 2px;
+  padding: 0 4px 4px;
+}
+.shelf-caption strong {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.shelf-caption span {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shelf-pick .shelf-book {
+    transition: none;
+  }
+}
+
+/* A book's first page: how long it is played, in what tone — a term and its words, each a line. */
+.library-look-facts {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.library-look-facts dt {
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.library-look-facts dd {
+  margin: 0;
+  font-size: 0.9375rem;
+}

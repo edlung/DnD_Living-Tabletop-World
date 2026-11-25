@@ -71,6 +71,8 @@ describe('accounts', () => {
           nextGame: null,
           chapters: 0,
           place: 'Market Square',
+          // Ravenford's evening is under way: the shelf goes on with it (ADR 0075 §20).
+          evening: { at: expect.any(String) as string, running: true },
           finished: null,
         },
       ],

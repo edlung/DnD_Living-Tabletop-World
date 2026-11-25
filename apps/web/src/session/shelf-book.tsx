@@ -4,7 +4,8 @@
  * campaign, its cover picture set into the binding as a plate. The label under the book names it
  * for a screen reader and holds its buttons; the book itself is a large target for the pointer
  * that does what the label's first button does, so it is hidden from the keyboard and from
- * assistive technology rather than read twice.
+ * assistive technology rather than read twice. A library's book stands inside its own button
+ * (`hub-library.tsx`), so everything here is phrasing content.
  */
 export function ShelfBook({
   title,
@@ -28,7 +29,7 @@ export function ShelfBook({
     </>
   );
   return (
-    <div className="shelf-stand">
+    <span className="shelf-stand">
       {onOpen ? (
         <button
           type="button"
@@ -44,6 +45,6 @@ export function ShelfBook({
           {face}
         </span>
       )}
-    </div>
+    </span>
   );
 }

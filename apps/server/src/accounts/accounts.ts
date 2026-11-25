@@ -134,10 +134,22 @@ export async function campaignsOf(
       chapters: [...state.chronicles.values()].filter((chapter) => chapter.perspective === 'PARTY')
         .length,
       place: placeOf(state, actor),
+      evening: eveningOf(state),
       finished: ending === null ? null : await finishedOf(state, actor, ending, seat.campaignId),
     });
   }
   return listed;
+}
+
+/**
+ * The last evening played, as the shelf tells which book to go on with (ADR 0075 §20): the real
+ * instant it ended, or began while it still runs. The whole table sat through it: nothing of the
+ * world is in it. Null before the first evening.
+ */
+export function eveningOf(state: WorldState): NonNullable<AccountCampaign['evening']> | null {
+  const last = [...state.sessions.values()].at(-1);
+  if (last === undefined) return null;
+  return { at: last.playedTo ?? last.playedFrom, running: last.playedTo === null };
 }
 
 /**

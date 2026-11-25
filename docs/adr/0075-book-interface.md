@@ -439,6 +439,31 @@ together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
 8. (S) Left: on a flat board (a screen under 1200 px wide) a name plate at the map's edge still
    reaches past it and the edge fades, as before this stage; the screen's remote is not driven.
 
+### 20. The shelf, second pass (Stage 1190)
+
+1. **The shelf goes on with one book.** The campaign whose last evening is the latest — by the
+   instant it ended, or began while it still runs; a session left open for a week is not "now" —
+   stands first on the account's shelf under a ribbon (the campaign's own, else the rubric's
+   red), says when it was played, and its door is «Продолжить»: the one first press of the shelf. Every other book's door is «Открыть», an ordinary press. A campaign no
+   evening was played in is opened, not gone on with, and so is one played on another server.
+2. **The server tells the last evening, nothing more**: `AccountCampaign.evening` is the real
+   instant the last session ended — or began, while it still runs — and whether it runs. The whole
+   table sat through it; nothing of the world is in it. The field is optional, as `place` is: a
+   client reads a server from before it.
+3. **The library stands on shelves by age.** A book's age mark (`audience`, "8+") names its
+   shelf; the shelves stand the youngest first, each under a brass plate, and the ages are an
+   index at the library's head that comes to a shelf. A shelf shows one row, and its head unfolds
+   the whole shelf and folds it again; how many stand in a row is the row's own grid, measured.
+4. **A library's book is one press.** The book and its caption — the title in the book's own
+   lettering and its kind of story — are one button, "Look inside the book «…»", described by
+   the kind of story. The paper card with a second title and a button of its own is gone from
+   the library; the account's own books keep their labels, which say who the account is there.
+5. **A book's first page answers what is asked before choosing**: after its pitch, how long the
+   campaign plays and its tone, in its author's words; the party size and the start stay at the
+   page's foot while the page scrolls.
+6. (S) Left: the ready adventures keep their paper labels with a button for each language; the
+   account's page still ends the shelf.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

@@ -18,7 +18,9 @@ test.afterEach(closePages);
  * "The book" on a campaign's card in the account's list (docs/adr/0072-keepsakes.md §1, Stage
  * 770), on the invitation-mode servers where accounts live: a campaign with no chapter has no such
  * button, and its Chronicle's book says where it begins; once an evening has its chapter the card
- * opens the campaign at its book; "Open" beside it opens the campaign as before. No trace or screenshot is kept: the pages show links.
+ * opens the campaign at its book; the door beside it — "Continue", for the book whose evening is
+ * the latest (ADR 0075 §20) — opens the campaign as before. No trace or screenshot is kept: the
+ * pages show links.
  */
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off' });
 
@@ -51,12 +53,12 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
   await dialog.getByRole('button', { name: 'Close the Chronicle', exact: true }).click();
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   const list = dm.getByRole('region', { name: 'Your campaigns', exact: true });
-  await expect(list.getByRole('button', { name: /^Open / })).toBeVisible(LIVE);
+  await expect(list.getByRole('button', { name: /^Continue / })).toBeVisible(LIVE);
   await expect(list.getByRole('button', { name: /^The book of / })).toHaveCount(0);
 
   // The first evening closes with its chapter: the card gains "The book", which opens the
   // campaign at its book.
-  await list.getByRole('button', { name: /^Open / }).click();
+  await list.getByRole('button', { name: /^Continue / }).click();
   await openSheet(dm, 'Session');
   const sheet = dm.locator('#sheet-session');
   await sheet.getByRole('button', { name: 'End the session', exact: true }).click();
@@ -82,7 +84,7 @@ test('the list of campaigns opens a campaign at its book', async ({ browser }) =
   // The asking was spent: opening the campaign again shows the world, not the book.
   await dialog.getByRole('button', { name: 'Close the Chronicle', exact: true }).click();
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
-  await list.getByRole('button', { name: /^Open / }).click(LIVE);
+  await list.getByRole('button', { name: /^Continue / }).click(LIVE);
   await expect(dm.locator('nav.book-parts')).toBeVisible(LIVE);
   await expect(dialog).toBeHidden();
 });

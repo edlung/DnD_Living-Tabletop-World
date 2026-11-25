@@ -299,6 +299,13 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   column at the left, every row whole and of one height, the map beside it at the screen's height,
   the waits beside the column (ADR 0075 §19) — the corner and a remote's keys, a lost network
   (`context.setOffline`) and the screen's own retry.
+- The shelf (ADR 0075 §20; `hub-library.spec.ts`, the `hubLibrary` sign-in campaign): the door of
+  the campaign whose last evening is the latest is "Continue …" — every seeded sign-in campaign has
+  an evening under way, a campaign just started from the library or a ready adventure has none
+  and is "Open …". A library's book is one button, "Look inside the book «…»"; a shelf shows one
+  row until "The whole shelf: N" is pressed, so a journey that starts a book far along its shelf
+  unfolds the shelf first. An unfolded shelf's head says "Fold the shelf": find a shelf by its
+  plate ("Ages 12+"), not by that button.
 - The table's screen as the open book (`table-screen.spec.ts`, ADR 0075 §19) owns the `screenBook`
   sign-in campaign: a login starts «Маяк Между Ветрами» from the library (a book with an emblem of
   its own) and pairs a TV at 1920 × 1080 — a quiet spread, a title page with the emblem, a table

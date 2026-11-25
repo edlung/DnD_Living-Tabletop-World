@@ -116,8 +116,9 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
   await signIn(laptop, 'LENA.PLAYS', PASSWORD);
   await expect(hub(laptop)).toContainText(`You play ${ELOWEN}`);
   await expectAccessible(laptop, 'the hub');
+  // The campaign's evening is under way: the shelf goes on with it (ADR 0075 §20).
   await hub(laptop)
-    .getByRole('button', { name: `Open The Missing Caravan: You play ${ELOWEN}`, exact: true })
+    .getByRole('button', { name: `Continue The Missing Caravan: You play ${ELOWEN}`, exact: true })
     .click();
   await expect(inWorld(laptop)).toBeVisible(LIVE);
 
@@ -155,8 +156,15 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
   await tablet.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await expect(campaigns(tablet)).toHaveCount(2);
   await expect(hub(tablet)).toContainText('You are the DM');
+  // No evening was played in the new campaign: it is opened; the one being played is gone on with.
+  await expect(
+    hub(tablet).getByRole('button', {
+      name: 'Open The Missing Caravan: You are the DM',
+      exact: true,
+    }),
+  ).toBeVisible();
   await hub(tablet)
-    .getByRole('button', { name: `Open The Missing Caravan: You play ${ELOWEN}`, exact: true })
+    .getByRole('button', { name: `Continue The Missing Caravan: You play ${ELOWEN}`, exact: true })
     .click();
   await expect(inWorld(tablet)).toBeVisible(LIVE);
 

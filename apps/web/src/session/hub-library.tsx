@@ -1,17 +1,19 @@
 import { campaignAppearance } from '../visual/campaign-themes/index.ts';
 import { campaignLibraryResponseSchema, type CampaignLibraryEntry } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import { Glyph } from '../visual/glyph.tsx';
 import { LibraryLook } from './library-look.tsx';
 import { ShelfBook } from './shelf-book.tsx';
+import { inView, shelvesOf } from './shelf-order.ts';
 
 /**
  * The campaign library on the shelf (docs/adr/0058-campaign-content.md, notes of 2026-11-19; ADR
- * 0075 §10): every authored campaign a book in its own binding with its cover set in, what it is
- * on its label, and "Look inside" for its first page with the party size and the press that
- * starts it with the account as its DM. The library is read once; a server with none shows none.
+ * 0075 §10, §20): every authored campaign a book in its own binding with its cover set in, on the
+ * shelf of the age it is written for — the youngest first, each shelf one row with the rest a
+ * press away, and the ages as an index at the library's head. A book is pressed to look inside:
+ * its first page, the party size and the press that starts it with the account as its DM. The
+ * library is read once; a server with none shows none.
  */
 export function HubLibrary({
   transport,
@@ -28,6 +30,9 @@ export function HubLibrary({
   const [failed, setFailed] = useState(false);
   const [variants, setVariants] = useState<Readonly<Record<string, string>>>({});
   const [open, setOpen] = useState<string | null>(null);
+  // The shelves unfolded to all their books, by their age mark.
+  const [whole, setWhole] = useState<ReadonlySet<string>>(new Set());
+  const [row, columns] = useColumns(campaigns !== null);
   useEffect(() => {
     const controller = new AbortController();
     void (async () => {
@@ -54,15 +59,18 @@ export function HubLibrary({
   }, [transport]);
 
   if (failed || (campaigns !== null && campaigns.length === 0)) return null;
-  const looking = campaigns?.find((campaign) => campaign.id === open) ?? null;
-  const cover = (id: string) => `/api/account/library/${encodeURIComponent(id)}/cover`;
+  const shelves = shelvesOf(campaigns ?? []);
+  const cover = (campaignId: string) =>
+    `/api/account/library/${encodeURIComponent(campaignId)}/cover`;
+  // A fixed name: the ages' index leads to it by the address's fragment.
+  const shelfId = (audience: string) => `hub-shelf-${String(Number.parseInt(audience, 10))}`;
   const close = () => {
-    const id = open;
+    const closed = open;
     setOpen(null);
-    // Focus goes back to the label's button once the dialog is gone, never to the book itself.
-    if (id !== null) {
+    // Focus goes back to the book once the dialog is gone.
+    if (closed !== null) {
       requestAnimationFrame(() => {
-        document.getElementById(`hub-library-look-${id}`)?.focus();
+        document.getElementById(`hub-library-look-${closed}`)?.focus();
       });
     }
   };
@@ -71,64 +79,133 @@ export function HubLibrary({
       <h3 id="hub-library">{t('Campaigns from the library')}</h3>
       <p className="hub-lead">
         {t(
-          'Written campaigns with their own pictures, figures and battle maps. Look inside one, pick the number of players; the campaign starts as written, with you as its DM.',
+          'Written campaigns with their own pictures, figures and battle maps, on shelves by age. Press a book to look inside and pick the number of players; the campaign starts as written, with you as its DM.',
         )}
       </p>
       {campaigns === null && <p role="status">{t('Loading the library…')}</p>}
-      <ul className="hub-library shelf-row" aria-labelledby="hub-library">
-        {(campaigns ?? []).map((campaign) => (
-          <li
-            key={campaign.id}
-            className="hub-library-card shelf-item"
-            {...campaignAppearance(campaign.id)}
+      {shelves.length > 1 && (
+        <nav className="hub-ages" aria-label={t('Shelves by age')}>
+          <span className="hub-ages-word" aria-hidden="true">
+            {t('Age')}
+          </span>
+          {shelves.map((shelf) => (
+            <a key={shelf.audience} href={`#${shelfId(shelf.audience)}`}>
+              {shelf.audience}
+            </a>
+          ))}
+        </nav>
+      )}
+      {shelves.map((shelf, index) => {
+        const unfolded = whole.has(shelf.audience);
+        const shown = unfolded ? shelf.books : shelf.books.slice(0, inView(columns));
+        return (
+          <section
+            key={shelf.audience}
+            className="hub-shelf"
+            aria-labelledby={shelfId(shelf.audience)}
           >
-            <ShelfBook
-              title={campaign.title}
-              picture={cover(campaign.id)}
-              onOpen={() => {
-                setOpen(campaign.id);
-              }}
-            />
-            <div className="shelf-label" data-surface="paper">
-              <h4>{campaign.title}</h4>
-              <p className="hub-library-meta">
-                {campaign.genre} · {campaign.audience}
-              </p>
-              <button
-                type="button"
-                id={`hub-library-look-${campaign.id}`}
-                aria-haspopup="dialog"
-                aria-label={t('Look inside the book «{title}»', { title: campaign.title })}
-                onClick={() => {
-                  setOpen(campaign.id);
-                }}
-              >
-                <Glyph name="chronicle" />
-                {t('Look inside the book')}
-              </button>
+            <div className="hub-shelf-head">
+              <h4 id={shelfId(shelf.audience)}>
+                {t('Ages {audience}', { audience: shelf.audience })}
+              </h4>
+              {shelf.books.length > inView(columns) && (
+                <button
+                  type="button"
+                  className="hub-shelf-all"
+                  aria-expanded={unfolded}
+                  aria-controls={`${shelfId(shelf.audience)}-books`}
+                  onClick={() => {
+                    const next = new Set(whole);
+                    if (unfolded) next.delete(shelf.audience);
+                    else next.add(shelf.audience);
+                    setWhole(next);
+                  }}
+                >
+                  {unfolded
+                    ? t('Fold the shelf')
+                    : t('The whole shelf: {count}', { count: shelf.books.length })}
+                </button>
+              )}
             </div>
-            {looking?.id === campaign.id && (
-              <LibraryLook
-                campaign={campaign}
-                picture={cover(campaign.id)}
-                variant={variants[campaign.id] ?? campaign.defaultVariant}
-                busy={busy !== null}
-                mine={busy === `library:${campaign.id}`}
-                onVariant={(variantId) => {
-                  setVariants({ ...variants, [campaign.id]: variantId });
-                }}
-                onStart={() => {
-                  onStart({
-                    libraryId: campaign.id,
-                    variantId: variants[campaign.id] ?? campaign.defaultVariant,
-                  });
-                }}
-                onClose={close}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
+            <ul
+              id={`${shelfId(shelf.audience)}-books`}
+              ref={index === 0 ? row : undefined}
+              className="hub-library shelf-row"
+              aria-labelledby={shelfId(shelf.audience)}
+            >
+              {shown.map((campaign) => (
+                <li
+                  key={campaign.id}
+                  className="hub-library-card shelf-item"
+                  {...campaignAppearance(campaign.id)}
+                >
+                  <button
+                    type="button"
+                    id={`hub-library-look-${campaign.id}`}
+                    className="shelf-pick"
+                    aria-haspopup="dialog"
+                    aria-label={t('Look inside the book «{title}»', { title: campaign.title })}
+                    aria-describedby={`hub-library-about-${campaign.id}`}
+                    onClick={() => {
+                      setOpen(campaign.id);
+                    }}
+                  >
+                    <ShelfBook title={campaign.title} picture={cover(campaign.id)} />
+                    <span className="shelf-caption">
+                      <strong>{campaign.title}</strong>
+                      <span id={`hub-library-about-${campaign.id}`}>{campaign.genre}</span>
+                    </span>
+                  </button>
+                  {open === campaign.id && (
+                    <LibraryLook
+                      campaign={campaign}
+                      picture={cover(campaign.id)}
+                      variant={variants[campaign.id] ?? campaign.defaultVariant}
+                      busy={busy !== null}
+                      mine={busy === `library:${campaign.id}`}
+                      onVariant={(variantId) => {
+                        setVariants({ ...variants, [campaign.id]: variantId });
+                      }}
+                      onStart={() => {
+                        onStart({
+                          libraryId: campaign.id,
+                          variantId: variants[campaign.id] ?? campaign.defaultVariant,
+                        });
+                      }}
+                      onClose={close}
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
     </section>
   );
+}
+
+/**
+ * How many books stand in one row of a shelf: the row's own grid, measured (the first shelf's
+ * — every shelf is as wide), and measured again when the row's width changes.
+ */
+function useColumns(ready: boolean) {
+  const row = useRef<HTMLUListElement>(null);
+  const [columns, setColumns] = useState(4);
+  useLayoutEffect(() => {
+    const list = row.current;
+    if (!list) return;
+    const measure = () => {
+      const tracks = getComputedStyle(list).gridTemplateColumns.split(' ').filter(Boolean);
+      // A list not laid out answers "none": the last count is kept.
+      if (tracks.length > 0 && tracks[0] !== 'none') setColumns(tracks.length);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => {
+      observer.disconnect();
+    };
+  }, [ready]);
+  return [row, columns] as const;
 }
