@@ -149,6 +149,7 @@ import './styles/sheet-layouts.css';
 import './styles/book-body.css';
 import './styles/work-spread.css';
 import './styles/work-seals.css';
+import './styles/book-details.css';
 import './styles/phone-head.css';
 import './styles/print.css';
 import './styles/print-book.css';

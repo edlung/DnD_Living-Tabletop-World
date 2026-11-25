@@ -25,6 +25,10 @@ export type BookPart = (typeof BOOK_PARTS)[number];
 export const BOOK_MOMENTS = ['talk', 'clue', 'letter', 'fight', 'puzzle'] as const;
 export type BookMoment = (typeof BOOK_MOMENTS)[number];
 
+/** The seals of the DM's working spread (docs/adr/0075-book-interface.md §16, §22). */
+export const BOOK_SEALS = ['roll', 'fight', 'rest', 'screen', 'give'] as const;
+export type BookSeal = (typeof BOOK_SEALS)[number];
+
 /** The product's own binding: the shelf, the way in and the writer's desk. */
 export const PRODUCT_BOOK = 'ltw';
 
@@ -43,6 +47,10 @@ export const partIcon = (theme: string | null | undefined, part: BookPart) =>
 
 export const momentIcon = (theme: string | null | undefined, moment: BookMoment) =>
   bookPiece(theme, `ico-${moment}`);
+
+/** A seal pressed in the book's own wax, where the book has it; the product's drawn wax else. */
+export const sealPicture = (theme: string | null | undefined, seal: BookSeal) =>
+  bookPiece(theme, `seal-${seal}`);
 
 /** Which book is open: the campaign theme's id (`campaign-themes`), or none outside a campaign. */
 export const BookThemeContext = createContext<string | null>(null);

@@ -1,0 +1,85 @@
+/*
+ * A book's own details (docs/adr/0075-book-interface.md §22), where its set has them — three
+ * campaigns on trial: the working spread's seals pressed in the book's wax, the plate its
+ * story's initial is printed on, a corner ornament of the story's page, and the painted edge of
+ * the block of pages. A book without a piece keeps what the product draws (`work-seals.css`,
+ * `work-spread.css`, `book-body.css`).
+ */
+
+/* --- A seal in the book's own wax: the picture is the seal, no drawn wax under it. */
+.work-seal-art {
+  display: block;
+  inline-size: 56px;
+  block-size: 56px;
+  filter: drop-shadow(0 2px 3px rgb(43 32 21 / 0.45));
+}
+.work-seal:hover:enabled .work-seal-art {
+  filter: drop-shadow(0 2px 3px rgb(43 32 21 / 0.45)) brightness(1.08);
+}
+.work-seal:active .work-seal-art {
+  translate: 0 1px;
+}
+.work-seal[aria-expanded='true'] .work-seal-art {
+  border-radius: 50%;
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/*
+ * --- The story's initial on the book's plate: the letter in the plate's calm centre. The
+ * paragraph it opens is as tall as the plate at least: one short line of words does not leave
+ * the plate hanging under its block (in the measuring copy too: `book/page-text.tsx`).
+ */
+.work-story[data-initial] .dmb-text > p:first-child,
+.work-story[data-initial] .dmb-text > blockquote:first-child > p:first-child {
+  display: flow-root;
+}
+.work-story[data-initial] .dmb-text > :first-child::first-letter,
+.work-story[data-initial] .dmb-text > blockquote:first-child > p::first-letter {
+  margin: 0.04em 0.14em 0 0;
+  padding: 0.36em 0.34em 0.3em;
+  background: var(--book-initial) center / contain no-repeat;
+}
+.work-story[data-initial]
+  .dmb-text:not(.dmb-measure)[data-screen]:not([data-screen='0'])
+  > :first-child::first-letter,
+.work-story[data-initial]
+  .dmb-text:not(.dmb-measure)[data-screen]:not([data-screen='0'])
+  > blockquote:first-child
+  > p::first-letter {
+  padding: 0;
+  background: none;
+}
+
+/*
+ * --- A corner ornament of the story's page: in its head's outer corner, in the page's margins
+ * and under the words (the page is its own stacking context: `work-spread.css`).
+ */
+.work-story[data-corner]::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: -1;
+  inline-size: 60px;
+  block-size: 60px;
+  background: var(--book-corner) top left / contain no-repeat;
+  pointer-events: none;
+}
+
+/* --- The block of pages: the book's painted edge under the page, where the book has it. */
+@media (min-width: 768px) and (min-height: 501px) {
+  [data-campaign-theme] .world-main[data-book] > .stage::after {
+    background:
+      var(
+          --book-edge,
+          repeating-linear-gradient(
+            to bottom,
+            var(--block-light) 0 1px,
+            var(--block-dark) 1px 2.5px
+          )
+        )
+        bottom / 100% 9px no-repeat,
+      repeating-linear-gradient(to right, var(--block-light) 0 1px, var(--block-dark) 1px 2.5px);
+  }
+}

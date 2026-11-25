@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { sealPicture, useBookTheme } from '../book-kit/materials.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { restAction } from '../rest/rest-intent.ts';
@@ -20,7 +21,8 @@ import { encounterOf } from './moments.ts';
  * each named with the table's own word and in view wherever the party is. A seal opens a slip on
  * the page: what this page of the story prepares for it first (its check, its chapter's fights
  * and handouts, its picture and words), then the way to the whole tool. Every action is one the
- * product already had (the Book's, the rest's): a seal adds no command.
+ * product already had (the Book's, the rest's): a seal adds no command. A book that has seals
+ * pressed in its own wax shows them (§22); any other, the product's drawn wax with a glyph.
  */
 type SealId = 'roll' | 'fight' | 'rest' | 'screen' | 'give';
 const SEALS: readonly { readonly id: SealId; readonly glyph: GlyphName }[] = [
@@ -268,6 +270,7 @@ export function WorkSeals({
     ),
   };
   const shown = SEALS.find((seal) => seal.id === open);
+  const theme = useBookTheme();
   return (
     <>
       <nav
@@ -290,9 +293,20 @@ export function WorkSeals({
                   setOpen(open === seal.id ? null : seal.id);
                 }}
               >
-                <span className="work-seal-wax" aria-hidden="true">
-                  <Glyph name={seal.glyph} />
-                </span>
+                {sealPicture(theme, seal.id) ? (
+                  <img
+                    className="work-seal-art"
+                    src={sealPicture(theme, seal.id) ?? undefined}
+                    alt=""
+                    width={56}
+                    height={56}
+                    decoding="async"
+                  />
+                ) : (
+                  <span className="work-seal-wax" aria-hidden="true">
+                    <Glyph name={seal.glyph} />
+                  </span>
+                )}
                 <span className="work-seal-word">{words[seal.id]}</span>
               </button>
               {/* Beside the button, not in it: the seal's name stays its word. */}

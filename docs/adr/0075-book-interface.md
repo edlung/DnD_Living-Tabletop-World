@@ -490,6 +490,23 @@ together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
 6. (S) Left: the hero's sheet is still a dialog over the book, not a page of it; the three dice
    at the foot are the same for every hero.
 
+### 22. A book's own details, three campaigns on trial (Stage 1210)
+
+1. **Where a book could look like its campaign and did not, it may.** A book's set (§1.8) gains
+   pieces: the working spread's five seals pressed in one wax a campaign (`seal-roll`,
+   `seal-fight`, `seal-rest`, `seal-screen`, `seal-give`), the plate a chapter's initial is
+   printed on (`initial`), a corner ornament of the story's page (`corner`), the painted edge of
+   the block of pages (`edge`). Each is a Codex CLI picture drawn with the campaign's own
+   references and style words.
+2. **A piece is used only by the book that has it**; a book without one keeps what the product
+   draws — the red wax with a glyph, the plain initial, the ruled block. A seal does what it did:
+   the picture replaces the wax, not the word under it or the count on its shoulder.
+3. **The build converts and cuts, it draws nothing**: seals and the initial's plate are converted
+   as they are; the corner and the edge are cut from their originals without changing a pixel.
+4. **Three campaigns first** — a family tale, a noir, a dark fantasy (`lighthouse`,
+   `rain-check`, `marrow-crown`) — so the owner sees the idea in three styles before the other
+   books are drawn.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

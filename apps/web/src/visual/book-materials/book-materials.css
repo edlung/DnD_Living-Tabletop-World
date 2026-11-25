@@ -159,9 +159,12 @@
   --book-cover: url('/book-materials/lighthouse/cover.webp');
   --book-divider: url('/book-materials/lighthouse/divider.webp');
   --book-emblem: url('/book-materials/lighthouse/emblem.webp');
+  --book-initial: url('/book-materials/lighthouse/initial.webp');
   --book-paper: url('/book-materials/lighthouse/paper.webp');
   --book-ribbon: url('/book-materials/lighthouse/ribbon.webp');
   --book-tray: url('/book-materials/lighthouse/tray.webp');
+  --book-corner: url('/book-materials/lighthouse/corner.webp');
+  --book-edge: url('/book-materials/lighthouse/edge.webp');
 }
 :root {
   --book-bookplate: url('/book-materials/ltw/bookplate.webp');
@@ -177,9 +180,12 @@
   --book-cover: url('/book-materials/marrow-crown/cover.webp');
   --book-divider: url('/book-materials/marrow-crown/divider.webp');
   --book-emblem: url('/book-materials/marrow-crown/emblem.webp');
+  --book-initial: url('/book-materials/marrow-crown/initial.webp');
   --book-paper: url('/book-materials/marrow-crown/paper.webp');
   --book-ribbon: url('/book-materials/marrow-crown/ribbon.webp');
   --book-tray: url('/book-materials/marrow-crown/tray.webp');
+  --book-corner: url('/book-materials/marrow-crown/corner.webp');
+  --book-edge: url('/book-materials/marrow-crown/edge.webp');
 }
 [data-campaign-theme='moon-pearl'] {
   --book-cover: url('/book-materials/moon-pearl/cover.webp');
@@ -227,9 +233,12 @@
   --book-cover: url('/book-materials/rain-check/cover.webp');
   --book-divider: url('/book-materials/rain-check/divider.webp');
   --book-emblem: url('/book-materials/rain-check/emblem.webp');
+  --book-initial: url('/book-materials/rain-check/initial.webp');
   --book-paper: url('/book-materials/rain-check/paper.webp');
   --book-ribbon: url('/book-materials/rain-check/ribbon.webp');
   --book-tray: url('/book-materials/rain-check/tray.webp');
+  --book-corner: url('/book-materials/rain-check/corner.webp');
+  --book-edge: url('/book-materials/rain-check/edge.webp');
 }
 [data-campaign-theme='ravenford'] {
   --book-cover: url('/book-materials/ravenford/cover.webp');

@@ -2,6 +2,7 @@ import type { EntityKind, EntityRef, OpenedBook } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
+import { bookPiece, useBookTheme } from '../book-kit/materials.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { leafAt, leavesOf, placeAfterTurn, placeWithRibbon, type Leaf } from './model.ts';
 import { PageText, type Passage } from './page-text.tsx';
@@ -14,7 +15,9 @@ import { PageBrief } from './work-brief.tsx';
  * list stood. It always shows the leaf the ribbon lies on: turning it on or back moves the ribbon
  * (reading ahead is the Book's, which leaves the ribbon alone). "How we play this" folds at the
  * page's foot, its state remembered for this browser. A page the campaign wrote no words for says
- * so and lays out what the book holds of it (`work-brief.tsx`).
+ * so and lays out what the book holds of it (`work-brief.tsx`). Where the book's set has them
+ * (§22), the story's initial stands on the book's own plate and a corner ornament marks the page
+ * (`styles/book-details.css`).
  */
 const NOTES_KEY = 'ltw.work-notes';
 const SIZE_KEY = 'ltw.book-size';
@@ -61,6 +64,8 @@ export function WorkStory({
     screen: 0,
   });
   const [screens, setScreens] = useState(1);
+  // The book's own details, where its set has them (ADR 0075 §22): the initial's plate, a corner.
+  const theme = useBookTheme();
   // Folded at first where the page is short (a tablet held wide): the words read aloud come first.
   const [notes, setNotes] = useState(
     () => (remembered(NOTES_KEY) ?? (window.innerHeight < 820 ? 'closed' : 'open')) === 'open',
@@ -128,6 +133,8 @@ export function WorkStory({
   return (
     <section
       className="work-story dmb"
+      data-initial={bookPiece(theme, 'initial') ? '' : undefined}
+      data-corner={bookPiece(theme, 'corner') ? '' : undefined}
       aria-label={t('The story where the party is')}
       inert={covered}
       data-surface="paper"

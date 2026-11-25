@@ -103,6 +103,16 @@ test('a family campaign and a collection campaign of the library open as books',
     .getByRole('navigation', { name: 'Действия мастера' })
     .getByRole('button', { name: 'Выдать', exact: true });
   await expect(give).toHaveAccessibleDescription('Готово для этой страницы: 2', LIVE);
+  // The lighthouse's book has seals pressed in its own wax, an initial's plate and a corner
+  // (docs/adr/0075-book-interface.md §22): the seal is the book's picture, its name still its word.
+  await expect(give.locator('img.work-seal-art')).toHaveAttribute(
+    'src',
+    '/book-materials/lighthouse/seal-give.webp',
+  );
+  await expect(give.locator('.work-seal-wax')).toHaveCount(0);
+  const spreadStory = dm.getByRole('region', { name: 'Рассказ: где сейчас отряд', exact: true });
+  await expect(spreadStory).toHaveAttribute('data-initial', '');
+  await expect(spreadStory).toHaveAttribute('data-corner', '');
   await give.click();
   const giving = dm.getByRole('dialog', { name: 'Выдать', exact: true });
   await expect(giving).toContainText('Приглашение на Первую Звезду');
