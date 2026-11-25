@@ -53,6 +53,18 @@ dialog that returns the focus to its book; a library's book is one named button.
   the verb. «Приложение» does not say what it holds until opened.
 - **The shelf at 320 px** was not looked at (390 px was).
 
+## The journeys' time limit in CI
+
+Pull request 103's last shard of journeys (4 of 4: it carries the iPad and WebKit projects)
+reached its 25-minute limit twice — the first run and a re-run — each time with 108 of its 109
+journeys passed and none failed. The same journeys of the same shard ran in pull request 104 at
+the same hour in 18 minutes: every journey was about 1.4 times slower on the two runs that hit
+the limit, the slow WebKit ones and the quick Chromium ones alike, which is the hosted runner's
+machine and not the code (the suite takes the same 22 minutes on one machine before and after
+Stage 1200). The shard had grown to within a slow machine's reach of its limit. The step's limit
+is 35 minutes now (`.github/workflows/ci.yml`); the job's stays 60. Pull request 103 itself still
+runs with the limit of its own branch.
+
 ## Verification
 
 | Check                                                                | Result                          |

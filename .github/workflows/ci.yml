@@ -133,7 +133,10 @@ jobs:
     # journeys, so a fourth shard keeps each well inside it. The browsers' system packages come
     # from the runner's apt mirror, which took 17–25 minutes on 2026-11-17 and cancelled every
     # shard before its journeys ran: the job's limit leaves room for that, and each step below
-    # has its own.
+    # has its own. By 2026-11-25 the fourth shard, which carries the iPad and WebKit projects,
+    # took 17–18 minutes of journeys on most hosted runners and 24–26 on the slower ones, where
+    # it reached a 25-minute limit twice with 108 of its 109 journeys passed and none failed:
+    # the journeys' step has 35.
     timeout-minutes: 60
 
     strategy:
@@ -192,7 +195,7 @@ jobs:
           key: ${{ steps.chromium.outputs.cache-primary-key }}
 
       - name: UI and API journeys
-        timeout-minutes: 25
+        timeout-minutes: 35
         run: pnpm run test:e2e --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
   deploy:

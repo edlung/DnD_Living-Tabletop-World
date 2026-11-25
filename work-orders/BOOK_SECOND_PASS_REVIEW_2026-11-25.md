@@ -23,6 +23,9 @@ is a new feature, a new command, a new route or a contract change.
 - **One sentence reworded** (`i18n/ru-visual.ts`), the board's hint for the DM, written in
   Stage 1160: the goal first, then the two presses.
 
+- **The journeys' time limit in CI** (`.github/workflows/ci.yml`): the last shard reached its
+  25 minutes twice on slower hosted runners with no failing journey; the step's limit is 35.
+
 ## Out of scope
 
 Anything the reading found that is a matter of taste or of the product's words the owner has
