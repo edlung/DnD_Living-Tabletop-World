@@ -60,6 +60,13 @@ export function TopBar({
   const menuId = useId();
   const more = useRef<HTMLButtonElement>(null);
   const list = useRef<HTMLDivElement>(null);
+  // A choice made in the list closes it. On a phone the chosen row goes out of sight with the
+  // list, so "More" takes the focus (a dialog the choice opens gives it back there too); wider,
+  // "More" is not shown and the row keeps it.
+  const done = useCallback(() => {
+    setMenu(false);
+    if (more.current && more.current.getClientRects().length > 0) more.current.focus();
+  }, []);
   useEffect(() => {
     if (!menu) return;
     const away = (event: PointerEvent) => {
@@ -117,7 +124,7 @@ export function TopBar({
           onClick={(event) => {
             // A press that opens a dialog keeps the list under it; any other is done with it.
             const pressed = event.target instanceof Element ? event.target.closest('button') : null;
-            if (pressed && !pressed.hasAttribute('aria-haspopup')) setMenu(false);
+            if (pressed && !pressed.hasAttribute('aria-haspopup')) done();
           }}
         >
           <div className="perspective-control">
@@ -126,7 +133,7 @@ export function TopBar({
               id="perspective"
               value={perspective}
               onChange={(event) => {
-                setMenu(false);
+                done();
                 onPerspective(event.target.value);
               }}
             >

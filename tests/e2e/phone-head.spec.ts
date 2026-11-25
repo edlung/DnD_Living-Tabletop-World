@@ -22,6 +22,10 @@ test('a player’s phone opens on the hero: a head of one row, “More”, the d
   // One row: the head is no taller than a row of controls.
   const box = await head.boundingBox();
   expect(box?.height ?? Infinity).toBeLessThanOrEqual(58);
+  // A finger's width: "More" and the hero's plate are 44 px high in it.
+  const moreBox = await head.getByRole('button', { name: 'More', exact: true }).boundingBox();
+  expect(Math.min(moreBox?.width ?? 0, moreBox?.height ?? 0)).toBeGreaterThanOrEqual(44);
+  expect((await plate.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
   // The hero's own numbers, as the sheet has them.
   await expect(plate).toContainText('Elowen Starwhisper');
   await expect(plate).toContainText(/\d+\/\d+/);
@@ -67,6 +71,13 @@ test('a player’s phone opens on the hero: a head of one row, “More”, the d
   await expect(guide).toBeHidden();
   await page.keyboard.press('Escape');
   await expect(view).toBeHidden();
+  // A row that is done with the list closes it and hands the focus to "More": it does not stay
+  // on a row that went out of sight.
+  await openTopMenu(page);
+  await head.getByRole('button', { name: 'Refresh world', exact: true }).click();
+  await expect(view).toBeHidden();
+  await expect(more).toBeFocused();
+  await expect(plate).toBeVisible();
 
   // The plate opens the hero's sheet.
   await plate.click();
@@ -81,6 +92,8 @@ test('a player’s phone opens on the hero: a head of one row, “More”, the d
   const d6 = await foot.getByRole('button', { name: 'Roll a d6 for the table' }).boundingBox();
   expect(d20?.x ?? Infinity).toBeLessThan(d6?.x ?? 0);
   expect(d20?.width ?? 0).toBeGreaterThan(d6?.width ?? Infinity);
+  // Nothing rolled yet: the foot has no room for the sentence, and shows no half of it.
+  await expect(foot.getByText('No dice yet')).toBeHidden();
 
   // A page opened over the stage keeps its head row, where Close is.
   await bookPart(page, 'World').click();

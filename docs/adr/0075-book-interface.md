@@ -507,6 +507,23 @@ together. It amends §6 and, for a turn taken from the map, ADR 0033 §6.
    `rain-check`, `marrow-crown`) — so the owner sees the idea in three styles before the other
    books are drawn.
 
+### 23. The second pass, reviewed (2026-11-25)
+
+After Stage 1210 the second pass's screens were read once more for accessibility and design
+(`reports/BOOK_SECOND_PASS_REVIEW_2026-11-25.md`). What the reading changed:
+
+1. **A question that takes its button's place keeps the focus.** "End the fight" becomes
+   "End the fight for everyone?" with two answers, on the map's slip and on the Encounter page:
+   the careful answer takes the focus when the question appears — a choice that cannot be undone
+   is never one key press from the press that asked — and the button gets it back when the
+   question is withdrawn (`shell/asked-focus.ts`). The question names its group.
+2. **A choice made in a phone's "More" hands the focus to "More"**: the chosen row goes out of
+   sight with the list. A dialog the choice opens gives the focus back there too.
+3. **A phone's head keeps a finger's width**: "More" and the hero's plate are 44 px high in a
+   head of 48.
+4. **The heroes' cards keep one line of actions across a row**, at each card's foot.
+5. **A phone's dice foot shows no half of a sentence**: nothing rolled yet, it shows nothing.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

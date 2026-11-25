@@ -10,6 +10,7 @@ import { useCallback, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { useAskedFocus } from '../shell/asked-focus.ts';
 import { withPictureTimes } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useCombatantLabels } from './labels.ts';
@@ -263,6 +264,7 @@ function RunningControls({
   const language = useLanguage();
   const labelOf = useCombatantLabels(encounter);
   const [confirmingEnd, setConfirmingEnd] = useState(false);
+  const asked = useAskedFocus<HTMLButtonElement, HTMLButtonElement>(confirmingEnd);
   const window = encounter.reactionWindow;
   const load = useCallback(
     (signal: AbortSignal) =>
@@ -337,6 +339,7 @@ function RunningControls({
               {t('Yes, end encounter')}
             </button>
             <button
+              ref={asked.careful}
               onClick={() => {
                 setConfirmingEnd(false);
               }}
@@ -346,6 +349,7 @@ function RunningControls({
           </>
         ) : (
           <button
+            ref={asked.ask}
             disabled={locked}
             onClick={() => {
               setConfirmingEnd(true);

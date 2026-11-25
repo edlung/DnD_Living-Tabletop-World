@@ -47,7 +47,9 @@ under 200 px of heads. Findings with screenshots: the page; `reports/BOOK_POLISH
 ## After the plan
 
 Every stage of the table above is implemented, each on its own branch and pull request stacked on
-the one before (97 to 104); none is merged or deployed.
+the one before (97 to 104); none is merged or deployed. The screens of Stages 1160–1210 were
+then read once more for accessibility and design, and what that found is fixed in pull request
+105 (ADR 0075 §23, `reports/BOOK_SECOND_PASS_REVIEW_2026-11-25.md`).
 
 Still the owner's: merging and deploying the stack; his look at the three campaigns' new
 materials before the other books are drawn; reading and opening the written books of «Пропавший

@@ -16,11 +16,12 @@
 
 @media (max-width: 700px) {
   /* --- One row: the emblem, the hero (or the campaign's name), the live mark, "More". */
+  /* Its controls are 44 px high, a finger's width (WCAG 2.5.5), in a head of 48. */
   .topbar {
     flex-wrap: nowrap;
     gap: 8px;
     min-height: 48px;
-    padding-block: 4px;
+    padding-block: 2px;
   }
   .topbar-title {
     padding-left: 8px;
@@ -59,8 +60,8 @@
   .topbar-more {
     display: inline-flex;
     flex: none;
-    width: 40px;
-    min-height: 40px;
+    width: 44px;
+    min-height: 44px;
     padding: 0;
   }
   .topbar-more .glyph {
@@ -155,7 +156,7 @@
     align-items: center;
     gap: 1px 8px;
     width: 100%;
-    min-height: 40px;
+    min-height: 44px;
     padding: 2px 10px 2px 2px;
     border: 1px solid var(--line);
     border-radius: 999px 12px 12px 999px;
@@ -163,7 +164,7 @@
     text-align: left;
   }
   .hero-plate .medallion {
-    --m: 34px;
+    --m: 38px;
     grid-row: 1 / span 2;
     grid-column: 1;
   }
@@ -269,5 +270,9 @@
     border-color: var(--teal);
     background: var(--teal-fill);
     font-size: 1.05rem;
+  }
+  /* Nothing rolled yet: the line had room for half of its words here, and they say nothing. */
+  .book-foot-last:not(:has(strong)) .book-foot-who {
+    display: none;
   }
 }

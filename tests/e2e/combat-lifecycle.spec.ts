@@ -46,7 +46,10 @@ test('the DM starts, runs, and ends an encounter and the player returns to explo
   // Leaving the encounter uses the domain lifecycle; both views return to exploration.
   // Ending is guarded: the first click asks, and keeping the fight changes nothing.
   await dm.getByRole('button', { name: 'End encounter' }).click();
+  // The question takes the focus, on the careful answer, and gives it back to its button.
+  await expect(dm.getByRole('button', { name: 'Keep fighting' })).toBeFocused();
   await dm.getByRole('button', { name: 'Keep fighting' }).click();
+  await expect(dm.getByRole('button', { name: 'End encounter' })).toBeFocused();
   await expect(battlefield(dm)).toBeVisible();
   await dm.getByRole('button', { name: 'End encounter' }).click();
   expectAccepted(await submit(dm, dm.getByRole('button', { name: 'Yes, end encounter' })));

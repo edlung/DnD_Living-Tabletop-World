@@ -83,8 +83,13 @@ test('the DM runs a fight from the map: a hero’s turn, a creature’s, the end
   // "End the fight" asks once, on the map, and ends it for everyone.
   await end.click();
   await expect(slip(page)).toContainText('Закончить бой для всех?');
-  await slip(page).getByRole('button', { name: 'Продолжить бой', exact: true }).click();
+  // The question takes the focus, on the careful answer, and gives it back to its button.
+  const keep = slip(page).getByRole('button', { name: 'Продолжить бой', exact: true });
+  await expect(keep).toBeFocused();
+  await expect(slip(page).getByRole('group', { name: 'Закончить бой для всех?' })).toBeVisible();
+  await keep.click();
   await expect(slip(page)).not.toContainText('Закончить бой для всех?');
+  await expect(end).toBeFocused();
   await end.click();
   expectAccepted(
     await submit(page, slip(page).getByRole('button', { name: 'Да, закончить', exact: true })),
