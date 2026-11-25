@@ -295,8 +295,15 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   app") with the `native` campaign's third DM link and `room`'s third; `takeSeat` accepts the
   apps' "Only this app".
 - The table's screen in a room (`display-room.spec.ts`, ADR 0042 amendment of 2026-11-15) owns the
-  `room` sign-in campaign: a fight the scene cast follows, the waiting strip at the foot, the corner
-  and a remote's keys, a lost network (`context.setOffline`) and the screen's own retry.
+  `room` sign-in campaign: a fight the scene cast follows — at 1920 × 1080 the order of turns a
+  column at the left, every row whole and of one height, the map beside it at the screen's height,
+  the waits beside the column (ADR 0075 §19) — the corner and a remote's keys, a lost network
+  (`context.setOffline`) and the screen's own retry.
+- The table's screen as the open book (`table-screen.spec.ts`, ADR 0075 §19) owns the `screenBook`
+  sign-in campaign: a login starts «Маяк Между Ветрами» from the library (a book with an emblem of
+  its own) and pairs a TV at 1920 × 1080 — a quiet spread, a title page with the emblem, a table
+  not open to join, words read aloud on the book's paper. A pseudo-element's picture and ground
+  are read with `getComputedStyle(element, '::before')`.
 - "I'll come / I can't" (ADR 0073 §10, Stage 890): `coming.spec.ts` owns `ui-coming`,
   `ui-coming-ipad` and `ui-coming-ru`; it ends each campaign's session and sets its next game.
 - Sealed envelopes (ADR 0073 §9, Stage 880): `envelopes.spec.ts` owns `ui-envelopes`,

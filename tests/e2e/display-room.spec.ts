@@ -94,9 +94,24 @@ test('the screen follows a fight, keeps the turn order clear and survives a lost
   await expect(strip.locator('li')).toHaveCount(1);
   await expect(strip).toContainText('×2');
   await expect(strip).toHaveClass(/is-low/);
+  // On a wide screen the order of turns is a column at the left and the battlefield takes the
+  // screen's height beside it (ADR 0075 §19); the waits stand beside the column, never over it.
   const waits = await box(tv, '.display-waiting-strip');
   const order = await box(tv, '.display-battle .encounter-anchor');
-  expect(waits.y).toBeGreaterThan(order.y + order.height);
+  expect(waits.x).toBeGreaterThanOrEqual(order.x + order.width);
+  const field = await box(tv, '.display-battle .display-board');
+  expect(field.x).toBeGreaterThanOrEqual(order.x + order.width);
+  expect(field.height).toBeGreaterThan(1080 * 0.85);
+  // Every row of the column is whole and one portrait high, whoever has a health bar.
+  const rows = await tv
+    .locator('.display-battle .initiative-entry')
+    .evaluateAll((entries) =>
+      entries.map((entry) => Math.round(entry.getBoundingClientRect().height)),
+    );
+  expect(new Set(rows).size).toBe(1);
+  const list = await box(tv, '.display-battle .initiative');
+  const last = await box(tv, '.display-battle .initiative-entry:last-child');
+  expect(last.y + last.height).toBeLessThanOrEqual(list.y + list.height + 1);
 
   // The quiet corner goes; while sound waits for its press only "Sound on" stays.
   const corner = tv.locator('.display-corner');
