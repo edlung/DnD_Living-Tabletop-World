@@ -124,6 +124,7 @@ function DeleteAccountDialog({
     <dialog
       ref={ref}
       className="sign-out-dialog account-delete-dialog"
+      data-surface="paper"
       aria-labelledby="account-delete-title"
       aria-describedby="account-delete-text"
       onCancel={(event) => {

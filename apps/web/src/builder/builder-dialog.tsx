@@ -89,6 +89,7 @@ export function BuilderDialog({
     <dialog
       ref={ref}
       className="guide-dialog builder-dialog"
+      data-surface="paper"
       aria-labelledby={`${ids}-title`}
       onClose={(event) => {
         // React carries a dialog's close up its tree: the character dialog around it stays open.

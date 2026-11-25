@@ -161,6 +161,7 @@ export function GuideDialog({
     <dialog
       ref={ref}
       className="guide-dialog"
+      data-surface="paper"
       aria-labelledby={`${ids}-title`}
       aria-describedby={`${ids}-page`}
       onClose={onClose}

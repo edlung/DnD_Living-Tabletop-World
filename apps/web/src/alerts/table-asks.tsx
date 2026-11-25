@@ -15,6 +15,7 @@ import { TroubleNotice } from '../report/screen-troubles.tsx';
 import { RestBanner } from '../rest/sheet-rest.tsx';
 import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
+import { usePaperSurface } from '../shell/sheet.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { FIGHT_QUIET_ID } from '../world/fight-quiet.ts';
 import { useScreenAwake, useTitleCount } from './screen.ts';
@@ -92,8 +93,15 @@ export function TableAsks({
   // On a phone the column stays under the top bar and scrolls (`slot-room.ts`).
   const slot = useRef<HTMLDivElement>(null);
   useSlotRoom(slot);
+  // In a book what the table asks lies on slips of its paper (`styles/book-slips.css`).
+  const surface = usePaperSurface();
   return (
-    <div className="rest-banner-slot table-asks" aria-live="polite" ref={slot}>
+    <div
+      className="rest-banner-slot table-asks"
+      aria-live="polite"
+      ref={slot}
+      data-surface={surface}
+    >
       <LobbyBanner
         api={api}
         actorId={actorId}

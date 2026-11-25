@@ -51,6 +51,7 @@ function AboutDialog({ open, onClose }: { readonly open: boolean; readonly onClo
     <dialog
       ref={ref}
       className="guide-dialog about-dialog"
+      data-surface="paper"
       aria-labelledby={`${ids}-title`}
       onClose={onClose}
     >

@@ -158,6 +158,8 @@ import './styles/book-concept.css';
 import './styles/book-picks.css';
 import './styles/fight-whole.css';
 import './styles/fight-cards.css';
+import './styles/book-slips.css';
+import './styles/book-index.css';
 import './styles/book-phone.css';
 import './styles/print.css';
 import './styles/print-book.css';

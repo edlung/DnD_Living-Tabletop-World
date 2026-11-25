@@ -2,6 +2,7 @@ import type { KnowledgeView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
 import { useReservedHeight } from '../shell/reserved-height.ts';
+import { usePaperSurface } from '../shell/sheet.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { KnowledgeCards } from '../visual/knowledge-cards.tsx';
@@ -33,11 +34,13 @@ export function ActionNotice({
 }) {
   const t = useT();
   const box = useReservedHeight<HTMLDivElement>('--outcome-h', notice !== null);
+  // In a book the result is a slip of its paper (`styles/book-slips.css`).
+  const surface = usePaperSurface();
   if (!notice) return null;
   const roll = notice.outcome && 'roll' in notice.outcome ? notice.outcome.roll : null;
   const settled = status !== 'busy' && status !== 'uncertain';
   return (
-    <div className="outcome" ref={box}>
+    <div className="outcome" ref={box} data-surface={surface}>
       <section
         className="action-notice"
         role={status === 'uncertain' ? 'alert' : 'status'}

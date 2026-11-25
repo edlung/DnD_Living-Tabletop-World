@@ -80,6 +80,7 @@ export function SignOutDialog({
     <dialog
       ref={ref}
       className="sign-out-dialog"
+      data-surface="paper"
       aria-labelledby="sign-out-title"
       aria-describedby="sign-out-text"
       onCancel={(event) => {

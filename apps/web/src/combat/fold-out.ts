@@ -1,13 +1,11 @@
 import { usePaperSurface } from '../shell/sheet.tsx';
-import { NARROW, useMedia } from './board/board-view.ts';
 
 /**
- * The fight's surface (docs/adr/0075-book-interface.md §6, §17): on the book's paper where the
- * fight is a fold-out — a wide screen, and a tablet, where the map takes the page. On a phone, or
- * a phone held wide, the fight runs as one column over the dark stage and keeps its glass, which
- * its words are measured against.
+ * The fight's surface (docs/adr/0075-book-interface.md §6, §17, §27): the book's paper wherever
+ * the fight is in a book — the whole-screen sheet from a tablet up, and a phone's one column,
+ * which lies on a page of the same paper (`styles/book-slips.css`). Outside a book (the table's
+ * screen draws its own fight) there is none.
  */
 export function useFoldOutSurface(): 'paper' | undefined {
-  const paper = usePaperSurface();
-  return useMedia(NARROW) ? undefined : paper;
+  return usePaperSurface();
 }

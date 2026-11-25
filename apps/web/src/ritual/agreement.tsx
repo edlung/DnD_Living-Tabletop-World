@@ -134,6 +134,7 @@ export function AgreementCard({
       <dialog
         ref={dialog}
         className="guide-dialog agreement-dialog"
+        data-surface="paper"
         aria-labelledby={`${ids}-title`}
         onClose={() => {
           setOpen(false);

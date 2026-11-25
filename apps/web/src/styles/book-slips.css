@@ -1,0 +1,319 @@
+/*
+ * Slips of the book's paper (docs/adr/0075-book-interface.md §27). Whatever is laid over a page or
+ * opens before the book — the result of an action, what the table asks, a question, the guide, a
+ * hero's builder — is a slip of the same paper in the page's ink, never a pane of dark glass. The
+ * paper's inks come with `data-surface='paper'` (`tokens.css`); this sheet gives each slip a
+ * ground of its own (the tokens' glass is see-through, and a slip lies over pictures), and sets
+ * the controls of a slip that opens outside a page as a page sets them (`book-controls.css`).
+ */
+
+/* --- A window: a slip laid on the book, the book dimmed behind it. */
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] {
+  --ink-edge: color-mix(in srgb, var(--page-ink) 58%, transparent);
+  --ink-soft: color-mix(in srgb, var(--page-ink) 26%, transparent);
+  --ledger: color-mix(in srgb, #fffdf6 62%, transparent);
+  border: 1px solid color-mix(in srgb, var(--page-ink) 50%, transparent);
+  border-radius: 5px;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  background-color: var(--page);
+  box-shadow:
+    0 0 0 1px rgb(43 32 21 / 0.25),
+    0 18px 48px rgb(0 0 0 / 0.6);
+  color: var(--page-ink);
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']::backdrop {
+  background: rgb(14 11 8 / 0.62);
+}
+/* Its title in the page's ink over a rule with the rubric's stroke; its passages under rubrics. */
+.guide-dialog[data-surface='paper'] > .guide-header {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--ink-soft);
+  background: linear-gradient(var(--rubric), var(--rubric)) left bottom / 2.6rem 2px no-repeat;
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] h2 {
+  color: var(--page-ink);
+  font-family: var(--font-display);
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] h2 > .glyph,
+.guide-dialog[data-surface='paper'] .guide-page h3,
+.guide-dialog[data-surface='paper'] .guide-page h3 > .glyph {
+  color: var(--rubric);
+}
+.guide-dialog[data-surface='paper'] .guide-step {
+  color: color-mix(in srgb, var(--page-ink) 78%, transparent);
+  font-style: italic;
+}
+
+/*
+ * --- What a slip holds, where no page sets it (a window opened from the cover's clasp, or before
+ * the book): a button is a stamped label, the one main action in the rubric's red; a field is a
+ * box of a printed ledger.
+ */
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] button:not(.icon-button, .pick-tile) {
+  border: 1px solid var(--ink-edge);
+  border-radius: 3px;
+  background: linear-gradient(rgb(255 252 242 / 0.75), rgb(236 222 190 / 0.45)), var(--page);
+  box-shadow: 0 1px 0 rgb(43 32 21 / 0.25);
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+  button:not(.icon-button, .pick-tile):hover:enabled {
+  border-color: var(--page-ink);
+  background: linear-gradient(rgb(255 252 242 / 0.95), rgb(236 222 190 / 0.7)), var(--page);
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+  button:is(.primary-button, [aria-pressed='true'], [aria-selected='true']):not(.icon-button) {
+  border-color: color-mix(in srgb, var(--rubric) 80%, black);
+  background:
+    linear-gradient(color-mix(in srgb, var(--rubric) 88%, white), var(--rubric)), var(--rubric);
+  color: #fff8e6;
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] button:disabled {
+  opacity: 0.55;
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+  :is(
+    input:not([type='checkbox'], [type='radio'], [type='range'], [type='file'], [type='color']),
+    textarea,
+    select
+  ) {
+  min-height: 40px;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--ink-edge);
+  border-radius: 2px;
+  background-color: var(--ledger);
+  box-shadow: inset 0 2px 3px rgb(43 32 21 / 0.1);
+  color: var(--page-ink);
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper']
+  :is(input, textarea, select):focus-visible {
+  border-color: var(--rubric);
+  outline: none;
+  box-shadow:
+    inset 0 2px 3px rgb(43 32 21 / 0.1),
+    0 0 0 1px var(--rubric);
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] select {
+  padding-right: 2rem;
+  appearance: none;
+  background-image: var(--pick-select-mark);
+  background-position: right 0.5rem center;
+  background-size: 1rem 1rem;
+  background-repeat: no-repeat;
+}
+/* A window is closed by the drawn cross, as a page is. */
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] .guide-header > .icon-button {
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+:is(.guide-dialog, .sign-out-dialog)[data-surface='paper'] .guide-header > .icon-button > .glyph {
+  inline-size: 26px;
+  block-size: 26px;
+  background: var(--pick-cross) center / contain no-repeat;
+  mask: none;
+}
+
+/* A hero's builder: the step it stands on is the rubric's; each step opens under its rubric. */
+.builder-dialog[data-surface='paper'][data-surface='paper']
+  .builder-nav
+  button[aria-current='step'] {
+  border-color: color-mix(in srgb, var(--rubric) 80%, black);
+  background:
+    linear-gradient(color-mix(in srgb, var(--rubric) 88%, white), var(--rubric)), var(--rubric);
+  color: #fff8e6;
+}
+.builder-dialog[data-surface='paper'] .builder-nav button[aria-current='step'] .builder-nav-number {
+  border-color: #fff8e6;
+  background: none;
+  color: #fff8e6;
+}
+.builder-dialog[data-surface='paper'] .builder-step-title {
+  color: var(--rubric);
+  font-family: var(--font-display);
+}
+
+/*
+ * --- What is laid over a page while the game runs: the result of an action and what was learned
+ * from it; what the table asks (a check, a rest, a pause, a break, a handout to read).
+ */
+.outcome[data-surface='paper'] :is(.action-notice, .discovered-knowledge),
+.rest-banner-slot[data-surface='paper'] .rest-banner {
+  border-color: color-mix(in srgb, var(--page-ink) 52%, transparent);
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.45);
+  backdrop-filter: none;
+  color: var(--page-ink);
+}
+.outcome[data-surface='paper'] .action-notice {
+  border-left: 3px solid var(--teal);
+  border-radius: 3px;
+}
+.outcome[data-surface='paper'] .action-notice[role='alert'] {
+  border-left-color: var(--danger);
+}
+.outcome[data-surface='paper'] .notice-roll {
+  color: var(--rubric);
+}
+.outcome[data-surface='paper'] .discovered-knowledge {
+  border: 1px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+  border-radius: 3px;
+}
+/* A slip is cut square, as a label is: a line of two rows is not a pill. */
+.rest-banner-slot[data-surface='paper'] :is(.rest-banner, .lobby-banner) {
+  border-radius: 4px;
+}
+/* The result is put away by the drawn cross. */
+.outcome[data-surface='paper'] .outcome-dismiss {
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.outcome[data-surface='paper'] .outcome-dismiss > .glyph {
+  inline-size: 20px;
+  block-size: 20px;
+  background: var(--pick-cross) center / contain no-repeat;
+  mask: none;
+}
+.rest-banner-slot[data-surface='paper'] .rest-banner > .glyph,
+.rest-banner-slot[data-surface='paper'] .asked-check-what > .glyph {
+  color: var(--rubric);
+}
+
+/*
+ * --- The Chronicle is a book of its own, opened over this one: its head is set as the book's
+ * head is — its views are index tabs of the book's paper standing on its page, the chapter's
+ * writer a stamped label, the drawn cross closes it — and below the desk's size it lies on the
+ * cover's cloth.
+ */
+.world-main[data-book] .chronicle-dialog .book-header {
+  background: none;
+}
+.world-main[data-book] .chronicle-dialog .book-views {
+  align-self: flex-end;
+  gap: 4px;
+}
+.world-main[data-book] .chronicle-dialog .book-views button {
+  min-height: 38px;
+  padding: 0.3rem 0.9rem;
+  border: 0;
+  border-radius: 9px 9px 0 0;
+  background:
+    linear-gradient(rgb(255 250 238 / 0.2), rgb(43 32 21 / 0.2)),
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page-floor);
+  box-shadow:
+    inset 0 1px 0 rgb(255 250 238 / 0.55),
+    0 -2px 6px rgb(0 0 0 / 0.4);
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.world-main[data-book] .chronicle-dialog .book-views button[aria-pressed='true'] {
+  min-height: 44px;
+  border: 0;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow:
+    inset 0 1px 0 rgb(255 250 238 / 0.55),
+    0 -2px 6px rgb(0 0 0 / 0.4);
+  color: var(--rubric);
+}
+.world-main[data-book] .chronicle-dialog .book-writer > summary {
+  border: 1px solid color-mix(in srgb, var(--page-ink) 58%, transparent);
+  border-radius: 3px;
+  background: linear-gradient(rgb(255 252 242 / 0.75), rgb(236 222 190 / 0.45)), var(--page);
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.world-main[data-book] .chronicle-dialog .book-writer > summary .glyph {
+  color: var(--rubric);
+}
+.world-main[data-book] .chronicle-dialog .book-writer[open] > summary {
+  border-color: var(--rubric);
+}
+.world-main[data-book] .chronicle-dialog .book-writer-form[data-surface='paper'] {
+  border-color: color-mix(in srgb, var(--page-ink) 52%, transparent);
+  border-radius: 3px;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.5);
+  color: var(--page-ink);
+}
+.world-main[data-book] .chronicle-dialog .chronicle-close {
+  border: 0;
+  border-radius: 9px 9px 0 0;
+  background:
+    var(--book-paper, none) 0 0 / 420px,
+    var(--page);
+  box-shadow:
+    inset 0 1px 0 rgb(255 250 238 / 0.55),
+    0 -2px 6px rgb(0 0 0 / 0.4);
+}
+.world-main[data-book] .chronicle-dialog .chronicle-close > .glyph {
+  inline-size: 24px;
+  block-size: 24px;
+  background: var(--pick-cross) center / contain no-repeat;
+  mask: none;
+}
+@media (max-width: 1023px), (max-height: 599px) {
+  .world-main[data-book] .chronicle-dialog .chronicle-frame {
+    background:
+      linear-gradient(rgb(0 0 0 / 0.3), rgb(0 0 0 / 0.3)),
+      var(--book-cover, var(--table-material, none)) 0 0 / 320px,
+      var(--ink-950);
+  }
+  /* The tabs stand on the page: no gap under the head, the close on the page's corner. */
+  .world-main[data-book] .chronicle-dialog .chronicle-book {
+    gap: 0;
+  }
+  .world-main[data-book] .chronicle-dialog .book-header {
+    align-items: flex-end;
+    min-height: 46px;
+    padding-inline: 4px 52px;
+  }
+  .world-main[data-book] .chronicle-dialog .book-header h2 {
+    align-self: center;
+    font-size: 1.35rem;
+  }
+  .world-main[data-book] .chronicle-dialog .book-writer {
+    align-self: center;
+  }
+  .world-main[data-book] .chronicle-dialog .chronicle-close {
+    top: auto;
+    right: 8px;
+    /* On the head row's foot, where the tabs stand. */
+    translate: 0 0;
+  }
+}
+
+/*
+ * --- A phone's fight lies on a page of the book's paper, as its other pages do: the column that
+ * scrolls is the page, the cover's cloth its margin. (From a tablet up the sheet is
+ * `fight-whole.css`.)
+ */
+@media (max-width: 700px), (max-width: 1199px) and (max-height: 500px) {
+  .world-main[data-book]:has(.combat-stage[data-surface='paper']) .stage--battle {
+    /* The cloth's margin is the page's border: the column keeps the width it had. */
+    padding-inline: 6px;
+    border: solid transparent;
+    border-width: 0 6px;
+    border-radius: 8px 8px 0 0;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    background-clip: padding-box;
+  }
+  .world-main[data-book]:has(.combat-stage[data-surface='paper']) .stage--battle .stage-backdrop {
+    display: none;
+  }
+}
