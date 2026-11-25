@@ -50,7 +50,10 @@ test('a DM leads a new campaign of The Bells of Hollowmere from the hub', async 
 
     // The four ready-made characters wait for the DM's invitations.
     await openSheet(page, said.players);
-    const character = page.locator('#sheet-players').getByLabel(said.character, { exact: true });
+    // The characters are faces to choose (docs/adr/0075-book-interface.md §29).
+    const character = page
+      .locator('#sheet-players')
+      .getByRole('group', { name: said.character, exact: true });
     for (const name of language === 'en'
       ? ['Bryn Ashdown', 'Hesk Coalbeard', 'Lyra Venn', 'Wren Underbough']
       : ['Брин Эшдаун', 'Хеск Коулберд', 'Лира Венн', 'Рен Андербоу'])
