@@ -117,6 +117,12 @@ export interface AccountCampaign {
    */
   readonly place?: string | null;
   /**
+   * The last evening played: the real instant it ended — or began, while it still runs. The shelf
+   * goes on with the book played last (docs/adr/0075-book-interface.md §20). Null before the
+   * first evening, and absent on a server from before the shelf told of evenings.
+   */
+  readonly evening?: { readonly at: string; readonly running: boolean } | null;
+  /**
    * The adventure is over (docs/adr/0072-keepsakes.md §2): when its DM finished it, the days it
    * was played, its heroes and what each keeps, as the whole table reads them. Null while it is
    * played.

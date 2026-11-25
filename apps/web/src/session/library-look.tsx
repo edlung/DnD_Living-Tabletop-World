@@ -7,9 +7,9 @@ import { Glyph } from '../visual/glyph.tsx';
 /**
  * "Look inside" a library campaign (docs/adr/0075-book-interface.md §10): its first page, opened
  * over the shelf as a modal dialog on the book's paper — the cover picture, what it is and who it
- * is for, the whole pitch, the party size and the press that starts it with the account as its DM.
- * Escape or "Close" closes it as a native dialog does; the shelf then puts focus back on the
- * label's "Look inside the book", even when the pointer opened it from the book itself.
+ * is for, the whole pitch, how long it is played and in what tone (ADR 0075 §20), the party size
+ * and the press that starts it with the account as its DM. Escape or "Close" closes it as a native
+ * dialog does; the shelf then puts focus back on the book.
  */
 export function LibraryLook({
   campaign,
@@ -59,48 +59,68 @@ export function LibraryLook({
           {campaign.genre} · {campaign.audience}
         </p>
         <p className="library-look-pitch">{campaign.pitch}</p>
-        <div className="hub-library-actions">
-          <label htmlFor={select}>{t('Players')}</label>
-          <select
-            id={select}
-            value={variant}
-            disabled={busy}
-            onChange={(event) => {
-              onVariant(event.target.value);
-            }}
-          >
-            {campaign.variants.map((entry) => (
-              <option key={entry.id} value={entry.id}>
-                {entry.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        {mine && (
-          <p className="hub-library-wait" role="status">
-            {t('This takes up to a minute or two: the world and its pictures are set up.')}
-          </p>
+        {/* What a DM asks before choosing: how many evenings, and what the table is in for. */}
+        {(campaign.duration !== '' || campaign.tone !== '') && (
+          <dl className="library-look-facts">
+            {campaign.duration !== '' && (
+              <div>
+                <dt>{t('How long it plays')}</dt>
+                <dd>{campaign.duration}</dd>
+              </div>
+            )}
+            {campaign.tone !== '' && (
+              <div>
+                <dt>{t('Its tone')}</dt>
+                <dd>{campaign.tone}</dd>
+              </div>
+            )}
+          </dl>
         )}
-        <div className="action-row">
-          <button
-            type="button"
-            className="primary-button"
-            disabled={busy}
-            aria-label={t('Start «{title}»', { title: campaign.title })}
-            onClick={onStart}
-          >
-            <Glyph name="chronicle" />
-            {mine ? t('Preparing the campaign…') : t('Start')}
-          </button>
-          <button
-            type="button"
-            disabled={mine}
-            onClick={() => {
-              ref.current?.close();
-            }}
-          >
-            {t('Close')}
-          </button>
+        {/* The party size and the start stay in reach while a long page scrolls above them. */}
+        <div className="library-look-foot">
+          <div className="hub-library-actions">
+            <label htmlFor={select}>{t('Players')}</label>
+            <select
+              id={select}
+              value={variant}
+              disabled={busy}
+              onChange={(event) => {
+                onVariant(event.target.value);
+              }}
+            >
+              {campaign.variants.map((entry) => (
+                <option key={entry.id} value={entry.id}>
+                  {entry.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          {mine && (
+            <p className="hub-library-wait" role="status">
+              {t('This takes up to a minute or two: the world and its pictures are set up.')}
+            </p>
+          )}
+          <div className="action-row">
+            <button
+              type="button"
+              className="primary-button"
+              disabled={busy}
+              aria-label={t('Start «{title}»', { title: campaign.title })}
+              onClick={onStart}
+            >
+              <Glyph name="chronicle" />
+              {mine ? t('Preparing the campaign…') : t('Start')}
+            </button>
+            <button
+              type="button"
+              disabled={mine}
+              onClick={() => {
+                ref.current?.close();
+              }}
+            >
+              {t('Close')}
+            </button>
+          </div>
         </div>
       </div>
     </dialog>

@@ -117,6 +117,7 @@ import './styles/book-spreads.css';
 import './styles/book-foot.css';
 import './styles/way-in.css';
 import './styles/shelf.css';
+import './styles/shelf-order.css';
 import './styles/board-plates.css';
 import './styles/board-terrain.css';
 import './styles/images.css';

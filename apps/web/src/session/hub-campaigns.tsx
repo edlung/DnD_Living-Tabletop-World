@@ -9,13 +9,15 @@ import { readerLocale } from '../ritual/next-game-words.ts';
 import { calendarHref, NextGameLine } from '../ritual/next-game.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { ShelfBook } from './shelf-book.tsx';
+import { currentFirst, currentOf } from './shelf-order.ts';
 
 /**
  * The account's campaigns as its shelf shows them (docs/adr/0041-accounts.md; ADR 0075 §10): those
  * being played, each a book in its binding with a label of who the account is there, where the
  * party is, its door and — once the party's story has a chapter — its book (ADR 0072 §1); and, on
  * a shelf apart, the adventures that are finished (§2): the days they were played, their heroes,
- * what each hero keeps, the book first and the door after it.
+ * what each hero keeps, the book first and the door after it. The book whose evening runs, or
+ * that was played last, stands first with a ribbon and is gone on with (§20).
  */
 export function CampaignLists({
   campaigns,
@@ -32,12 +34,18 @@ export function CampaignLists({
   const t = useT();
   // A server from before endings sends none.
   const over = (campaign: AccountCampaign) => (campaign.finished ?? null) !== null;
-  const played = campaigns.filter((campaign) => !over(campaign));
+  const current = currentOf(campaigns.filter((campaign) => !over(campaign)));
+  const played = currentFirst(
+    campaigns.filter((campaign) => !over(campaign)),
+    current,
+  );
   const finished = campaigns.filter(over);
   const card = (campaign: AccountCampaign) => (
     <CampaignCard
       key={campaign.campaignId}
       campaign={campaign}
+      current={campaign.campaignId === current}
+      first={current === null || campaign.campaignId === current}
       busy={busy !== null}
       opening={
         busy === campaign.campaignId
@@ -75,12 +83,18 @@ export function CampaignLists({
 
 function CampaignCard({
   campaign,
+  current,
+  first,
   busy,
   opening,
   onOpen,
   onBook,
 }: {
   readonly campaign: AccountCampaign;
+  /** The book the shelf goes on with: it stands first with a ribbon and its door says so. */
+  readonly current: boolean;
+  /** Its door is the shelf's first press: false beside a book that is gone on with. */
+  readonly first: boolean;
   readonly busy: boolean;
   /** Which of the card's two doors was pressed and is opening. */
   readonly opening: 'world' | 'book' | null;
@@ -99,6 +113,8 @@ function CampaignCard({
   const away = campaign.away ?? null;
   // A server from before the shelf sends none.
   const place = campaign.place ?? null;
+  // A server from before the shelf told of evenings sends none.
+  const evening = finished === null ? (campaign.evening ?? null) : null;
   const who =
     campaign.role === 'dm'
       ? t('You are the DM')
@@ -108,10 +124,11 @@ function CampaignCard({
         });
   return (
     <li
-      className={`hub-campaign shelf-item${finished !== null ? ' hub-campaign--finished' : ''}`}
+      className={`hub-campaign shelf-item${finished !== null ? ' hub-campaign--finished' : ''}${current ? ' is-current' : ''}`}
       {...campaignAppearance(campaign.name)}
       aria-labelledby={titleId}
     >
+      {current && <span className="shelf-ribbon" aria-hidden="true" />}
       <ShelfBook
         title={campaign.name}
         onOpen={busy ? undefined : finished !== null && campaign.chapters > 0 ? onBook : onOpen}
@@ -126,6 +143,13 @@ function CampaignCard({
         </p>
         {finished === null && place !== null && (
           <p className="hub-campaign-place">{t('The party is in {place}', { place })}</p>
+        )}
+        {evening !== null && (
+          <p className="hub-campaign-evening">
+            {evening.running
+              ? t('An evening is under way since {day}', { day: day.format(new Date(evening.at)) })
+              : t('Last played on {day}', { day: day.format(new Date(evening.at)) })}
+          </p>
         )}
         {finished !== null && (
           <>
@@ -188,12 +212,26 @@ function CampaignCard({
           )}
           <button
             type="button"
-            className={finished !== null && campaign.chapters > 0 ? undefined : 'primary-button'}
+            className={
+              (finished !== null && campaign.chapters > 0) || (finished === null && !first)
+                ? undefined
+                : 'primary-button'
+            }
             disabled={busy}
-            aria-label={t('Open {campaign}: {who}', { campaign: campaign.name, who })}
+            aria-label={
+              current
+                ? t('Continue {campaign}: {who}', { campaign: campaign.name, who })
+                : t('Open {campaign}: {who}', { campaign: campaign.name, who })
+            }
             onClick={onOpen}
           >
-            {opening === 'world' ? t('Opening…') : finished !== null ? t('Look inside') : t('Open')}
+            {opening === 'world'
+              ? t('Opening…')
+              : finished !== null
+                ? t('Look inside')
+                : current
+                  ? t('Continue')
+                  : t('Open')}
           </button>
         </div>
       </div>
