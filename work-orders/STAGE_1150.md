@@ -72,7 +72,7 @@ the report.
 ## Known limits
 
 - The spread needs 1024×600: an upright tablet and a phone keep the Scene and the Book apart.
-- A fight keeps its own layout (the fold-out and its two tabs): Stage 1170's subject, not
+- A fight keeps its own layout (the fold-out and its two tabs): Stage 1160's subject, not
   authorized.
 - The seals are drawn by the stylesheet in the rubric's red with the kit's glyphs; a painted seal
   for each campaign's set is a proposal (new book materials), not this stage.

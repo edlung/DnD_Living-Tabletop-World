@@ -31,5 +31,7 @@
   "metamagic": "ui-combat-metamagic",
   "hint": "ui-combat-hint",
   "hintIpad": "ui-combat-hint-ipad",
-  "hintRu": "ui-combat-hint-ru"
+  "hintRu": "ui-combat-hint-ru",
+  "mapRu": "ui-combat-map-ru",
+  "mapIpadRu": "ui-combat-map-ipad-ru"
 }

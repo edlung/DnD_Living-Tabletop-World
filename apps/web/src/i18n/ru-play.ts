@@ -378,6 +378,9 @@ registerRussian({
   'start combat': 'начало боя',
   'move combatant': 'перемещение в бою',
   attack: 'атака',
+  // The tactics of a creature's suggested turn ("Run suggested {tactic}").
+  move: 'перемещение',
+  spell: 'заклинание',
   'cast spell': 'заклинание',
   'end turn': 'конец хода',
   'end combat': 'конец боя',

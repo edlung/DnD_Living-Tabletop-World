@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
 
 /** The measured heights the world screen keeps room for (`responsive.css`, `battle-layout.css`). */
-export type ReservedHeight = '--active-h' | '--outcome-h' | '--prompt-h' | '--talk-h' | '--tray-h';
+export type ReservedHeight =
+  '--active-h' | '--outcome-h' | '--prompt-h' | '--talk-h' | '--tray-h' | '--turn-h';
 
 /**
  * Keeps an element's height on the world screen as a custom property while it shows, so the

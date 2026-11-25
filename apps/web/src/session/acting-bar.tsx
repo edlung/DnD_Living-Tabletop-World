@@ -22,15 +22,33 @@ export function ActingBar({
     <section className="acting-bar" aria-label={t('Acting for a player')}>
       <Glyph name="perform" className="acting-glyph" />
       <div className="acting-text">
-        <p>
-          <strong>{t('Acting as {name}', { name: standIn.name })}</strong> ·{' '}
-          {standIn.note === null ? reason : t('{reason}: “{note}”', { reason, note: standIn.note })}
-        </p>
-        <p className="muted">
-          {t('You see what {name} sees. Each action is yours, recorded with your reason.', {
-            name: standIn.name,
-          })}
-        </p>
+        {standIn.untilDone ? (
+          <>
+            {/* A turn taken from the map (ADR 0075 §17): it ends by itself, with the turn. */}
+            <p>
+              <strong>{t('Acting as {name}', { name: standIn.name })}</strong>
+            </p>
+            <p className="muted">
+              {t('You see what {name} sees. When this turn is over, you are the DM again.', {
+                name: standIn.name,
+              })}
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              <strong>{t('Acting as {name}', { name: standIn.name })}</strong> ·{' '}
+              {standIn.note === null
+                ? reason
+                : t('{reason}: “{note}”', { reason, note: standIn.note })}
+            </p>
+            <p className="muted">
+              {t('You see what {name} sees. Each action is yours, recorded with your reason.', {
+                name: standIn.name,
+              })}
+            </p>
+          </>
+        )}
       </div>
       <button className="acting-stop" onClick={onStop}>
         <Glyph name="game-master" />

@@ -8,6 +8,12 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner request 2026-11-25 (`reviews/OWNER_BOOK_SECOND_PASS_2026-11-25.json`): the book's second pass
+to its end («Реализуй весь план до конца») — Stages 1160–1210 of `docs/BOOK_SECOND_PASS_PLAN.md`
+(the fight as one fold-out, the Party and the Table by tasks, the table's screen, the shelf, a
+player's phone, new book materials for three campaigns), ADR 0075, each stage in its own pull
+request stacked on the one before; merges and deployment stay the owner's.
+
 Owner request 2026-11-23 (`reviews/OWNER_BOOK_INTERFACE_2026-11-23.json`): the whole interface as
 a book (`docs/BOOK_INTERFACE_PLAN.md`, ADR 0075, acceptance map `docs/BOOK_INTERFACE_MAP.md`);
 the demo accepted («Принимаю, дальше»), Stages 1000–1140 authorized, each in its own pull request
