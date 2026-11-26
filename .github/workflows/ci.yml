@@ -198,50 +198,6 @@ jobs:
         timeout-minutes: 35
         run: pnpm run test:e2e --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
-  visual-review:
-    name: Photograph the Lighthouse fold-out
-    if: github.event.pull_request.number == 113
-    runs-on: ubuntu-24.04
-    timeout-minutes: 20
-    env:
-      NODE_ENV: test
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
-      - name: Check the review tour's formatting
-        run: |
-          pnpm exec prettier --write tests/evidence/fight-foldout.evidence.ts
-          git diff -- tests/evidence/fight-foldout.evidence.ts
-      - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm exec playwright test -c playwright.evidence.config.ts --project=chromium fight-foldout
-      - uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-foldout
-          path: test-results/foldout-review/*.jpg
-          retention-days: 3
-      - name: Read the synthetic viewport captures for the visual review
-        run: |
-          python - <<'PY'
-          import base64
-          from pathlib import Path
-          for width in (1024, 1440, 834, 'dm'):
-              name = f'lighthouse-{width}.jpg'
-              path = Path('test-results/foldout-review') / name
-              encoded = base64.b64encode(path.read_bytes()).decode('ascii')
-              print(f'::group::{name}')
-              for offset in range(0, len(encoded), 4096):
-                  print(f'FOLDOUT_VIEW/{width}/{offset}/{encoded[offset:offset + 4096]}')
-              print('::endgroup::')
-          PY
-      - name: Check painting through the map
-        run: pnpm exec playwright test --project=chromium paint-terrain.spec.ts
-
   deploy:
     name: Deployment check
     # Docker Engine with BuildKit and the Compose plugin are preinstalled on this image.

@@ -35,11 +35,6 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   await expect(square(page, 8, 4).locator('.token-cover')).toHaveText('½');
   await expect(square(page, 12, 6).locator('.token-cover')).toHaveText('¾');
   await expect(square(page, 8, 4).locator('.cover-art')).toBeVisible();
-  await square(page, 3, 2).hover();
-  await expect(battlefield(page).locator('.terrain-card')).toContainText('Total cover');
-  await square(page, 0, 9).hover();
-  await expect(battlefield(page).locator('.terrain-card')).toContainText('Difficult terrain');
-  await page.mouse.move(1, 1);
   // Whose turn it is, with her own armour class and speed from her own sheet.
   const active = battlefield(page).getByRole('region', { name: 'Active combatant' });
   await expect(active).toContainText('Elowen Starwhisper');
@@ -51,6 +46,12 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   const ways = turnTray(page).getByRole('group', { name: 'Choose an action' });
   await expect(ways.getByRole('button')).toHaveCount(4);
   await ways.getByRole('button', { name: 'Walk', exact: true }).click();
+  await expect(turnTray(page).getByRole('status')).toHaveText('Choose a square to walk to.');
+  await square(page, 3, 2).hover();
+  await expect(battlefield(page).locator('.terrain-card')).toContainText('Total cover');
+  await square(page, 0, 9).hover();
+  await expect(battlefield(page).locator('.terrain-card')).toContainText('Difficult terrain');
+  await page.mouse.move(1, 1);
 
   await square(page, 5, 6).click();
   await expect(battlefield(page)).toContainText('Route: 3 squares, about 15 ft');

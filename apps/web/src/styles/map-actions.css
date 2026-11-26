@@ -32,6 +32,27 @@
     .combat-side > .paint-card :is(button, input, label, select, summary) {
       pointer-events: auto;
     }
+    .combat-panel:has(> .board--illustrated):has(> .combat-side > .paint-card) {
+      grid-template-columns: clamp(170px, 23%, 280px) minmax(0, 1fr);
+      column-gap: 8px;
+
+      > .board {
+        grid-area: 1 / 2;
+      }
+      > .combat-side:has(> .paint-card) {
+        position: relative;
+        inset: auto;
+        grid-area: 1 / 1;
+        align-self: stretch;
+        width: 100%;
+        max-height: 100%;
+        margin: 0;
+        pointer-events: auto;
+      }
+      .paint-card {
+        pointer-events: auto;
+      }
+    }
     .turn-tray,
     > .dm-turn {
       z-index: 35;

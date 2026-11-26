@@ -38,7 +38,10 @@ test('the illustrated fold-out in the Lighthouse harbour', async ({ page }) => {
   const session = page.locator('#sheet-session');
   await session.getByRole('button', { name: 'Начать сессию', exact: true }).click();
   await expect(session.locator('.session-running')).toBeVisible();
-  await session.getByRole('button', { name: /^Закрыть/ }).first().click();
+  await session
+    .getByRole('button', { name: /^Закрыть/ })
+    .first()
+    .click();
   if ((await scene.getAttribute('aria-current')) !== 'page') await scene.click();
   await page
     .getByRole('navigation', { name: 'Действия мастера' })

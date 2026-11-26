@@ -67,6 +67,10 @@ test('the DM paints the running fight’s ground, and the player sees it', async
   await expect(brush(dm)).toContainText(
     'Choose a brush, then press a square or drag across several.',
   );
+  const panel = await brush(dm).boundingBox();
+  const map = await dm.locator('.board--illustrated .board-viewport').boundingBox();
+  if (!panel || !map) throw new Error('The brush and battlefield must both be visible');
+  expect(panel.x + panel.width).toBeLessThanOrEqual(map.x + 1);
   await expectAccessible(dm, 'the DM’s brush');
 
   // A wall with a press: the square says so, on the player's screen too.
