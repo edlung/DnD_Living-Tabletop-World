@@ -41,6 +41,7 @@ test('leaving a raider’s reach waits for the DM’s answer, then the move goes
   const dm = await browser.newPage();
   await enterCombat(player, campaign);
   await enterCombat(dm, campaign, TOKENS.dm);
+  await turnTray(player).getByRole('button', { name: 'Walk', exact: true }).click();
   await square(player, 0, 6).click();
   expectAccepted(await submit(player, turnTray(player).getByRole('button', { name: 'Move here' })));
 

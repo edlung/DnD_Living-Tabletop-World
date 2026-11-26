@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-25",
+  "source": "The owner's words typed in the same working session as reviews/OWNER_BOOK_LOOSE_ENDS_2026-11-25.json, in the desktop app, after the session reported pull requests 108–112. This record is written by the same session: it saw the words below typed.",
+  "theWords": "экран боя далек от концепта. задача - сделать как в концепте",
+  "whatHeAsksFor": [
+    "The fight's screen as the concept he chose draws it: ~/Documents/living-tabletop-world-art/book-polish-2026-11-24/out/fight-foldout.png (its prompt beside it)."
+  ],
+  "whatTheSessionFound": "Pull request 108 made the map large but kept the book's furniture around it: the page's tabs, wide bookmarks, the book's spine down the middle, a framed picture of the map, the order of turns as a column of cards, a wide slip across the foot. The concept is one sheet of map paper over the whole book with a thin rim of the cover, the faces of the order along its upper edge with a flag under whose turn it is, «Раунд 1» as a label, a small slip of actions beside the figure, «Закончить бой» a tag at the lower left and the d20 in a felt tray at the lower right.",
+  "whatTheSessionTookFromIt": {
+    "authorized": [
+      "The fight laid as the concept lays it, from a tablet up; a pull request stacked on pull request 112."
+    ],
+    "notAuthorized": [
+      "Merging and deployment.",
+      "Drawing the other fifty-three books' materials (after he has checked the interface)."
+    ]
+  },
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; rules and legality stay the server's.",
+    "Knowledge isolation: a player's client and the table's screen receive only their own projections.",
+    "Nothing is merged or deployed by the session without the owner's word."
+  ]
+}

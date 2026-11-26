@@ -2,10 +2,8 @@ import { HIDDEN_TURN, type EncounterView, type PlayerAssetView } from '@ltw/cont
 import { useT } from '@ltw/ui';
 import { useRef } from 'react';
 
-import { usePaperSurface } from '../../shell/sheet.tsx';
 import { Medallion } from '../../visual/medallion.tsx';
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
-import { ORDER_COLUMN, useMedia } from '../board/board-view.ts';
 import { HpBar } from '../board/token.tsx';
 import { temporaryWords } from '../hit-point-words.ts';
 import { splitLabel, useCombatantLabels } from '../labels.ts';
@@ -36,9 +34,8 @@ export function InitiativeStrip({
       : labelOf(encounter.currentCombatantId);
   // A long order scrolls inside the band; its edges fade where more of it hides (Stage 605).
   const list = useRef<HTMLOListElement>(null);
-  // In a book on a screen wider than tall the order is a column: it scrolls down, not across.
-  const column = useMedia(ORDER_COLUMN) && usePaperSurface() !== undefined;
-  const edges = useScrollEdges(list, encounter.order.join(' '), column ? 'y' : 'x');
+  // A row of faces along the sheet's head (docs/adr/0075-book-interface.md §31): it scrolls across.
+  const edges = useScrollEdges(list, encounter.order.join(' '));
   // A creature the viewer's character commands (ADR 0044 §7): its turn is the viewer's to run.
   const commanded =
     actorId !== null &&
@@ -107,6 +104,12 @@ export function InitiativeStrip({
                     </span>
                   )}
                 </span>
+                {/* Whose turn it is, as a flag under the face (§31); the item says it aloud. */}
+                {acting && (
+                  <span className="initiative-flag" aria-hidden="true">
+                    {entityId === actorId ? t('Your turn') : t('Taking the turn')}
+                  </span>
+                )}
                 {number ? (
                   <span className="initiative-name">
                     <span className="visually-hidden">{label}</span>

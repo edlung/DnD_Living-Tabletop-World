@@ -100,6 +100,7 @@ export function Board({
   );
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
+  const illustrated = view.mode === 'illustrated';
   const tilt = view.mode === 'tilted' ? TILT : null;
   const fitted = space
     ? fitCell(space, grid, tilt, {
@@ -111,8 +112,13 @@ export function Board({
     : 40;
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
+  const sheetFits =
+    illustrated &&
+    space !== null &&
+    layout.box.width <= space.width + 1 &&
+    layout.box.height <= space.height + 1;
   // The room the map leaves on its sheet is the cards' (ADR 0075 §26).
-  const roomy = space !== null && !view.narrow;
+  const roomy = space !== null && !view.narrow && !illustrated;
   useSpareRoom(
     area,
     roomy ? space.width - layout.box.width : null,
@@ -314,7 +320,7 @@ export function Board({
               cover={level}
               image={imageOf(occupant.entity.entityId)}
               figure={figureOf(occupant.entity.entityId)}
-              tilted={tilt !== null}
+              standingView={tilt !== null || illustrated}
               facingLeft={facingLeft.has(occupant.entity.entityId)}
               current={occupant.entity.entityId === currentCombatantId}
               selected={isSelected}
@@ -329,7 +335,7 @@ export function Board({
               cover={null}
               image={imageOf(rider.entity.entityId)}
               figure={figureOf(rider.entity.entityId)}
-              tilted={tilt !== null}
+              standingView={tilt !== null || illustrated}
               facingLeft={facingLeft.has(rider.entity.entityId)}
               current={rider.entity.entityId === currentCombatantId}
               selected={false}
@@ -345,7 +351,10 @@ export function Board({
   // The ruler's far end: where it was set, else where the pointer or the keyboard is.
   const rulerEnd = ruler ? (ruler.to ?? pointed ?? focused) : null;
   return (
-    <div className={`board board--${view.mode}`} ref={area}>
+    <div
+      className={illustrated ? 'board board--flat board--illustrated' : `board board--${view.mode}`}
+      ref={area}
+    >
       <BoardControls view={view} {...(paint ? { paint } : {})} {...(tools ? { tools } : {})} />
       {looked && (
         <TerrainCard
@@ -362,6 +371,7 @@ export function Board({
       <div
         className="board-viewport"
         ref={viewport}
+        data-sheet-fit={sheetFits || undefined}
         data-more-before={edges.before || undefined}
         data-more-after={edges.after || undefined}
       >
@@ -377,7 +387,12 @@ export function Board({
               gridTemplateColumns: `repeat(${String(width)}, var(--cell))`,
             }}
           >
-            <BoardGround map={battleMap} cell={cell} />
+            <BoardGround
+              map={battleMap}
+              cell={cell}
+              illustrated={illustrated}
+              clipped={warFog.size > 0 || !sheetFits}
+            />
             {squares}
             {route.length > 1 && (
               <svg
@@ -420,6 +435,7 @@ export function Board({
             encounter={encounter}
             layout={layout}
             labelOf={labelOf}
+            {...(illustrated && !painting ? { nameAt: looked } : {})}
             onPick={press}
             onPoint={point}
             {...(drag.enabled ? { onPress: drag.start } : {})}

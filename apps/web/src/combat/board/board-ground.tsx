@@ -13,16 +13,27 @@ import { useHeldImage } from '../../visual/approved-images.ts';
 export function BoardGround({
   map,
   cell,
+  illustrated = false,
+  clipped = false,
 }: {
   readonly map: PlayerAssetView | null;
   /** A square's size on the board, in CSS pixels. */
   readonly cell: number;
+  readonly illustrated?: boolean;
+  readonly clipped?: boolean;
 }) {
   const { url, held } = useHeldImage(map);
   const grid = map?.grid;
   const scale = grid ? cell / grid.cellPx : 1;
+  // Uncalibrated art has a fixed illustrated framing, measured in board squares. Viewport
+  // changes crop only the surrounding scenery. Fog clips the same image at the grid boundary.
+  const foldout = illustrated && !grid && held;
   return (
-    <span className={`board-ground${held ? ' board-ground--map' : ''}`} aria-hidden="true">
+    <span
+      className={`board-ground${held ? ' board-ground--map' : ''}${foldout ? ' board-ground--foldout' : ''}`}
+      data-clipped={(foldout && clipped) || undefined}
+      aria-hidden="true"
+    >
       {url &&
         (grid ? (
           <img

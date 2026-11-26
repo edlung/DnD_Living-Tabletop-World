@@ -64,7 +64,7 @@ export function CombatStage({
   const t = useT();
   // In a book the fight is a fold-out on its paper (docs/adr/0075-book-interface.md §6).
   const surface = useFoldOutSurface();
-  const view = useBoardView();
+  const view = useBoardView('illustrated');
   // The DM's brush outlasts the battlefield's fresh start after each stroke (ADR 0057 §2).
   const hand = useBrush();
   // So do the table's shared marks (ADR 0057 §5): read here, they neither vanish nor replay.
@@ -103,6 +103,7 @@ export function CombatStage({
         <button
           type="button"
           role="tab"
+          title={t('Scene')}
           aria-selected={!battlefield}
           aria-controls="scene-presence"
           onClick={() => {
@@ -115,6 +116,7 @@ export function CombatStage({
         <button
           type="button"
           role="tab"
+          title={t('Battlefield')}
           aria-selected={battlefield}
           aria-controls="combat-stage"
           onClick={() => {

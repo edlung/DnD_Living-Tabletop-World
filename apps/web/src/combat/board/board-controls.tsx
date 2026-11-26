@@ -87,6 +87,16 @@ export function BoardControls({
           onClick={paint.onToggle}
         />
       )}
+      {view.offersIllustrated && (
+        <IconButton
+          glyph="map"
+          label={t('Illustrated map')}
+          aria-pressed={view.mode === 'illustrated'}
+          onClick={() => {
+            view.choose('illustrated');
+          }}
+        />
+      )}
       <IconButton
         glyph="flat"
         label={t('Flat board')}

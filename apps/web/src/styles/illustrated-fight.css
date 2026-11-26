@@ -1,0 +1,386 @@
+/* The paper fittings are separate, text-free slices of the owner's fold-out. The painting,
+   grid, miniatures, names and turn order all come from the current encounter. */
+@media (min-width: 701px) and (min-height: 501px) {
+  .world-main[data-book].has-battle:has(> .stage--battle .board--illustrated):not(
+      :has(.sheet:not([hidden]))
+    ) {
+    --rim: clamp(5px, 0.8vmin, 11px);
+    --sheet-head: clamp(86px, 12.8vmin, 140px);
+    --parts-w: 36px;
+    --face: clamp(44px, 8.7vmin, 96px);
+    --map-top: calc(var(--rim) + var(--sheet-head));
+    --map-left: calc(var(--rim) + 7px);
+    --plaque: url('/fight-materials/cartouche.webp');
+
+    > .stage--battle {
+      padding: var(--map-top) var(--map-left) calc(var(--rim) + 8px);
+      isolation: isolate;
+    }
+    .stage--battle .stage-backdrop {
+      inset: var(--rim);
+      border-radius: 8px;
+      background:
+        var(--book-paper, none) center / 440px,
+        #e7c993;
+    }
+    > .stage--battle::before {
+      content: '';
+      position: absolute;
+      z-index: 4;
+      inset: var(--rim) var(--rim) auto;
+      height: calc(var(--sheet-head) + 10px);
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, #fff0cf44, #efcb8c66),
+        var(--book-paper, none) center / 440px,
+        #ebd09c;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 94%,
+        97% 92%,
+        95% 96%,
+        91% 93%,
+        88% 96%,
+        85% 91%,
+        81% 94%,
+        78% 92%,
+        74% 96%,
+        71% 92%,
+        66% 94%,
+        61% 90%,
+        56% 95%,
+        51% 92%,
+        47% 97%,
+        42% 92%,
+        38% 95%,
+        34% 91%,
+        30% 96%,
+        27% 93%,
+        22% 97%,
+        18% 92%,
+        14% 95%,
+        9% 92%,
+        6% 96%,
+        2% 93%,
+        0 97%
+      );
+    }
+    > .stage--battle::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 5;
+      inset: var(--rim);
+      border-radius: 7px;
+      background:
+        var(--fight-left-ornament, var(--book-corner, none)) top left / auto
+          clamp(80px, 16vmin, 180px) no-repeat,
+        var(--fight-right-ornament, none) top right / auto clamp(74px, 12vmin, 142px) no-repeat;
+      box-shadow:
+        inset 0 0 0 1px #83542888,
+        inset 0 0 12px #52320d66;
+      pointer-events: none;
+    }
+    .stage--battle .combat-stage:not([hidden]) {
+      z-index: auto;
+    }
+    .stage--battle .combat-panel {
+      gap: 0;
+    }
+    .stage--battle .board {
+      isolation: isolate;
+      z-index: 1;
+    }
+    .stage--battle .board-viewport {
+      border-radius: 3px;
+    }
+    .stage--battle .board-viewport[data-sheet-fit] {
+      overflow: clip;
+      mask-image: none;
+    }
+    .stage--battle .board-stage {
+      margin: auto;
+    }
+    .stage--battle .board-ground {
+      mask-image: none;
+    }
+    .stage--battle .board-ground--map::after {
+      background: radial-gradient(ellipse at center, transparent 65%, rgb(52 33 18 / 0.12));
+    }
+    .stage--battle .board-map {
+      filter: none;
+    }
+    .stage--battle .board-square {
+      --board-grid: rgb(255 244 215 / 0.22);
+    }
+    .stage--battle .board-ground--foldout {
+      overflow: visible;
+      background: none;
+    }
+    .stage--battle .board-ground--foldout[data-clipped] {
+      overflow: hidden;
+    }
+    .stage--battle .board-ground--foldout::after {
+      display: none;
+    }
+    .stage--battle .board-ground--foldout .board-map {
+      inset: -54%;
+      width: 208%;
+      height: 208%;
+      max-width: none;
+    }
+    .stage--battle .board-ground--map ~ .board-square.is-difficult {
+      background: repeating-linear-gradient(
+        135deg,
+        rgb(208 158 89 / 0.2) 0 7px,
+        rgb(91 58 29 / 0.34) 7px 9px
+      );
+    }
+    .stage--battle .initiative {
+      top: calc(var(--rim) + 1px);
+      left: 14%;
+      right: 23%;
+      z-index: 8;
+      gap: clamp(8px, 3.1vw, 55px);
+      padding: 3px 8px 5px;
+      background-size: min(88%, 54vw) 2px;
+      background-position: center calc(var(--face) * 0.57);
+    }
+    .stage--battle .initiative .medallion {
+      --m: var(--face);
+      margin-top: 5px;
+    }
+    .stage--battle .initiative-entry.is-current .medallion {
+      --m: calc(var(--face) * 1.2);
+      margin-top: 0;
+    }
+    .stage--battle .initiative .medallion-face {
+      border: 2px solid #c49a4e;
+      background-color: #d7b985;
+    }
+    .stage--battle .initiative .medallion-face > img:not([class]) {
+      object-position: 50% var(--fight-portrait-y, 25%);
+      transform: scale(var(--fight-portrait-zoom, 1));
+      transform-origin: 50% 0;
+    }
+    .stage--battle .initiative-entry.is-current .medallion::after {
+      box-shadow:
+        0 0 0 2px #176f76,
+        0 0 9px 3px #53d5ce88;
+    }
+    .stage--battle .initiative-entry .hp-bar {
+      display: none;
+    }
+    .stage--battle .initiative-entry:is(:hover, :focus-within) .hp-bar,
+    .stage--battle .initiative:focus-visible .hp-bar {
+      display: block;
+    }
+    .stage--battle .initiative-flag,
+    .stage--battle .round-mark {
+      box-sizing: border-box;
+      border: 8px solid transparent;
+      border-image: var(--plaque) 17 30 fill / 11px 17px;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      color: #342014;
+      font-family: var(--font-display);
+      text-shadow: none;
+    }
+    .stage--battle .initiative-flag {
+      margin-top: -8px;
+      padding: 0 6px;
+      line-height: 1;
+      font-size: clamp(13px, 1.65vmin, 20px);
+    }
+    .stage--battle .round-mark {
+      inset: calc(var(--rim) + var(--sheet-head) * 0.16) 7% auto auto;
+      padding: 2px clamp(8px, 1.2vw, 22px);
+      font-size: clamp(18px, 3vmin, 36px);
+    }
+    .stage--battle .anchor-caption {
+      top: calc(var(--rim) + var(--sheet-head) * 0.62);
+      right: 7%;
+      background: #f4e3be;
+      color: #38281b;
+    }
+    .stage--battle > .stage-switch {
+      top: calc(var(--rim) + 6px);
+      left: calc(var(--rim) + 8px);
+      padding: 1px;
+      opacity: 1;
+    }
+    .stage--battle > .stage-switch button {
+      min-width: 32px;
+      min-height: 34px;
+      padding: 4px;
+    }
+    .stage--battle > .stage-switch-word,
+    .stage--battle .stage-switch .stage-switch-word {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    > .outcome,
+    > .rest-banner-slot {
+      bottom: calc(var(--rim) + 55px);
+    }
+    > .outcome {
+      pointer-events: none;
+    }
+    > .outcome :is(button, a, input, summary) {
+      pointer-events: auto;
+    }
+    .stage--battle .board-controls {
+      top: auto;
+      bottom: 5px;
+      right: 50%;
+      translate: 50% 0;
+      z-index: 6;
+      width: max-content;
+      max-width: 52%;
+      padding: 1px 4px;
+    }
+    .stage--battle .board-controls .icon-button {
+      min-width: 28px;
+      min-height: 30px;
+    }
+    .book-parts {
+      top: var(--map-top);
+      right: 1px;
+    }
+    .book-parts > ul {
+      gap: 2px;
+      padding: 0;
+    }
+    .book-parts .book-part {
+      min-height: 32px;
+      padding: 2px 4px;
+    }
+    .book-parts .book-part > .bk-icon {
+      inline-size: 21px;
+      block-size: 21px;
+    }
+    .stage--battle > .dm-turn-end {
+      left: calc(var(--rim) + 13px);
+      bottom: calc(var(--rim) + 9px);
+      padding: 0;
+      border: 0;
+      background: none;
+      box-shadow: none;
+    }
+    .stage--battle > .dm-turn-end > button {
+      border: 7px solid transparent;
+      border-image: var(--plaque) 17 30 fill / 12px 20px;
+      background: none;
+      color: #362217;
+      padding: 1px 12px;
+      font: 700 clamp(15px, 2.1vmin, 23px) var(--font-display);
+    }
+    .stage--battle > .dm-turn-end > button .glyph {
+      display: none;
+    }
+    .dm-turn-ending {
+      padding: 9px;
+      background: var(--page);
+      color: var(--page-ink);
+    }
+    .book-foot {
+      right: calc(var(--rim) + 9px);
+      bottom: calc(var(--rim) + 7px);
+      display: grid;
+      place-items: center;
+      width: clamp(86px, 18vmin, 210px);
+      aspect-ratio: 239 / 215;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: url('/fight-materials/felt-tray.webp') center / 100% 100% no-repeat;
+      box-shadow: none;
+      filter: drop-shadow(0 3px 3px #311f1688);
+    }
+    .book-foot .book-die {
+      min-inline-size: clamp(56px, 11vmin, 125px);
+      min-block-size: clamp(56px, 11vmin, 125px);
+    }
+    .board--illustrated .token.has-miniature .token-figure {
+      top: auto;
+      bottom: 10%;
+    }
+    .board--illustrated .token.has-miniature .token-plate--room {
+      display: none;
+    }
+    .board--illustrated .token .miniature {
+      --mini-h: calc(var(--cell) * 1.42);
+    }
+    .board--illustrated .miniature-art {
+      max-width: calc(var(--cell) * 1.12);
+    }
+    .board--illustrated .token--party {
+      --side: #257f83;
+    }
+    .board--illustrated .token--hostile {
+      --side: #ac4b42;
+    }
+    .board--illustrated .token.has-miniature .token-ring {
+      inset: auto auto 6% 50%;
+      width: 80%;
+      height: 28%;
+      translate: -50% 0;
+      border: 2px solid var(--side);
+      border-radius: 50%;
+      background: linear-gradient(165deg, color-mix(in srgb, var(--side), white 24%), var(--side));
+      box-shadow:
+        0 3px 0 #39241dcc,
+        0 5px 5px #281a1c77;
+    }
+    .board--illustrated .token.has-miniature:is(.is-current, .is-selected) .token-ring {
+      animation: none;
+      box-shadow:
+        0 0 0 2px #fff2cf,
+        0 0 0 5px #2c9f9d,
+        0 0 12px 6px #74d9c9;
+    }
+    .board--illustrated .board-plate .token-plate {
+      padding: 0 4px;
+      border-width: 0 0 1px;
+    }
+    .board--illustrated .board-plate[data-quiet]:not(:hover) .token-plate {
+      width: 20px;
+      height: 16px;
+      padding: 0;
+      border: 0;
+      background: none;
+      box-shadow: none;
+    }
+    .board--illustrated .board-plate[data-quiet]:not(:hover) :is(.hp-bar, .name-words),
+    .board--illustrated .board-plate[data-quiet]:not(:hover) .token-name:not(.has-number) {
+      display: none;
+    }
+    .board--illustrated .board-plate[data-quiet]:not(:hover) .name-number {
+      padding-inline: 4px;
+      border-radius: 50%;
+      background: #f5dfb4;
+      color: #422d22;
+    }
+    .board--illustrated .board-plate .token-name {
+      font-size: clamp(10px, 1.2vmin, 13px);
+    }
+  }
+  [data-campaign-theme='lighthouse'] {
+    --fight-left-ornament: url('/fight-materials/blossoms.webp');
+    --fight-right-ornament: url('/fight-materials/sprig.webp');
+
+    .initiative-entry--party {
+      --fight-portrait-y: 0%;
+      --fight-portrait-zoom: 2.55;
+    }
+    .initiative-entry--hostile {
+      --fight-portrait-y: 12%;
+      --fight-portrait-zoom: 1.45;
+    }
+  }
+}

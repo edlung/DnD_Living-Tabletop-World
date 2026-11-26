@@ -2,6 +2,13 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## The combat fold-out, 2026-11-26
+
+The live book opens its illustrated battlefield level, with standing miniatures, initiative
+portraits and the hero's four choices. [The visual review](../reports/BOOK_FIGHT_FOLDOUT_2026-11-26.md)
+records the two seats and the browser checks. Owner visual acceptance, a physical iPad trial,
+merge and deployment are open.
+
 ## Current request — the book's second pass, 2026-11-24
 
 - Owner, in one working session, on the deployed book: «доработать до конца задуманное, выявить

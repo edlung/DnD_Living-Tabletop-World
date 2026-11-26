@@ -1,0 +1,360 @@
+/*
+ * The fight as the concept draws it (docs/adr/0075-book-interface.md §31; the owner, 2026-11-25:
+ * «экран боя далек от концепта. задача — сделать как в концепте»; the concept is
+ * `book-polish-2026-11-24/out/fight-foldout.png`). From a tablet up, while no page lies open over
+ * it, the fight is one large sheet of map paper unfolded over the whole book: only a thin rim of
+ * the cover shows around it, the bookmarks are small tags on that rim, the page's tabs and the
+ * spine are gone, two soft folds cross the paper. Along the sheet's upper edge the order of turns
+ * is a row of faces, whose turn it is the largest with a flag under it; «Раунд» is a label at the
+ * right. The slip of the turn lies beside the figure it is about — the DM's beside whose turn it
+ * is, a player's beside what they chose; ending the fight is a tag at the lower left, the d20 lies
+ * in a tray at the lower right. A phone keeps its column (`battle-layout.css`).
+ */
+.initiative-flag {
+  display: none;
+}
+
+@media (min-width: 701px) and (min-height: 501px) {
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden]))) {
+    --rim: 10px;
+    --sheet-head: 104px;
+    --parts-w: 48px;
+    --fight-top: calc(var(--rim) + var(--sheet-head) - 6px);
+    --map-top: calc(var(--rim) + var(--sheet-head));
+    --map-left: calc(var(--rim) + 16px);
+    --fight-foot: 0px;
+  }
+
+  /* --- The book steps back: no tabs, the bookmarks small tags on the cover's rim. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-pages {
+    display: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-part-word {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-part,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-part[aria-current='page'] {
+    min-height: 44px;
+    padding: 6px 4px 6px 7px;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .book-part
+    > .bk-icon {
+    inline-size: 28px;
+    block-size: 28px;
+  }
+
+  /* --- The sheet: map paper over the whole book, two soft folds, no spine. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .stage-backdrop {
+    inset: var(--rim) calc(var(--parts-w) + 4px) var(--rim) var(--rim);
+    border-radius: 3px;
+    background:
+      linear-gradient(
+        to right,
+        transparent calc(36% - 14px),
+        rgb(43 32 21 / 0.08) calc(36% - 1px),
+        rgb(255 250 238 / 0.5) 36%,
+        rgb(43 32 21 / 0.05) calc(36% + 1px),
+        transparent calc(36% + 16px)
+      ),
+      linear-gradient(
+        to bottom,
+        transparent calc(57% - 14px),
+        rgb(43 32 21 / 0.07) calc(57% - 1px),
+        rgb(255 250 238 / 0.45) 57%,
+        transparent calc(57% + 16px)
+      ),
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow:
+      0 0 0 1px rgb(43 32 21 / 0.3),
+      0 6px 22px rgb(0 0 0 / 0.55),
+      inset 0 0 48px rgb(122 84 24 / 0.3);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle {
+    padding: var(--map-top) calc(var(--parts-w) + 20px) calc(var(--rim) + 14px) var(--map-left);
+  }
+  /* The folds cross the painted map too, faintly: it is one sheet. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .board-plane::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        to right,
+        transparent calc(36% - 10px),
+        rgb(43 32 21 / 0.12) calc(36% - 1px),
+        rgb(255 250 238 / 0.22) 36%,
+        transparent calc(36% + 12px)
+      ),
+      linear-gradient(
+        to bottom,
+        transparent calc(57% - 10px),
+        rgb(43 32 21 / 0.1) calc(57% - 1px),
+        rgb(255 250 238 / 0.2) 57%,
+        transparent calc(57% + 12px)
+      );
+    pointer-events: none;
+  }
+
+  /* The battle map is painted onto the sheet: no frame, its edges bleed into the paper. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .board-ground {
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 3.5%, #000 96.5%, transparent),
+      linear-gradient(to bottom, transparent, #000 3.5%, #000 96.5%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent, #000 3.5%, #000 96.5%, transparent),
+      linear-gradient(to bottom, transparent, #000 3.5%, #000 96.5%, transparent);
+    mask-composite: intersect;
+  }
+  /* The fold's handle and the board's tools are tags of the same paper, not pills. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .stage-switch,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .board-controls {
+    border: 1px solid color-mix(in srgb, var(--page-ink) 45%, transparent);
+    border-radius: 4px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: 0 2px 6px rgb(43 32 21 / 0.3);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .stage-switch
+    button,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .board-controls
+    .icon-button {
+    border-radius: 3px;
+    color: var(--page-ink);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    > .stage-switch
+    button[aria-selected='true'] {
+    background: color-mix(in srgb, var(--rubric) 12%, transparent);
+    box-shadow: inset 0 0 0 1px var(--rubric);
+    color: var(--rubric);
+  }
+
+  /* --- The map takes all of the sheet below its head. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .combat-panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    :is(.board, .board.board--tilted, .active-card, .combat-side) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* --- The sheet's head: the order of turns as a row of faces, the round at the right. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .encounter-anchor,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-band {
+    position: static;
+    display: block;
+    grid-area: 1 / 1;
+    inline-size: 0;
+    block-size: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative {
+    position: absolute;
+    top: calc(var(--rim) + 8px);
+    right: calc(var(--parts-w) + 170px);
+    left: calc(var(--rim) + 160px);
+    z-index: 8;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: safe center;
+    gap: 14px;
+    padding: 2px 6px 4px;
+    overflow: auto hidden;
+    /* The faces are strung on one gilt line, as on the concept. */
+    background: linear-gradient(
+        color-mix(in srgb, var(--gold) 60%, transparent),
+        color-mix(in srgb, var(--gold) 60%, transparent)
+      )
+      center 34px / calc(100% - 80px) 2px no-repeat;
+    mask-image: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-entry,
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-entry.is-current {
+    position: relative;
+    display: grid;
+    flex: none;
+    justify-items: center;
+    gap: 2px;
+    inline-size: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative
+    .medallion {
+    --m: 52px;
+    margin-top: 8px;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-entry.is-current
+    .medallion {
+    --m: 66px;
+    margin-top: 1px;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-entry.is-current
+    .medallion::after {
+    box-shadow:
+      0 0 0 3px var(--teal),
+      0 0 14px 3px color-mix(in srgb, var(--teal) 45%, transparent);
+  }
+  /* A face says its name to a reader of the screen; the flag and the numbers tell them apart. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-name {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-entry
+    .hp-bar {
+    inline-size: 40px;
+    block-size: 3px;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .initiative-flag {
+    display: block;
+    position: relative;
+    z-index: 1;
+    order: 2;
+    margin-top: 1px;
+    padding: 1px 10px 2px;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 50%, transparent);
+    border-radius: 3px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: 0 2px 5px rgb(43 32 21 / 0.3);
+    color: var(--page-ink);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .round-mark {
+    position: absolute;
+    top: calc(var(--rim) + 18px);
+    right: calc(var(--parts-w) + 24px);
+    z-index: 8;
+    padding: 6px 16px 7px;
+    border: 1px solid color-mix(in srgb, var(--page-ink) 50%, transparent);
+    border-radius: 3px;
+    background:
+      var(--book-paper, none) 0 0 / 420px,
+      var(--page);
+    box-shadow: 0 2px 6px rgb(43 32 21 / 0.3);
+    color: var(--page-ink);
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+  /* A player's own line (whose turn, their hit points) under the round's label. */
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .anchor-caption {
+    position: absolute;
+    top: calc(var(--rim) + 64px);
+    right: calc(var(--parts-w) + 24px);
+    z-index: 8;
+    display: grid;
+    gap: 1px;
+    max-inline-size: 170px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    text-align: right;
+    white-space: normal;
+  }
+  .world-main[data-book].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .anchor-caption
+    > .muted {
+    display: none;
+  }
+  .world-main[data-book='dm'].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden])))
+    .stage--battle
+    .anchor-caption {
+    display: none;
+  }
+  /* A player's own line under «Раунд» needs the room of up to three lines above the map's tools. */
+  .world-main[data-book='hero'].has-battle:has(> .stage--battle):not(:has(.sheet:not([hidden]))) {
+    --sheet-head: 128px;
+  }
+}
+
+/* Outside the sheet (a phone's column) ending the fight follows the slip. */
+.dm-turn-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.stage:not(.stage--battle) > .dm-turn-end {
+  display: none;
+}

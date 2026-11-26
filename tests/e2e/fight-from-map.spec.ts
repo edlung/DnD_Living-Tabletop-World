@@ -33,17 +33,27 @@ test('the DM runs a fight from the map: a hero’s turn, a creature’s, the end
   await enterWorld(page, TOKENS.dm, campaign());
   await expect(field(page)).toBeVisible(LIVE);
 
-  // Whose turn it is and what the DM does about it lie at the map's foot, none of it covered.
+  // Whose turn it is and what the DM does about it lie on the map beside her figure; ending the
+  // fight is a tag at the sheet's lower corner (ADR 0075 §31). None of it is covered.
   await expect(slip(page)).toBeVisible(LIVE);
   await expect(slip(page)).toContainText('Ходит: Эловен Старвиспер');
   const take = slip(page).getByRole('button', { name: 'Ходить за героя', exact: true });
   const whole = slip(page).getByRole('button', { name: 'Вся схватка', exact: true });
-  const end = slip(page).getByRole('button', { name: 'Закончить бой', exact: true });
+  const ending = page.locator('.dm-turn-end');
+  const end = ending.getByRole('button', { name: 'Закончить бой', exact: true });
   for (const control of [take, whole, end]) await expectOnTop(control);
-  // The fold-out fits the page: the map ends above the slip, and nothing scrolls the stage.
-  const board = await box(page.locator('.board'));
+  // The sheet fits the window, the slip lies beside the figure, and nothing scrolls the stage.
   const foot = await box(slip(page));
-  expect(board.y + board.height).toBeLessThanOrEqual(foot.y + 1);
+  const figure = await box(
+    page.getByRole('button', { name: /^Клетка \d+, \d+: Эловен Старвиспер/ }),
+  );
+  expect(
+    foot.x >= figure.x + figure.width ||
+      foot.x + foot.width <= figure.x ||
+      foot.y >= figure.y + figure.height ||
+      foot.y + foot.height <= figure.y,
+    'the slip lies beside her figure, not over it',
+  ).toBe(true);
   const viewport = page.viewportSize();
   expect(foot.y + foot.height).toBeLessThanOrEqual((viewport?.height ?? 0) + 1);
   expect(
@@ -82,17 +92,17 @@ test('the DM runs a fight from the map: a hero’s turn, a creature’s, the end
 
   // "End the fight" asks once, on the map, and ends it for everyone.
   await end.click();
-  await expect(slip(page)).toContainText('Закончить бой для всех?');
+  await expect(ending).toContainText('Закончить бой для всех?');
   // The question takes the focus, on the careful answer, and gives it back to its button.
-  const keep = slip(page).getByRole('button', { name: 'Продолжить бой', exact: true });
+  const keep = ending.getByRole('button', { name: 'Продолжить бой', exact: true });
   await expect(keep).toBeFocused();
-  await expect(slip(page).getByRole('group', { name: 'Закончить бой для всех?' })).toBeVisible();
+  await expect(ending.getByRole('group', { name: 'Закончить бой для всех?' })).toBeVisible();
   await keep.click();
-  await expect(slip(page)).not.toContainText('Закончить бой для всех?');
+  await expect(ending).not.toContainText('Закончить бой для всех?');
   await expect(end).toBeFocused();
   await end.click();
   expectAccepted(
-    await submit(page, slip(page).getByRole('button', { name: 'Да, закончить', exact: true })),
+    await submit(page, ending.getByRole('button', { name: 'Да, закончить', exact: true })),
   );
   await expect(slip(page)).toHaveCount(0, LIVE);
   await expect(field(page)).toHaveCount(0);
@@ -110,6 +120,21 @@ test('the map takes the sheet and stands still while a figure is chosen', async 
   await expect(field(page)).toBeVisible(LIVE);
   await expect(tray(page)).toBeVisible(LIVE);
   const plane = page.locator('.board-plane');
+  const ways = tray(page).getByRole('group', { name: 'Выбрать действие' });
+  await expect(ways.getByRole('button')).toHaveText(['Атака', 'Заклинание', 'Идти', 'Другое']);
+  for (const [name, prompt] of [
+    ['Атака', 'Выберите на карте, кого атаковать.'],
+    ['Заклинание', 'Выберите цель заклинания на карте.'],
+    ['Идти', 'Выберите клетку, куда пойти.'],
+    ['Другое', 'Выберите фигурку для другого действия.'],
+  ] as const) {
+    const way = ways.getByRole('button', { name, exact: true });
+    await way.press('Enter');
+    await expect(tray(page)).toContainText(prompt);
+    await expect(plane.locator('.board-square:has(.token.is-current)')).toBeFocused();
+    await tray(page).getByRole('button', { name: 'Назад', exact: true }).click();
+    await expect(way).toBeFocused();
+  }
   const sheet = await box(page.locator('.stage--battle'));
   const room = await box(page.locator('.board'));
   const before = await box(plane);

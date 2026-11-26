@@ -29,6 +29,7 @@ export function BoardPlates({
   encounter,
   layout,
   labelOf,
+  nameAt,
   onPick,
   onPoint,
   onPress,
@@ -36,6 +37,8 @@ export function BoardPlates({
   readonly encounter: Pick<EncounterView, 'combatants'>;
   readonly layout: BoardLayout;
   readonly labelOf: LabelOf;
+  /** On illustrated boards, expand the name of the square being inspected. */
+  readonly nameAt?: Square | null;
   /** A press on a combatant's plate: its square is chosen. */
   readonly onPick: (square: Square) => void;
   /** The pointer came over (`true`) or left (`false`) the plate of the combatant on a square. */
@@ -55,6 +58,10 @@ export function BoardPlates({
         .filter((combatant) => combatant.mountedOn === undefined)
         .map((combatant) => {
           // Under the middle of its space (docs/adr/0049-space-and-movement.md §1).
+          const quiet =
+            nameAt === null ||
+            (nameAt !== undefined &&
+              (nameAt.x !== combatant.position.x || nameAt.y !== combatant.position.y));
           const room = plateRoom(combatant.position, occupied);
           const anchor = plateAnchor(layout, combatant.position, spanOf(combatant), standing, room);
           const style: PlateStyle = {
@@ -67,6 +74,8 @@ export function BoardPlates({
             <span
               key={combatant.entity.entityId}
               className={`board-plate board-plate--${anchor.edge} token--${combatant.side}${onPress ? ' is-draggable' : ''}`}
+              data-entity={combatant.entity.entityId}
+              data-quiet={quiet || undefined}
               style={style}
               onClick={() => {
                 onPick(combatant.position);

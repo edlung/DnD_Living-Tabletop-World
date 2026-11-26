@@ -21,6 +21,7 @@ import { moveGlyph, moveLabel, moveNote } from '../move-words.ts';
 import { optionNotes, warnsOfAlly } from '../target-options.tsx';
 import { ActionChoice } from './action-choice.tsx';
 import { SpellChoice } from './spell-choice.tsx';
+import { attackOptions, MapActions, mapPrompts, wayFor, type MapWay } from './map-actions.tsx';
 import {
   AttackChoice,
   masteryQuestion,
@@ -60,6 +61,8 @@ export function TurnTray({
   locked,
   detailId,
   onRun,
+  illustrated,
+  clearTarget,
 }: {
   readonly encounter: EncounterView;
   readonly actorId: string;
@@ -68,6 +71,8 @@ export function TurnTray({
   /** The side panel's description of an option, by its place in the list. */
   readonly detailId: (index: number) => string;
   readonly onRun: (intent: ExplorationIntent) => void;
+  readonly illustrated: boolean;
+  readonly clearTarget: () => void;
 }) {
   const t = useT();
   const labelOf = useCombatantLabels(encounter);
@@ -88,6 +93,16 @@ export function TurnTray({
   } | null>(null);
   // Melee attacks knock out instead of killing while this is on (docs/adr/0048-hit-points.md §4).
   const [sparing, setSparing] = useState(false);
+  const [pickedWay, setWay] = useState<MapWay | null>(null);
+  const way = illustrated ? pickedWay : null;
+  const menu = illustrated && choice.kind === 'none' && way === null;
+  const lastWay = useRef<MapWay | null>(null);
+  useEffect(() => {
+    if (menu && lastWay.current) {
+      tray.current?.querySelector<HTMLElement>(`[data-way="${lastWay.current}"]`)?.focus();
+      lastWay.current = null;
+    }
+  }, [menu, tray]);
   const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
   useEffect(() => {
     setChoosing(null);
@@ -108,25 +123,69 @@ export function TurnTray({
     (choice.kind === 'combatant' && choice.target.entity.entityId === actorId);
   const moves =
     choice.kind === 'square' ? choice.moves : itself ? flightMoves(encounter, actorId) : [];
-  const hint =
-    choice.kind === 'none'
-      ? t('Choose a square to move, or a combatant to act.')
-      : choice.kind === 'combatant' && choice.actions === null
-        ? t('Checking what you can do…')
-        : choice.kind === 'combatant' && choice.actions?.length === 0
-          ? t('Nothing to do with this combatant.')
-          : null;
+  const needsTarget =
+    way && (way === 'walk' ? choice.kind !== 'square' : choice.kind !== 'combatant');
+  const noMatch =
+    way &&
+    choice.kind === 'combatant' &&
+    choice.actions &&
+    !choice.actions.some((action) => wayFor(action) === way);
+  const hint = needsTarget
+    ? t(mapPrompts[way])
+    : noMatch
+      ? t('No matching action for this target.')
+      : choice.kind === 'none'
+        ? t('Choose a square to move, or a combatant to act.')
+        : choice.kind === 'combatant' && choice.actions === null
+          ? t('Checking what you can do…')
+          : choice.kind === 'combatant' && choice.actions?.length === 0
+            ? t('Nothing to do with this combatant.')
+            : null;
   return (
-    <section ref={tray} className="turn-tray" aria-label={t('Turn actions')}>
+    <section
+      ref={tray}
+      className="turn-tray"
+      data-action-menu={menu || undefined}
+      data-picking-on-map={needsTarget || undefined}
+      aria-label={t('Turn actions')}
+    >
+      {menu && (
+        <MapActions
+          onChoose={(next) => {
+            lastWay.current = next;
+            setWay(next);
+            tray.current
+              ?.closest('.combat-panel')
+              ?.querySelector<HTMLElement>('.board-square:has(.token.is-current)')
+              ?.focus({ preventScroll: true });
+          }}
+        />
+      )}
+      {way && (
+        <button
+          type="button"
+          className="map-actions-back"
+          onClick={() => {
+            setChoosing(null);
+            setAiming(null);
+            setSlotting(null);
+            setWay(null);
+            clearTarget();
+          }}
+        >
+          {t('Back')}
+        </button>
+      )}
       {warned && (
         <p className="tray-warning" aria-hidden="true">
           <Glyph name="warning" />
           {t('Warning: this area includes a party member. You may still cast it.')}
         </p>
       )}
-      {choice.kind === 'combatant' &&
+      {(!way || way === 'attack') &&
+        choice.kind === 'combatant' &&
         choice.target.object === undefined &&
-        (choice.actions?.some((action) => ATTACK_OPTIONS.has(action.id)) ?? false) && (
+        (choice.actions?.some((action) => attackOptions.has(action.id)) ?? false) && (
           <label className="tray-toggle">
             <input
               type="checkbox"
@@ -144,53 +203,59 @@ export function TurnTray({
         data-more-before={edges.before || undefined}
         data-more-after={edges.after || undefined}
       >
-        {hint && <p className="tray-hint">{hint}</p>}
-        {choice.kind === 'square' && choice.moves.length === 0 && (
+        {!menu && hint && (
+          <p className="tray-hint" role="status">
+            {hint}
+          </p>
+        )}
+        {(!way || way === 'walk') && choice.kind === 'square' && choice.moves.length === 0 && (
           <button type="button" className="tray-action" disabled>
             <Glyph name="move" className="tray-glyph" />
             <span className="tray-words">{t('Move here')}</span>
           </button>
         )}
-        {moves.map((option) => (
-          <button
-            key={option.kind}
-            type="button"
-            className="tray-action"
-            data-move={option.kind}
-            disabled={locked}
-            onClick={() => {
-              const [square] = option.path;
-              onRun({
-                kind: 'command',
-                // Getting down from a mount is an action of its own (ADR 0049 §10).
-                command:
-                  option.kind === 'dismount' && square
-                    ? {
-                        type: 'TakeAction',
-                        combatantId: actorId,
-                        action: 'dismount',
-                        square: { x: square.x, y: square.y },
-                      }
-                    : {
-                        type: 'MoveCombatant',
-                        combatantId: actorId,
-                        path: [...option.path],
-                        ...(option.crawl ? { crawl: true } : {}),
-                      },
-              });
-            }}
-          >
-            <Glyph name={moveGlyph(option)} className="tray-glyph" />
-            <span className="tray-words">{moveLabel(t, option)}</span>
-            {moveNote(t, option) && (
-              <small className="tray-note" aria-hidden="true">
-                {moveNote(t, option)}
-              </small>
-            )}
-          </button>
-        ))}
+        {(!way || way === 'walk') &&
+          moves.map((option) => (
+            <button
+              key={option.kind}
+              type="button"
+              className="tray-action"
+              data-move={option.kind}
+              disabled={locked}
+              onClick={() => {
+                const [square] = option.path;
+                onRun({
+                  kind: 'command',
+                  // Getting down from a mount is an action of its own (ADR 0049 §10).
+                  command:
+                    option.kind === 'dismount' && square
+                      ? {
+                          type: 'TakeAction',
+                          combatantId: actorId,
+                          action: 'dismount',
+                          square: { x: square.x, y: square.y },
+                        }
+                      : {
+                          type: 'MoveCombatant',
+                          combatantId: actorId,
+                          path: [...option.path],
+                          ...(option.crawl ? { crawl: true } : {}),
+                        },
+                });
+              }}
+            >
+              <Glyph name={moveGlyph(option)} className="tray-glyph" />
+              <span className="tray-words">{moveLabel(t, option)}</span>
+              {moveNote(t, option) && (
+                <small className="tray-note" aria-hidden="true">
+                  {moveNote(t, option)}
+                </small>
+              )}
+            </button>
+          ))}
         {choice.kind === 'combatant' &&
           choice.actions?.map((action, index) => {
+            if (way && wayFor(action) !== way) return null;
             const { target } = choice;
             const listed = combatCommandFor(
               action,
@@ -277,6 +342,7 @@ export function TurnTray({
         <button
           type="button"
           className="tray-end"
+          title={t('End turn')}
           disabled={locked}
           onClick={() => {
             onRun({ kind: 'command', command: { type: 'EndTurn', combatantId: actorId } });
@@ -338,13 +404,3 @@ export function TurnTray({
     </section>
   );
 }
-
-/** The options that attack: the knock-out choice applies to their melee strikes. */
-const ATTACK_OPTIONS: ReadonlySet<string> = new Set([
-  'longbow_attack',
-  'weapon_attack',
-  'offhand_attack',
-  'cleave_attack',
-  'unarmed_strike',
-  'form_attack',
-]);

@@ -51,9 +51,15 @@ test('the turn passes from the player to the DM and back without a refresh', asy
   await expectLive(player);
   await expect(turnBanner(player)).toHaveText('Your turn');
   await expect(turnBanner(dm)).toHaveText("Elowen Starwhisper's turn");
-  // Each sees the other at the table.
-  await expect(tablePresence(player)).toContainText('DM connected');
-  await expect(tablePresence(dm)).toContainText('Elowen Starwhisper · connected');
+  // The scene tab shows who is connected while the illustrated map fills the battlefield tab.
+  for (const [viewer, member] of [
+    [player, 'DM connected'],
+    [dm, 'Elowen Starwhisper · connected'],
+  ] as const) {
+    await viewer.getByRole('tab', { name: 'Scene', exact: true }).click();
+    await expect(tablePresence(viewer)).toContainText(member);
+    await viewer.getByRole('tab', { name: 'Battlefield', exact: true }).click();
+  }
 
   // An unsubmitted DM intent, which no refresh may replace, nor closing its sheet.
   await openSheet(dm, 'Add to the world');

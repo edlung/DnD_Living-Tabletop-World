@@ -771,6 +771,60 @@ own fight became a fold-out of paper (§17, §26).
 3. **Not changed**: what the screen is sent, the column's steps by the order's length, a
    picture's and the scene's casts (a picture on its plate), the screen's own corner of controls.
 
+### 31. The fight as the concept draws it (2026-11-25)
+
+The owner, on §26–§30: «экран боя далек от концепта. задача — сделать как в концепте»
+(`reviews/OWNER_BOOK_FIGHT_CONCEPT_2026-11-25.json`; the concept
+`book-polish-2026-11-24/out/fight-foldout.png`). §26 made the map large but kept the book's
+furniture around it. From a tablet up, on the battlefield with no page open over it:
+
+1. **One sheet of map paper over the whole book** (`styles/fight-concept.css`): a thin rim of the
+   cover around it, no spine, two soft folds across the paper and, faintly, across the map. The
+   page's tabs step aside (the DM reaches the Encounter page from the slip, «Вся схватка»); the
+   bookmarks are small tags on the rim, their words said to a reader of the screen.
+2. **The map is painted onto the sheet**: no frame, its edges bleeding into the paper.
+3. **The order of turns is a row of faces along the sheet's upper edge**, strung on one gilt
+   line; whose turn it is has the largest face and a flag under it — «Ходит», or «Ваш ход» on a
+   player's own (`combat/hud/initiative-strip.tsx`). Names are said, not shown; numbers tell two
+   alike apart. «Раунд» is a paper label at the right; a player's own line (whose turn, their hit
+   points) lies under it.
+4. **The slip of the turn lies beside the figure whose turn it is** (`combat/sheet-anchors.ts`,
+   `styles/fight-concept-slips.css`): toward the sheet's nearer edge first, then the other side,
+   then under and over the figure, level with it or slid along that side — the first spot that
+   covers no figure, no name plate and not what is chosen; where every spot covers one, the spot
+   that covers fewest. It stays inside the sheet, below the board's tools and above the corners.
+   Its paper lets a press through to the square under it — only its controls and the warning
+   about an ally take one. With no figure drawn it lies at the sheet's foot. While the DM paints
+   the ground or carries a figure, the slips step out of sight, so no square is out of reach.
+5. **The corners**: the fold's handle («Сцена | Поле боя») a paper tag at the upper left, its
+   words its names under 900 px; ending the fight a paper tag at the lower left, apart from the
+   slip (`combat/dm-turn.tsx`); the d20 of the book in a felt tray at the lower right; a player's
+   «Что я могу сделать?» and pause at the lower left. What the table asks (a check, a rest, the
+   evening not begun) and the result of an action lie at the sheet's foot between the corners,
+   not over the map. A player's own line under «Раунд» gets the sheet's head a little taller.
+6. **Kept from §26**: the card of what is chosen over the map's far edge; a margin of cards where
+   the map leaves room beside it (who is at the table above the d20's tray; how to read the board
+   behind the board's tool on a margin under 1000 px tall); cards under the map in a tall window,
+   above the corners, the card in one column; a phone's column; the table's screen.
+7. **One new phrase**: «Ходит», the flag under the face whose turn it is (the concept's own word).
+
+#### Illustrated board and the hero's choices (2026-11-26)
+
+The live fight opens on a flat illustrated sheet from 701 × 501 px. Its standing pieces use each
+combatant's approved cutout and a coloured base. A combatant with only a portrait uses that
+portrait. The controls also offer the tilted table and the flat tactical counters. The encounter
+supplies the map, figures, initiative order and round. An unaligned map uses one continuous painting with a fixed scale relative to its grid. Fog clips
+the same painting at the boundary of the playable cells. A calibrated map keeps its exact origin
+and scale. A figure's full name appears when it is inspected.
+
+On their turn the hero can start with «Атака», «Заклинание», «Идти» or «Другое». Choosing a way
+focuses the acting square and asks for a target. The target's projected options retain their
+costs, disabled reasons and confirmations. «Назад» returns focus to the chosen button. Selecting a
+square or figure directly also works. The slip tries the side toward the centre first and gives
+the target card and corner controls room. The DM can take a hero's turn through the existing
+explicit control. The reference furnishings and the Lighthouse blossoms come from the approved
+fold-out. The scenery and pieces come from the current campaign.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through
