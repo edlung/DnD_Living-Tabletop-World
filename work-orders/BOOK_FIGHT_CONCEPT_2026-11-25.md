@@ -19,8 +19,8 @@ beside it). ADR 0075 §31. Stacked on `claude/book-tv-fight-paper` (pull request
 
 ## Out of scope
 
-A phone's fight; the table's screen; what the server sends and decides; the tilt on wide screens
-(the concept is flat; the tilt from 1200 px stays as it was); merging and deployment.
+A phone's fight, the table's screen, what the server sends and decides, merging and deployment.
+The follow-up below specifies the initial view of the live fight on wide screens.
 
 ## Acceptance
 

@@ -96,6 +96,13 @@ export function TurnTray({
   const [pickedWay, setWay] = useState<MapWay | null>(null);
   const way = illustrated ? pickedWay : null;
   const menu = illustrated && choice.kind === 'none' && way === null;
+  const lastWay = useRef<MapWay | null>(null);
+  useEffect(() => {
+    if (menu && lastWay.current) {
+      tray.current?.querySelector<HTMLElement>(`[data-way="${lastWay.current}"]`)?.focus();
+      lastWay.current = null;
+    }
+  }, [menu, tray]);
   const chosen = choice.kind === 'combatant' ? choice.target.entity.entityId : choice.kind;
   useEffect(() => {
     setChoosing(null);
@@ -139,9 +146,21 @@ export function TurnTray({
       ref={tray}
       className="turn-tray"
       data-action-menu={menu || undefined}
+      data-picking-on-map={needsTarget || undefined}
       aria-label={t('Turn actions')}
     >
-      {menu && <MapActions onChoose={setWay} />}
+      {menu && (
+        <MapActions
+          onChoose={(next) => {
+            lastWay.current = next;
+            setWay(next);
+            tray.current
+              ?.closest('.combat-panel')
+              ?.querySelector<HTMLElement>('.board-square:has(.token.is-current)')
+              ?.focus({ preventScroll: true });
+          }}
+        />
+      )}
       {way && (
         <button
           type="button"

@@ -808,6 +808,22 @@ furniture around it. From a tablet up, on the battlefield with no page open over
    above the corners, the card in one column; a phone's column; the table's screen.
 7. **One new phrase**: «Ходит», the flag under the face whose turn it is (the concept's own word).
 
+#### Illustrated board and the hero's choices (2026-11-26)
+
+The live fight opens on a flat illustrated sheet from 701 × 501 px. Its standing pieces use each
+combatant's approved cutout and a coloured base. A combatant with only a portrait uses that
+portrait. The controls also offer the tilted table and the flat tactical counters. The encounter
+supplies the map, figures, initiative order and round. Only an unaligned, unfogged map extends its
+painted edges into spare paper. The playable cells keep their coordinates in every view.
+
+On their turn the hero can start with «Атака», «Заклинание», «Идти» or «Другое». Choosing a way
+focuses the acting square and asks for a target. The target's projected options retain their
+costs, disabled reasons and confirmations. «Назад» returns focus to the chosen button. Selecting a
+square or figure directly also works. The slip tries the side toward the centre first and gives
+the target card and corner controls room. The DM can take a hero's turn through the existing
+explicit control. The reference furnishings and the Lighthouse blossoms come from the approved
+fold-out. The scenery and pieces come from the current campaign.
+
 ## Consequences
 
 - Journeys change how they reach a control: 117 of 170 journey files open sections through

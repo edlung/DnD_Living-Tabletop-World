@@ -199,6 +199,16 @@
       overflow: hidden;
       clip-path: inset(50%);
     }
+    > .outcome,
+    > .rest-banner-slot {
+      bottom: calc(var(--rim) + 55px);
+    }
+    > .outcome {
+      pointer-events: none;
+    }
+    > .outcome :is(button, a, input, summary) {
+      pointer-events: auto;
+    }
     .stage--battle .board-controls {
       top: auto;
       bottom: 5px;

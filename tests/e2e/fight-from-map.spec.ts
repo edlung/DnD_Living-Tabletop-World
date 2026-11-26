@@ -122,10 +122,19 @@ test('the map takes the sheet and stands still while a figure is chosen', async 
   const plane = page.locator('.board-plane');
   const ways = tray(page).getByRole('group', { name: 'Выбрать действие' });
   await expect(ways.getByRole('button')).toHaveText(['Атака', 'Заклинание', 'Идти', 'Другое']);
-  await ways.getByRole('button', { name: 'Заклинание' }).click();
-  await expect(tray(page)).toContainText('Выберите цель заклинания на карте.');
-  await tray(page).getByRole('button', { name: 'Назад', exact: true }).click();
-  await expect(ways).toBeVisible();
+  for (const [name, prompt] of [
+    ['Атака', 'Выберите на карте, кого атаковать.'],
+    ['Заклинание', 'Выберите цель заклинания на карте.'],
+    ['Идти', 'Выберите клетку, куда пойти.'],
+    ['Другое', 'Выберите фигурку для другого действия.'],
+  ] as const) {
+    const way = ways.getByRole('button', { name, exact: true });
+    await way.press('Enter');
+    await expect(tray(page)).toContainText(prompt);
+    await expect(plane.locator('.board-square:has(.token.is-current)')).toBeFocused();
+    await tray(page).getByRole('button', { name: 'Назад', exact: true }).click();
+    await expect(way).toBeFocused();
+  }
   const sheet = await box(page.locator('.stage--battle'));
   const room = await box(page.locator('.board'));
   const before = await box(plane);

@@ -6,7 +6,8 @@
     > .combat-stage:not([hidden]) {
       z-index: auto;
     }
-    .combat-side:not(:has(> .board-legend)) {
+    .combat-panel:not([data-spare]) .combat-side:not(:has(> .board-legend)),
+    .combat-side:has(> .move-card) {
       position: absolute;
       inset: calc(var(--map-top) + 52px) calc(var(--parts-w) + 9px) auto auto;
       z-index: 32;
@@ -17,9 +18,17 @@
       overflow: auto;
       pointer-events: auto;
     }
-    .combat-side[data-far]:not(:has(> .board-legend)) {
+    .combat-panel:not([data-spare]) .combat-side[data-far]:not(:has(> .board-legend)),
+    .combat-side[data-far]:has(> .move-card) {
       right: auto;
       left: calc(var(--rim) + 12px);
+    }
+    .combat-side:has(> .paint-card),
+    .combat-side > .paint-card {
+      pointer-events: none;
+    }
+    .combat-side > .paint-card :is(button, input, label, select, summary) {
+      pointer-events: auto;
     }
     .turn-tray,
     > .dm-turn {
@@ -27,7 +36,6 @@
       max-height: max(144px, calc(100% - var(--sheet-head) - 138px));
       overflow: auto;
       overscroll-behavior: contain;
-      pointer-events: auto;
     }
     .turn-tray .tray-row {
       flex-shrink: 0;
@@ -50,6 +58,10 @@
       width: clamp(195px, 22vw, 306px);
       padding: 8px 10px;
       gap: 0;
+    }
+    &[data-actor-slip] .turn-tray[data-picking-on-map] {
+      inset: calc(var(--map-top) + 3px) auto auto 50%;
+      translate: -50% 0;
     }
     .map-actions {
       display: grid;

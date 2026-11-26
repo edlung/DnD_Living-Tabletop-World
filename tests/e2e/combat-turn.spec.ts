@@ -46,9 +46,11 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   await expect(active).toContainText('78 / 78');
   await expect(active).toContainText(/Armor class\s*17/);
   await expect(active).toContainText(/Speed\s*30 ft/);
-  // No permanent action bar: options exist only for a chosen square or combatant.
+  // The slip offers a way to choose. A move or an attack is listed only after a target is chosen.
   await expect(battlefield(page).getByRole('button', { name: 'Move here' })).toHaveCount(0);
-  await expect(turnTray(page).getByRole('button')).toHaveCount(1);
+  const ways = turnTray(page).getByRole('group', { name: 'Choose an action' });
+  await expect(ways.getByRole('button')).toHaveCount(4);
+  await ways.getByRole('button', { name: 'Walk', exact: true }).click();
 
   await square(page, 5, 6).click();
   await expect(battlefield(page)).toContainText('Route: 3 squares, about 15 ft');
@@ -59,6 +61,7 @@ test('the battlefield shows terrain, cover, and tokens, and a turn moves, attack
   await expect(square(page, 2, 6)).not.toHaveAccessibleName(/Elowen/);
   await expect(battlefield(page).getByRole('button', { name: 'Move here' })).toHaveCount(0);
 
+  await ways.getByRole('button', { name: 'Attack options', exact: true }).click();
   await clickSquare(page, 8, 4);
   const options = battlefield(page).getByRole('region', {
     name: 'Options for Unidentified creature 1',

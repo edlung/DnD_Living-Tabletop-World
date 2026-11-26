@@ -34,12 +34,10 @@ const boxOf = (element: Element, origin: DOMRect): Box => {
 
 /**
  * Where the slip of the turn lies on the fight's sheet (docs/adr/0075-book-interface.md §31): beside
- * the figure whose turn it is, as a note laid beside a piece on a map. Of four sides — toward the
- * sheet's nearer edge first, then the other, then under and over the figure — level with it or
- * slid along that side, it takes the first spot that covers no figure and no name plate, nor what
- * is chosen (`target`); where every spot covers one, the spot that covers fewest. The stage is told the slip's corner (`--slip-x`, `--slip-y`,
- * from the stage's own corner) and the side (`data-actor-slip`); `styles/fight-concept-slips.css`
- * lays it there. A square not drawn tells nothing, and the slip keeps the sheet's foot.
+ * the figure whose turn it is. Try the side toward the centre first, then the outer side, below
+ * and above. Keep interactive panels, the chosen square, figures and their plates clear. When
+ * the map is crowded, minimise overlaps in that order. The sheet positions the slip using its
+ * corner (`--slip-x`, `--slip-y`) and side (`data-actor-slip`).
  */
 export function useSheetAnchors(
   panel: RefObject<HTMLElement | null>,
@@ -91,11 +89,13 @@ export function useSheetAnchors(
         ? board.querySelector(`.board-plate[data-entity="${CSS.escape(actorId)}"]`)
         : null;
       const own = plate ? boxOf(plate, origin) : square;
+      const figure = cell.querySelector('.token.is-current .token-figure');
+      const body = figure ? boxOf(figure, origin) : square;
       const at: Box = {
-        left: Math.min(square.left, own.left),
-        top: Math.min(square.top, own.top),
-        right: Math.max(square.right, own.right),
-        bottom: Math.max(square.bottom, own.bottom),
+        left: Math.min(square.left, own.left, body.left),
+        top: Math.min(square.top, own.top, body.top),
+        right: Math.max(square.right, own.right, body.right),
+        bottom: Math.max(square.bottom, own.bottom, body.bottom),
       };
       const width = slip.offsetWidth;
       const height = slip.offsetHeight;
@@ -138,7 +138,7 @@ export function useSheetAnchors(
       const inward: Side = middleX < (room.left + room.right) / 2 ? 'right' : 'left';
       const order: Side[] = [inward, inward === 'left' ? 'right' : 'left', 'under', 'over'];
       // What the slip leaves in view: every figure and plate, the chosen square most of all.
-      const marks = [...board.querySelectorAll('.token, .board-plate')].map((element) =>
+      const marks = [...board.querySelectorAll('.token-figure, .board-plate')].map((element) =>
         boxOf(element, origin),
       );
       const chosen = squareAt(targetX, targetY);
@@ -147,7 +147,7 @@ export function useSheetAnchors(
         obstacles.filter((mark) => meets(mark, spot.box)).length * 100 +
         marks.filter((mark) => meets(mark, spot.box)).length +
         (aim && meets(aim, spot.box) ? 10 : 0) +
-        (meets(at, spot.box) ? 20 : 0);
+        (meets(at, spot.box) ? 1000 : 0);
       let side: Side = order[0] ?? 'right';
       let spot: Spot | null = null;
       let least = Number.POSITIVE_INFINITY;

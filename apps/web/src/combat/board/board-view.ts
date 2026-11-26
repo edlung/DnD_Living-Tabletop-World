@@ -19,10 +19,8 @@ const ZOOMS = [0.75, 1, 1.25, 1.5, 2] as const;
 export type BoardMode = 'illustrated' | 'flat' | 'tilted';
 
 /**
- * How the viewer looks at the board (docs/STAGE_320_DESIGN.md §5.5): flat or tilted like a
- * table, and on a phone how closely. Visual state only: it lives in the screen's memory, never
- * in world state or browser storage. Until the viewer chooses, the board is tilted on a wide
- * screen and flat below 1200 px.
+ * The live book opens as an illustrated map when the sheet fits. Other boards use their
+ * preferred view, or tilt above 1200 px. View and phone zoom live in the screen's memory.
  */
 export interface BoardView {
   readonly mode: BoardMode;

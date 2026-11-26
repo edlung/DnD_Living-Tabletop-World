@@ -103,6 +103,7 @@ export function CombatStage({
         <button
           type="button"
           role="tab"
+          title={t('Scene')}
           aria-selected={!battlefield}
           aria-controls="scene-presence"
           onClick={() => {
@@ -115,6 +116,7 @@ export function CombatStage({
         <button
           type="button"
           role="tab"
+          title={t('Battlefield')}
           aria-selected={battlefield}
           aria-controls="combat-stage"
           onClick={() => {

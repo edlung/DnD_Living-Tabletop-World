@@ -39,6 +39,7 @@ export function MapActions({ onChoose }: { readonly onChoose: (way: MapWay) => v
         <button
           key={way}
           type="button"
+          data-way={way}
           onClick={() => {
             onChoose(way);
           }}
