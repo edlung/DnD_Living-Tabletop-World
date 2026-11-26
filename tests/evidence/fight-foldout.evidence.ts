@@ -64,6 +64,9 @@ test('the illustrated fold-out in the Lighthouse harbour', async ({ page }) => {
   await expect(take).toBeVisible();
   const output = 'test-results/foldout-review';
   await mkdir(output, { recursive: true });
+  const result = page.locator('.world-main > .outcome button');
+  if (await result.isVisible()) await result.click();
+  await expect(page.locator('.dice-layer')).toBeHidden({ timeout: 90000 });
   await page.mouse.move(0, 0);
   await page.screenshot({
     path: `${output}/lighthouse-dm.jpg`,
@@ -88,14 +91,18 @@ test('the illustrated fold-out in the Lighthouse harbour', async ({ page }) => {
     const figure = painted.locator('.token.is-current');
     const base = await figure.locator('.token-ring').boundingBox();
     const body = await figure.locator('.miniature').boundingBox();
-    if (!frame || !art || !base || !body) throw new Error('The painted map or piece is missing');
+    if (!frame || !art || !base || !body) {
+      throw new Error('The painted map or piece is missing');
+    }
     expect(art.width).toBeGreaterThanOrEqual(frame.width - 2);
     expect(art.height).toBeGreaterThanOrEqual(frame.height - 2);
     expect(art.x).toBeLessThanOrEqual(frame.x + 2);
     expect(art.y).toBeLessThanOrEqual(frame.y + 2);
     expect(art.x + art.width).toBeGreaterThanOrEqual(frame.x + frame.width - 2);
     expect(art.y + art.height).toBeGreaterThanOrEqual(frame.y + frame.height - 2);
-    expect(Math.abs(base.x + base.width / 2 - (body.x + body.width / 2))).toBeLessThan(2);
+    const baseMiddle = base.x + base.width / 2;
+    const figureMiddle = body.x + body.width / 2;
+    expect(Math.abs(baseMiddle - figureMiddle)).toBeLessThan(2);
     for (const button of await ways.getByRole('button').all()) await button.click({ trial: true });
     await page.mouse.move(0, 0);
     await page.screenshot({

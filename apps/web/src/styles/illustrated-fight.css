@@ -5,9 +5,9 @@
       :has(.sheet:not([hidden]))
     ) {
     --rim: clamp(5px, 0.8vmin, 11px);
-    --sheet-head: clamp(80px, 11.5vmin, 132px);
+    --sheet-head: clamp(86px, 12.8vmin, 140px);
     --parts-w: 36px;
-    --face: clamp(42px, 7.2vmin, 88px);
+    --face: clamp(44px, 8.7vmin, 96px);
     --map-top: calc(var(--rim) + var(--sheet-head));
     --map-left: calc(var(--rim) + 7px);
     --plaque: url('/fight-materials/cartouche.webp');
@@ -142,7 +142,7 @@
       left: 14%;
       right: 23%;
       z-index: 8;
-      gap: clamp(6px, 1.7vw, 28px);
+      gap: clamp(8px, 3.1vw, 55px);
       padding: 3px 8px 5px;
       background-size: min(88%, 54vw) 2px;
       background-position: center calc(var(--face) * 0.57);
@@ -160,8 +160,9 @@
       background-color: #d7b985;
     }
     .stage--battle .initiative .medallion-face > img:not([class]) {
-      transform: scale(1.65);
-      transform-origin: 50% 21%;
+      object-position: 50% var(--fight-portrait-y, 25%);
+      transform: scale(var(--fight-portrait-zoom, 1));
+      transform-origin: 50% 0;
     }
     .stage--battle .initiative-entry.is-current .medallion::after {
       box-shadow:
@@ -372,5 +373,14 @@
   [data-campaign-theme='lighthouse'] {
     --fight-left-ornament: url('/fight-materials/blossoms.webp');
     --fight-right-ornament: url('/fight-materials/sprig.webp');
+
+    .initiative-entry--party {
+      --fight-portrait-y: 0%;
+      --fight-portrait-zoom: 2.55;
+    }
+    .initiative-entry--hostile {
+      --fight-portrait-y: 12%;
+      --fight-portrait-zoom: 1.45;
+    }
   }
 }

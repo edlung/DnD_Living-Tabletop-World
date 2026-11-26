@@ -16,14 +16,16 @@
       height: auto;
       margin: 0;
       overflow: auto;
-      pointer-events: auto;
+      pointer-events: none;
     }
     .combat-panel:not([data-spare]) .combat-side[data-far]:not(:has(> .board-legend)),
     .combat-side[data-far]:has(> .move-card) {
       right: auto;
       left: calc(var(--rim) + 12px);
     }
-    .combat-side:has(> .paint-card),
+    .combat-side > :not(.paint-card) {
+      pointer-events: auto;
+    }
     .combat-side > .paint-card {
       pointer-events: none;
     }
