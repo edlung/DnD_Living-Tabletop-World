@@ -1,7 +1,7 @@
 import { mkdir } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
 
-import { bookPart, openTopMenu } from '../e2e/support/shell.ts';
+import { bookPart, dockSettled, openTopMenu } from '../e2e/support/shell.ts';
 import {
   accessState,
   dmToken,
@@ -33,6 +33,12 @@ test('the illustrated fold-out in the Lighthouse harbour', async ({ page }) => {
     .click();
   await expect(page.locator('.session-shell h1')).toHaveText(title, { timeout: 60000 });
   const scene = bookPart(page, 'Сцена');
+  if ((await scene.getAttribute('aria-current')) !== 'page') await scene.click();
+  await page.getByRole('button', { name: 'Начать вечер', exact: true }).click();
+  const session = page.locator('#sheet-session');
+  await session.getByRole('button', { name: 'Начать сессию', exact: true }).click();
+  await expect(session.locator('.session-running')).toBeVisible();
+  await session.getByRole('button', { name: /^Закрыть/ }).first().click();
   if ((await scene.getAttribute('aria-current')) !== 'page') await scene.click();
   await page
     .getByRole('navigation', { name: 'Действия мастера' })
@@ -75,7 +81,21 @@ test('the illustrated fold-out in the Lighthouse harbour', async ({ page }) => {
     [834, 1194],
   ] as const) {
     await page.setViewportSize({ width, height });
+    await dockSettled(page);
     await expect(painted).toBeVisible();
+    const frame = await painted.locator('.board-viewport').boundingBox();
+    const art = await painted.locator('.board-map').boundingBox();
+    const figure = painted.locator('.token.is-current');
+    const base = await figure.locator('.token-ring').boundingBox();
+    const body = await figure.locator('.miniature').boundingBox();
+    if (!frame || !art || !base || !body) throw new Error('The painted map or piece is missing');
+    expect(art.width).toBeGreaterThanOrEqual(frame.width - 2);
+    expect(art.height).toBeGreaterThanOrEqual(frame.height - 2);
+    expect(art.x).toBeLessThanOrEqual(frame.x + 2);
+    expect(art.y).toBeLessThanOrEqual(frame.y + 2);
+    expect(art.x + art.width).toBeGreaterThanOrEqual(frame.x + frame.width - 2);
+    expect(art.y + art.height).toBeGreaterThanOrEqual(frame.y + frame.height - 2);
+    expect(Math.abs(base.x + base.width / 2 - (body.x + body.width / 2))).toBeLessThan(2);
     for (const button of await ways.getByRole('button').all()) await button.click({ trial: true });
     await page.mouse.move(0, 0);
     await page.screenshot({

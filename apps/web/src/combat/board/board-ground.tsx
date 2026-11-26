@@ -13,47 +13,43 @@ import { useHeldImage } from '../../visual/approved-images.ts';
 export function BoardGround({
   map,
   cell,
-  bleed = null,
+  illustrated = false,
+  clipped = false,
 }: {
   readonly map: PlayerAssetView | null;
   /** A square's size on the board, in CSS pixels. */
   readonly cell: number;
-  readonly bleed?: { readonly x: number; readonly top: number; readonly bottom: number } | null;
+  readonly illustrated?: boolean;
+  readonly clipped?: boolean;
 }) {
   const { url, held } = useHeldImage(map);
   const grid = map?.grid;
   const scale = grid ? cell / grid.cellPx : 1;
+  // Uncalibrated art has a fixed illustrated framing, measured in board squares. Viewport
+  // changes crop only the surrounding scenery. Fog clips the same image at the grid boundary.
+  const foldout = illustrated && !grid && held;
   return (
-    <>
-      {bleed && !grid && url && (
-        <span
-          aria-hidden="true"
-          className="board-painted-margin"
-          style={{
-            inset: `-${bleed.top}px -${bleed.x}px -${bleed.bottom}px`,
-            borderWidth: `${bleed.top}px ${bleed.x}px ${bleed.bottom}px`,
-            borderImageSource: `url("${url}")`,
-          }}
-        />
-      )}
-      <span className={`board-ground${held ? ' board-ground--map' : ''}`} aria-hidden="true">
-        {url &&
-          (grid ? (
-            <img
-              className="board-map board-map--aligned"
-              src={url}
-              alt=""
-              draggable={false}
-              style={{
-                left: -grid.originX * scale,
-                top: -grid.originY * scale,
-                transform: `scale(${String(scale)})`,
-              }}
-            />
-          ) : (
-            <img className="board-map" src={url} alt="" draggable={false} />
-          ))}
-      </span>
-    </>
+    <span
+      className={`board-ground${held ? ' board-ground--map' : ''}${foldout ? ' board-ground--foldout' : ''}`}
+      data-clipped={(foldout && clipped) || undefined}
+      aria-hidden="true"
+    >
+      {url &&
+        (grid ? (
+          <img
+            className="board-map board-map--aligned"
+            src={url}
+            alt=""
+            draggable={false}
+            style={{
+              left: -grid.originX * scale,
+              top: -grid.originY * scale,
+              transform: `scale(${String(scale)})`,
+            }}
+          />
+        ) : (
+          <img className="board-map" src={url} alt="" draggable={false} />
+        ))}
+    </span>
   );
 }

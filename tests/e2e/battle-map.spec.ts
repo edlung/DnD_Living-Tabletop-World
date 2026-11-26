@@ -90,6 +90,8 @@ test('the DM uploads a battle map, lines its grid up, and the fight takes it', a
   await expect(sheet.getByRole('heading', { name: 'Encounter controls (DM)' })).toBeVisible();
   await page.keyboard.press('Escape');
   const board = battlefield(page);
+  await expect(board.locator('.board--illustrated .board-map--aligned')).toBeVisible();
+  await expect(board.locator('.board-ground--foldout')).toHaveCount(0);
   await board.getByRole('button', { name: 'Flat board', exact: true }).click();
   await expect(square(page, 15, 11)).toHaveCount(1);
   await expect(square(page, 16, 0)).toHaveCount(0);

@@ -95,6 +95,10 @@
     .stage--battle .board-viewport {
       border-radius: 3px;
     }
+    .stage--battle .board-viewport[data-sheet-fit] {
+      overflow: clip;
+      mask-image: none;
+    }
     .stage--battle .board-stage {
       margin: auto;
     }
@@ -108,14 +112,30 @@
       filter: none;
     }
     .stage--battle .board-square {
-      --board-grid: rgb(255 244 215 / 0.3);
+      --board-grid: rgb(255 244 215 / 0.22);
     }
-    .stage--battle .board-painted-margin {
-      position: absolute;
-      border-style: solid;
-      border-color: transparent;
-      border-image-slice: 9%;
-      pointer-events: none;
+    .stage--battle .board-ground--foldout {
+      overflow: visible;
+      background: none;
+    }
+    .stage--battle .board-ground--foldout[data-clipped] {
+      overflow: hidden;
+    }
+    .stage--battle .board-ground--foldout::after {
+      display: none;
+    }
+    .stage--battle .board-ground--foldout .board-map {
+      inset: -54%;
+      width: 208%;
+      height: 208%;
+      max-width: none;
+    }
+    .stage--battle .board-ground--map ~ .board-square.is-difficult {
+      background: repeating-linear-gradient(
+        135deg,
+        rgb(208 158 89 / 0.2) 0 7px,
+        rgb(91 58 29 / 0.34) 7px 9px
+      );
     }
     .stage--battle .initiative {
       top: calc(var(--rim) + 1px);
@@ -138,6 +158,10 @@
     .stage--battle .initiative .medallion-face {
       border: 2px solid #c49a4e;
       background-color: #d7b985;
+    }
+    .stage--battle .initiative .medallion-face > img:not([class]) {
+      transform: scale(1.65);
+      transform-origin: 50% 21%;
     }
     .stage--battle .initiative-entry.is-current .medallion::after {
       box-shadow:
@@ -268,7 +292,7 @@
       bottom: calc(var(--rim) + 7px);
       display: grid;
       place-items: center;
-      width: clamp(75px, 13vmin, 162px);
+      width: clamp(86px, 18vmin, 210px);
       aspect-ratio: 239 / 215;
       padding: 0;
       border: 0;
@@ -278,8 +302,8 @@
       filter: drop-shadow(0 3px 3px #311f1688);
     }
     .book-foot .book-die {
-      min-inline-size: clamp(48px, 8.7vmin, 110px);
-      min-block-size: clamp(48px, 8.7vmin, 110px);
+      min-inline-size: clamp(56px, 11vmin, 125px);
+      min-block-size: clamp(56px, 11vmin, 125px);
     }
     .board--illustrated .token.has-miniature .token-figure {
       top: auto;
@@ -289,22 +313,31 @@
       display: none;
     }
     .board--illustrated .token .miniature {
-      --mini-h: calc(var(--cell) * 1.26);
+      --mini-h: calc(var(--cell) * 1.42);
     }
     .board--illustrated .miniature-art {
       max-width: calc(var(--cell) * 1.12);
     }
+    .board--illustrated .token--party {
+      --side: #257f83;
+    }
+    .board--illustrated .token--hostile {
+      --side: #ac4b42;
+    }
     .board--illustrated .token.has-miniature .token-ring {
-      inset: auto 8% 7%;
-      height: 33%;
+      inset: auto auto 6% 50%;
+      width: 80%;
+      height: 28%;
+      translate: -50% 0;
       border: 2px solid var(--side);
       border-radius: 50%;
-      background: color-mix(in srgb, var(--side) 65%, #512f21);
+      background: linear-gradient(165deg, color-mix(in srgb, var(--side), white 24%), var(--side));
       box-shadow:
         0 3px 0 #39241dcc,
         0 5px 5px #281a1c77;
     }
     .board--illustrated .token.has-miniature:is(.is-current, .is-selected) .token-ring {
+      animation: none;
       box-shadow:
         0 0 0 2px #fff2cf,
         0 0 0 5px #2c9f9d,
@@ -313,6 +346,24 @@
     .board--illustrated .board-plate .token-plate {
       padding: 0 4px;
       border-width: 0 0 1px;
+    }
+    .board--illustrated .board-plate[data-quiet]:not(:hover) .token-plate {
+      width: 20px;
+      height: 16px;
+      padding: 0;
+      border: 0;
+      background: none;
+      box-shadow: none;
+    }
+    .board--illustrated .board-plate[data-quiet]:not(:hover) :is(.hp-bar, .name-words),
+    .board--illustrated .board-plate[data-quiet]:not(:hover) .token-name:not(.has-number) {
+      display: none;
+    }
+    .board--illustrated .board-plate[data-quiet]:not(:hover) .name-number {
+      padding-inline: 4px;
+      border-radius: 50%;
+      background: #f5dfb4;
+      color: #422d22;
     }
     .board--illustrated .board-plate .token-name {
       font-size: clamp(10px, 1.2vmin, 13px);

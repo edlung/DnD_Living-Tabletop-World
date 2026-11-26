@@ -112,6 +112,11 @@ export function Board({
     : 40;
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
+  const sheetFits =
+    illustrated &&
+    space !== null &&
+    layout.box.width <= space.width + 1 &&
+    layout.box.height <= space.height + 1;
   // The room the map leaves on its sheet is the cards' (ADR 0075 §26).
   const roomy = space !== null && !view.narrow && !illustrated;
   useSpareRoom(
@@ -366,6 +371,7 @@ export function Board({
       <div
         className="board-viewport"
         ref={viewport}
+        data-sheet-fit={sheetFits || undefined}
         data-more-before={edges.before || undefined}
         data-more-after={edges.after || undefined}
       >
@@ -384,18 +390,8 @@ export function Board({
             <BoardGround
               map={battleMap}
               cell={cell}
-              bleed={
-                illustrated && space && !warFog.size
-                  ? {
-                      x: Math.max(0, (space.width - layout.plane.width) / 2),
-                      top: Math.max(0, (space.height - layout.box.height) / 2),
-                      bottom: Math.max(
-                        0,
-                        (space.height + layout.box.height) / 2 - layout.plane.height,
-                      ),
-                    }
-                  : null
-              }
+              illustrated={illustrated}
+              clipped={warFog.size > 0 || !sheetFits}
             />
             {squares}
             {route.length > 1 && (
@@ -439,6 +435,7 @@ export function Board({
             encounter={encounter}
             layout={layout}
             labelOf={labelOf}
+            {...(illustrated && !painting ? { nameAt: looked } : {})}
             onPick={press}
             onPoint={point}
             {...(drag.enabled ? { onPress: drag.start } : {})}

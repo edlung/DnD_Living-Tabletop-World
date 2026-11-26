@@ -82,7 +82,8 @@ test('on her turn the hint says what is left, as she spends it; then that she wa
   await expectOnTop(anchor(page).getByRole('list', { name: 'Turn order' }));
   await expectOnTop(hintButton(page));
 
-  // She walks three squares: fifteen feet are left.
+  // She chooses a destination on the map. Fifteen feet are left after the three squares.
+  await turnTray(page).getByRole('button', { name: 'Walk', exact: true }).click();
   await square(page, 5, 6).click();
   expectAccepted(await submit(page, battlefield(page).getByRole('button', { name: 'Move here' })));
   await openHint(page);

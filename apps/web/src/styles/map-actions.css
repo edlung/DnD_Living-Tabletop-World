@@ -55,7 +55,7 @@
     }
     .turn-tray[data-action-menu] {
       display: grid;
-      width: clamp(195px, 22vw, 306px);
+      width: clamp(205px, 23vw, 330px);
       padding: 8px 10px;
       gap: 0;
     }
@@ -70,14 +70,14 @@
     }
     .map-actions button,
     .map-actions-back {
-      min-height: 38px;
+      min-height: 42px;
       padding: 3px 5px;
       border: 1px solid #ac804b;
       border-radius: 6px;
       background: linear-gradient(145deg, #fff2d7, #efd2a0);
       box-shadow: inset 0 0 0 1px #fff2d8;
       color: #39271b;
-      font: 700 clamp(14px, 1.9vmin, 21px) var(--font-display);
+      font: 700 clamp(16px, 2.25vmin, 25px) var(--font-display);
     }
     .map-actions button:hover,
     .map-actions button:focus-visible {

@@ -813,8 +813,9 @@ furniture around it. From a tablet up, on the battlefield with no page open over
 The live fight opens on a flat illustrated sheet from 701 × 501 px. Its standing pieces use each
 combatant's approved cutout and a coloured base. A combatant with only a portrait uses that
 portrait. The controls also offer the tilted table and the flat tactical counters. The encounter
-supplies the map, figures, initiative order and round. Only an unaligned, unfogged map extends its
-painted edges into spare paper. The playable cells keep their coordinates in every view.
+supplies the map, figures, initiative order and round. An unaligned map uses one continuous painting with a fixed scale relative to its grid. Fog clips
+the same painting at the boundary of the playable cells. A calibrated map keeps its exact origin
+and scale. A figure's full name appears when it is inspected.
 
 On their turn the hero can start with «Атака», «Заклинание», «Идти» or «Другое». Choosing a way
 focuses the acting square and asks for a target. The target's projected options retain their

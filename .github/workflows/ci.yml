@@ -226,7 +226,7 @@ jobs:
           python - <<'PY'
           import base64
           from pathlib import Path
-          for width in (1024, 1440, 834):
+          for width in (1024, 1440, 834, 'dm'):
               name = f'lighthouse-{width}.jpg'
               path = Path('test-results/foldout-review') / name
               encoded = base64.b64encode(path.read_bytes()).decode('ascii')
