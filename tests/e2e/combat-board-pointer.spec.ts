@@ -28,6 +28,7 @@ test('a tilted figure is chosen where it stands, and its pip names its condition
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await enterCombat(page, campaign);
+  await page.getByRole('button', { name: 'Tilted board', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Tilted board', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
@@ -157,6 +158,7 @@ test('a standing figure and its name plate choose their own combatant where they
   const terrain = board.locator('.terrain-card');
 
   // The first raider stands upright on the tilted table: the middle of its body chooses it.
+  await board.getByRole('button', { name: 'Tilted board', exact: true }).click();
   await expect(board.getByRole('button', { name: 'Tilted board', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',

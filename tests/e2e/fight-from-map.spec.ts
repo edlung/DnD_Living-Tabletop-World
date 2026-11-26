@@ -120,6 +120,12 @@ test('the map takes the sheet and stands still while a figure is chosen', async 
   await expect(field(page)).toBeVisible(LIVE);
   await expect(tray(page)).toBeVisible(LIVE);
   const plane = page.locator('.board-plane');
+  const ways = tray(page).getByRole('group', { name: 'Выбрать действие' });
+  await expect(ways.getByRole('button')).toHaveText(['Атака', 'Заклинание', 'Идти', 'Другое']);
+  await ways.getByRole('button', { name: 'Заклинание' }).click();
+  await expect(tray(page)).toContainText('Выберите цель заклинания на карте.');
+  await tray(page).getByRole('button', { name: 'Назад', exact: true }).click();
+  await expect(ways).toBeVisible();
   const sheet = await box(page.locator('.stage--battle'));
   const room = await box(page.locator('.board'));
   const before = await box(plane);

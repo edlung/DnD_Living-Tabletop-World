@@ -44,13 +44,17 @@ test('the battlefield stands the approved figures on the place’s battle map', 
   const map = await playerPresentation(page, IMAGE_CAMPAIGNS.battle, 'old-trade-road');
   expect(map.battleMap?.purpose).toBe('battle-map');
   await expectServedPicture(board.locator('.board-map'));
-  // Tilted on a wide screen: Elowen and the four goblins stand upright on their squares.
-  await expect(board.locator('.board.board--tilted')).toHaveCount(1);
+  // The illustrated sheet opens flat. Each approved figure stands on its own playable square.
+  await expect(board.locator('.board--illustrated')).toBeVisible();
+  await expect(board.locator('.board-plane')).toHaveCSS('transform', 'none');
   const standing = board.locator('.token .miniature-art');
   await expect(standing).toHaveCount(5);
   for (const figure of await standing.all()) await expectServedPicture(figure);
   await expect(square(page, 8, 4)).toHaveAccessibleName(/Unidentified creature/);
   await expect(board).not.toContainText('goblin');
+
+  await board.getByRole('button', { name: 'Tilted board', exact: true }).click();
+  await expect(board.locator('.board--tilted .miniature-art')).toHaveCount(5);
 
   await board.getByRole('button', { name: 'Flat board', exact: true }).click();
   await expect(board.locator('.board.board--flat')).toHaveCount(1);

@@ -3,10 +3,6 @@ import { useLayoutEffect, type RefObject } from 'react';
 
 /** Between the figure and its slip (CSS pixels): clear of the name plate, wider than the square. */
 const GAP = 18;
-/** Kept free at the sheet's foot for its corner tags and the d20's tray. */
-const FOOT = 84;
-/** Kept free at the sheet's right for the bookmarks' tags. */
-const PARTS = 64;
 /** The sheet's rim and the paper's margin inside it. */
 const EDGE = 24;
 
@@ -103,11 +99,24 @@ export function useSheetAnchors(
       };
       const width = slip.offsetWidth;
       const height = slip.offsetHeight;
-      const tools = board.querySelector('.board-controls');
-      const top = Math.max(room.top + EDGE, tools ? boxOf(tools, origin).bottom + 8 : 0);
-      const bottom = room.bottom - FOOT;
+      const world = host.closest('main') ?? host;
+      const obstacles = [
+        ...world.querySelectorAll(
+          '.board-controls, .combat-side, .active-card, .fight-quiet, .dm-turn-end, .book-foot, .book-parts, .outcome, .rest-banner-slot',
+        ),
+      ]
+        .filter((element) => {
+          const bounds = element.getBoundingClientRect();
+          if (bounds.width < 4 || bounds.height < 4) return false;
+          sizes.observe(element);
+          return true;
+        })
+        .map((element) => boxOf(element, origin));
+      const head = host.querySelector('.initiative');
+      const top = Math.max(room.top + EDGE, head ? boxOf(head, origin).bottom + 5 : 0);
+      const bottom = room.bottom - EDGE;
       const left = room.left + EDGE;
-      const right = room.right - PARTS;
+      const right = room.right - EDGE;
       const within = (px: number, py: number): Spot => {
         const cx = Math.min(Math.max(px, left), Math.max(left, right - width));
         const cy = Math.min(Math.max(py, top), Math.max(top, bottom - height));
@@ -126,8 +135,8 @@ export function useSheetAnchors(
         const py = side === 'under' ? at.bottom + GAP : at.top - GAP - height;
         return [middleX - width / 2, at.left, at.right - width].map((px) => within(px, py));
       };
-      const nearer: Side = at.left - room.left <= room.right - at.right ? 'left' : 'right';
-      const order: Side[] = [nearer, nearer === 'left' ? 'right' : 'left', 'under', 'over'];
+      const inward: Side = middleX < (room.left + room.right) / 2 ? 'right' : 'left';
+      const order: Side[] = [inward, inward === 'left' ? 'right' : 'left', 'under', 'over'];
       // What the slip leaves in view: every figure and plate, the chosen square most of all.
       const marks = [...board.querySelectorAll('.token, .board-plate')].map((element) =>
         boxOf(element, origin),
@@ -135,6 +144,7 @@ export function useSheetAnchors(
       const chosen = squareAt(targetX, targetY);
       const aim = chosen ? boxOf(chosen, origin) : null;
       const cost = (spot: Spot) =>
+        obstacles.filter((mark) => meets(mark, spot.box)).length * 100 +
         marks.filter((mark) => meets(mark, spot.box)).length +
         (aim && meets(aim, spot.box) ? 10 : 0) +
         (meets(at, spot.box) ? 20 : 0);
@@ -160,13 +170,14 @@ export function useSheetAnchors(
     place();
     sizes.observe(host);
     sizes.observe(board);
-    arrivals.observe(host, { childList: true });
-    arrivals.observe(section, { childList: true });
+    arrivals.observe(host, { childList: true, subtree: true });
+    host.addEventListener('scroll', later, true);
     window.addEventListener('resize', later);
     return () => {
       sizes.disconnect();
       arrivals.disconnect();
       window.removeEventListener('resize', later);
+      host.removeEventListener('scroll', later, true);
       if (frame !== 0) cancelAnimationFrame(frame);
       forget();
     };

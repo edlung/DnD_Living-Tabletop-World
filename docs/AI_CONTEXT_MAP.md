@@ -8,6 +8,11 @@ Noir collection (3–8 adults): `campaigns/noir-2026/AGENTS.md`, `campaigns/noir
 
 ## Process and product
 
+The illustrated battlefield revision of 2026-11-26 is in `styles/illustrated-fight.css`,
+`styles/map-actions.css` and `combat/hud/map-actions.tsx` under `apps/web/src`. The
+Lighthouse browser evidence is `tests/evidence/fight-foldout.evidence.ts`. The four
+text-free fittings are made by `scripts/book-materials/foldout.ts` from the original concept.
+
 The DM's book (Stages 900–930, 2026-11-22): the accepted sample in `design/dm-book-sample/` (README, archive of sources, four states); the second concept of the same day — [the offline Hollowmere spread](design/dm-book/index.html), [its scope](../work-orders/DM_BOOK_CONCEPT_2026-11-22.md).
 
 | Task | Smallest starting set |

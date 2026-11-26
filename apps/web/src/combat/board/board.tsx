@@ -100,6 +100,7 @@ export function Board({
   );
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
+  const illustrated = view.mode === 'illustrated';
   const tilt = view.mode === 'tilted' ? TILT : null;
   const fitted = space
     ? fitCell(space, grid, tilt, {
@@ -112,7 +113,7 @@ export function Board({
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
   // The room the map leaves on its sheet is the cards' (ADR 0075 §26).
-  const roomy = space !== null && !view.narrow;
+  const roomy = space !== null && !view.narrow && !illustrated;
   useSpareRoom(
     area,
     roomy ? space.width - layout.box.width : null,
@@ -314,7 +315,7 @@ export function Board({
               cover={level}
               image={imageOf(occupant.entity.entityId)}
               figure={figureOf(occupant.entity.entityId)}
-              tilted={tilt !== null}
+              standingView={tilt !== null || illustrated}
               facingLeft={facingLeft.has(occupant.entity.entityId)}
               current={occupant.entity.entityId === currentCombatantId}
               selected={isSelected}
@@ -329,7 +330,7 @@ export function Board({
               cover={null}
               image={imageOf(rider.entity.entityId)}
               figure={figureOf(rider.entity.entityId)}
-              tilted={tilt !== null}
+              standingView={tilt !== null || illustrated}
               facingLeft={facingLeft.has(rider.entity.entityId)}
               current={rider.entity.entityId === currentCombatantId}
               selected={false}
@@ -345,7 +346,10 @@ export function Board({
   // The ruler's far end: where it was set, else where the pointer or the keyboard is.
   const rulerEnd = ruler ? (ruler.to ?? pointed ?? focused) : null;
   return (
-    <div className={`board board--${view.mode}`} ref={area}>
+    <div
+      className={illustrated ? 'board board--flat board--illustrated' : `board board--${view.mode}`}
+      ref={area}
+    >
       <BoardControls view={view} {...(paint ? { paint } : {})} {...(tools ? { tools } : {})} />
       {looked && (
         <TerrainCard
@@ -377,7 +381,22 @@ export function Board({
               gridTemplateColumns: `repeat(${String(width)}, var(--cell))`,
             }}
           >
-            <BoardGround map={battleMap} cell={cell} />
+            <BoardGround
+              map={battleMap}
+              cell={cell}
+              bleed={
+                illustrated && space && !warFog.size
+                  ? {
+                      x: Math.max(0, (space.width - layout.plane.width) / 2),
+                      top: Math.max(0, (space.height - layout.box.height) / 2),
+                      bottom: Math.max(
+                        0,
+                        (space.height + layout.box.height) / 2 - layout.plane.height,
+                      ),
+                    }
+                  : null
+              }
+            />
             {squares}
             {route.length > 1 && (
               <svg

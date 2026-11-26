@@ -163,6 +163,8 @@ import './styles/book-index.css';
 import './styles/book-lists.css';
 import './styles/fight-concept.css';
 import './styles/fight-concept-slips.css';
+import './styles/illustrated-fight.css';
+import './styles/map-actions.css';
 import './styles/book-phone.css';
 import './styles/print.css';
 import './styles/print-book.css';

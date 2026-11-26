@@ -8,6 +8,16 @@ import { registerRussian } from '@ltw/ui';
 registerRussian({
   // Shell: top bar, dock, sheets
   'Enter world': 'Войти в мир',
+  'Illustrated map': 'Рисованная карта',
+  'Choose an action': 'Выбрать действие',
+  'Attack options': 'Атака',
+  Walk: 'Идти',
+  'Other actions': 'Другое',
+  'Choose whom to attack on the map.': 'Выберите на карте, кого атаковать.',
+  'Choose a spell target on the map.': 'Выберите цель заклинания на карте.',
+  'Choose a square to walk to.': 'Выберите клетку, куда пойти.',
+  'Choose a figure for other actions.': 'Выберите фигурку для другого действия.',
+  'No matching action for this target.': 'Для этой цели нет подходящего действия.',
   'DM tools': 'Инструменты мастера',
   Places: 'Места',
   Journal: 'Журнал',

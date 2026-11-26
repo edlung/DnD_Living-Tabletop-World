@@ -44,7 +44,7 @@ export function Token({
   cover,
   image,
   figure,
-  tilted,
+  standingView,
   current,
   selected,
   inArea,
@@ -61,8 +61,8 @@ export function Token({
   readonly image: PlayerAssetView | null;
   /** Its approved tabletop figure, when the viewed place's presentation carries one. */
   readonly figure: PlayerAssetView | null;
-  /** The table is seen at an angle: a figure stands up on it. */
-  readonly tilted: boolean;
+  /** Illustrated maps and tilted tables stand the approved miniature on its square. */
+  readonly standingView: boolean;
   readonly current: boolean;
   readonly selected: boolean;
   readonly inArea: boolean;
@@ -80,7 +80,7 @@ export function Token({
 }) {
   const t = useT();
   const standing = useHeldImage(figure);
-  const upright = tilted && standing.held;
+  const upright = standingView && standing.held;
   const condition =
     combatant.state === 'dead' ? 'dead' : combatant.state === 'down' ? 'unconscious' : null;
   const classes = [
@@ -121,7 +121,7 @@ export function Token({
         ) : (
           <Medallion
             image={image}
-            figure={tilted ? null : figure}
+            figure={standingView ? null : figure}
             kind={combatant.entity.kind}
             tone={combatant.side}
             selected={selected}

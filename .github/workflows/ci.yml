@@ -194,6 +194,19 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ steps.chromium.outputs.cache-primary-key }}
 
+      - name: Photograph the Lighthouse fold-out for its visual review
+        if: github.event.pull_request.number == 113 && matrix.shard == 1
+        run: pnpm exec playwright test -c playwright.evidence.config.ts --project=chromium fight-foldout
+
+      - name: Keep the synthetic battlefield views
+        if: always() && github.event.pull_request.number == 113 && matrix.shard == 1
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-foldout
+          path: test-results/foldout-review/*.jpg
+          retention-days: 3
+          if-no-files-found: ignore
+
       - name: UI and API journeys
         timeout-minutes: 35
         run: pnpm run test:e2e --shard=${{ matrix.shard }}/${{ strategy.job-total }}

@@ -29,3 +29,12 @@ A phone's fight; the table's screen; what the server sends and decides; the tilt
   tags and the d20's tray; nothing covers a control or a square another control needs.
 - The fight's journeys pass in Chromium; the layout audit finds no error on the fight.
 - Every new phrase of the interface is listed for the owner: «Ходит».
+
+## Owner's follow-up, 2026-11-26
+
+«Задача - сделать бой по концепту.» The supplied fold-out and its accompanying brief govern
+the default view. On a tablet or desktop the map opens flat with standing miniatures. The
+viewer can still choose the tilted table or the tactical flat view. A hero who can act has the
+four choices on the slip. The two Chromium regressions in pull request 113 are part of
+acceptance. Compare the live Lighthouse harbour with the original and check other campaigns,
+fog, aligned maps, player permissions and the narrow layout.

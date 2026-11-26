@@ -472,6 +472,8 @@ export function CombatPanel({
       </div>
       {mayAct && (
         <TurnTray
+          illustrated={view.mode === 'illustrated'}
+          clearTarget={close}
           encounter={encounter}
           actorId={actorId}
           choice={choice}
