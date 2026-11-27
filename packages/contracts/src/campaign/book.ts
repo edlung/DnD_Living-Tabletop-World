@@ -94,6 +94,11 @@ export const campaignBookPageSchema = z
     layer: z.union([z.literal(1), z.literal(2)]),
     minutes: z.number().int().min(0).max(600).exactOptional(),
     choices: z.array(text).max(20),
+    /**
+     * What follows each choice, where the source has it: `forks[i]` is the DM's text for
+     * `choices[i]` — who answers how, what changes, where it comes back (docs/CAMPAIGN_TEXT_STANDARD.md §9).
+     */
+    forks: z.array(text).max(20).exactOptional(),
     check: campaignBookCheckSchema,
     failForward: text,
     people: z.array(personLinkSchema).max(32),
@@ -157,6 +162,11 @@ export const campaignBookPersonSchema = z
     reveal: text.exactOptional(),
     offer: text.exactOptional(),
     change: text.exactOptional(),
+    /** Ready lines: a situation and what the person says in it (docs/CAMPAIGN_TEXT_STANDARD.md §10). */
+    lines: z
+      .array(z.object({ when: title, say: text }).strict())
+      .max(12)
+      .exactOptional(),
   })
   .strict();
 
@@ -205,6 +215,37 @@ export const campaignBookPocketSchema = z
   })
   .strict();
 export type CampaignBookPocket = z.infer<typeof campaignBookPocketSchema>;
+
+/**
+ * A way the campaign can end, as its world names it: what it needs, what comes of it, what it
+ * costs, and the epilogue the DM reads aloud when the table reaches it (§11). A plan, not a fact.
+ */
+export const campaignBookEndingSchema = z
+  .object({
+    title,
+    requires: text,
+    outcome: text,
+    cost: text.exactOptional(),
+    epilogue: text.exactOptional(),
+  })
+  .strict();
+export type CampaignBookEnding = z.infer<typeof campaignBookEndingSchema>;
+
+const chapterNumber = z.number().int().min(0).max(200);
+/**
+ * A turn of the story the campaign prepares (§12): what flips, what the DM plants in which
+ * chapter, the chapter it most likely comes out in and how, and what changes after it.
+ */
+export const campaignBookTwistSchema = z
+  .object({
+    title,
+    turn: text,
+    seeds: z.array(z.object({ chapter: chapterNumber, text }).strict()).max(12),
+    reveal: z.object({ chapter: chapterNumber, text }).strict(),
+    after: text,
+  })
+  .strict();
+export type CampaignBookTwist = z.infer<typeof campaignBookTwistSchema>;
 
 const followup = z.object({ location: campaignKeySchema, choice: text }).strict();
 /** The campaign's own notes on a party that leaves the prepared road (`source/table-routes.json`). */
@@ -259,6 +300,8 @@ export const campaignBookSchema = z
     looseEncounters: z.array(campaignKeySchema).max(100),
     routes: campaignBookRoutesSchema.exactOptional(),
     pocket: campaignBookPocketSchema.exactOptional(),
+    endings: z.array(campaignBookEndingSchema).max(12).exactOptional(),
+    twists: z.array(campaignBookTwistSchema).max(6).exactOptional(),
   })
   .strict();
 export type CampaignBook = z.infer<typeof campaignBookSchema>;
@@ -311,6 +354,14 @@ export function bookReferenceProblems(
     for (const part of ['refusal', 'discovery', 'defeat'] as const)
       need(world.places, book.routes[part].followup?.location, `routes.${part}.followup`);
   }
+  const numbers = new Set(book.chapters.map((chapter) => chapter.number));
+  (book.twists ?? []).forEach((twist, i) => {
+    for (const seed of twist.seeds)
+      if (!numbers.has(seed.chapter))
+        problems.push({ path: `twists.${String(i)}.seeds`, key: String(seed.chapter) });
+    if (!numbers.has(twist.reveal.chapter))
+      problems.push({ path: `twists.${String(i)}.reveal`, key: String(twist.reveal.chapter) });
+  });
   for (const chapter of book.chapters) {
     const at = `chapters.${chapter.key}`;
     unique(chapter.key, at);
@@ -322,6 +373,9 @@ export function bookReferenceProblems(
     for (const page of chapter.pages) {
       const on = `${at}.pages.${page.key}`;
       unique(page.key, on);
+      // A fork belongs to its choice: one each, in the same order.
+      if (page.forks !== undefined && page.forks.length !== page.choices.length)
+        problems.push({ path: `${on}.forks`, key: String(page.forks.length) });
       need(world.places, page.place, `${on}.place`);
       for (const link of page.people) {
         need(own.people, link.person, `${on}.people`);

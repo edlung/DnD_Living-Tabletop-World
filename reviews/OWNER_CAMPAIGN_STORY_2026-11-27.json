@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-27",
+  "source": "The owner's message typed into this cloud session on 2026-11-27.",
+  "ownerInstruction": "Проверь все по кампаниям проекта. Сюжет, диалоги, реплики, описания и все необходимое. Кампании должны быть законченными, проработаны до мелочей, цепляющими своими сюжетами и сюжетными поворотами. Проработай также варианты развития и сюжетные вилки в зависимости от выбора действий игроков. Текст должен легко читаться, но в тоже время не должен быть банальным. Описания, диалоги, реплики и так далее не должны быть короткими. Мастеру должно всегда хватать текста для описания всего происходящего, у персонажей всегда хорошие диалоги и есть что сказать иначе игроки заскучают.",
+  "sessionReading": "The third round of the campaign-text requests (after reports/CAMPAIGN_TEXT_DND_2026-11-23.md and reports/CAMPAIGN_TEXT_DEPTH_2026-11-23.md). Its scope is work-orders/CAMPAIGN_STORY_2026-11-27.md: what follows every choice of every scene, a manner and ready lines for every person of the cast, an epilogue for every ending, the turns of the story with what to plant in which evening, and the contradictions found on the way. The words are written by the model of this session, not through an API. This reading is the session's and the owner may correct it.",
+  "askedAtTheTime": "Nothing; a pull request, merges and deployment stay the owner's.",
+  "unchangedBoundaries": [
+    "the plot as each campaign's truth states it: keys, clues, numbers, DCs, checks, choices, failForward, consequences, encounter blocks and endings' conditions stay as they are; new words are the DM's preparation, not new mechanics or new facts the clues do not support",
+    "knowledge isolation: forks, ready lines, epilogues and twists are the DM's, never in a player's page, a package or the table screen (an NPC's voice is the package NPC's manner, as ADR 0020's amendment of 2026-11-14 allows)",
+    "every package variant stays within the server's package limit",
+    "no live play at a table was held; that is reported honestly"
+  ]
+}

@@ -162,6 +162,70 @@ describe('the DM book of a campaign', () => {
     expect(bookReferenceProblems(told, world)).toEqual([]);
   });
 
+  it('keeps forks, ready lines, endings and turns of the story, within their bounds', () => {
+    const endings = [
+      {
+        title: 'Тихая гавань',
+        requires: 'Маяк горит до рассвета.',
+        outcome: 'Лодки возвращаются.',
+        cost: 'Смотритель уходит с маяка.',
+        epilogue: 'Утром над причалом кричат чайки.',
+      },
+    ];
+    const twists = [
+      {
+        title: 'Смотритель',
+        turn: 'Свет гасит не шторм, а сам смотритель.',
+        seeds: [{ chapter: 1, text: 'У него сажа на рукаве.' }],
+        reveal: { chapter: 1, text: 'Марфа видит его у лампы.' },
+        after: 'Марфа больше не верит смотрителю.',
+      },
+    ];
+    const told = parsed((d) => {
+      Object.assign(d, { endings, twists });
+      d.people = [
+        {
+          key: 'marfa',
+          name: 'Марфа',
+          look: '',
+          public: '',
+          want: '',
+          knows: [],
+          lines: [{ when: 'При встрече', say: '«Опоздали к отливу».' }],
+        },
+      ];
+      if (d.chapters[0]) d.chapters[0].pages = [{ ...page, forks: ['Марфа ведёт к лодке.'] }];
+    });
+    expect(told.endings).toEqual(endings);
+    expect(told.twists).toEqual(twists);
+    expect(told.people[0]?.lines?.[0]?.when).toBe('При встрече');
+    expect(told.chapters[0]?.pages[0]?.forks).toEqual(['Марфа ведёт к лодке.']);
+    expect(bookReferenceProblems(told, world)).toEqual([]);
+
+    const astray = parsed((d) => {
+      Object.assign(d, {
+        twists: [
+          { ...twists[0], seeds: [{ chapter: 4, text: 'x' }], reveal: { chapter: 5, text: 'y' } },
+        ],
+      });
+      if (d.chapters[0]) d.chapters[0].pages = [{ ...page, forks: ['a', 'b'] }];
+    });
+    expect(bookReferenceProblems(astray, world).map((p) => `${p.path} → ${p.key}`)).toEqual([
+      'twists.0.seeds → 4',
+      'twists.0.reveal → 5',
+      'chapters.dock.pages.dock-scene-1.forks → 2',
+    ]);
+    expect(
+      campaignBookSchema.safeParse(book((d) => Object.assign(d, { endings: [{ title: 'x' }] })))
+        .success,
+    ).toBe(false);
+    expect(
+      campaignBookSchema.safeParse(
+        book((d) => Object.assign(d, { twists: Array(7).fill(twists[0]) })),
+      ).success,
+    ).toBe(false);
+  });
+
   it('names every key that points at nothing', () => {
     const empty = {
       places: new Set<string>(),

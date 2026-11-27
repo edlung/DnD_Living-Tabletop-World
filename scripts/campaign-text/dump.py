@@ -1,11 +1,12 @@
 """Print one campaign's prose as numbered, addressable fields for rewriting.
 
 Usage: python3 -B scripts/campaign-text/dump.py <campaign> [--part world|cast|clues|handouts|sessions|
-pocket|brief|all] [--evening N]
+pocket|brief|story|story:N-M|all] [--evening N]
 <campaign> is the path under campaigns/, e.g. dark-fantasy-2026/ash-tithe or acorn-express.
 Each line is `<file>#<path> [<words>w] <text>`; the address is what apply.py takes.
 `--part brief` prints what a writer keeps at hand: the world's frame, places, heroes and the cast's
-look and manner. `--evening N` prints one evening only, with the table guide's notes for it.
+look and manner. `--part story` (or `story:5-8`) prints what the third round's writer needs: truth,
+endings, the cast's wants and secrets, every scene's play and choices with its address. `--evening N` prints one evening only, with the table guide's notes for it.
 """
 
 from __future__ import annotations
@@ -84,6 +85,55 @@ def evening(src: Path, number: int):
                 print(f'table-guide.json#[{i}] {note["title"]}: {note["text"]}')
 
 
+def story(src: Path, evenings_wanted: set[int] | None = None):
+    """What a writer of the third round keeps at hand (docs/CAMPAIGN_TEXT_STANDARD.md §9–12): the
+    world's frame and truth, its endings, the cast with what each wants and hides, and every scene's
+    play and choices with the address its forks go to. Read-alouds and handouts are left out."""
+    world = json.loads((src / 'world.json').read_text('utf-8'))
+    if evenings_wanted is None:
+        for k in ('title', 'genre', 'audience', 'tone', 'setting'):
+            if k in world:
+                print(f'{k}: {world[k]}')
+        for i, t in enumerate(world.get('truth', [])):
+            print(f'truth[{i}]: {t}')
+        for e in world.get('endings', []) or []:
+            print('ending «' + e.get('title', '') + '»: ' + ' | '.join(
+                str(e[k]) for k in ('requires', 'condition', 'outcome', 'result', 'cost') if k in e))
+        cast = json.loads((src / 'cast.json').read_text('utf-8'))
+        for h in cast.get('heroes', []):
+            print(f'hero {h.get("name")}: {h.get("role", "")} {h.get("archetype", "")}')
+        for n in cast.get('npcs', []):
+            bits = [f'{k}={n[k]}' for k in ('age', 'location') if k in n]
+            print(f'npc {n["key"]} «{n["name"]}» {" ".join(bits)}')
+            for k in ('look', 'public', 'want', 'secret', 'voice', 'boundary', 'reveal', 'offer', 'change'):
+                if n.get(k):
+                    print(f'   {k}: {n[k]}')
+            for fact in n.get('knows', []):
+                print(f'   knows: {fact}')
+        for loc in world.get('locations', []):
+            print(f'place {loc["key"]} «{loc["name"]}»')
+    data = {p.name: json.loads(p.read_text('utf-8')) for p in src.glob('*.json')}
+    for name in sorted(data, key=lambda n: (n.split('-')[0], int(re.sub(r'\D', '', n) or 0))):
+        if not re.fullmatch(r'(?:sessions|act)-\d+\.json', name):
+            continue
+        for i, ev in enumerate(data[name]):
+            if evenings_wanted is not None and ev.get('number') not in evenings_wanted:
+                continue
+            print(f'\n## вечер {ev.get("number")} «{ev.get("title")}» @{ev.get("location")} '
+                  f'people={",".join(ev.get("participants", []))}')
+            print(f'goal: {ev.get("goal", "")}')
+            for c in ev.get('consequences', []):
+                print(f'if: {c.get("if")} → {c.get("then")}')
+            print(f'ending: {ev.get("ending") or ev.get("end") or ""}')
+            for j, sc in enumerate(ev.get('scenes', [])):
+                print(f'\n### {name}#[{i}].scenes[{j}] «{sc.get("title")}»'
+                      + (' (aftermath)' if sc.get('dmAftermath') else ''))
+                print(f'play: {sc.get("play", "")}')
+                for k, ch in enumerate(sc.get('choices', [])):
+                    done = ' [fork written]' if k < len(sc.get('forks') or []) else ''
+                    print(f'choice {k}: {ch}{done}')
+
+
 def main():
     args = sys.argv[1:]
     part = 'all'
@@ -96,6 +146,13 @@ def main():
         return
     if part == 'brief':
         brief(src)
+        return
+    if part == 'story':
+        story(src)
+        return
+    if part.startswith('story:'):  # story:1-4 — those evenings only
+        lo, _, hi = part[6:].partition('-')
+        story(src, set(range(int(lo), int(hi or lo) + 1)))
         return
     stems = None if part == 'all' else PARTS[part]
     for p in sorted(src.glob('*.json')):

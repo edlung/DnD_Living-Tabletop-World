@@ -16,6 +16,8 @@ export interface Scene {
   readAloud?: string;
   play: string;
   choices: string[];
+  /** What follows each choice, one a choice (docs/CAMPAIGN_TEXT_STANDARD.md §9). */
+  forks?: string[];
   check: string;
   failForward: string;
 }

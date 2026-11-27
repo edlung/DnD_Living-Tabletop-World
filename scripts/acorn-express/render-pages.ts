@@ -1,7 +1,31 @@
+import {
+  epilogueHtml,
+  linesHtml,
+  twistsSection,
+  type StoryLine,
+  type StoryTwist,
+} from '../campaign-shared/story.ts';
 import { pocketSection } from '../campaign-shared/pocket.ts';
 import { tableGuide } from '../campaign-shared/table-guide.ts';
 import { cast, chapters, handouts, items, world } from './data.ts';
 import { packRoot, esc, img, link, list, p, page, save } from './render-common.ts';
+
+interface FamilyEnding {
+  title: string;
+  condition?: string;
+  result?: string;
+  epilogue?: string;
+}
+/** The family book's endings, when its world names them, with each epilogue to read aloud (§11). */
+const endingsSection = (endings: FamilyEnding[] | undefined) =>
+  endings?.length
+    ? `<section class="section" data-endings><h2>Чем может закончиться история</h2><div class="reading stack">${endings
+        .map(
+          (e) =>
+            `<h3>${esc(e.title)}</h3>${e.condition ? p(`Условие: ${e.condition}`) : ''}${e.result ? p(e.result) : ''}${epilogueHtml(e.epilogue)}`,
+        )
+        .join('')}</div></section>`
+    : '';
 
 const section = (title: string, body: string) =>
   `<section class="section"><h2>${esc(title)}</h2>${body}</section>`;
@@ -58,7 +82,7 @@ export async function renderPages() {
   const npcCards = cast.npcs
     .map(
       (npc) =>
-        `<details><summary>${esc(npc.name)}</summary><div class="pair">${img(npc.key === 'berest' ? 'valley' : npc.key, npc.name, '', npc.key === 'berest' ? 'landscape' : 'portrait')}<div class="stack">${p(npc.public)}${p(`Хочет: ${npc.want}`)}${p(`Голос: ${npc.voice}`)}${p(`Граница: ${npc.boundary}`)}${p(`Скрытое: ${npc.secret}`)}${p(`Когда раскрывать: ${npc.reveal}`)}${p(`Предлагает: ${npc.offer}`)}${p(`Изменение: ${npc.change}`)}</div></div><h3>Что действительно знает</h3>${list(npc.knows)}</details>`,
+        `<details><summary>${esc(npc.name)}</summary><div class="pair">${img(npc.key === 'berest' ? 'valley' : npc.key, npc.name, '', npc.key === 'berest' ? 'landscape' : 'portrait')}<div class="stack">${p(npc.public)}${p(`Хочет: ${npc.want}`)}${p(`Голос: ${npc.voice}`)}${p(`Граница: ${npc.boundary}`)}${p(`Скрытое: ${npc.secret}`)}${p(`Когда раскрывать: ${npc.reveal}`)}${p(`Предлагает: ${npc.offer}`)}${p(`Изменение: ${npc.change}`)}</div></div><h3>Что действительно знает</h3>${list(npc.knows)}${linesHtml((npc as { lines?: StoryLine[] }).lines)}</details>`,
     )
     .join('');
   await save(
@@ -69,6 +93,8 @@ export async function renderPages() {
     <header class="chapter-head"><span class="eyebrow">Только ведущему · сюжетные тайны</span><h1>Книга Янтарного леса</h1>${p(world.pitch)}<div class="actions">${link('sessions/01.html', 'Начать первый вечер', 'button')}${link('handouts.html', 'Подготовить карточки', 'button secondary')}${link('maps.html', 'Карты и встречи', 'button secondary')}</div></header>
     <div class="reading stack"><div class="note"><strong>Подготовка за 20 минут</strong>${list(['Выберите трёх героев. Четвёртый — замена, не лишний подконтрольный ведущему участник.', 'Договоритесь о паузах и уровне опасности. Прочитайте открытие первого вечера, карточки Марфы и Ри.', 'Откройте декорацию вокзала, приготовьте приглашение и грузовую карточку. Кубики, бумага и три маркера достаточны.', 'Перед необязательным боем помогите игрокам надеть стартовые куртки и щит через инвентарь.', 'Показывайте игрокам только выбранную декорацию или отдельную карточку. Эта книга, весь каталог и пакет кампании содержат тайны.'])}</div>${p(world.duration)}${p(world.safety)}${p(world.progression)}</div>
     ${section('Что произошло на самом деле', `<div class="reading stack">${list(world.truth)}<h3>До появления героев</h3>${list(world.history)}</div>`)}
+    ${twistsSection((world as { twists?: StoryTwist[] }).twists)}
+    ${endingsSection((world as { endings?: FamilyEnding[] }).endings)}
     ${section('Как вести свободную кампанию', `<div class="reading stack">${p(world.order)}${p('Не прогоняйте будущие главы как уже случившиеся события. NPC рассказывает только то, что знает. Заметка героя остаётся гипотезой, пока её не проверили. Итоги и перемещения в игре подтверждает ведущий обычными инструментами мира.')}${p('Узловые выводы имеют независимые опоры. Тош ушёл сам: внутренний замок, следы, рассказ Ри. Он живой: дыхание, новые корни, страницы Ивы. Нехватку тепла можно решить иначе: колесо Капели, зрелые грибницы Морошки, русло Береста и резерв Марфы. Если станцию пропустили, её житель может ответить обычным письмом; найденный ответ не прячется заново.')}${p('Если интерес падает, завершите ближайший маленький успех и вернитесь в тёплый вагон. По очереди предлагайте физическое действие, проверку идеи и разговор; не закрепляйте эти роли за детьми или взрослыми. Обычная сцена занимает 30–55 минут, затем пауза.')}${p('Провал: назовите конкретное изменение, сохраните доступ к основной улике и предложите новый подход. Поражение в необязательном бою — безопасное отступление. Оно не создаёт автоматического исцеления: отдых и лечение применяются штатно.')}</div>`)}
     ${section('Личные пути героев', `<div class="grid">${cast.heroes.map((hero) => card(hero.name, p(hero.arc))).join('')}</div>`)}
     ${section('Честный журнал путешествия', `<div class="reading stack">${list(['Где находится Тош, кто рядом и какую помощь он принял?', 'Какие улики увидели игроки; что остаётся лишь предположением?', 'Какие проекты выполнены, кто за ними смотрит и чего пока не хватает?', 'Какие обещания дали Вельт, Ива и сами герои?', 'Что стало важным каждому игроку и какой момент вернуть в его письме?'])}${p('Квесты приложения отмечают осмотры и встречи. Они не объявляют ремонт выполненным, доверие восстановленным или финал счастливым. Эти изменения вводите после реального решения за столом.')}</div>`)}

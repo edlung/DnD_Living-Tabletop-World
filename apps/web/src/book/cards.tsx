@@ -10,6 +10,7 @@ import type { ReactNode } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { AskRoll, GiveHandout, StartFight } from './actions.tsx';
 import { MOMENT_KINDS, optionWords, type Moment } from './moments.ts';
+import { PersonLines } from './story.tsx';
 
 /**
  * A moment's card on the right page (docs/adr/0074-dm-book.md §3.2, §4): what the campaign
@@ -122,6 +123,7 @@ export function useCard(
               </ul>
             </>
           )}
+          <PersonLines lines={person.lines} />
           {(person.secret ?? person.reveal) !== undefined && (
             <details className="dmb-secret">
               <summary>{t('The secret — for the DM only')}</summary>

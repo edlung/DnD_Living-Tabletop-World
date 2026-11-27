@@ -1,3 +1,4 @@
+import { epilogueHtml, linesHtml, twistsSection } from '../campaign-shared/story.ts';
 import { castCards } from '../campaign-shared/cast-cards.ts';
 import { pocketSection } from '../campaign-shared/pocket.ts';
 import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
@@ -38,6 +39,7 @@ export function renderDm(s: Source): string {
           p(n.want) +
           '<h3>Собственные знания</h3>' +
           list(n.knows) +
+          linesHtml(n.lines) +
           '<h3>Секрет или личное убеждение</h3>' +
           p(n.secret) +
           '<h3>Граница и раскрытие</h3>' +
@@ -81,6 +83,7 @@ export function renderDm(s: Source): string {
       ) +
       box('Первое чтение вслух', `<div class="read-aloud">${p(w.opening)}</div>`) +
       box('Правда мира · только ведущему', list(w.truth)) +
+      twistsSection(w.twists) +
       renderCase(s) +
       box('Восемь вечеров', `<ol>${sessions}</ol>`) +
       box(
@@ -107,7 +110,7 @@ export function renderDm(s: Source): string {
         w.endings
           .map(
             (e) =>
-              `<h3>${esc(e.title)}</h3>${p(`Условия: ${e.requires}`)}${p(e.outcome)}${p(`Цена: ${e.cost}`)}`,
+              `<h3>${esc(e.title)}</h3>${p(`Условия: ${e.requires}`)}${p(e.outcome)}${p(`Цена: ${e.cost}`)}${epilogueHtml(e.epilogue)}`,
           )
           .join(''),
       ) +

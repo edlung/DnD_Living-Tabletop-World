@@ -38,6 +38,8 @@ export {
   campaignBookHandoutSchema,
   campaignBookRoutesSchema,
   campaignBookPocketSchema,
+  campaignBookEndingSchema,
+  campaignBookTwistSchema,
   BOOK_RUMOUR_TRUTHS,
   bookReferenceProblems,
   type BookVoice,
@@ -47,6 +49,8 @@ export {
   type CampaignBookPage,
   type CampaignBookCheck,
   type CampaignBookPocket,
+  type CampaignBookEnding,
+  type CampaignBookTwist,
 } from './book.ts';
 export {
   BOOK_NOTE_CHARS,

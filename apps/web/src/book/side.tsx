@@ -9,6 +9,7 @@ import { CheckLines, kindWord, type CardContent } from './cards.tsx';
 import { minutesOf, type Leaf } from './model.ts';
 import { MOMENT_KINDS, momentId, type Moment, type MomentLine } from './moments.ts';
 import { Pocket } from './pocket.tsx';
+import { CampaignEndings, ChapterTurns, ChoiceForks } from './story.tsx';
 
 /**
  * The right page under the picture (docs/adr/0074-dm-book.md §3.2): the brief of the spread —
@@ -160,6 +161,8 @@ export function Brief({
                 <p>{entry.text}</p>
               </details>
             ))}
+            <ChapterTurns book={book} chapter={chapter} />
+            <CampaignEndings book={book} chapter={chapter} />
             {chapter.detour && (
               <details className="dmb-secret">
                 <summary>{t('If the party changed the plan')}</summary>
@@ -190,16 +193,7 @@ export function Brief({
                 <p>{page.failForward}</p>
               </>
             )}
-            {page.choices.length > 0 && (
-              <>
-                <h4>{t('What the players may choose')}</h4>
-                <ul>
-                  {page.choices.map((choice) => (
-                    <li key={choice}>{choice}</li>
-                  ))}
-                </ul>
-              </>
-            )}
+            <ChoiceForks page={page} />
           </>
         )}
         <Moments lines={lines} onOpen={onOpen} />

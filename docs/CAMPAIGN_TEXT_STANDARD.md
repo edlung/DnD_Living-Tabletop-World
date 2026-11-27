@@ -160,3 +160,57 @@ the pocket) is shared by two campaigns; the audit reports it as `cross-campaign-
 
 Reference for §5 and §7: `dark-fantasy-2026/ash-tithe`, the scenes of evening 1 and its
 `source/pocket.json`.
+
+## 9. What follows each choice (forks)
+
+Owner request 2026-11-27, third round (`reviews/OWNER_CAMPAIGN_STORY_2026-11-27.json`): the DM
+always knows what happens when the players choose. Every scene with `choices` has `forks`, one
+text a choice, in the same order (`forks[i]` follows `choices[i]`). A fork is the DM's text,
+40–110 words (refused under 30 or over 150):
+
+- who answers and how — at least one real line in «…»;
+- what changes at once (a door, a debt, a witness, a light, a mood), concrete;
+- where it comes back: a later evening, a person who remembers, a price named before it is paid.
+
+A fork never decides for the heroes, never names a roll the scene's `check` does not hold, and
+keeps to what `play`, `consequences` and later evenings already say: it develops a branch the
+scene allows, it does not invent a clue, a solution or a mechanic. A fork that leaves the
+prepared road says how the story gets back to it.
+
+## 10. A voice and ready lines for every person
+
+Every NPC has `voice` (12–40 words, at most 200 characters: the package NPC's manner) and
+`lines`: 5–8 `{when, say}` — the situation in a few words (`При первой встрече`, `Если давят`,
+`О Вералe`, `Когда правда вышла наружу`) and what the person says in it, in «…», 8–75 words.
+Lines are speech the DM can read as is: the person's own rhythm, a concrete fact, a joke or a
+fear. A line says nothing the person does not know and gives no secret before its `reveal`; a line
+for after the reveal names that situation in `when`.
+
+## 11. An epilogue for every ending
+
+Every ending of `world.endings` has `epilogue`: what the DM reads aloud when the table reaches
+it, 130–240 words (refused under 100 or over 280). §3 applies: present or near past, what the
+world looks like after, what became of the people the heroes touched, one last image; no rules
+words, no decision for the heroes. It fits the ending's `requires` and keeps its `cost`.
+
+## 12. Turns of the story
+
+`world.json` has `twists`: 2–4 `{title, turn, seeds, reveal, after}` built from the campaign's
+`truth`:
+
+- `turn` — what the heroes are led to believe and what is so (10–80 words);
+- `seeds` — at least two `{session, text}`: the small things the DM plants before the turn, each
+  in an evening no later than the turn's (8–70 words);
+- `reveal` — `{session, text}`: the evening it most likely comes out, how and in whose words, and
+  what happens if the heroes guessed earlier (25–170 words);
+- `after` — what changes after it, who reacts how (15–120 words).
+
+A seed is colour that agrees with `truth`, never a new clue the mystery's routes depend on.
+
+Checked by `python3 -B scripts/campaign-text/audit.py` (rules `fork-*`, `voice-*`, `lines-*`,
+`epilogue-*`, `twists-*`); written by `python3 -B scripts/campaign-text/story.py <campaign>
+<patch.json>`; read by the writer with `dump.py <campaign> --part story`. The book shows forks
+under the page's choices, lines on the person's card, the chapter's turns and — on the first and
+the last chapter — the endings with their epilogues; the HTML session pages show forks and the
+evening's turns, the DM's book the lines, the turns and the epilogues. None of it is in a package
+or a player's page.

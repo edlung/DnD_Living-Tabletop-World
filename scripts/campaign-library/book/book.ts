@@ -20,7 +20,8 @@ import { voiceOf } from './voice.ts';
  * chapter. Nothing is written here that the source does not say. Both source shapes are read: the
  * family books (`act-N.json`, `props`, `end`) and the collections (`sessions-N.json`, `handouts`,
  * `ending`). A scene's `readAloud` and the campaign's `pocket.json` (the DM's pocket) are carried
- * as written; neither goes into a package.
+ * as written, and so are a choice's fork, a person's ready lines, an ending's epilogue and the
+ * world's turns of the story (docs/CAMPAIGN_TEXT_STANDARD.md §9–12); none goes into a package.
  */
 interface SourceScene {
   title: string;
@@ -29,6 +30,8 @@ interface SourceScene {
   readAloud?: string;
   play: string;
   choices: string[];
+  /** What follows each choice, one a choice (docs/CAMPAIGN_TEXT_STANDARD.md §9). */
+  forks?: string[];
   check: string;
   failForward: string;
   dmAftermath?: boolean;
@@ -69,6 +72,8 @@ interface SourceNpc {
   reveal?: string;
   offer?: string;
   change?: string;
+  /** Ready lines for the DM (§10). */
+  lines?: { when: string; say: string }[];
 }
 interface SourceClue {
   key: string;
@@ -111,6 +116,26 @@ interface SourceRoutes {
   chapters: { number: number; choice: string; result: string }[];
 }
 
+/** A world's ending in either source shape: the collections' `requires`/`outcome`, the family books' `condition`/`result`. */
+interface SourceEnding {
+  title: string;
+  requires?: string;
+  condition?: string;
+  outcome?: string;
+  result?: string;
+  cost?: string;
+  /** Read aloud when the table reaches this ending (§11). */
+  epilogue?: string;
+}
+/** A turn of the story (§12); evenings are the book's chapters by number. */
+interface SourceTwist {
+  title: string;
+  turn: string;
+  seeds: { session: number; text: string }[];
+  reveal: { session: number; text: string };
+  after: string;
+}
+
 const filled = <T extends Record<string, unknown>>(value: T): T =>
   Object.fromEntries(Object.entries(value).filter(([, v]) => v !== undefined && v !== '')) as T;
 
@@ -124,7 +149,12 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
     .sort((a, b) => Number(/\d+/.exec(a)?.[0]) - Number(/\d+/.exec(b)?.[0]))
     .flatMap((file) => read(file) as SourceChapter[])
     .sort((a, b) => a.number - b.number);
-  const world = read('world.json') as { title: string; order?: string };
+  const world = read('world.json') as {
+    title: string;
+    order?: string;
+    endings?: SourceEnding[];
+    twists?: SourceTwist[];
+  };
   const npcs = (read('cast.json') as { npcs: SourceNpc[] }).npcs;
   const clues = read('clues.json') as SourceClue[];
   const handouts = read('handouts.json') as SourceHandout[];
@@ -184,6 +214,7 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
             layer: 1,
             minutes: scene.minutes,
             choices: scene.choices,
+            forks: scene.forks,
             check: readCheckLine(scene.check),
             failForward: scene.failForward,
             people: find(scene.play),
@@ -218,6 +249,7 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
         reveal: p.reveal,
         offer: p.offer,
         change: p.change,
+        lines: p.lines,
       }),
     ),
     clues: clues
@@ -260,6 +292,30 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
         }
       : {}),
     ...(pocket ? { pocket } : {}),
+    ...(world.endings?.length
+      ? {
+          endings: world.endings.map((e) =>
+            filled({
+              title: e.title,
+              requires: e.requires ?? e.condition ?? '',
+              outcome: e.outcome ?? e.result ?? '',
+              cost: e.cost,
+              epilogue: e.epilogue,
+            }),
+          ),
+        }
+      : {}),
+    ...(world.twists?.length
+      ? {
+          twists: world.twists.map((twist) => ({
+            title: twist.title,
+            turn: twist.turn,
+            seeds: twist.seeds.map((seed) => ({ chapter: seed.session, text: seed.text })),
+            reveal: { chapter: twist.reveal.session, text: twist.reveal.text },
+            after: twist.after,
+          })),
+        }
+      : {}),
   });
   requireBookFits(book, pkg);
   return book;

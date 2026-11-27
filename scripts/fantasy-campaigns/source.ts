@@ -1,3 +1,4 @@
+import type { StoryLine, StoryTwist } from '../campaign-shared/story.ts';
 import { readFile, readdir } from 'node:fs/promises';
 
 import type { KitBoss, KitFoe } from '../campaign-shared/combat-kit.ts';
@@ -42,6 +43,8 @@ export interface Npc {
   reveal: string;
   /** How the NPC talks, one public line at most: the package's `manner` (ADR 0020 amendment 2026-11-14). */
   voice?: string;
+  /** Ready lines for the DM (§10); never in a package. */
+  lines?: StoryLine[];
 }
 export interface World {
   /** Set once a campaign is rewritten to the distinctness map (campaigns/distinctness). */
@@ -66,7 +69,16 @@ export interface World {
   boundaries: string[];
   tableGuidance: string[];
   scaling: { players: number; guidance: string }[];
-  endings: { title: string; requires: string; outcome: string; cost: string }[];
+  endings: {
+    title: string;
+    requires: string;
+    outcome: string;
+    cost: string;
+    /** Read aloud when the table reaches this ending (§11); never in a package. */
+    epilogue?: string;
+  }[];
+  /** The turns of the story with what to plant in which evening (§12); never in a package. */
+  twists?: StoryTwist[];
   locations: {
     key: string;
     name: string;
@@ -98,6 +110,8 @@ export interface Scene {
   readAloud?: string;
   play: string;
   choices: string[];
+  /** What follows each choice, one a choice (docs/CAMPAIGN_TEXT_STANDARD.md §9); never in a package. */
+  forks?: string[];
   check: string;
   failForward: string;
 }

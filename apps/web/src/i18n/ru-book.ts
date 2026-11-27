@@ -77,6 +77,18 @@ registerRussian({
   'Moments of this page': 'Люди и события',
   'How the chapter ends': 'Чем может закончиться глава',
   'Your note on this page': 'Ваша заметка к этой странице',
+  // The story's preparation (docs/CAMPAIGN_TEXT_STANDARD.md §9–12)
+  'What the players may choose — and what follows': 'Что могут выбрать игроки — и что будет дальше',
+  'What they say': 'Что говорит',
+  'Turns of the story': 'Повороты сюжета',
+  'Plant tonight': 'Посеять сегодня',
+  'The turn: {title}': 'Поворот: {title}',
+  'After it': 'После него',
+  'All the turns': 'Все повороты',
+  'comes out in chapter {number}': 'раскрывается в главе {number}',
+  'How the campaign can end': 'Чем может закончиться кампания',
+  Needs: 'Условие',
+  Cost: 'Цена',
   // The DM's pocket (docs/CAMPAIGN_TEXT_STANDARD.md §7)
   'The DM’s pocket': 'Карман мастера',
   Rumours: 'Слухи',

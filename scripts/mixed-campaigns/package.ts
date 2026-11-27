@@ -3,12 +3,19 @@ import {
   type CampaignEntity,
   type CampaignKnowledge,
   type CampaignPackage,
+  toNpcManner,
 } from '../../packages/contracts/src/index.ts';
 import { encounterFoes, buildEncounters } from './encounters.ts';
 import { verifySource } from './editorial.ts';
 import { heroSheet } from './sheets.ts';
 import type { Source } from './source.ts';
 import { buildQuests } from '../campaign-shared/quests.ts';
+
+/** An NPC's authored voice as its public manner of speech, when it has one (ADR 0020 amendment 2026-11-14). */
+const mannerOf = (voice: string | undefined): Pick<CampaignEntity, 'manner'> => {
+  const manner = toNpcManner(voice);
+  return manner === undefined ? {} : { manner };
+};
 
 const placed = (
   key: string,
@@ -67,7 +74,10 @@ export function buildPackage(s: Source, size = s.world.defaultPlayers): Campaign
       ...placed(h.key, h.name, 'character', w.startLocation, `${h.look} ${h.role}. ${h.hook}`),
       sheet: heroSheet(h.archetype),
     })),
-    ...cast.npcs.map((n) => placed(n.key, n.name, 'npc', n.location, `${n.look} ${n.public}`)),
+    ...cast.npcs.map((n) => ({
+      ...placed(n.key, n.name, 'npc', n.location, `${n.look} ${n.public}`),
+      ...mannerOf(n.voice),
+    })),
     ...s.clues.map((c) => placed(`e-${c.key}`, c.name, 'feature', c.location, c.appearance)),
     ...gear.map((g): CampaignEntity => ({
       key: g.key,

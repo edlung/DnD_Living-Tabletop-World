@@ -124,6 +124,7 @@ def collect_keys(obj, acc: set[str]):
 EXCEPTIONS = json.loads((Path(__file__).parent / 'exceptions.json').read_text('utf-8'))
 
 import depth  # noqa: E402  (its rules use the regexes above)
+import story  # noqa: E402  (the third round: forks, lines, epilogues, twists)
 
 
 def audit(filter_: str | None = None, samples: int = 3):
@@ -219,6 +220,10 @@ def audit(filter_: str | None = None, samples: int = 3):
                 deep(*finding)
         for finding in depth.pocket_findings(camp, d, by_name):
             deep(*finding)
+        if not camp.startswith('builtin/'):
+            named = {q.name: v for q, v in by_name.items()}
+            for rule, name, path, detail in story.story_findings(named):
+                deep(rule, d / name, path, detail)
         pocket = depth.pocket_file(camp, d)
         if camp.startswith('builtin/') and pocket.exists():
             for path, field, s in strings(json.loads(pocket.read_text('utf-8'))):

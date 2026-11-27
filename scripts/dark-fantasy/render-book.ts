@@ -1,3 +1,4 @@
+import { epilogueHtml, linesHtml, twistsSection } from '../campaign-shared/story.ts';
 import { castCards } from '../campaign-shared/cast-cards.ts';
 import { pocketSection } from '../campaign-shared/pocket.ts';
 import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
@@ -24,7 +25,7 @@ export function renderBook(s: Source): string {
   const npcs = s.cast.npcs
     .map(
       (n) =>
-        `<details><summary>${esc(n.name)} · ${n.age} лет</summary><div>${figure(art, n.key) || portrait(n.key)}${p(n.look)}${p(n.public)}<h3>Чего хочет</h3>${p(n.want)}<h3>Знает только это</h3>${list(n.knows)}<h3>Личное скрытое знание</h3>${p(n.secret)}<h3>Граница и раскрытие</h3>${p(n.boundary)}${p(n.reveal)}</div></details>`,
+        `<details><summary>${esc(n.name)} · ${n.age} лет</summary><div>${figure(art, n.key) || portrait(n.key)}${p(n.look)}${p(n.public)}<h3>Чего хочет</h3>${p(n.want)}<h3>Знает только это</h3>${list(n.knows)}${linesHtml(n.lines)}<h3>Личное скрытое знание</h3>${p(n.secret)}<h3>Граница и раскрытие</h3>${p(n.boundary)}${p(n.reveal)}</div></details>`,
     )
     .join('');
   const locations = w.locations
@@ -44,7 +45,15 @@ export function renderBook(s: Source): string {
     .map((a) => figure(art, a.id))
     .join('');
   const endings = w.endings
-    .map((e) => box(e.title, p(`Условия: ${e.requires}`) + p(e.outcome) + p(`Цена: ${e.cost}`)))
+    .map((e) =>
+      box(
+        e.title,
+        p(`Условия: ${e.requires}`) +
+          p(e.outcome) +
+          p(`Цена: ${e.cost}`) +
+          epilogueHtml(e.epilogue),
+      ),
+    )
     .join('');
   return page(
     w.title,
@@ -70,6 +79,7 @@ export function renderBook(s: Source): string {
       box('Общий стол: 3–7 игроков', list(w.tableGuidance)) +
       `<div class="grid">${sessions}</div>` +
       box('Истина мира', list(w.truth)) +
+      twistsSection(w.twists) +
       box('Действующие лица', npcs) +
       box('Места', locations) +
       (items ? `<h2 class="section-title">Предметы</h2><div class="grid">${items}</div>` : '') +

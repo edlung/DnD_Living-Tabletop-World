@@ -1,7 +1,31 @@
+import {
+  epilogueHtml,
+  linesHtml,
+  twistsSection,
+  type StoryLine,
+  type StoryTwist,
+} from '../campaign-shared/story.ts';
 import { pocketSection } from '../campaign-shared/pocket.ts';
 import { tableGuide } from '../campaign-shared/table-guide.ts';
 import { cast, chapters, world } from './data.ts';
 import { packRoot, esc, img, link, list, p, page, save } from './render-common.ts';
+
+interface FamilyEnding {
+  title: string;
+  condition?: string;
+  result?: string;
+  epilogue?: string;
+}
+/** The family book's endings, when its world names them, with each epilogue to read aloud (§11). */
+const endingsSection = (endings: FamilyEnding[] | undefined) =>
+  endings?.length
+    ? `<section class="section" data-endings><h2>Чем может закончиться история</h2><div class="reading stack">${endings
+        .map(
+          (e) =>
+            `<h3>${esc(e.title)}</h3>${e.condition ? p(`Условие: ${e.condition}`) : ''}${e.result ? p(e.result) : ''}${epilogueHtml(e.epilogue)}`,
+        )
+        .join('')}</div></section>`
+    : '';
 
 const section = (title: string, body: string) =>
   `<section class="section"><h2>${esc(title)}</h2>${body}</section>`;
@@ -16,7 +40,7 @@ export async function renderGuide() {
   const npcCards = cast.npcs
     .map(
       (npc) =>
-        `<details><summary>${esc(npc.name)}</summary><div class="pair">${img(npc.key, npc.name, '', 'portrait')}<div class="stack">${p(npc.look)}${p(npc.public)}${p(`Хочет: ${npc.want}`)}${p(`Голос: ${npc.voice}`)}${p(`Граница: ${npc.boundary}`)}${p(`Скрытое: ${npc.secret}`)}${p(`Когда раскрывать: ${npc.reveal}`)}${p(`Предлагает: ${npc.offer}`)}${p(`Изменение: ${npc.change}`)}</div></div><h3>Что действительно знает</h3>${list(npc.knows)}</details>`,
+        `<details><summary>${esc(npc.name)}</summary><div class="pair">${img(npc.key, npc.name, '', 'portrait')}<div class="stack">${p(npc.look)}${p(npc.public)}${p(`Хочет: ${npc.want}`)}${p(`Голос: ${npc.voice}`)}${p(`Граница: ${npc.boundary}`)}${p(`Скрытое: ${npc.secret}`)}${p(`Когда раскрывать: ${npc.reveal}`)}${p(`Предлагает: ${npc.offer}`)}${p(`Изменение: ${npc.change}`)}</div></div><h3>Что действительно знает</h3>${list(npc.knows)}${linesHtml((npc as { lines?: StoryLine[] }).lines)}</details>`,
     )
     .join('');
   await save(
@@ -33,6 +57,8 @@ export async function renderGuide() {
       'Показывайте отдельную декорацию или карточку. Книга, каталог, карта ведущего и нативный файл содержат тайны.',
     ])}</div>${p(world.duration)}${p(world.safety)}${p(world.progression)}</div>
     ${section('Что произошло на самом деле', `<div class="reading stack">${list(world.truth)}<h3>До появления героев</h3>${list(world.history)}</div>`)}
+    ${twistsSection((world as { twists?: StoryTwist[] }).twists)}
+    ${endingsSection((world as { endings?: FamilyEnding[] }).endings)}
     ${section(
       'Как держать расследование открытым',
       `<div class="reading stack">${p(world.order)}${p('Не привязывайте важную улику к одному броску. Осмотр даёт факт; дополнительный успех может сэкономить время или добавить деталь. NPC сообщает собственное наблюдение и может ошибаться в объяснении. Планы будущих глав не становятся историей мира.')}${p('Свидетель слышал голос — это показание о звуке. Герой решил, что Люсьен был дома — это гипотеза. Сравнение датированного валика и журнала поддерживает вывод о воспроизведении. Подмену связывают с человеком отдельные документы и путь предмета.')}${list(

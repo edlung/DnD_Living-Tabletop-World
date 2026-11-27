@@ -1,4 +1,5 @@
 import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
+import { choicesHtml, twistsForSession } from '../campaign-shared/story.ts';
 import { COLLECTION_ROOT, type Source, type Session } from './source.ts';
 import { box, esc, list, nav, p, page } from './render-common.ts';
 
@@ -6,7 +7,7 @@ export function renderSession(s: Source, session: Session): string {
   const scenes = session.scenes
     .map(
       (scene, i) =>
-        `<article class="scene"><div class="eyebrow">Сцена ${i + 1} · ${scene.minutes} минут</div><h2>${esc(scene.title)}</h2>${scene.readAloud ? `<div class="read-aloud">${p(scene.readAloud)}</div>` : ''}${p(scene.play)}<h3>Выборы</h3>${list(scene.choices)}<h3>Проверка и путь без броска</h3>${p(scene.check)}<h3>Если не получилось</h3>${p(scene.failForward)}</article>`,
+        `<article class="scene"><div class="eyebrow">Сцена ${i + 1} · ${scene.minutes} минут</div><h2>${esc(scene.title)}</h2>${scene.readAloud ? `<div class="read-aloud">${p(scene.readAloud)}</div>` : ''}${p(scene.play)}${choicesHtml('Выборы', scene.choices, scene.forks)}<h3>Проверка и путь без броска</h3>${p(scene.check)}<h3>Если не получилось</h3>${p(scene.failForward)}</article>`,
     )
     .join('');
   const clues = session.clues
@@ -31,6 +32,7 @@ export function renderSession(s: Source, session: Session): string {
     `<div class="lead">${p(session.goal)}</div>` +
       (session.number === 1 ? openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) : '') +
       tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT), session.number) +
+      twistsForSession(s.world.twists, session.number) +
       `<div class="read-aloud">${p(session.readAloud)}</div>` +
       box('Подготовка и роли', p(session.dmNote) + list(session.spotlight)) +
       `<section class="panel">${scenes}</section>` +

@@ -39,7 +39,8 @@ ASK_EACH = re.compile(
     r'|(?:^|[.!?]\s+)[Кк]аждый(?:\s+игрок)?\s+(?:называет|выбирает|говорит|вспоминает|отмечает|рассказывает)\b')
 SMELL = re.compile(r'\b[Пп]ахн(?:ет|ут|ло)\b')
 NARRATIVE = {'readAloud', 'opening', 'ending', 'end', 'play', 'description', 'appearance', 'text',
-             'look', 'line', 'knows', 'note', 'pitch', 'setting', 'public', 'voice'}
+             'look', 'line', 'knows', 'note', 'pitch', 'setting', 'public', 'voice',
+             'forks', 'say', 'epilogue', 'turn', 'after'}
 
 
 def words(text: str) -> int:
