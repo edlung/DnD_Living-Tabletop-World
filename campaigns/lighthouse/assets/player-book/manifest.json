@@ -1,0 +1,42 @@
+[
+  {
+    "original": "exec-c729f90d-9368-4c46-b3fd-650b1e462d4c.png",
+    "originalSha256": "52fa937154a9d61190e3dac01ea04512daf8499dd4cb313ddf5e6b07460f4bcc",
+    "generated": "2026-11-26",
+    "prompt": "Edit the provided fantasy card gallery for a casting revision by its art director. Keep the exceptional oil-painted fantasy storybook style, the four equal columns in one 3:1 panoramic strip, exactly the same compositions, same elaborate fine gold frames and sapphire corners in every card. Portray ALL FOUR fantasy adventurers as WHITE, visibly FAIR-SKINNED people with a natural light ivory / rosy peach complexion. Important: apply the same fair complexion to faces, ears, necks, décolletage and all visible hands. Natural individual variations, not an overall exposure or saturation adjustment. Face 1 is a pale, freckled copper-bearded dwarf, Face 2 a light-skinned freckled young European woman with short dark curly hair and teal + coral travel clothes. Face 3 a fair ivory-skinned HALF-ELF woman with long silver braid, pointed ears and moss-blue cloak, beautiful and instantly readable in the forest light. Face 4 a light-skinned middle-aged man with dark hair tied back, mechanic goggles and brass prosthetic hand holding a lens; preserve the brass as brass. No sunburn, face paint or washed-out hair. Paint features, highlights and shadows convincingly for those complexions. Keep their occupations, accessories, expressions, silver braid, frame motifs, individual color stories and background colors. Four tight bust portraits for a deluxe D&D grimoire, lavish deep lapis and honey-gold, no lettering or nameplates, each portrait stays completely in its own equal quarter. No changes to wardrobe or to the precious-metal and hair colors.",
+    "files": {
+      "finn.webp": {
+        "file": "portrait-finn.webp",
+        "sha256": "f4c09f20ed32fea475c8f7d00bb9d52338ac39a43fb8fd932f15c248dbde9b73"
+      },
+      "tess.webp": {
+        "file": "portrait-tess.webp",
+        "sha256": "5c8144549fb5d0bb1859f13a6b7524e8750dd2c2d33ea3bf6cd895759f4a67d5"
+      },
+      "asya.webp": {
+        "file": "portrait-asya.webp",
+        "sha256": "e9535848075096e4d3038c2cdf4decbfb12f2a0f547e4c18767554e793a784d5"
+      }
+    }
+  },
+  {
+    "original": "exec-8b774d09-b75f-4c90-8fca-90b8fbe49012.png",
+    "originalSha256": "df54ca28a67f5e17696e427bf99963c058541aa248c252a63c35bc0cdd5dd4a2",
+    "generated": "2026-11-26",
+    "prompt": "Precise casting revision of the supplied four-figure collector's Dungeons & Dragons miniature sheet. Preserve its true transparent background, exactly four separate full-body miniatures and the individually complete bronze bases at x12.5%,37.5%,62.5%,87.5% in a single 3:1 strip, no overlaps. Repaint the human skin of ALL THREE humanoids on left as naturally WHITE, CLEARLY PALE ivory / rosy-peach European complexion, particularly the third half-elf. Change all visible faces, arms, ears, hands and fingers consistently, subtle small-scale sculpted pink-cheek and pale skin highlights, not a global exposure shift. Character one a fair freckled red-bearded dwarf with indigo leather, copper-leaf round shield; two a fair freckled identifiable human young woman with dark short curls and teal-coral traveling gear; three a pale ivory-skinned half-elf with silver braid, pointed ear, green-blue herbalist's cloak, wooden leafy staff and satchel. Figure four is a BRASS AUTOMATON with turquoise glass goggle eyes and bronze body; preserve its metallurgy. Keep anatomy, poses, clothing colors, tiny gilt embroidery, expressive eyes, readable silhouettes and fantasy miniature resin finish. Deliver true RGBA transparent background with safe margins; each head, the tip of staff and full base must fit inside its own quarter and within the image. No lettering, border, shadows outside the four bases or floor.",
+    "files": {
+      "finn--figure.webp": {
+        "file": "mini-finn.webp",
+        "sha256": "0b6f8071d05cb79a6bfe7e59988fad9de2c9ce159b05e85dccbe5f3015071ea7"
+      },
+      "tess--figure.webp": {
+        "file": "mini-tess.webp",
+        "sha256": "f0c25c8c367771702392632ca176661b3935ead2035d23636f54fa449c045527"
+      },
+      "asya--figure.webp": {
+        "file": "mini-asya.webp",
+        "sha256": "7480fd42b67cc1ef282c32763cf2b8cf48ceaa92580567602e74fbda3844c43a"
+      }
+    }
+  }
+]

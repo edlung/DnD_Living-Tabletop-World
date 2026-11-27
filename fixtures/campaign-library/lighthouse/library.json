@@ -412,11 +412,11 @@
    "derivedFrom": null
   },
   {
-   "source": "campaigns/lighthouse/assets/runtime/finn.webp",
-   "sha256": "92cec81c364ac2e919cd613b2f3c8ba4b7e29ebe7d29323ec8bd4c99aa20839a",
-   "originalSha256": "8b783da3dc6453c170e644756a232c70e53bd08a591b3ee19e7fd2257728ee11",
-   "generated": "2026-11-08",
-   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Finn Copperleaf, a young adult stocky dwarf man with curly copper beard, warm expressive face, indigo travel coat over practical light armor, round wooden shield embossed with one copper leaf, sheathed short sword, a few carpentry tools. Confident kind protector, no aggressive pose. Standing by a warm harbor wall with softly blurred lanterns, painterly sophisticated fantasy, teal amber copper palette, tactile materials. No text, no logo, no watermark. Portrait 2:3.",
+   "source": "campaigns/lighthouse/assets/player-book/portrait-finn.webp",
+   "sha256": "f4c09f20ed32fea475c8f7d00bb9d52338ac39a43fb8fd932f15c248dbde9b73",
+   "originalSha256": "52fa937154a9d61190e3dac01ea04512daf8499dd4cb313ddf5e6b07460f4bcc",
+   "generated": "2026-11-26",
+   "prompt": "Edit the provided fantasy card gallery for a casting revision by its art director. Keep the exceptional oil-painted fantasy storybook style, the four equal columns in one 3:1 panoramic strip, exactly the same compositions, same elaborate fine gold frames and sapphire corners in every card. Portray ALL FOUR fantasy adventurers as WHITE, visibly FAIR-SKINNED people with a natural light ivory / rosy peach complexion. Important: apply the same fair complexion to faces, ears, necks, décolletage and all visible hands. Natural individual variations, not an overall exposure or saturation adjustment. Face 1 is a pale, freckled copper-bearded dwarf, Face 2 a light-skinned freckled young European woman with short dark curly hair and teal + coral travel clothes. Face 3 a fair ivory-skinned HALF-ELF woman with long silver braid, pointed ears and moss-blue cloak, beautiful and instantly readable in the forest light. Face 4 a light-skinned middle-aged man with dark hair tied back, mechanic goggles and brass prosthetic hand holding a lens; preserve the brass as brass. No sunburn, face paint or washed-out hair. Paint features, highlights and shadows convincingly for those complexions. Keep their occupations, accessories, expressions, silver braid, frame motifs, individual color stories and background colors. Four tight bust portraits for a deluxe D&D grimoire, lavish deep lapis and honey-gold, no lettering or nameplates, each portrait stays completely in its own equal quarter. No changes to wardrobe or to the precious-metal and hair colors.",
    "references": [],
    "subjects": {
     "four-players": [
@@ -440,11 +440,11 @@
    "derivedFrom": null
   },
   {
-   "source": "campaigns/lighthouse/assets/runtime/tess.webp",
-   "sha256": "a29e323c0299b3a17ad42811e2243a65764e326b2195dead293082ef8bfa9bc4",
-   "originalSha256": "f066f8cc0a91aa3db2caffd635f39fe6d9f25b0274d9adccc19d17d67a887028",
-   "generated": "2026-11-08",
-   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Tess Quickstitch, an adult human woman in her twenties, short dark curls, curious mischievous intelligent eyes, a coral scarf, teal practical travel vest and trousers, belt with colorful thread spools and small safe crafting tools, soft boots, a sheathed rapier. Agile explorer and inventor, not a thief stereotype. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile cloth. No text no logos no watermark. Portrait 2:3.",
+   "source": "campaigns/lighthouse/assets/player-book/portrait-tess.webp",
+   "sha256": "5c8144549fb5d0bb1859f13a6b7524e8750dd2c2d33ea3bf6cd895759f4a67d5",
+   "originalSha256": "52fa937154a9d61190e3dac01ea04512daf8499dd4cb313ddf5e6b07460f4bcc",
+   "generated": "2026-11-26",
+   "prompt": "Edit the provided fantasy card gallery for a casting revision by its art director. Keep the exceptional oil-painted fantasy storybook style, the four equal columns in one 3:1 panoramic strip, exactly the same compositions, same elaborate fine gold frames and sapphire corners in every card. Portray ALL FOUR fantasy adventurers as WHITE, visibly FAIR-SKINNED people with a natural light ivory / rosy peach complexion. Important: apply the same fair complexion to faces, ears, necks, décolletage and all visible hands. Natural individual variations, not an overall exposure or saturation adjustment. Face 1 is a pale, freckled copper-bearded dwarf, Face 2 a light-skinned freckled young European woman with short dark curly hair and teal + coral travel clothes. Face 3 a fair ivory-skinned HALF-ELF woman with long silver braid, pointed ears and moss-blue cloak, beautiful and instantly readable in the forest light. Face 4 a light-skinned middle-aged man with dark hair tied back, mechanic goggles and brass prosthetic hand holding a lens; preserve the brass as brass. No sunburn, face paint or washed-out hair. Paint features, highlights and shadows convincingly for those complexions. Keep their occupations, accessories, expressions, silver braid, frame motifs, individual color stories and background colors. Four tight bust portraits for a deluxe D&D grimoire, lavish deep lapis and honey-gold, no lettering or nameplates, each portrait stays completely in its own equal quarter. No changes to wardrobe or to the precious-metal and hair colors.",
    "references": [],
    "subjects": {
     "four-players": [
@@ -468,11 +468,11 @@
    "derivedFrom": null
   },
   {
-   "source": "campaigns/lighthouse/assets/runtime/asya.webp",
-   "sha256": "7c99ef272d587fb0d3303e1ae6d4be50c2981dce8df6f0a00ff42b8378bc8365",
-   "originalSha256": "1833252be8fb30200d6052d9076156d76a50e0a9e664f0900c5166ac2151a7b3",
-   "generated": "2026-11-08",
-   "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Asya Heather, an adult half-elven woman about forty with dark brown skin, long silver braid, subtle pointed ears, calm lively face, green-teal hooded travelling cloak over practical linen clothes, leather seed satchel, simple wooden walking staff, a tiny sprig with white blossoms in one hand. Healer and gardener with quiet strength, not saintly or sexualized. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile cloth. No text no logos no watermark. Portrait 2:3.",
+   "source": "campaigns/lighthouse/assets/player-book/portrait-asya.webp",
+   "sha256": "e9535848075096e4d3038c2cdf4decbfb12f2a0f547e4c18767554e793a784d5",
+   "originalSha256": "52fa937154a9d61190e3dac01ea04512daf8499dd4cb313ddf5e6b07460f4bcc",
+   "generated": "2026-11-26",
+   "prompt": "Edit the provided fantasy card gallery for a casting revision by its art director. Keep the exceptional oil-painted fantasy storybook style, the four equal columns in one 3:1 panoramic strip, exactly the same compositions, same elaborate fine gold frames and sapphire corners in every card. Portray ALL FOUR fantasy adventurers as WHITE, visibly FAIR-SKINNED people with a natural light ivory / rosy peach complexion. Important: apply the same fair complexion to faces, ears, necks, décolletage and all visible hands. Natural individual variations, not an overall exposure or saturation adjustment. Face 1 is a pale, freckled copper-bearded dwarf, Face 2 a light-skinned freckled young European woman with short dark curly hair and teal + coral travel clothes. Face 3 a fair ivory-skinned HALF-ELF woman with long silver braid, pointed ears and moss-blue cloak, beautiful and instantly readable in the forest light. Face 4 a light-skinned middle-aged man with dark hair tied back, mechanic goggles and brass prosthetic hand holding a lens; preserve the brass as brass. No sunburn, face paint or washed-out hair. Paint features, highlights and shadows convincingly for those complexions. Keep their occupations, accessories, expressions, silver braid, frame motifs, individual color stories and background colors. Four tight bust portraits for a deluxe D&D grimoire, lavish deep lapis and honey-gold, no lettering or nameplates, each portrait stays completely in its own equal quarter. No changes to wardrobe or to the precious-metal and hair colors.",
    "references": [],
    "subjects": {
     "four-players": [
@@ -1004,11 +1004,11 @@
    "derivedFrom": "automaton.webp"
   },
   {
-   "source": "campaigns/lighthouse/assets/table/heroes-finn.webp",
-   "sha256": "c3cb592cde8adf61baf77e3d864bd63d75190bd8f885835ff701ecfbfb6393ae",
-   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
-   "generated": "2026-11-22",
-   "prompt": "Campaign illustration: Финн Меднолист",
+   "source": "campaigns/lighthouse/assets/player-book/mini-finn.webp",
+   "sha256": "0b6f8071d05cb79a6bfe7e59988fad9de2c9ce159b05e85dccbe5f3015071ea7",
+   "originalSha256": "df54ca28a67f5e17696e427bf99963c058541aa248c252a63c35bc0cdd5dd4a2",
+   "generated": "2026-11-26",
+   "prompt": "Precise casting revision of the supplied four-figure collector's Dungeons & Dragons miniature sheet. Preserve its true transparent background, exactly four separate full-body miniatures and the individually complete bronze bases at x12.5%,37.5%,62.5%,87.5% in a single 3:1 strip, no overlaps. Repaint the human skin of ALL THREE humanoids on left as naturally WHITE, CLEARLY PALE ivory / rosy-peach European complexion, particularly the third half-elf. Change all visible faces, arms, ears, hands and fingers consistently, subtle small-scale sculpted pink-cheek and pale skin highlights, not a global exposure shift. Character one a fair freckled red-bearded dwarf with indigo leather, copper-leaf round shield; two a fair freckled identifiable human young woman with dark short curls and teal-coral traveling gear; three a pale ivory-skinned half-elf with silver braid, pointed ear, green-blue herbalist's cloak, wooden leafy staff and satchel. Figure four is a BRASS AUTOMATON with turquoise glass goggle eyes and bronze body; preserve its metallurgy. Keep anatomy, poses, clothing colors, tiny gilt embroidery, expressive eyes, readable silhouettes and fantasy miniature resin finish. Deliver true RGBA transparent background with safe margins; each head, the tip of staff and full base must fit inside its own quarter and within the image. No lettering, border, shadows outside the four bases or floor.",
    "references": [],
    "subjects": {
     "four-players": [
@@ -1032,11 +1032,11 @@
    "derivedFrom": "finn.webp"
   },
   {
-   "source": "campaigns/lighthouse/assets/table/heroes-tess.webp",
-   "sha256": "0b814c90b9e8c8d61b6e395f6d9ad3656100f2af57ab324ba59849cbd5167fd7",
-   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
-   "generated": "2026-11-22",
-   "prompt": "Campaign illustration: Тэс Быстрый Стежок",
+   "source": "campaigns/lighthouse/assets/player-book/mini-tess.webp",
+   "sha256": "f0c25c8c367771702392632ca176661b3935ead2035d23636f54fa449c045527",
+   "originalSha256": "df54ca28a67f5e17696e427bf99963c058541aa248c252a63c35bc0cdd5dd4a2",
+   "generated": "2026-11-26",
+   "prompt": "Precise casting revision of the supplied four-figure collector's Dungeons & Dragons miniature sheet. Preserve its true transparent background, exactly four separate full-body miniatures and the individually complete bronze bases at x12.5%,37.5%,62.5%,87.5% in a single 3:1 strip, no overlaps. Repaint the human skin of ALL THREE humanoids on left as naturally WHITE, CLEARLY PALE ivory / rosy-peach European complexion, particularly the third half-elf. Change all visible faces, arms, ears, hands and fingers consistently, subtle small-scale sculpted pink-cheek and pale skin highlights, not a global exposure shift. Character one a fair freckled red-bearded dwarf with indigo leather, copper-leaf round shield; two a fair freckled identifiable human young woman with dark short curls and teal-coral traveling gear; three a pale ivory-skinned half-elf with silver braid, pointed ear, green-blue herbalist's cloak, wooden leafy staff and satchel. Figure four is a BRASS AUTOMATON with turquoise glass goggle eyes and bronze body; preserve its metallurgy. Keep anatomy, poses, clothing colors, tiny gilt embroidery, expressive eyes, readable silhouettes and fantasy miniature resin finish. Deliver true RGBA transparent background with safe margins; each head, the tip of staff and full base must fit inside its own quarter and within the image. No lettering, border, shadows outside the four bases or floor.",
    "references": [],
    "subjects": {
     "four-players": [
@@ -1060,11 +1060,11 @@
    "derivedFrom": "tess.webp"
   },
   {
-   "source": "campaigns/lighthouse/assets/table/heroes-asya.webp",
-   "sha256": "b6cf57ddcaa63747537815644d542963c16dddff17caa4d097fd80787065285b",
-   "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
-   "generated": "2026-11-22",
-   "prompt": "Campaign illustration: Ася Вереск",
+   "source": "campaigns/lighthouse/assets/player-book/mini-asya.webp",
+   "sha256": "7480fd42b67cc1ef282c32763cf2b8cf48ceaa92580567602e74fbda3844c43a",
+   "originalSha256": "df54ca28a67f5e17696e427bf99963c058541aa248c252a63c35bc0cdd5dd4a2",
+   "generated": "2026-11-26",
+   "prompt": "Precise casting revision of the supplied four-figure collector's Dungeons & Dragons miniature sheet. Preserve its true transparent background, exactly four separate full-body miniatures and the individually complete bronze bases at x12.5%,37.5%,62.5%,87.5% in a single 3:1 strip, no overlaps. Repaint the human skin of ALL THREE humanoids on left as naturally WHITE, CLEARLY PALE ivory / rosy-peach European complexion, particularly the third half-elf. Change all visible faces, arms, ears, hands and fingers consistently, subtle small-scale sculpted pink-cheek and pale skin highlights, not a global exposure shift. Character one a fair freckled red-bearded dwarf with indigo leather, copper-leaf round shield; two a fair freckled identifiable human young woman with dark short curls and teal-coral traveling gear; three a pale ivory-skinned half-elf with silver braid, pointed ear, green-blue herbalist's cloak, wooden leafy staff and satchel. Figure four is a BRASS AUTOMATON with turquoise glass goggle eyes and bronze body; preserve its metallurgy. Keep anatomy, poses, clothing colors, tiny gilt embroidery, expressive eyes, readable silhouettes and fantasy miniature resin finish. Deliver true RGBA transparent background with safe margins; each head, the tip of staff and full base must fit inside its own quarter and within the image. No lettering, border, shadows outside the four bases or floor.",
    "references": [],
    "subjects": {
     "four-players": [
