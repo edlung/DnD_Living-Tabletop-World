@@ -1,3 +1,4 @@
+import { PlayerCheckCall } from '../dice/player-check-call.tsx';
 import type { ChronicleEntryView, ChronicleListResponse, EntityRef } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -41,6 +42,7 @@ interface Opened {
 export function ChronicleBook({
   api,
   isDm,
+  playerBook = false,
   revision,
   directory,
   open,
@@ -50,6 +52,7 @@ export function ChronicleBook({
 }: {
   readonly api: WorldApi;
   readonly isDm: boolean;
+  readonly playerBook?: boolean;
   /** The world screen's count of the viewer's own actions. */
   readonly revision: number;
   readonly directory: readonly EntityRef[];
@@ -183,6 +186,7 @@ export function ChronicleBook({
           />
         )}
       </header>
+      {playerBook && open && <PlayerCheckCall />}
       <KeepsakeView api={api} shown={open && whole && !known} revision={revision} />
       <KnownView
         api={api}
@@ -247,6 +251,13 @@ export function ChronicleBook({
           ) : chapter === null ? (
             <div className="book-page book-page--left book-page--status">
               <p className="book-empty">{t('No chapter has been written for this view yet.')}</p>
+              {playerBook && (
+                <p className="book-empty-hint">
+                  {t(
+                    'After the session, the DM chooses the moments your party will remember. Its chapter will appear here.',
+                  )}
+                </p>
+              )}
               {isDm && (
                 <p className="book-empty-hint">
                   {t('Write the first one from “Write a chapter” above.')}

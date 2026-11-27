@@ -1,0 +1,191 @@
+#drawer[data-pane='dice'] {
+  inset: 0;
+  margin: auto;
+  width: min(1120px, calc(100% - 40px));
+  height: max-content;
+  max-height: calc(100dvh - 20px);
+  border: 2px solid #b99964;
+  background: #172231;
+  color: #faedcd;
+}
+#drawer[data-pane='dice']::backdrop {
+  background: #070e1fa3;
+}
+#drawer[data-pane='dice'] .drawer-heading {
+  padding: 13px clamp(16px, 2.3vw, 32px);
+  align-items: center;
+}
+#drawer[data-pane='dice'] h2 {
+  font-size: clamp(28px, 3vw, 39px);
+}
+.dice-panel {
+  display: grid;
+  grid-template-rows: minmax(120px, 1fr) auto;
+  min-height: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.dice-stage {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(178px, 56dvh, 555px);
+  overflow: hidden;
+  border-bottom: 1px solid #ad8c52;
+  touch-action: none;
+  cursor: grab;
+  background: #131d25 url('art/desk.webp') center / cover no-repeat;
+  box-shadow: inset 0 4px 14px #07101da8;
+}
+.dice-stage.aiming {
+  cursor: grabbing;
+}
+.dice-stage[data-state='rolling'] {
+  cursor: default;
+}
+.dice-stage canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.ground-shadow {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #03060c 14%, #050810a6 49%, transparent 72%);
+  pointer-events: none;
+}
+.stage-sample {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffe09c;
+  font: 700 52px/1 var(--serif);
+}
+.loading-die {
+  display: none;
+}
+.dice-stage[data-state='loading'] .loading-die {
+  display: block;
+  position: absolute;
+  left: 26%;
+  top: 52%;
+  width: min(13%, 106px);
+  transform: translate(-50%, -50%);
+}
+.dice-stage[data-state='static'] .stage-sample {
+  display: block;
+}
+.dice-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px clamp(14px, 2.3vw, 32px);
+  background: linear-gradient(105deg, #17283a, #121f2c);
+}
+.dice-choices {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dice-choices button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  min-width: 76px;
+  padding: 4px 9px;
+  border: 1px solid #887650;
+  border-radius: 4px;
+  background: #1a2b3c;
+  color: #f1e1c0;
+  font: 700 22px/1 var(--serif);
+}
+.dice-choices button[aria-pressed='true'] {
+  background: linear-gradient(115deg, #453923, #253245);
+  border-color: #dfbe78;
+  color: #ffe7a9;
+  box-shadow: inset 0 0 0 2px #b08c3f38;
+}
+.dice-choices button:hover {
+  background: #354252;
+}
+.dice-choices img {
+  width: 24px;
+  height: 30px;
+  object-fit: contain;
+}
+.dice-readout {
+  text-align: center;
+}
+.dice-result {
+  color: #ffe7ae;
+  font: 700 clamp(20px, 2.1vw, 29px)/1.1 var(--serif);
+}
+.dice-hint {
+  margin-top: 4px;
+  font: 500 12px/1.25 var(--sans);
+  color: #e1d3ba;
+}
+.dice-panel .primary {
+  min-width: 156px;
+  min-height: 44px;
+}
+.dice-panel .primary[aria-disabled='true'] {
+  filter: saturate(0.65);
+  cursor: progress;
+}
+@media (max-width: 650px) {
+  #drawer[data-pane='dice'] {
+    width: calc(100% - 12px);
+    border-radius: 6px;
+  }
+  .dice-stage {
+    height: clamp(170px, 43dvh, 380px);
+  }
+  .dice-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 4px;
+    padding: 10px;
+  }
+  .dice-choices button {
+    min-width: 55px;
+    padding-inline: 5px;
+    font-size: 18px;
+  }
+  .dice-choices img {
+    width: 19px;
+    height: 24px;
+  }
+  .dice-panel .primary {
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .dice-choices {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .dice-readout {
+    grid-column: 1/-1;
+  }
+}
+@media (max-height: 480px) {
+  #drawer[data-pane='dice'] .drawer-heading {
+    padding-block: 5px;
+  }
+  .dice-stage {
+    height: 45dvh;
+  }
+  .dice-controls {
+    padding-block: 5px;
+  }
+}

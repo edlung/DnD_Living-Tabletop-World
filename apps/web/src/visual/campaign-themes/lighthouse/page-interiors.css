@@ -1,0 +1,383 @@
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .topbar[data-player-bar] {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 54px;
+      padding: 4px clamp(12px, 2vw, 32px);
+    }
+    & .topbar[data-player-bar] .topbar-title {
+      flex: 1;
+      min-width: 0;
+      padding-left: 12px;
+    }
+    & .topbar[data-player-bar] .topbar-title h1 {
+      min-width: 0;
+    }
+    & .player-settings {
+      position: relative;
+      flex: none;
+    }
+    & .player-settings > summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 4px 10px;
+      list-style: none;
+      border: 1px solid #a0885d;
+      border-radius: 5px;
+      color: #ffe8b8;
+      background: #172d31;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    & .player-settings > summary::-webkit-details-marker {
+      display: none;
+    }
+    & .player-settings > summary .glyph {
+      width: 18px;
+      height: 18px;
+    }
+    & .player-settings > summary:focus-visible {
+      outline: 2px solid #efd79b;
+      outline-offset: 2px;
+    }
+    & .player-settings[open] > summary {
+      background: #314c4e;
+    }
+    & .player-settings .session-controls {
+      position: absolute;
+      z-index: 4;
+      top: calc(100% + 6px);
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      width: min(20rem, calc(100vw - 20px));
+      padding: 16px;
+      max-height: calc(100dvh - 68px);
+      overflow-y: auto;
+      border: 3px double #a88a50;
+      border-radius: 7px;
+      color: #f6eacf;
+      background: var(--cloth);
+      box-shadow: 0 8px 28px #080f18aa;
+    }
+    & .player-settings .perspective-control {
+      display: grid;
+      order: 0;
+      width: 100%;
+      min-width: 0;
+      gap: 4px;
+    }
+    & .player-settings .perspective-control label {
+      display: block;
+    }
+    & .player-settings .perspective-control select {
+      width: 100%;
+      max-width: 100%;
+      min-height: 44px;
+    }
+    & .player-settings .perspective-note {
+      display: none;
+    }
+    & .player-settings .session-controls > button {
+      display: flex;
+      justify-content: flex-start;
+      min-height: 44px;
+      padding: 6px 12px;
+      gap: 10px;
+    }
+    & .player-settings .icon-button-label,
+    & .player-settings .guide-button-word {
+      display: inline;
+    }
+    & .player-action-group h3 {
+      position: relative;
+      isolation: isolate;
+      padding: 10px 8px;
+      border-radius: 3px;
+      overflow: hidden;
+      color: #fff0cc;
+      background:
+        linear-gradient(90deg, #152c31 2%, #193135d9 50%, #182b311a),
+        #182d31 var(--plate) 82% 42% / cover;
+    }
+    & .player-action-group:nth-child(1) {
+      --plate: var(--plate-hero);
+    }
+    & .player-action-group:nth-child(2) {
+      --plate: var(--plate-compass);
+    }
+    & .player-action-group:nth-child(3) {
+      --plate: var(--plate-meeting);
+    }
+    & .player-roll-launch {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px 16px;
+      align-items: end;
+      padding: 12px;
+      margin: 8px 0 16px;
+      color: #fff0ce;
+      border: 1px solid #967642;
+      border-radius: 5px;
+      background:
+        linear-gradient(95deg, #162c31fa 7%, #193138e0 52%, #1f353ab3),
+        var(--plate-dice) 78% 42% / cover;
+    }
+    & .player-roll-launch .dice-audience {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 4px;
+      margin: 0;
+      justify-items: start;
+      color: #fff0ce;
+    }
+    & .player-roll-launch select {
+      max-width: 100%;
+      min-height: 44px;
+      background: #f4e6c8;
+      color: #372f24;
+      padding-inline: 8px;
+    }
+    & .player-roll-launch .dice-own {
+      grid-column: 1/-1;
+      color: #f7ebcb;
+    }
+    & .player-roll-launch .dice-faces {
+      grid-column: 1/-1;
+    }
+    & .player-roll-launch .dice-pool {
+      margin: 0;
+      font: 700 1.2rem/1.2 var(--font-display);
+      color: #ffe2a5;
+      align-self: center;
+    }
+    & .player-roll-launch .dice-builder-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+    }
+    & .player-roll-launch .primary-button {
+      color: #2c281d;
+      background: #efd694;
+      border: 1px solid #c3a466;
+    }
+    & .player-roll-launch .dice-builder-actions > button:not(.primary-button) {
+      background: #263e41;
+      color: #fff0ce;
+      border-color: #aa926d;
+    }
+    & .dice-pick-add .die-shape {
+      background: linear-gradient(
+        130deg,
+        #fce5a2 0%,
+        #cda554 43%,
+        #fff2be 45%,
+        #b28a48 74%,
+        #7d6333
+      );
+    }
+    & .rules-pick {
+      --plate: var(--plate-spells);
+    }
+    & .inventory-choose {
+      --plate: var(--plate-pack);
+    }
+    & .chat-empty {
+      --plate: var(--plate-chat);
+    }
+    & .dice-log > p.muted {
+      --plate: var(--plate-dice);
+    }
+    & .book-empty {
+      --plate: var(--plate-chronicle);
+    }
+    & :is(.rules-pick, .inventory-choose, .chat-empty, .dice-log > p.muted, .book-empty)::before {
+      content: '';
+      display: block;
+      width: min(100%, 26rem);
+      height: clamp(100px, 16vw, 180px);
+      margin: 0 0 12px;
+      border: 1px solid #a38b60;
+      outline: 1px solid #ceb88b;
+      outline-offset: -4px;
+      border-radius: 4px;
+      background: var(--plate) center 50% / cover;
+    }
+    & .book-empty::before {
+      width: min(100%, 17rem);
+      height: clamp(80px, 11vw, 124px);
+    }
+    & .rules-pick,
+    & .chat-empty {
+      width: min(100%, 32rem);
+      margin-inline: auto;
+      text-align: center;
+    }
+    & :is(.rules-pick, .chat-empty)::before {
+      margin-inline: auto;
+    }
+    & .sheet--shared .shared-screen {
+      color-scheme: dark;
+      --ink-950: #101d24;
+      --ink-900: #192b32;
+      --glass: #1b2e35;
+      --glass-raised: #243b41;
+      --text: #fff1d6;
+      --text-muted: #dbcfb6;
+      --gold: #ebc87e;
+      --gold-bright: #ffe4a5;
+      --gold-deep: #af854b;
+      color: var(--text);
+    }
+    & .story-leaves {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    & .story-leaves button {
+      min-height: 44px;
+      padding: 6px 14px;
+      color: #54401f;
+      border: 1px solid #987b4b;
+      border-radius: 4px;
+      background: #f5e9cc;
+    }
+    & .story-leaves button[aria-pressed='true'] {
+      color: #ffedc4;
+      background: #254249;
+    }
+    & .rules-pick,
+    .player-folio .folio-index,
+    .chat {
+      scroll-margin-top: 12px;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .topbar[data-player-bar] {
+      gap: 6px;
+      min-height: 52px;
+      padding: 3px 8px;
+    }
+    & .topbar[data-player-bar] .topbar-brand {
+      display: none;
+    }
+    & .topbar[data-player-bar] .topbar-title {
+      display: grid;
+      gap: 0;
+      padding: 0;
+      border: 0;
+    }
+    & .topbar[data-player-bar] .topbar-title h1 {
+      font-size: clamp(0.96rem, 3.7vw, 1.2rem);
+      line-height: 1.2;
+      white-space: normal;
+    }
+    & .topbar[data-player-bar] .topbar-session {
+      display: block;
+      font-size: 0.81rem;
+    }
+    & .topbar[data-player-bar] .topbar-session:empty {
+      display: none;
+    }
+    & .topbar[data-player-bar] > .live-badge {
+      font-size: 0.75rem;
+      padding: 3px 6px;
+    }
+    & .player-settings > summary {
+      min-width: 44px;
+      padding: 4px;
+    }
+    & .player-settings > summary span:not(.glyph) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    & .player-roll-launch {
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    & .player-roll-launch:has(.dice-builder-actions > button:nth-child(2)) .dice-builder-actions {
+      grid-column: 1/-1;
+    }
+    & .dice-picker {
+      grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
+    }
+    & .dice-pick-add {
+      min-height: 52px;
+    }
+    & :is(.rules-pick, .chat-empty, .inventory-choose, .dice-log > p.muted, .book-empty)::before {
+      height: 76px;
+      max-width: 18rem;
+    }
+  }
+}
+@media screen and (max-width: 599px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .hero-card {
+      gap: 6px 12px;
+      padding: 10px 12px;
+    }
+    & .hero-portrait {
+      grid-row: 1;
+    }
+    & .hero-portrait .medallion--xl {
+      --m: 64px;
+    }
+    & .hero-hp {
+      gap: 4px;
+    }
+    & .hero-vitals {
+      gap: 8px;
+    }
+    & .hero-hp-value {
+      font-size: 1.25rem;
+    }
+    & .hero-vital {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 32px;
+      gap: 4px;
+      padding: 4px 6px;
+    }
+    & .hero-vital dt {
+      gap: 3px;
+      letter-spacing: normal;
+      line-height: 1.1;
+      text-transform: none;
+    }
+    & .hero-vital dd {
+      flex-shrink: 0;
+      font-size: 1.05rem;
+    }
+  }
+}
+@media screen and (max-width: 419px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .hero-tabs {
+      flex-wrap: wrap;
+    }
+    & .hero-tabs .hero-tab {
+      flex: 1 0 29%;
+      font-size: 1rem;
+      padding: 6px 4px;
+    }
+  }
+}

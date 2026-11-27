@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import { landOn, percentile, rotate, topSlot, type Quat } from './landing.ts';
 import { solidOf } from './solids.ts';
+import { simulate } from './simulate.ts';
+import { throwRandom } from '../visual-random.ts';
 
 const turn = (axis: [number, number, number], angle: number): Quat => {
   const s = Math.sin(angle / 2);
@@ -9,6 +11,22 @@ const turn = (axis: [number, number, number], angle: number): Quat => {
 };
 
 describe('landing a die on the server’s value', () => {
+  it('replays a shared throw with the same motion, collisions and resting faces', () => {
+    const replay = (key: string) =>
+      simulate(
+        [
+          { kind: 'd20', size: 1 },
+          { kind: 'd6', size: 1 },
+        ],
+        [],
+        { x: 4, z: 4, towardX: -2, towardZ: -1 },
+        throwRandom(key),
+      );
+    const player = replay('public-roll/0');
+    expect(player.hits.length).toBeGreaterThan(0);
+    expect(replay('public-roll/0')).toEqual(player);
+    expect(replay('another-roll/0').finalRotations).not.toEqual(player.finalRotations);
+  });
   it('rotates vectors like a quaternion', () => {
     const [x, y, z] = rotate(turn([0, 0, 1], Math.PI / 2), [1, 0, 0]);
     expect([x, y, z].map((n) => Math.round(n * 1e6) / 1e6)).toEqual([0, 1, 0]);

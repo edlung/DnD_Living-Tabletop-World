@@ -9,7 +9,8 @@ import { combatCommandFor, ignoreReaction } from './combat-bindings.ts';
 import { useCombatantLabels } from './labels.ts';
 import { AttackPrompt } from './attack-prompt.tsx';
 import { OpportunityPrompt } from './opportunity-prompt.tsx';
-import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
+import type { ReactionPromptProps } from './reaction-card.ts';
+import { ReactionFrame } from './reaction-frame.tsx';
 
 /**
  * The open reaction window that asks this viewer, if one does: their character, or a creature it
@@ -58,11 +59,11 @@ function SpellPrompt({
   canAct,
   locked,
   blocked,
+  modal = false,
   onRun,
 }: ReactionPromptProps) {
   const t = useT();
   const ids = useId();
-  const card = useAnnounceOnce(blocked);
   const window = encounter.reactionWindow;
   const trigger = window?.trigger.kind === 'spell' ? window.trigger : null;
   const casterId = trigger?.caster.entityId ?? '';
@@ -92,14 +93,7 @@ function SpellPrompt({
   const offersCounter = window.choices.includes('counterspell');
   const art = catalogUrl('spells', 'counterspell');
   return (
-    <section
-      ref={card}
-      className="reaction-prompt"
-      role="alertdialog"
-      aria-labelledby={`${ids}-title`}
-      aria-describedby={`${ids}-trigger`}
-      tabIndex={-1}
-    >
+    <ReactionFrame modal={modal} blocked={blocked} ids={ids}>
       <p className="eyebrow reaction-eyebrow">
         <Glyph name="reaction" />
         {t('Reaction available')}
@@ -173,6 +167,6 @@ function SpellPrompt({
           'Counterspell spends a spell slot and may stop the spell. “Don’t interfere” lets the spell happen.',
         )}
       </p>
-    </section>
+    </ReactionFrame>
   );
 }

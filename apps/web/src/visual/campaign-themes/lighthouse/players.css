@@ -1,0 +1,373 @@
+/* Public binding of the player's edition. Pictures of people and places come from the projection. */
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'],
+  .display[data-campaign-theme='lighthouse'],
+  .sign-in:has([data-seat-edition='lighthouse']) {
+    --binding: #172831;
+    --foil: #d9b875;
+    --vellum: url('./vellum.webp');
+    --desk: url('./desk.webp');
+    --cloth: linear-gradient(105deg, #182433e8, #162d32ef), var(--desk) center / cover;
+    --leaf:
+      linear-gradient(95deg, #ae80502b, #fff7dc44 12%, #fff3da28 90%, #99743e33),
+      var(--vellum) center / 410px, #eddfbf;
+    --gold: #d7b573;
+    --gold-bright: #f5d794;
+    --teal: #9bd9d2;
+    --teal-fill: #1b4e50;
+  }
+
+  .sign-in:has([data-seat-edition='lighthouse']) {
+    justify-content: flex-end;
+    background: #111d2a url('./cabinet.webp') 34% center / cover;
+    & .sign-in-art,
+    & .sign-in-story,
+    & .sign-in-divider,
+    & .sign-in-footer {
+      display: none;
+    }
+    & .sign-in-scrim {
+      background: linear-gradient(90deg, transparent, #121b29aa 82%);
+    }
+    & .sign-in-panel {
+      position: relative;
+      width: min(33rem, 100%);
+      padding: clamp(1.25rem, 3vw, 2.7rem);
+      border: 4px double #b38a50;
+      background: var(--cloth);
+      box-shadow:
+        -6px 5px 0 #514735,
+        -9px 7px 0 #b7a385,
+        0 20px 66px #000a;
+    }
+    & .sign-in-brand {
+      font-size: 0.86rem;
+    }
+    & .sign-in-eyebrow,
+    & .sign-in-state > h2 {
+      display: none;
+    }
+    & .table-offer .eyebrow {
+      color: #edce91;
+    }
+    & .table-offer h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+    }
+    & .table-seat {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0.75rem 1rem;
+      border-color: #9a835b;
+      background: #212e35;
+    }
+    & .table-seat:hover {
+      background: #29474a;
+    }
+    & .table-seats {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.55rem;
+    }
+  }
+
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .topbar,
+    & .dock,
+    & .sheet-header,
+    & .book-header {
+      background: var(--cloth);
+      border-color: #937341;
+    }
+    & .topbar {
+      box-shadow:
+        inset 0 -2px #312d31,
+        inset 0 -3px #8d754a;
+    }
+    & .topbar-title h1,
+    & .sheet-header h2 {
+      color: #f5dba7;
+    }
+    & .dock {
+      box-shadow:
+        0 -2px 14px #17121d99,
+        inset 0 1px #b5995a;
+    }
+    & #dock-player-book {
+      color: #ffe0a2;
+    }
+    & .cartouche {
+      border-color: #ac8e58;
+    }
+    & .sheet {
+      background: var(--cloth);
+    }
+    & .hero-dialog,
+    & .builder-dialog,
+    & .chronicle-dialog {
+      border: 3px double #aa8b52;
+      background: var(--cloth);
+      box-shadow: 0 16px 65px #090f17c9;
+    }
+    & .hero-card {
+      background: var(--cloth);
+      border-color: #b29258;
+    }
+    & .hero-level {
+      background-color: #162b34;
+    }
+    & .hero-panel,
+    & .sheet-body,
+    & .builder-dialog,
+    & .detail-panel {
+      color-scheme: light;
+      --text: #302b24;
+      --text-muted: #5a4d3d;
+      --ink-950: #f5ebd4;
+      --ink-900: #ecdfc1;
+      --ink-850: #e6d3ad;
+      --glass: #efe4cc;
+      --glass-soft: #f7eedbbb;
+      --glass-raised: #fbf2db;
+      --line: #66533348;
+      --line-strong: #725c3e80;
+      --field-edge: #756147;
+      --gold: #75511e;
+      --gold-bright: #694515;
+      --gold-deep: #8a642b;
+      --teal: #165653;
+      --teal-fill: #c6dbcc;
+      --teal-glow: #265c5966;
+      --side-party: #17565a;
+      --side-hostile: #8e332c;
+      --hp: #286344;
+      --hp-low: #854217;
+      --danger: #922f26;
+      --magic: #654382;
+      --k-fact: var(--k-fact-ink);
+      --k-evidence: var(--k-evidence-ink);
+      --k-testimony: var(--k-testimony-ink);
+      --k-rumor: var(--k-rumor-ink);
+      --k-inference: var(--k-inference-ink);
+      --k-hypothesis: var(--k-hypothesis-ink);
+      --k-contradiction: var(--k-contradiction-ink);
+      --k-unknown: var(--k-unknown-ink);
+      color: var(--text);
+      background: var(--leaf);
+      scrollbar-color: #a08962 #eee1c5;
+    }
+    & .sheet-body {
+      border-inline: clamp(3px, 0.65vw, 12px) solid #354143;
+    }
+    & .hero-tabs {
+      background: var(--cloth);
+      border-bottom: 2px solid #987c49;
+    }
+    & .hero-tab[aria-selected='true'] {
+      background: #eddcbc;
+      color: #2c382f;
+    }
+    & .hero-panel {
+      box-shadow: inset 7px 0 12px -8px #655030;
+    }
+    & .builder-dialog {
+      background: var(--leaf);
+    }
+    & .builder-nav-step {
+      border-radius: 3px;
+    }
+    & .builder-nav-step[aria-current='step'],
+    & .hero-panel .primary-button,
+    & .sheet-body .primary-button,
+    & .builder-dialog .primary-button {
+      background: #24544f;
+      color: #fff6dd;
+      border-color: #174845;
+    }
+    & .shop,
+    & .bag,
+    & .item-card,
+    & .chat-line,
+    & .kept-handout {
+      border-color: var(--line-strong);
+    }
+    & .chat-speaker,
+    & .bag-name {
+      font-weight: 700;
+    }
+    & .dice-layer[data-rolling]::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, #101c2677, #18243330),
+        var(--desk) center / cover;
+      opacity: 0.94;
+    }
+    & .dice-layer[data-rolling] .dice-canvas {
+      position: relative;
+    }
+    & .dice-plate {
+      border: 3px double var(--foil);
+    }
+    & .combat-side-card,
+    & .turn-tray,
+    & .reaction-prompt {
+      border-color: #b49564;
+    }
+    & .turn-tray,
+    & .reaction-prompt {
+      background: var(--cloth);
+    }
+    & .book-ribbon[aria-current='true'] {
+      border-color: var(--foil);
+    }
+    & .chronicle-frame {
+      background:
+        linear-gradient(#15232a90, #111c25a8),
+        var(--desk) center / cover;
+    }
+
+    & .sheet--player-book .sheet-body {
+      background:
+        linear-gradient(#14202c33, #14202c77),
+        var(--desk) center / cover;
+    }
+    & .player-folio {
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
+      max-width: 61rem;
+      margin: clamp(0.25rem, 2vh, 1.5rem) auto;
+      border: 5px solid #24363a;
+      border-radius: 7px 12px 12px 6px;
+      box-shadow:
+        0 2px #cfba8f,
+        0 4px #72654d,
+        0 6px #c3ae87,
+        0 9px #263236,
+        0 16px 26px #080f16aa;
+      background: var(--leaf);
+    }
+    & .folio-portrait-page,
+    & .folio-index {
+      min-width: 0;
+      padding: clamp(1rem, 3vw, 2.8rem);
+    }
+    & .folio-portrait-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: stretch;
+      justify-content: center;
+      gap: 0.75rem;
+      text-align: center;
+      background: linear-gradient(90deg, transparent 90%, #70543140);
+    }
+    & .folio-portrait {
+      width: clamp(6.25rem, 14vw, 12rem);
+      aspect-ratio: 4 / 5;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 4px double #b08c49;
+      border-radius: 48% 48% 0.35rem 0.35rem;
+      background: var(--cloth);
+      box-shadow: 0 4px 9px #513c2450;
+    }
+    & .folio-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    & .folio-portrait > .glyph {
+      width: 50%;
+      height: 50%;
+      color: var(--foil);
+    }
+    & .folio-portrait-page h3 {
+      font-size: clamp(1.8rem, 3vw, 2.9rem);
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+    & .folio-place {
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      margin: 0 0 0.25rem;
+      color: var(--text-muted);
+    }
+    & .folio-index {
+      border-left: 1px solid #8b71494d;
+    }
+    & .folio-page-heading h3::after {
+      content: '';
+      float: right;
+      width: 1.3em;
+      height: 1.3em;
+      background: url('./item-seal.webp') center / contain no-repeat;
+    }
+    & .folio-index h3 {
+      font-size: clamp(1.65rem, 3vw, 2.3rem);
+    }
+    & .folio-index .folio-links {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    & .folio-links > li + li {
+      border-top: 1px solid #80643d4a;
+    }
+    & .folio-links > li > button {
+      display: grid;
+      grid-template-columns: 1.45rem 1fr 1rem;
+      width: 100%;
+      gap: 0.75rem;
+      min-height: 44px;
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 0.45rem 0.2rem;
+      font-size: 1.05rem;
+    }
+    & .folio-links > li > button:hover {
+      background: #c8af7a38;
+    }
+    & .folio-links > li > button .glyph {
+      color: var(--gold);
+    }
+    & .folio-return {
+      margin-top: 0.8rem;
+      border-color: var(--gold);
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .sign-in:has([data-seat-edition='lighthouse']) {
+    padding-top: clamp(6rem, 23vh, 11rem);
+    align-items: flex-end;
+    background-position: 21% top;
+  }
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .player-folio {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    & .folio-portrait-page {
+      display: grid;
+      grid-template-columns: 5rem minmax(0, 1fr);
+      gap: 0.5rem 0.8rem;
+      justify-items: start;
+      text-align: start;
+    }
+    & .folio-portrait {
+      grid-row: span 2;
+      width: 5rem;
+    }
+    & .folio-portrait-page > button {
+      grid-column: span 2;
+      width: 100%;
+    }
+    & .folio-index {
+      border-left: none;
+      border-top: 1px solid #8b71496a;
+    }
+  }
+}

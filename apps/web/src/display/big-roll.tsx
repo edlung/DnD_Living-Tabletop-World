@@ -1,4 +1,4 @@
-import type { RollEntry, RollFeedResponse, RollGroup } from '@ltw/contracts';
+import type { RollEntry, RollFeedResponse } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -8,6 +8,8 @@ import { cueFor, playCue } from '../audio/cues.ts';
 import { useWaitForSound } from '../audio/sound-on.tsx';
 import { playImpacts } from '../dice/audio.ts';
 import { useDiceSettings } from '../dice/settings.ts';
+import { DiceFaces } from '../dice/dice-faces.tsx';
+import { RollPlayback } from '../dice/roll-playback.tsx';
 import {
   purposeWords,
   resultWords,
@@ -22,21 +24,6 @@ import { clatter, freshRolls } from './moments.ts';
 /** How long a roll shows big, and how long between a roll's throws heard. */
 const SHOW_MS = 4500;
 const THROW_MS = 700;
-
-/** A throw's dice, each its face and its kind; one not counted, struck through. */
-export function DiceFaces({ group }: { readonly group: RollGroup }) {
-  if (group.dice.length === 0) return null;
-  return (
-    <ul className="display-dice-faces" aria-hidden="true">
-      {group.dice.map((die, index) => (
-        <li key={index} className={die.dropped ? 'is-dropped' : undefined}>
-          <span className="display-die-face">{die.value}</span>
-          <span className="display-die-sides">d{die.sides}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 function Throw({ entry, index }: { readonly entry: RollEntry; readonly index: number }) {
   const t = useT();
@@ -75,10 +62,12 @@ export function BigRoll({
   api,
   refresh,
   compact,
+  playerDice3d,
 }: {
   readonly api: WorldApi;
   readonly refresh: number;
   readonly compact: boolean;
+  readonly playerDice3d: boolean;
 }) {
   const t = useT();
   const settings = useDiceSettings();
@@ -90,7 +79,7 @@ export function BigRoll({
   const feed = useResource('display-big-rolls', load);
   useRereadOn(refresh, feed.reread);
   const seen = useRef<Set<string> | null>(null);
-  const [queue, setQueue] = useState<readonly RollEntry[]>([]);
+  const [queue, setQueue] = useState<readonly { entry: RollEntry; physical: boolean }[]>([]);
   useEffect(() => {
     if (feed.resource.status !== 'ready') return;
     const { rolls } = feed.resource.value;
@@ -101,9 +90,24 @@ export function BigRoll({
     const known = seen.current;
     const fresh = freshRolls(rolls, known);
     for (const roll of rolls) known.add(roll.rollId);
-    if (fresh.length > 0) setQueue((queued) => [...queued, ...fresh]);
-  }, [feed.resource]);
-  const shown = queue[0] ?? null;
+    if (fresh.length > 0)
+      setQueue((queued) => [
+        ...queued,
+        ...fresh.map((entry) => ({
+          entry,
+          physical:
+            playerDice3d &&
+            entry.roller !== null &&
+            !entry.entered &&
+            entry.groups.some((group) => group.dice.length > 0),
+        })),
+      ]);
+  }, [feed.resource, playerDice3d]);
+  useEffect(() => {
+    if (!playerDice3d) setQueue((queued) => queued.filter((item) => !item.physical));
+  }, [playerDice3d]);
+  const current = queue[0];
+  const shown = current && !current.physical ? current.entry : null;
   const sound = useRef(settings);
   sound.current = settings;
   useEffect(() => {
@@ -112,7 +116,7 @@ export function BigRoll({
       window.setTimeout(() => {
         if (!sound.current.sound) return;
         const cue = cueFor(shown, index);
-        // A throw without a cue is heard as dice: this screen rolls none of its own (no WebGL).
+        // The number plate has no physical collisions to play, so use a short clatter.
         if (cue !== null) playCue(cue, sound.current.volume);
         else if (group.dice.length > 0) {
           playImpacts(clatter(group.dice.length), sound.current.volume);
@@ -128,22 +132,34 @@ export function BigRoll({
       for (const timer of timers) window.clearTimeout(timer);
     };
   }, [shown]);
-  if (!shown) return null;
-  const table = tableResult(shown);
+  const table = shown ? tableResult(shown) : null;
   return (
-    <div
-      className={compact ? 'display-big-roll is-compact' : 'display-big-roll'}
-      role="status"
-      data-roll={shown.rollId}
-    >
-      <p className="display-big-who">
-        <span>{rollerWords(t, shown.roller)}</span>
-        <span>{subjectWords(t, shown.subject)}</span>
-      </p>
-      {shown.groups.map((_, index) => (
-        <Throw key={index} entry={shown} index={index} />
-      ))}
-      {table !== null && <p className="display-big-table">{table}</p>}
-    </div>
+    <>
+      {playerDice3d && (
+        <RollPlayback
+          screen
+          entry={current?.physical ? current.entry : null}
+          onDone={(entry) => {
+            setQueue((queued) => queued.filter((item) => item.entry.rollId !== entry.rollId));
+          }}
+        />
+      )}
+      {shown && (
+        <div
+          className={compact ? 'display-big-roll is-compact' : 'display-big-roll'}
+          role="status"
+          data-roll={shown.rollId}
+        >
+          <p className="display-big-who">
+            <span>{rollerWords(t, shown.roller)}</span>
+            <span>{subjectWords(t, shown.subject)}</span>
+          </p>
+          {shown.groups.map((_, index) => (
+            <Throw key={index} entry={shown} index={index} />
+          ))}
+          {table !== null && <p className="display-big-table">{table}</p>}
+        </div>
+      )}
+    </>
   );
 }

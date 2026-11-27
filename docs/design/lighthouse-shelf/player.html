@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#112330" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Путевой лист игрока · Маяк Между Ветрами</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="board.css" />
+    <link rel="stylesheet" href="data/miniature-bases.generated.css" />
+    <link rel="stylesheet" href="public-scenes.css" />
+    <link rel="stylesheet" href="dice.css" />
+    <link rel="stylesheet" href="player-table.css" />
+    <link rel="stylesheet" href="player.css" />
+    <script defer src="icons.js"></script>
+    <script defer src="public-board.js"></script>
+    <script defer src="public-scenes.js"></script>
+    <script defer src="data/player-heroes.generated.js"></script>
+    <script defer src="player-wire.js"></script>
+    <script defer src="dice-assets.js"></script>
+    <script defer src="player-roll.js"></script>
+    <script defer src="player.js"></script>
+  </head>
+  <body class="player-page">
+    <a class="skip" href="#player-main">К содержанию</a>
+    <header class="traveller-top">
+      <div><img src="art/item-seal.webp" alt="" /><span>Маяк Между Ветрами</span></div>
+      <span class="seat-connection" role="status"><i></i><span>Путевой лист</span></span>
+    </header>
+    <main id="player-main" tabindex="-1" class="traveller">
+      <div id="identity"></div>
+      <nav class="traveller-tabs" aria-label="Разделы игрока"></nav>
+      <div id="turn-signal"></div>
+      <div id="summons" aria-live="polite"></div>
+      <section id="table-view" aria-label="За столом">
+        <div id="player-tray"></div>
+        <div id="shared-view"></div>
+      </section>
+      <section id="hero-view" aria-label="Лист героя" hidden></section>
+      <section id="journal-view" aria-label="Журнал игрока" hidden></section>
+      <noscript
+        >Включите JavaScript, чтобы открыть путевой лист и ответить на запрос мастера.</noscript
+      >
+    </main>
+  </body>
+</html>

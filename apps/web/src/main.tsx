@@ -135,6 +135,14 @@ import './styles/known.css';
 import './styles/story.css';
 import './styles/story-cast.css';
 import './styles/sheet-layouts.css';
+import './visual/campaign-themes/lighthouse/players.css';
+import './visual/campaign-themes/lighthouse/folio.css';
+import './visual/campaign-themes/lighthouse/battle.css';
+import './visual/campaign-themes/lighthouse/public-screen.css';
+import './visual/campaign-themes/lighthouse/page-materials.css';
+import './visual/campaign-themes/lighthouse/illustrated-pages.css';
+import './visual/campaign-themes/lighthouse/player-dock.css';
+import './visual/campaign-themes/lighthouse/page-interiors.css';
 import './styles/print.css';
 import './styles/print-book.css';
 

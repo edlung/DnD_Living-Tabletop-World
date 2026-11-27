@@ -26,6 +26,7 @@ import {
 
 import { bookOf, requireBookFits } from './book/book.ts';
 import { otherBooks } from './other-books.ts';
+import { lighthousePlayerPictures } from '../lighthouse/player-pictures.ts';
 import { individualCastReferences, tablePictures } from './table-pictures.ts';
 
 /**
@@ -466,7 +467,10 @@ async function familyBook(source: LibrarySource): Promise<LibraryCampaign> {
     root,
     variants,
     defaultVariant: source.id === 'moon-pearl' ? 'four-players' : 'original-party',
-    pictures: [...pictures, ...(await worldMapPicture(root, map, variants))],
+    pictures: [
+      ...(source.id === 'lighthouse' ? await lighthousePlayerPictures(pictures) : pictures),
+      ...(await worldMapPicture(root, map, variants)),
+    ],
     book: libraryBook(
       root,
       variants,

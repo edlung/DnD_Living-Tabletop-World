@@ -1,0 +1,456 @@
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .sheet-header {
+      isolation: isolate;
+      min-height: 64px;
+      gap: 12px;
+      border-bottom: 3px double #ad8a51;
+      background: #192b30;
+    }
+    & .sheet-header::before,
+    & .builder-dialog .guide-header::before,
+    & .book-header::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(95deg, #13272bf5 10%, #182e31ed 44%, #18323666 73%, #13272be6),
+        var(--plate, var(--plate-meeting)) right 12% center / clamp(250px, 45%, 620px) auto
+          no-repeat,
+        var(--cloth);
+    }
+    & .sheet-header::after {
+      display: none;
+    }
+    & .sheet-header h2 {
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+    }
+    & .sheet-header .sheet-glyph {
+      width: 26px;
+      height: 26px;
+      color: #ebca82;
+    }
+    & .sheet-close {
+      min-height: 44px;
+      color: #fff1cd;
+      border-color: #bca06b;
+      background: #16292eef;
+    }
+    & .sheet-body {
+      margin-top: 0;
+    }
+    & .player-folio {
+      max-width: 73rem;
+    }
+    & .folio-notices:not(:empty) {
+      grid-column: 1/-1;
+      margin: 0;
+      padding: 8px 16px;
+      background: #eee3c3;
+      border-bottom: 1px solid #a88b57;
+    }
+    & .folio-notices > :last-child {
+      margin-bottom: 0;
+    }
+    & .folio-turn-call {
+      min-height: 44px;
+      margin: 0 0 8px;
+      color: #fff1cc;
+      background: #734020;
+      border-color: #734020;
+    }
+    & .folio-index {
+      min-width: 0;
+    }
+    & .folio-page-heading {
+      border-bottom: 1px solid #a88d5e;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    & .folio-page-heading h3 {
+      margin: 0;
+    }
+    & .folio-index .folio-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0;
+      margin: 12px 0;
+    }
+    & .folio-index .folio-links > li {
+      min-width: 0;
+      border: 0;
+      margin: 0;
+    }
+    & .folio-index .folio-links button[data-folio-tool] {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      align-items: center;
+      column-gap: 10px;
+      height: 100%;
+      min-height: 62px;
+      padding: 0 8px 0 0;
+      border: 1px solid #bca276;
+      border-radius: 5px;
+      overflow: hidden;
+      background: #f6ebd1;
+      box-shadow: inset 0 0 0 2px #fff4d966;
+      color: #3d3023;
+      font: 650 1.02rem/1.17 var(--font-display);
+      transition:
+        background-color 140ms linear,
+        border-color 140ms linear;
+    }
+    & .folio-links button[data-folio-tool]::before {
+      content: '';
+      width: 100%;
+      align-self: stretch;
+      min-height: 60px;
+      background: var(--plate) center / cover;
+      border-right: 1px solid #b29a70;
+    }
+    & .folio-links button[data-folio-tool] > .glyph:first-child {
+      display: none;
+    }
+    & .folio-index .folio-links button[data-folio-tool]:hover {
+      background: #ffefd0;
+      border-color: #80632e;
+    }
+    & .folio-index .folio-links button[data-folio-tool]:focus-visible {
+      outline: 3px solid #156159;
+      outline-offset: 2px;
+    }
+    & .folio-links button[data-folio-tool] > .glyph:last-child {
+      width: 14px;
+      height: 14px;
+      color: #6d512b;
+    }
+    & .folio-scene-ribbon {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      width: 100%;
+      min-height: clamp(84px, 10vw, 144px);
+      padding: 14px 18px;
+      border: 1px solid #967643;
+      border-radius: 5px;
+      overflow: hidden;
+      color: #fff2cf;
+      text-align: start;
+      background: #1b3337 var(--plate-meeting) center 45% / cover;
+    }
+    & .folio-scene-ribbon img,
+    & .folio-scene-ribbon::before {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    & .folio-scene-ribbon img {
+      object-fit: cover;
+      object-position: 50% 45%;
+    }
+    & .folio-scene-ribbon::before {
+      content: '';
+      z-index: 0;
+      background: linear-gradient(0deg, #102527ed, #12262689 40%, #10252709 97%);
+    }
+    & .folio-scene-ribbon > :is(span, .glyph) {
+      position: relative;
+    }
+    & .folio-scene-ribbon > span:not(.glyph) {
+      display: grid;
+      gap: 3px;
+    }
+    & .folio-scene-ribbon small {
+      font-weight: 650;
+      font-size: 0.87rem;
+      color: #ffe2a7;
+    }
+    & .folio-scene-ribbon strong {
+      font: 650 clamp(1.18rem, 2vw, 1.85rem)/1.1 var(--font-display);
+    }
+    & .folio-scene-ribbon > .glyph {
+      color: #fff2cd;
+      width: 20px;
+      height: 20px;
+    }
+    & .player-folio:not([data-leaf='adventure']) .folio-page-heading {
+      isolation: isolate;
+      position: relative;
+      min-height: 72px;
+      padding: 12px 16px;
+      border: 1px solid #aa8950;
+      border-radius: 5px;
+      background:
+        linear-gradient(90deg, #172c31 5%, #172c31ed 36%, #15252944 85%),
+        #172c31 var(--plate) 85% 50% / cover;
+    }
+    & .player-folio:not([data-leaf='adventure']) .folio-page-heading h3 {
+      color: #fff0ce;
+    }
+    & .player-folio:not([data-leaf='adventure']) .folio-page-heading h3::after {
+      display: none;
+    }
+    & .folio-portrait {
+      box-shadow:
+        0 0 0 1px #442f1d,
+        0 0 0 3px #c5a367,
+        0 8px 16px #382f2030;
+    }
+    & .hero-frame .hero-card {
+      background:
+        linear-gradient(0deg, #142a2ed9, #16282dec 55%, #16282df5),
+        var(--plate, var(--plate-hero)) center bottom/cover;
+    }
+    & .hero-tab {
+      border-radius: 5px 5px 0 0;
+    }
+    & .hero-tabs {
+      border-bottom: 2px solid #a4844d;
+    }
+    & .hero-section > h3,
+    & .hero-panel section > h3 {
+      color: #674b22;
+    }
+    & .builder-dialog .guide-header,
+    & .book-header {
+      isolation: isolate;
+      position: relative;
+      color: #fff0cf;
+      border-bottom: 2px solid #a88a50;
+    }
+    & .builder-dialog .guide-header > :is(h2, button),
+    & .book-header h2 {
+      color: #ffedc6;
+    }
+    & .builder-dialog .guide-header button {
+      background: #1d3338;
+    }
+    & .chronicle-book .book-empty-hint {
+      max-width: 38ch;
+    }
+    & .cartouche {
+      background:
+        linear-gradient(95deg, #14292ff2 5%, #193138d9),
+        var(--desk) center/cover;
+      border: 1px solid #ad8d57;
+    }
+    & .detail-panel {
+      border-inline: 3px double #947547;
+    }
+    & .stage--battle .initiative-band {
+      border-bottom: 2px solid #9b7d4b;
+    }
+    & .stage--battle .turn-tray {
+      border-color: #b6955b;
+    }
+    & .dice-builder {
+      padding: clamp(12px, 2vw, 22px);
+      border: 1px solid #a58a59;
+      border-top: 3px double #a58a59;
+      border-radius: 6px;
+      background:
+        linear-gradient(110deg, #fff5dce8, #e7d4adbd),
+        var(--vellum) center/360px;
+    }
+    & .dice-builder .dice-picker {
+      gap: 8px;
+    }
+    & .dice-pick-add {
+      border-color: #ac8b51;
+      background: linear-gradient(140deg, #244246, #142e32);
+      color: #ffeac0;
+    }
+    & .dice-pick-add .die-shape {
+      color: #efd197;
+    }
+    & .dice-pick.is-chosen .dice-pick-add {
+      background: #3e5f52;
+      border-color: #745122;
+    }
+    & .dice-builder-actions .primary-button {
+      min-height: 44px;
+    }
+    & .player-check-call {
+      position: relative;
+      flex: 0 1 auto;
+      max-height: min(27dvh, 15rem);
+      overflow: auto;
+      overscroll-behavior: contain;
+      margin: 0;
+      padding: 8px clamp(12px, 3vw, 32px);
+      background: #f0dfb9;
+      color: #352c21;
+      border-block: 2px solid #947342;
+      color-scheme: light;
+      --text: #352c21;
+      --text-muted: #63492a;
+      --gold: #725221;
+      --gold-bright: #5c421b;
+      --ink-900: #ecdfc1;
+    }
+    & .player-check-call .dice-asked {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+    }
+    & .player-check-call .dice-asked h3 {
+      margin: 0 0 4px;
+      color: #5c421b;
+    }
+    & .player-check-call .dice-request {
+      flex-wrap: wrap;
+    }
+    & .player-check-call .primary-button {
+      min-height: 44px;
+      background: #214f4b;
+      color: #fff4d8;
+    }
+    & .player-check-call input {
+      color: #392d20;
+      background: #f9edcf;
+    }
+    & .chat-compose {
+      border-top: 2px solid #aa8b56;
+    }
+    & .chat-line--private {
+      border-inline-start: 3px solid #68557b;
+    }
+    & .chat-line--party {
+      border-inline-start: 3px solid #496c61;
+    }
+    & .guide-dialog:not(.builder-dialog),
+    & .account-dialog {
+      border: 3px double #ad9059;
+      background: var(--cloth);
+    }
+  }
+  .sign-in:has([data-seat-edition='lighthouse']) .table-seat {
+    position: relative;
+    min-height: 62px;
+    padding-left: 68px;
+    overflow: hidden;
+  }
+  .sign-in:has([data-seat-edition='lighthouse']) .table-seat::before {
+    position: absolute;
+    content: '';
+    inset: 0 auto 0 0;
+    width: 54px;
+    background: var(--plate-hero) center/cover;
+    border-right: 1px solid #a58a59;
+  }
+  .sign-in:has([data-seat-edition='lighthouse']) .table-seat > .glyph {
+    display: none;
+  }
+}
+@media screen and (min-width: 900px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .folio-portrait-page {
+      gap: 10px;
+      padding-block: clamp(16px, 2.2dvh, 28px);
+    }
+    & .folio-portrait {
+      width: clamp(104px, 18dvh, 184px);
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .sheet-header {
+      min-height: 48px;
+      gap: 8px;
+    }
+    & .sheet-header::before {
+      background-size:
+        auto,
+        42% auto,
+        cover;
+      background-position:
+        center,
+        92% center,
+        center;
+    }
+    & .sheet-header h2 {
+      font-size: 1.25rem;
+    }
+    & .sheet-header .sheet-glyph {
+      width: 21px;
+      height: 21px;
+    }
+    & .folio-bookmarks {
+      grid-template-columns: minmax(0, 1.48fr) repeat(3, minmax(0, 1fr));
+      padding: 5px;
+      gap: 4px;
+    }
+    & .folio-bookmarks button {
+      flex-direction: column;
+      min-height: 47px;
+      padding: 3px 1px;
+      gap: 3px;
+      font-size: 0.83rem;
+      line-height: 1.1;
+    }
+    & .folio-bookmarks button .glyph {
+      width: 15px;
+      height: 15px;
+    }
+    & .folio-notices:not(:empty) {
+      padding: 8px;
+    }
+    & .folio-index {
+      padding: 12px;
+    }
+    & .folio-index .folio-links button[data-folio-tool] {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 54px auto;
+      gap: 0;
+      padding: 0;
+    }
+    & .folio-links button[data-folio-tool]::before {
+      min-height: 54px;
+      border: 0;
+      border-bottom: 1px solid #bda16b;
+    }
+    & .folio-links button[data-folio-tool] > span:not(.glyph) {
+      padding: 6px 8px;
+    }
+    & .folio-links button[data-folio-tool] > .glyph:last-child {
+      display: none;
+    }
+    & .folio-links button[data-folio-tool] {
+      position: relative;
+    }
+    & .folio-links button[data-folio-tool] > .folio-count {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      color: #30271b;
+      background: #ffe3a3;
+    }
+    & .folio-scene-ribbon {
+      min-height: 84px;
+      padding: 8px 12px;
+    }
+    & .player-folio:not([data-leaf='adventure']) .folio-page-heading {
+      min-height: 57px;
+    }
+    & .hero-tabs .hero-tab {
+      min-height: 44px;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .player-folio .folio-links button,
+  .player-folio .folio-scene-ribbon {
+    transition: none;
+  }
+}

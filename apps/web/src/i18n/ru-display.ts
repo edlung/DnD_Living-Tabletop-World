@@ -101,6 +101,7 @@ registerRussian({
   'Choose the picture first.': 'Сначала выберите картинку.',
   'The screens could not be told. Try again.': 'Не удалось передать экранам. Попробуйте снова.',
   'Show on the screens': 'Показать на экранах',
+  'Show public player rolls in 3D': 'Показывать открытые броски игроков в 3D',
 
   // The table link
   'Table link: every free seat': 'Ссылка стола: все свободные места',

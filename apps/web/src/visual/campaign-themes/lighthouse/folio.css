@@ -1,0 +1,298 @@
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .player-folio {
+      align-content: start;
+      grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
+      max-width: 66rem;
+    }
+    & .folio-bookmarks {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      padding: 8px;
+      background: var(--cloth);
+      border-bottom: 3px double #b9955f;
+    }
+    & .folio-bookmarks button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 0;
+      min-height: 44px;
+      padding: 6px 8px;
+      border: 1px solid #a28964;
+      border-radius: 4px 4px 2px 2px;
+      color: #f8e6bf;
+      background: #1e3139;
+      font: 650 1.05rem/1.2 var(--font-display);
+    }
+    & .folio-bookmarks button:hover {
+      background: #344b50;
+    }
+    & .folio-bookmarks button[aria-current='page'] {
+      background: var(--leaf);
+      color: #45351e;
+      border-color: #d4b16f;
+    }
+    & .folio-portrait-page {
+      justify-content: flex-start;
+    }
+    & .folio-nameplate {
+      min-width: 0;
+    }
+    & .folio-nameplate p {
+      margin: 4px 0;
+    }
+    & .folio-place {
+      justify-content: center;
+    }
+    & .folio-class {
+      color: var(--gold);
+      font-weight: 650;
+    }
+    & .folio-vitals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      width: 100%;
+      margin: 4px 0;
+      padding: 8px 0;
+      border-block: 1px solid #91734573;
+    }
+    & .folio-vitals div {
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 4px;
+    }
+    & .folio-vitals dt {
+      display: grid;
+      justify-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      line-height: 1.15;
+    }
+    & .folio-vitals dt .glyph {
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+    }
+    & .folio-vitals dd {
+      margin: 0;
+      font: 700 1.4rem/1 var(--font-display);
+    }
+    & .folio-health-note {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    & .folio-hero-tools {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    & .folio-hero-tools > button,
+    & .folio-return {
+      min-height: 44px;
+    }
+    & .folio-hero-tools .folio-make {
+      flex-basis: 100%;
+    }
+    & .folio-page-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    & .folio-page-heading h3 {
+      flex: 1;
+      margin: 0 0 8px;
+    }
+    & .folio-fight-round {
+      min-height: 44px;
+      font-weight: 700;
+    }
+    & .folio-index .folio-links button {
+      text-align: start;
+    }
+    & .folio-index .folio-count {
+      justify-self: end;
+      color: #6a4419;
+    }
+    & .folio-index .sheet-section,
+    & .folio-handouts {
+      margin: 16px 0;
+      min-width: 0;
+    }
+    & .folio-index .sheet-section h3,
+    & .folio-handouts h4 {
+      font-size: 1.2rem;
+      margin: 0 0 8px;
+    }
+    & .folio-notices:empty {
+      display: none;
+    }
+    & .folio-notices:not(:empty) {
+      margin: 0 0 12px;
+    }
+    & .folio-notices .dice-asked,
+    & .folio-new-handout {
+      background: #e3d7ac;
+      border: 1px solid #977a40;
+      border-left: 4px solid #8d6833;
+      border-radius: 4px;
+      margin: 0 0 8px;
+      padding: 12px;
+    }
+    & .folio-notices .dice-request {
+      flex-wrap: wrap;
+    }
+    & .folio-new-handout {
+      min-height: 44px;
+      width: 100%;
+      overflow-wrap: anywhere;
+      text-align: start;
+    }
+    & .folio-companions {
+      display: grid;
+      gap: 8px;
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+    & .folio-companions .rail-dm {
+      position: static;
+      margin: 0;
+      color: var(--text-muted);
+    }
+    & .folio-companions ul {
+      display: grid;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    & .folio-companions .rail-member {
+      position: relative;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) 12px;
+      align-items: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 4px 12px;
+      column-gap: 12px;
+      text-align: start;
+      color: var(--text);
+      background: #f3e8c9;
+      border: 1px solid #a48a61;
+    }
+    & .folio-companions .rail-member:hover {
+      background: #e8d9b6;
+    }
+    & .folio-companions .rail-text {
+      display: grid;
+      min-width: 0;
+      gap: 2px;
+    }
+    & .folio-companions .rail-name {
+      color: var(--text);
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+    & .folio-companions .presence-dot {
+      position: static;
+    }
+    & .folio-companions .hp-bar {
+      display: none;
+    }
+    & .folio-meeting {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    & .folio-meeting-controls {
+      display: contents;
+    }
+    & .folio-meeting-controls > * {
+      min-width: 0;
+      flex-shrink: 0;
+    }
+    & .folio-meeting .quiet-row {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    &
+      .folio-meeting
+      :is(.lobby-banner, .rest-banner, .previously-brief, .next-game, .coming-ask, .stars-card) {
+      max-width: 100%;
+      align-items: start;
+      flex-wrap: wrap;
+      color: var(--text);
+      background: #f2e7cb;
+      border: 1px solid #a48a61;
+      box-shadow: none;
+    }
+    & .folio-meeting .pause-ask-button {
+      min-height: 44px;
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .player-folio {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    & .folio-bookmarks {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    & .folio-bookmarks button {
+      font-size: 1rem;
+    }
+    & .player-folio[data-leaf]:not([data-leaf='adventure']) .folio-portrait-page {
+      display: none;
+    }
+    & .folio-portrait-page {
+      grid-template-columns: 72px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px 12px;
+      padding: 12px 16px;
+      text-align: start;
+    }
+    & .folio-portrait {
+      grid-column: 1;
+      grid-row: 1;
+      width: 72px;
+    }
+    & .folio-nameplate {
+      grid-column: 2;
+    }
+    & .folio-place {
+      justify-content: flex-start;
+    }
+    & .folio-vitals,
+    & .folio-hero-tools,
+    & .folio-health-note {
+      grid-column: 1 / -1;
+    }
+    & .folio-vitals dt {
+      display: block;
+      font-size: 0.8rem;
+    }
+    & .folio-vitals dt .glyph {
+      display: none;
+    }
+    & .folio-vitals {
+      text-align: center;
+    }
+    & .folio-hero-tools {
+      gap: 6px;
+      justify-content: flex-start;
+    }
+    & .folio-hero-tools .folio-make {
+      flex-basis: auto;
+    }
+  }
+}

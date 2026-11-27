@@ -78,6 +78,7 @@ export default defineConfig(
       '**/node_modules/**',
       '**/dist/**',
       '**/build/**',
+      'docs/design/lighthouse-shelf/runtime/dice3d.min.js',
       '**/coverage/**',
       'playwright-report/**',
       'test-results/**',
@@ -130,7 +131,11 @@ export default defineConfig(
     // Standalone browser pages run classic scripts directly, outside the TypeScript program.
     ...tseslint.configs.disableTypeChecked,
     name: 'ltw/standalone-browser-pages',
-    files: ['deploy/proxy/trust/**/*.js', 'docs/design/dm-book/*.js'],
+    files: [
+      'deploy/proxy/trust/**/*.js',
+      'docs/design/dm-book/*.js',
+      'docs/design/lighthouse-shelf/**/*.js',
+    ],
     languageOptions: {
       ...tseslint.configs.disableTypeChecked.languageOptions,
       sourceType: 'script',
@@ -138,11 +143,17 @@ export default defineConfig(
     },
   },
   {
+    name: 'ltw/lighthouse-dice-modules',
+    files: ['docs/design/lighthouse-shelf/dice-3d/*.js'],
+    languageOptions: { sourceType: 'module' },
+  },
+  {
     // Local mode's terminal helpers (deploy/local/): plain Node modules the launcher runs.
     ...tseslint.configs.disableTypeChecked,
     name: 'ltw/standalone-node-tools',
     files: [
       'deploy/local/**/*.mjs',
+      'docs/design/lighthouse-shelf/*.mjs',
       'scripts/campaign-library/*.mjs',
       'scripts/campaign-rehearsal/*.mjs',
       'scripts/campaign-balance/*.mjs',

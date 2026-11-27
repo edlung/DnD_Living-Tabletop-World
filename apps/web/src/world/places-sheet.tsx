@@ -37,6 +37,8 @@ export function PlacesSheet({
       title={t('Places')}
       glyph="map"
       open={shell.sheet === 'places'}
+      showPlayerAsks={shell.playerEdition && !shell.hero && !shell.chronicle}
+      backToBook={shell.returnsToPlayerBook}
       onClose={shell.closeSheet}
     >
       {locations && (

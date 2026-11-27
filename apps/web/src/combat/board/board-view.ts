@@ -17,12 +17,15 @@ export type BoardMode = 'flat' | 'tilted';
  */
 export interface BoardView {
   readonly mode: BoardMode;
-  /** The board's scale on a phone; 1 elsewhere. */
+  /** Relative to the size that fits the available space. */
   readonly zoom: number;
   readonly narrow: boolean;
   readonly choose: (mode: BoardMode) => void;
   readonly zoomIn: (() => void) | null;
   readonly zoomOut: (() => void) | null;
+  readonly fit?: () => void;
+  readonly minCell?: number;
+  readonly sideLabels?: boolean;
   /** The largest square in pixels; the table's screen, seen across a room, allows more. */
   readonly maxCell?: number;
 }
@@ -46,24 +49,35 @@ export function useMedia(query: string): boolean {
 }
 
 /** `prefer`: the view a board opens in before anyone chooses — the builder's board is flat. */
-export function useBoardView(prefer?: BoardMode): BoardView {
+export function useBoardView(prefer?: BoardMode, mapFirst = false): BoardView {
   const wide = useMedia(WIDE);
   const narrow = useMedia(NARROW);
+  const zoomable = narrow || mapFirst;
   const [chosen, setChosen] = useState<BoardMode | null>(null);
-  const [step, setStep] = useState(ZOOMS.indexOf(1));
+  const [chosenStep, setStep] = useState<number | null>(null);
+  const step = chosenStep ?? ZOOMS.indexOf(mapFirst && (narrow || wide) ? 1.5 : 1);
   return {
     mode: chosen ?? prefer ?? (wide ? 'tilted' : 'flat'),
-    zoom: narrow ? (ZOOMS[step] ?? 1) : 1,
+    zoom: zoomable ? (ZOOMS[step] ?? 1) : 1,
     narrow,
     choose: setChosen,
+    ...(mapFirst && {
+      maxCell: 180,
+      sideLabels: true,
+      ...(chosenStep === ZOOMS.indexOf(1) && { minCell: 1 }),
+      fit() {
+        setChosen('flat');
+        setStep(ZOOMS.indexOf(1));
+      },
+    }),
     zoomIn:
-      narrow && step < ZOOMS.length - 1
+      zoomable && step < ZOOMS.length - 1
         ? () => {
             setStep(step + 1);
           }
         : null,
     zoomOut:
-      narrow && step > 0
+      zoomable && step > 0
         ? () => {
             setStep(step - 1);
           }

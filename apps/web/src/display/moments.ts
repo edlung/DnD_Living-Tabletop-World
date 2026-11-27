@@ -29,7 +29,9 @@ export const AT_ONCE = 3;
  * them; a hidden roll is never one.
  */
 export function freshRolls(rolls: readonly RollEntry[], seen: ReadonlySet<string>): RollEntry[] {
-  return rolls.filter((roll) => !roll.hidden && !seen.has(roll.rollId)).slice(-AT_ONCE);
+  return rolls
+    .filter((roll) => !roll.hidden && !roll.private && !seen.has(roll.rollId))
+    .slice(-AT_ONCE);
 }
 
 /**
@@ -40,7 +42,15 @@ export function freshRolls(rolls: readonly RollEntry[], seen: ReadonlySet<string
 export function followedCast(cast: CastResponse, fighting: boolean): CastResponse {
   const shown = cast.cast;
   if (!fighting || shown.kind !== 'scene' || shown.locationId !== null) return cast;
-  return { ...cast, cast: { kind: 'battlefield', zoom: 1, focus: null } };
+  return {
+    ...cast,
+    cast: {
+      kind: 'battlefield',
+      zoom: 1,
+      focus: null,
+      ...(shown.playerDice3d && { playerDice3d: true }),
+    },
+  };
 }
 
 /** Whether a cast follows a fight, so the screen reads whether the party is in one. */

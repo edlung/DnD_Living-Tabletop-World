@@ -1,4 +1,5 @@
 import { Glyph } from './glyph.tsx';
+import { alignMiniature } from './miniature-base.ts';
 import type { MedallionCondition } from './medallion.tsx';
 
 /**
@@ -25,7 +26,17 @@ export function Miniature({
       aria-hidden="true"
     >
       <span className="miniature-light" />
-      {url && <img className="miniature-art" src={url} alt="" draggable={false} />}
+      {url && (
+        <img
+          className="miniature-art"
+          src={url}
+          alt=""
+          draggable={false}
+          onLoad={(event) => {
+            alignMiniature(event.currentTarget);
+          }}
+        />
+      )}
       {condition && <Glyph name={condition} className="miniature-condition" />}
     </span>
   );

@@ -1,4 +1,4 @@
-import { campaignAppearance } from '../visual/campaign-themes/index.ts';
+import { campaignAppearance, campaignTheme } from '../visual/campaign-themes/index.ts';
 import type {
   CastResponse,
   DisplaySessionResponse,
@@ -40,7 +40,8 @@ import { WaitingStrip } from './waiting-strip.tsx';
  * The table display (docs/adr/0042-table-display.md): a TV's browser opens `/display`, shows a
  * code until the DM pairs it, then shows what the DM casts — read only, in the PARTY perspective,
  * following the live signal. A screen that restarts comes back to what was cast (its cookie
- * stays); an unpaired one shows a new code. No account, no world controls, no WebGL.
+ * stays); an unpaired one shows a new code. A paired screen can also play a public player throw
+ * with WebGL while keeping the underlying cast live.
  */
 type Stage =
   | { readonly kind: 'checking' }
@@ -368,7 +369,16 @@ function DisplayScreen({
             />
           )}
           {/* A roll the table may see, big over the cast; a plate beside the battlefield. */}
-          <BigRoll api={api} refresh={live.refresh} compact={shown.cast.kind === 'battlefield'} />
+          <BigRoll
+            api={api}
+            refresh={live.refresh}
+            compact={shown.cast.kind === 'battlefield'}
+            playerDice3d={
+              campaignTheme(session.campaignName)?.id === 'lighthouse' &&
+              (shown.cast.kind === 'battlefield' || shown.cast.kind === 'scene') &&
+              shown.cast.playerDice3d === true
+            }
+          />
         </>
       ) : (
         <div className="display-wait">

@@ -17,7 +17,7 @@ export function BringCharacter({
   onBrought,
 }: {
   readonly api: WorldApi;
-  readonly onBrought: () => void;
+  readonly onBrought: (characterId: string) => void;
 }) {
   const t = useT();
   const ids = useId();
@@ -53,11 +53,11 @@ export function BringCharacter({
         new AbortController().signal,
         false,
       )
-      .then(() => {
+      .then(({ characterId }) => {
         setNote(
           t('{name} is here: the sheet came, not what they knew or carried.', { name: one.name }),
         );
-        onBrought();
+        onBrought(characterId);
       })
       .catch(() => {
         setNote(t('{name} could not be brought. Try again.', { name: one.name }));

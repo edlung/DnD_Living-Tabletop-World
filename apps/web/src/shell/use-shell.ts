@@ -8,6 +8,7 @@ import { reportPart } from '../report/reporter.ts';
  * (docs/adr/0036-production-sign-in.md §4).
  */
 export type SheetId =
+  | 'player-book'
   | 'book'
   | 'places'
   | 'journal'
@@ -27,6 +28,7 @@ export type SheetId =
   | 'rules';
 
 const SHEETS: readonly SheetId[] = [
+  'player-book',
   'book',
   'places',
   'journal',
@@ -52,22 +54,27 @@ const SHEETS: readonly SheetId[] = [
  * browser that refuses storage simply forgets.
  */
 const storedKey = (key: string) => `ltw.sheet:${key}`;
+const bookReturnKey = (key: string) => storedKey(key) + ':from-book';
 
-function rememberedSheet(key: string | undefined): SheetId | null {
+function rememberedSheet(key: string | undefined, first: SheetId | null): SheetId | null {
   if (key === undefined) return null;
   try {
     const value = sessionStorage.getItem(storedKey(key));
-    return SHEETS.find((id) => id === value) ?? null;
+    return value === null ? first : (SHEETS.find((id) => id === value) ?? null);
   } catch {
     return null;
   }
 }
 
-function rememberSheet(key: string | undefined, sheet: SheetId | null): void {
+function rememberSheet(
+  key: string | undefined,
+  sheet: SheetId | null,
+  first: SheetId | null,
+): void {
   if (key === undefined) return;
   try {
-    if (sheet === null) sessionStorage.removeItem(storedKey(key));
-    else sessionStorage.setItem(storedKey(key), sheet);
+    if (sheet === null && !first) sessionStorage.removeItem(storedKey(key));
+    else sessionStorage.setItem(storedKey(key), sheet ?? 'scene');
   } catch {
     // Storage refused (a private window): the sheet is simply not remembered.
   }
@@ -94,11 +101,11 @@ export function focusOn(element: HTMLElement | null | undefined): boolean {
  * where it came from (design §7). Visual state only, never in world state; the open sheet is
  * remembered for the tab under `rememberAs` (the perspective), so a reload comes back to it.
  */
-export function useShell(rememberAs?: string) {
-  const [sheet, setOpenSheet] = useState<SheetId | null>(() => rememberedSheet(rememberAs));
+export function useShell(rememberAs?: string, first: SheetId | null = null) {
+  const [sheet, setOpenSheet] = useState<SheetId | null>(() => rememberedSheet(rememberAs, first));
   const setSheet = (next: SheetId | null) => {
     setOpenSheet(next);
-    rememberSheet(rememberAs, next);
+    rememberSheet(rememberAs, next, first);
   };
   const [chronicle, setChronicle] = useState(false);
   // The Chronicle shows the campaign's whole book instead of its chapters (ADR 0072 §1).
@@ -110,11 +117,31 @@ export function useShell(rememberAs?: string) {
   const [heroTab, setHeroTab] = useState<HeroTab>('overview');
   const last = useRef<'sheet' | 'details'>('sheet');
   // A section opened from the DM's book (ADR 0074 §3.7): closing it comes back to the book.
-  const fromBook = useRef(false);
+  const [initialBook] = useState(() => {
+    if (first !== 'player-book' || !rememberAs || !sheet || sheet === first) return null;
+    try {
+      return sessionStorage.getItem(bookReturnKey(rememberAs)) === sheet ? first : null;
+    } catch {
+      return null;
+    }
+  });
+  const fromBook = useRef<'book' | 'player-book' | null>(initialBook);
+  const rememberOrigin = (book: typeof fromBook.current, next: SheetId | null) => {
+    fromBook.current = book;
+    if (first !== 'player-book' || !rememberAs) return;
+    try {
+      if (book === 'player-book' && next) sessionStorage.setItem(bookReturnKey(rememberAs), next);
+      else sessionStorage.removeItem(bookReturnKey(rememberAs));
+    } catch {
+      /* Session storage is optional. */
+    }
+  };
   // What is open, for a report of what broke (docs/adr/0073-table-ideas.md §1): a name only.
   reportPart(chronicle ? 'chronicle' : hero !== null ? 'hero' : (sheet ?? 'none'));
   return {
     sheet,
+    playerEdition: first === 'player-book',
+    returnsToPlayerBook: fromBook.current === 'player-book',
     chronicle,
     chronicleChapter: chapter,
     chronicleWhole: whole,
@@ -133,28 +160,42 @@ export function useShell(rememberAs?: string) {
     /** The dock: opens a sheet, or closes it when it is already open. */
     toggleSheet: (id: SheetId) => {
       // A section opened over the open book comes back to it, as from a bookmark.
-      fromBook.current = sheet === 'book' && id !== 'book';
+      rememberOrigin(
+        (sheet === 'book' || sheet === 'player-book') && id !== sheet ? sheet : null,
+        id,
+      );
       setSheet(sheet === id ? null : id);
       last.current = 'sheet';
     },
     /** Opens a sheet from elsewhere (an NPC card's edit opens its proposal under Add). */
     openSheet: (id: SheetId) => {
-      fromBook.current = false;
+      rememberOrigin(null, null);
       setSheet(id);
       last.current = 'sheet';
     },
     /** Opens a section from a bookmark of the DM's book: its Close returns to the book's page. */
     openSheetFromBook: (id: SheetId) => {
-      fromBook.current = true;
+      rememberOrigin(first === 'player-book' ? 'player-book' : 'book', id);
       setSheet(id);
       last.current = 'sheet';
     },
     /** Closes the open sheet and returns focus to its dock button, or to More that holds it. */
     closeSheet: () => {
       if (sheet === null) return;
-      if (fromBook.current && sheet !== 'book') {
-        fromBook.current = false;
-        setSheet('book');
+      if (fromBook.current && sheet !== fromBook.current) {
+        const book = fromBook.current;
+        rememberOrigin(null, null);
+        setSheet(book);
+        if (book === 'player-book')
+          requestAnimationFrame(() => {
+            const restored = focusOn(
+              document.querySelector<HTMLElement>(
+                `#sheet-player-book [data-book-sheet="${sheet}"]`,
+              ),
+            );
+            if (!restored && !focusOn(document.getElementById(dockButtonId(sheet))))
+              focusOn(document.getElementById(DOCK_MORE_ID));
+          });
         return;
       }
       if (!focusOn(document.getElementById(dockButtonId(sheet)))) {
@@ -164,7 +205,7 @@ export function useShell(rememberAs?: string) {
     },
     /** Closes the open sheet without moving focus (what was picked in it took focus). */
     dismissSheet: () => {
-      fromBook.current = false;
+      rememberOrigin(null, null);
       setSheet(null);
     },
     /** Opens the book, at a chapter when one is named (each asking is a new one). */

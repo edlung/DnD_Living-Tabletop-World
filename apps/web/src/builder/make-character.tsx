@@ -17,7 +17,7 @@ export function MakeCharacter({
 }: {
   readonly api: WorldApi;
   readonly players?: readonly BuilderPlayer[];
-  readonly onMade: () => void;
+  readonly onMade: (characterId: string) => void;
   readonly intro: string;
 }) {
   const t = useT();
@@ -51,10 +51,10 @@ export function MakeCharacter({
         onClose={() => {
           setOpen(false);
         }}
-        onMade={(_characterId, name) => {
+        onMade={(characterId, name) => {
           setOpen(false);
           setMade(name);
-          onMade();
+          onMade(characterId);
         }}
       />
     </section>

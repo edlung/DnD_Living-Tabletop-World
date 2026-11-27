@@ -135,7 +135,15 @@ export function ChatSheet({
     }
   };
   return (
-    <Sheet id="chat" title={t('Chat')} glyph="talk" open={open} onClose={shell.closeSheet}>
+    <Sheet
+      id="chat"
+      title={t('Chat')}
+      glyph="talk"
+      open={open}
+      showPlayerAsks={shell.playerEdition && !shell.hero && !shell.chronicle}
+      backToBook={shell.returnsToPlayerBook}
+      onClose={shell.closeSheet}
+    >
       {table.online && <VoicePanel api={api} isDm={isDm} />}
       <div className="chat">
         {chat.log.status !== 'ready' ? (

@@ -26,14 +26,25 @@ async function picture(url: string): Promise<HTMLImageElement | null> {
 export async function createDiceEngine(canvas: HTMLCanvasElement): Promise<DiceEngine> {
   const id = canvas.closest<HTMLElement>('[data-campaign-theme]')?.dataset['campaignTheme'];
   const theme = id ? campaignTheme(id) : undefined;
-  const [obsidian, ivory, ornament] = await Promise.all([
+  const lighthouse = theme?.id === 'lighthouse';
+  const [obsidian, ivory, ornament, lapis, emerald] = await Promise.all([
     picture(textureUrl('dice-obsidian')),
     picture(textureUrl('dice-ivory')),
     picture(theme ? `/table-materials/${theme.id}.webp` : ''),
+    picture(
+      lighthouse
+        ? new URL('../../visual/campaign-themes/lighthouse/lapis.webp', import.meta.url).href
+        : '',
+    ),
+    picture(
+      lighthouse
+        ? new URL('../../visual/campaign-themes/lighthouse/emerald.webp', import.meta.url).href
+        : '',
+    ),
     document.fonts.load('700 64px "Cormorant Garamond"').catch(() => []),
   ]);
   const arts: Record<'obsidian' | 'ivory', FaceArt> = {
-    obsidian: { surface: obsidian, ink: 'gold', ornament },
+    obsidian: { surface: obsidian, ink: 'gold', ornament, enamel: { d20: lapis, d6: emerald } },
     ivory: { surface: ivory, ink: 'dark', ornament },
   };
   return new DiceEngine(canvas, arts);

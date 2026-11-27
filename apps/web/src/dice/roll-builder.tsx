@@ -5,6 +5,7 @@ import { useId, useState } from 'react';
 import { FaceFields, facesOf, useOwnDice } from './own-dice.tsx';
 import { useDiceTable } from './table.tsx';
 
+const READY_D20: ReadonlyMap<DieSides, number> = new Map([[20, 1]]);
 const MAX_PER_DIE = 10;
 const MAX_KINDS = 4;
 
@@ -25,7 +26,13 @@ export function poolWords(pool: ReadonlyMap<DieSides, number>, modifier: number)
  * DM; ADR 0044 §4). The server rolls, and the dice fly for everyone who may see them; or, where
  * one's own dice may be used, their faces are entered and the server adds them up.
  */
-export function RollBuilder({ characters }: { readonly characters: readonly EntityRef[] }) {
+export function RollBuilder({
+  characters,
+  readyD20 = false,
+}: {
+  readonly characters: readonly EntityRef[];
+  readonly readyD20?: boolean;
+}) {
   const t = useT();
   const table = useDiceTable();
   const own = useOwnDice();
@@ -42,11 +49,14 @@ export function RollBuilder({ characters }: { readonly characters: readonly Enti
     const count = Math.max(0, Math.min(MAX_PER_DIE, (next.get(sides) ?? 0) + by));
     if (count === 0) next.delete(sides);
     else next.set(sides, count);
+    if (readyD20) setEntered([]);
     setPool(next);
   };
-  const words = poolWords(pool, modifier);
+  const quick = readyD20 && pool.size === 0;
+  const selected = quick ? READY_D20 : pool;
+  const words = poolWords(selected, modifier);
   // Each die in the order the roll names them: the faces entered follow it.
-  const order = [...pool.entries()].flatMap(([sides, count]) =>
+  const order = [...selected.entries()].flatMap(([sides, count]) =>
     Array.from({ length: count }, () => sides),
   );
   const faces = entering ? facesOf(order, entered) : null;
@@ -60,7 +70,7 @@ export function RollBuilder({ characters }: { readonly characters: readonly Enti
       ? { private: true }
       : {};
   const roll = async () => {
-    const dice = [...pool.entries()].map(([sides, count]) => ({ sides, count }));
+    const dice = [...selected.entries()].map(([sides, count]) => ({ sides, count }));
     const done = await table.roll({
       kind: 'dice',
       ...(table.characterId ? { characterId: table.characterId } : {}),
@@ -75,9 +85,92 @@ export function RollBuilder({ characters }: { readonly characters: readonly Enti
       setEntered([]);
     }
   };
+  const audienceField = (
+    <label className="dice-audience" htmlFor={`${ids}-audience`}>
+      <span>{t('Who sees it')}</span>
+      <select
+        id={`${ids}-audience`}
+        value={audience}
+        onChange={(event) => {
+          setAudience(event.target.value);
+        }}
+      >
+        <option value="table">{t('Everyone at the table')}</option>
+        {table.isDm ? (
+          <>
+            <option value="hidden">{t('Only me')}</option>
+            {characters.map((character) => (
+              <option key={character.entityId} value={`to:${character.entityId}`}>
+                {t('{name} and me', { name: character.name })}
+              </option>
+            ))}
+          </>
+        ) : (
+          <option value="dm">{t('Only the DM and me')}</option>
+        )}
+      </select>
+    </label>
+  );
+  const ownFields = (
+    <>
+      {' '}
+      {own && (
+        <label className="dice-own">
+          <input
+            type="checkbox"
+            checked={entering}
+            onChange={(event) => {
+              setEntering(event.target.checked);
+            }}
+          />
+          <span>{t('I roll my own dice')}</span>
+        </label>
+      )}
+      {entering && order.length > 0 && (
+        <FaceFields dice={order} entered={entered} onChange={setEntered} />
+      )}
+    </>
+  );
+  const launch = (
+    <>
+      {' '}
+      <p className="dice-pool" aria-live="polite">
+        {words === '' ? t('Press a die to add it.') : words}
+      </p>
+      <div className="dice-builder-actions">
+        <button
+          type="button"
+          className="primary-button"
+          disabled={words === '' || table.busy || (entering && faces === null)}
+          onClick={() => void roll()}
+        >
+          {entering ? t('Enter the roll') : t(quick ? 'Roll d20' : 'Roll')}
+        </button>
+        {(!quick || modifier !== 0) && (
+          <button
+            type="button"
+            disabled={pool.size === 0 && modifier === 0}
+            onClick={() => {
+              setPool(new Map());
+              setModifier(0);
+            }}
+          >
+            {t('Clear the dice')}
+          </button>
+        )}
+      </div>
+    </>
+  );
   return (
     <section className="sheet-section dice-builder" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Roll dice')}</h3>
+      {readyD20 && (
+        <div className="player-roll-launch">
+          {audienceField}
+          {ownFields}
+          {launch}
+        </div>
+      )}
       <ul className="dice-picker" aria-label={t('Dice to roll')}>
         {DIE_SIDES.map((sides) => {
           const count = pool.get(sides) ?? 0;
@@ -129,69 +222,10 @@ export function RollBuilder({ characters }: { readonly characters: readonly Enti
             }}
           />
         </label>
-        <label className="dice-audience" htmlFor={`${ids}-audience`}>
-          <span>{t('Who sees it')}</span>
-          <select
-            id={`${ids}-audience`}
-            value={audience}
-            onChange={(event) => {
-              setAudience(event.target.value);
-            }}
-          >
-            <option value="table">{t('Everyone at the table')}</option>
-            {table.isDm ? (
-              <>
-                <option value="hidden">{t('Only me')}</option>
-                {characters.map((character) => (
-                  <option key={character.entityId} value={`to:${character.entityId}`}>
-                    {t('{name} and me', { name: character.name })}
-                  </option>
-                ))}
-              </>
-            ) : (
-              <option value="dm">{t('Only the DM and me')}</option>
-            )}
-          </select>
-        </label>
+        {!readyD20 && audienceField}
       </div>
-      {own && (
-        <label className="dice-own">
-          <input
-            type="checkbox"
-            checked={entering}
-            onChange={(event) => {
-              setEntering(event.target.checked);
-            }}
-          />
-          <span>{t('I roll my own dice')}</span>
-        </label>
-      )}
-      {entering && order.length > 0 && (
-        <FaceFields dice={order} entered={entered} onChange={setEntered} />
-      )}
-      <p className="dice-pool" aria-live="polite">
-        {words === '' ? t('Press a die to add it.') : words}
-      </p>
-      <div className="dice-builder-actions">
-        <button
-          type="button"
-          className="primary-button"
-          disabled={words === '' || table.busy || (entering && faces === null)}
-          onClick={() => void roll()}
-        >
-          {entering ? t('Enter the roll') : t('Roll')}
-        </button>
-        <button
-          type="button"
-          disabled={words === '' && modifier === 0}
-          onClick={() => {
-            setPool(new Map());
-            setModifier(0);
-          }}
-        >
-          {t('Clear the dice')}
-        </button>
-      </div>
+      {!readyD20 && ownFields}
+      {!readyD20 && launch}
     </section>
   );
 }

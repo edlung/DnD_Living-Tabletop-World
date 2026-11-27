@@ -1,0 +1,140 @@
+.table-screen {
+  overflow: hidden;
+  background: #0a111b;
+}
+.tv-full:hover {
+  background: #334157;
+}
+.table-screen {
+  color: #f7f2df;
+}
+#table,
+.tv-idle,
+.tv-layout {
+  height: 100vh;
+  height: 100dvh;
+}
+.tv-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 16px;
+}
+.tv-idle > svg {
+  width: 52px;
+  height: 52px;
+  color: #ddc48e;
+}
+.tv-idle h1 {
+  font-size: clamp(32px, 5vw, 76px);
+  line-height: 1;
+}
+.tv-idle p {
+  font-size: clamp(16px, 2vw, 30px);
+  color: #d9cba9;
+}
+.tv-full {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 3;
+  color: #faf3da;
+  background: #17273aee;
+  border: 1px solid #a3997e;
+}
+.tv-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.tv-turn {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: clamp(16px, 3vw, 60px);
+  padding: clamp(7px, 0.8vw, 16px) clamp(14px, 2.4vw, 55px);
+  background:
+    linear-gradient(90deg, #111c2bec, #1c3041e8),
+    url('art/desk.webp') center / cover;
+  border-bottom: 2px solid #ab905e;
+}
+.tv-place {
+  flex: none;
+}
+.tv-place h1 {
+  font-size: clamp(24px, 2.15vw, 50px);
+  line-height: 1.05;
+  color: #fae8bd;
+}
+.tv-round {
+  font: 600 clamp(16px, 1.2vw, 34px)/1.2 var(--sans);
+  color: #e0cfac;
+}
+.tv-turn .initiative {
+  flex: 1;
+  --turn-size: clamp(34px, 4vw, 85px);
+  --turn-name: clamp(22px, 2.1vw, 58px);
+  --turn-caption: clamp(14px, 1.1vw, 32px);
+}
+.tv-turn .turn-entry {
+  padding: 4px clamp(5px, 1vw, 22px);
+}
+.tv-stage {
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(#0b132078, #0b132095),
+    url('art/desk.webp') center / cover;
+}
+.tv-map-box {
+  position: absolute;
+  aspect-ratio: 10/8;
+}
+.tv-stage .battle-map {
+  outline: 0;
+}
+.tv-stage .piece-label {
+  font-size: clamp(18px, 1.65vw, 48px);
+}
+@media (max-width: 820px) {
+  .tv-turn {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+  }
+  .tv-place {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .tv-turn .initiative {
+    flex: auto;
+  }
+}
+@media (max-width: 520px) {
+  .tv-turn {
+    padding: 7px;
+  }
+  .tv-turn .initiative {
+    gap: 2px;
+    --turn-size: 27px;
+    --turn-name: 16px;
+    --turn-caption: 12px;
+  }
+  .tv-turn .turn-entry {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 2px;
+    padding: 3px;
+  }
+  .tv-turn .turn-entry small {
+    display: none;
+  }
+}

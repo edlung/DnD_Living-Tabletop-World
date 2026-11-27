@@ -1,10 +1,9 @@
 import type { EntityKind, EntityRef, PlayerOutcome, Weather } from '@ltw/contracts';
-import { StatusPanel, useT } from '@ltw/ui';
+import { useT } from '@ltw/ui';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useLiveTarget } from '../api/live-context.ts';
-import { askedWindowOf } from '../combat/reaction-prompt.tsx';
 import { standInReason, type StandIn } from '../combat/stand-in.ts';
 import { useAuthoring } from '../authoring/use-authoring.ts';
 import { DmSheets } from '../dm/dm-sheets.tsx';
@@ -28,7 +27,7 @@ import { DetailPanel } from './detail-panel.tsx';
 import { EntityDetails } from './entity-details.tsx';
 import { recipientsOf } from '../items/recipients.ts';
 import { RulesSheet } from '../rules/rules-sheet.tsx';
-import { useFightTakesStage } from './use-fight-takes-stage.ts';
+import { useFightTakesStage, useReactionStage } from './use-fight-takes-stage.ts';
 import { WorldOverlays } from './world-overlays.tsx';
 import { DicePanel } from '../dice/dice-panel.tsx';
 import { DiceTableProvider, useDiceTableState } from '../dice/table.tsx';
@@ -36,8 +35,9 @@ import { revealedIds } from '../exploration/revealed.ts';
 import { useConversationNotice, type Conversation } from './use-conversation-notice.ts';
 import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
+import { LighthouseFolio, type PlayerBookSeat } from './lighthouse-folio.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
-import { Scene } from './scene.tsx';
+import { Scene, SceneStatus } from './scene.tsx';
 import { SessionTitle } from './session-title.tsx';
 import { UndoneNotice } from './undone-notice.tsx';
 import { useScene, useWorldData } from './use-world-data.ts';
@@ -48,14 +48,13 @@ interface Selected {
 }
 
 /**
- * The world screen (docs/STAGE_320_DESIGN.md §5): the stage with the scene or the battlefield,
- * the selection's panel at the right, the dock and its sheets, and the Chronicle. It owns the
- * perspective's views, the selection and the one action in flight; everything visual (open
- * sheets, the stage's view) stays in its memory, and a perspective change remounts it.
+ * The scene, battlefield and reading desk share one perspective, selection and action in flight.
+ * Changing perspective remounts the world.
  */
 export function World({
   api,
   effectivePerspective,
+  playerBook,
   canAct,
   standIn,
   onActAs,
@@ -63,6 +62,7 @@ export function World({
 }: {
   readonly api: WorldApi;
   readonly effectivePerspective: string;
+  readonly playerBook: PlayerBookSeat | null;
   readonly canAct: boolean;
   /** The DM acting as this perspective's character, after choosing to (ADR 0033 §6). */
   readonly standIn: StandIn | null;
@@ -80,8 +80,12 @@ export function World({
   const [shown, setShown] = useState<Selected | null>(null);
   const [conversation, setConversation] = useState<Conversation | null>(null);
   const [sceneFor, setSceneFor] = useState<string | null>(null);
+  const [meetingSlot, setMeetingSlot] = useState<HTMLDivElement | null>(null);
   const [dismissed, setDismissed] = useState<Notice | null>(null);
-  const shell = useShell(effectivePerspective);
+  const shell = useShell(
+    playerBook ? `${playerBook.campaignId}:${effectivePerspective}` : effectivePerspective,
+    playerBook ? 'player-book' : null,
+  );
   const details = useRef<HTMLElement>(null);
   const opener = useRef<HTMLElement | null>(null);
   const acting = effectivePerspective.startsWith('CHARACTER:');
@@ -209,16 +213,11 @@ export function World({
   const openSession = data?.sessions.sessions.find((session) => session.endedAt === null);
   const encounter = data?.encounter.encounter ?? null;
   const actorId = data?.surroundings?.actingCharacterId ?? null;
-  // A reaction asked of this viewer comes before reading: an open book closes, keeping its place,
-  // and the question takes focus once it has (each window once; the reader may open it again).
-  const askedWindow = askedWindowOf(encounter, actorId);
-  useEffect(() => {
-    if (askedWindow === null) return;
-    shell.closeChronicle();
-    shell.closeHero();
-  }, [askedWindow]);
+  const heroName = directory.find((entry) => entry.entityId === actorId)?.name ?? t('Character');
+  useReactionStage(encounter, actorId, shell, playerBook !== null);
   useFightTakesStage(encounter?.encounterId ?? null, details, () => {
     setSelected(null);
+    if (shell.sheet === 'player-book') shell.dismissSheet();
   });
   const battlefield = encounter !== null && sceneFor !== encounter.encounterId;
   const view = scene.resource.status === 'ready' ? scene.resource.value : null;
@@ -226,8 +225,6 @@ export function World({
   const presentOne = (entityId: string) => view?.present.find((one) => one.entityId === entityId);
   const presentImage = (entityId: string) => presentOne(entityId)?.image ?? null;
   const presentFigure = (entityId: string) => presentOne(entityId)?.figure ?? null;
-  // The battle map is the encounter's place's (ADR 0035 §4): shown while the viewed place is
-  // where the fight is — its own presentation lists the combatants standing there.
   const fought =
     encounter !== null &&
     view !== null &&
@@ -277,19 +274,7 @@ export function World({
             className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
           >
             <Backdrop image={view?.location.image ?? null} settled={view !== null} />
-            {!data ? (
-              <div className="stage-status">
-                <StatusPanel
-                  state={world.resource.status === 'error' ? 'error' : 'loading'}
-                  label={
-                    world.resource.status === 'error'
-                      ? world.resource.message
-                      : t('Gathering your view of the world…')
-                  }
-                  onRetry={world.retry}
-                />
-              </div>
-            ) : location ? (
+            {data && location ? (
               <Scene
                 location={location}
                 scene={scene.resource}
@@ -326,21 +311,15 @@ export function World({
                 }
               />
             ) : (
-              <section className="scene" aria-label={t('Scene')}>
-                <div className="stage-status">
-                  <StatusPanel
-                    state={data.asOf === revision ? 'empty' : 'loading'}
-                    label={
-                      data.asOf === revision
-                        ? t('There are no known locations in this perspective yet.')
-                        : t('Loading the scene…')
-                    }
-                  />
-                </div>
-              </section>
+              <SceneStatus
+                resource={world.resource}
+                settled={data?.asOf === revision}
+                onRetry={world.retry}
+              />
             )}
             {data && encounter && (
               <CombatStage
+                playerField={playerBook ? (location?.name ?? t('Battlefield')) : undefined}
                 api={api}
                 encounter={encounter}
                 revision={revision}
@@ -356,6 +335,29 @@ export function World({
                 figureOf={presentFigure}
                 battleMap={battleMap}
                 onRun={run}
+              />
+            )}
+            {playerBook && actorId && (
+              <LighthouseFolio
+                api={api}
+                shell={shell}
+                actorId={actorId}
+                name={heroName}
+                place={current?.name ?? undefined}
+                battlefield={battlefield}
+                stageName={location?.name ?? null}
+                stageArt={encounter ? battleMap : (view?.location.image ?? null)}
+                encounter={encounter}
+                revision={revision}
+                onMeetingSlot={setMeetingSlot}
+                onSelect={select}
+                onReturn={() => {
+                  setSceneFor(null);
+                  setSelected(null);
+                  if (encounter) setViewing(null);
+                  shell.dismissSheet();
+                }}
+                onCreated={playerBook.onCreated}
               />
             )}
             <PlacesSheet
@@ -419,20 +421,18 @@ export function World({
                 }}
               />
             )}
-            <Dock
-              isDm={isDm}
-              shell={shell}
-              drafts={isDm ? authoring.drafts.length : 0}
-              onCharacter={
-                acting && actorId !== null
-                  ? () => {
-                      shell.openHero(actorId);
-                    }
-                  : undefined
-              }
-            />
+            {(!playerBook || !actorId) && (
+              <Dock
+                isDm={isDm}
+                shell={shell}
+                drafts={isDm ? authoring.drafts.length : 0}
+                characterId={acting ? actorId : null}
+              />
+            )}
           </div>
           <WorldOverlays
+            meetingSlot={meetingSlot}
+            playerBook={playerBook}
             api={api}
             shell={shell}
             revision={revision}

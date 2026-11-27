@@ -102,6 +102,9 @@
  * A section over the stage: the player's quiet row (the hint, the way to a pause) waits under it;
  * what the table asks, and the word that a pause was asked for, stay in view over it.
  */
-.world-main:has(.sheet:not([hidden])) .quiet-row > :not(.pause-asked) {
+.world-main:has(.sheet:not([hidden]))
+  :where(.rest-banner-slot, .fight-quiet)
+  .quiet-row
+  > :not(.pause-asked) {
   display: none;
 }

@@ -5,6 +5,8 @@
  * time, loudness from its speed, panned to where it happened. The browser lets sound start only
  * after a gesture, so the context is created on the first press or key.
  */
+import { seeded } from '../audio/schedule.ts';
+
 let context: AudioContext | null = null;
 let master: GainNode | null = null;
 let limiter: DynamicsCompressorNode | null = null;
@@ -69,15 +71,6 @@ interface Mode {
   readonly hz: number;
   readonly decay: number;
   readonly gain: number;
-}
-
-/** A pseudo-random sequence, so the impacts sound alike from one session to the next. */
-function seeded(seed: number): () => number {
-  let state = seed >>> 0;
-  return () => {
-    state = (state * 1664525 + 1013904223) >>> 0;
-    return state / 2 ** 32;
-  };
 }
 
 /**

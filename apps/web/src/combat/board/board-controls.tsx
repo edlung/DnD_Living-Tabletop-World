@@ -88,8 +88,11 @@ export function BoardControls({
           view.choose('tilted');
         }}
       />
-      {view.narrow && (
+      {(view.narrow || view.zoomIn !== null || view.zoomOut !== null) && (
         <>
+          {view.fit && (
+            <IconButton glyph="map" label={t('Fit the whole battlefield')} onClick={view.fit} />
+          )}
           <IconButton
             glyph="zoom-out"
             label={t('Zoom out')}

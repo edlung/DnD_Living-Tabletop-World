@@ -30,5 +30,6 @@ export interface ReactionPromptProps {
   readonly locked: boolean;
   /** A modal dialog (the Chronicle) is open: everything behind it is inert. */
   readonly blocked: boolean;
+  readonly modal?: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }

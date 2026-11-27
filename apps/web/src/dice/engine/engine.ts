@@ -1,6 +1,7 @@
 import type { DieSides } from '@ltw/contracts';
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { throwRandom } from '../visual-random.ts';
 
 import { d10Label, landOn, percentile, topSlot, type Quat } from './landing.ts';
 import { d4FaceTextures, faceTextures, type FaceArt } from './labels.ts';
@@ -142,6 +143,7 @@ export class DiceEngine {
     this.#renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.#renderer.setSize(width, height, false);
     this.#camera.aspect = width / height;
+    this.#camera.fov = 32;
     this.#camera.updateProjectionMatrix();
   }
 
@@ -253,13 +255,29 @@ export class DiceEngine {
     });
   }
 
-  /** Throws dice that land on their values; resolves `landed` when they rest. */
-  throw(requests: readonly DieRequest[], set: DiceSet): Throw {
+  /** The same tray and walls on a phone and a TV. Only the spectator's framing changes. */
+  #sharedTable() {
+    const viewportAspect = this.#camera.aspect;
+    const trayAspect = 1.2;
+    this.#camera.aspect = trayAspect;
+    this.#camera.updateProjectionMatrix();
+    const table = this.#table();
+    this.#camera.aspect = viewportAspect;
+    const halfFov = THREE.MathUtils.degToRad(this.#camera.fov / 2);
+    this.#camera.fov = THREE.MathUtils.radToDeg(
+      2 * Math.atan(Math.tan(halfFov) * Math.max(1, trayAspect / viewportAspect)),
+    );
+    this.#camera.updateProjectionMatrix();
+    return table;
+  }
+
+  /** A shared roll key reproduces the physical throw. The given faces determine its outcome. */
+  throw(requests: readonly DieRequest[], set: DiceSet, rollKey?: string): Throw {
     this.clear();
     this.resize();
     const dice = physicalDice(requests);
-    const { corners, walls, center, span } = this.#table();
-    const size = Math.max(0.8, Math.min(1.8, span * 0.07));
+    const { corners, walls, center, span } = rollKey ? this.#sharedTable() : this.#table();
+    const size = Math.max(0.8, Math.min(1.8, span * (rollKey && dice.length < 3 ? 0.095 : 0.07)));
     const from = corners[1] ?? center;
     const simulation = simulate(
       dice.map((die) => ({ kind: die.kind, size })),
@@ -270,7 +288,7 @@ export class DiceEngine {
         towardX: center.x - span * 0.12,
         towardZ: center.z + span * 0.05,
       },
-      Math.random,
+      rollKey ? throwRandom(rollKey) : Math.random,
     );
     this.#dice = dice.map((physical, index) => {
       const solid = solidOf(physical.kind);
@@ -289,7 +307,7 @@ export class DiceEngine {
       pan: Math.max(-1, Math.min(1, ((hit.x - center.x) / width) * 2)),
     }));
     const landed = new Promise<Landing>((resolve) => {
-      const started = performance.now();
+      let started = 0;
       const pose = (frame: number, die: THREE.Mesh, index: number, mix: number) => {
         const a = simulation.frames[frame];
         const b = simulation.frames[Math.min(frame + 1, simulation.frames.length - 1)];
@@ -316,11 +334,13 @@ export class DiceEngine {
         die.quaternion.copy(qa.slerp(qb, mix));
       };
       const tick = () => {
-        const elapsed = (performance.now() - started) / 1000;
+        const elapsed = started === 0 ? 0 : (performance.now() - started) / 1000;
         const exact = Math.min(elapsed * simulation.frameRate, simulation.frames.length - 1);
         const frame = Math.floor(exact);
         for (const [index, die] of this.#dice.entries()) pose(frame, die, index, exact - frame);
         this.#renderer.render(this.#scene, this.#camera);
+        // Compiling the first die's face shaders can take a frame. Give both screens the full throw.
+        if (started === 0) started = performance.now();
         if (elapsed < duration) {
           this.#frame = requestAnimationFrame(tick);
           return;

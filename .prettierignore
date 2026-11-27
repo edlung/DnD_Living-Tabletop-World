@@ -204,3 +204,5 @@ reports/evidence/campaign-defeats-2026-11-22/cases.md
 # The DM's books of the built-in adventures, written by scripts/adventures/books/build.ts.
 fixtures/hollowmere-ru/book.json
 fixtures/ravenford-ru/book.json
+# Offline distribution of the Lighthouse pilot's 3D engine. Build from dice-3d/.
+docs/design/lighthouse-shelf/runtime/dice3d.min.js

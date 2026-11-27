@@ -49,6 +49,8 @@ export function JournalSheet({
       title={t('Journal')}
       glyph="journal"
       open={shell.sheet === 'journal'}
+      showPlayerAsks={shell.playerEdition && !shell.hero && !shell.chronicle}
+      backToBook={shell.returnsToPlayerBook}
       onClose={shell.closeSheet}
     >
       {journal && (

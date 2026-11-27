@@ -16,6 +16,7 @@ import { TurnHintButton } from '../hint/turn-hint-button.tsx';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { focusOn, type Shell } from '../shell/use-shell.ts';
+import type { PlayerBookSeat } from './lighthouse-folio.tsx';
 import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 
 /**
@@ -26,10 +27,12 @@ import { WorldHeroDialog } from './hero-dialog-slot.tsx';
  * open (the world behind a modal is out of reach), else in the world.
  */
 export function WorldOverlays({
+  meetingSlot,
   api,
   shell,
   revision,
   isDm,
+  playerBook,
   ready,
   directory,
   scenePlaceId,
@@ -42,10 +45,12 @@ export function WorldOverlays({
   onRun,
   outcome,
 }: {
+  readonly meetingSlot: HTMLDivElement | null;
   readonly api: WorldApi;
   readonly shell: Shell;
   readonly revision: number;
   readonly isDm: boolean;
+  readonly playerBook: PlayerBookSeat | null;
   /** The world's views have been read (the book needs the directory). */
   readonly ready: boolean;
   readonly directory: readonly EntityRef[];
@@ -69,6 +74,7 @@ export function WorldOverlays({
   return (
     <>
       <TableAsks
+        meetingSlot={playerBook ? meetingSlot : undefined}
         api={api}
         isDm={isDm}
         ready={ready}
@@ -97,6 +103,7 @@ export function WorldOverlays({
               encounter={encounter}
               onWay={(way) => {
                 if (way === 'character') shell.openHero(actorId, 'overview');
+                else if (meetingSlot) shell.openSheetFromBook(way);
                 else shell.openSheet(way);
               }}
             />
@@ -112,6 +119,7 @@ export function WorldOverlays({
       <ChronicleDialog open={shell.chronicle} onClose={shell.closeChronicle}>
         {ready && (
           <ChronicleBook
+            playerBook={playerBook !== null}
             api={api}
             isDm={isDm}
             revision={revision}
@@ -124,6 +132,7 @@ export function WorldOverlays({
         )}
       </ChronicleDialog>
       <WorldHeroDialog
+        onCreated={playerBook?.onCreated}
         api={api}
         shell={shell}
         revision={revision}

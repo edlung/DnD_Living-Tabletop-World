@@ -1,0 +1,243 @@
+/* The same battlefield, tiles, initiative and turn controls in a map-first player view. */
+@media screen {
+  .miniature[data-plinth] .miniature-art {
+    translate: calc(0% - var(--plinth-x)) 0;
+  }
+  .miniature[data-plinth].is-mirrored .miniature-art {
+    translate: calc(var(--plinth-x) - 100%) 0;
+  }
+  .miniature[data-plinth] .miniature-light {
+    top: var(--plinth-y);
+    bottom: auto;
+    width: calc(var(--mini-h) * var(--plinth-width));
+    height: calc(var(--mini-h) * var(--plinth-height));
+    translate: -50% -50%;
+  }
+  .board-plate--left,
+  .board-plate--right {
+    transform-origin: 0 50%;
+    translate: 0 -50%;
+    & .token-plate {
+      margin: 0;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      width: calc(var(--cell) * 0.23);
+      border-top: 2px solid var(--side);
+      pointer-events: none;
+    }
+  }
+  .board-plate--right {
+    transform-origin: 100% 50%;
+    translate: -100% -50%;
+    &::before {
+      left: 100%;
+      right: auto;
+    }
+  }
+  .field-switch-tools {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .stage--battle .field-switch-tools .stage-switch {
+    position: static;
+    margin: 0;
+    translate: none;
+  }
+  .field-panels {
+    background: #162d35;
+    border-color: #ae8f57;
+    color: #fff0cd;
+  }
+  .field-place {
+    max-width: 18ch;
+    color: #f4dbab;
+    font: 700 1.25rem / 1.1 var(--font-display);
+  }
+  .session-shell:has(.field-switch-tools[data-panels='closed']):not(:has(.sheet:not([hidden])))
+    > .topbar {
+    display: none;
+  }
+  .stage--battle:has(> .field-switch-tools[data-panels='closed']) {
+    --hud-left: 12px;
+    --hud-right: 12px;
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template: auto minmax(0, 1fr) auto / minmax(0, 1fr) auto;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px 12px calc(var(--dock-h) + 14px);
+    overflow: hidden;
+    background:
+      linear-gradient(#121e26ad, #152530cc),
+      var(--desk) center / cover;
+    & .stage-backdrop,
+    & .scene,
+    & .fight-quiet,
+    & .active-card,
+    & .field-switch-tools .stage-switch,
+    & .combat-side:has(.board-legend) {
+      display: none;
+    }
+    & .turn-banner {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    & .combat-stage,
+    & .combat-panel {
+      display: contents;
+    }
+    & .encounter-anchor {
+      position: relative;
+      inset: auto;
+      grid-area: 1 / 1;
+      width: 100%;
+      align-self: center;
+      justify-items: start;
+      translate: none;
+    }
+    & .initiative-band {
+      border-color: #9b8154;
+      background: #14242deb;
+    }
+    & .anchor-caption {
+      justify-content: flex-start;
+    }
+    & .field-switch-tools {
+      position: static;
+      grid-area: 1 / 2;
+      max-width: 100%;
+      align-self: start;
+      justify-content: flex-end;
+    }
+    & .board,
+    & .board.board--tilted {
+      position: relative;
+      inset: auto;
+      grid-area: 2 / 1 / 3 / -1;
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      translate: none;
+    }
+    & .board-viewport {
+      border: 1px solid #9b815455;
+      border-radius: 6px;
+      background: #17212766;
+    }
+    & .turn-tray {
+      position: relative;
+      inset: auto;
+      grid-area: 3 / 1 / 4 / -1;
+      justify-self: center;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0;
+    }
+    & .combat-side {
+      position: absolute;
+      top: auto;
+      left: auto;
+      right: 12px;
+      bottom: calc(var(--dock-h) + var(--tray-h, 0px) + 26px);
+      width: min(22rem, calc(100% - 24px));
+      max-height: 32%;
+      overflow-y: auto;
+      z-index: 6;
+    }
+    & .reaction-prompt {
+      z-index: 12;
+    }
+  }
+}
+@media screen and (max-width: 1199px) {
+  .field-switch-tools {
+    position: static;
+    align-self: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 700px) {
+  .stage--battle:has(> .field-switch-tools[data-panels='closed']) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px;
+    padding: 4px 4px calc(var(--dock-h) + 6px);
+    & .field-place {
+      display: none;
+    }
+    & .field-panels {
+      padding-inline: 8px;
+      font-size: 0.875rem;
+    }
+    & .field-panels .glyph {
+      display: none;
+    }
+    & .encounter-anchor {
+      gap: 4px;
+    }
+    & .initiative-band {
+      width: 100%;
+    }
+    & .round-mark {
+      font-size: 0.8rem;
+      padding: 0 4px;
+    }
+    & .initiative {
+      padding: 2px;
+    }
+    & .initiative-entry {
+      width: 3.35rem;
+    }
+    & .initiative .medallion {
+      --m: 26px;
+    }
+    & .anchor-caption {
+      width: calc(100vw - 12px);
+      max-width: none;
+      justify-content: center;
+    }
+    & .turn-tray {
+      width: 100%;
+    }
+    & .combat-side {
+      right: 4px;
+      width: min(19rem, calc(100% - 8px));
+    }
+  }
+}
+
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] .stage dialog.reaction-prompt[open] {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    translate: none;
+    transform: none;
+    width: min(30rem, calc(100vw - 24px));
+    height: fit-content;
+    max-height: calc(100dvh - 32px);
+    overflow: auto;
+    color: #f9efd8;
+    border: 3px double #d7b573;
+    background: #1b2e35;
+  }
+  [data-campaign-theme='lighthouse'] dialog.reaction-prompt::backdrop {
+    background: #0b1723b8;
+  }
+}

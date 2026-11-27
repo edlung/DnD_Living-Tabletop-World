@@ -29,6 +29,7 @@ export function BoardPlates({
   encounter,
   layout,
   labelOf,
+  sideLabels,
   onPick,
   onPoint,
   onPress,
@@ -36,6 +37,7 @@ export function BoardPlates({
   readonly encounter: Pick<EncounterView, 'combatants'>;
   readonly layout: BoardLayout;
   readonly labelOf: LabelOf;
+  readonly sideLabels?: boolean | undefined;
   /** A press on a combatant's plate: its square is chosen. */
   readonly onPick: (square: Square) => void;
   /** The pointer came over (`true`) or left (`false`) the plate of the combatant on a square. */
@@ -56,7 +58,14 @@ export function BoardPlates({
         .map((combatant) => {
           // Under the middle of its space (docs/adr/0049-space-and-movement.md §1).
           const room = plateRoom(combatant.position, occupied);
-          const anchor = plateAnchor(layout, combatant.position, spanOf(combatant), standing, room);
+          const anchor = plateAnchor(
+            layout,
+            combatant.position,
+            spanOf(combatant),
+            standing,
+            room,
+            sideLabels,
+          );
           const style: PlateStyle = {
             left: anchor.x,
             top: anchor.y,

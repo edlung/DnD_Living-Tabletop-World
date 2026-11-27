@@ -25,17 +25,21 @@ const OFFSET: Readonly<Partial<Record<DieKind, number>>> = { d10: 0.05, d8: 0.04
 export interface FaceArt {
   /** The GPT surface (obsidian or ivory), once loaded; until then a plain ground. */
   readonly surface: HTMLImageElement | null;
+  /** Blank enamel sampled from this campaign's illustrated dice, before the numbers go on. */
+  readonly enamel?: Readonly<Partial<Record<DieKind, HTMLImageElement | null>>>;
   /** Gold numerals on the players' obsidian, dark ink on the DM's ivory. */
   readonly ink: 'gold' | 'dark';
   /** A decorative impression under the numbers, never a face label. */
   readonly ornament?: HTMLImageElement | null;
 }
 
-function ground(context: CanvasRenderingContext2D, art: FaceArt): void {
+function ground(context: CanvasRenderingContext2D, art: FaceArt, kind: DieKind): void {
   context.fillStyle = art.ink === 'gold' ? '#0b1118' : '#e8dcc3';
   context.fillRect(0, 0, SIZE, SIZE);
-  if (art.surface) context.drawImage(art.surface, 0, 0, SIZE, SIZE);
-  if (art.ornament) {
+  const enamel = art.enamel?.[kind];
+  const surface = enamel ?? art.surface;
+  if (surface) context.drawImage(surface, 0, 0, SIZE, SIZE);
+  if (!enamel && art.ornament) {
     context.save();
     context.globalAlpha = art.ink === 'gold' ? 0.23 : 0.16;
     context.drawImage(art.ornament, 0, 0, SIZE, SIZE);
@@ -119,7 +123,7 @@ export function faceTextures(kind: DieKind, text: string, art: FaceArt) {
   const size = SIZE * FONT[kind];
   const y = SIZE / 2 + SIZE * (OFFSET[kind] ?? 0);
   const [color, paint] = canvas();
-  ground(paint, art);
+  ground(paint, art, kind);
   numeral(paint, text, SIZE / 2, y, size, 0, true, art.ink);
   const [glow, light] = canvas();
   light.fillStyle = '#000';
@@ -158,7 +162,7 @@ export function d4FaceTextures(
     }
   };
   const [color, paint] = canvas();
-  ground(paint, art);
+  ground(paint, art, 'd4');
   draw(paint, true);
   const [glow, light] = canvas();
   light.fillStyle = '#000';

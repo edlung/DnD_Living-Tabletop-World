@@ -1,0 +1,318 @@
+.show-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.show-place {
+  isolation: isolate;
+  background: #152431;
+}
+.show-landscape,
+.forge-space,
+.anvil-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.forge-space {
+  container-type: size;
+  overflow: hidden;
+}
+.forge-plane {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: max(100cqw, 156.75cqh);
+  aspect-ratio: 1254/800;
+}
+.hammer-art {
+  position: absolute;
+  width: 64%;
+  left: 47%;
+  top: 23.8%;
+  transform-origin: 93% 55%;
+  transform: rotate(9deg);
+  filter: drop-shadow(0 3px 2px #27231840);
+}
+.forge-contact,
+.forge-echo {
+  position: absolute;
+  left: 54.2%;
+  top: 57.1%;
+  translate: -50% -50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.forge-contact {
+  width: 7%;
+  aspect-ratio: 2;
+  background: radial-gradient(ellipse, #fffad5 6%, #ffb736a8 40%, transparent 70%);
+}
+.forge-echo {
+  width: 11%;
+  aspect-ratio: 3;
+  border: 2px solid #ffe3a3;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffe0ab;
+}
+.place-caption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 8% 4% 3%;
+  color: #ffe9bc;
+  background: linear-gradient(transparent, #0a1323d9);
+  pointer-events: none;
+}
+.place-caption :is(h1, strong) {
+  display: block;
+  font: 700 clamp(23px, 3vw, 58px)/1 var(--serif);
+  text-shadow: 0 2px 3px #101822;
+}
+.show-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: safe center;
+  justify-items: center;
+  overflow-y: auto;
+  background: #172d33 url('art/desk.webp') center/cover;
+}
+.card-paper {
+  min-width: 0;
+  width: min(92%, 1100px);
+  margin-block: 32px;
+  padding: clamp(24px, 3vw, 56px);
+  border: 2px solid #a78950;
+  box-shadow: 0 6px 24px #050b11a6;
+}
+.letter-paper .card-paper {
+  background: #f5dfb7 url('art/vellum.webp') center/480px;
+  color: #372c20;
+}
+.chalk-slate .card-paper {
+  color: #fff0c8;
+  background:
+    linear-gradient(120deg, #162d2cf5, #284643f2),
+    url('art/vellum.webp') center/300px;
+  border: 6px ridge #ad8550;
+}
+.card-paper :is(strong, h1) {
+  display: block;
+  font: 700 clamp(30px, 4vw, 72px)/1.03 var(--serif);
+  overflow-wrap: anywhere;
+}
+.card-paper p {
+  font: 400 clamp(21px, 2vw, 39px)/1.35 var(--read);
+  margin-top: 1em;
+  overflow-wrap: anywhere;
+}
+.card-paper .card-question {
+  font-weight: bold;
+  border-top: 1px solid currentColor;
+  padding-top: 0.55em;
+}
+.chalk-rings {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px;
+  margin-top: 24px;
+}
+.chalk-rings span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  font: 600 clamp(14px, 1.25vw, 26px)/1.3 var(--sans);
+}
+.chalk-rings i {
+  width: clamp(24px, 3.6vw, 66px);
+  aspect-ratio: 1;
+  border: 3px double #94d8e0;
+  border-radius: 48% 53% 47% 52%;
+  transform: rotate(-5deg);
+}
+.chalk-rings span:nth-child(2) i {
+  border-color: #b6cf8c;
+}
+.chalk-rings span:nth-child(3) i {
+  border-color: #edbc74;
+}
+.chalk-rings span:nth-child(4) i {
+  border-color: #d5b8ed;
+}
+.show-atlas {
+  display: grid;
+  place-items: center;
+  background: #172735 url('art/desk.webp') center/cover;
+}
+.atlas-extent {
+  position: relative;
+  line-height: 0;
+  max-width: 100%;
+}
+.atlas-art {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.atlas-pin {
+  position: absolute;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  color: #fff0c8;
+}
+.atlas-pin i {
+  position: absolute;
+  inset: 0;
+  transform: rotate(45deg);
+  border: 2px solid #ffe6a1;
+  background: #653b21;
+  width: 12px;
+  height: 12px;
+  box-shadow: 0 1px 4px #211c16;
+}
+.atlas-pin span {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  background: #172832ee;
+  border: 1px solid #d4b675;
+  padding: 4px 8px;
+  box-shadow: 0 1px 5px #1d2019;
+  white-space: nowrap;
+  max-width: 32vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font: 700 clamp(13px, 1.5vw, 28px)/1.2 var(--serif);
+}
+.pin-west span {
+  transform: translateX(-90%);
+}
+.atlas-pin b {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pin-east span {
+  transform: translateX(-10%);
+}
+.show-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 4vw, 80px);
+  padding: 8%;
+  background:
+    linear-gradient(#0814216e, #0a1724c4),
+    url('art/desk.webp') center/cover;
+  color: #fff0c8;
+}
+.show-check img {
+  width: min(34vw, 48vh);
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 4px ridge #bfa06a;
+  border-radius: 48% 48% 8px 8px;
+}
+.show-check small {
+  font: 600 clamp(14px, 1.8vw, 32px) var(--sans);
+  color: #dfc797;
+}
+.show-check :is(h1, strong) {
+  font: 700 clamp(36px, 6vw, 104px)/1 var(--serif);
+  margin: 12px 0;
+}
+.show-check p {
+  font: 400 clamp(24px, 3vw, 60px)/1.2 var(--read);
+}
+.show-check .public-total {
+  margin-top: 20px;
+  color: #f9d58c;
+}
+.tv-story {
+  height: 100dvh;
+}
+.tv-story .place-caption {
+  padding: 8% 5% 4%;
+}
+.tv-story .place-caption h1 {
+  font-size: clamp(42px, 6.5vw, 136px);
+}
+.tv-story .atlas-extent {
+  width: min(100%, calc(100dvh * 4 / 3));
+}
+.tv-sound {
+  position: fixed;
+  z-index: 4;
+  bottom: 12px;
+  right: 60px;
+  color: #fff4d7;
+  border: 1px solid #a28c68;
+  background: #14243aee;
+}
+.tv-sound:hover {
+  background: #32475a;
+}
+#tv-roll {
+  position: fixed;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #071221c4;
+  pointer-events: none;
+}
+.tv-throw {
+  width: min(92%, 1550px);
+  border: 2px solid #bb985b;
+  background: #132335;
+  box-shadow: 0 16px 70px #030811;
+  color: #ffedc3;
+}
+.tv-throw .dice-stage {
+  height: clamp(160px, 58vh, 780px);
+}
+.tv-throw p {
+  text-align: center;
+  font: 700 clamp(24px, 3.2vw, 60px)/1.1 var(--serif);
+  padding: 16px;
+}
+@media (max-width: 540px) {
+  .card-paper {
+    margin: 16px 0 64px;
+    padding: 16px;
+    width: 94%;
+  }
+  .chalk-rings span {
+    font-size: 12px;
+  }
+  .show-check {
+    flex-direction: column;
+    text-align: center;
+  }
+  .tv-story .place-caption {
+    padding-bottom: 72px;
+  }
+  .tv-story .show-atlas .atlas-pin span {
+    max-width: 38vw;
+  }
+}
+
+@media (max-width: 440px) {
+  .preview-window .chalk-rings,
+  .tv-story .chalk-rings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 8px;
+  }
+}

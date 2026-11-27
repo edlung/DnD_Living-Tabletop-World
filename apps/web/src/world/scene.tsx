@@ -158,3 +158,42 @@ export function Scene({
     </section>
   );
 }
+
+/** The stage while the projected world is loading, unavailable, or has no known place. */
+export function SceneStatus({
+  resource,
+  settled,
+  onRetry,
+}: {
+  readonly resource: Resource<unknown>;
+  readonly settled: boolean;
+  readonly onRetry: () => void;
+}) {
+  const t = useT();
+  if (resource.status === 'ready')
+    return (
+      <section className="scene" aria-label={t('Scene')}>
+        <div className="stage-status">
+          <StatusPanel
+            state={settled ? 'empty' : 'loading'}
+            label={
+              settled
+                ? t('There are no known locations in this perspective yet.')
+                : t('Loading the scene…')
+            }
+          />
+        </div>
+      </section>
+    );
+  return (
+    <div className="stage-status">
+      <StatusPanel
+        state={resource.status}
+        label={
+          resource.status === 'error' ? resource.message : t('Gathering your view of the world…')
+        }
+        onRetry={onRetry}
+      />
+    </div>
+  );
+}

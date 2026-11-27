@@ -7,6 +7,7 @@ import { GuideButton, GuideDialog } from '../guide/guide.tsx';
 import { AccountButton } from '../session/account-menu.tsx';
 import { ConnectionBadge } from '../session/live-status.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
+import { PlayerSettings } from './player-settings.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
 
@@ -20,6 +21,7 @@ import { ornamentUrl } from '../visual/ui-kit.ts';
  */
 export function TopBar({
   campaignName,
+  playerEdition = false,
   status,
   perspective,
   choices,
@@ -31,6 +33,7 @@ export function TopBar({
   sessionSlot,
 }: {
   readonly campaignName: string;
+  readonly playerEdition?: boolean;
   readonly status: LiveStatus;
   readonly perspective: string;
   readonly choices: readonly { readonly value: string; readonly label: string }[];
@@ -50,8 +53,43 @@ export function TopBar({
   const openGuide = useCallback(() => {
     setGuide(true);
   }, []);
+  const controls = (
+    <div className="session-controls">
+      {!playerEdition && <ConnectionBadge status={status} />}
+      <SoundOnButton className="sound-on-button" />
+      <div className="perspective-control">
+        <label htmlFor="perspective">{t('Perspective')}</label>
+        <select
+          id="perspective"
+          value={perspective}
+          onChange={(event) => {
+            onPerspective(event.target.value);
+          }}
+        >
+          {choices.map((item) => (
+            <option key={item.value} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+        <span className={`perspective-note${dmView ? ' perspective-note--dm' : ''}`}>
+          {dmView ? t('DM view · all knowledge') : t('Scoped perspective')}
+        </span>
+      </div>
+      <GuideButton className="guide-button guide-button--controls" onOpen={openGuide} />
+      <IconButton glyph="refresh" label={t('Refresh world')} labelled onClick={onRefresh} />
+      {signedIn && <AccountButton />}
+      <IconButton
+        glyph="leave"
+        label={signedIn ? t('Sign out') : t('Leave session')}
+        labelled
+        aria-haspopup={signedIn ? 'dialog' : undefined}
+        onClick={onLeave}
+      />
+    </div>
+  );
   return (
-    <header className="topbar">
+    <header className="topbar" data-player-bar={playerEdition || undefined}>
       <div className="topbar-brand">
         <img className="topbar-emblem" src={ornamentUrl('emblem')} alt="" />
         <span className="topbar-wordmark">{t('Living Tabletop World')}</span>
@@ -59,41 +97,18 @@ export function TopBar({
       <div className="topbar-title">
         <h1>{campaignName}</h1>
         <span className="topbar-session" ref={sessionSlot} />
-        <GuideButton className="guide-button guide-button--title" onOpen={openGuide} />
+        {!playerEdition && (
+          <GuideButton className="guide-button guide-button--title" onOpen={openGuide} />
+        )}
       </div>
-      <div className="session-controls">
-        <ConnectionBadge status={status} />
-        <SoundOnButton className="sound-on-button" />
-        <div className="perspective-control">
-          <label htmlFor="perspective">{t('Perspective')}</label>
-          <select
-            id="perspective"
-            value={perspective}
-            onChange={(event) => {
-              onPerspective(event.target.value);
-            }}
-          >
-            {choices.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-          <span className={`perspective-note${dmView ? ' perspective-note--dm' : ''}`}>
-            {dmView ? t('DM view · all knowledge') : t('Scoped perspective')}
-          </span>
-        </div>
-        <GuideButton className="guide-button guide-button--controls" onOpen={openGuide} />
-        <IconButton glyph="refresh" label={t('Refresh world')} labelled onClick={onRefresh} />
-        {signedIn && <AccountButton />}
-        <IconButton
-          glyph="leave"
-          label={signedIn ? t('Sign out') : t('Leave session')}
-          labelled
-          aria-haspopup={signedIn ? 'dialog' : undefined}
-          onClick={onLeave}
-        />
-      </div>
+      {playerEdition ? (
+        <>
+          <ConnectionBadge status={status} />
+          <PlayerSettings>{controls}</PlayerSettings>
+        </>
+      ) : (
+        controls
+      )}
       <GuideDialog
         open={guide}
         dm={dm}

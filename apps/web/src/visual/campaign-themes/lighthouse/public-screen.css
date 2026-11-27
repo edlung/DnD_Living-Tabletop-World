@@ -1,0 +1,123 @@
+@media screen {
+  .screen-player-dice {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 44px;
+    cursor: pointer;
+  }
+  .display[data-campaign-theme='lighthouse'] {
+    & .display-dice-stage:popover-open {
+      color: #fbecd0;
+      background:
+        radial-gradient(ellipse at 50% 42%, #09141d22 12%, #101b26b8 92%),
+        var(--desk) center / cover,
+        #192a31;
+    }
+    & .display-dice-stage .dice-canvas {
+      position: absolute;
+      inset: 0;
+    }
+    & .display-dice-stage .dice-plate {
+      position: absolute;
+      inset: auto auto max(3dvh, env(safe-area-inset-bottom)) 50%;
+      translate: -50% 0;
+      min-width: min(20rem, calc(100% - 24px));
+      max-width: min(64rem, calc(100% - 24px));
+      max-height: 42dvh;
+      overflow: auto;
+      padding: clamp(10px, 1.6vmin, 24px) clamp(16px, 3vmin, 48px);
+      gap: 0.4rem;
+      justify-items: center;
+      text-align: center;
+      border: 3px double var(--foil);
+      background: #182a31f5;
+    }
+    & .display-dice-stage .dice-plate-who {
+      font-size: clamp(1rem, 2.6vmin, 2.2rem);
+      color: #f2d394;
+      justify-content: center;
+    }
+    & .display-dice-stage .dice-plate-line {
+      justify-content: center;
+      font-size: clamp(1.1rem, 3.2vmin, 3rem);
+    }
+    & .display-dice-stage .dice-plate-sum {
+      font-size: 1.4em;
+    }
+    & .display-dice-stage .dice-plate-purpose {
+      font-size: clamp(0.9rem, 2.1vmin, 1.7rem);
+    }
+    & .display-dice-stage .display-dice-faces {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    & .display-dice-stage .display-dice-faces li {
+      min-width: 3rem;
+      padding: 0.15em 0.55em;
+    }
+    & .display-dice-stage .display-die-face {
+      font-size: clamp(1.2rem, 3.1vmin, 3rem);
+    }
+    & .display-battle,
+    & .display-dice,
+    & .display-chronicle,
+    & .display-big-roll {
+      background:
+        linear-gradient(115deg, #111c24df, #142431b8),
+        var(--desk) center / cover;
+    }
+    & .display-battle {
+      gap: 1vmin;
+      padding: 1vmin 1vmin 1.5vmin;
+    }
+    & .initiative-band,
+    & .display-place-card,
+    & .display-waiting-strip,
+    & .display-recap {
+      border-color: #aa8956;
+      background: #192b32f2;
+    }
+    & .display-title {
+      background:
+        linear-gradient(90deg, #111b2070, #15232ba8),
+        url('./cabinet.webp') center / cover;
+    }
+    & .display-title > .display-art {
+      display: none;
+    }
+    & .display-title-text {
+      padding: 3vmin 5vmin;
+      border: 0.4vmin double var(--foil);
+      background: var(--cloth);
+    }
+    & .display-chronicle article {
+      width: min(67rem, 94%);
+      max-width: 100%;
+      padding: clamp(1.25rem, 4vmin, 5rem);
+      border: 0.5vmin double #ac8b55;
+      background: var(--leaf);
+      color: #342e25;
+      box-shadow:
+        0 0.6vmin #ae9673,
+        0 1vmin #433e36,
+        0 1.4vmin #bb9f75;
+    }
+    & .display-chronicle h1 {
+      color: #754626;
+    }
+    & .display-dice-faces li {
+      border-color: #b69a67;
+      background:
+        linear-gradient(#0b203368, #102a38bf),
+        url('./lapis.webp') center / cover;
+    }
+    & .display-die-face,
+    & .display-die-sides {
+      color: #f9e9bf;
+    }
+  }
+}

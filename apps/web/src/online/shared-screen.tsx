@@ -84,6 +84,8 @@ export function SharedScreenSheet({
       title={t('Table screen')}
       glyph="live"
       open={shell.sheet === 'shared'}
+      showPlayerAsks={shell.playerEdition && !shell.hero && !shell.chronicle}
+      backToBook={shell.returnsToPlayerBook}
       onClose={shell.closeSheet}
     >
       {shown?.cast.kind === 'battlefield' ? (

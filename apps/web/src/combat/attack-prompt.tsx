@@ -5,7 +5,8 @@ import { useId } from 'react';
 import { Glyph } from '../visual/glyph.tsx';
 import { ignoreReaction } from './combat-bindings.ts';
 import { useCombatantLabels } from './labels.ts';
-import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
+import type { ReactionPromptProps } from './reaction-card.ts';
+import { ReactionFrame } from './reaction-frame.tsx';
 
 /**
  * An attack's question and a rebuke's (docs/adr/0046-reactions-beyond-counterspell.md §3–4), shown
@@ -15,10 +16,16 @@ import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
  * burn; creatures falling, Feather Fall may slow (docs/adr/0049-space-and-movement.md §8). The
  * World Engine rolls everything; the attack, the damage or the fall waits for the answer.
  */
-export function AttackPrompt({ encounter, canAct, locked, blocked, onRun }: ReactionPromptProps) {
+export function AttackPrompt({
+  encounter,
+  canAct,
+  locked,
+  blocked,
+  modal = false,
+  onRun,
+}: ReactionPromptProps) {
   const t = useT();
   const ids = useId();
-  const card = useAnnounceOnce(blocked);
   const labelOf = useCombatantLabels(encounter);
   const window = encounter.reactionWindow;
   const trigger = window?.trigger;
@@ -110,14 +117,7 @@ export function AttackPrompt({ encounter, canAct, locked, blocked, onRun }: Reac
     'feather-fall': t('Feather Fall'),
   };
   return (
-    <section
-      ref={card}
-      className="reaction-prompt"
-      role="alertdialog"
-      aria-labelledby={`${ids}-title`}
-      aria-describedby={`${ids}-trigger`}
-      tabIndex={-1}
-    >
+    <ReactionFrame modal={modal} blocked={blocked} ids={ids}>
       <p className="eyebrow reaction-eyebrow">
         <Glyph name="reaction" />
         {t('Reaction available')}
@@ -151,6 +151,6 @@ export function AttackPrompt({ encounter, canAct, locked, blocked, onRun }: Reac
         )}
       </div>
       <p className="reaction-note">{note}</p>
-    </section>
+    </ReactionFrame>
   );
 }

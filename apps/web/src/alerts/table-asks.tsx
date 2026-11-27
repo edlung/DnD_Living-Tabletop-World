@@ -1,6 +1,7 @@
 import type { EncounterView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import type { WorldApi } from '../api/client.ts';
 import { BreakReminder } from '../comforts/break-reminder.tsx';
@@ -32,6 +33,7 @@ import { newWaits, waitsOf, type Wait } from './waits.ts';
  * phone that slept comes back to it.
  */
 export function TableAsks({
+  meetingSlot,
   api,
   isDm,
   ready,
@@ -46,6 +48,7 @@ export function TableAsks({
   onReadHandout,
   beside,
 }: {
+  readonly meetingSlot: HTMLDivElement | null | undefined;
   readonly api: WorldApi;
   readonly isDm: boolean;
   /** The world's views have been read: what waits then is not news. */
@@ -92,23 +95,17 @@ export function TableAsks({
   // On a phone the column stays under the top bar and scrolls (`slot-room.ts`).
   const slot = useRef<HTMLDivElement>(null);
   useSlotRoom(slot);
-  return (
-    <div className="rest-banner-slot table-asks" aria-live="polite" ref={slot}>
+  const evening = (
+    <>
       <LobbyBanner
         api={api}
         actorId={actorId}
         isDm={isDm}
-        fightSlot={encounter === null ? null : FIGHT_QUIET_ID}
+        fightSlot={encounter !== null && !meetingSlot ? FIGHT_QUIET_ID : null}
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
         beside={beside}
       />
-      {/* A player's quiet request for a pause (docs/adr/0073-table-ideas.md §2): the DM's alone. */}
-      {isDm && <PauseAsks api={api} />}
-      {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
-      {isDm && <BreakReminder api={api} />}
-      {/* What this table's screens reported when they broke (docs/adr/0073-table-ideas.md §1). */}
-      {isDm && <TroubleNotice api={api} />}
       <RestBanner
         isDm={isDm}
         actorId={actorId}
@@ -121,6 +118,22 @@ export function TableAsks({
           onOpenSheet(id);
         }}
       />
+    </>
+  );
+  return (
+    <div className="rest-banner-slot table-asks" aria-live="polite" ref={slot}>
+      {meetingSlot === undefined ? (
+        evening
+      ) : (
+        <MeetingControls page={meetingSlot}>{evening}</MeetingControls>
+      )}
+      {/* A player's quiet request for a pause (docs/adr/0073-table-ideas.md §2): the DM's alone. */}
+      {isDm && <PauseAsks api={api} />}
+      {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
+      {isDm && <BreakReminder api={api} />}
+      {/* What this table's screens reported when they broke (docs/adr/0073-table-ideas.md §1). */}
+      {isDm && <TroubleNotice api={api} />}
+
       {table &&
         characterId !== null &&
         asked.map((request) => (
@@ -157,6 +170,35 @@ export function TableAsks({
         </div>
       ))}
     </div>
+  );
+}
+
+/** Moving the same controls between the stage and the book keeps an evening's unwritten star. */
+function MeetingControls({
+  page,
+  children,
+}: {
+  readonly page: HTMLDivElement | null;
+  readonly children: ReactNode;
+}) {
+  const anchor = useRef<HTMLSpanElement>(null);
+  const [host] = useState(() => {
+    const node = document.createElement('div');
+    node.className = 'folio-meeting-controls';
+    return node;
+  });
+  useLayoutEffect(() => {
+    if (page) page.append(host);
+    else anchor.current?.after(host);
+    return () => {
+      host.remove();
+    };
+  }, [host, page]);
+  return (
+    <>
+      <span hidden ref={anchor} />
+      {createPortal(children, host)}
+    </>
   );
 }
 

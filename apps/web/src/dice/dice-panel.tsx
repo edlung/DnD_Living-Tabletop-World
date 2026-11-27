@@ -128,14 +128,16 @@ export function DicePanel({
         title={t('Dice')}
         glyph="roll"
         open={shell.sheet === 'dice'}
+        backToBook={shell.returnsToPlayerBook}
         onClose={shell.closeSheet}
       >
         <div className="dice-panel">
           <div className="dice-panel-main">
             {/* First, where a thumb finds it on a phone: one press cheers the table (ADR 0072 §3). */}
-            <CheerRow />
+            {!shell.playerEdition && <CheerRow />}
             <Requests characters={characters} />
-            <RollBuilder characters={characters} />
+            <RollBuilder characters={characters} readyD20={shell.playerEdition} />
+            {shell.playerEdition && <CheerRow />}
             <CheckRoller />
             <AskForCheck characters={characters} />
             <RandomTables api={api} />

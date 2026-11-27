@@ -17,5 +17,10 @@ describe('the cast below the DM', () => {
     expect(castForParty(state, display, { kind: 'join' }, null).cast).toEqual({ kind: 'join' });
     expect(castForParty(state, player, { kind: 'join' }, null).cast).toEqual({ kind: 'blank' });
     expect(castForParty(state, player, { kind: 'dice' }, null).cast).toEqual({ kind: 'dice' });
+    const cast = { kind: 'scene', locationId: 'unrevealed-tower', playerDice3d: true } as const;
+    expect(castForParty(state, display, cast, cast.locationId)).toEqual({
+      cast: { kind: 'scene', locationId: null, playerDice3d: true },
+      place: null,
+    });
   });
 });

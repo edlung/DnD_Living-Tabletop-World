@@ -1,5 +1,5 @@
 import type { EncounterView, EntityKind, EntityRef, PresenceResponse } from '@ltw/contracts';
-import { useT } from '@ltw/ui';
+import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useRef } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -21,6 +21,7 @@ function Member({
   present,
   hitPoints,
   selected,
+  inBook,
   onSelect,
 }: {
   readonly api: WorldApi;
@@ -28,6 +29,7 @@ function Member({
   readonly present: boolean;
   readonly hitPoints: HitPoints | null;
   readonly selected: boolean;
+  readonly inBook: boolean;
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
@@ -45,6 +47,11 @@ function Member({
       <Medallion image={image} kind={character.kind} size="sm" tone="party" selected={selected} />
       <span className="rail-text" aria-hidden="true">
         <span className="rail-name">{character.name}</span>
+        {inBook && (
+          <span className="folio-presence">
+            {present ? t('At the table now') : t('Player offline')}
+          </span>
+        )}
         {hitPoints && (
           <span className="rail-hp">
             {hitPoints.current}/{hitPoints.max}
@@ -76,11 +83,13 @@ function Member({
  * them. Presence is shown, never used to decide anything; nothing while it is loading.
  */
 export function PartyRail({
+  inBook = false,
   api,
   encounter,
   selectedId,
   onSelect,
 }: {
+  readonly inBook?: boolean;
   readonly api: WorldApi;
   readonly encounter: EncounterView | null;
   readonly selectedId: string | null;
@@ -91,7 +100,7 @@ export function PartyRail({
     (signal: AbortSignal) => api.get<PresenceResponse>('presence', signal),
     [api],
   );
-  const { resource } = useResource('presence', load);
+  const { resource, retry } = useResource('presence', load);
   // Wide, in a fight, the rail scrolls when the left column has no room for all of it.
   const rail = useRef<HTMLElement>(null);
   const edges = useScrollEdges(
@@ -101,14 +110,21 @@ export function PartyRail({
       : '',
     'y',
   );
-  if (resource.status !== 'ready') return null;
+  if (resource.status !== 'ready')
+    return inBook ? (
+      <StatusPanel
+        state={resource.status === 'error' ? 'error' : 'loading'}
+        label={resource.status === 'error' ? t(resource.message) : t('Opening the party page…')}
+        onRetry={retry}
+      />
+    ) : null;
   const { dmConnected, characters } = resource.value;
   const hitPoints = (entityId: string): HitPoints | null =>
     encounter?.combatants.find((entry) => entry.entity.entityId === entityId)?.hitPoints ?? null;
   return (
     <section
       ref={rail}
-      className="party-rail"
+      className={inBook ? 'folio-companions' : 'party-rail'}
       aria-label={t('At the table')}
       data-more-before={edges.before ? '' : undefined}
       data-more-after={edges.after ? '' : undefined}
@@ -124,6 +140,7 @@ export function PartyRail({
               api={api}
               character={character}
               present={present}
+              inBook={inBook}
               hitPoints={hitPoints(character.entityId)}
               selected={selectedId === character.entityId}
               onSelect={onSelect}

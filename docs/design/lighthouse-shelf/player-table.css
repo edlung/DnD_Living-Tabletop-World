@@ -1,0 +1,316 @@
+#table-view.has-tray {
+  display: grid;
+  grid-template-columns: minmax(0, 1.72fr) minmax(255px, 0.9fr);
+  align-items: start;
+  gap: 20px;
+}
+#shared-view {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+#table-view:not(.has-tray) #shared-view {
+  grid-template-columns: minmax(0, 1.72fr) minmax(255px, 0.9fr);
+  align-items: start;
+}
+.roll-desk,
+.public-pocket,
+.pocket-stats,
+.quiet-water,
+.hero-folio,
+.journal-leaf {
+  min-width: 0;
+  border: 1px solid var(--edge);
+  box-shadow: 0 8px 20px #040a1466;
+}
+.roll-desk {
+  background: #192b3a;
+  overflow: hidden;
+}
+.desk-title,
+.public-pocket header {
+  padding: clamp(15px, 2vw, 24px);
+  border-bottom: 1px solid var(--thin);
+}
+.desk-title > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.desk-title h2,
+.public-pocket h2,
+.quiet-water h2,
+.journal-leaf h2,
+.dossier h2 {
+  font-size: clamp(29px, 3.2vw, 48px);
+  line-height: 1.05;
+  margin-top: 5px;
+}
+.formula {
+  flex: none;
+  padding: 4px 9px;
+  border: 1px solid var(--thin);
+  border-radius: 4px;
+  color: #f4deb4;
+  font: 650 15px/1.3 var(--sans);
+}
+.roll-desk .dice-stage {
+  height: clamp(230px, 26vw, 340px);
+}
+.throw-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 15px clamp(14px, 2vw, 24px);
+}
+.throw-button {
+  border: 1px solid #eed49f;
+  box-shadow: inset 0 0 0 2px #a77f4b;
+  background: linear-gradient(#f2d49e, #d6b16f);
+  color: #30241a;
+  min-height: 46px;
+  padding: 9px 24px;
+  font: 700 16px/1.2 var(--sans);
+  border-radius: 3px;
+}
+.throw-button:hover {
+  filter: brightness(1.08);
+}
+.throw-button:disabled {
+  opacity: 0.66;
+}
+.roll-state {
+  color: #ead6b4;
+  font: 500 14px/1.45 var(--sans);
+}
+.roll-receipt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.roll-receipt strong,
+.roll-log b {
+  display: grid;
+  place-items: center;
+  min-width: 45px;
+  min-height: 45px;
+  border: 1px solid var(--edge);
+  background: #1d3140;
+  color: #f8d59b;
+  font: 700 32px/1 var(--serif);
+}
+.roll-receipt span {
+  font: 600 16px var(--sans);
+}
+.quiet-water {
+  display: flex;
+  align-items: end;
+  min-height: 240px;
+  background:
+    linear-gradient(0deg, #101f2dfc 0%, #122231db 42%, #11273512 86%),
+    url('art/archipelago.webp') center 34% / cover;
+}
+.quiet-water > div,
+.pocket-stats {
+  padding: clamp(18px, 2.3vw, 28px);
+}
+.quiet-water h2,
+.public-pocket h2 {
+  font-size: clamp(27px, 2.4vw, 37px);
+}
+.quiet-water p,
+.journal-leaf > p {
+  margin-top: 8px;
+  line-height: 1.5;
+  font-size: 15px;
+  max-width: 44em;
+}
+.pocket-stats,
+.hero-folio,
+.journal-leaf {
+  background: #edddbd url('art/vellum.webp') center / 650px;
+  color: #33281d;
+}
+.pocket-stats h2,
+.journal-leaf h3,
+.dossier h3 {
+  font-size: 27px;
+  line-height: 1.15;
+}
+.vital-line,
+.ability-line {
+  margin: 15px 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.vital-line {
+  border-block: 1px solid #9a7b4790;
+  padding: 12px 0;
+}
+.vital-line dt,
+.ability-line dt,
+.keepsake small {
+  color: #58472f;
+  font: 600 12px/1.25 var(--sans);
+}
+.vital-line dd,
+.ability-line dd {
+  color: #253b42;
+  font: 700 clamp(23px, 2.1vw, 30px)/1.1 var(--serif);
+  margin: 4px 0 0;
+}
+.folio-link,
+.pose-picker button {
+  min-height: 44px;
+  border: 1px solid #947846;
+  padding: 8px 12px;
+}
+.folio-link {
+  color: #233a43;
+  background: transparent;
+  font-weight: 650;
+}
+.public-pocket {
+  background: #152937;
+  overflow: hidden;
+}
+.public-pocket header {
+  padding: 14px 18px;
+}
+.pocket-frame {
+  aspect-ratio: 1.56;
+}
+.pocket-frame .show-card {
+  aspect-ratio: auto;
+}
+.pocket-frame:has(.show-card) {
+  aspect-ratio: auto;
+}
+.pocket-frame .card-paper {
+  padding: 16px;
+  margin-block: 14px;
+}
+.pocket-frame .card-paper :is(strong, h1) {
+  font-size: 27px;
+}
+.pocket-frame .card-paper p {
+  font-size: 18px;
+}
+.pocket-board {
+  width: 100%;
+  aspect-ratio: 10/8;
+}
+.pocket-order {
+  margin: 0;
+  padding: 8px;
+  display: flex;
+  list-style: none;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.pocket-order .turn-entry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px;
+  border: 1px solid var(--thin);
+}
+.pocket-order .turn-entry[aria-current] {
+  background: #6d5833;
+}
+.pocket-order img {
+  width: 25px;
+  height: 28px;
+  object-fit: cover;
+}
+.pocket-order small {
+  display: none;
+}
+.pocket-order strong {
+  font: 650 13px/1 var(--sans);
+}
+.tray-done,
+.field-full {
+  border: 1px solid #ab8c57;
+  background: #172b38;
+  color: var(--cream);
+  min-height: 44px;
+}
+.tray-done {
+  padding: 8px 13px;
+  font: 600 14px var(--sans);
+  margin-inline-start: auto;
+}
+.field-pocket header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+}
+.field-full {
+  flex: none;
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  border-radius: 3px;
+}
+#player-main:is(:fullscreen, .expanded-field) {
+  display: grid;
+  grid-template: auto auto minmax(0, 1fr) / minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #101d28;
+}
+#player-main.expanded-field {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  height: 100dvh;
+}
+#player-main:is(:fullscreen, .expanded-field) :is(#identity, .traveller-tabs, .pocket-stats),
+#player-main:is(:fullscreen, .expanded-field):not(.field-check) #player-tray {
+  display: none;
+}
+#player-main:is(:fullscreen, .expanded-field) :is(#turn-signal p, .summons-link, #table-view) {
+  margin: 0;
+}
+#player-main:is(:fullscreen, .expanded-field) #table-view,
+#player-main:is(:fullscreen, .expanded-field) #table-view #shared-view {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  min-height: 0;
+  place-items: stretch;
+  gap: 0;
+}
+#player-main:is(:fullscreen, .expanded-field).field-check #table-view #shared-view {
+  display: none;
+}
+#player-main:is(:fullscreen, .expanded-field) .field-pocket {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+#player-main:is(:fullscreen, .expanded-field) .pocket-extent {
+  display: grid;
+  place-items: center;
+  container-type: size;
+}
+#player-main:is(:fullscreen, .expanded-field) .pocket-board {
+  width: min(100cqw, 125cqh);
+}
+#player-main:is(:fullscreen, .expanded-field).field-check #player-tray {
+  display: grid;
+  align-items: safe center;
+  justify-items: center;
+  padding: clamp(8px, 2vw, 24px);
+  overflow-y: auto;
+}
+#player-main:is(:fullscreen, .expanded-field) .roll-desk {
+  width: min(100%, 880px);
+}
+#player-main:is(:fullscreen, .expanded-field) .dice-stage {
+  height: clamp(128px, 46dvh, 440px);
+}

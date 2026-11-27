@@ -1,6 +1,7 @@
 import { useT } from '@ltw/ui';
 import { useEffect, useRef, type ReactNode } from 'react';
 
+import { PlayerCheckCall } from '../dice/player-check-call.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { sheetElementId, type SheetId } from './use-shell.ts';
@@ -17,6 +18,8 @@ export function Sheet({
   title,
   glyph,
   open,
+  backToBook = false,
+  showPlayerAsks = false,
   onClose,
   children,
 }: {
@@ -24,6 +27,8 @@ export function Sheet({
   readonly title: string;
   readonly glyph: GlyphName;
   readonly open: boolean;
+  readonly backToBook?: boolean;
+  readonly showPlayerAsks?: boolean;
   readonly onClose: () => void;
   readonly children: ReactNode;
 }) {
@@ -50,15 +55,21 @@ export function Sheet({
         <button
           type="button"
           className="sheet-close"
-          aria-label={t('Close {name}', { name: title })}
+          aria-label={
+            backToBook
+              ? t('Close {name}', { name: title }) + ' · ' + t('Back to book')
+              : t('Close {name}', { name: title })
+          }
           onClick={onClose}
         >
-          <span className="sheet-close-word" aria-hidden="true">
-            {t('Close')}
+          {backToBook && <Glyph name="chevron-left" />}
+          <span className={backToBook ? 'sheet-back-word' : 'sheet-close-word'} aria-hidden="true">
+            {t(backToBook ? 'Back to book' : 'Close')}
           </span>
-          <Glyph name="close" />
+          {!backToBook && <Glyph name="close" />}
         </button>
       </header>
+      {open && showPlayerAsks && <PlayerCheckCall />}
       <div className="sheet-body">{children}</div>
     </section>
   );

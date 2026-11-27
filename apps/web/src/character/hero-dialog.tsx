@@ -1,12 +1,6 @@
-import type {
-  CharacterDerived,
-  CharacterSheet,
-  CharacterSheetResponse,
-  EntityKind,
-} from '@ltw/contracts';
+import type { CharacterDerived, CharacterSheet, EntityKind } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import {
-  useCallback,
   useEffect,
   useId,
   useLayoutEffect,
@@ -17,12 +11,12 @@ import {
   type ReactNode,
 } from 'react';
 
-import { ApiError, type WorldApi } from '../api/client.ts';
-import { useResource } from '../api/resource.ts';
+import type { WorldApi } from '../api/client.ts';
 import type { HeroTab } from '../shell/use-shell.ts';
 import { IconButton } from '../visual/icon-button.tsx';
 import { usePortrait } from '../world/use-portrait.ts';
-import { useRereadOn } from '../world/use-world-data.ts';
+import { PlayerCheckCall } from '../dice/player-check-call.tsx';
+import { useHeroSheet } from './use-hero-sheet.ts';
 import { CharacterCard } from './character-card.tsx';
 import { OverviewTab } from './overview-tab.tsx';
 import { PrintSection } from './print-sheet.tsx';
@@ -121,6 +115,7 @@ function Tabs({
  */
 export function HeroDialog({
   api,
+  playerEdition = false,
   revision,
   entityId,
   name,
@@ -134,6 +129,7 @@ export function HeroDialog({
   notice,
 }: {
   readonly api: WorldApi;
+  readonly playerEdition?: boolean;
   readonly revision: number;
   /** Whose dialog is open; null while closed. */
   readonly entityId: string | null;
@@ -230,6 +226,7 @@ export function HeroDialog({
         <UnsavedContext.Provider value={unsaved}>
           <HeroContent
             key={entityId}
+            playerEdition={playerEdition}
             api={api}
             revision={revision}
             entityId={entityId}
@@ -250,6 +247,7 @@ export function HeroDialog({
 
 function HeroContent({
   api,
+  playerEdition,
   revision,
   entityId,
   kind,
@@ -261,6 +259,7 @@ function HeroContent({
   story,
 }: {
   readonly api: WorldApi;
+  readonly playerEdition: boolean;
   readonly revision: number;
   readonly entityId: string;
   readonly kind: EntityKind;
@@ -277,25 +276,12 @@ function HeroContent({
   const tabs = hasStory ? [...TABS, STORY_TAB] : TABS;
   // A sheet without the Story tab, opened where one was last read: its first tab.
   const shownTab: HeroTab = tab === 'story' && !hasStory ? 'overview' : tab;
-  // A person the DM added in words has no sheet until one is set: the server's 404 then says so
-  // plainly instead of a failure with Retry (Stage 360).
-  const load = useCallback(
-    (signal: AbortSignal) =>
-      api
-        .get<CharacterSheetResponse>(`entities/${encodeURIComponent(entityId)}/sheet`, signal)
-        .catch((error: unknown) => {
-          if (error instanceof ApiError && error.status === 404) return null;
-          throw error;
-        }),
-    [api, entityId],
-  );
-  const { resource, retry, reread } = useResource(`hero:${entityId}`, load);
-  useRereadOn(revision, reread);
+  const { resource, retry, reread } = useHeroSheet(api, entityId, revision);
   const image = usePortrait(api, entityId);
   const value = resource.status === 'ready' ? resource.value : null;
   if (resource.status === 'ready' && value === null) {
     return (
-      <div className="hero-frame">
+      <div className="hero-frame" data-hero-tab={shownTab}>
         <IconButton
           glyph="close"
           className="hero-close"
@@ -309,7 +295,7 @@ function HeroContent({
     );
   }
   return (
-    <div className="hero-frame">
+    <div className="hero-frame" data-hero-tab={shownTab}>
       <IconButton
         glyph="close"
         className="hero-close"
@@ -340,7 +326,9 @@ function HeroContent({
           />
           <div className="hero-main">
             <Tabs idBase={idBase} tabs={tabs} tab={shownTab} onTab={onTab} />
+            {playerEdition && <PlayerCheckCall />}
             <div
+              data-hero-tab={shownTab}
               id={`${idBase}-panel`}
               className="hero-panel"
               role="tabpanel"

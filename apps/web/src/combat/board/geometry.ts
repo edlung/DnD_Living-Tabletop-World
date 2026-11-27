@@ -168,7 +168,7 @@ const HEAD_GAP = 0.06;
 export interface PlateAnchor extends Point {
   readonly scale: number;
   /** Which edge of the plate lies on the point. */
-  readonly edge: 'bottom' | 'top';
+  readonly edge: 'bottom' | 'top' | 'left' | 'right';
 }
 
 /** A combatant standing on the board, for the plates' placement. */
@@ -212,6 +212,7 @@ export function plateAnchor(
   span = 1,
   others: readonly Standing[] = [],
   room = PLATE_SQUARES,
+  besideRows = false,
 ): PlateAnchor {
   // A figure spanning several squares stands in the middle of them (ADR 0049 §1).
   const x = (square.x + span / 2) * layout.cell;
@@ -226,6 +227,31 @@ export function plateAnchor(
   const front = projectPoint(layout, { x, y: (square.y + BASE_FRONT * span) * layout.cell });
   const below: PlateAnchor = { x: front.x, y: front.y, scale: front.scale, edge: 'top' };
   const own = figureBox(layout, { square, span });
+  if (
+    besideRows &&
+    span === 1 &&
+    others.some(({ square: at }) => at.x === square.x && Math.abs(at.y - square.y) === 1)
+  ) {
+    // In a column of tall miniatures, name each at its own base, towards open ground.
+    const columns = layout.plane.width / layout.cell;
+    const right = square.x < columns / 2;
+    const start = right ? square.x + 1 : square.x - room;
+    const end = right ? start + room : square.x;
+    const free =
+      start >= 0 &&
+      end <= columns &&
+      !others.some(
+        ({ square: at, span: size }) =>
+          at.y <= square.y && at.y + size > square.y && at.x < end && at.x + size > start,
+      );
+    if (free)
+      return {
+        x: own.base.x + (right ? 1 : -1) * layout.cell * own.scale * 0.65,
+        y: own.base.y,
+        scale: own.scale,
+        edge: right ? 'left' : 'right',
+      };
+  }
   const headY = own.top - HEAD_GAP * layout.cell * own.scale;
   const above: PlateAnchor = { x: own.base.x, y: headY, scale: own.scale, edge: 'bottom' };
   const plateBox = (anchor: PlateAnchor): Box => {

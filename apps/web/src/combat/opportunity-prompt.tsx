@@ -6,7 +6,8 @@ import { Glyph } from '../visual/glyph.tsx';
 import { ignoreReaction, opportunityAttack } from './combat-bindings.ts';
 import { weaponWords } from './combat-art.ts';
 import { useCombatantLabels } from './labels.ts';
-import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
+import type { ReactionPromptProps } from './reaction-card.ts';
+import { ReactionFrame } from './reaction-frame.tsx';
 
 /** An attack's words: a stat block's own name, a character's weapon, or an Unarmed Strike. */
 export function attackWords(t: Translate, option: ReactionAttackOption): string {
@@ -30,11 +31,11 @@ export function OpportunityPrompt({
   canAct,
   locked,
   blocked,
+  modal = false,
   onRun,
 }: ReactionPromptProps) {
   const t = useT();
   const ids = useId();
-  const card = useAnnounceOnce(blocked);
   const labelOf = useCombatantLabels(encounter);
   const window = encounter.reactionWindow;
   if (window?.trigger.kind !== 'move') return null;
@@ -42,14 +43,7 @@ export function OpportunityPrompt({
   if (asked.length === 0) return null;
   const mover = window.trigger.mover.name ?? labelOf(window.trigger.mover.entityId);
   return (
-    <section
-      ref={card}
-      className="reaction-prompt"
-      role="alertdialog"
-      aria-labelledby={`${ids}-title`}
-      aria-describedby={`${ids}-trigger`}
-      tabIndex={-1}
-    >
+    <ReactionFrame modal={modal} blocked={blocked} ids={ids}>
       <p className="eyebrow reaction-eyebrow">
         <Glyph name="reaction" />
         {t('Reaction available')}
@@ -110,6 +104,6 @@ export function OpportunityPrompt({
       <p className="reaction-note">
         {t('An opportunity attack spends your Reaction until your next turn.')}
       </p>
-    </section>
+    </ReactionFrame>
   );
 }

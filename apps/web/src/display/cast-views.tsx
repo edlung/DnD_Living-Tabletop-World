@@ -33,8 +33,9 @@ import { NextGameLine } from '../ritual/next-game.tsx';
 import { AgreementCast } from '../ritual/agreement.tsx';
 import { StarsCast } from '../ritual/stars-cast.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
-import { DiceFaces } from './big-roll.tsx';
+import { DiceFaces } from '../dice/dice-faces.tsx';
 import { PlaceCard } from './place-card.tsx';
+import { campaignTheme } from '../visual/campaign-themes/index.ts';
 import { WaitingList } from './waiting-strip.tsx';
 
 /**
@@ -180,6 +181,7 @@ function BattleCast(props: Props & { readonly zoom: number; readonly focus: stri
   }
   return (
     <Battle
+      sideLabels={campaignTheme(props.campaignName)?.id === 'lighthouse'}
       encounter={encounter}
       zoom={props.zoom}
       focus={props.focus}
@@ -190,12 +192,14 @@ function BattleCast(props: Props & { readonly zoom: number; readonly focus: stri
 }
 
 function Battle({
+  sideLabels,
   encounter,
   zoom,
   focus,
   scene,
   marks,
 }: {
+  readonly sideLabels: boolean;
   readonly encounter: NonNullable<EncounterResponse['encounter']>;
   readonly zoom: number;
   readonly focus: string | null;
@@ -237,6 +241,7 @@ function Battle({
           marks={marks}
           view={{
             mode: wide ? 'tilted' : 'flat',
+            sideLabels,
             zoom,
             narrow,
             choose: () => undefined,
@@ -258,7 +263,7 @@ function DiceCast(props: Props) {
     api.get<CheckRequestsResponse>('check-requests', signal),
   );
   const latest = (feed?.rolls ?? [])
-    .filter((roll) => !roll.hidden)
+    .filter((roll) => !roll.hidden && !roll.private)
     .slice(-3)
     .reverse();
   const waiting = (asked?.requests ?? []).filter((request) => request.status === 'open');

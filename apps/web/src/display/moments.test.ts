@@ -49,9 +49,10 @@ describe('the screen’s moments', () => {
 
   it('show the rolls new to the screen, the latest few, never a hidden one', () => {
     const seen = new Set(['a', 'b']);
-    expect(freshRolls([roll('a'), roll('b'), roll('c'), roll('d', true)], seen)).toEqual([
-      roll('c'),
-    ]);
+    const privateRoll = { ...roll('e'), private: true as const };
+    expect(
+      freshRolls([roll('a'), roll('b'), roll('c'), roll('d', true), privateRoll], seen),
+    ).toEqual([roll('c')]);
     const many = Array.from({ length: AT_ONCE + 2 }, (_, index) => roll(`new-${String(index)}`));
     expect(freshRolls(many, seen).map((one) => one.rollId)).toEqual(
       many.slice(-AT_ONCE).map((one) => one.rollId),
@@ -62,6 +63,14 @@ describe('the screen’s moments', () => {
     expect(followsFight(party)).toBe(true);
     expect(followedCast(party, false)).toBe(party);
     expect(followedCast(party, true).cast).toEqual({ kind: 'battlefield', zoom: 1, focus: null });
+    const cinema = cast({ kind: 'scene', locationId: null, playerDice3d: true }, 'market-square');
+    expect(followedCast(cinema, true).cast).toEqual({
+      kind: 'battlefield',
+      zoom: 1,
+      focus: null,
+      playerDice3d: true,
+    });
+    expect(followedCast(cinema, false)).toBe(cinema);
     // A place the DM picked, or any other cast, is the DM's word: it stays.
     const picked = cast({ kind: 'scene', locationId: 'golden-stag-inn' }, 'golden-stag-inn');
     expect(followsFight(picked)).toBe(false);

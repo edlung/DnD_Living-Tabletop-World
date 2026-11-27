@@ -25,7 +25,15 @@ export function RulesSheet({ shell, isDm }: { readonly shell: Shell; readonly is
   const [seen, setSeen] = useState(false);
   if (open && !seen) setSeen(true);
   return (
-    <Sheet id="rules" title={t('Rules')} glyph="study" open={open} onClose={shell.closeSheet}>
+    <Sheet
+      id="rules"
+      title={t('Rules')}
+      glyph="study"
+      open={open}
+      showPlayerAsks={shell.playerEdition && !shell.hero && !shell.chronicle}
+      backToBook={shell.returnsToPlayerBook}
+      onClose={shell.closeSheet}
+    >
       {seen && <RulesBody isDm={isDm} />}
     </Sheet>
   );

@@ -15,6 +15,8 @@ export function DockMore({
   onOpen,
   current,
   waiting,
+  label,
+  compact,
   children,
 }: {
   /** The list is open: the dock keeps it, so measuring the dock again keeps it open. */
@@ -24,6 +26,8 @@ export function DockMore({
   readonly current: boolean;
   /** What waits under More (the DM's open draft, new messages), as words. */
   readonly waiting: string;
+  readonly label?: string;
+  readonly compact?: string;
   /** The items, each given `pick` to call before it acts. */
   readonly children: (pick: () => void) => ReactNode;
 }) {
@@ -63,7 +67,7 @@ export function DockMore({
         id={DOCK_MORE_ID}
         type="button"
         className={`dock-button${current ? ' is-current' : ''}${waiting ? ' has-waiting' : ''}`}
-        aria-label={t('More tools')}
+        aria-label={label ?? t('More tools')}
         aria-expanded={open}
         aria-controls={`${DOCK_MORE_ID}-list`}
         aria-describedby={waiting ? `${DOCK_MORE_ID}-waiting` : undefined}
@@ -74,10 +78,10 @@ export function DockMore({
         <Glyph name="more" />
         {waiting && <span className="dock-marker" aria-hidden="true" />}
         <span className="dock-label" aria-hidden="true">
-          {t('More')}
+          {label ?? t('More')}
         </span>
         <span className="dock-short" aria-hidden="true">
-          {t('More')}
+          {compact ?? t('More')}
         </span>
       </button>
       {waiting && (
@@ -88,7 +92,7 @@ export function DockMore({
       <ul
         id={`${DOCK_MORE_ID}-list`}
         className="dock-more-list"
-        aria-label={t('More tools')}
+        aria-label={label ?? t('More tools')}
         hidden={!open}
       >
         {children(pick)}

@@ -1,9 +1,12 @@
 import './appearance.css';
+import { createContext } from 'react';
 import catalog from './catalog.json' with { type: 'json' };
 
 const byName = new Map(
   catalog.flatMap((theme) => [theme.id, ...theme.names].map((name) => [name, theme] as const)),
 );
+
+export const CampaignThemeContext = createContext<string | undefined>(undefined);
 
 /** Only a known public title (or an ID from the library) can select a static material. */
 export function campaignTheme(name: string) {

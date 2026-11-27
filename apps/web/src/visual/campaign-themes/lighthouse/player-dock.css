@@ -1,0 +1,184 @@
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .player-dock {
+      --nav-ink: #fff0d1;
+      --nav-line: #947849;
+      gap: 8px;
+      padding: 4px 8px;
+      border: 1px solid var(--nav-line);
+      border-radius: 10px;
+      color: var(--nav-ink);
+    }
+    & .player-dock .dock-items {
+      align-items: stretch;
+      gap: 4px;
+    }
+    & .player-dock .dock-button {
+      position: relative;
+      min-width: 72px;
+      min-height: 48px;
+      padding: 4px 12px;
+      border: 1px solid transparent;
+      color: var(--nav-ink);
+      font-weight: 600;
+    }
+    & .player-dock .dock-button:is([aria-pressed='true'], [aria-expanded='true'], .is-current) {
+      color: #fff2d2;
+      border-color: var(--nav-line);
+      background: linear-gradient(145deg, #364d50, #223739);
+      box-shadow: inset 0 -2px #e2bb73;
+    }
+    & .player-dock .dock-button[data-waiting] > .glyph {
+      color: #ffce77;
+    }
+    & .player-dock .dock-label {
+      display: inline;
+      white-space: normal;
+    }
+    & .player-dock .dock-short {
+      display: none;
+    }
+    & .player-dock .dock-more {
+      padding-left: 8px;
+      border-left: 1px solid #7d6c50;
+    }
+    & .player-dock .dock-more-list:not([hidden]) {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      width: min(44rem, calc(100vw - 24px));
+      max-width: none;
+      max-height: min(68dvh, 36rem);
+      padding: 16px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      color: #382c22;
+      background: var(--leaf);
+      border: 3px double var(--nav-line);
+      box-shadow: 0 12px 40px #060d14aa;
+      list-style: none;
+    }
+    & .player-action-group {
+      min-width: 0;
+    }
+    & .player-action-group h3 {
+      margin: 0 0 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ab905a;
+      color: #654a26;
+      font: 700 1.15rem/1.15 var(--font-display);
+    }
+    & .player-action-group ul {
+      display: grid;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    & .player-dock .dock-more-item {
+      position: relative;
+      width: 100%;
+      min-height: 44px;
+      padding: 6px 8px;
+      gap: 8px;
+      border-radius: 4px;
+      color: #312c24;
+      background: transparent;
+      font-size: 0.95rem;
+      text-align: start;
+      text-transform: none;
+    }
+    & .player-dock .dock-more-item:is(:hover, [aria-expanded='true']) {
+      background: #d5c49d;
+      color: #302a21;
+    }
+    & .player-dock .dock-more-item .glyph {
+      color: #775427;
+    }
+    & .player-dock-count {
+      display: inline-grid;
+      place-items: center;
+      min-width: 18px;
+      padding-inline: 3px;
+      height: 18px;
+      border-radius: 9px;
+      background: #ffda91;
+      color: #352819;
+      font: 700 12px/1 var(--font-body, sans-serif);
+    }
+    & .dock-button .player-dock-count {
+      position: absolute;
+      top: 0;
+      right: 4px;
+    }
+    & .player-dock :is(button, a):focus-visible {
+      outline: 3px solid #bc7b29;
+      outline-offset: -3px;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & .player-dock {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 1fr);
+      align-items: stretch;
+      gap: 0;
+      padding: 3px max(4px, env(safe-area-inset-right)) max(4px, env(safe-area-inset-bottom))
+        max(4px, env(safe-area-inset-left));
+      border-radius: 0;
+      border-inline: 0;
+    }
+    & .player-dock .dock-items {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+      min-width: 0;
+    }
+    & .player-dock .dock-button {
+      width: 100%;
+      min-width: 0;
+      min-height: 48px;
+      height: 100%;
+      padding: 4px 1px;
+      gap: 3px;
+      font-size: 0.75rem;
+      line-height: 1.1;
+      white-space: normal;
+    }
+    & .player-dock .dock-button .glyph {
+      width: 20px;
+      height: 20px;
+    }
+    & .player-dock .dock-button .dock-label {
+      display: none;
+    }
+    & .player-dock .dock-button .dock-short {
+      display: inline;
+    }
+    & .player-dock .dock-more {
+      position: static;
+      padding: 0;
+    }
+    & .player-dock .dock-more-list:not([hidden]) {
+      position: absolute;
+      right: 4px;
+      left: 4px;
+      width: auto;
+      margin: 0;
+      grid-template-columns: minmax(0, 1fr);
+      max-height: min(72dvh, calc(100dvh - var(--dock-h) - 20px));
+    }
+    & .player-action-group ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] .player-dock .dock-more-list {
+    right: 0;
+    left: auto;
+    max-width: calc(50vw + 50% - 16px);
+  }
+}

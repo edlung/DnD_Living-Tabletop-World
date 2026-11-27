@@ -1,7 +1,8 @@
 import type { EntityRef, TableKey, TableOfferResponse } from '@ltw/contracts';
-import { StatusPanel, useT } from '@ltw/ui';
+import { LanguageProvider, StatusPanel, useT } from '@ltw/ui';
 import { useEffect, useId, useState, type SubmitEvent } from 'react';
 
+import { campaignTheme } from '../visual/campaign-themes/index.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { Field } from './account-forms.tsx';
 import type { TableRefusal } from './table-flow.ts';
@@ -136,9 +137,11 @@ export function TableJoin({
     );
   }
   const { offer } = step;
-  return (
+  const lighthouse = campaignTheme(offer.campaignName)?.id === 'lighthouse';
+  const form = (
     <TableOffer
       offer={offer}
+      lighthouse={lighthouse}
       busy={busy}
       problem={problem}
       login={login}
@@ -146,10 +149,12 @@ export function TableJoin({
       onChoose={(character) => void choose(character)}
     />
   );
+  return lighthouse ? <LanguageProvider language={offer.language}>{form}</LanguageProvider> : form;
 }
 
 function TableOffer({
   offer,
+  lighthouse,
   busy,
   problem,
   login,
@@ -157,6 +162,7 @@ function TableOffer({
   onChoose,
 }: {
   readonly offer: TableOfferResponse;
+  readonly lighthouse: boolean;
   readonly busy: boolean;
   readonly problem: string | null;
   /** The person asked for a login: the seat chosen goes to the join page. */
@@ -166,6 +172,7 @@ function TableOffer({
 }) {
   const t = useT();
   const id = useId();
+  const Heading = lighthouse ? 'h1' : 'h3';
   // This browser may sit at the table already (a guest who scanned the code again): the way back.
   const back = (
     <p className="table-back">
@@ -173,9 +180,17 @@ function TableOffer({
     </p>
   );
   return (
-    <section className="table-offer" aria-labelledby={`${id}-title`}>
+    <section
+      data-seat-edition={lighthouse ? 'lighthouse' : undefined}
+      lang={lighthouse ? offer.language : undefined}
+      className="table-offer"
+      aria-labelledby={`${id}-title`}
+    >
       <p className="eyebrow">{offer.campaignName}</p>
-      <h3 id={`${id}-title`}>{t('Choose your hero')}</h3>
+      <Heading id={`${id}-title`}>{t('Choose your hero')}</Heading>
+      {lighthouse && offer.characters.length > 0 && (
+        <p>{t('Choose any available hero. You can also create your own once seated.')}</p>
+      )}
       {problem && (
         <p className="account-error" role="alert">
           {problem}

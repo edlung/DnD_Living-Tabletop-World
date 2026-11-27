@@ -115,16 +115,22 @@ export function Dock({
   isDm,
   shell,
   drafts = 0,
-  onCharacter,
+  characterId,
 }: {
   readonly isDm: boolean;
   readonly shell: Shell;
   /** The DM's open drafts: "Add to the world" is marked while one waits (after a reload too). */
   readonly drafts?: number;
   /** Opens the acting character's dialog (Stage 500); absent where no character acts. */
-  readonly onCharacter?: (() => void) | undefined;
+  readonly characterId: string | null;
 }) {
   const t = useT();
+  const onCharacter =
+    characterId === null
+      ? undefined
+      : () => {
+          shell.openHero(characterId);
+        };
   const invitations = useSignInKind() === 'session';
   const hasBook = useBookPresent();
   // Table talk (ADR 0044 §1): marked while others' messages wait to be read; Dice while a check

@@ -1,0 +1,65 @@
+@media screen {
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'],
+  .sign-in:has([data-seat-edition='lighthouse']) {
+    --plate-compass: url('./plates/compass.webp');
+    --plate-ink: url('./plates/inkwell.webp');
+    --plate-dice: url('./plates/dice.webp');
+    --plate-pack: url('./plates/satchel.webp');
+    --plate-spells: url('./plates/grimoire.webp');
+    --plate-chat: url('./plates/shells.webp');
+    --plate-hero: url('./plates/shield.webp');
+    --plate-meeting: url('./plates/lantern.webp');
+    --plate-chronicle: url('./plates/chronicle.webp');
+  }
+  [data-campaign-theme='lighthouse'][data-table-role='PLAYER'] {
+    & :is(.sheet--places, [data-folio-tool='map'], .player-folio[data-leaf='adventure']) {
+      --plate: var(--plate-compass);
+    }
+    &
+      :is(
+        .sheet--journal,
+        [data-folio-tool='journal'],
+        [data-folio-tool='bookmark'],
+        [data-hero-tab='story'],
+        .player-folio[data-leaf='journal']
+      ) {
+      --plate: var(--plate-ink);
+    }
+    & :is(.sheet--dice, [data-folio-tool='roll']) {
+      --plate: var(--plate-dice);
+    }
+    & :is([data-folio-tool='inspect'], [data-hero-tab='inventory']) {
+      --plate: var(--plate-pack);
+    }
+    &
+      :is(
+        .sheet--rules,
+        [data-folio-tool='study'],
+        [data-folio-tool='cast'],
+        [data-hero-tab='spells']
+      ) {
+      --plate: var(--plate-spells);
+    }
+    & :is(.sheet--chat, [data-folio-tool='talk']) {
+      --plate: var(--plate-chat);
+    }
+    & :is([data-hero-tab='overview'], .player-folio[data-leaf='party'], .builder-dialog) {
+      --plate: var(--plate-hero);
+    }
+    & [data-hero-tab='skills'] {
+      --plate: var(--plate-compass);
+    }
+    &
+      :is(
+        .sheet--shared,
+        [data-folio-tool='live'],
+        .player-folio[data-leaf='evening'],
+        .hint-dialog
+      ) {
+      --plate: var(--plate-meeting);
+    }
+    & :is([data-folio-tool='chronicle'], .chronicle-book, .sheet--player-book) {
+      --plate: var(--plate-chronicle);
+    }
+  }
+}

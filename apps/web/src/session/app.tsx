@@ -1,4 +1,4 @@
-import { campaignAppearance } from '../visual/campaign-themes/index.ts';
+import { campaignAppearance, CampaignThemeContext } from '../visual/campaign-themes/index.ts';
 import type { SessionResponse } from '@ltw/contracts';
 import { LanguageProvider, StatusPanel, useLanguage, useT, type Language } from '@ltw/ui';
 import {
@@ -27,6 +27,7 @@ import { SessionAccountProvider } from './account-menu.tsx';
 import { HubPage } from './hub.tsx';
 import type { PageStart } from './sign-in-flow.ts';
 import { SignInKindContext, useSignInKind } from './sign-in-kind.ts';
+import { isLighthousePlayer, startingPerspective, rememberPerspective } from './lighthouse-seat.ts';
 import { SignInScreens } from './sign-in-screens.tsx';
 import { SignOutDialog } from './sign-out-dialog.tsx';
 import { useLiveSession } from './use-live-session.ts';
@@ -303,7 +304,7 @@ function SessionWorld({
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const [perspective, setPerspective] = useState(identity.perspectives[0]?.value ?? 'PUBLIC');
+  const [perspective, setPerspective] = useState(() => startingPerspective(identity));
   const [standIn, setStandIn] = useState<StandIn | null>(null);
   const live = useLiveSession(connection, perspective);
   const choose = (value: string, acting: StandIn | null = null) => {
@@ -369,9 +370,19 @@ function SessionShell({
     (signal: AbortSignal) => identityApi.get<SessionResponse>('session', signal, false),
     [identityApi],
   );
-  const { resource } = useResource('identity', loadIdentity);
+  const [newHero, setNewHero] = useState<string | null>(null);
+  const { resource, reread: refreshIdentity } = useResource('identity', loadIdentity);
   useIdentityReport(connection, resource.status === 'ready' ? resource.value : null);
   const identity = resource.status === 'ready' ? resource.value : initial;
+  useEffect(() => {
+    if (newHero && identity.characters.some((hero) => hero.entityId === newHero)) {
+      setNewHero(null);
+      onPerspective(`CHARACTER:${newHero}`);
+    }
+  }, [newHero, identity.characters, onPerspective]);
+  useEffect(() => {
+    rememberPerspective(identity, perspective);
+  }, [identity, perspective]);
   const effective =
     perspective === 'PLAYER' ? `CHARACTER:${identity.character?.entityId ?? ''}` : perspective;
   // A player's own characters (ADR 0044 §6): each one's perspective, to look and act as.
@@ -393,38 +404,54 @@ function SessionShell({
     identity.role === 'DM' && standIn !== null && perspective === `CHARACTER:${standIn.characterId}`
       ? standIn
       : null;
+  const appearance = campaignAppearance(identity.campaign.name);
+  const playerEdition = isLighthousePlayer(identity) && own.has(effective);
   return (
-    <div className="session-shell" {...campaignAppearance(identity.campaign.name)}>
+    <div className="session-shell" data-table-role={identity.role} {...appearance}>
       <a className="skip-link" href="#world-main">
         {t('Skip to world')}
       </a>
       {/* The API for the rules' pages, and for the guide's "Our table" in the top bar. */}
-      <RulesApiContext.Provider value={api}>
-        <TopBar
-          campaignName={identity.campaign.name}
-          status={status}
-          perspective={perspective}
-          choices={perspectiveChoices}
-          dmView={effective === 'DM'}
-          dm={identity.role === 'DM'}
-          onPerspective={onPerspective}
-          onRefresh={() => {
-            setRevision((value) => value + 1);
-          }}
-          onLeave={onLeave}
-          sessionSlot={setSessionSlot}
-        />
-        {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
-        <World
-          key={`${perspective}:${String(revision)}`}
-          api={api}
-          effectivePerspective={effective}
-          canAct={identity.role === 'PLAYER' && own.has(effective)}
-          standIn={actingAs}
-          onActAs={onActAs}
-          sessionSlot={sessionSlot}
-        />
-      </RulesApiContext.Provider>
+      <CampaignThemeContext.Provider value={appearance['data-campaign-theme']}>
+        <RulesApiContext.Provider value={api}>
+          <TopBar
+            playerEdition={playerEdition}
+            campaignName={identity.campaign.name}
+            status={status}
+            perspective={perspective}
+            choices={perspectiveChoices}
+            dmView={effective === 'DM'}
+            dm={identity.role === 'DM'}
+            onPerspective={onPerspective}
+            onRefresh={() => {
+              setRevision((value) => value + 1);
+            }}
+            onLeave={onLeave}
+            sessionSlot={setSessionSlot}
+          />
+          {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
+          <World
+            key={`${perspective}:${String(revision)}`}
+            api={api}
+            effectivePerspective={effective}
+            playerBook={
+              playerEdition
+                ? {
+                    campaignId: identity.campaign.campaignId,
+                    onCreated: (id) => {
+                      setNewHero(id);
+                      refreshIdentity();
+                    },
+                  }
+                : null
+            }
+            canAct={identity.role === 'PLAYER' && own.has(effective)}
+            standIn={actingAs}
+            onActAs={onActAs}
+            sessionSlot={sessionSlot}
+          />
+        </RulesApiContext.Provider>
+      </CampaignThemeContext.Provider>
     </div>
   );
 }

@@ -119,7 +119,7 @@ export function castForParty(
   switch (cast.kind) {
     case 'scene':
       return {
-        cast: { kind: 'scene', locationId: seen(cast.locationId) ? cast.locationId : null },
+        cast: { ...cast, locationId: seen(cast.locationId) ? cast.locationId : null },
         place: shown,
       };
     case 'picture':

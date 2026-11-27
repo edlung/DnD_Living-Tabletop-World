@@ -1,10 +1,11 @@
 import type { Cast, CastKind, CastResponse, EncounterResponse, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useId, useMemo, useState, type SubmitEvent } from 'react';
+import { useCallback, useContext, useId, useMemo, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { CampaignThemeContext } from '../visual/campaign-themes/index.ts';
 import { PlaceSoundField } from './place-sound.tsx';
 import { StoryCastFields } from './story-cast-fields.tsx';
 
@@ -59,6 +60,10 @@ export function CastForm({
   const t = useT();
   const id = useId();
   const [kind, setKind] = useState<CastKind>(current.kind);
+  const lighthouse = useContext(CampaignThemeContext) === 'lighthouse';
+  const [throwOnScreen, setThrowOnScreen] = useState(
+    (current.kind === 'scene' || current.kind === 'battlefield') && current.playerDice3d === true,
+  );
   const [place, setPlace] = useState(
     current.kind === 'scene' ? (current.locationId ?? PARTY_PLACE) : PARTY_PLACE,
   );
@@ -84,11 +89,12 @@ export function CastForm({
     fight.resource.status === 'ready' ? (fight.resource.value.encounter?.combatants ?? []) : [];
   const pictures = directory.filter((entity) => entity.kind !== 'faction');
   const build = (): Cast | null => {
+    const motion = lighthouse && throwOnScreen ? { playerDice3d: true as const } : {};
     switch (kind) {
       case 'scene':
-        return { kind, locationId: place === PARTY_PLACE ? null : place };
+        return { kind, locationId: place === PARTY_PLACE ? null : place, ...motion };
       case 'battlefield':
-        return { kind, zoom, focus: focus === '' ? null : focus };
+        return { kind, zoom, focus: focus === '' ? null : focus, ...motion };
       case 'title':
         return title.trim() === ''
           ? null
@@ -239,6 +245,18 @@ export function CastForm({
               </select>
             </div>
           </div>
+        )}
+        {lighthouse && (kind === 'scene' || kind === 'battlefield') && (
+          <label className="screen-player-dice">
+            <input
+              type="checkbox"
+              checked={throwOnScreen}
+              onChange={(event) => {
+                setThrowOnScreen(event.target.checked);
+              }}
+            />
+            <span>{t('Show public player rolls in 3D')}</span>
+          </label>
         )}
         {kind === 'title' && (
           <>

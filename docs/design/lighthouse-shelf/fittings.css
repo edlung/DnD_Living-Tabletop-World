@@ -1,0 +1,44 @@
+/* Nine-slice the enamel cartouche so the gold fittings keep their shape at any label length. */
+.ledger-buttons .primary,
+.battle-link,
+.dice-panel .primary,
+.next-turn,
+.project-button {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  padding-inline: 25px;
+  background: transparent;
+  color: #fff0c9;
+  box-shadow: none;
+  text-shadow: 0 1px 3px #000;
+}
+.ledger-buttons .primary::before,
+.battle-link::before,
+.dice-panel .primary::before,
+.next-turn::before,
+.project-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: solid transparent;
+  border-width: 6px 23px;
+  border-image: url('art/plaque.webp') 18 106 fill / 1 / 0 stretch;
+}
+.ledger-buttons .primary:hover,
+.battle-link:hover,
+.dice-panel .primary:hover,
+.next-turn:hover,
+.project-button:hover {
+  background: transparent;
+  filter: brightness(1.16);
+}
+@media (max-width: 500px) {
+  .project-button {
+    padding-inline: 16px;
+  }
+  .project-button::before {
+    border-width: 5px 14px;
+  }
+}

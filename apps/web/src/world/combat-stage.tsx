@@ -1,6 +1,6 @@
 import { HIDDEN_TURN, type EncounterView, type PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useBoardView } from '../combat/board/board-view.ts';
@@ -30,6 +30,7 @@ export function CombatStage({
   encounter,
   revision,
   battlefield,
+  playerField,
   onView,
   actorId,
   canAct,
@@ -45,6 +46,7 @@ export function CombatStage({
   /** The screen's action count: the battlefield starts afresh after each own action. */
   readonly revision: number;
   readonly battlefield: boolean;
+  readonly playerField?: string | undefined;
   readonly onView: (view: 'scene' | 'battlefield') => void;
   readonly actorId: string | null;
   readonly canAct: boolean;
@@ -60,7 +62,9 @@ export function CombatStage({
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
-  const view = useBoardView();
+  const [panels, setPanels] = useState(false);
+  const wide = playerField !== undefined && !panels;
+  const view = useBoardView(wide ? 'flat' : undefined, wide);
   // The DM's brush outlasts the battlefield's fresh start after each stroke (ADR 0057 §2).
   const hand = useBrush();
   // So do the table's shared marks (ADR 0057 §5): read here, they neither vanish nor replay.
@@ -86,34 +90,55 @@ export function CombatStage({
     const lost = document.activeElement === null || document.activeElement === document.body;
     if (was && !asked && lost) banner.current?.focus({ preventScroll: true });
   }, [asked]);
+  const switcher = (
+    <div className="stage-switch" role="tablist" aria-label={t('What the stage shows')}>
+      <button
+        type="button"
+        role="tab"
+        aria-selected={!battlefield}
+        aria-controls="scene-presence"
+        onClick={() => {
+          onView('scene');
+        }}
+      >
+        <Glyph name="look" />
+        {t('Scene')}
+      </button>
+      <button
+        type="button"
+        role="tab"
+        aria-selected={battlefield}
+        aria-controls="combat-stage"
+        onClick={() => {
+          onView('battlefield');
+        }}
+      >
+        <Glyph name="encounter" />
+        {t('Battlefield')}
+      </button>
+    </div>
+  );
   return (
     <>
-      <div className="stage-switch" role="tablist" aria-label={t('What the stage shows')}>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={!battlefield}
-          aria-controls="scene-presence"
-          onClick={() => {
-            onView('scene');
-          }}
-        >
-          <Glyph name="look" />
-          {t('Scene')}
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={battlefield}
-          aria-controls="combat-stage"
-          onClick={() => {
-            onView('battlefield');
-          }}
-        >
-          <Glyph name="encounter" />
-          {t('Battlefield')}
-        </button>
-      </div>
+      {playerField !== undefined && battlefield ? (
+        <div className="field-switch-tools" data-panels={panels ? 'open' : 'closed'}>
+          {switcher}
+          {!panels && <strong className="field-place">{playerField}</strong>}
+          <button
+            type="button"
+            className="field-panels"
+            aria-expanded={panels}
+            onClick={() => {
+              setPanels(!panels);
+            }}
+          >
+            <Glyph name="settings" />
+            {t(panels ? 'Expand the map' : 'Battle panels')}
+          </button>
+        </div>
+      ) : (
+        switcher
+      )}
       {/* A player's quiet row in a fight — "What can I do?" and the way to a pause — is put here
           (session/lobby-banner.tsx): in the fight's own layout, clear of the turn order. */}
       <div id={FIGHT_QUIET_ID} className="fight-quiet" />
@@ -139,6 +164,7 @@ export function CombatStage({
           actorId={actorId}
           canAct={canAct}
           locked={locked}
+          modal={playerField !== undefined}
           blocked={blocked}
           onRun={onRun}
         />

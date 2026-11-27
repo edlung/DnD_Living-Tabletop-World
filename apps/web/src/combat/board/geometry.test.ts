@@ -162,6 +162,20 @@ describe('name plates', () => {
     expect(far.edge).toBe('top');
   });
 
+  it('keeps the three Lighthouse labels in the order of their bases when their column is crowded', () => {
+    const layout = boardLayout({ width: 10, height: 8 }, 64, TILT);
+    const row = [2, 3, 4].map((y) => ({ square: { x: 1, y }, span: 1 }));
+    const anchors = row.map(({ square }) =>
+      plateAnchor(layout, square, 1, row, PLATE_SQUARES, true),
+    );
+    expect(anchors.map(({ edge }) => edge)).toEqual(['left', 'left', 'left']);
+    expect(anchors.map(({ y }) => y)).toEqual(anchors.map(({ y }) => y).sort((a, b) => a - b));
+    const blocked = [...row, { square: { x: 2, y: 3 }, span: 1 }];
+    expect(plateAnchor(layout, { x: 1, y: 3 }, 1, blocked, PLATE_SQUARES, true).edge).not.toBe(
+      'left',
+    );
+  });
+
   it('are never wider than the room beside them in their row', () => {
     const ambush = [
       { x: 2, y: 6 },

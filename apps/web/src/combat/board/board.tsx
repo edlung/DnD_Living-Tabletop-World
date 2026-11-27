@@ -100,7 +100,10 @@ export function Board({
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
   const fitted = space
-    ? fitCell(space, grid, tilt, { min: view.narrow ? 36 : 24, max: view.maxCell ?? 72 })
+    ? fitCell(space, grid, tilt, {
+        min: view.minCell ?? (view.narrow ? 36 : 24),
+        max: view.maxCell ?? 72,
+      })
     : 40;
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
@@ -403,6 +406,7 @@ export function Board({
             {marks && <BoardMarks marks={marks} cell={cell} layout={layout} />}
           </div>
           <BoardPlates
+            sideLabels={view.sideLabels}
             encounter={encounter}
             layout={layout}
             labelOf={labelOf}

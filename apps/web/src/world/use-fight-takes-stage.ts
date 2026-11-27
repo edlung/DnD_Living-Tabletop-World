@@ -1,4 +1,7 @@
+import type { EncounterView } from '@ltw/contracts';
 import { useEffect, type RefObject } from 'react';
+import { askedWindowOf } from '../combat/reaction-prompt.tsx';
+import type { Shell } from '../shell/use-shell.ts';
 
 /**
  * A fight that begins takes the stage (Stage 540 walkthrough): the selection's panel — a place, a
@@ -17,4 +20,19 @@ export function useFightTakesStage(
     }
     closePanel();
   }, [fightId]);
+}
+
+/** The ordinary prompt takes the stage. A modal player prompt can leave a draft open behind it. */
+export function useReactionStage(
+  encounter: EncounterView | null,
+  actorId: string | null,
+  shell: Shell,
+  modal: boolean,
+) {
+  const windowId = askedWindowOf(encounter, actorId);
+  useEffect(() => {
+    if (windowId === null || modal) return;
+    shell.closeChronicle();
+    shell.closeHero();
+  }, [windowId, modal]);
 }

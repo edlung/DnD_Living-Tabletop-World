@@ -79,13 +79,18 @@ export interface DisplayListResponse {
 /** The words a story cast holds at most: a few lines read aloud, not a page. */
 export const STORY_CAST_CHARS = 600;
 
+// A choice for this live scene or battlefield. Older casts keep their original result plate.
+const playerDice3d = z.literal(true).optional();
 export const castSchema = z.discriminatedUnion('kind', [
-  z.object({ kind: z.literal('scene'), locationId: entityIdSchema.nullable() }).strict(),
+  z
+    .object({ kind: z.literal('scene'), locationId: entityIdSchema.nullable(), playerDice3d })
+    .strict(),
   z
     .object({
       kind: z.literal('battlefield'),
       zoom: z.number().min(0.5).max(2.5).default(1),
       focus: entityIdSchema.nullable().default(null),
+      playerDice3d,
     })
     .strict(),
   z.object({ kind: z.literal('dice') }).strict(),

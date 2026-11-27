@@ -1,5 +1,6 @@
 import { Backstory } from '../character/story/backstory.tsx';
 import { MyNotes } from '../character/story/my-notes.tsx';
+import { PlayerStoryPages } from '../character/story/player-story-pages.tsx';
 import type { EncounterView, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import type { ReactNode } from 'react';
@@ -23,6 +24,7 @@ import type { Shell } from '../shell/use-shell.ts';
  */
 export function WorldHeroDialog({
   api,
+  onCreated,
   shell,
   revision,
   directory,
@@ -35,6 +37,7 @@ export function WorldHeroDialog({
   notice,
 }: {
   readonly api: WorldApi;
+  readonly onCreated: ((id: string) => void) | undefined;
   readonly shell: Shell;
   readonly revision: number;
   readonly directory: readonly EntityRef[];
@@ -54,6 +57,7 @@ export function WorldHeroDialog({
   const party = directory.filter((entity) => entity.kind === 'character');
   return (
     <HeroDialog
+      playerEdition={shell.playerEdition && shell.hero === actorId}
       api={api}
       revision={revision}
       entityId={shell.hero}
@@ -89,12 +93,14 @@ export function WorldHeroDialog({
           {shown.entityId === actorId && (
             <MakeCharacter
               api={api}
-              onMade={() => undefined}
+              onMade={onCreated ?? (() => undefined)}
               intro="Make another character of your own: a spare hero, or one for someone who shares your screen."
             />
           )}
           {/* One the player's login plays elsewhere, as a sheet only (decision 15). */}
-          {shown.entityId === actorId && <BringCharacter api={api} onBrought={() => undefined} />}
+          {shown.entityId === actorId && (
+            <BringCharacter api={api} onBrought={onCreated ?? (() => undefined)} />
+          )}
           {/* Their portrait, asked of the DM (docs/adr/0056-…md §5). */}
           {shown.entityId === actorId && (
             <PortraitWish
@@ -110,7 +116,12 @@ export function WorldHeroDialog({
       story={
         // A hero's backstory for its own player and the DM; the player's own notes beside it
         // (docs/adr/0073-table-ideas.md §5). Nobody else has the tab.
-        shown?.kind === 'character' && (isDm || shown.entityId === actorId) ? (
+        shell.playerEdition &&
+        !isDm &&
+        shown?.kind === 'character' &&
+        shown.entityId === actorId ? (
+          <PlayerStoryPages api={api} characterId={shown.entityId} name={shown.name} />
+        ) : shown?.kind === 'character' && (isDm || shown.entityId === actorId) ? (
           <>
             <Backstory api={api} characterId={shown.entityId} name={shown.name} asDm={isDm} />
             {isDm ? (

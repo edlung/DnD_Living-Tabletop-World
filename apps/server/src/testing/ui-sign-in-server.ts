@@ -1,3 +1,4 @@
+import { cryptoEntropy, rulesSkillChecks } from '../world-engine/runtime.ts';
 import { ACCOUNT_LIMITS, AccountLimits } from '../accounts/account-limits.ts';
 import { InMemoryAccountStore } from '../accounts/account-store.ts';
 import { InMemoryCredentialStore } from '../auth/credential-store.ts';
@@ -43,6 +44,7 @@ import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
  * Localhost only; never used by the production entry point.
  */
 const seed = signInSeed();
+const rehearsal = process.argv.includes('--lighthouse-rehearsal');
 const rawStore = new InMemoryEventStore();
 const bootstrap = await seedSignInCampaigns(rawStore);
 const credentials = new InMemoryCredentialStore();
@@ -101,8 +103,8 @@ const engine = new WorldEngine({
   clock: new SteppingClock(),
   combat: createCombatEngine(),
   characters: characterBuilder,
-  checks: skillCheckPort(scriptedDice(Array<number>(1024).fill(15))),
-  entropy: MIDDLE_ENTROPY,
+  checks: rehearsal ? rulesSkillChecks : skillCheckPort(scriptedDice(Array<number>(1024).fill(15))),
+  entropy: rehearsal ? cryptoEntropy : MIDDLE_ENTROPY,
 });
 const signIn = { ...baseSignIn, publication: activationFixture.publication };
 const { app } = buildLiveApp({
@@ -158,6 +160,10 @@ app.post<{ Params: { name: string } }>('/testing/workshop-revoke/:name', async (
 });
 
 await app.listen({ host: '127.0.0.1', port: SIGN_IN_PORTS.api });
+if (rehearsal && process.send) {
+  const { prepareLighthouse } = await import('./lighthouse-rehearsal.ts');
+  process.send(await prepareLighthouse(app, credentials, seed));
+}
 
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, () => {

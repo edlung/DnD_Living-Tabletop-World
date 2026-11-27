@@ -37,6 +37,7 @@
     "auth:operator": "pnpm --filter @ltw/server run auth:operator",
     "workshop:operator": "pnpm --filter @ltw/server run workshop:operator",
     "images:smoke": "node --conditions=@ltw/source apps/server/src/testing/image-smoke.ts",
+    "lighthouse:play": "node scripts/lighthouse/play-table.ts",
     "lighthouse:build": "node --conditions=@ltw/source scripts/lighthouse/build.ts",
     "lighthouse:book": "node --conditions=@ltw/source scripts/lighthouse/render.ts",
     "lighthouse:art": "node --input-type=module -e \"import('./scripts/lighthouse/assets.ts').then(m => m.prepareAssets())\"",

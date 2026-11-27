@@ -10,6 +10,15 @@ Noir collection (3–8 adults): `campaigns/noir-2026/AGENTS.md`, `campaigns/noir
 
 The DM's book (Stages 900–930, 2026-11-22): the accepted sample in `design/dm-book-sample/` (README, archive of sources, four states); the second concept of the same day — [the offline Hollowmere spread](design/dm-book/index.html), [its scope](../work-orders/DM_BOOK_CONCEPT_2026-11-22.md).
 
+One-campaign bookshelf concept (2026-11-26): [the Lighthouse shelf, DM book and full-screen battlefield](design/lighthouse-shelf/index.html), [pilot scope](../work-orders/LIGHTHOUSE_SHELF_CONCEPT_2026-11-26.md).
+The Lighthouse player journey in the main client starts at `apps/web/src/world/lighthouse-folio.tsx`. Its binding is in `apps/web/src/visual/campaign-themes/lighthouse/`, its published hero plates in `campaigns/lighthouse/assets/player-book/`. Run `pnpm lighthouse:play` for a local table with player and DM seats.
+Player navigation and its badges live in `apps/web/src/world/lighthouse-dock.tsx`. Illustrated section materials live in `apps/web/src/visual/campaign-themes/lighthouse/plates/`. The keyboard, private checks and journal draft journey is `tests/e2e/lighthouse-player-actions.spec.ts`.
+The four bookmarks share the player's character sheet (`world/lighthouse-profile.tsx`), authorized journal, party presence and session controls (`alerts/table-asks.tsx`). A reaction opens over a player's draft through `combat/reaction-frame.tsx`. The multi-seat privacy and reaction journeys are in `tests/e2e/lighthouse-player-tools.spec.ts`.
+The DM enables public 3D player throws in `apps/web/src/dm/cast-form.tsx`. The TV reads party-visible rolls in `apps/web/src/display/big-roll.tsx` and shares `apps/web/src/dice/roll-playback.tsx` with the player. The three-screen journey is `tests/e2e/lighthouse-tv-dice.spec.ts`.
+
+Play through the Lighthouse forge from [the opening spread](design/lighthouse-shelf/index.html#book/6/1). The [pilot guide](design/lighthouse-shelf/README.md) covers TV reveals, handouts, checks, player-named map locations, public dice and session recaps. The two-window journey is `docs/design/lighthouse-shelf/verify-session.mjs`.
+The pilot's [private player folio](design/lighthouse-shelf/player.html#hero=asya) receives a targeted check from [the DM's spread](design/lighthouse-shelf/index.html#check/6/1/asya). The local preview transport is `serve-players.mjs`. Independent player and DM sessions are exercised in `verify-players.mjs`, alongside those two entry points.
+
 | Task | Smallest starting set |
 |---|---|
 | Start or authorize a stage | `QUICKSTART.md`, `EFFORT_MATRIX.md`, `AGENT_WORKFLOW.md`, the one authorized file in `work-orders/` |
