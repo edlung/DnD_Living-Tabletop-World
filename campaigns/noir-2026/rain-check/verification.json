@@ -1,14 +1,14 @@
 {
   "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
-  "sourceSha256": "cc560de1598be892ac148a7111762f30e14986b8e19bc8ddcbe23c720dc4bbb6",
+  "sourceSha256": "f4e77a9fe5e494ac8366fb15ff426eaa35724d91047939e91baf21ba1eea58c0",
   "sourceHashAlgorithm": "sorted source JSON filename + NUL + exact bytes + NUL",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",
   "variants": [
     {
       "size": 3,
-      "sha256": "7eb7e71f4c2980f5a987903b9212dd8f6e6081b71b5923c609155af5165ca830",
+      "sha256": "64faf69e0a3d6bbe0b57209d2a4e1c6ea244b1b2e6fae32de880822d068f6747",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -21,7 +21,7 @@
     },
     {
       "size": 4,
-      "sha256": "2979e1ebf3d60c0ef53492650ae64fff3d51d56ed46a5daee49a687f6b921eab",
+      "sha256": "fe298454e81131ae08cde43dc0ddb9a281baddec7ed476b700c2c8c2763f341a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -34,7 +34,7 @@
     },
     {
       "size": 5,
-      "sha256": "b080680e637b8a8568bd809acd306806c093b074524a89a76b3b7844be2ef87d",
+      "sha256": "58b34af7ff2a70ede8180401ce0b04cec56fc1520fd35a7f64b45b8739b6623b",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -47,7 +47,7 @@
     },
     {
       "size": 6,
-      "sha256": "50177d91a8ea51941002b2c6e892166f30ea2fb600a7c07839da79b7e41b41d7",
+      "sha256": "80c0963ccd61d680961ff7c5a6691e96891b4b25db41abefa4bf966838189a3d",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -60,7 +60,7 @@
     },
     {
       "size": 7,
-      "sha256": "acc9ffd433cabc0edaaa5e6a3737b9fa2d9880bb180cffe2f401c128c68fff33",
+      "sha256": "f50b85d48a899ff39381a2dc300d93b0fe9b78c0097711178e8590877c0a247c",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
@@ -73,7 +73,7 @@
     },
     {
       "size": 8,
-      "sha256": "b20f92f66b23f1308195526eb8af953967332221fe1c1bf7149adea689897dbc",
+      "sha256": "e2a3547fc74f827a74e63dbe0443a59ac43c736288b4a372aec143506226d10c",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
