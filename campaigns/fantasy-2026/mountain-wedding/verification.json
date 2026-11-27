@@ -1,7 +1,7 @@
 {
   "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
-  "sourceSha256": "cd92b876203cf79c8352b0deb535ce6b63e9cfe5c266c171953ed0b6a9a268bb",
+  "sourceSha256": "9810b951279c4843399a21ff8276e1da0b92652da40bf3a0b2382bfca34155e1",
   "content": {
     "sessions": 8,
     "scenes": 16,
