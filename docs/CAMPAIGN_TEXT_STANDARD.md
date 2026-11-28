@@ -172,10 +172,13 @@ text a choice, in the same order (`forks[i]` follows `choices[i]`). A fork is th
 - what changes at once (a door, a debt, a witness, a light, a mood), concrete;
 - where it comes back: a later evening, a person who remembers, a price named before it is paid.
 
-A fork never decides for the heroes, never names a roll the scene's `check` does not hold, and
-keeps to what `play`, `consequences` and later evenings already say: it develops a branch the
-scene allows, it does not invent a clue, a solution or a mechanic. A fork that leaves the
-prepared road says how the story gets back to it.
+A fork never decides for the heroes and never speaks for them: the line in «…» belongs to someone of
+the world, to the DM («ведущий может сказать…»), or is offered as an example of what a player might
+say («например: «…»»); «…», — говорит кто-то, where the someone is of the party, is refused
+(`fork-hero-line`). A fork never names a roll the scene's `check` does not hold, and keeps to what
+`play`, `consequences` and later evenings already say: it develops a branch the scene allows, it
+does not invent a clue, a solution or a mechanic. A fork that leaves the prepared road says how the
+story gets back to it.
 
 ## 10. A voice and ready lines for every person
 

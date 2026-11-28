@@ -15,9 +15,10 @@ patch.json: {
   "twists":    [{"title", "turn", "seeds": [{"session", "text"}], "reveal": {"session", "text"},
                  "after"}]
 }
-Refused: rules shorthand, internal keys, a fork count unlike the scene's choices, rules words or a
-decision for the heroes in an epilogue, a turn planted after it comes out. Warnings (--force to
-apply anyway): lengths outside the standard's targets.
+Refused: rules shorthand, internal keys, a fork count unlike the scene's choices, a fork that gives
+a hero words («…», — говорит кто-то), rules words or a decision for the heroes in an epilogue, a
+turn planted after it comes out. Warnings (--force to apply anyway): lengths outside the
+standard's targets.
 """
 
 from __future__ import annotations
@@ -34,6 +35,27 @@ from audit import AGENCY, LATIN_OK, LATIN_WORD, READ_ALOUD_MECHANICS, ROOT, coll
 WORD = re.compile(r'[\wЀ-ӿ]+')
 EVENING_FILE = re.compile(r'(?:sessions|act)-\d+\.json$')
 QUOTE = re.compile(r'«[^»]{8,}»')
+# A fork never speaks for a hero (§9): the line belongs to someone of the world, to the DM, or is
+# offered as an example («например: «…»»). Someone unnamed of the party saying a line is refused.
+_SPEAK = (r'(?:говорит|говорят|отвечает|шепчет|бросает|произносит|спрашивает|переспрашивает|'
+          r'предлагает|кричит|добавляет|соглашается|возражает|ворчит|бормочет|объявляет|окликает|'
+          r'подхватывает|повторяет|выдыхает|замечает|уточняет|напоминает|просит|зовёт|отзывается)')
+_ADV = r'(?:(?:тихо|вслух|негромко|громко|спокойно|медленно|сухо|просто|твёрдо|коротко|вполголоса)\s+)?'
+_PARTY = (r'(?:кто-то(?!\s+из\s+(?!отряда|героев|вас|группы|команды|труппы|экипажа)[а-яё])'
+          r'(?:\s+из\s+(?:отряда|героев|вас|группы|команды|труппы|экипажа))?|кто-нибудь|'
+          r'один\s+из\s+(?:героев|вас|отряда)|тот,\s+кто\s+[^,.:«»]{1,40}|та,\s+кто\s+[^,.:«»]{1,40})')
+HERO_LINE = [
+    re.compile(r'«[^»]*»\s*,?\s*—\s*' + _ADV + _SPEAK + r'\s+' + _ADV + _PARTY),
+    re.compile(r'«[^»]*—\s*' + _ADV + _SPEAK + r'\s+' + _ADV + _PARTY + r'[^»]*»'),
+    re.compile(r'(?<![\w-])' + _PARTY + r'\s+' + _ADV + _SPEAK + r'[^«.]{0,40}:\s*«[^»]*»', re.I),
+    # «…», — отвечают ему: the party answering, unnamed and in the plural.
+    re.compile(r'«[^»]*»\s*,?\s*—\s*(?:честно\s+)?(?:отвечают|говорят|спрашивают|просят|кричат)'
+               r'\s+(?:честно\s+)?(?:ему|ей|им|его|её|их)\b'),
+    re.compile(r'«[^»]*—\s*(?:честно\s+)?(?:отвечают|говорят|спрашивают|просят|кричат)'
+               r'\s+(?:честно\s+)?(?:ему|ей|им|его|её|их)\b[^»]*»'),
+    # Медик отряда говорит: «…» — a hero named by a role in the party.
+    re.compile(r'[А-ЯЁа-яё]+\s+(?:отряда|обоза|экипажа|труппы)\s+' + _ADV + _SPEAK + r'[^«.]{0,40}:\s*«'),
+]
 BANNED = [(r'\bСЛ\b', 'СЛ → Сл'), (r'\bDC\b', 'DC → Сл'), (r'\bКБ\b', 'КБ → КД'),
           (r'(?<![\w-])HP(?![\w-])', 'HP → хиты'), (r'(?<![\w-])NPC(?![\w-])', 'NPC → НИП'),
           (r'(?<![\w-])AC(?![\w-])', 'AC → КД'), (r'\bВосприяти', 'Восприятие → Внимательность'),
@@ -99,6 +121,11 @@ def fork_problems(scene: dict) -> list[tuple[str, str]]:
             out.append(('long-fork', f'[{k}] {n} слов, предел {FORK[1]}'))
         if not QUOTE.search(fork):
             out.append(('fork-no-line', f'[{k}] нет ни одной реплики в «ёлочках»'))
+        for rx in HERO_LINE:
+            m = rx.search(fork)
+            if m:
+                out.append(('fork-hero-line', f'[{k}] за героя говорит развилка: {m.group(0)[:70]}'))
+                break
     return out
 
 
@@ -298,7 +325,7 @@ def main():
             check(f'{addr}.forks[{k}]', fork)
         candidate = {**scene, 'forks': forks}
         for rule, detail in fork_problems(candidate):
-            (errors if rule in ('fork-count', 'fork-empty', 'fork-no-line') else warnings).append(
+            (errors if rule in ('fork-count', 'fork-empty', 'fork-no-line', 'fork-hero-line') else warnings).append(
                 f'{addr}: {rule}: {detail}')
         for k, fork in enumerate(forks):
             n = words(fork)
