@@ -14,47 +14,47 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "e46ff281316cf3e93fbaf83412a29d9e1e9a67433a71b51a28fe02b577c0d043"
+   "digest": "e7e641077442170073c1337c6014bead95d40f754f937c0cc6b11488f58aeaf9"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "e2df3c980dd87db7b86e4405d3d80bbf6fa2e779d26c1d2e9c4c6ff3f6060433"
+   "digest": "f9a780aaf931ed7e5fefa5576503efb903265a92fb1a48ad367d116f208d022d"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "545f8ea8cdca4b0fb99fc5bbef1625b0bb043d0948e5e140b57fcc70bc0fdd5a"
+   "digest": "3ce42360d8b726b21b8d4eec5e11e45670833f0e64a1bd9135dc4a9cf2258379"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "249bdca240f8a43920aff65287747ffceed3079332745c10a06bfb580aeaf68b"
+   "digest": "7fc314ece3047355968b145c4502f7ac59c7745c423a0adf8d4e40f9d18df294"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "c52ab39b00ca34132f47e8f1dc41e788f2468aa7015391d0f8eab399d1f4dce1"
+   "digest": "3998a66aeaf0db68801332729544cec20dec2e1be632da87c37e2f510bc3e455"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "69409a7e498bad1ee0f760fbc5cc1ebfbf566cac40916c84211c7dfda601ea5c"
+   "digest": "849dcafea522d92d16492d4c2668492c0153c7b979b741bc084b74e7b51a9f31"
   }
  ],
  "book": {
   "file": "book.json",
-  "sha256": "23546df3130cb86f23e5539a11159b97d99918693514e29800f98691ca7e3326"
+  "sha256": "2cd0edccf660e4293f038923ef55cae7c63687c709fe641c2642af7efc8d58b6"
  },
  "generator": "codex-cli imagegen",
  "pictures": [

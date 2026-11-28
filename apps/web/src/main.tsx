@@ -107,6 +107,7 @@ import './styles/short-screen.css';
 import './styles/battle-layout.css';
 import './styles/figures.css';
 import './styles/dm-book.css';
+import './styles/dm-book-story.css';
 import './styles/dm-book-path.css';
 import './styles/book-kit.css';
 import './styles/book-shell.css';

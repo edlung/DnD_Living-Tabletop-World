@@ -407,27 +407,6 @@
   margin: 0;
   padding: 0 0.8rem 0.7rem;
 }
-/* A choice and what follows it; a person's ready lines; an ending's epilogue to read aloud. */
-.dmb-forks > li {
-  margin: 0 0 0.55em;
-}
-.dmb .dmb-fork {
-  margin: 0.2em 0 0;
-}
-.dmb-lines > p,
-.dmb-ending > p {
-  margin: 0 0 0.45em;
-}
-.dmb-ending + .dmb-ending {
-  margin-top: 0.6em;
-  border-top: 1px solid var(--dmb-rule);
-}
-.dmb .dmb-aloud {
-  margin: 0.3em 0 0.6em;
-  padding: 0.1em 0 0.1em 0.9em;
-  border-left: 3px solid var(--rubric);
-  font-family: var(--font-display);
-}
 .dmb .dmb-gap {
   color: var(--dmb-muted);
   font-style: italic;

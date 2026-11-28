@@ -2,7 +2,25 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current request — the whole interface as a book, 2026-11-23
+## Current request — the campaigns' story, forks and lines, 2026-11-27
+
+- Owner, in one working session: «Проверь все по кампаниям проекта. Сюжет, диалоги, реплики,
+  описания и все необходимое… Проработай также варианты развития и сюжетные вилки в зависимости от
+  выбора действий игроков… у персонажей всегда хорошие диалоги и есть что сказать иначе игроки
+  заскучают.» (`reviews/OWNER_CAMPAIGN_STORY_2026-11-27.json`). Work order
+  `work-orders/CAMPAIGN_STORY_2026-11-27.md`, rules `docs/CAMPAIGN_TEXT_STANDARD.md` §9–12, ADR
+  0074 amendment of 2026-11-27.
+- Status 2026-11-28: the third text round is written for all 53 authored campaigns, one commit a
+  campaign on `claude/practical-pascal-h01xia`: what follows each of the 4,160 choices of the 1,323
+  scenes, a voice and 5–8 ready lines for each of the 517 people, an epilogue for each of the 194
+  endings, 2–4 turns of the story a campaign (172, with 399 seeds); five contradictions fixed in
+  prose. A pass before the report found 347 forks in 40 campaigns where someone of the party spoke
+  a line; all are rewritten, and `story.py` and the audit now refuse such a fork (`fork-hero-line`). The mechanics are unchanged (compared field by field with the round's base). The books,
+  the table editions and the interface are rebuilt; the report is
+  `reports/CAMPAIGN_STORY_2026-11-27.md`. No pull request yet; merging and deployment stay the
+  owner's.
+
+## Request — the whole interface as a book, 2026-11-23
 
 - Owner, in one working session: «Задача - сделать план для преобразования всего интерфейса проекта
   в книгу. Чтобы все шло через книжный интерфейс.»; three choices in a question card («Заменять

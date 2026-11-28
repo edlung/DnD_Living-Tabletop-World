@@ -1,7 +1,7 @@
 {
   "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
-  "sourceSha256": "f4e77a9fe5e494ac8366fb15ff426eaa35724d91047939e91baf21ba1eea58c0",
+  "sourceSha256": "d9eee21e2d216c0dc10198a217830522f4139f766653997c456b9e30fd5270e7",
   "sourceHashAlgorithm": "sorted source JSON filename + NUL + exact bytes + NUL",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",

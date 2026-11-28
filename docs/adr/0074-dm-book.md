@@ -199,6 +199,23 @@
   of the 53 books have their words to read aloud and every book has a pocket; the books grew from
   10.9 MB to 13.1 MB (the largest 338 KB).
 
+- 2026-11-27 (campaign story, third round; `docs/CAMPAIGN_TEXT_STANDARD.md` §9–12): **what follows
+  each choice, the people's voices, the endings' epilogues and the story's turns.** A page may carry
+  `forks`, one text for each of its `choices` in the same order (the book's reference check refuses
+  a count that differs); a person may carry `voice` and `lines` (`when` and `say`, at most 12; the
+  sources have 5–8); an ending may carry `epilogue`, words to read aloud after it; a book may carry
+  `twists` (`campaignBookTwistSchema`, at most 6), each with what seems and what is, its seeds by
+  chapter and the chapter of its reveal, both checked against the book's chapters
+  (`scripts/campaign-text/story.py` keeps a seed from coming after its reveal). All four are
+  optional, so a book built before still parses; all are the source's text as written (§2.9), and
+  the tool refuses one that names an internal key. The web book shows the forks beside the page
+  under its choices, a person's voice and lines on their card, a turn beside the chapters it is
+  planted and revealed in, and the endings with their epilogues beside the first chapter (to steer
+  toward them) and the last. None goes into a package: the package contract still does not change
+  (§2.1), the packages gaining only a person's `manner`, a field they already had, and the book
+  stays the DM's alone (§1). The 53 books were rebuilt: 4,160 forks over 1,323 pages, 517 people
+  with a voice and 3,193 lines, 194 epilogues, 172 turns with 399 seeds.
+
 ## Consequences
 
 - The campaign package contract does not change (§2.1). The library gains one `book.json` a

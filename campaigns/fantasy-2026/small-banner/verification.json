@@ -1,7 +1,7 @@
 {
   "modelRequested": "gpt-6-astra",
   "effortRequested": "max",
-  "sourceSha256": "74a63d1211fdac871d04dc9691c909873791192b13392e4ae5d66b68480b7ec3",
+  "sourceSha256": "8f0713692309da8560400a5c45c897673f67ac27a970cb687f1a5fff142092b9",
   "content": {
     "sessions": 8,
     "scenes": 24,
